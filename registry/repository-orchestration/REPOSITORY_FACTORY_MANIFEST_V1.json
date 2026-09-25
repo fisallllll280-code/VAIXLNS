@@ -1,0 +1,51 @@
+{
+  "schema": "vaixlns.repository-factory.v1",
+  "snapshot": "2026-09-25",
+  "owner": "fisallllll280-code",
+  "canonical_repository": "fisallllll280-code/VAIXLNS",
+  "policy": {
+    "continuous_pulse": true,
+    "default_visibility": "private",
+    "auto_create_requires_explicit_manifest_flag": true,
+    "never_overwrite_unclassified": true,
+    "require_contract_seed": true,
+    "require_verification_after_seed": true
+  },
+  "repositories": [
+    {
+      "name": "VAIXLNS-repository-orchestrator",
+      "role": "FACTORY",
+      "system_family": "Repository Lifecycle",
+      "auto_create": true,
+      "description": "Governed repository creation, lifecycle, inventory and synchronization engine for VAIXLNS."
+    },
+    {
+      "name": "VAIXLNS-performance-fabric",
+      "role": "RUNTIME-SUPPORT",
+      "system_family": "Performance",
+      "auto_create": true,
+      "description": "Continuous performance measurement, regression detection and runtime optimization fabric."
+    },
+    {
+      "name": "VAIXLNS-development-fabric",
+      "role": "BUILD",
+      "system_family": "Engineering",
+      "auto_create": true,
+      "description": "Shared engineering automation, conformance, build and development primitives for VAIXLNS systems."
+    },
+    {
+      "name": "VAIXLNS-innovation-factory",
+      "role": "FACTORY",
+      "system_family": "Innovation",
+      "auto_create": true,
+      "description": "Controlled innovation incubation, prototype generation, evidence capture and adoption pipeline."
+    },
+    {
+      "name": "VAIXLNS-integration-lab",
+      "role": "LAB",
+      "system_family": "Integration",
+      "auto_create": true,
+      "description": "Isolated integration laboratory for Linux, web, desktop, mobile and external system boundaries."
+    }
+  ]
+}
