@@ -1,0 +1,24 @@
+change_event_id: CHG-XXXX
+entity_id: ""
+action: ADD # ADD | MODIFY | MOVE | RENAME | DELETE | SUPERSEDE | MERGE
+requested_by: ""
+authorized_by: ""
+source_commit: ""
+source_repository: ""
+from_path: ""
+to_path: ""
+old_canonical_id: ""
+new_canonical_id: ""
+reason: ""
+preconditions: []
+impact_assessment:
+  dependency_impact: []
+  capability_impact: []
+  authority_impact: []
+  evidence_impact: []
+  operational_impact: []
+proof_refs: []
+verification_refs: []
+rollback_plan: ""
+lineage_preserved: true
+status: PENDING
