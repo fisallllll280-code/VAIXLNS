@@ -28,3 +28,17 @@ The remaining owned repositories are inventoried here and are intentionally not 
 `-`, `--`, `copilot-sdk`, `datasets`, `desktop`, `fictional-octo-spoon`, `fisallll280-gmail.com`, `fluffy-chainsaw`, `friendly-engine`, `fuzzy-octo-winner`, `glowing-doodle`, `legendary-octo-fiesta`, `New-Action`, `Pumpkin`, `pylance-release`, `react-native-website`, `redesigned-invention`, `reimagined-garbanzo`, `Repository-name`, `src-main.rs`, `starter-workflows`, `stunning-chainsaw`, `TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE`, `tunnel-client`, `verbose-engine`, `whisper`, `y`.
 
 **Rule:** unclassified repositories remain untouched until their contents establish a defensible VAIXLNS relationship.
+
+## Perpetual factory lane
+
+The following are **target repositories declared by the governed factory manifest**, not yet counted as existing repositories:
+
+| Target repository | Role | Creation policy |
+|---|---|---|
+| `VAIXLNS-repository-orchestrator` | FACTORY | auto-create when authorized |
+| `VAIXLNS-performance-fabric` | RUNTIME-SUPPORT | auto-create when authorized |
+| `VAIXLNS-development-fabric` | BUILD | auto-create when authorized |
+| `VAIXLNS-innovation-factory` | FACTORY | auto-create when authorized |
+| `VAIXLNS-integration-lab` | LAB | auto-create when authorized |
+
+The factory executes only from `registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json`. Existing unrelated repositories remain untouched.
