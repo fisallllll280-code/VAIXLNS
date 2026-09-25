@@ -13,7 +13,7 @@
       "name": "Discovery",
       "family": "ASDE, Missing System Discovery Engine, Canonical Indexing Engine, Semantic Linking / Auto-Classification",
       "owner": "NEXENT",
-      "state": "SOURCE-ASSERTED / IMPLEMENTED-BASELINE mix"
+      "state": "SOURCE-ASSERTED / mixed evidence"
     },
     {
       "name": "Architecture Search",
@@ -31,7 +31,7 @@
       "name": "Verification Research",
       "family": "Contradiction Engine, Formal Proof Orchestrator, Cross-Runtime Equivalence, Proof-Carrying Architecture",
       "owner": "NEXENT",
-      "state": "IMPLEMENTED-BASELINE / SOURCE-ASSERTED"
+      "state": "SOURCE-ASSERTED / mixed evidence"
     },
     {
       "name": "Memory / Evolution",
@@ -61,7 +61,7 @@
       "name": "Multi-Mind",
       "family": "Specialist Registry, Capability Routing, Dependency Coordination, Bounded Autonomy",
       "owner": "NEXENT",
-      "state": "IMPLEMENTED-BASELINE / SPECIFIED"
+      "state": "IMPLEMENTEDIFIED"
     },
     {
       "name": "Synthesis",
@@ -205,7 +205,7 @@
       "name": "Proof Lease",
       "family": "Authorization",
       "owner": "VX / Core",
-      "state": "IMPLEMENTED-BASELINE in source-bearing core surfaces"
+      "state": "PARTIAL"
     },
     {
       "name": "Deterministic Causal Execution Graph",
@@ -223,7 +223,7 @@
       "name": "Event + State + Ledger",
       "family": "Event / State",
       "owner": "VX",
-      "state": "IMPLEMENTED / PARTIAL"
+      "state": "PARTIAL"
     },
     {
       "name": "Capability boundary",
@@ -235,7 +235,7 @@
       "name": "VX deterministic runtime",
       "family": "Execution",
       "owner": "VX",
-      "state": "IMPLEMENTED / PARTIAL across execution surfaces"
+      "state": "PARTIAL"
     },
     {
       "name": "Self-healing runtime boundary",
