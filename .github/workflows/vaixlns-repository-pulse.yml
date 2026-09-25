@@ -1,0 +1,32 @@
+name: VAIXLNS Repository Pulse
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vaixlns-repository-pulse
+  cancel-in-progress: false
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical repository
+        uses: actions/checkout@v4
+
+      - name: Run repository pulse
+        env:
+          VAIXLNS_REPO_ADMIN_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
+        run: |
+          python3 scripts/repository_pulse.py
+
+      - name: Publish pulse evidence
+        if: always()
+        run: |
+          mkdir -p .pulse
+          printf "%s\n" "VAIXLNS repository pulse executed at $(date -u +%Y-%m-%dT%H:%M:%SZ)" > .pulse/LAST_PULSE.txt
