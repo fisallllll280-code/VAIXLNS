@@ -16,3 +16,4 @@
 - `REPOSITORY_FEDERATION_INDEX.md` — all 40 currently visible owned repositories and their role.
 - `ENGINEERING_DECISION_REGISTER.md` — concise architecture rationale; not private chain-of-thought.
 - `CANONICAL_REPOSITORY_LAYOUT.md` — target structure and ownership boundaries.
+- `REPOSITORY_PERPETUAL_ENGINE_V1.md` — continuous repository creation, development, verification and innovation loop.
