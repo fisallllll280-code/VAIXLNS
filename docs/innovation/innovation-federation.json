@@ -1,0 +1,253 @@
+{
+  "schema": "VAIXLNS.InnovationFederation.v1",
+  "snapshot": "2026-09-25",
+  "ordering": "owner -> family -> name",
+  "items": [
+    {
+      "name": "Ecosystem",
+      "family": "Standards, Certification, Integration, Compatibility, Benchmarking, Innovation Exchange, SDK",
+      "owner": "NEXENT research",
+      "state": "SOURCE-ASSERTED"
+    },
+    {
+      "name": "Discovery",
+      "family": "ASDE, Missing System Discovery Engine, Canonical Indexing Engine, Semantic Linking / Auto-Classification",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED / IMPLEMENTED-BASELINE mix"
+    },
+    {
+      "name": "Architecture Search",
+      "family": "Capability Genome, Architecture Genome + Mutation, Search Space, Laboratory, Recombination",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED"
+    },
+    {
+      "name": "Impact / Causality",
+      "family": "Causal Architecture Graph, Blast-Radius Prediction, Temporal Architecture, Counterfactual Engine",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED / SPEC"
+    },
+    {
+      "name": "Verification Research",
+      "family": "Contradiction Engine, Formal Proof Orchestrator, Cross-Runtime Equivalence, Proof-Carrying Architecture",
+      "owner": "NEXENT",
+      "state": "IMPLEMENTED-BASELINE / SOURCE-ASSERTED"
+    },
+    {
+      "name": "Memory / Evolution",
+      "family": "Event Ledger, Replay, Provenance, Evolution Genealogy, Assumption Lifecycle, Semantic Regression",
+      "owner": "NEXENT",
+      "state": "IMPLEMENTED-BASELINE / SOURCE-ASSERTED"
+    },
+    {
+      "name": "Resilience",
+      "family": "Failure Genome, Architecture Immune System, Complexity Budget, Conservation Laws, Evolution Firewall, Self-Healing Architecture, Recovery Certificate",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED"
+    },
+    {
+      "name": "Language / Ontology",
+      "family": "NEX-DSL, NEO, Atomic Record, Canonical ID generation",
+      "owner": "NEXENT",
+      "state": "IMPLEMENTED-BASELINE"
+    },
+    {
+      "name": "Simulation / Reality",
+      "family": "Reality Divergence, Reality Twin + Architecture Twin, physics and deterministic simulation",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED / IMPLEMENTED-BASELINE"
+    },
+    {
+      "name": "Multi-Mind",
+      "family": "Specialist Registry, Capability Routing, Dependency Coordination, Bounded Autonomy",
+      "owner": "NEXENT",
+      "state": "IMPLEMENTED-BASELINE / SPECIFIED"
+    },
+    {
+      "name": "Synthesis",
+      "family": "System-of-Systems Compiler / T2C, Theory-to-Rule, Recursive Generation",
+      "owner": "NEXENT",
+      "state": "SOURCE-ASSERTED"
+    },
+    {
+      "name": "Operational Integrity Fabric",
+      "family": "Assurance",
+      "owner": "VAIXLNS + VX",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "V-IR / VAMM",
+      "family": "Semantic IR",
+      "owner": "VAIXLNS + VX",
+      "state": "RECOVERED / DERIVED"
+    },
+    {
+      "name": "Semantic Fingerprint Canonicalizer",
+      "family": "Canonicalization",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Master Registry",
+      "family": "Canon",
+      "owner": "VAIXLNS",
+      "state": "CANONICAL"
+    },
+    {
+      "name": "Contract Fabric",
+      "family": "Contracts",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "Decision Fabric",
+      "family": "Decision",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "CDG",
+      "family": "Derivation / Lineage",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "Evidence DNA",
+      "family": "Evidence / Provenance",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Policy Algebra",
+      "family": "Governance",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Nexus / Graph of Everything",
+      "family": "Graph / Canon",
+      "owner": "VAIXLNS",
+      "state": "CANONICAL"
+    },
+    {
+      "name": "Identity Fabric",
+      "family": "Identity",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "External World Boundary",
+      "family": "Integration",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED"
+    },
+    {
+      "name": "Knowledge Lifecycle",
+      "family": "Knowledge",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED"
+    },
+    {
+      "name": "Lifecycle Engine",
+      "family": "Lifecycle",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED"
+    },
+    {
+      "name": "Omega infinity / Constitution",
+      "family": "Meta / Constitution",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "Master Capability Indexer",
+      "family": "Registry / Capability",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Resource Fabric",
+      "family": "Resource",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED"
+    },
+    {
+      "name": "Contract-Centered Runtime",
+      "family": "Runtime governance",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / DERIVED"
+    },
+    {
+      "name": "Trust Boundary",
+      "family": "Security",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED"
+    },
+    {
+      "name": "Canonical Semantic Engine",
+      "family": "Semantics",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "CME",
+      "family": "Semantics",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "CTM",
+      "family": "Truth",
+      "owner": "VAIXLNS",
+      "state": "RECOVERED / CANONICAL"
+    },
+    {
+      "name": "Proof Lease",
+      "family": "Authorization",
+      "owner": "VX / Core",
+      "state": "IMPLEMENTED-BASELINE in source-bearing core surfaces"
+    },
+    {
+      "name": "Deterministic Causal Execution Graph",
+      "family": "Causality / Runtime",
+      "owner": "VX",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Replay Determinism Verifier",
+      "family": "Conformance",
+      "owner": "VX",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Event + State + Ledger",
+      "family": "Event / State",
+      "owner": "VX",
+      "state": "IMPLEMENTED / PARTIAL"
+    },
+    {
+      "name": "Capability boundary",
+      "family": "Execution governance",
+      "owner": "VX",
+      "state": "IMPLEMENTED / PARTIAL"
+    },
+    {
+      "name": "VX deterministic runtime",
+      "family": "Execution",
+      "owner": "VX",
+      "state": "IMPLEMENTED / PARTIAL across execution surfaces"
+    },
+    {
+      "name": "Self-healing runtime boundary",
+      "family": "Recovery",
+      "owner": "VX",
+      "state": "SPECIFIED"
+    },
+    {
+      "name": "Deterministic Replay",
+      "family": "Verification",
+      "owner": "VX",
+      "state": "IMPLEMENTED / PARTIAL"
+    }
+  ]
+}
