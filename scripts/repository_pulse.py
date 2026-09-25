@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """VAIXLNS perpetual repository pulse.
 
-Creates only repositories explicitly listed with auto_create=true in the
-repository factory manifest. Requires VAIXLNS_REPO_ADMIN_TOKEN for repository
-creation. With no admin token, the pulse remains a read-only audit.
+Inventory the owned repository surface and create only repositories explicitly
+approved by the canonical factory manifest. Newly created repositories receive
+a canonical contract, evidence placeholder and a minimal conformance workflow.
+
+Creation requires VAIXLNS_REPO_ADMIN_TOKEN. Without it the pulse is read-only.
 """
 
 from __future__ import annotations
@@ -30,7 +32,7 @@ def api(method: str, path: str, token: str, payload: dict | None = None) -> dict
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
             "Content-Type": "application/json",
-            "User-Agent": "VAIXLNS-repository-pulse/1.0",
+            "User-Agent": "VAIXLNS-repository-pulse/1.1",
         },
     )
     with urllib.request.urlopen(req, timeout=30) as response:
@@ -38,13 +40,65 @@ def api(method: str, path: str, token: str, payload: dict | None = None) -> dict
         return json.loads(raw) if raw else {}
 
 def load_manifest() -> dict:
-    path = (
-        Path(__file__).resolve().parents[1]
-        / 'registry'
-        / 'repository-orchestration'
-        / 'REPOSITORY_FACTORY_MANIFEST_V1.json'
-    )
-    return json.loads(path.read_text(encoding="utf-8"))
+    root = Path(__file__).resolve().parents[1]
+    return json.loads((
+        root / 'registry' / 'repository-orchestration' / 'REPOSITORY_FACTORY_MANIFEST_V1.json'
+    ).read_text(encoding='utf-8'))
+
+def load_contract() -> str:
+    root = Path(__file__).resolve().parents[1]
+    return (
+        root / 'registry' / 'repository-orchestration' / 'VAIXLNS_REPOSITORY_CONTRACT.md'
+    ).read_text(encoding='utf-8')
+
+CONFORMANCE_WORKFLOW = '''name: VAIXLNS Conformance
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Contract present
+        run: test -f VAIXLNS_REPOSITORY_CONTRACT.md
+      - name: Report repository state
+        run: |
+          printf '%s\\n' "Repository: $GITHUB_REPOSITORY"
+          printf '%s\\n' "Commit: $GITHUB_SHA"
+          test -f README.md || true
+'''
+
+
+def put_file(owner: str, name: str, path: str, content: str, token: str, message: str) -> None:
+    payload = {
+        "message": message,
+        "content": __import__("base64").b64encode(content.encode("utf-8")).decode("ascii"),
+    }
+    api("PUT", f"/repos/{owner}/{name}/contents/{path}", token, payload)
+
+def seed_repository(owner: str, name: str, spec: dict, token: str, contract: str) -> None:
+    header = [
+        f"# {name}",
+        "",
+        "Managed under the VAIXLNS Repository Perpetual Engine.",
+        "",
+        f"- Role: {spec.get('role', 'TBD')}",
+        f"- System Family: {spec.get('system_family', 'TBD')}",
+        "- Lifecycle: SEEDED",
+        "- Canonical authority: VAIXLNS",
+        "",
+        "This repository is created from the governed repository factory manifest.",
+    ]
+    put_file(owner, name, 'VAIXLNS_REPOSITORY_CONTRACT.md', contract, token, 'chore: seed VAIXLNS repository contract')
+    put_file(owner, name, 'README.md', '\\n'.join(header), token, 'docs: seed VAIXLNS repository identity')
+    put_file(owner, name, '.github/workflows/vaixlns-conformance.yml', CONFORMANCE_WORKFLOW, token, 'ci: seed VAIXLNS conformance workflow')
+    put_file(owner, name, 'docs/DEVELOPMENT_QUEUE.md', '# Development Queue\\n\\n- [ ] Establish executable entrypoint\\n- [ ] Add deterministic tests\\n- [ ] Capture verification evidence\\n- [ ] Register performance metrics\\n- [ ] Link innovation records\\n', token, 'docs: seed development queue')
 
 def main() -> int:
     token = os.getenv("VAIXLNS_REPO_ADMIN_TOKEN") or os.getenv("GITHUB_TOKEN")
@@ -54,6 +108,7 @@ def main() -> int:
 
     manifest = load_manifest()
     owner = manifest["owner"]
+    contract = load_contract()
 
     try:
         existing = api("GET", "/user/repos?per_page=100&type=owner", token)
@@ -62,7 +117,6 @@ def main() -> int:
         return 2
 
     existing_names = {item["name"] for item in existing if item.get("owner", {}).get("login") == owner}
-
     created = []
     present = []
 
@@ -86,11 +140,12 @@ def main() -> int:
         }
         try:
             api("POST", "/user/repos", token, payload)
+            seed_repository(owner, name, spec, token, contract)
             created.append(name)
-            print(f"CREATED: {owner}/{name}")
+            print(f"CREATED+SEEDED: {owner}/{name}")
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")
-            print(f"ERROR: create {name}: HTTP {exc.code}: {body[:400]}")
+            print(f"ERROR: {name}: HTTP {exc.code}: {body[:500]}")
             return 3
 
     print(json.dumps({"present": present, "created": created}, indent=2))
