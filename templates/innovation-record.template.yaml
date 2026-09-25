@@ -1,0 +1,34 @@
+innovation_id: INNOV-XXXX
+name: ""
+short_name: ""
+status: PROPOSED_INNOVATION
+origin: PROJECT_ARCHIVE_OR_NEW_PROPOSAL
+family: ""
+canonical_owner: ""
+problem_statement: ""
+capability_added: ""
+inputs: []
+outputs: []
+preconditions: []
+postconditions: []
+invariants: []
+dependencies: []
+affected_systems: []
+affected_authority: []
+contract_refs: []
+evidence_refs: []
+proof_obligations: []
+test_plan: []
+failure_modes: []
+recovery_plan: []
+security_boundary: ""
+operational_readiness_requirements: []
+repository_path: ""
+implementation_refs: []
+lineage_refs: []
+supersedes: []
+superseded_by: []
+novelty_notes: ""
+adoption_gate:
+  required: true
+  result: PENDING
