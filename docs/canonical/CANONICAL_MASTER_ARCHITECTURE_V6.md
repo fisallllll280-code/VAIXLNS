@@ -17,3 +17,30 @@ Execution ≠ Legitimacy
 ## Status
 
 This document is the canonical integration map for the repository. Historical designs remain preserved by lineage; proposed concepts are not represented as implemented.
+
+
+## Four-domain engineering room
+
+MATHEMATICS + PHYSICS + ENGINEERING + COMPUTING share the same canonical intelligence,
+invention, simulation, verification, authority, execution, memory and interface planes.
+
+The customer selects a mission and an arbitrary subset of the four domains. VX composes
+the relevant specialists and workspaces; it does not create four isolated systems.
+
+## Decompose-before-synthesize rule
+
+The canonical workflow is:
+
+DECOMPOSE -> CLASSIFY -> PRESERVE LINEAGE -> IDENTIFY OWNER -> FIND GAP
+-> CONNECT IMPLEMENTATION -> SIMULATE -> TEST -> VERIFY -> ADOPT
+
+This keeps legacy/source-owned systems attributable while allowing a federated runtime.
+
+## Current executable overlay
+
+VAIXLNS-unified contains the first executable foundations for invention generation, reversible
+runtime supervision, typed Nexus relations, domain routing, simulation, durable memory,
+GitHub federation, authority contracts, interface generation, reconciliation,
+architecture search/self-critique, telemetry/provenance boundaries, and an OpenAI Responses bridge.
+
+Remaining architecture remains explicitly represented as gap work rather than being mislabeled as implemented.
