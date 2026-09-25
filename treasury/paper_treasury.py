@@ -244,11 +244,11 @@ class PaperTreasury:
             "state_hash": self.state_hash(),
         }
         record.status = "RECONCILED"
-        record.evidence_hash = sha256_json(self.evidence_record(event_id))
+        record.evidence_hash = self.evidence_record(event_id)["evidence_hash"]
         self._event("TRANSACTION_RECONCILED", record.as_dict())
         return record
 
-    def evidence_record(self, event_id: str) -> dict:
+    def _evidence_material(self, event_id: str) -> dict:
         record = self._record(event_id)
         if not record.reconciliation:
             raise ValueError("reconciliation_required_before_evidence")
@@ -263,6 +263,11 @@ class PaperTreasury:
             "execution_reference": record.execution_reference,
             "reconciliation": record.reconciliation,
         }
+
+    def evidence_record(self, event_id: str) -> dict:
+        material = self._evidence_material(event_id)
+        material["evidence_hash"] = sha256_json(material)
+        return material
 
     def evidence_bundle(self) -> dict:
         return {
