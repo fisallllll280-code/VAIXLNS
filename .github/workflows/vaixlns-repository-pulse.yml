@@ -19,6 +19,10 @@ jobs:
       - name: Checkout canonical repository
         uses: actions/checkout@v4
 
+      - name: Run universal admission gate
+        run: |
+          python3 scripts/admission_gate.py
+
       - name: Run repository pulse
         env:
           VAIXLNS_REPO_ADMIN_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
