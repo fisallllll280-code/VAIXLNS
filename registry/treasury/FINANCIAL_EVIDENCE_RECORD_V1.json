@@ -1,0 +1,15 @@
+{
+  "schema": "VAIXLNS.FINANCIAL_EVIDENCE_RECORD.v1",
+  "required": [
+    "event_id",
+    "policy_version",
+    "input_state_hash",
+    "simulation",
+    "risk_check",
+    "authorization",
+    "execution_reference",
+    "reconciliation",
+    "evidence_hash"
+  ],
+  "principle": "No evidence, no financial admission."
+}
