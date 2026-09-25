@@ -1,0 +1,37 @@
+name: VAIXLNS Computational Reality Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vcre:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run executable VCRE tests
+        env:
+          PYTHONPATH: .
+        run: python -m unittest discover -s tests -p 'test_vcre_*.py' -v
+      - name: Run evidence probe
+        env:
+          PYTHONPATH: .
+        run: python scripts/vcre_probe.py
+      - name: Validate evidence artifact
+        run: python -c "import json; from pathlib import Path; d=json.loads(Path('.vcre-evidence.json').read_text()); assert d['status']=='PASS'; assert d['ledger_valid'] is True; assert d['event_count'] >= 4; assert d['certificate_hash']; print('VCRE EVIDENCE PASS')"
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-vcre-evidence
+          path: .vcre-evidence.json
