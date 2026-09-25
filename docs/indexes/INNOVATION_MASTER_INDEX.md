@@ -89,3 +89,28 @@ Do not create a new top-level system when an innovation can be expressed as:
 `Existing canonical owner + capability + explicit contract + evidence + proof + lifecycle + lineage`.
 
 A proposal becomes implementation only after code, tests, and evidence establish that state.
+
+
+## 2026-09-25 executable integration overlay
+
+The following items have an executable foundation in the current VAIXLNS-unified development line:
+- Invention Forge + Capability Genome promotion
+- Reversible VX supervisor
+- Canonical decomposition + gap audit
+- Four-domain mission router
+- Typed Nexus entity/relation graph
+- Deterministic reference simulation backend
+- Durable memory hash-chain
+- OpenAI Responses API bridge
+- GitHub federation adapter
+- Constitutional authority contract
+- Model/tool capability registry
+- Mission-derived interface manifest
+- Desired-state reconciliation loop
+- Architecture discovery/search/self-critique laboratory
+- Optional OpenTelemetry bridge
+- Internal artifact provenance manifest
+- MCP trust policy boundary
+
+These are implementation foundations. Their existence does not by itself mark the entire corresponding
+architecture as complete or production-ready.
