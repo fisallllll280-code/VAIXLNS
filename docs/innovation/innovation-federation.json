@@ -13,7 +13,7 @@
       "name": "Discovery",
       "family": "ASDE, Missing System Discovery Engine, Canonical Indexing Engine, Semantic Linking / Auto-Classification",
       "owner": "NEXENT",
-      "state": "SOURCE-ASSERTED / mixed evidence"
+      "state": "SOURCE-ASSERTED"
     },
     {
       "name": "Architecture Search",
@@ -25,19 +25,19 @@
       "name": "Impact / Causality",
       "family": "Causal Architecture Graph, Blast-Radius Prediction, Temporal Architecture, Counterfactual Engine",
       "owner": "NEXENT",
-      "state": "SOURCE-ASSERTED / SPEC"
+      "state": "SOURCE-ASSERTED"
     },
     {
       "name": "Verification Research",
       "family": "Contradiction Engine, Formal Proof Orchestrator, Cross-Runtime Equivalence, Proof-Carrying Architecture",
       "owner": "NEXENT",
-      "state": "SOURCE-ASSERTED / mixed evidence"
+      "state": "SOURCE-ASSERTED"
     },
     {
       "name": "Memory / Evolution",
       "family": "Event Ledger, Replay, Provenance, Evolution Genealogy, Assumption Lifecycle, Semantic Regression",
       "owner": "NEXENT",
-      "state": "IMPLEMENTED-BASELINE / SOURCE-ASSERTED"
+      "state": "IMPLEMENTED"
     },
     {
       "name": "Resilience",
@@ -49,19 +49,19 @@
       "name": "Language / Ontology",
       "family": "NEX-DSL, NEO, Atomic Record, Canonical ID generation",
       "owner": "NEXENT",
-      "state": "IMPLEMENTED-BASELINE"
+      "state": "IMPLEMENTED"
     },
     {
       "name": "Simulation / Reality",
       "family": "Reality Divergence, Reality Twin + Architecture Twin, physics and deterministic simulation",
       "owner": "NEXENT",
-      "state": "SOURCE-ASSERTED / IMPLEMENTED-BASELINE"
+      "state": "IMPLEMENTED"
     },
     {
       "name": "Multi-Mind",
       "family": "Specialist Registry, Capability Routing, Dependency Coordination, Bounded Autonomy",
       "owner": "NEXENT",
-      "state": "IMPLEMENTEDIFIED"
+      "state": "IMPLEMENTED"
     },
     {
       "name": "Synthesis",
@@ -79,7 +79,7 @@
       "name": "V-IR / VAMM",
       "family": "Semantic IR",
       "owner": "VAIXLNS + VX",
-      "state": "RECOVERED / DERIVED"
+      "state": "RECOVERED"
     },
     {
       "name": "Semantic Fingerprint Canonicalizer",
@@ -91,25 +91,25 @@
       "name": "Master Registry",
       "family": "Canon",
       "owner": "VAIXLNS",
-      "state": "CANONICAL"
+      "state": "PROPOSAL"
     },
     {
       "name": "Contract Fabric",
       "family": "Contracts",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "Decision Fabric",
       "family": "Decision",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "CDG",
       "family": "Derivation / Lineage",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "Evidence DNA",
@@ -127,13 +127,13 @@
       "name": "Nexus / Graph of Everything",
       "family": "Graph / Canon",
       "owner": "VAIXLNS",
-      "state": "CANONICAL"
+      "state": "PROPOSAL"
     },
     {
       "name": "Identity Fabric",
       "family": "Identity",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "External World Boundary",
@@ -157,7 +157,7 @@
       "name": "Omega infinity / Constitution",
       "family": "Meta / Constitution",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "Master Capability Indexer",
@@ -175,7 +175,7 @@
       "name": "Contract-Centered Runtime",
       "family": "Runtime governance",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / DERIVED"
+      "state": "RECOVERED"
     },
     {
       "name": "Trust Boundary",
@@ -193,13 +193,13 @@
       "name": "CME",
       "family": "Semantics",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "CTM",
       "family": "Truth",
       "owner": "VAIXLNS",
-      "state": "RECOVERED / CANONICAL"
+      "state": "CANONICAL"
     },
     {
       "name": "Proof Lease",
@@ -229,7 +229,7 @@
       "name": "Capability boundary",
       "family": "Execution governance",
       "owner": "VX",
-      "state": "IMPLEMENTED / PARTIAL"
+      "state": "PARTIAL"
     },
     {
       "name": "VX deterministic runtime",
@@ -247,7 +247,7 @@
       "name": "Deterministic Replay",
       "family": "Verification",
       "owner": "VX",
-      "state": "IMPLEMENTED / PARTIAL"
+      "state": "PARTIAL"
     }
   ]
 }
