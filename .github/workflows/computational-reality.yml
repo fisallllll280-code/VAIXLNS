@@ -30,8 +30,10 @@ jobs:
         run: python scripts/vcre_probe.py
       - name: Validate evidence artifact
         run: python -c "import json; from pathlib import Path; d=json.loads(Path('.vcre-evidence.json').read_text()); assert d['status']=='PASS'; assert d['ledger_valid'] is True; assert d['event_count'] >= 4; assert d['certificate_hash']; print('VCRE EVIDENCE PASS')"
+      - name: Publish evidence into workspace
+        run: mkdir -p evidence && cp .vcre-evidence.json evidence/VCRE_EVIDENCE.json
       - name: Upload evidence
         uses: actions/upload-artifact@v4
         with:
           name: vaixlns-vcre-evidence
-          path: .vcre-evidence.json
+          path: evidence/VCRE_EVIDENCE.json
