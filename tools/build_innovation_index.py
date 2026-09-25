@@ -15,6 +15,33 @@ VALID = {
     "IMPLEMENTED-BASELINE / SPEC","PROPOSAL / SOURCE-ASSERTED"
 }
 
+def normalize_state(raw: str) -> str:
+    s = raw.upper().strip()
+    if "CONFLICT" in s:
+        return "CONFLICT"
+    if "QUARANTINED" in s:
+        return "QUARANTINED"
+    if "PROPOSAL" in s:
+        return "PROPOSAL"
+    if "PARTIAL" in s:
+        return "PARTIAL"
+    if "IMPLEMENTED" in s:
+        return "IMPLEMENTED"
+    if "VERIFIED" in s:
+        return "VERIFIED"
+    if "SPECIFIED" in s:
+        return "SPECIFIED"
+    if "MISSING" in s:
+        return "MISSING"
+    if "RECOVERED" in s and "CANONICAL" in s:
+        return "CANONICAL"
+    if "RECOVERED" in s:
+        return "RECOVERED"
+    if "SOURCE-ASSERTED" in s:
+        return "SOURCE-ASSERTED"
+    return "PROPOSAL"
+
+
 def parse() -> list[dict[str,str]]:
     rows=[]
     for line in SOURCE.read_text(encoding="utf-8").splitlines():
@@ -24,7 +51,12 @@ def parse() -> list[dict[str,str]]:
         if len(cols) < 4 or cols[0] in {"Innovation","Family"}:
             continue
         name,family,owner,state=cols[:4]
-        rows.append({"name":name,"family":family,"owner":owner,"state":state})
+        rows.append({
+            "name":name,
+            "family":family,
+            "owner":owner,
+            "state":normalize_state(state),
+        })
     return sorted(rows,key=lambda r:(r["owner"].lower(),r["family"].lower(),r["name"].lower()))
 
 def main() -> None:
