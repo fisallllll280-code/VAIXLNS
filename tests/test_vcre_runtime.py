@@ -24,7 +24,7 @@ class VCREExecutableTests(unittest.TestCase):
                 return state
             steps.append(("constant-velocity", step, 1.0))
             self.engine.transition("W0", "constant-velocity", step, observation={"source": "synthetic-demo"})
-        replay = self.engine.replay("REPLAY", initial, steps)
+        replay = self.engine.replay("W0", initial, steps)
         self.assertEqual(replay.state["position"], self.engine.worlds["W0"].state["position"])
         self.assertEqual(replay.state_hash, self.engine.worlds["W0"].state_hash)
         self.assertTrue(self.engine.ledger.verify())
