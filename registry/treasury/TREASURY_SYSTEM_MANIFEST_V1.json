@@ -1,0 +1,38 @@
+{
+  "schema": "VAIXLNS.TREASURY_SYSTEM_MANIFEST.v1",
+  "system_id": "VX.TREASURY.PAPER.01",
+  "family": "TREASURY",
+  "mode": "PAPER",
+  "authority": "VAIXLNS",
+  "implementation": {
+    "package": "treasury/",
+    "entrypoint": "python3 -m treasury",
+    "probe": "python3 scripts/treasury_admission_probe.py",
+    "tests": "python3 -m unittest discover -s tests -v"
+  },
+  "financial_boundary": {
+    "real_value_execution": false,
+    "custody": false,
+    "secret_key_access": false,
+    "external_adapter_access": false
+  },
+  "lifecycle": [
+    "PROPOSED",
+    "SIMULATED",
+    "TESTED",
+    "VERIFIED",
+    "AUTHORIZED",
+    "CONTROLLED",
+    "PRODUCTION"
+  ],
+  "mandatory_evidence": [
+    "deterministic_simulation",
+    "policy_result",
+    "risk_result",
+    "dual_authorization",
+    "paper_execution_reference",
+    "reconciliation",
+    "state_hash",
+    "events_hash"
+  ]
+}
