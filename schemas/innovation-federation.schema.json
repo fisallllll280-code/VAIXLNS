@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schema/innovation-federation-v1.json",
+  "title": "VAIXLNS Innovation Federation Record",
+  "type": "object",
+  "required": ["canonical_id","name","family","owner","status","evidence"],
+  "properties": {
+    "canonical_id": {"type":"string"},
+    "name": {"type":"string"},
+    "family": {"type":"string"},
+    "owner": {"type":"string"},
+    "status": {
+      "type":"string",
+      "enum":["VERIFIED","IMPLEMENTED","SPECIFIED","PARTIAL","MISSING","CONFLICT","PROPOSAL","RECOVERED","QUARANTINED","SOURCE-ASSERTED"]
+    },
+    "source_repositories": {"type":"array","items":{"type":"string"}},
+    "implementation_repositories": {"type":"array","items":{"type":"string"}},
+    "derived_from": {"type":"array","items":{"type":"string"}},
+    "relations": {"type":"array","items":{"type":"string"}},
+    "evidence": {
+      "type":"object",
+      "required":["class"],
+      "properties":{"class":{"type":"string"},"paths":{"type":"array","items":{"type":"string"}}},
+      "additionalProperties":false
+    }
+  },
+  "additionalProperties":false
+}
