@@ -38,8 +38,10 @@ jobs:
           grep -q 'VAIXLNS' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
           grep -q 'NEXENT' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
           grep -q 'VAIXLNS-unified' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
-          grep -q 'NEXENT.*DISCOVER' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
-          grep -q 'VAIXLNS.*CANONICALIZE' docs/indexes/MASTER_RECOVERY_STATUS.md
+          grep -q 'NEXENT' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
+          grep -q 'DISCOVER' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
+          grep -q 'VAIXLNS' docs/indexes/MASTER_RECOVERY_STATUS.md
+          grep -q 'CANONICALIZE' docs/indexes/MASTER_RECOVERY_STATUS.md
 
       - name: Block silent deletion from protected surfaces
         shell: bash
