@@ -16,6 +16,8 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Engineering decision register](docs/indexes/ENGINEERING_DECISION_REGISTER.md)
 - [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
+- [VX universal adapter fabric](docs/integration/VX_UNIVERSAL_ADAPTER_FABRIC_V1.md)
+- [VX universal adapter registry](registry/integration/VX_UNIVERSAL_ADAPTER_REGISTRY_V1.json)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
 
 ## Canonical boundary
