@@ -1,0 +1,35 @@
+name: Repository Operation Audit
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate federation control files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f registry/repository-federation/REPOSITORY_FEDERATION_V2.json
+          test -f docs/control-plane/REPOSITORY_OPERATIONS.md
+          python - <<'PY'
+          import json
+          p="registry/repository-federation/REPOSITORY_FEDERATION_V2.json"
+          d=json.load(open(p,encoding="utf-8"))
+          assert isinstance(d, dict)
+          assert d.get("external_sources") is not None
+          print("Federation manifest: valid JSON")
+          PY
+      - name: Check prohibited provider authority
+        run: |
+          ! grep -R 'authority[[:space:]]*[:=][[:space:]]*["'\''']\?CANONICAL' registry docs apps .github 2>/dev/null || (echo "External provider authority detected"; exit 1)
+      - name: Report
+        run: echo "Repository operation audit passed"
