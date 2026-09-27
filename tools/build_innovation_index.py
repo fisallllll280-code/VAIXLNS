@@ -76,8 +76,7 @@ def main() -> None:
         "snapshot":"2026-09-25",
         "ordering":"owner -> family -> name",
         "items":items
-    },indent=2,ensure_ascii=False)+"
-",encoding="utf-8")
+    },indent=2,ensure_ascii=False)+"\\n",encoding="utf-8")
 
 if __name__=="__main__":
     main()
