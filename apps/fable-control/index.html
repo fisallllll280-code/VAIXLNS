@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VAIXLNS · Fable Control Plane</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1200px;margin:auto;padding:24px;background:#0b1020;color:#eef}
+.card{background:#151c31;border:1px solid #2a3558;border-radius:14px;padding:18px;margin:12px 0}
+button,select,input{padding:10px;border-radius:8px;border:1px solid #42517d;background:#11182b;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.status{font-family:monospace}
+</style>
+</head>
+<body>
+<h1>VAIXLNS · Fable Control Plane</h1>
+<p>Repository-first control surface for the external Fable agent worker.</p>
+
+<div class="grid">
+<section class="card"><h2>Provider</h2><div class="status" id="provider">anthropic-fable</div><p>Authority: NONE</p><p>Model: claude-fable-5</p></section>
+<section class="card"><h2>Source</h2><div class="status">A3S-Lab/claude-fable-5</div><p>Reference-only / MIT / review required</p></section>
+<section class="card"><h2>Governance</h2><div class="status">NEXENT → VERIFY → VAIXLNS</div><p>No silent canonical mutation.</p></section>
+</div>
+
+<section class="card">
+<h2>Repository control</h2>
+<label>Target repository<br><input id="repo" value="fisallllll280-code/VAIXLNS" size="45"></label>
+<br><br>
+<label>Action<br>
+<select id="action">
+<option value="audit">Audit</option>
+<option value="index">Re-index</option>
+<option value="plan">Generate engineering plan</option>
+<option value="verify">Run verification</option>
+<option value="propose">Open controlled proposal</option>
+</select></label>
+<br><br>
+<button id="run">Queue action</button>
+<pre id="out">Ready.</pre>
+</section>
+
+<section class="card">
+<h2>Execution contract</h2>
+<pre>DISCOVER → PLAN → MODIFY → TEST → REVIEW → PROVE → GOVERN → COMMIT → OBSERVE → RECOVER</pre>
+<p>This UI intentionally queues governed actions; credentials and write tokens stay server-side/GitHub Actions.</p>
+</section>
+
+<script>
+document.getElementById("run").onclick=()=>{
+ const repo=document.getElementById("repo").value.trim();
+ const action=document.getElementById("action").value;
+ document.getElementById("out").textContent =
+   "Queued locally:\n" + JSON.stringify({repo,action,provider:"anthropic-fable",authority:"NONE"},null,2) +
+   "\n\nConnect this UI to the repository workflow endpoint; never place a GitHub token in browser code.";
+};
+</script>
+</body>
+</html>
