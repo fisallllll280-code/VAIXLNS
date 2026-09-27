@@ -68,4 +68,4 @@ No document-only assertion upgrades an object to VERIFIED.
 
 ## Boundary rule
 
-NEXENT may discover, model, synthesize, simulate and propose. VAIXLNS controls canonical adoption and production authority. No silent cross-boundary mutation is allowed.
+NEXENT may DISCOVER, model, synthesize, simulate and propose. VAIXLNS controls canonical adoption and production authority. No silent cross-boundary mutation is allowed.
