@@ -1,5 +1,7 @@
 # GitHub Repository Federation Index
 
+> Machine-readable v2: [REPOSITORY_FEDERATION_V2.json](../repository-federation/REPOSITORY_FEDERATION_V2.json) · Control doc: [REPOSITORY_FEDERATION_V2.md](../canonical/REPOSITORY_FEDERATION_V2.md)
+
 **Snapshot:** 2026-09-25  
 **Accessible owned repositories:** 40
 
