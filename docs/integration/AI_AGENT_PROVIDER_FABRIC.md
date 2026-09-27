@@ -50,3 +50,14 @@ DISCOVER → UNDERSTAND → PLAN → MODIFY → TEST → REVIEW → PROVE → GO
 ```
 
 The contract is provider-neutral so another model can replace Fable without changing VAIXLNS semantics.
+
+
+## External Fable repository
+
+Upstream reference: `A3S-Lab/claude-fable-5`.
+
+The repository contains `claude-fable-5.md`, but the file is treated as **external reference data**. It is never promoted automatically into VAIXLNS policy, permissions, credentials, or execution authority.
+
+Control actions must pass through the Fable Control Plane and repository governance gates.
+
+Source: https://github.com/A3S-Lab/claude-fable-5
