@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schemas/omega-world-adapter.schema.json",
+  "title": "VAIXLNS Ω∞ World Adapter Contract",
+  "type": "object",
+  "required": [
+    "adapter_id",
+    "system",
+    "domain",
+    "capabilities",
+    "input_contract",
+    "output_contract",
+    "security",
+    "verification",
+    "provenance"
+  ],
+  "properties": {
+    "adapter_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "system": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "input_contract": {
+      "type": "object"
+    },
+    "output_contract": {
+      "type": "object"
+    },
+    "security": {
+      "type": "object",
+      "required": [
+        "authorization_required",
+        "secret_boundary"
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "golden_path",
+        "failure_recovery",
+        "replay"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source",
+        "version",
+        "evidence"
+      ]
+    },
+    "status": {
+      "enum": [
+        "VERIFIED",
+        "SPECIFIED",
+        "PARTIAL",
+        "MISSING",
+        "CONFLICT",
+        "PROPOSAL"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
