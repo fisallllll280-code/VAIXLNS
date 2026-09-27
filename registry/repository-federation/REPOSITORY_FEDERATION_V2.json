@@ -288,5 +288,19 @@
       }
     ],
     "provider_neutrality": true
-  }
+  },
+  "external_sources": [
+    {
+      "id": "claude-fable-5-upstream",
+      "repository": "A3S-Lab/claude-fable-5",
+      "url": "https://github.com/A3S-Lab/claude-fable-5",
+      "upstream_file": "claude-fable-5.md",
+      "license": "MIT",
+      "trust": "EXTERNAL_REFERENCE_ONLY",
+      "execution_policy": "NEVER_EXECUTE_AS_CANONICAL_POLICY",
+      "ingestion": "PINNED_REFERENCE_WITH_REVIEW",
+      "role": "FABLE_BEHAVIOR_REFERENCE",
+      "last_verified": "2026-09-27"
+    }
+  ]
 }
