@@ -1,0 +1,17 @@
+{
+  "schema": "VAIXLNS.OperationSourceRegistry.v1",
+  "version": "1.0.0",
+  "canonical": true,
+  "sources": [
+    {"id":"VAIXLNS","role":"canonical_architecture_registry_governance","status":"canonical"},
+    {"id":"VAIXLNS-unified","role":"integrated_executable_runtime","status":"runtime_target"},
+    {"id":"NEXENT","role":"discovery_search_synthesis_candidate_generation","status":"active_discovery"},
+    {"id":"vaixlns-core","role":"selective_implementation_source","status":"reconciliation_required"},
+    {"id":"VX-runtime","role":"runtime_contract_specification","status":"reconciliation_required"},
+    {"id":"VAIXLNS-Intent-to-Reality","role":"intent_to_execution_pipeline","status":"reconciliation_required"},
+    {"id":"vaixlns-csd-kernel","role":"specialized_kernel","status":"specialized"},
+    {"id":"VX50_COMPLETE_BUILD","role":"recovery_build_source","status":"quarantined"}
+  ],
+  "lifecycle":["RECOVERED","CANONICAL","IMPLEMENTED","VERIFIED"],
+  "side_states":["PROPOSED","VARIANT","SUPERSEDED","QUARANTINED","BLOCKED"]
+}

@@ -1,0 +1,58 @@
+name: VAIXLNS Operational Control Plane
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  operational-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate operation registry
+        run: python -m json.tool registry/operations/OPERATION_SOURCE_REGISTRY_V1.json >/dev/null
+
+      - name: Validate canonical operational sources
+        run: |
+          test -f docs/operations/MASTER_OPERATIONAL_CONTROL_PLANE_V1.md
+          test -f docs/operations/INTEGRATED_OPERATION_SOURCES_V1.md
+          test -f docs/operations/OPERATION_RUN_RECORD_V1.md
+          test -f docs/operations/EXECUTION_WAVES_V1.md
+          test -f docs/operations/ERROR_AND_REPLAY_PROTOCOL_V1.md
+
+      - name: Validate protected-source policy
+        run: |
+          grep -q 'source_items = mapped_items + explicitly_excluded_items' docs/operations/MASTER_OPERATIONAL_CONTROL_PLANE_V1.md
+          grep -q 'VAIXLNS-unified' registry/operations/OPERATION_SOURCE_REGISTRY_V1.json
+          grep -q 'NEXENT' registry/operations/OPERATION_SOURCE_REGISTRY_V1.json
+          grep -q 'VERIFIED' registry/operations/OPERATION_SOURCE_REGISTRY_V1.json
+
+      - name: Detect protected deletions
+        shell: bash
+        run: |
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          head="${{ github.sha }}"
+          if [ "$base" = "0000000000000000000000000000000000000000" ]; then exit 0; fi
+          git diff --name-status "$base" "$head" | awk '$1=="D"{print $2}' > deleted.txt
+          while IFS= read -r path; do
+            [ -z "$path" ] && continue
+            case "$path" in
+              archive/*|docs/recovery/*|docs/indexes/*|registry/*|schemas/*)
+                echo "BLOCKED protected deletion: $path"
+                exit 1 ;;
+            esac
+          done < deleted.txt
+
+      - name: Emit operation-plane evidence
+        run: |
+          printf 'commit=%s\nevent=%s\n' "$GITHUB_SHA" "$GITHUB_EVENT_NAME" > operational-integrity-evidence.txt
+          cat operational-integrity-evidence.txt
