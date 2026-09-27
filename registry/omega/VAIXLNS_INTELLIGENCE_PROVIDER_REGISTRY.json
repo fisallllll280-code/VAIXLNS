@@ -1,0 +1,51 @@
+{
+  "schema": "VAIXLNS-Ω∞-Intelligence-Federation-1.0",
+  "status": "SPECIFIED",
+  "providers": [
+    {
+      "id": "openai",
+      "adapter": "provider/openai",
+      "discovery": "runtime"
+    },
+    {
+      "id": "anthropic",
+      "adapter": "provider/anthropic",
+      "discovery": "runtime"
+    },
+    {
+      "id": "google-gemini",
+      "adapter": "provider/google-gemini",
+      "discovery": "runtime"
+    },
+    {
+      "id": "mistral",
+      "adapter": "provider/mistral",
+      "discovery": "runtime"
+    },
+    {
+      "id": "open-weight",
+      "adapter": "provider/open-weight",
+      "discovery": "runtime"
+    }
+  ],
+  "routing": [
+    "reasoning",
+    "coding",
+    "vision",
+    "audio",
+    "long_context",
+    "structured_output",
+    "tool_use",
+    "latency",
+    "cost",
+    "sovereignty",
+    "availability"
+  ],
+  "invariants": [
+    "no-secret-commit",
+    "no-unverified-promotion",
+    "provider-neutral",
+    "agreement-is-not-proof",
+    "provenance-required"
+  ]
+}
