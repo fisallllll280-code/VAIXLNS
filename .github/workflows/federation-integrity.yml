@@ -1,0 +1,73 @@
+name: VAIXLNS Federation Integrity
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate canonical JSON schemas
+        run: |
+          python -m json.tool schemas/atomic-system-record.schema.json > /dev/null
+          python -m json.tool schemas/innovation-federation.schema.json > /dev/null
+          python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json > /dev/null
+
+      - name: Verify loss-sensitive control surfaces
+        run: |
+          test -f docs/indexes/REPOSITORY_FEDERATION_INDEX.md
+          test -f docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md
+          test -f docs/indexes/INNOVATION_MASTER_INDEX.md
+          test -f docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md
+          test -f schemas/atomic-system-record.schema.json
+
+      - name: Verify canonical roles remain explicit
+        run: |
+          grep -q 'VAIXLNS' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
+          grep -q 'NEXENT' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
+          grep -q 'VAIXLNS-unified' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
+          grep -q 'NEXENT' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
+          grep -q 'DISCOVER' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
+          grep -q 'VAIXLNS' docs/indexes/MASTER_RECOVERY_STATUS.md
+          grep -q 'CANONICALIZE' docs/indexes/MASTER_RECOVERY_STATUS.md
+
+      - name: Block silent deletion from protected surfaces
+        shell: bash
+        run: |
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          head="${{ github.sha }}"
+          if [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            exit 0
+          fi
+          deleted=$(git diff --name-status "$base" "$head" | awk '$1 == "D" {print $2}')
+          while IFS= read -r path; do
+            [ -z "$path" ] && continue
+            case "$path" in
+              archive/*|docs/recovery/*|docs/indexes/*|registry/*|schemas/*)
+                echo "BLOCKED: protected path deleted: $path"
+                exit 1
+                ;;
+            esac
+          done <<< "$deleted"
+
+      - name: Emit federation evidence
+        run: |
+          {
+            echo "VAIXLNS federation integrity"
+            echo "commit=$GITHUB_SHA"
+            echo "event=$GITHUB_EVENT_NAME"
+            echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > federation-integrity-evidence.txt
+          cat federation-integrity-evidence.txt
