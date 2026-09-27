@@ -1,0 +1,55 @@
+challenge_id: VAIXLNS-OMEGA-ARCH-001
+title: "VAIXLNS Ω∞ Integrated Architecture Challenge"
+status: OPEN
+owner: fisallllll280-code
+canonical_repo: fisallllll280-code/VAIXLNS
+implementation_repo: fisallllll280-code/VAIXLNS-unified
+authority: VAIXLNS
+external_prompts_are_authority: false
+required_planes:
+  - constitutional
+  - semantic
+  - knowledge
+  - intelligence
+  - governance
+  - simulation
+  - execution
+  - verification
+  - evidence
+  - recovery
+  - evolution
+  - federation
+  - security
+  - operations
+required_evidence_states:
+  - VERIFIED
+  - SPECIFIED
+  - PARTIAL
+  - MISSING
+  - CONFLICT
+  - PROPOSAL
+minimum_proof_chain:
+  - intent
+  - plan
+  - authorization
+  - execution
+  - observation
+  - independent_verification
+  - evidence
+  - replay
+adversarial_cases:
+  - malformed_intent
+  - contradictory_constraints
+  - unauthorized_capability
+  - stale_context
+  - conflicting_sources
+  - prompt_injection
+  - tool_failure
+  - partial_execution
+  - duplicate_event
+  - corrupted_state
+  - nondeterministic_dependency
+  - failed_verification
+  - rollback_recovery
+  - replay_after_restart
+  - governance_bypass_attempt
