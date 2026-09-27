@@ -25,23 +25,10 @@ jobs:
           python -m json.tool schemas/innovation-federation.schema.json > /dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json > /dev/null
 
-      - name: Verify loss-sensitive control surfaces
+      - name: Run deterministic VAIXLNS proof gate
         run: |
-          test -f docs/indexes/REPOSITORY_FEDERATION_INDEX.md
-          test -f docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md
-          test -f docs/indexes/INNOVATION_MASTER_INDEX.md
-          test -f docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md
-          test -f schemas/atomic-system-record.schema.json
-
-      - name: Verify canonical roles remain explicit
-        run: |
-          grep -q 'VAIXLNS' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
-          grep -q 'NEXENT' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
-          grep -q 'VAIXLNS-unified' docs/indexes/REPOSITORY_FEDERATION_INDEX.md
-          grep -q 'NEXENT' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
-          grep -q 'DISCOVER' docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md
-          grep -q 'VAIXLNS' docs/indexes/MASTER_RECOVERY_STATUS.md
-          grep -q 'CANONICALIZE' docs/indexes/MASTER_RECOVERY_STATUS.md
+          python -m py_compile scripts/federation_integrity_gate.py
+          python scripts/federation_integrity_gate.py
 
       - name: Block silent deletion from protected surfaces
         shell: bash
@@ -62,12 +49,9 @@ jobs:
             esac
           done <<< "$deleted"
 
-      - name: Emit federation evidence
-        run: |
-          {
-            echo "VAIXLNS federation integrity"
-            echo "commit=$GITHUB_SHA"
-            echo "event=$GITHUB_EVENT_NAME"
-            echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          } > federation-integrity-evidence.txt
-          cat federation-integrity-evidence.txt
+      - name: Upload deterministic integrity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-federation-integrity-evidence
+          path: federation-integrity-evidence.txt
+          if-no-files-found: error
