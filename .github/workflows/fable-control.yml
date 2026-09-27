@@ -1,0 +1,62 @@
+name: Fable Control Plane
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Governed control action"
+        required: true
+        type: choice
+        options:
+          - audit
+          - index
+          - plan
+          - verify
+          - propose
+      target_repository:
+        description: "Repository to inspect"
+        required: true
+        default: "fisallllll280-code/VAIXLNS"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate request
+        env:
+          ACTION: ${{ inputs.action }}
+          TARGET: ${{ inputs.target_repository }}
+        run: |
+          set -euo pipefail
+          case "$ACTION" in audit|index|plan|verify|propose) ;; *) exit 2 ;; esac
+          case "$TARGET" in fisallllll280-code/*) ;; *) echo "Target outside federation owner"; exit 3 ;; esac
+          echo "Accepted governed request: action=$ACTION target=$TARGET"
+
+      - name: Export control event
+        env:
+          ACTION: ${{ inputs.action }}
+          TARGET: ${{ inputs.target_repository }}
+        run: |
+          python - <<'PY'
+          import json, os
+          event = {
+              "provider": "anthropic-fable",
+              "authority": "NONE",
+              "action": os.environ["ACTION"],
+              "target_repository": os.environ["TARGET"],
+              "policy": "GOVERNED_ACTION_ONLY",
+          }
+          print(json.dumps(event, indent=2))
+          PY
+
+      - name: Governance boundary
+        run: |
+          echo "No credentials exposed to the browser."
+          echo "No external prompt is promoted to canonical authority."
+          echo "Implementation adapters must be added server-side."

@@ -1,0 +1,42 @@
+name: Repository Operation
+description: Governed operation request for the VAIXLNS federation
+title: "[OPS] "
+body:
+  - type: input
+    id: target
+    attributes:
+      label: Target repository
+      placeholder: fisallllll280-code/VAIXLNS
+    validations:
+      required: true
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Operation
+      options:
+        - audit
+        - index
+        - plan
+        - generate
+        - modify
+        - test
+        - verify
+        - propose
+        - recover
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: checkboxes
+    id: governance
+    attributes:
+      label: Governance
+      options:
+        - label: I understand external AI providers have no canonical authority.
+          required: true
+        - label: I understand merge requires the repository's review/check policy.
+          required: true

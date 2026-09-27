@@ -1,0 +1,36 @@
+name: Federation Contract Audit
+
+on:
+  push:
+    branches: [main, feat/**]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-federation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate federation manifest
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          p = Path("registry/repository-federation/REPOSITORY_FEDERATION_V2.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+
+          assert data["schema"] == "vaixlns.repository-federation.v2"
+          assert data["canonical_repository"] == "fisallllll280-code/VAIXLNS"
+          assert data["policies"]["never_overwrite_unclassified"] is True
+          assert data["policies"]["evidence_first"] is True
+          assert len(data["federated_repositories"]) >= 10
+          assert data["provider_fabric"]["provider_neutrality"] if "provider_neutrality" in data["provider_fabric"] else True
+
+          names = [x["repository"] for x in data["federated_repositories"]]
+          assert "fisallllll280-code/VAIXLNS" in names
+          assert "fisallllll280-code/NEXENT" in names
+          print(f"Validated {len(names)} federated repositories and {len(data['unclassified_owned_repositories'])} unclassified repositories.")

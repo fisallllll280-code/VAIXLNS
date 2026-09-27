@@ -9,6 +9,8 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
 - [Innovation master index](docs/indexes/INNOVATION_MASTER_INDEX.md)
 - [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
+- [Repository federation v2](docs/canonical/REPOSITORY_FEDERATION_V2.md)
+- [AI agent provider fabric](docs/integration/AI_AGENT_PROVIDER_FABRIC.md)
 - [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
 - [Repository runtime status](docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md)
 - [Innovation separation matrix](docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md)

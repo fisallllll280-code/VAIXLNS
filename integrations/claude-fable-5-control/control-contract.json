@@ -1,0 +1,57 @@
+{
+  "schema": "vaixlns.fable-control.v1",
+  "provider": "anthropic-fable",
+  "model": "claude-fable-5",
+  "authority": "NONE",
+  "credential_location": "SERVER_ONLY",
+  "operations": {
+    "ANALYZE": {
+      "write": false,
+      "governance": true,
+      "evidence": true
+    },
+    "PROPOSE": {
+      "write": false,
+      "governance": true,
+      "evidence": true
+    },
+    "IMPLEMENT": {
+      "write": true,
+      "governance": true,
+      "evidence": true,
+      "tests": true
+    },
+    "TEST": {
+      "write": false,
+      "governance": true,
+      "evidence": true
+    },
+    "REVIEW": {
+      "write": false,
+      "governance": true,
+      "evidence": true
+    }
+  },
+  "repository_policy": {
+    "canonical": "VAIXLNS",
+    "discovery": "NEXENT",
+    "runtime": [
+      "VAIXLNS-unified",
+      "VX-runtime",
+      "VX50_COMPLETE_BUILD"
+    ],
+    "historical": "READ_ONLY"
+  },
+  "lifecycle": [
+    "DISCOVER",
+    "PLAN",
+    "MODIFY",
+    "TEST",
+    "REVIEW",
+    "PROVE",
+    "GOVERN",
+    "COMMIT",
+    "OBSERVE",
+    "RECOVER"
+  ]
+}

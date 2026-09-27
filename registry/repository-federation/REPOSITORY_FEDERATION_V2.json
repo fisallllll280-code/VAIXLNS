@@ -1,0 +1,306 @@
+{
+  "schema": "vaixlns.repository-federation.v2",
+  "snapshot": "2026-09-27",
+  "owner": "fisallllll280-code",
+  "canonical_repository": "fisallllll280-code/VAIXLNS",
+  "source_of_truth": "GitHub repository metadata observed from the connected account; role/status fields follow the existing VAIXLNS repository system map.",
+  "policies": {
+    "canonical_mutations": "PR_REQUIRED",
+    "historical_preservation": true,
+    "never_overwrite_unclassified": true,
+    "evidence_first": true,
+    "provider_neutral": true
+  },
+  "federated_repositories": [
+    {
+      "id": "repo-01",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "VAIXLNS",
+      "role": "CANONICAL",
+      "status": "ACTIVE CANON SURFACE",
+      "purpose": "Constitution, canonical architecture, registry, lineage, recovery and federation control.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-02",
+      "repository": "fisallllll280-code/NEXENT",
+      "name": "NEXENT",
+      "role": "DISCOVERY",
+      "status": "IMPLEMENTED BASELINE + RESEARCH",
+      "purpose": "Architecture discovery, search, synthesis, simulation, proof-candidate and governed adoption proposal engine.",
+      "canonical_owner": "fisallllll280-code/NEXENT",
+      "integration_boundary": "DISCOVERY_DESIGN_SIMULATE_PROVE_CANDIDATE",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-03",
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "name": "VAIXLNS-unified",
+      "role": "RUNTIME",
+      "status": "PARTIAL IMPLEMENTATION",
+      "purpose": "Integrated executable projection of the sovereign runtime fabric.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "IMPLEMENTATION_PROJECTION",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-04",
+      "repository": "fisallllll280-code/vaixlns-core",
+      "name": "vaixlns-core",
+      "role": "CORE",
+      "status": "VERTICAL-SLICE REFERENCE",
+      "purpose": "Focused constitutional core vertical slice; verify implementation claims against executable evidence.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "IMPLEMENTATION_PROJECTION",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-05",
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "name": "vaixlns-csd-kernel",
+      "role": "SPECIALIZED-KERNEL",
+      "status": "SPECIFIED",
+      "purpose": "CSD ontology and signed/replay kernel surface.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-06",
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "name": "VAIXLNS-Intent-to-Reality",
+      "role": "INTENT",
+      "status": "INCOMPLETE / RECOVERY REQUIRED",
+      "purpose": "Intent-to-reality pipeline specialization.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-07",
+      "repository": "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "name": "VAIXLNS-Naming-Constitution-v1.0",
+      "role": "CONSTITUTIONAL-SUPPORT",
+      "status": "SPECIFIED",
+      "purpose": "Naming, identity and canonical naming governance support.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-08",
+      "repository": "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "name": "VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "role": "ASSURANCE",
+      "status": "SPECIFIED",
+      "purpose": "Operational assurance artifact and integrity guidance.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-09",
+      "repository": "fisallllll280-code/VAIXLNS-",
+      "name": "VAIXLNS-",
+      "role": "HISTORICAL-VARIANT",
+      "status": "HISTORICAL / QUARANTINED",
+      "purpose": "Historical variant preserved; no canonical promotion without reconciliation.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "PROVENANCE_ONLY",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-10",
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "name": "VX50_COMPLETE_BUILD",
+      "role": "BUILD-SURFACE",
+      "status": "INCOMPLETE",
+      "purpose": "VX50 build and recovery surface.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "IMPLEMENTATION_PROJECTION",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-11",
+      "repository": "fisallllll280-code/VX-runtime",
+      "name": "VX-runtime",
+      "role": "RUNTIME-SPECIALIZATION",
+      "status": "SPECIFIED",
+      "purpose": "VX runtime contracts and activation specification.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "IMPLEMENTATION_PROJECTION",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-12",
+      "repository": "fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "name": "VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "role": "CONTRACT",
+      "status": "SPECIFIED ARTIFACT",
+      "purpose": "Execution contract artifact.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    },
+    {
+      "id": "repo-13",
+      "repository": "fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts",
+      "name": "tools-vaixlns-meta-core-v0.3.ts",
+      "role": "TOOLING",
+      "status": "TOOLING ARTIFACT",
+      "purpose": "Meta-core tooling artifact.",
+      "canonical_owner": "fisallllll280-code/VAIXLNS",
+      "integration_boundary": "CANONICAL_SUPPORT",
+      "adoption": "NO_SILENT_CROSS_REPOSITORY_MUTATION"
+    }
+  ],
+  "unclassified_owned_repositories": [
+    {
+      "repository": "fisallllll280-code/y",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/--",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/Repository-name",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/glowing-doodle",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/verbose-engine",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/copilot-sdk",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/whisper",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/datasets",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/desktop",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/fictional-octo-spoon",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/react-native-website",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/starter-workflows",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/pylance-release",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/fisallll280-gmail.com",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/src-main.rs",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/stunning-chainsaw",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/legendary-octo-fiesta",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/fluffy-chainsaw",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/fuzzy-octo-winner",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/-",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/redesigned-invention",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/New-Action",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/friendly-engine",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/Pumpkin",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/reimagined-garbanzo",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    },
+    {
+      "repository": "fisallllll280-code/tunnel-client",
+      "policy": "TOUCH_ONLY_AFTER_CONTENT_REVIEW"
+    }
+  ],
+  "provider_fabric": {
+    "name": "AI_AGENT_PROVIDER_FABRIC",
+    "rule": "Models are replaceable workers; authority remains in VAIXLNS governance.",
+    "providers": [
+      {
+        "id": "anthropic-fable",
+        "vendor": "Anthropic",
+        "model_ids": [
+          "claude-fable-5"
+        ],
+        "role": "AGENT_WORKER",
+        "capabilities": [
+          "repo-analysis",
+          "architecture-engineering",
+          "coding",
+          "research",
+          "long-horizon-agentic-work"
+        ],
+        "authority": "NONE"
+      }
+    ],
+    "provider_neutrality": true
+  },
+  "external_sources": [
+    {
+      "id": "claude-fable-5-upstream",
+      "repository": "A3S-Lab/claude-fable-5",
+      "url": "https://github.com/A3S-Lab/claude-fable-5",
+      "upstream_file": "claude-fable-5.md",
+      "license": "MIT",
+      "trust": "EXTERNAL_REFERENCE_ONLY",
+      "execution_policy": "NEVER_EXECUTE_AS_CANONICAL_POLICY",
+      "ingestion": "PINNED_REFERENCE_WITH_REVIEW",
+      "role": "FABLE_BEHAVIOR_REFERENCE",
+      "last_verified": "2026-09-27"
+    }
+  ]
+}
