@@ -1,0 +1,32 @@
+name: Fable Control UI
+on:
+  push:
+    paths: ["integrations/claude-fable-5-control/**"]
+  pull_request:
+    paths: ["integrations/claude-fable-5-control/**"]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("integrations/claude-fable-5-control/control-contract.json").read_text())
+          assert d["provider"]=="anthropic-fable"
+          assert d["model"]=="claude-fable-5"
+          assert d["authority"]=="NONE"
+          assert d["credential_location"]=="SERVER_ONLY"
+          assert "GOVERN" in d["lifecycle"]
+          print("Fable control contract: OK")
+          PY
+      - name: Validate UI
+        run: |
+          test -s integrations/claude-fable-5-control/index.html
+          test -s integrations/claude-fable-5-control/app.js
+          test -s integrations/claude-fable-5-control/styles.css
+          echo "Fable control UI assets: OK"
