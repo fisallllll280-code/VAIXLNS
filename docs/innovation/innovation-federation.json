@@ -4,12 +4,6 @@
   "ordering": "owner -> family -> name",
   "items": [
     {
-      "name": "Ecosystem",
-      "family": "Standards, Certification, Integration, Compatibility, Benchmarking, Innovation Exchange, SDK",
-      "owner": "NEXENT research",
-      "state": "SOURCE-ASSERTED"
-    },
-    {
       "name": "Discovery",
       "family": "ASDE, Missing System Discovery Engine, Canonical Indexing Engine, Semantic Linking / Auto-Classification",
       "owner": "NEXENT",
@@ -70,26 +64,20 @@
       "state": "SOURCE-ASSERTED"
     },
     {
-      "name": "Operational Integrity Fabric",
-      "family": "Assurance",
-      "owner": "VAIXLNS + VX",
-      "state": "PROPOSAL"
-    },
-    {
-      "name": "V-IR / VAMM",
-      "family": "Semantic IR",
-      "owner": "VAIXLNS + VX",
-      "state": "RECOVERED"
-    },
-    {
-      "name": "Semantic Fingerprint Canonicalizer",
-      "family": "Canonicalization",
-      "owner": "VAIXLNS",
-      "state": "PROPOSAL"
+      "name": "Ecosystem",
+      "family": "Standards, Certification, Integration, Compatibility, Benchmarking, Innovation Exchange, SDK",
+      "owner": "NEXENT research",
+      "state": "SOURCE-ASSERTED"
     },
     {
       "name": "Master Registry",
       "family": "Canon",
+      "owner": "VAIXLNS",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "Semantic Fingerprint Canonicalizer",
+      "family": "Canonicalization",
       "owner": "VAIXLNS",
       "state": "PROPOSAL"
     },
@@ -202,10 +190,16 @@
       "state": "CANONICAL"
     },
     {
-      "name": "Proof Lease",
-      "family": "Authorization",
-      "owner": "VX / Core",
-      "state": "PARTIAL"
+      "name": "Operational Integrity Fabric",
+      "family": "Assurance",
+      "owner": "VAIXLNS + VX",
+      "state": "PROPOSAL"
+    },
+    {
+      "name": "V-IR / VAMM",
+      "family": "Semantic IR",
+      "owner": "VAIXLNS + VX",
+      "state": "RECOVERED"
     },
     {
       "name": "Deterministic Causal Execution Graph",
@@ -226,14 +220,14 @@
       "state": "PARTIAL"
     },
     {
-      "name": "Capability boundary",
-      "family": "Execution governance",
+      "name": "VX deterministic runtime",
+      "family": "Execution",
       "owner": "VX",
       "state": "PARTIAL"
     },
     {
-      "name": "VX deterministic runtime",
-      "family": "Execution",
+      "name": "Capability boundary",
+      "family": "Execution governance",
       "owner": "VX",
       "state": "PARTIAL"
     },
@@ -247,6 +241,12 @@
       "name": "Deterministic Replay",
       "family": "Verification",
       "owner": "VX",
+      "state": "PARTIAL"
+    },
+    {
+      "name": "Proof Lease",
+      "family": "Authorization",
+      "owner": "VX / Core",
       "state": "PARTIAL"
     }
   ]
