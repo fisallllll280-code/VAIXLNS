@@ -24,6 +24,12 @@ jobs:
           python -m json.tool schemas/atomic-system-record.schema.json > /dev/null
           python -m json.tool schemas/innovation-federation.schema.json > /dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json > /dev/null
+          python -m json.tool registry/omega/VAIXLNS_GLOBAL_FABRIC.json > /dev/null
+
+      - name: Validate Ω∞ global federation manifest
+        run: |
+          python -m py_compile tools/omega/validate_federation.py
+          python tools/omega/validate_federation.py
 
       - name: Run deterministic VAIXLNS proof gate
         run: |

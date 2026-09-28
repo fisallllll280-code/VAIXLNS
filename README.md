@@ -34,3 +34,6 @@ CANONICALIZE → GOVERN → VERIFY → ADOPT → OPERATE
 ```
 
 Historical names and variants remain preserved through provenance and lineage. A proposal is not treated as implemented merely because it appears in an architectural document.
+
+- [VLA Federation Contract](docs/integration/VLA_FEDERATION_CONTRACT_V1.md)
+- [OpenVLA provider registry](registry/vla.openvla.7b.json)

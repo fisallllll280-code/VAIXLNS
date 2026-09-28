@@ -1,0 +1,77 @@
+{
+  "schema": "VAIXLNS-World-Adapter-Catalog-1.0",
+  "status": "SPECIFIED",
+  "rule": "Every external integration must be provenance-linked and independently verifiable.",
+  "domains": [
+    {
+      "id": "AI",
+      "name": "AI/ML and model systems",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "AGENT",
+      "name": "Agent/tool protocols",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "DATA",
+      "name": "Databases, files and knowledge graphs",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "CLOUD",
+      "name": "Cloud and infrastructure",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "ORCH",
+      "name": "Containers and orchestration",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "CICD",
+      "name": "CI/CD and source control",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "OBS",
+      "name": "Observability and telemetry",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "SEC",
+      "name": "Identity, security and secrets",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "SCI",
+      "name": "Scientific and mathematical computing",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "SIM",
+      "name": "Simulation and digital twins",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "EDGE",
+      "name": "Robotics, edge and devices",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "UX",
+      "name": "Web, desktop and mobile interfaces",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "RESEARCH",
+      "name": "Research and evidence systems",
+      "status": "PROPOSAL"
+    },
+    {
+      "id": "OPS",
+      "name": "Operations and enterprise systems",
+      "status": "PROPOSAL"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "integration_id": "VLA.OPENVLA.7B",
+  "system": "VAIXLNS",
+  "canonical_layer": "VX",
+  "federation_layer": "XV",
+  "provider": "openvla/openvla-7b",
+  "integration_class": "vision-language-action-policy",
+  "status": "SPECIFIED",
+  "trust": "untrusted-provider-output",
+  "execution_policy": "never-direct",
+  "required_gates": [
+    "schema",
+    "provenance",
+    "embodiment_compatibility",
+    "normalization",
+    "policy",
+    "simulation_or_twin",
+    "safety",
+    "authorization",
+    "evidence"
+  ],
+  "capability": {
+    "input": ["language", "image"],
+    "output": ["robot_action"],
+    "provider_action_example": "7DoF end-effector delta"
+  },
+  "canonical_rule": "Provider policy is an input to VX, not the VX runtime.",
+  "source": {
+    "model_card": "https://huggingface.co/openvla/openvla-7b",
+    "repository": "https://github.com/openvla/openvla",
+    "paper": "https://arxiv.org/abs/2406.09246"
+  }
+}
