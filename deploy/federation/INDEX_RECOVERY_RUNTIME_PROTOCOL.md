@@ -150,6 +150,8 @@ The server implementation should expose these logical operations:
 
 The concrete transport (HTTP/CLI/worker) is implementation-specific and MUST NOT change the protocol semantics.
 
+ARC-X is the semantic compilation and reconstruction layer above these operations. It may prepare retrieval, EIR, proof obligations, and reconstruction artifacts, while admission and canonical authority remain governed by VAIXLNS.
+
 ## Current Status
 
 This document is a **SPECIFICATION**. It defines the deterministic recovery and admission contract. It does not by itself prove that a production server has executed the protocol.
