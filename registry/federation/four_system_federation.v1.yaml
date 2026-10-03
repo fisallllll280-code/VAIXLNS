@@ -1,0 +1,43 @@
+apiVersion: vaixlns.io/v1
+kind: FourSystemFederation
+metadata:
+  name: vaixlns-four-system
+  snapshot: "2026-10-03"
+  authority: VAIXLNS
+spec:
+  nonLoss: true
+  repositoriesObserved: 43
+  systems:
+    - id: VAIXLNS
+      role: control-plane
+      repositorySurface:
+        - fisallllll280-code/VAIXLNS
+      identityStatus: CANONICAL
+    - id: VLNS
+      role: knowledge-discovery
+      repositorySurface:
+        - fisallllll280-code/NAXLNS
+      identityStatus: UNVERIFIED
+      evidenceRequired:
+        - explicit-system-identity
+        - canonical-relationship
+    - id: VX
+      role: execution-runtime
+      repositorySurface:
+        - fisallllll280-code/VX-runtime
+        - fisallllll280-code/VX50_COMPLETE_BUILD
+      identityStatus: CANONICAL_SYSTEM_MULTI_REPOSITORY
+    - id: NEXNET
+      role: discovery-network
+      repositorySurface:
+        - fisallllll280-code/NEXENT
+      identityStatus: UNVERIFIED
+      evidenceRequired:
+        - explicit-system-identity
+        - canonical-relationship
+  rules:
+    - repository_name_is_not_system_identity
+    - preserve_history
+    - preserve_conflicts
+    - no_destructive_merge_without_identity_evidence
+    - no_verified_without_reproducible_evidence
