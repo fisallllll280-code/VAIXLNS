@@ -3,6 +3,21 @@
 **Snapshot:** 2026-09-25  
 **Accessible owned repositories:** 40
 
+## Four-System Architecture Federation
+
+The federation is governed as four independent system identities. Repository identity is not automatically equated with system identity.
+
+| System | System Role | Current Repository Evidence | Federation State |
+|---|---|---|---|
+| **VAIXLNS** | Sovereign canonical authority / governance / registry / recovery | `VAIXLNS` | CANONICAL |
+| **VLNS** | Independent system identity | No repository named `VLNS` found; `NAXLNS` exists but its README does not establish VLNS identity | SPECIFIED / UNVERIFIED |
+| **VX** | Governed execution / runtime system | `VX-runtime`, `VX50_COMPLETE_BUILD` | CANONICAL SYSTEM / MULTI-REPOSITORY SURFACE |
+| **NEXNET** | Independent network / discovery system identity | No repository named `NEXNET` found; `NEXENT` exists as a distinct discovery/research repository | SPECIFIED / UNVERIFIED |
+
+**Integration rule:** these four systems are federated under VAIXLNS; they are not collapsed into one repository. Each system retains its own identity, contracts, evidence, lifecycle, and verification boundary.
+
+**Unresolved identity conflicts:** `VLNS ↔ NAXLNS` and `NEXNET ↔ NEXENT` require explicit identity evidence before repository reassignment or renaming. No destructive merge is performed on the basis of name similarity.
+
 ## Canonical VAIXLNS federation
 
 | Repository | Role | Status |
