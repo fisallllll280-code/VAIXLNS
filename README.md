@@ -18,6 +18,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
+- [Tools / ARC-X Ω](docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md)
 
 ## Canonical boundary
 
