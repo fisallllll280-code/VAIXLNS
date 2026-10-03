@@ -109,7 +109,7 @@ def main() -> None:
     federation = read("docs/indexes/REPOSITORY_FEDERATION_INDEX.md")
     canonical_rows = [
         line for line in federation.splitlines()
-        if line.startswith("| ") and "| CANONICAL |" in line
+        if line.startswith("| `VAIXLNS` |") and "| CANONICAL |" in line
     ]
     if len(canonical_rows) != 1:
         fail(
