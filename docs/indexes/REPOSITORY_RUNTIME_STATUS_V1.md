@@ -1,26 +1,35 @@
 # Repository Runtime Status v1
 
-Snapshot: 2026-09-25
+Snapshot: 2026-10-03
 
 This is an evidence report, not a claim of successful local execution.
 
 | Repository | Source observed | Tests observed | CI observed in tree | State |
 |---|---:|---:|---:|---|
-| VAIXLNS | Canonical docs/registry | No runtime tests | No | CANONICAL DOC/REGISTRY SURFACE |
+| VAIXLNS | Canonical docs/registry | No runtime tests | No runtime CI required at this surface | CANONICAL DOC/REGISTRY SURFACE |
+| NAXLNS | Specification / Python repository content | Not independently executed in this audit | Not independently verified in this audit | VLNS CANDIDATE / IDENTITY UNVERIFIED |
 | VAIXLNS-unified | Yes | Yes | Yes | PARTIAL / EXECUTABLE SURFACE |
-| vaixlns-core | No executable source in current tree | No executable tests | No | SPECIFICATION / RECONCILIATION NEEDED |
+| vaixlns-core | No executable source established in current evidence | No executable tests established | No | SPECIFICATION / RECONCILIATION NEEDED |
 | vaixlns-csd-kernel | DSL only | No | No | SPECIFIED |
-| VX-runtime | No runtime source | No | No | SPECIFICATION / CONTRACTS |
-| VX50_COMPLETE_BUILD | No runtime source in current tree | No | No | INCOMPLETE |
-| VAIXLNS-Intent-to-Reality | No runtime source in current tree | No | No | INCOMPLETE / RECOVERY |
-| VAIXLNS-Naming-Constitution-v1.0 | No | No | No | CONSTITUTIONAL SUPPORT |
-| VAIXLNS_OPERATIONAL_ASSURANCE.md | No | No | No | ASSURANCE ARTIFACT |
+| VX-runtime | Runtime specification, no implementation established | No | No | VX SPECIFICATION / CONTRACT SURFACE |
+| VX50_COMPLETE_BUILD | Historical/build surface, no runtime implementation established | No | No | HISTORICAL / INCOMPLETE |
+| VAIXLNS-Intent-to-Reality | Specification / workspace | No executable runtime established | No | INCOMPLETE / RECOVERY |
+| VAIXLNS-Naming-Constitution-v1.0 | Naming/governance artifact | No | No | CONSTITUTIONAL SUPPORT |
+| VAIXLNS_OPERATIONAL_ASSURANCE.md | Assurance artifact | No | No | ASSURANCE ARTIFACT |
 | VAIXLNS- | Historical / unstable boundary | No | No | QUARANTINED |
-| NEXENT | Python + Rust source | Yes | Yes, three workflows | IMPLEMENTED BASELINE |
+| NEXENT | Python + Rust source | Yes | Yes | IMPLEMENTED DISCOVERY BASELINE / NEXNET IDENTITY UNVERIFIED |
+
+## Four-system interpretation
+
+- VAIXLNS: canonical control plane and recovery/index authority.
+- VLNS: NAXLNS is the current repository surface candidate; identity requires explicit evidence.
+- VX: VX-runtime + VX50_COMPLETE_BUILD form a multi-repository execution surface; the inspected VX-runtime repository is currently specification-first.
+- NEXNET: NEXENT is an implemented discovery/research surface; identity equivalence to NEXNET remains unverified.
 
 ## Execution rule
 
 A runnable claim requires:
-entrypoint + dependency resolution + execution + test + reproducible evidence.
+
+entrypoint + dependency resolution + execution + test + reproducible evidence
 
 No repository is VERIFIED from README language alone.
