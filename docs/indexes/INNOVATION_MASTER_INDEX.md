@@ -81,6 +81,7 @@ The list below is a source-derived innovation catalog from the available project
 58. V-EXCHANGE
 59. Economic / Financial Fabric
 60. Blockchain Bridge
+61. ARC-X Ω — Epistemic Reality Compiler / Repository Reconstruction
 
 ## Placement rule
 

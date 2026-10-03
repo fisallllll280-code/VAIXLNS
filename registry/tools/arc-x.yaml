@@ -1,0 +1,110 @@
+apiVersion: vaixlns.io/v1
+kind: ToolRegistryRecord
+metadata:
+  id: ARC-X-OMEGA
+  name: ARC-X
+  version: 1.0.0
+  status: SPECIFIED
+spec:
+  canonicalOwner: VAIXLNS
+  authority:
+    goldenSource: project.genome::v1.0.0
+    authorityAnchor: Ω0_GENESIS_CORE
+    masterIndex: Ω.000
+  type: epistemic-reality-compiler
+  purpose:
+    - deterministic repository retrieval
+    - system and architecture reconstruction
+    - epistemic normalization
+    - EIR compilation
+    - proof-obligation generation
+    - counterfactual and adversarial planning
+    - controlled runtime reconstruction
+    - architecture delta and evolution proposals
+  boundaries:
+    mayGenerate: true
+    mayInfer: true
+    mayVerify: true
+    mayExecute: request-only
+    mayAuthorizeSelf: false
+    mayCanonicalCommitSelf: false
+  integrations:
+    - VAIXLNS
+    - NEXENT
+    - VLNS
+    - VV
+    - VX
+  sourceContract:
+    pinnedRevisionRequired: true
+    contentHashRequired: true
+    retrievalReceiptRequired: true
+    preserveHistory: true
+    preserveConflicts: true
+  evidenceStates:
+    - RECOVERED
+    - CANONICAL
+    - PROPOSED
+    - IMPLEMENTED
+    - VERIFIED
+    - SPECIFIED
+    - PARTIAL
+    - MISSING
+    - CONFLICT
+  coreInvariants:
+    - no_evidence_no_verified
+    - no_deterministic_source_no_canonical_reconstruction
+    - no_self_authority
+    - no_silent_conflict_merge
+    - no_historical_erasure
+    - no_startup_as_semantic_proof
+    - no_generated_artifact_as_canonical_without_admission
+    - canonical_writes_use_controlled_admission_path
+  logicalOperations:
+    retrieval:
+      - retrieve_source
+      - fingerprint_source
+      - capture_retrieval_receipt
+    reconstruction:
+      - extract_identity
+      - atomize_repository
+      - reconstruct_index
+      - reconstruct_genome
+      - build_lineage
+    epistemic:
+      - normalize_evidence
+      - compile_claims
+      - build_eir
+      - detect_contradictions
+      - compute_gaps
+    architecture:
+      - compile_architecture_candidate
+      - compile_proof_obligations
+      - compile_counterfactuals
+      - compile_adversarial_tests
+    federation:
+      - reconcile_systems
+      - resolve_dependencies
+      - prepare_admission
+    runtime:
+      - request_verification
+      - request_execution
+      - capture_observation
+      - reconstruct_runtime
+      - replay_reconstruction
+    evolution:
+      - emit_architecture_delta
+      - create_evolution_candidate
+      - request_governed_adoption
+  requiredEvidence:
+    - source_revision
+    - content_hash
+    - retrieval_timestamp
+    - reconstruction_id
+    - eir_id
+    - verification_state
+    - proof_status
+    - authority_decision
+  implementationState:
+    specification: SPECIFIED
+    implementation: NOT_PROVEN
+    productionRuntime: NOT_PROVEN
