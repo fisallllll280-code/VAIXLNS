@@ -1,0 +1,45 @@
+apiVersion: vaixlns.io/v1
+kind: IndexRecoveryRecord
+metadata:
+  name: canonical-index-recovery-record
+  status: SPECIFIED
+spec:
+  authority:
+    goldenSource: project.genome::v1.0.0
+    authorityAnchor: Ω0_GENESIS_CORE
+    masterIndex: Ω.000
+  inputs:
+    sourceRevision: required
+    contentHashes: required
+    retrievalTimestamp: required
+  reconstruction:
+    deterministic: true
+    idempotent: true
+    preserveConflicts: true
+    preserveHistory: true
+  admission:
+    requireDependencyResolution: true
+    requireStartupEvidence: true
+    requireHealthEvidence: true
+    requireTestEvidence: true
+  states:
+    - VERIFIED
+    - SPECIFIED
+    - PARTIAL
+    - MISSING
+    - CONFLICT
+    - PROPOSAL
+  evidence:
+    required:
+      - system_id
+      - repository
+      - source_revision
+      - content_hash
+      - retrieval_timestamp
+      - reconstruction_id
+      - verification_state
+      - dependency_resolution
+      - startup_result
+      - health_result
+      - test_result
+      - transition_reason
