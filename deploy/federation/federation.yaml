@@ -1,0 +1,46 @@
+apiVersion: vaixlns.io/v1
+kind: FederationDeployment
+metadata:
+  name: vaixlns-four-system
+  authority: VAIXLNS
+spec:
+  systems:
+    - id: VAIXLNS
+      repository: fisallllll280-code/VAIXLNS
+      role: control-plane
+      status: canonical
+    - id: VLNS
+      repository: fisallllll280-code/NAXLNS
+      role: knowledge-discovery
+      identityStatus: unverified
+    - id: VX
+      repositories:
+        - fisallllll280-code/VX-runtime
+        - fisallllll280-code/VX50_COMPLETE_BUILD
+      role: execution-runtime
+      status: canonical-system-multi-repository
+    - id: NEXNET
+      repository: fisallllll280-code/NEXENT
+      role: discovery-network
+      identityStatus: unverified
+  infrastructure:
+    ingress: required
+    apiGateway: required
+    eventBus: required
+    postgres: required
+    redis: optional
+    secrets: vault-or-secret-manager
+    observability:
+      metrics: required
+      logs: required
+      traces: recommended
+  evidence:
+    required:
+      - source_revision
+      - dependency_resolution
+      - startup_result
+      - health_result
+      - test_result
+      - execution_evidence
+      - verification_state
+      - timestamp
