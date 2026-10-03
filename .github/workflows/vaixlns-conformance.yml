@@ -1,0 +1,61 @@
+name: VAIXLNS Conformance
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate JSON artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool schemas/atomic-system-record.schema.json >/dev/null
+          python -m json.tool schemas/innovation-federation.schema.json >/dev/null
+          python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json >/dev/null
+          python -m json.tool registry/omega/VAIXLNS_GLOBAL_FABRIC.json >/dev/null
+
+      - name: Compile Python tooling
+        run: |
+          python -m py_compile             scripts/admission_gate.py             scripts/federation_integrity_gate.py             scripts/repository_pulse.py             scripts/treasury_admission_probe.py             scripts/vcre_probe.py             tools/omega/validate_federation.py
+
+      - name: Run admission gate
+        run: python scripts/admission_gate.py
+
+      - name: Run federation integrity gate
+        run: python scripts/federation_integrity_gate.py
+
+      - name: Run test suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Emit conformance evidence
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "repository=$GITHUB_REPOSITORY"
+            echo "commit=$GITHUB_SHA"
+            echo "workflow=$GITHUB_WORKFLOW"
+            echo "run_id=$GITHUB_RUN_ID"
+          } > conformance-evidence.txt
+
+      - name: Upload conformance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-conformance-evidence
+          path: conformance-evidence.txt
+          if-no-files-found: error
