@@ -57,3 +57,9 @@ The following are **target repositories declared by the governed factory manifes
 | `VAIXLNS-integration-lab` | LAB | auto-create when authorized |
 
 The factory executes only from `registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json`. Existing unrelated repositories remain untouched.
+## Operational server binding
+
+- [Four-system operational federation](../../deploy/federation/README.md)
+- [Federation deployment manifest](../../deploy/federation/federation.yaml)
+
+These artifacts bind system identities to repository surfaces and define the required server infrastructure. They do not claim that the server has been deployed or that identity mappings marked UNVERIFIED have been proven.
