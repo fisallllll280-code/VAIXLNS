@@ -11,8 +11,14 @@ from pathlib import Path
 
 REQUIRED = {
     "identity": ["README.md"],
-    "contract": ["VAIXLNS_REPOSITORY_CONTRACT.md"],
-    "conformance": [".github/workflows/vaixlns-conformance.yml"],
+    "contract": [
+        "VAIXLNS_REPOSITORY_CONTRACT.md",
+        "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md",
+    ],
+    "conformance": [
+        ".github/workflows/vaixlns-conformance.yml",
+        ".github/workflows/federation-integrity.yml",
+    ],
 }
 
 def exists(root: Path, candidates: list[str]) -> bool:
