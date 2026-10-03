@@ -1,23 +1,30 @@
 # VAIXLNS GitHub Repository Inventory
 
-This inventory preserves every accessible repository name and assigns an architectural role without deleting or renaming lineage.
+**Snapshot:** 2026-10-03  
+This inventory preserves repository identity and lineage while assigning an architectural role from observed repository evidence.
 
-## Canonical VAIXLNS/VX domain
+## Four-system surfaces
+
+| System | Repository | Role | Disposition |
+|---|---|---|---|
+| VAIXLNS | VAIXLNS | Canonical architecture, registry, schemas, recovery | CANONICAL |
+| VLNS | NAXLNS | Knowledge / discovery / adversarial analysis candidate | IDENTITY UNVERIFIED |
+| VX | VX-runtime | Governed execution boundary specification | CANONICAL RUNTIME SPEC |
+| VX | VX50_COMPLETE_BUILD | Historical/build surface | HISTORICAL BUILD SURFACE |
+| NEXNET | NEXENT | Discovery / architecture search / research | IMPLEMENTED DISCOVERY BASELINE; IDENTITY UNVERIFIED |
+
+## Supporting VAIXLNS surfaces
 
 | Repository | Role | Disposition |
 |---|---|---|
-| VAIXLNS | Canonical architecture, registry, schemas | CANONICAL |
-| VX-runtime | Deterministic execution boundary | CANONICAL RUNTIME |
-| VAIXLNS-unified | Integrated fabric | INTEGRATION |
-| vaixlns-core | Core vertical slice | IMPLEMENTATION |
-| vaixlns-csd-kernel | Cryptographic/replay kernel | IMPLEMENTATION |
-| NEXENT | Discovery, architecture search, evolution | DOMAIN CANONICAL |
+| VAIXLNS-unified | Integrated executable fabric | INTEGRATION / PARTIAL EVIDENCE |
+| vaixlns-core | Focused core / vertical slice | IMPLEMENTATION |
+| vaixlns-csd-kernel | Cryptographic/replay kernel surface | IMPLEMENTATION / DSL |
 | VAIXLNS-Intent-to-Reality | Intent/state/transformation specification | PRIVATE REFERENCE |
-| VX50_COMPLETE_BUILD | Historical/buildable VX pack | HISTORICAL REFERENCE |
-| VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | Execution contract artifact | CONTRACT REFERENCE |
+| VAIXLNS-Naming-Constitution-v1.0 | Naming / identity governance | CONSTITUTIONAL REFERENCE |
 | VAIXLNS_OPERATIONAL_ASSURANCE.md | Operational assurance artifact | ASSURANCE REFERENCE |
-| VAIXLNS-Naming-Constitution-v1.0 | Naming rules | CONSTITUTIONAL REFERENCE |
 | VAIXLNS- | Historical/auxiliary VAIXLNS repository | LINEAGE |
+| VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | Execution contract artifact | CONTRACT REFERENCE |
 | tools-vaixlns-meta-core-v0.3.ts | Meta tooling | TOOLING |
 | tunnel-client | Connectivity/transport utility | ADAPTER CANDIDATE |
 
@@ -55,6 +62,8 @@ These remain preserved until repository-content inspection assigns a role:
 - friendly-engine
 - reimagined-garbanzo
 - fisallll280-gmail.com
+- NATIONAL-
+- joke-generator
 
 ## Canonicalization policy
 
@@ -64,12 +73,14 @@ These remain preserved until repository-content inspection assigns a role:
 4. Move reusable implementation behind VX adapters/contracts.
 5. Keep external projects as dependencies unless their code is intentionally absorbed and license/security checks pass.
 6. A repository becomes canonical only when its responsibility, lineage, tests and evidence are established.
-7. The canonical execution target is VX-runtime; other runtimes integrate through contracts/adapters.
+7. The canonical execution target is the VX runtime surface; other execution implementations integrate through explicit contracts/adapters.
+8. Unverified system/repository identity mappings must remain non-destructive and visibly unresolved.
 
 ## Cloud / agent migration rule
 
 A Claude/cloud project is treated as an external implementation source, not as the canonical runtime.
 
+\`\`\`text
 CLOUD/AGENT
 -> SOURCE SNAPSHOT
 -> LINEAGE RECORD
@@ -81,5 +92,6 @@ CLOUD/AGENT
 -> EVIDENCE
 -> VX EXECUTION
 -> OPERATIONS
+\`\`\`
 
 No blind copy-and-rename operation is permitted.
