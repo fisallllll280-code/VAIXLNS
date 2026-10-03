@@ -9,6 +9,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
 - [Innovation master index](docs/indexes/INNOVATION_MASTER_INDEX.md)
 - [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
+- [Four-system reconciliation](docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md)
 - [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
 - [Repository runtime status](docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md)
 - [Innovation separation matrix](docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md)
@@ -20,7 +21,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 
 ## Canonical boundary
 
-```text
+\`\`\`text
 NEXENT
 DISCOVER → DESIGN → SEARCH → SIMULATE → PROPOSE
                       │
@@ -31,7 +32,7 @@ CANONICALIZE → GOVERN → VERIFY → ADOPT → OPERATE
         ┌─────────────┼──────────────┐
         ▼             ▼              ▼
   VAIXLNS-unified  vaixlns-core  CSD / INTENT / VX
-```
+\`\`\`
 
 Historical names and variants remain preserved through provenance and lineage. A proposal is not treated as implemented merely because it appears in an architectural document.
 
