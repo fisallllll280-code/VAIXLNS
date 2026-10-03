@@ -9,7 +9,7 @@
 |---|---|---|
 | `VAIXLNS` | Canonical architecture / registry / recovery / docs | CANONICAL |
 | `NEXENT` | Discovery / architecture search / innovation research | DISCOVERY |
-| `VAIXLNS-unified` | Executable sovereign runtime | RUNTIME |
+| `VAIXLNS-unified` | Executable sovereign runtime + invention foundations | RUNTIME / EVOLUTION-FABRIC |
 | `vaixlns-core` | Focused core / vertical slice | CORE |
 | `vaixlns-csd-kernel` | Specialized signed/replay kernel | SPECIALIZED-KERNEL |
 | `VAIXLNS-Intent-to-Reality` | Intent → reality pipeline | INTENT |
@@ -20,6 +20,18 @@
 | `VX-runtime` | Runtime specialization | RUNTIME-SPECIALIZATION |
 | `VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml` | Execution contract artifact | CONTRACT |
 | `tools-vaixlns-meta-core-v0.3.ts` | Meta-core tooling artifact | TOOLING |
+
+
+## Organization-owned VAIXLNS surfaces discovered
+
+| Repository | Role | Status |
+|---|---|---|
+| `VAIXLNS/VAIXLNS` | Independent organization-level architecture surface | DISCOVERED / NOT MERGED |
+| `VAIXLNS/docs` | Organization-level documentation surface | DISCOVERED / NOT MERGED |
+| `VAIXLNS/improved-barnacle` | Unclassified adjacent repository | UNCLASSIFIED |
+
+These surfaces are recorded for discovery and provenance. Their source trees are not copied into
+the canonical runtime without a content-backed integration decision.
 
 ## Adjacent / unclassified repositories
 
