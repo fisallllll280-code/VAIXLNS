@@ -185,13 +185,13 @@ def main() -> int:
         if not errors and all(result[key] == "PASS" for key in hard)
         else "BLOCKED"
     )
+    result["admission_scope"] = "control_surface_only"
 
     print(json.dumps(result, indent=2, sort_keys=True))
     if errors:
         print("ERRORS")
         for error in sorted(set(errors)):
             print(f"- {error}")
-    print("admission_scope=control_surface_only")
     return 0 if result["admission"] == "ADMITTED" else 1
 
 if __name__ == "__main__":
