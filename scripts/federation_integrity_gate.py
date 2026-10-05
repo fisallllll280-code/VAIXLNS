@@ -109,15 +109,17 @@ def main() -> None:
     checks += 2
 
     federation = read("docs/indexes/REPOSITORY_FEDERATION_INDEX.md")
-    canonical_marker = chr(96) + "VAIXLNS" + chr(96)
     canonical_rows = [
         line
         for line in federation.splitlines()
-        if line.startswith("| " + canonical_marker + " |") and "| CANONICAL |" in line
+        if line.startswith("|")
+        and "VAIXLNS" in line
+        and "Canonical architecture / registry / recovery / docs" in line
+        and "| CANONICAL |" in line
     ]
     if len(canonical_rows) != 1:
         fail(
-            "expected exactly one CANONICAL VAIXLNS row, "
+            "expected exactly one canonical VAIXLNS architecture row, "
             f"found {len(canonical_rows)}"
         )
     checks += 1
