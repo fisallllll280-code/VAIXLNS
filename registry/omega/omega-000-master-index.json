@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "index_id": "Ω.000",
+  "name": "VAIXLNS Master Index",
+  "status": "CANONICAL",
+  "authority": "VAIXLNS",
+  "golden_source": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "records": [
+    {
+      "id": "VAIXLNS",
+      "type": "SYSTEM",
+      "role": "CANONICAL_CONTROL_PLANE",
+      "lifecycle_state": "ACTIVE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md",
+        "scripts/admission_gate.py",
+        "scripts/federation_integrity_gate.py"
+      ]
+    },
+    {
+      "id": "VV",
+      "type": "SYSTEM",
+      "role": "KNOWLEDGE_DISCOVERY_FABRIC",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_GLOBAL_FABRIC.md"
+      ]
+    },
+    {
+      "id": "VX",
+      "type": "SYSTEM",
+      "role": "EXECUTION_AND_GENERATION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "PARTIAL",
+      "canonical_owner": "VAIXLNS-unified",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_GLOBAL_FABRIC.md",
+        "docs/indexes/REPOSITORY_MERGE_MATRIX_V1.md"
+      ]
+    },
+    {
+      "id": "XV",
+      "type": "SYSTEM",
+      "role": "INTELLIGENCE_PLANNING_EVOLUTION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_INTELLIGENCE_FEDERATION.md"
+      ]
+    },
+    {
+      "id": "NEXENT",
+      "type": "SYSTEM",
+      "role": "DISCOVERY_RESEARCH_SYNTHESIS",
+      "lifecycle_state": "ACTIVE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "NEXENT",
+      "evidence_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ]
+    }
+  ],
+  "promotion_rules": {
+    "VERIFIED_requires": "executable evidence with reproducible result",
+    "CANONICAL_requires": "VERIFIED evidence plus explicit authority",
+    "relocation_is_not_proof": true,
+    "failure_preserves_previous_canonical_state": true
+  }
+}

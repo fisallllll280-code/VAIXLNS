@@ -2,9 +2,7 @@ name: VAIXLNS Conformance
 
 on:
   push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -19,18 +17,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate JSON artifacts
-        shell: bash
+      - name: Validate JSON control surfaces
         run: |
           set -euo pipefail
+          python -m json.tool project.genome >/dev/null
+          python -m json.tool registry/omega/omega-000-master-index.json >/dev/null
           python -m json.tool schemas/atomic-system-record.schema.json >/dev/null
           python -m json.tool schemas/innovation-federation.schema.json >/dev/null
+          python -m json.tool schemas/evidence-record.schema.json >/dev/null
+          python -m json.tool schemas/provenance-record.schema.json >/dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json >/dev/null
-          python -m json.tool registry/omega/VAIXLNS_GLOBAL_FABRIC.json >/dev/null
 
-      - name: Compile Python tooling
+      - name: Compile control tooling
         run: |
-          python -m py_compile             scripts/admission_gate.py             scripts/federation_integrity_gate.py             scripts/repository_pulse.py             scripts/treasury_admission_probe.py             scripts/vcre_probe.py             tools/omega/validate_federation.py
+          python -m py_compile \
+            scripts/admission_gate.py \
+            scripts/federation_integrity_gate.py \
+            scripts/repository_pulse.py \
+            scripts/treasury_admission_probe.py \
+            scripts/vcre_probe.py \
+            tools/omega/validate_federation.py \
+            tests/test_canonical_control_plane.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
