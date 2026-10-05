@@ -42,7 +42,9 @@ class TestCanonicalControlPlane(unittest.TestCase):
             check=False,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn("admission=ADMITTED", result.stdout)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["admission"], "ADMITTED")
+        self.assertEqual(payload["path_hygiene"], "PASS")
 
 
 if __name__ == "__main__":
