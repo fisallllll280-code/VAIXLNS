@@ -26,6 +26,9 @@ jobs:
           python -m json.tool schemas/innovation-federation.schema.json >/dev/null
           python -m json.tool schemas/evidence-record.schema.json >/dev/null
           python -m json.tool schemas/provenance-record.schema.json >/dev/null
+          python -m json.tool schemas/proof-record.schema.json >/dev/null
+          python -m json.tool registry/evidence/control-plane-proof.json >/dev/null
+          python -m json.tool registry/omega/federation-source-lock.v1.json >/dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json >/dev/null
 
       - name: Compile control tooling
@@ -33,6 +36,9 @@ jobs:
           python -m py_compile \
             scripts/admission_gate.py \
             scripts/federation_integrity_gate.py \
+            scripts/proof_verifier.py \
+            scripts/reconstruct_control_plane.py \
+            scripts/emit_provenance.py \
             scripts/repository_pulse.py \
             scripts/treasury_admission_probe.py \
             scripts/vcre_probe.py \
@@ -44,6 +50,15 @@ jobs:
 
       - name: Run federation integrity gate
         run: python scripts/federation_integrity_gate.py
+
+      - name: Verify canonical proof
+        run: python scripts/proof_verifier.py registry/evidence/control-plane-proof.json
+
+      - name: Reconstruct control plane
+        run: python scripts/reconstruct_control_plane.py > reconstruction-evidence.json
+
+      - name: Emit provenance
+        run: python scripts/emit_provenance.py
 
       - name: Run test suite
         run: python -m unittest discover -s tests -v
@@ -64,5 +79,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vaixlns-conformance-evidence
-          path: conformance-evidence.txt
+          path: |
+            conformance-evidence.txt
+            reconstruction-evidence.json
+            provenance.json
           if-no-files-found: error
