@@ -20,17 +20,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -51,17 +50,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -82,17 +80,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -113,17 +110,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 93,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -144,17 +140,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -175,17 +170,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -206,17 +200,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -237,17 +230,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 89,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -268,17 +260,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 90,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -299,17 +290,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 92,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -330,17 +320,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -361,17 +350,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 97,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -392,17 +380,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -423,17 +410,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -454,17 +440,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -485,17 +470,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -516,17 +500,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 92,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -547,17 +530,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 88,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -578,17 +560,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 93,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -609,17 +590,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 90,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -640,17 +620,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -671,17 +650,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -702,17 +680,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 93,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -733,17 +710,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -764,17 +740,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 89,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -795,17 +770,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 83,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -826,17 +800,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -857,17 +830,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 98,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -888,17 +860,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -919,17 +890,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -950,17 +920,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -981,17 +950,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1012,17 +980,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1043,17 +1010,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 88,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1074,17 +1040,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1105,17 +1070,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 97,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1136,17 +1100,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 99,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1167,17 +1130,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 99,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1198,17 +1160,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 100,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1229,17 +1190,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 100,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1260,17 +1220,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 89,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1291,17 +1250,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 90,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1322,17 +1280,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1353,17 +1310,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 97,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1384,17 +1340,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1415,17 +1370,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1446,17 +1400,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 97,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1477,17 +1430,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1508,17 +1460,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1539,17 +1490,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 98,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1570,17 +1520,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 97,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1601,17 +1550,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 95,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1632,17 +1580,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 91,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1663,17 +1610,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 94,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1694,17 +1640,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 99,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1725,17 +1670,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 96,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1756,17 +1700,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 98,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1787,17 +1730,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 82,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1818,17 +1760,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 86,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1849,17 +1790,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 78,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
@@ -1880,17 +1820,16 @@
       "registry_state": "BASELINE_REGISTERED",
       "strategic_strength_score": 99,
       "measurement_model": "design-only; not an implementation or scientific superiority claim",
-      "readiness_score": 50,
+      "readiness_score": 45,
       "readiness_formula": {
         "indexed": 15,
         "categorized": 10,
         "canonical_owner": 10,
         "agent_assigned": 10,
-        "lineage_per_item": 0,
         "item_level_evidence": 0,
         "implementation_evidence": 0,
         "verification_proof": 0,
-        "unresolved_remainder": 5
+        "lineage_per_item": 0
       },
       "evidence_state": "NOT_YET_PROVEN_AT_ITEM_LEVEL",
       "implementation_state": "NOT_CLAIMED",
