@@ -62,31 +62,31 @@ Readiness below is an audit estimate from repository metadata and currently insp
 | Ω.REPO.0021 | fluffy-chainsaw | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
 | Ω.REPO.0022 | fictional-octo-spoon | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
 | Ω.REPO.0023 | reimagined-garbanzo | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0024 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | See Ω.REPO.0011 | R2 | DO NOT DUPLICATE; reconcile |
-| Ω.REPO.0025 | y | UNKNOWN | Placeholder/unknown | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0024 | y | UNKNOWN | Placeholder/unknown | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0025 | fisallll280-gmail.com | UNKNOWN | Empty identity-named repository | R0 | ARCHIVE-2 CANDIDATE |
 | Ω.REPO.0026 | TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE | UNKNOWN / Legacy | Placeholder/spec experiment | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0027 | tools-vaixlns-meta-core-v0.3.ts | VAIXLNS / Tooling | Empty/unfinished tool surface | R0 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0028 | VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | VX / Contract | Execution build contract artifact | R2 | CORE ARTIFACT |
-| Ω.REPO.0029 | src-main.rs | UNKNOWN | File-named placeholder | R0 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0030 | fisallll280-gmail.com | UNKNOWN | Empty identity-named repository | R0 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0031 | joke-generator | External/simple app | JokeAPI demo | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0032 | weather-dashboard | External/simple app | OpenWeather demo | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0033 | New-Action | UNKNOWN | Action experiment | R1 | REVIEW |
-| Ω.REPO.0034 | Repository-name | VAIXLNS / Legacy | Architecture/control-plane material | R2 | RECOVER THEN REVIEW |
-| Ω.REPO.0035 | -- | External/template | Dev container feature template | R1 | EXTERNAL |
-| Ω.REPO.0036 | - | External/template | Dev container feature template | R1 | EXTERNAL |
-| Ω.REPO.0037 | datasets | EXTERNAL | Hugging Face Datasets upstream | R5* | EXTERNAL |
-| Ω.REPO.0038 | copilot-sdk | EXTERNAL | GitHub Copilot SDK upstream | R5* | EXTERNAL |
-| Ω.REPO.0039 | pylance-release | EXTERNAL | Pylance feedback/docs upstream | R5* | EXTERNAL |
-| Ω.REPO.0040 | react-native-website | EXTERNAL | React Native website upstream | R5* | EXTERNAL |
-| Ω.REPO.0041 | vscode-docs | EXTERNAL | VS Code documentation upstream | R5* | EXTERNAL |
-| Ω.REPO.0042 | whisper | EXTERNAL | OpenAI Whisper upstream | R5* | EXTERNAL |
-| Ω.REPO.0043 | desktop | EXTERNAL | GitHub Desktop upstream | R5* | EXTERNAL |
-| Ω.REPO.0044 | learn | EXTERNAL | Node.js learning content upstream | R5* | EXTERNAL |
-| Ω.REPO.0045 | tunnel-client | EXTERNAL | Secure MCP Tunnel client | R5* | EXTERNAL |
-| Ω.REPO.0046 | Pumpkin | EXTERNAL | Pumpkin Minecraft server upstream | R5* | EXTERNAL |
-| Ω.REPO.0047 | starter-workflows | EXTERNAL | GitHub starter workflows upstream | R5* | EXTERNAL |
-| Ω.REPO.0048 | stunning-chainsaw | UNKNOWN | Placeholder/duplicate | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0027 | VAIXLNS-Naming-Constitution-v1.0 | VAIXLNS / Constitution | Naming and terminology rules | R2 | CORE ARTIFACT |
+| Ω.REPO.0028 | joke-generator | External/simple app | JokeAPI demo | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0029 | vaixlns-nexent-vx | Federation / Integration | NEXENT-to-VX bridge | R3 | INTEGRATE |
+| Ω.REPO.0030 | VX-runtime | VX / Runtime | Deterministic governed execution core | R3 | CORE |
+| Ω.REPO.0031 | redesigned-invention | VAIXLNS / Meta-spec | SCA/meta specification rules | R2 | INTEGRATE |
+| Ω.REPO.0032 | VAIXLNS-unified | VAIXLNS / Federation | Unified intelligence/execution/governance fabric | R3 | INTEGRATE |
+| Ω.REPO.0033 | pylance-release | EXTERNAL | Pylance feedback/docs upstream | R5* | EXTERNAL |
+| Ω.REPO.0034 | react-native-website | EXTERNAL | React Native website upstream | R5* | EXTERNAL |
+| Ω.REPO.0035 | NATIONAL- | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0036 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | Intent→reality architecture/spec | R2 | INTEGRATE |
+| Ω.REPO.0037 | vscode-docs | EXTERNAL | VS Code documentation upstream | R5* | EXTERNAL |
+| Ω.REPO.0038 | whisper | EXTERNAL | OpenAI Whisper upstream | R5* | EXTERNAL |
+| Ω.REPO.0039 | desktop | EXTERNAL | GitHub Desktop upstream | R5* | EXTERNAL |
+| Ω.REPO.0040 | weather-dashboard | External/simple app | OpenWeather demo | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0041 | vaixlns-csd-kernel | VAIXLNS / Kernel | CSD/kernel contract surface | R2 | REVIEW |
+| Ω.REPO.0042 | VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | VX / Contract | Execution build contract artifact | R2 | CORE ARTIFACT |
+| Ω.REPO.0043 | -- | External/template | Dev container feature template | R1 | EXTERNAL |
+| Ω.REPO.0044 | src-main.rs | UNKNOWN | File-named placeholder | R0 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0045 | learn | EXTERNAL | Node.js learning content upstream | R5* | EXTERNAL |
+| Ω.REPO.0046 | fluffy-chainsaw | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.0047 | Repository-name | VAIXLNS / Legacy | Architecture/control-plane material | R2 | RECOVER THEN REVIEW |
+| Ω.REPO.0048 | fictional-octo-spoon | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
 | Ω.REPO.0049 | fuzzy-octo-winner | UNKNOWN | Placeholder/duplicate | R1 | ARCHIVE-2 CANDIDATE |
 
 ## Important correction
