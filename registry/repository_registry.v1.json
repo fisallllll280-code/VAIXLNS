@@ -116,6 +116,20 @@
       "role": "historical-tooling-variant",
       "status": "quarantined",
       "evidence_state": "UNASSESSED"
+    },
+    {
+      "id": "R-018",
+      "name": "-VAIXLNS",
+      "role": "historical-variant-unknown",
+      "status": "quarantined",
+      "evidence_state": "UNASSESSED"
+    },
+    {
+      "id": "R-019",
+      "name": "NAXLNS",
+      "role": "adversarial-design-analysis",
+      "status": "active",
+      "evidence_state": "SPECIFICATION"
     }
   ],
   "rules": [
