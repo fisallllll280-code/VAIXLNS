@@ -36,7 +36,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-002",
@@ -65,7 +67,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-003",
@@ -94,7 +98,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-004",
@@ -123,7 +129,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-005",
@@ -152,7 +160,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-006",
@@ -181,7 +191,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-007",
@@ -210,7 +222,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-008",
@@ -239,7 +253,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-009",
@@ -268,7 +284,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-010",
@@ -297,7 +315,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "NEXENT / Architecture Generation",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-011",
@@ -326,7 +346,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-012",
@@ -355,7 +377,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-013",
@@ -384,7 +408,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-014",
@@ -413,7 +439,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-015",
@@ -442,7 +470,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-016",
@@ -471,7 +501,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-017",
@@ -500,7 +532,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-018",
@@ -529,7 +563,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-019",
@@ -558,7 +594,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-020",
@@ -587,7 +625,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-021",
@@ -616,7 +656,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VV / Verification & Proof",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-022",
@@ -645,7 +687,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-023",
@@ -674,7 +718,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-024",
@@ -703,7 +749,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-025",
@@ -732,7 +780,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-026",
@@ -761,7 +811,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-027",
@@ -790,7 +842,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-028",
@@ -819,7 +873,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-029",
@@ -848,7 +904,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-030",
@@ -877,7 +935,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-031",
@@ -906,7 +966,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-032",
@@ -935,7 +997,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "OIF / Evolution",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-033",
@@ -964,7 +1028,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-034",
@@ -993,7 +1059,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-035",
@@ -1022,7 +1090,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-036",
@@ -1051,7 +1121,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-037",
@@ -1080,7 +1152,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-038",
@@ -1109,7 +1183,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-039",
@@ -1138,7 +1214,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-040",
@@ -1167,7 +1245,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-041",
@@ -1196,7 +1276,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-042",
@@ -1225,7 +1307,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Nexus / Meta-Architecture",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-043",
@@ -1254,7 +1338,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-044",
@@ -1283,7 +1369,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-045",
@@ -1312,7 +1400,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-046",
@@ -1341,7 +1431,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-047",
@@ -1370,7 +1462,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-048",
@@ -1399,7 +1493,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-049",
@@ -1428,7 +1524,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-050",
@@ -1457,7 +1555,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-051",
@@ -1486,7 +1586,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-052",
@@ -1515,7 +1617,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-053",
@@ -1544,7 +1648,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-054",
@@ -1573,7 +1679,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-055",
@@ -1602,7 +1710,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-056",
@@ -1631,7 +1741,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-057",
@@ -1660,7 +1772,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "VAIXLNS Canonical Core",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-058",
@@ -1689,7 +1803,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Domain / Economy & Interoperability",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-059",
@@ -1718,7 +1834,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Domain / Economy & Interoperability",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-060",
@@ -1747,7 +1865,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Domain / Economy & Interoperability",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     },
     {
       "innovation_index_id": "I-061",
@@ -1776,7 +1896,9 @@
       "implementation_state": "NOT_CLAIMED",
       "verification_state": "NOT_CLAIMED",
       "lineage_state": "REQUIRED_BUT_ITEM_MAPPING_PENDING",
-      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE"
+      "next_measurement_event": "INNOVATION_EVIDENCE_UPDATE",
+      "canonical_owner": "Domain / Economy & Interoperability",
+      "index_presence": "INNOVATION_MASTER_INDEX"
     }
   ]
 }
