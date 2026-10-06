@@ -1,0 +1,42 @@
+schema: vx.omega_arena
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - arena_id
+  - task_id
+  - participants
+  - phases
+  - authority
+  - evidence
+properties:
+  arena_id: string
+  task_id: string
+  participants: array
+  protocol_version: string
+  environment_hash: string
+  task_corpus_hash: string
+  phases:
+    enum:
+      - independent_solution
+      - evidence_submission
+      - execution
+      - verification
+      - adversarial_attack
+      - repair
+      - re_execution
+      - final_verdict
+  metrics:
+    correctness: number
+    reproducibility: number
+    security: number
+    completeness: number
+    contradiction_resistance: number
+    evidence_quality: number
+    robustness: number
+    innovation: number
+  authority:
+    referee: VX
+    self_declared_winner: prohibited
+  evidence:
+    required: true
+    replay_required: true
