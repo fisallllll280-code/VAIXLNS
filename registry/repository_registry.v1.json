@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_for": "VAIXLNS",
   "policy": "zero-loss",
   "canonical_root": "VAIXLNS",
@@ -8,49 +8,124 @@
       "id": "R-001",
       "name": "VAIXLNS",
       "role": "canonical-architecture-registry-governance",
-      "status": "active"
+      "status": "active",
+      "evidence_state": "CANONICAL"
     },
     {
       "id": "R-002",
       "name": "VAIXLNS-unified",
       "role": "integrated-runtime",
-      "status": "active"
+      "status": "active",
+      "evidence_state": "PARTIAL",
+      "promotion": "1.1.0-hardening"
     },
     {
       "id": "R-003",
       "name": "NEXENT",
       "role": "discovery-search-synthesis",
-      "status": "active"
+      "status": "active",
+      "evidence_state": "DISCOVERY"
     },
     {
       "id": "R-004",
       "name": "vaixlns-nexent-vx",
       "role": "combined-experimental-vx-surface",
-      "status": "validate-before-promotion"
+      "status": "validate-before-promotion",
+      "evidence_state": "QUARANTINED"
     },
     {
       "id": "R-005",
       "name": "VX50_COMPLETE_BUILD",
       "role": "historical-build-surface",
-      "status": "candidate-for-canonicalization"
+      "status": "candidate-for-canonicalization",
+      "evidence_state": "INCOMPLETE"
     },
     {
       "id": "R-006",
       "name": "VAIXLNS-ARCHIVE",
       "role": "immutable-historical-archive",
-      "status": "planned"
+      "status": "planned",
+      "evidence_state": "PLANNED"
     },
     {
       "id": "R-007",
       "name": "VAIXLNS-RECOVERY",
       "role": "recoverable-retired-deleted-material",
-      "status": "planned"
+      "status": "planned",
+      "evidence_state": "PLANNED"
+    },
+    {
+      "id": "R-008",
+      "name": "VX-runtime",
+      "role": "governed-execution-runtime-reference",
+      "status": "active",
+      "evidence_state": "IMPLEMENTED + TESTED"
+    },
+    {
+      "id": "R-009",
+      "name": "vaixlns-core",
+      "role": "constitutional-core-reference",
+      "status": "active",
+      "evidence_state": "SPECIFICATION"
+    },
+    {
+      "id": "R-010",
+      "name": "vaixlns-csd-kernel",
+      "role": "root-dsl-parser-compiler",
+      "status": "active",
+      "evidence_state": "IMPLEMENTED + TESTED_REFERENCE"
+    },
+    {
+      "id": "R-011",
+      "name": "VAIXLNS-Intent-to-Reality",
+      "role": "intent-execution-boundary",
+      "status": "active",
+      "evidence_state": "INCOMPLETE"
+    },
+    {
+      "id": "R-012",
+      "name": "VAIXLNS-Naming-Constitution-v1.0",
+      "role": "naming-identity-support",
+      "status": "active",
+      "evidence_state": "SPECIFIED"
+    },
+    {
+      "id": "R-014",
+      "name": "VAIXLNS-",
+      "role": "historical-variant",
+      "status": "quarantined",
+      "evidence_state": "QUARANTINED"
+    },
+    {
+      "id": "R-015",
+      "name": "VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "role": "assurance-artifact",
+      "status": "active",
+      "evidence_state": "SPECIFIED"
+    },
+    {
+      "id": "R-016",
+      "name": "VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "role": "execution-contract",
+      "status": "active",
+      "evidence_state": "CONTRACT"
+    },
+    {
+      "id": "R-017",
+      "name": "tools-vaixlns-meta-core-v0.3.ts",
+      "role": "historical-tooling-variant",
+      "status": "quarantined",
+      "evidence_state": "UNASSESSED"
     }
   ],
   "rules": [
     "Never delete historical material during consolidation.",
     "Preserve original repository, ref, version, digest, and lineage.",
     "Canonicalization is a classification operation, not a destruction operation.",
-    "Runtime promotion requires executable evidence."
-  ]
+    "Runtime promotion requires executable evidence.",
+    "A README claim never substitutes for source, test, and reproducible execution evidence.",
+    "Source-owned repositories remain separately identifiable until snapshot and lineage capture complete.",
+    "A retired or deleted source is recoverable only through an immutable snapshot plus a new restoration revision."
+  ],
+  "last_reviewed": "2026-10-06"
 }
