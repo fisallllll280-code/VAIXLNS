@@ -33,7 +33,7 @@ def build_demo(now: datetime) -> dict:
         protocol_version="1.0.0",
         task_corpus_hash="demo-corpus",
         environment_hash="local-deterministic",
-        participants=tuple(adapter.descriptor.provider_id for adapter in default_adapters()),
+        participants=("vaixlns-forge",) + tuple(adapter.descriptor.provider_id for adapter in default_adapters()),
         phases=(
             "independent_solution",
             "evidence_submission",
