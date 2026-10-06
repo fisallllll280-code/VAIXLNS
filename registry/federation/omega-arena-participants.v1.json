@@ -5,7 +5,23 @@
   "owner": "VAIXLNS",
   "activation_fabric": "VLNS",
   "runtime": "VX",
+  "tracks": [
+    "discovery",
+    "development",
+    "innovation",
+    "industrialization"
+  ],
   "participants": [
+    {
+      "id": "vaixlns-forge",
+      "name": "VAIXLNS Forge",
+      "kind": "internal_team",
+      "composition": ["VLNS", "VX", "existing_capabilities", "project_memory"],
+      "capabilities": ["discovery", "development", "innovation", "industrialization", "verification", "recovery"],
+      "execution_mode": "native_vx",
+      "self_judging": false,
+      "canonical_mutation": false
+    },
     {
       "id": "openai",
       "name": "OpenAI",
