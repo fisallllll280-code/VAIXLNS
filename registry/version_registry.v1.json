@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "version_policy": "historical-identifiers-preserved",
   "gates": [
     "DRAFT",
@@ -41,5 +41,26 @@
   "snapshot_formats": {
     "archive": "ARCHIVE-YYYYMMDD-HHMMSS",
     "recovery": "RECOVERY-YYYYMMDD-HHMMSS-N"
-  }
+  },
+  "last_reviewed": "2026-10-06",
+  "current_release": {
+    "release_id": "VAIXLNS-FED-1.1.0",
+    "canonical_version": "1.1.0",
+    "source_repository": "fisallllll280-code/VAIXLNS-unified",
+    "source_ref": "integration/production-hardening-v2",
+    "status": "INTEGRATED",
+    "evidence_state": "ADAPTERS_IMPLEMENTED; DISTRIBUTED_DEPLOYMENT_PENDING",
+    "changes": [
+      "durable SQLite event/snapshot storage",
+      "opt-in VLNS HTTPS connection boundary",
+      "OPA policy adapter",
+      "NATS JetStream backend",
+      "isolated solver bridge",
+      "open-source backend registry"
+    ]
+  },
+  "rules": [
+    "Version identifiers are immutable historical references; new work creates a new canonical revision.",
+    "INTEGRATED is not VERIFIED until reproducible runtime evidence is attached."
+  ]
 }
