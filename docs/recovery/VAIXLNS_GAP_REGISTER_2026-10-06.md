@@ -26,11 +26,11 @@ A second repository named VAIXLNS/VAIXLNS exists and was inspected separately. I
 
 | ID | Gap | Current state |
 |---|---|---|
-| GAP-012 | Concrete constitutional/admission evaluator beyond structural gate | PARTIAL |
-| GAP-013 | OpenTelemetry-aligned runtime observation contract | SPECIFIED |
+| GAP-012 | Concrete constitutional/admission evaluator beyond structural gate | PARTIAL — machine-readable evaluator implemented and CI-bound; semantic constitutional policy coverage remains |
+| GAP-013 | OpenTelemetry-aligned runtime observation contract | PARTIAL — VLNS observation/runtime contract implemented; native OpenTelemetry export/telemetry pipeline remains |
 | GAP-014 | Branch protection, required reviews and administrative repository rules | ADMINISTRATIVE |
 | GAP-015 | Full legacy 0001–2750 atomic registry exposure | MISSING coverage |
-| GAP-016 | Selective code consolidation across VAIXLNS-unified/NEXENT/specialized kernels | IN PROGRESS |
+| GAP-016 | Selective code consolidation across VAIXLNS-unified/NEXENT/specialized kernels | IN PROGRESS — VX/CSD lineage preserved; executable slices advancing in unified; specialized repos remain separate |
 | GAP-017 | Full-system reconstruction and semantic equivalence beyond control-plane scope | SPECIFIED |
 | GAP-018 | Production financial execution | BLOCKED until independent admission evidence exists |
 
