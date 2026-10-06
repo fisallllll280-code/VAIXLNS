@@ -1,0 +1,41 @@
+name: VAIXLNS Federation Snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical registry
+        uses: actions/checkout@v4
+      - name: Capture federation sources
+        env:
+          GITHUB_TOKEN: ${{ secrets.VAIXLNS_FEDERATION_TOKEN || github.token }}
+        run: |
+          python scripts/capture_repository_snapshots.py > snapshot-run.json
+          cat snapshot-run.json
+      - name: Commit capture manifest
+        run: |
+          git config user.name "VAIXLNS Snapshot Bot"
+          git config user.email "actions@github.com"
+          git add archive/captures archive/vaixlns-federation-*.tar.gz
+          if git diff --cached --quiet; then
+            echo "No snapshot manifest changes."
+          else
+            git commit -m "archive: capture federation snapshot"
+            git push
+          fi
+      - name: Upload recovery bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-federation-snapshot-${{ github.run_id }}
+          path: |
+            archive/vaixlns-federation-*.tar.gz
+            archive/captures/*.json
+            snapshot-run.json
