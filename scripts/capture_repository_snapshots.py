@@ -64,9 +64,7 @@ def capture() -> dict:
                 commit = run("git", "rev-parse", "HEAD", cwd=destination)
                 tree = run("git", "rev-parse", "HEAD^{tree}", cwd=destination)
                 tar_path = capture_root / f"{entry['name'].replace('/', '__')}-{commit[:12]}.tar"
-                with tarfile.open(tar_path, "w") as archive:
-                    for item in sorted(destination.iterdir(), key=lambda p: p.name):
-                        archive.add(item, arcname=item.name)
+                run("git", "archive", "--format=tar", "-o", str(tar_path), "HEAD", cwd=destination)
                 records.append({
                     "repository": repository,
                     "ref": run("git", "rev-parse", "--abbrev-ref", "HEAD", cwd=destination),
