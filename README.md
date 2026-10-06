@@ -40,3 +40,14 @@ Historical names and variants remain preserved through provenance and lineage. A
 
 - [VLA Federation Contract](docs/integration/VLA_FEDERATION_CONTRACT_V1.md)
 - [OpenVLA provider registry](registry/vla.openvla.7b.json)
+
+
+## VX Cognitive Fabric
+
+- [VX Ω-Cognitive Fabric](docs/cognitive/VX_OMEGA_COGNITIVE_FABRIC_V1.md)
+- [VLNS Model Activation Fabric](docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md)
+- [VX Cognitive Fabric Restoration Index](docs/cognitive/VX_COGNITIVE_FABRIC_RESTORATION_INDEX_V1.md)
+- [Capability Genome schema](schemas/vx-capability-genome.schema.yaml)
+- [Ω-Arena schema](schemas/vx-arena.schema.yaml)
+
+**Boundary:** VAIXLNS is canonical authority; VLNS is the governed model/semantic activation boundary; VX is the cognitive execution, experiment, verification, replay, and capability-synthesis boundary. Historical repository identities remain evidence-gated.
