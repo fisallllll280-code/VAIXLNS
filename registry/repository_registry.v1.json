@@ -16,8 +16,8 @@
       "name": "VAIXLNS-unified",
       "role": "integrated-runtime",
       "status": "active",
-      "evidence_state": "PARTIAL",
-      "promotion": "1.1.0-hardening"
+      "evidence_state": "CONFORMANT",
+      "promotion": "1.1.1"
     },
     {
       "id": "R-003",
