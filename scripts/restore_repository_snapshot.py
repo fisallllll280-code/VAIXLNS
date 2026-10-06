@@ -3,18 +3,14 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 from pathlib import Path
 import tarfile
-import tempfile
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def digest_bytes(data: bytes) -> str:
+    return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
 def safe_members(members: list[tarfile.TarInfo], destination: Path) -> list[tarfile.TarInfo]:
@@ -28,36 +24,43 @@ def safe_members(members: list[tarfile.TarInfo], destination: Path) -> list[tarf
     return safe
 
 
-def restore(bundle: Path, repository_prefix: str, destination: Path) -> dict:
+def restore(bundle: Path, repository: str, destination: Path) -> dict:
     destination.mkdir(parents=True, exist_ok=True)
     with tarfile.open(bundle, "r:gz") as outer:
-        manifest_member = outer.getmember("manifest.json")
-        manifest = json.loads(outer.extractfile(manifest_member).read().decode("utf-8"))
-        match = next(
-            (r for r in manifest.get("records", [])
-             if r.get("repository") == repository_prefix and r.get("status") == "CAPTURED"),
+        manifest = json.loads(
+            outer.extractfile(outer.getmember("manifest.json")).read().decode("utf-8")
+        )
+        record = next(
+            (
+                item for item in manifest.get("records", [])
+                if item.get("repository") == repository and item.get("status") == "CAPTURED"
+            ),
             None,
         )
-        if match is None:
+        if record is None:
             raise RuntimeError("CAPTURED_REPOSITORY_NOT_FOUND")
 
         archive_name = next(
             name for name in outer.getnames()
-            if name.endswith(".tar") and match["commit"][:12] in name
-            and Path(repository_prefix.split("/", 1)[-1]).stem in name
+            if name.endswith(".tar") and record["commit"][:12] in name
+            and Path(repository.split("/", 1)[-1]).name in name
         )
-        outer.extract(archive_name, path=Path(tempfile.mkdtemp(prefix="vlns-restore-")))
-        staged = next(
-            (Path(n) for n in outer.getnames() if n == archive_name),
-            None,
-        )
-        if staged is None:
-            raise RuntimeError("ARCHIVE_MEMBER_NOT_FOUND")
+        raw = outer.extractfile(outer.getmember(archive_name)).read()
+        expected = record.get("archive_digest")
+        if expected and digest_bytes(raw) != expected:
+            raise RuntimeError("ARCHIVE_DIGEST_MISMATCH")
 
-    raise RuntimeError(
-        "BUNDLE_RESTORE_REQUIRES_STAGED_MEMBER: use archive extraction into an external "
-        "workspace; this guard prevents accidental overwrite of the canonical tree."
-    )
+        with tarfile.open(fileobj=io.BytesIO(raw), mode="r:") as source:
+            members = safe_members(source.getmembers(), destination)
+            source.extractall(destination, members=members)
+
+    return {
+        "repository": repository,
+        "commit": record["commit"],
+        "tree": record["tree"],
+        "archive_digest": record.get("archive_digest"),
+        "restored_to": str(destination),
+    }
 
 
 if __name__ == "__main__":
@@ -66,4 +69,4 @@ if __name__ == "__main__":
     parser.add_argument("repository")
     parser.add_argument("destination", type=Path)
     args = parser.parse_args()
-    restore(args.bundle, args.repository, args.destination)
+    print(json.dumps(restore(args.bundle, args.repository, args.destination), ensure_ascii=False, indent=2))
