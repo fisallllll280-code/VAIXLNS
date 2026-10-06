@@ -1,0 +1,21 @@
+name: VAIXLNS Innovation Measurement
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate agent and innovation registries
+        run: python scripts/validate_agent_and_innovation_registry.py
+      - name: Compute innovation measurement
+        run: python scripts/measure_innovations.py
