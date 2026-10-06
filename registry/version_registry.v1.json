@@ -47,9 +47,9 @@
     "release_id": "VAIXLNS-FED-1.1.0",
     "canonical_version": "1.1.0",
     "source_repository": "fisallllll280-code/VAIXLNS-unified",
-    "source_ref": "integration/production-hardening-v2",
-    "status": "INTEGRATED",
-    "evidence_state": "ADAPTERS_IMPLEMENTED; DISTRIBUTED_DEPLOYMENT_PENDING",
+    "source_ref": "main",
+    "status": "CONFORMANT",
+    "evidence_state": "CI_REPRODUCIBLE; DISTRIBUTED_DEPLOYMENT_PENDING",
     "changes": [
       "durable SQLite event/snapshot storage",
       "opt-in VLNS HTTPS connection boundary",
@@ -57,6 +57,12 @@
       "NATS JetStream backend",
       "isolated solver bridge",
       "open-source backend registry"
+    ],
+    "source_commit": "893e34c70f505fecba82c76e3ca7847d4bfca58e",
+    "evidence": [
+      "VAIXLNS-unified PR #13 CI: test SUCCESS",
+      "VAIXLNS-unified PR #13 CI: VX invention engine SUCCESS",
+      "Production hardening smoke includes durable restart/recovery and CSD compilation"
     ]
   },
   "rules": [
