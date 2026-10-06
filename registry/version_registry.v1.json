@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "version_policy": "historical-identifiers-preserved",
+  "gates": [
+    "DRAFT",
+    "BUILDABLE",
+    "RUNNABLE",
+    "INTEGRATED",
+    "CONFORMANT",
+    "REPRODUCIBLE",
+    "VERIFIED"
+  ],
+  "states": [
+    "DISCOVERED",
+    "RECOVERED",
+    "CLASSIFIED",
+    "CANONICAL",
+    "INTEGRATED",
+    "CONFORMANT",
+    "VERIFIED",
+    "QUARANTINED",
+    "RETIRED"
+  ],
+  "version_record_fields": [
+    "item_id",
+    "project_id",
+    "source_repository",
+    "source_ref",
+    "historical_version",
+    "canonical_version",
+    "status",
+    "supersedes",
+    "superseded_by",
+    "merged_into",
+    "archived_at",
+    "recovered_from",
+    "content_digest",
+    "lineage",
+    "evidence"
+  ],
+  "snapshot_formats": {
+    "archive": "ARCHIVE-YYYYMMDD-HHMMSS",
+    "recovery": "RECOVERY-YYYYMMDD-HHMMSS-N"
+  }
+}
