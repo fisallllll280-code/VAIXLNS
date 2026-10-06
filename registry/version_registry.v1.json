@@ -44,19 +44,27 @@
   },
   "last_reviewed": "2026-10-06",
   "current_release": {
-    "release_id": "VAIXLNS-FED-1.1.0",
-    "canonical_version": "1.1.0",
+    "release_id": "VAIXLNS-FED-1.1.1",
+    "canonical_version": "1.1.1",
     "source_repository": "fisallllll280-code/VAIXLNS-unified",
-    "source_ref": "integration/production-hardening-v2",
-    "status": "INTEGRATED",
-    "evidence_state": "ADAPTERS_IMPLEMENTED; DISTRIBUTED_DEPLOYMENT_PENDING",
+    "source_ref": "main",
+    "source_commit": "0166293d4da76085c6048ce18e6af0a943314bb1",
+    "status": "CONFORMANT",
+    "evidence_state": "CI_REPRODUCIBLE; LOCAL_SERVER_IMPLEMENTED; DISTRIBUTED_DEPLOYMENT_PENDING",
     "changes": [
       "durable SQLite event/snapshot storage",
+      "local FastAPI runtime service",
       "opt-in VLNS HTTPS connection boundary",
       "OPA policy adapter",
       "NATS JetStream backend",
+      "CSD/LNS parser/compiler integration",
       "isolated solver bridge",
-      "open-source backend registry"
+      "zero-loss archive automation"
+    ],
+    "evidence": [
+      "VAIXLNS-unified PR #14 CI green: local durable FastAPI runtime API",
+      "VAIXLNS-unified PR #15 CI green: version alignment 1.1.1",
+      "VAIXLNS PR #22 CI green: deterministic archive capture and admission dependency repair"
     ]
   },
   "rules": [
