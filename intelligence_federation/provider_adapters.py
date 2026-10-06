@@ -45,6 +45,9 @@ class ProviderResponse:
 class ProviderAdapter:
     descriptor: ProviderDescriptor
 
+    def __init__(self, descriptor: ProviderDescriptor) -> None:
+        self.descriptor = descriptor
+
     def discover(self) -> ProviderDescriptor:
         return self.descriptor
 
