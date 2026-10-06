@@ -1,6 +1,12 @@
 name: VAIXLNS Repository Pulse
 
 on:
+  pull_request:
+    paths:
+      - "scripts/admission_gate.py"
+      - ".github/workflows/vaixlns-repository-pulse.yml"
+      - "registry/**"
+      - "project.genome"
   workflow_dispatch:
   schedule:
     - cron: "*/15 * * * *"
