@@ -1,42 +1,232 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "policy": "append-only-zero-loss",
-  "snapshot_status": "registry-established-source-capture-pending",
+  "last_head_capture": "2026-10-06",
+  "snapshot_status": "commit-heads-captured-content-digests-pending",
   "repositories": [
     {
       "id": "R-001",
       "name": "VAIXLNS",
-      "url": "https://github.com/fisallllll280-code/VAIXLNS",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "ref": "VAIXLNS",
+      "commit": "713498be9e611c0655097830e42b3c3973119f1a1",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-713498be9e61",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "canonical-root"
+      ],
       "role": "canonical-root",
       "preservation": "canonical"
     },
     {
       "id": "R-002",
       "name": "VAIXLNS-unified",
-      "url": "https://github.com/fisallllll280-code/VAIXLNS-unified",
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "ref": "main",
+      "commit": "9c9865c210b35212e42a90cfbc4d25829fc8f461",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-9c9865c210b3",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "integrated-runtime"
+      ],
       "role": "integrated-runtime",
       "preservation": "source-preserved"
     },
     {
       "id": "R-003",
       "name": "NEXENT",
-      "url": "https://github.com/fisallllll280-code/NEXENT",
+      "repository": "fisallllll280-code/NEXENT",
+      "ref": "main",
+      "commit": "e79e8869214d66c4f04343dd527235bda159a79c",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-e79e8869214d",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "discovery-search-synthesis"
+      ],
       "role": "discovery-search-synthesis",
       "preservation": "source-preserved"
     },
     {
       "id": "R-004",
       "name": "vaixlns-nexent-vx",
-      "url": "https://github.com/fisallllll280-code/vaixlns-nexent-vx",
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "ref": "main",
+      "commit": "40da484ea3312811abf6104e4afb7f06dcb0f45c",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-40da484ea331",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "combined-experimental-vx-surface"
+      ],
       "role": "combined-experimental-vx-surface",
       "preservation": "source-preserved"
     },
     {
       "id": "R-005",
       "name": "VX50_COMPLETE_BUILD",
-      "url": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD",
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "ref": "main",
+      "commit": "abf6e029ae7d498ec19662776903638d519e9d47",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-abf6e029ae7d",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "historical-build-surface"
+      ],
       "role": "historical-build-surface",
       "preservation": "source-preserved"
+    },
+    {
+      "id": "R-008",
+      "name": "VX-runtime",
+      "repository": "fisallllll280-code/VX-runtime",
+      "ref": "main",
+      "commit": "3b7991356552f85ec0572d82d23595476377b734",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-3b7991356552",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "governed-execution-runtime-reference"
+      ],
+      "role": "governed-execution-runtime-reference",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-009",
+      "name": "vaixlns-core",
+      "repository": "fisallllll280-code/vaixlns-core",
+      "ref": "main",
+      "commit": "087e2daea47029227f194d3c43e532bcb32bcdc7",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-087e2daea470",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "constitutional-core-reference"
+      ],
+      "role": "constitutional-core-reference",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-010",
+      "name": "vaixlns-csd-kernel",
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "ref": "main",
+      "commit": "95e059bef6022edbfa6ed64e169dccadea668ea8",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-95e059bef602",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "root-dsl-parser-compiler"
+      ],
+      "role": "root-dsl-parser-compiler",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-011",
+      "name": "VAIXLNS-Intent-to-Reality",
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "ref": "main",
+      "commit": "f844de25171ba49eb4fd466533ebab159889f51a",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-f844de25171b",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "intent-execution-boundary"
+      ],
+      "role": "intent-execution-boundary",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-012",
+      "name": "VAIXLNS-Naming-Constitution-v1.0",
+      "repository": "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "ref": "main",
+      "commit": "7e66d828ef4a5f8973f555a8d8ebf373ffd70a03",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-7e66d828ef4a",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "naming-identity-support"
+      ],
+      "role": "naming-identity-support",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-014",
+      "name": "VAIXLNS-",
+      "repository": "fisallllll280-code/VAIXLNS-",
+      "ref": "main",
+      "commit": "a34192f2f7d39cd5771b0ae11be7663fd5218c9c",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-a34192f2f7d3",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "historical-variant"
+      ],
+      "role": "historical-variant",
+      "preservation": "quarantine"
+    },
+    {
+      "id": "R-015",
+      "name": "VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "repository": "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "ref": "VAIXLNS",
+      "commit": "9e13daa570fff80d6d05cee3682caff7499783a3",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-9e13daa570ff",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "assurance-artifact"
+      ],
+      "role": "assurance-artifact",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-016",
+      "name": "VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "repository": "fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "ref": "main",
+      "commit": "260e2e2ef99e59862fa55b64b34685a15d2d1b78",
+      "historical_version": null,
+      "snapshot_id": "HEAD-20261006-260e2e2ef99e",
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "execution-contract"
+      ],
+      "role": "execution-contract",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-017",
+      "name": "tools-vaixlns-meta-core-v0.3.ts",
+      "repository": "fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts",
+      "ref": "main",
+      "commit": null,
+      "historical_version": null,
+      "snapshot_id": null,
+      "content_digest": null,
+      "captured_at": "2026-10-06",
+      "lineage": [
+        "historical-tooling-variant"
+      ],
+      "role": "historical-tooling-variant",
+      "preservation": "quarantine"
     }
   ],
   "required_snapshot_fields": [
@@ -49,5 +239,5 @@
     "captured_at",
     "lineage"
   ],
-  "rule": "No canonical merge is complete until its source snapshot is registered."
+  "rule": "No canonical merge is complete until its source snapshot is registered; a HEAD capture is not treated as an immutable archive until content digest and stored snapshot evidence exist."
 }
