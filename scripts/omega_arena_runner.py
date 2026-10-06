@@ -10,7 +10,12 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone, timedelta
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from intelligence_federation.arena import (
     ArenaManifest,
@@ -21,9 +26,6 @@ from intelligence_federation.arena import (
     validate_attribution,
 )
 from intelligence_federation.provider_adapters import default_adapters
-
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def build_demo(now: datetime) -> dict:
