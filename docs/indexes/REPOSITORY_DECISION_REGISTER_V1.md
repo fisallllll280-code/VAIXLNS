@@ -37,96 +37,79 @@ Readiness below is an audit estimate from repository metadata and currently insp
 
 ## Repository register
 
-| ID | Repository | System / Layer | Role | Readiness | Disposition recommendation |
+| ID | Repository | System / Layer | Role | Readiness | Recommendation |
 |---|---|---|---|---|---|
-| Ω.REPO.0001 | VAIXLNS | VAIXLNS / Root | Canonical hub, registry, provenance, governance | R4 | CORE |
-| Ω.REPO.0002 | NAXLNS | NEXENT / Adversarial analysis | Hidden-error discovery and hostile review | R2 | INTEGRATE |
-| Ω.REPO.0003 | VX-runtime | VX / Runtime | Deterministic governed execution core | R3 | CORE |
-| Ω.REPO.0004 | NEXENT | NEXENT / Knowledge-Evidence | Capability discovery, reconstruction, proof | R4 | CORE |
-| Ω.REPO.0005 | vaixlns-nexent-vx | Federation / Integration | NEXENT-to-VX bridge | R3 | INTEGRATE |
-| Ω.REPO.0006 | VAIXLNS-unified | VAIXLNS / Federation | Unified intelligence/execution/governance fabric | R3 | INTEGRATE |
-| Ω.REPO.0007 | vaixlns-core | VAIXLNS / Constitutional Computing | Intent→V-IR→proof→VX vertical slice | R4* | CORE CANDIDATE |
-| Ω.REPO.0008 | vaixlns-csd-kernel | VAIXLNS / Kernel | CSD/kernel contract surface | R2 | REVIEW |
-| Ω.REPO.0009 | VX50_COMPLETE_BUILD | VX / Intelligence | VX50 build/prototype | R2 | REVIEW |
-| Ω.REPO.0010 | vx-financial-kernel | VX / Financial | Proof-carrying economic state transitions | R1 | SUBSYSTEM |
-| Ω.REPO.0011 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | Intent→reality architecture/spec | R2 | INTEGRATE |
-| Ω.REPO.0012 | VAIXLNS-Naming-Constitution-v1.0 | VAIXLNS / Constitution | Naming and terminology rules | R2 | CORE ARTIFACT |
-| Ω.REPO.0013 | VAIXLNS_OPERATIONAL_ASSURANCE.md | VAIXLNS / Assurance | Assurance evidence artifact | R2 | INTEGRATE |
-| Ω.REPO.0014 | VAIXLNS- | VAIXLNS / Legacy | Duplicate/legacy candidate | R2 | REVIEW |
-| Ω.REPO.0015 | -VAIXLNS | VAIXLNS / Legacy | Duplicate/legacy candidate | R1 | REVIEW |
-| Ω.REPO.0016 | redesigned-invention | VAIXLNS / Meta-spec | SCA/meta specification rules | R2 | INTEGRATE |
-| Ω.REPO.0017 | Repository-name | VAIXLNS / Legacy | Strong architecture/control-plane material | R2 | RECOVER THEN REVIEW |
-| Ω.REPO.0018 | verbose-engine | VV / Arena experiment | Product/launch experiment | R2 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0019 | friendly-engine | VV / Arena experiment | Duplicate of arena experiment | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0020 | NATIONAL- | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0021 | fluffy-chainsaw | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0022 | fictional-octo-spoon | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0023 | reimagined-garbanzo | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0024 | y | UNKNOWN | Placeholder/unknown | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0025 | fisallll280-gmail.com | UNKNOWN | Empty identity-named repository | R0 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0026 | TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE | UNKNOWN / Legacy | Placeholder/spec experiment | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0027 | VAIXLNS-Naming-Constitution-v1.0 | VAIXLNS / Constitution | Naming and terminology rules | R2 | CORE ARTIFACT |
-| Ω.REPO.0028 | joke-generator | External/simple app | JokeAPI demo | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0029 | vaixlns-nexent-vx | Federation / Integration | NEXENT-to-VX bridge | R3 | INTEGRATE |
-| Ω.REPO.0030 | VX-runtime | VX / Runtime | Deterministic governed execution core | R3 | CORE |
-| Ω.REPO.0031 | redesigned-invention | VAIXLNS / Meta-spec | SCA/meta specification rules | R2 | INTEGRATE |
-| Ω.REPO.0032 | VAIXLNS-unified | VAIXLNS / Federation | Unified intelligence/execution/governance fabric | R3 | INTEGRATE |
-| Ω.REPO.0033 | pylance-release | EXTERNAL | Pylance feedback/docs upstream | R5* | EXTERNAL |
-| Ω.REPO.0034 | react-native-website | EXTERNAL | React Native website upstream | R5* | EXTERNAL |
-| Ω.REPO.0035 | NATIONAL- | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0036 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | Intent→reality architecture/spec | R2 | INTEGRATE |
-| Ω.REPO.0037 | vscode-docs | EXTERNAL | VS Code documentation upstream | R5* | EXTERNAL |
-| Ω.REPO.0038 | whisper | EXTERNAL | OpenAI Whisper upstream | R5* | EXTERNAL |
-| Ω.REPO.0039 | desktop | EXTERNAL | GitHub Desktop upstream | R5* | EXTERNAL |
-| Ω.REPO.0040 | weather-dashboard | External/simple app | OpenWeather demo | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0041 | vaixlns-csd-kernel | VAIXLNS / Kernel | CSD/kernel contract surface | R2 | REVIEW |
-| Ω.REPO.0042 | VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | VX / Contract | Execution build contract artifact | R2 | CORE ARTIFACT |
-| Ω.REPO.0043 | -- | External/template | Dev container feature template | R1 | EXTERNAL |
-| Ω.REPO.0044 | src-main.rs | UNKNOWN | File-named placeholder | R0 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0045 | learn | EXTERNAL | Node.js learning content upstream | R5* | EXTERNAL |
-| Ω.REPO.0046 | fluffy-chainsaw | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0047 | Repository-name | VAIXLNS / Legacy | Architecture/control-plane material | R2 | RECOVER THEN REVIEW |
-| Ω.REPO.0048 | fictional-octo-spoon | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
-| Ω.REPO.0049 | fuzzy-octo-winner | UNKNOWN | Placeholder/duplicate | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.001 | VAIXLNS | VAIXLNS / Root | Canonical hub, registry, provenance, governance | R4 | CORE |
+| Ω.REPO.002 | NEXENT | NEXENT / Knowledge-Evidence | Capability discovery, reconstruction, proof | R4 | CORE |
+| Ω.REPO.003 | VX-runtime | VX / Runtime | Deterministic governed execution core | R3 | CORE |
+| Ω.REPO.004 | vaixlns-nexent-vx | Federation / Integration | NEXENT-to-VX bridge | R3 | INTEGRATE |
+| Ω.REPO.005 | VAIXLNS-unified | VAIXLNS / Federation | Unified intelligence/execution/governance fabric | R3 | INTEGRATE |
+| Ω.REPO.006 | vaixlns-core | VAIXLNS / Constitutional Computing | Intent→V-IR→proof→VX vertical slice | R4* | CORE CANDIDATE |
+| Ω.REPO.007 | vaixlns-csd-kernel | VAIXLNS / Kernel | CSD/kernel contract surface | R2 | REVIEW |
+| Ω.REPO.008 | VX50_COMPLETE_BUILD | VX / Intelligence | VX50 build/prototype | R2 | REVIEW |
+| Ω.REPO.009 | vx-financial-kernel | VX / Financial | Proof-carrying economic state transitions | R1 | SUBSYSTEM |
+| Ω.REPO.010 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | Intent→reality architecture/spec | R2 | INTEGRATE |
+| Ω.REPO.011 | VAIXLNS-Naming-Constitution-v1.0 | VAIXLNS / Constitution | Naming and terminology rules | R2 | CORE ARTIFACT |
+| Ω.REPO.012 | VAIXLNS_OPERATIONAL_ASSURANCE.md | VAIXLNS / Assurance | Assurance evidence artifact | R2 | INTEGRATE |
+| Ω.REPO.013 | NAXLNS | NEXENT / Adversarial | Hostile analysis and hidden-error discovery | R2 | INTEGRATE |
+| Ω.REPO.014 | redesigned-invention | VAIXLNS / Meta-spec | SCA/meta specification rules | R2 | INTEGRATE |
+| Ω.REPO.015 | Repository-name | VAIXLNS / Legacy | Architecture/control-plane material | R2 | RECOVER THEN REVIEW |
+| Ω.REPO.016 | VAIXLNS- | VAIXLNS / Legacy | Duplicate/legacy candidate | R2 | REVIEW |
+| Ω.REPO.017 | -VAIXLNS | VAIXLNS / Legacy | Duplicate/legacy candidate | R1 | REVIEW |
+| Ω.REPO.018 | tools-vaixlns-meta-core-v0.3.ts | VAIXLNS / Tooling | Empty/unfinished tool surface | R0 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.019 | VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml | VX / Contract | Execution build contract artifact | R2 | CORE ARTIFACT |
+| Ω.REPO.020 | datasets | EXTERNAL | Hugging Face Datasets upstream | R5* | EXTERNAL |
+| Ω.REPO.021 | copilot-sdk | EXTERNAL | GitHub Copilot SDK upstream | R5* | EXTERNAL |
+| Ω.REPO.022 | pylance-release | EXTERNAL | Pylance feedback/docs upstream | R5* | EXTERNAL |
+| Ω.REPO.023 | react-native-website | EXTERNAL | React Native website upstream | R5* | EXTERNAL |
+| Ω.REPO.024 | vscode-docs | EXTERNAL | VS Code documentation upstream | R5* | EXTERNAL |
+| Ω.REPO.025 | whisper | EXTERNAL | OpenAI Whisper upstream | R5* | EXTERNAL |
+| Ω.REPO.026 | desktop | EXTERNAL | GitHub Desktop upstream | R5* | EXTERNAL |
+| Ω.REPO.027 | learn | EXTERNAL | Node.js learning content upstream | R5* | EXTERNAL |
+| Ω.REPO.028 | tunnel-client | EXTERNAL | Secure MCP Tunnel client | R5* | EXTERNAL |
+| Ω.REPO.029 | Pumpkin | EXTERNAL | Pumpkin Minecraft server upstream | R5* | EXTERNAL |
+| Ω.REPO.030 | starter-workflows | EXTERNAL | GitHub starter workflows upstream | R5* | EXTERNAL |
+| Ω.REPO.031 | - | EXTERNAL/TEMPLATE | Dev Container Features template | R1 | EXTERNAL |
+| Ω.REPO.032 | -- | EXTERNAL/TEMPLATE | Dev Container Features template | R1 | EXTERNAL |
+| Ω.REPO.033 | verbose-engine | VV / Arena experiment | Product/launch experiment | R2 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.034 | friendly-engine | VV / Arena experiment | Near-duplicate arena experiment | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.035 | NATIONAL- | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.036 | fluffy-chainsaw | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.037 | fictional-octo-spoon | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.038 | reimagined-garbanzo | VV / Arena experiment | Duplicate/experimental | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.039 | VAIXLNS-Intent-to-Reality | VAIXLNS / Intent | Duplicate of Ω.REPO.0010; reconcile lineage | R2 | RECONCILE |
+| Ω.REPO.040 | y | UNKNOWN | Placeholder/unknown | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.041 | TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE | UNKNOWN / Legacy | Placeholder/spec experiment | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.042 | fisallll280-gmail.com | UNKNOWN | Empty identity-named repository | R0 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.043 | joke-generator | EXPERIMENT | JokeAPI demo | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.044 | weather-dashboard | EXPERIMENT | OpenWeather demo | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.045 | New-Action | UNKNOWN | Action experiment | R1 | REVIEW |
+| Ω.REPO.046 | src-main.rs | UNKNOWN | File-named placeholder | R0 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.047 | stunning-chainsaw | UNKNOWN | Placeholder/duplicate | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.048 | fuzzy-octo-winner | UNKNOWN | Placeholder/duplicate | R1 | ARCHIVE-2 CANDIDATE |
+| Ω.REPO.049 | legendary-octo-fiesta | UNKNOWN/Research | Vision/innovation note; inspect before disposition | R1 | REVIEW |
 
-## Important correction
+## Duplicate / reconciliation flags
 
-The initial provisional registry contained 49 entries but repeated/ambiguous names were not yet reconciled. This v1.0 register intentionally separates:
-1. canonical systems,
-2. integration/subsystems,
-3. legacy artifacts,
-4. experiments,
-5. unknown placeholders,
-6. external upstream repositories.
+- **Ω.REPO.0010** and **Ω.REPO.0039** share the same repository name. They must be treated as a single identity only after repository metadata/ID comparison confirms whether they are actually distinct GitHub repositories; no merge or deletion is authorized yet.
+- Several repositories contain copied or repeated VV Arena launch text. Their concepts must be extracted before any Archive-2 decision.
+- External repositories are not counted as VAIXLNS inventions merely because they exist under the account.
 
-The same conceptual material must never be silently promoted into a canonical system.
+## Archive-2 decision boundary
 
-## User decision boundary
+ARCHIVE-2 = recoverable quarantine, not permanent deletion.
 
-For every row proposed as ARCHIVE-2, the final action remains **PENDING USER APPROVAL**.
+A repository becomes an ARCHIVE-2 action only after:
+1. unique knowledge is extracted;
+2. lineage/provenance is recorded;
+3. dependencies are checked;
+4. no active canonical role remains;
+5. the user explicitly approves the action.
 
-Approval format:
+Approval syntax:
 - `APPROVE Ω.REPO.00XX → ARCHIVE-2`
 - `KEEP Ω.REPO.00XX`
 - `REVIEW Ω.REPO.00XX`
 - `RECOVER Ω.REPO.00XX`
 
-Until approval, the repository remains untouched.
-
-## Archive-2 definition
-
-ARCHIVE-2 is the recoverable quarantine layer for repositories judged to have no active role after evidence review. It is not a graveyard.
-
-Required preserved metadata:
-- Ω.REPO ID
-- original repository name
-- original system classification
-- source/default branch
-- commit/reference provenance
-- extracted concepts and unique artifacts
-- reason for quarantine
-- decision timestamp
-- user approval record
-- recovery path
-
-No permanent deletion is authorized by this register itself.
+**No permanent deletion is authorized by this register.**
