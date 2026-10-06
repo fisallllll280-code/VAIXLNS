@@ -50,6 +50,17 @@ def build_demo(now: datetime) -> dict:
     first_success = (now - timedelta(days=8)).isoformat().replace("+00:00", "Z")
     candidates = [
         (
+            Candidate("vaixlns-forge", "vaixlns", ("openai", "anthropic", "anthropic-code"), capability_ids=("discovery", "development", "innovation", "industrialization")),
+            MatchResult(
+                "vaixlns-forge", first_success,
+                {"correctness": 94, "reproducibility": 95, "security": 98, "completeness": 95,
+                 "contradiction_resistance": 96, "evidence_quality": 97, "robustness": 94, "innovation": 99},
+                ("demo:evidence:000", "demo:verification:000", "demo:replay:000"),
+                True, innovation_fingerprint="demo-innovation-vaixlns-forge",
+                first_observation_event="event:arena:000", first_success_event="event:success:000",
+            ),
+        ),
+        (
             Candidate("team-claude-gpt", "anthropic", ("openai", "anthropic-code"), capability_ids=("reasoning", "coding")),
             MatchResult(
                 "team-claude-gpt", first_success,
