@@ -45,6 +45,9 @@ jobs:
             tools/omega/validate_federation.py \
             tests/test_canonical_control_plane.py
 
+      - name: Run deterministic malware guard
+        run: python scripts/security_guard.py
+
       - name: Run admission gate
         run: python scripts/admission_gate.py
 
