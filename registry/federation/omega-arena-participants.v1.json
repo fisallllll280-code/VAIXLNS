@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "id": "OMEGA-ARENA-PARTICIPANTS-V1",
+  "status": "SPECIFIED",
+  "owner": "VAIXLNS",
+  "activation_fabric": "VLNS",
+  "runtime": "VX",
+  "participants": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "kind": "model_provider",
+      "capabilities": ["reasoning", "coding", "analysis", "verification"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "anthropic",
+      "name": "Claude",
+      "kind": "model_provider",
+      "capabilities": ["reasoning", "coding", "analysis", "architecture"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "anthropic-code",
+      "name": "Claude Code",
+      "kind": "engineering_provider",
+      "capabilities": ["coding", "execution", "repair", "repository"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "google",
+      "name": "Gemini",
+      "kind": "model_provider",
+      "capabilities": ["reasoning", "multimodal", "research", "analysis"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "xai",
+      "name": "Grok",
+      "kind": "model_provider",
+      "capabilities": ["reasoning", "exploration", "adversarial"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "kind": "model_provider",
+      "capabilities": ["reasoning", "coding", "research"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    },
+    {
+      "id": "atomkit",
+      "name": "Atomkit",
+      "kind": "engineering_service_provider",
+      "capabilities": ["product_development", "engineering", "qa", "devops"],
+      "execution_mode": "environment_json_adapter",
+      "self_judging": false
+    }
+  ],
+  "rules": {
+    "winner_scope": "frozen_tournament_window",
+    "winner_label": "TOURNAMENT_CHAMPION",
+    "permanent_winner": false,
+    "evidence_required": true,
+    "replay_required": true,
+    "seven_day_revalidation_required": true,
+    "originator_attribution_required": true,
+    "canonical_mutation_by_arena": false
+  }
+}
