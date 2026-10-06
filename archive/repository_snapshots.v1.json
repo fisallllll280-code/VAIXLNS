@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "policy": "append-only-zero-loss",
+  "snapshot_status": "registry-established-source-capture-pending",
+  "repositories": [
+    {
+      "id": "R-001",
+      "name": "VAIXLNS",
+      "url": "https://github.com/fisallllll280-code/VAIXLNS",
+      "role": "canonical-root",
+      "preservation": "canonical"
+    },
+    {
+      "id": "R-002",
+      "name": "VAIXLNS-unified",
+      "url": "https://github.com/fisallllll280-code/VAIXLNS-unified",
+      "role": "integrated-runtime",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-003",
+      "name": "NEXENT",
+      "url": "https://github.com/fisallllll280-code/NEXENT",
+      "role": "discovery-search-synthesis",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-004",
+      "name": "vaixlns-nexent-vx",
+      "url": "https://github.com/fisallllll280-code/vaixlns-nexent-vx",
+      "role": "combined-experimental-vx-surface",
+      "preservation": "source-preserved"
+    },
+    {
+      "id": "R-005",
+      "name": "VX50_COMPLETE_BUILD",
+      "url": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD",
+      "role": "historical-build-surface",
+      "preservation": "source-preserved"
+    }
+  ],
+  "required_snapshot_fields": [
+    "repository",
+    "ref",
+    "commit",
+    "historical_version",
+    "snapshot_id",
+    "content_digest",
+    "captured_at",
+    "lineage"
+  ],
+  "rule": "No canonical merge is complete until its source snapshot is registered."
+}
