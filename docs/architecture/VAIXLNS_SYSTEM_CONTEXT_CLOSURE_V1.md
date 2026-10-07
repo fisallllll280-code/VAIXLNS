@@ -973,3 +973,40 @@ The following new artifacts define the reference surfaces for these capabilities
 - `.github/workflows/vx-federation-gate.yml`
 
 These are reference implementations/contracts on the additive branch and MUST NOT be treated as VERIFIED until executable evidence is inspected.
+
+---
+
+## 27. VX Stage Runtime Boundary
+
+The Stage boundary provides one executable VX instance behind the Federation Gate before production scale-out.
+
+    VX-STAGE-001
+        ↓
+    Heartbeat / Lease
+        ↓
+    Authenticated Request
+        ↓
+    Capability + Authority Route
+        ↓
+    Execution
+        ↓
+    Evidence
+        ↓
+    Controlled Failure
+        ↓
+    Isolation
+        ↓
+    Recovery
+        ↓
+    Re-route
+
+Stage evidence demonstrates the control contract. It does not establish production deployment.
+
+References:
+
+- `scripts/vx_stage_runtime.py`
+- `tests/test_vx_stage_runtime.py`
+- `schemas/vx-stage-evidence.schema.json`
+- `docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md`
+- `docs/security/VX_STAGE_SECURITY_PROFILE_V1.md`
+- `docs/operations/VX_STAGE_RELEASE_CHECKLIST.md`
