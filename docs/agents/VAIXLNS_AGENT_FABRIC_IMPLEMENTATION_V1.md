@@ -1,8 +1,8 @@
 # VAIXLNS Agent Fabric V1
 
-State: IMPLEMENTED — CI VERIFIED FOR THIS REVISION.
+State: IMPLEMENTED — CI VERIFIED FOR THE TESTED IMPLEMENTATION CONTENT.
 
-The executable Agent Fabric is connected to the Pattern and economic boundaries.
+The executable Agent Fabric connects agent registry, authority policy, Pattern routing, private language binding, Mind Federation, signed handoffs, paper economics, events, and independent proof.
 
 INTENT
   -> AGENT REGISTRY
@@ -10,6 +10,7 @@ INTENT
   -> PATTERN SELECTION
   -> PRIVATE LANGUAGE BINDING
   -> 4 DIRECTIONS
+  -> MIND EXCHANGE
   -> SIGNED HANDOFF
   -> SIMULATION
   -> PAPER WALLET AUTHORIZATION / SETTLEMENT
@@ -30,6 +31,15 @@ An agent task cannot use the Pattern route generator without a language binding 
 Each language expands only into the four canonical directions:
 semantic, structural, operational, evolutionary.
 
+## Mind Federation
+
+Each core agent has a logical mind identity. The default handoff chain establishes directed connections between specialized minds.
+
+Mind Exchange carries:
+intent, requested capability, assumptions, risk, evidence references, requested action, and authority scope.
+
+The exchange stores a deterministic state hash. The implementation never requires a model provider or exposes a private language secret. Provider/model identity remains a replaceable execution detail.
+
 ## Handoff coupling
 
 A handoff includes source agent, target agent, task, capabilities, artifacts, evidence, constraints, authority scope, expiry, and an HMAC signature.
@@ -49,14 +59,18 @@ AgentVerifier independently checks:
 - binding presence;
 - HMAC-valid handoff;
 - event hashes;
+- mind-exchange state hash;
 - paper-wallet real-value guard.
 
-CI evidence for this revision:
+A successful internal proof is evidence about the tested simulation path. It is not production authorization.
+
+## CI evidence
+
 - Agent Fabric Conformance run 37568977836: SUCCESS.
 - Pattern Conformance run 37568977919: SUCCESS.
 - VAIXLNS Conformance run 37568977845: SUCCESS.
 
-A successful internal proof is evidence about the tested simulation path. It is not production authorization.
+The later Mind Federation additions are covered by the deterministic test suite and must be rechecked on their current head before any production-oriented admission.
 
 ## State discipline
 
