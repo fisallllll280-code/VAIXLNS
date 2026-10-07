@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Code Corrector Evidence",
+  "type": "object",
+  "required": ["schema_version","corrector_id","input_hash","output_hash","changed","findings","authority_mutation","constraint_mutation","semantic_escalation","replay_required","verification_required","repaired_source"],
+  "properties": {
+    "schema_version": {"const": "vaixlns.code_corrector.v1"},
+    "corrector_id": {"const": "VAIXLNS-CODE-CORRECTOR-001"},
+    "input_hash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "output_hash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "changed": {"type":"boolean"},
+    "findings": {"type":"array"},
+    "authority_mutation": {"const": false},
+    "constraint_mutation": {"const": false},
+    "semantic_escalation": {"const": false},
+    "replay_required": {"const": true},
+    "verification_required": {"const": true},
+    "repaired_source": {"type":"string"}
+  }
+}
