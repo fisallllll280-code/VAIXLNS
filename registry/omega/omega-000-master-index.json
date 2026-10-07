@@ -40,7 +40,8 @@
       "canonical_owner": "VAIXLNS-unified",
       "evidence_refs": [
         "docs/omega/VAIXLNS_GLOBAL_FABRIC.md",
-        "docs/indexes/REPOSITORY_MERGE_MATRIX_V1.md"
+        "docs/indexes/REPOSITORY_MERGE_MATRIX_V1.md",
+        "docs/architecture/VX_FEDERATION_GATE_V1.md"
       ]
     },
     {
@@ -63,6 +64,37 @@
       "canonical_owner": "NEXENT",
       "evidence_refs": [
         "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ]
+    },
+    {
+      "id": "Ω.PATTERN_FOUNDRY.001",
+      "type": "CAPABILITY",
+      "role": "PRIVATE_PATTERN_INVENTION_AND_ADVERSARIAL_EVALUATION",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "Ω-Pattern Forest",
+      "evidence_refs": [
+        "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md",
+        "schemas/omega-pattern-genome.schema.yaml",
+        "schemas/omega-pattern-attack.schema.yaml",
+        "scripts/omega_pattern_foundry.py",
+        "tests/test_omega_pattern_foundry.py"
+      ]
+    },
+    {
+      "id": "VX.FEDERATION.GATE.001",
+      "type": "CAPABILITY",
+      "role": "MULTI_INSTANCE_IDENTITY_CAPABILITY_ROUTING_AND_FAILURE_ISOLATION",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VX Cognitive Federation",
+      "evidence_refs": [
+        "docs/architecture/VX_FEDERATION_GATE_V1.md",
+        "schemas/vx-federation-instance.schema.yaml",
+        "scripts/vx_federation_gate.py",
+        "tests/test_vx_federation_gate.py"
       ]
     }
   ],
