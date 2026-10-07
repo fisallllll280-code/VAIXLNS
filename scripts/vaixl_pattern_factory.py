@@ -301,12 +301,27 @@ def adversarial_mutation_engine(pattern: Mapping[str, Any]) -> list[dict[str, An
     for mutation_class in MUTATION_CLASSES:
         mutated = mutate_for_attack(pattern, mutation_class)
         report = gate(mutated)
+        blocked = bool(report["blocking_findings"] > 0)
+        guardian_findings = 0
+
+        # Capability mutations are evaluated against the original declaration:
+        # declaring a new capability inside the mutation does not make it authorized.
+        if mutation_class == "CAPABILITY":
+            original_source = guardian_parse(render_semantic_source(pattern))
+            guardian = guardian_analyze(
+                original_source,
+                observed_capabilities=list(mutated.get("tool_requirements") or []),
+            )
+            guardian_findings = len(guardian["findings"])
+            blocked = blocked or guardian["decision"] == "QUARANTINE"
+
         records.append(
             {
                 "mutation_class": mutation_class,
                 "mutation_hash": sha256_json(mutated),
-                "blocked": bool(report["blocking_findings"] > 0),
+                "blocked": blocked,
                 "blocking_findings": report["blocking_findings"],
+                "guardian_findings": guardian_findings,
                 "attack_count": report["attack_count"],
             }
         )
