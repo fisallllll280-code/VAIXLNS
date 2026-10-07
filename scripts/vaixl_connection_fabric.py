@@ -87,6 +87,7 @@ class SemanticConnectionFabric:
         candidates = [
             c for c in self.channels.values()
             if c.purpose.upper() == purpose and c.state in {"READY", "ACTIVE"}
+            and len(c.queue) < c.capacity
         ]
         if not candidates:
             self._event("ROUTE_REJECTED", {"purpose": purpose})
