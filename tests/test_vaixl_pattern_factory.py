@@ -54,6 +54,14 @@ class VAIXLNSPatternFactoryTests(unittest.TestCase):
         self.assertIsNotNone(result["selected_pattern"])
         self.assertTrue(all(item["blocking_findings"] == 0 for item in result["candidates"]))
         self.assertTrue(all(item["private_language_bound"] for item in result["candidates"]))
+        fabric = result["selected_pattern"]["private_language"]["fabric"]
+        self.assertEqual(fabric["model"], "5-LAYER-4-DIRECTION-FABRIC")
+        self.assertEqual(fabric["layer_count"], 5)
+        self.assertEqual(fabric["directions_per_layer"], 4)
+        self.assertEqual(fabric["total_directions"], 20)
+        self.assertEqual(len(fabric["layers"]), 5)
+        self.assertTrue(all(len(layer["directions"]) == 4 for layer in fabric["layers"]))
+        self.assertEqual(fabric["cross_layer_gate"], "CROSS_LAYER_CONSISTENCY")
         self.assertEqual(result["selected_pattern"]["private_language"]["interface"]["mode"], "CAPABILITY_ONLY")
         self.assertEqual(
             result["selected_pattern"]["private_language"]["source"]["location"],
