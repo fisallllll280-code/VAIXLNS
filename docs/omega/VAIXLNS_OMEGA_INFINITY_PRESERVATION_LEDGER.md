@@ -58,6 +58,16 @@ Constitution, Kernel, Generator Engine, Meta-Generator, Ontology Engine, Archite
 
 VX formal semantics remain anchored on Config = <sigma,kappa,pi>, deterministic stepping, SafeStep/RawStep/Final/Stuck/Running, preservation/progress work, event DAG, snapshots, evidence, governance, replay, and canonical hashing.
 
+## VX Federation Gate
+
+The VX Federation Gate is the governed multi-instance boundary for specialized VX runtimes. Each VX instance retains its own identity, specialization, capabilities, state, authority envelope, evidence history, and failure history while remaining semantically interoperable with other VX instances.
+
+The intended topology is:
+
+VAIXLNS -> VX Federation Gate -> VX specialized instances -> Agents / Tools -> Evidence
+
+The gate is not itself a proof of live production instances. LIVE status requires registration, heartbeat/lease, successful route execution, and reproducible observation evidence.
+
 ## Governance and assurance preserved
 
 Constitution First; Genome First; Event First; Knowledge First; Governance First; Determinism First; Simulation Before Reality; Verification Before Execution; Security By Design; AI Native; Self Recovery; Controlled Evolution.
@@ -126,3 +136,18 @@ It preserves and links the current formulations for:
 - four-system federation boundary: VAIXLNS, VLNS, VX, NEXNET.
 
 The closure document is PROPOSED / SPECIFIED and does not promote unverified prose into implementation or Canon. Historical sources remain preserved and authoritative according to their existing status.
+
+## 2026-10-07 — Ω-Pattern Foundry + VX Federation Gate
+
+The following artifacts were added on an additive branch:
+
+- `docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md`
+- `schemas/omega-pattern-genome.schema.yaml`
+- `schemas/omega-pattern-attack.schema.yaml`
+- `schemas/vx-federation-instance.schema.yaml`
+- `docs/architecture/VX_FEDERATION_GATE_V1.md`
+- `scripts/omega_pattern_foundry.py`
+- `scripts/vx_federation_gate.py`
+- deterministic unit tests and CI workflows for both reference surfaces.
+
+These artifacts remain SPECIFIED / implementation-bound until their executable evidence is inspected and promotion is authorized.
