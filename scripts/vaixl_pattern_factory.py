@@ -501,6 +501,14 @@ def build_factory_run(request: Mapping[str, Any]) -> dict[str, Any]:
                 "corrector_changed": evaluation["corrector"]["changed"],
                 "repair_changed": evaluation["repair"]["changed"],
                 "private_language_bound": not bool(evaluation["private_language_findings"]),
+                "blocking_reasons": {
+                    "foundry_validation_errors": evaluation["foundry"]["validation_errors"],
+                    "private_language_findings": evaluation["private_language_findings"],
+                    "post_repair_collisions": evaluation["post_repair_collisions"],
+                    "guardian_findings": evaluation["guardian"]["finding_count"],
+                    "guardian_parse_error": evaluation["guardian"]["parse_error"],
+                    "mutation_failures": evaluation["mutation_failures"],
+                },
             }
             candidates.append(summary)
             candidate_patterns.append({"summary": summary, "pattern": pattern})
