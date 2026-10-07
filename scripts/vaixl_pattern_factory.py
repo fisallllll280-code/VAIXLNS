@@ -286,6 +286,23 @@ def build_route_pattern(
         language_id=f"{pattern_id}-PRIVATE-LANGUAGE",
         language_genome_hash=language_hash,
     )
+    # The private language is a five-layer fabric; each layer owns four
+    # independent directions. The directions are architectural dimensions,
+    # not extra sequential execution stages.
+    language_binding["fabric"] = {
+        "model": "5-LAYER-4-DIRECTION-FABRIC",
+        "layer_count": 5,
+        "directions_per_layer": 4,
+        "total_directions": 20,
+        "layers": [
+            {"id": "L01_SEMANTIC", "directions": ["MEANING", "CONTEXT", "INTENT", "CONSISTENCY"]},
+            {"id": "L02_TRANSFORMATION", "directions": ["PARSE", "MAP", "COMPOSE", "NORMALIZE"]},
+            {"id": "L03_SECURITY", "directions": ["THREAT", "AUTHORITY", "CAPABILITY", "ISOLATION"]},
+            {"id": "L04_VERIFICATION", "directions": ["REPLAY", "ADVERSARIAL", "INVARIANT", "EVIDENCE"]},
+            {"id": "L05_RECOVERY_EVOLUTION", "directions": ["DETECT", "REPAIR", "RECOVER", "EVOLVE"]},
+        ],
+        "cross_layer_gate": "CROSS_LAYER_CONSISTENCY",
+    }
     pattern = attach_private_language(pattern, language_binding)
     return pattern
 
