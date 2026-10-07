@@ -1,0 +1,47 @@
+{
+  "registry_id": "Ω.VX.GLOBAL.PRIVATE_PATTERN.001",
+  "name": "VX Global Private Pattern",
+  "type": "PATTERN",
+  "owner": "VAIXLNS",
+  "status": "SPECIFIED",
+  "epistemic_state": "SPECIFIED",
+  "canonical_context": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "visibility": "PRIVATE",
+  "pattern_boundary": "PRIVATE_LANGUAGE_IS_PATTERN_BOUND_NOT_RUNTIME_BOUND",
+  "private_language": {
+    "binding_type": "PATTERN_BOUND_PRIVATE_LANGUAGE",
+    "source_location": "EXTERNAL_SECRET_VAULT",
+    "source_persisted_in_repository": false,
+    "source_exposed_to_runtime": false,
+    "source_exposed_to_agents": false,
+    "capability_interface": "PATTERN-LANGUAGE-CAPABILITY-V1",
+    "fabric_dimensions": [
+      "syntax",
+      "semantics",
+      "grammar",
+      "transformation",
+      "security",
+      "verification"
+    ],
+    "customer_delivery": "REVOKE_LANGUAGE_SOURCE_FROM_DELIVERED_ARTIFACT"
+  },
+  "lifecycle": [
+    "ACTIVE",
+    "SEALED",
+    "TRANSFERRED",
+    "LOCKED",
+    "REVOKED"
+  ],
+  "admission": {
+    "pattern_selection_requires": "factory evidence",
+    "verified_requires": "reproducible execution evidence",
+    "canonical_requires": "verified evidence plus explicit authority"
+  },
+  "links": {
+    "domain": "scripts/vaixl_private_pattern_domain.py",
+    "schema": "schemas/vaixl-private-pattern-domain.schema.json",
+    "tests": "tests/test_vaixl_private_pattern_domain.py",
+    "spec": "docs/omega/VAIXLNS_PRIVATE_PATTERN_LANGUAGE_DOMAIN_V1.md"
+  }
+}
