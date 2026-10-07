@@ -383,11 +383,14 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
         observed_capabilities=list(effective.get("tool_requirements") or []),
     )
     attacks = adversarial_attack(effective)
+    mutation_tests = adversarial_mutation_engine(effective)
+    mutation_failures = [item for item in mutation_tests if not item["blocked"]]
 
     blocking = int(foundry_report["blocking_findings"])
     blocking += 1 if post_repair_collisions else 0
     blocking += 1 if guardian["decision"] == "QUARANTINE" else 0
     blocking += sum(1 for f in attacks if f.severity == "CRITICAL" or f.result == "BLOCK")
+    blocking += len(mutation_failures)
 
     return {
         "pattern": effective,
@@ -413,6 +416,8 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
             "finding_count": len(guardian["findings"]),
         },
         "attack_count": len(attacks),
+        "mutation_tests": len(mutation_tests),
+        "mutation_failures": len(mutation_failures),
         "blocking_findings": blocking,
         "status": "QUARANTINED" if blocking else "SURVIVING_CANDIDATE",
     }
@@ -438,6 +443,8 @@ def build_factory_run(request: Mapping[str, Any]) -> dict[str, Any]:
                 "status": evaluation["status"],
                 "blocking_findings": evaluation["blocking_findings"],
                 "attack_count": evaluation["attack_count"],
+                "mutation_tests": evaluation["mutation_tests"],
+                "mutation_failures": evaluation["mutation_failures"],
                 "guardian_decision": evaluation["guardian"]["decision"],
                 "corrector_changed": evaluation["corrector"]["changed"],
                 "repair_changed": evaluation["repair"]["changed"],
