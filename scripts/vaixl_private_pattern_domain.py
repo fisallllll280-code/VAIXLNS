@@ -11,7 +11,6 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-from datetime import datetime, timezone
 from typing import Any, Mapping
 
 
@@ -146,8 +145,6 @@ def build_transfer_artifact(
 ) -> dict[str, Any]:
     if not recipient_scope:
         raise ValueError("recipient_scope is required")
-    if not event_timestamp:
-        raise ValueError("event_timestamp is required")
     errors = validate_pattern_language_boundary(pattern)
     if errors:
         raise ValueError("cannot transfer invalid private-language boundary: " + ",".join(errors))
