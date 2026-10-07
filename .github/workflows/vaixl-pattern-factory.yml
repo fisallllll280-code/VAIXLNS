@@ -7,6 +7,7 @@ on:
       - "scripts/omega_pattern_foundry.py"
       - "scripts/vaixl_language_guardian.py"
       - "scripts/vaixl_code_corrector.py"
+      - "scripts/vaixl_private_pattern_domain.py"
       - "schemas/vaixl-pattern-factory.schema.json"
       - "tests/test_vaixl_pattern_factory.py"
       - "registry/patterns/vaixl-pattern-factory.v1.json"
