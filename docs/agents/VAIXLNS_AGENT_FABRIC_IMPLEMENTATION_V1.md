@@ -1,6 +1,6 @@
 # VAIXLNS Agent Fabric V1
 
-State: IMPLEMENTED — CI verification pending for this revision.
+State: IMPLEMENTED — CI VERIFIED FOR THIS REVISION.
 
 The executable Agent Fabric is connected to the Pattern and economic boundaries.
 
@@ -51,12 +51,17 @@ AgentVerifier independently checks:
 - event hashes;
 - paper-wallet real-value guard.
 
+CI evidence for this revision:
+- Agent Fabric Conformance run 37568977836: SUCCESS.
+- Pattern Conformance run 37568977919: SUCCESS.
+- VAIXLNS Conformance run 37568977845: SUCCESS.
+
 A successful internal proof is evidence about the tested simulation path. It is not production authorization.
 
 ## State discipline
 
 PROPOSED is not IMPLEMENTED.
-IMPLEMENTED is not VERIFIED.
+IMPLEMENTED is not VERIFIED in the global production sense.
 A simulation may receive verification_state=VERIFIED only after deterministic proof checks pass.
 The overall dispatch disposition remains HOLD until an external governance/admission decision exists.
 
