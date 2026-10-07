@@ -37,6 +37,10 @@ def parse_source(text: str) -> dict[str, Any]:
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
+        # "MUST NOT <constraint>" is a constraint entry, not the "MUST" section.
+        if section == "MUST_NOT" and line.upper().startswith("MUST NOT "):
+            result["MUST_NOT"].append(line)
+            continue
         head, _, tail = line.partition(" ")
         key = head.upper()
         if key == "CAPABILITIES":
