@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 from typing import Any, Mapping
+import hashlib
 import json
 
 from agents.agent_fabric import HandoffEnvelope, event_hash
+from agents.mind_federation import canonical_hash
 from patterns.vaixl_pattern_factory import DIRECTIONS
 
 
@@ -20,6 +22,7 @@ class AgentVerifier:
         signing_key: bytes,
         events: list[Mapping[str, Any]],
         wallet_settlement: Mapping[str, Any] | None,
+        mind_exchange: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         checks: dict[str, bool] = {}
 
@@ -53,6 +56,17 @@ class AgentVerifier:
             event_checks.append(event.get("event_hash") == event_hash(material))
         checks["event_hashes_valid"] = all(event_checks)
 
+        if mind_exchange is None:
+            checks["mind_exchange_hash_valid"] = False
+        else:
+            semantic_state = mind_exchange.get("semantic_state", {})
+            checks["mind_exchange_hash_valid"] = (
+                mind_exchange.get("state_hash") == canonical_hash(semantic_state)
+                and bool(mind_exchange.get("exchange_id"))
+                and bool(mind_exchange.get("source_agent"))
+                and bool(mind_exchange.get("target_agent"))
+            )
+
         if wallet_settlement is None:
             checks["wallet_real_value_guard"] = True
         else:
@@ -63,5 +77,5 @@ class AgentVerifier:
         return {
             "state": state,
             "checks": checks,
-            "proof_hash": __import__("hashlib").sha256(proof_material.encode("utf-8")).hexdigest(),
+            "proof_hash": hashlib.sha256(proof_material.encode("utf-8")).hexdigest(),
         }
