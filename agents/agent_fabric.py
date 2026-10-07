@@ -150,19 +150,29 @@ class AgentFabric:
 
         agent = self.registry.select(capability)
         policy = AgentPolicy.authorize(agent, capability=capability, authority_scope=authority_scope, tool=tool)
-        events: list[dict[str, Any]] = []
-        events.append(self._event("AGENT_SELECTED", {
-            "task_id": task_id,
-            "agent_id": agent.agent_id,
-            "capability": capability,
-        }))
-        events.append(self._event("POLICY_DECISION", {
-            "task_id": task_id,
-            "agent_id": agent.agent_id,
-            **policy,
-        }))
+        events: list[dict[str, Any]] = [
+            self._event("AGENT_SELECTED", {
+                "task_id": task_id,
+                "agent_id": agent.agent_id,
+                "capability": capability,
+            }),
+            self._event("POLICY_DECISION", {
+                "task_id": task_id,
+                "agent_id": agent.agent_id,
+                **policy,
+            }),
+        ]
         if policy["state"] != "ALLOW":
             return {"state": "REJECT", "agent_id": agent.agent_id, "policy": policy, "events": events}
+
+        target = str(task.get("handoff_target", agent.handoff_targets[0] if agent.handoff_targets else agent.agent_id))
+        if target not in agent.handoff_targets and target != agent.agent_id:
+            return {
+                "state": "REJECT",
+                "agent_id": agent.agent_id,
+                "reason": "handoff_target_not_authorized",
+                "events": events,
+            }
 
         pattern_context = dict(task.get("pattern_context") or {})
         routes = self.pattern_factory.build(pattern_context)
@@ -201,15 +211,6 @@ class AgentFabric:
                 "reservation_id": reservation.reservation_id,
             }))
 
-        target = str(task.get("handoff_target", agent.handoff_targets[0] if agent.handoff_targets else agent.agent_id))
-        if target not in agent.handoff_targets and target != agent.agent_id:
-            return {
-                "state": "REJECT",
-                "agent_id": agent.agent_id,
-                "reason": "handoff_target_not_authorized",
-                "events": events,
-            }
-
         envelope = HandoffEnvelope(
             task_id=task_id,
             source_agent=agent.agent_id,
@@ -242,6 +243,16 @@ class AgentFabric:
             settlement = wallet.settle(reservation.reservation_id, actual_amount=actual_cost)
             events.append(self._event("WALLET_SETTLED", settlement))
 
+        from verification.agent_verifier import AgentVerifier
+        proof = AgentVerifier.verify(
+            routes=routes,
+            handoff=envelope.payload(),
+            signature=signature,
+            signing_key=self.signing_key,
+            events=events,
+            wallet_settlement=settlement,
+        )
+
         evidence = {
             "schema": "VAIXLNS.AGENT_EVIDENCE_BUNDLE.v1",
             "task_id": task_id,
@@ -254,12 +265,14 @@ class AgentFabric:
             },
             "handoff_signature": signature,
             "simulation": {"real_side_effects": False},
+            "verification": proof,
             "events_hash": event_hash({"events": events}),
         }
         evidence["evidence_hash"] = event_hash(evidence)
+
         return {
             "state": "SIMULATED",
-            "verification_state": "VERIFIED",
+            "verification_state": "VERIFIED" if proof["state"] == "PASS" else "FAILED",
             "final_disposition": "HOLD",
             "agent_id": agent.agent_id,
             "routes": routes,
