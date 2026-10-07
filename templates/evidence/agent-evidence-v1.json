@@ -1,0 +1,29 @@
+{
+  "schema": "VAIXLNS.AGENT_EVIDENCE_BUNDLE.v1",
+  "task_id": "TASK-0001",
+  "agent_id": "AG-000",
+  "policy": {
+    "state": "ALLOW",
+    "reason": "policy_pass"
+  },
+  "pattern": {
+    "directions": [
+      "semantic",
+      "structural",
+      "operational",
+      "evolutionary"
+    ],
+    "route_count": 4,
+    "binding_fingerprints_present": true
+  },
+  "handoff_signature": "REPLACE_WITH_64_HEX_HMAC",
+  "simulation": {
+    "real_side_effects": false
+  },
+  "verification": {
+    "state": "PASS",
+    "checks": {}
+  },
+  "events_hash": "REPLACE_WITH_64_HEX_HASH",
+  "evidence_hash": "REPLACE_WITH_64_HEX_HASH"
+}
