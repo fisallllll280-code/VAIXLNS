@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Agent Event v1",
+  "type": "object",
+  "required": ["event_type", "payload", "event_hash"],
+  "properties": {
+    "event_type": {"type": "string", "minLength": 1},
+    "payload": {"type": "object"},
+    "event_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}
