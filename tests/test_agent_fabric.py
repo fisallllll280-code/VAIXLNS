@@ -45,7 +45,12 @@ class AgentFabricTests(unittest.TestCase):
     def test_policy_rejects_unowned_authority_and_tools(self):
         spec = AgentRegistry().get("AG-008")
         self.assertEqual(
-            AgentPolicy.authorize(spec, capability="architecture-search", authority_scope="runtime.execute", tool="vx.execute")["state"],
+            AgentPolicy.authorize(
+                spec,
+                capability="architecture-search",
+                authority_scope="runtime.execute",
+                tool="vx.execute",
+            )["state"],
             "REJECT",
         )
 
@@ -100,6 +105,18 @@ class AgentFabricTests(unittest.TestCase):
         self.assertEqual(result["state"], "HOLD")
         self.assertNotIn("wallet_settlement", result)
         self.assertEqual(wallet.state()["balances"]["USD"], "100.00000000")
+
+    def test_malformed_pattern_context_fails_closed(self):
+        result = self.fabric.dispatch(self._task(pattern_context=["not", "a", "mapping"]))
+        self.assertEqual(result["state"], "HOLD")
+        self.assertEqual(result["reason"], "pattern_context_not_mapping")
+
+    def test_wallet_authorization_failure_holds_without_side_effect(self):
+        wallet = AgentEconomicWallet(balances={"USD": "1.00"}, allowed_agents=("AG-004",))
+        result = self.fabric.dispatch(self._task(), wallet=wallet)
+        self.assertEqual(result["state"], "HOLD")
+        self.assertIn("wallet_authorization_blocked:", result["reason"])
+        self.assertEqual(wallet.state()["balances"]["USD"], "1.00000000")
 
     def test_unauthorized_handoff_target_is_rejected(self):
         result = self.fabric.dispatch(self._task(handoff_target="AG-013"))
