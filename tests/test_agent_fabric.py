@@ -73,7 +73,7 @@ class AgentFabricTests(unittest.TestCase):
         self.assertTrue(envelope.verify(b"k", sig))
         self.assertFalse(envelope.verify(b"wrong", sig))
 
-    def test_dispatch_integrates_pattern_wallet_handoff_and_proof(self):
+    def test_dispatch_integrates_agent_mind_pattern_wallet_handoff_and_proof(self):
         wallet = AgentEconomicWallet(
             balances={"USD": "100.00"},
             allowed_agents=("AG-004",),
@@ -86,6 +86,9 @@ class AgentFabricTests(unittest.TestCase):
         self.assertEqual(result["wallet_settlement"]["actual_amount"], "7.50000000")
         self.assertEqual(result["wallet_settlement"]["refund"], "2.50000000")
         self.assertEqual(wallet.state()["balances"]["USD"], "92.50000000")
+        self.assertEqual(result["mind_exchange"]["source_agent"], "AG-004")
+        self.assertEqual(result["mind_exchange"]["target_agent"], "AG-005")
+        self.assertEqual(len(result["mind_exchange"]["state_hash"]), 64)
         proof = AgentVerifier.verify(
             routes=result["routes"],
             handoff=result["handoff"],
@@ -93,6 +96,7 @@ class AgentFabricTests(unittest.TestCase):
             signing_key=b"ci-agent-key",
             events=result["events"],
             wallet_settlement=result["wallet_settlement"],
+            mind_exchange=result["mind_exchange"],
         )
         self.assertEqual(proof["state"], "PASS")
 
