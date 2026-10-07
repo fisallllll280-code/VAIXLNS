@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Mind Exchange v1",
+  "type": "object",
+  "required": ["exchange_id", "source_agent", "target_agent", "semantic_state", "evidence_refs", "authority_scope", "state_hash"],
+  "properties": {
+    "exchange_id": {"type": "string", "minLength": 1},
+    "source_agent": {"type": "string", "minLength": 1},
+    "target_agent": {"type": "string", "minLength": 1},
+    "semantic_state": {"type": "object"},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "authority_scope": {"type": "array", "items": {"type": "string"}},
+    "state_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}
