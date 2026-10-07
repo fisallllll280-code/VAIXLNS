@@ -1,0 +1,42 @@
+name: vaixl-private-pattern-domain
+
+on:
+  push:
+    paths:
+      - "scripts/vaixl_private_pattern_domain.py"
+      - "scripts/vaixl_pattern_factory.py"
+      - "schemas/vaixl-private-pattern-domain.schema.json"
+      - "tests/test_vaixl_private_pattern_domain.py"
+      - "tests/test_vaixl_pattern_factory.py"
+      - "registry/patterns/vx-global-private-pattern.v1.json"
+      - "docs/omega/VAIXLNS_PRIVATE_PATTERN_LANGUAGE_DOMAIN_V1.md"
+      - ".github/workflows/vaixl-private-pattern-domain.yml"
+  pull_request:
+    paths:
+      - "scripts/vaixl_private_pattern_domain.py"
+      - "scripts/vaixl_pattern_factory.py"
+      - "schemas/vaixl-private-pattern-domain.schema.json"
+      - "tests/test_vaixl_private_pattern_domain.py"
+      - "tests/test_vaixl_pattern_factory.py"
+      - "registry/patterns/vx-global-private-pattern.v1.json"
+      - "docs/omega/VAIXLNS_PRIVATE_PATTERN_LANGUAGE_DOMAIN_V1.md"
+      - ".github/workflows/vaixl-private-pattern-domain.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run private pattern domain tests
+        run: python -m unittest discover -s tests -p "test_vaixl_private_pattern_domain.py" -v
+      - name: Run combined pattern factory + private pattern tests
+        run: python -m unittest discover -s tests -p "test_vaixl_*pattern*.py" -v
+      - name: Compile private pattern domain modules
+        run: python -m py_compile scripts/vaixl_private_pattern_domain.py scripts/vaixl_pattern_factory.py
