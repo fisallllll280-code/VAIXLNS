@@ -1,0 +1,32 @@
+schema: vaixlns.omega.index_fragment_record
+version: "1.0.0"
+status: SPECIFIED
+purpose: Address meaningful fragments of project material with semantic, temporal, relational, and provenance context.
+required:
+  - fragment_id
+  - source
+  - location
+  - content_hash
+  - epistemic_state
+  - provenance
+properties:
+  fragment_id: string
+  source:
+    repository: string
+    revision: string
+    path: string
+  location:
+    line_start: integer
+    line_end: integer
+    section: string
+    symbol: string
+  content_hash: string
+  lexical_terms: array
+  semantic_refs: array
+  relationship_refs: array
+  temporal_context: object
+  provenance: object
+  epistemic_state:
+    enum: [ORIGINAL, DERIVED, INFERRED, RECONSTRUCTED, SYNTHESIZED, UNKNOWN]
+  authority: object
+  relationships: array
