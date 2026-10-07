@@ -102,3 +102,27 @@ A change may be marked VERIFIED only when:
 - gaps/uncertainty are recorded.
 
 No prose-only completion is accepted.
+
+## 2026-10-07 — System Context Closure
+
+A consolidated engineering context document was added at
+`docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md`.
+
+It preserves and links the current formulations for:
+
+- fragment-aware Ω.000 memory and semantic reconstruction;
+- VX Cognitive Federation and specialized VX minds;
+- governed Agent Mind / Agent Genome;
+- Ω-Pattern Forest;
+- predictive causal simulation and negative-state recovery;
+- Ω-IMMUNE / Failure-to-Law / Cross-VX Inoculation;
+- Data Fabric and Tool Fabric;
+- Developer Fabric;
+- Ω-ARENA;
+- transversal Security Fabric;
+- Economic / Treasury Fabric;
+- ARC-X reconstruction and evidence boundary;
+- Reality Capsule and replay;
+- four-system federation boundary: VAIXLNS, VLNS, VX, NEXNET.
+
+The closure document is PROPOSED / SPECIFIED and does not promote unverified prose into implementation or Canon. Historical sources remain preserved and authoritative according to their existing status.
