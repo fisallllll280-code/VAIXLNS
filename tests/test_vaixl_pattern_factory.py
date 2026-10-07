@@ -1,5 +1,6 @@
 import unittest
 
+from scripts.vaixl_private_pattern_domain import invoke_pattern_capability
 from scripts.vaixl_pattern_factory import (
     FACTORY_ID,
     DIRECTIONS,
@@ -51,6 +52,12 @@ class VAIXLNSPatternFactoryTests(unittest.TestCase):
         self.assertEqual(result["quarantined"], [])
         self.assertIsNotNone(result["selected_pattern"])
         self.assertTrue(all(item["blocking_findings"] == 0 for item in result["candidates"]))
+        self.assertTrue(all(item["private_language_bound"] for item in result["candidates"]))
+        self.assertEqual(result["selected_pattern"]["private_language"]["interface"]["mode"], "CAPABILITY_ONLY")
+        self.assertEqual(
+            result["selected_pattern"]["private_language"]["source"]["location"],
+            "EXTERNAL_SECRET_VAULT",
+        )
 
     def test_mutation_engine_blocks_expected_attack_classes(self):
         pattern = build_route_pattern(
@@ -62,6 +69,24 @@ class VAIXLNSPatternFactoryTests(unittest.TestCase):
         records = adversarial_mutation_engine(pattern)
         self.assertEqual(len(records), 7)
         self.assertTrue(all(item["blocked"] for item in records))
+
+    def test_capability_interface_does_not_expose_private_source(self):
+        result = build_factory_run(self.request(routes=1))
+        pattern = result["selected_pattern"]
+        capability_result = invoke_pattern_capability(
+            pattern,
+            capability="verify",
+            request={"input": "synthetic"},
+            authority_envelope={
+                "issuer": "external-authority",
+                "grants": ["PATTERN_LANGUAGE_USE", "verify"],
+            },
+        )
+        self.assertEqual(capability_result["status"], "CAPABILITY_RESULT")
+        self.assertFalse(capability_result["language_source_returned"])
+        self.assertFalse(capability_result["language_source_exposed"])
+        self.assertNotIn("syntax", capability_result)
+        self.assertNotIn("grammar", capability_result)
 
     def test_replay_hash_is_stable(self):
         request = self.request(routes=2)
