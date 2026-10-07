@@ -1,6 +1,6 @@
 # VAIXLNS Pattern v1
 
-Status: IMPLEMENTED — NOT YET VERIFIED IN CI.
+Status: IMPLEMENTED — CI VERIFIED FOR THIS REVISION.
 
 This is the implementation boundary for the Pattern concept.
 
@@ -12,9 +12,15 @@ Invariants:
 5. Missing language binding is a security rejection, never an auto-repair opportunity.
 6. The repository never stores the private language source or raw personal identifiers.
 7. Route diagnosis distinguishes reference deficiency, invariant breach, and security rejection.
+8. Pattern routing is coupled to the governed Agent Fabric rather than operating as an authority-free execution path.
 
 Expansion: N architecture candidates produce exactly N x 4 logical routes per language.
 This is a search-space count, not an execution-speed claim.
 
-VERIFIED requires a reproducible test run covering the guards, four-direction
-invariant, binding verification, and quarantine diagnosis.
+CI evidence for this revision:
+- Pattern Conformance run 37568977919: SUCCESS.
+- Agent Fabric Conformance run 37568977836: SUCCESS.
+- VAIXLNS Conformance run 37568977845: SUCCESS.
+
+This verifies the tested repository behavior and control surfaces for this revision.
+It does not claim production readiness, real-value financial execution, or individual repair of any historical quarantined route not present in the repository.
