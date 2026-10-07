@@ -10,6 +10,7 @@
     "candidates",
     "quarantined",
     "selected_pattern",
+    "language_fabric",
     "replay_hash",
     "deterministic",
     "evidence_hash",
@@ -78,6 +79,7 @@
         }
       }
     },
+    "language_fabric": { "type": "object", "required": ["model","layer_count","directions_per_layer","total_directions","layers","cross_layer_gate"], "properties": { "model": {"const":"5-LAYER-4-DIRECTION-FABRIC"}, "layer_count":{"const":5}, "directions_per_layer":{"const":4}, "total_directions":{"const":20}, "layers":{"type":"array","minItems":5,"maxItems":5}, "cross_layer_gate":{"const":"CROSS_LAYER_CONSISTENCY"} } },
     "replay_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "deterministic": {"const": true},
     "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
