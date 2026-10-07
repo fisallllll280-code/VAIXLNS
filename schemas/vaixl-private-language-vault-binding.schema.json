@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Private Language Vault Binding",
+  "type": "object",
+  "required": ["schema_version","vault_id","state","language_ids","storage","binding","authority","privacy","manifest_hash"],
+  "properties": {
+    "schema_version": {"const": "vaixlns.private_language_vault.v1"},
+    "vault_id": {"const": "VAIXLNS-PRIVATE-LANGUAGE-VAULT-001"},
+    "state": {"enum": ["LOCKED","REVOKED"]},
+    "language_ids": {"type": "array","minItems": 1,"items": {"type": "string"}},
+    "storage": {
+      "type": "object",
+      "required": ["backend","vault_ref","raw_source_persistence","raw_identity_persistence","raw_phone_persistence","raw_unlock_code_persistence"],
+      "properties": {
+        "backend": {"const": "EXTERNAL_SECRET_VAULT"},
+        "vault_ref": {"type": "string"},
+        "raw_source_persistence": {"const": false},
+        "raw_identity_persistence": {"const": false},
+        "raw_phone_persistence": {"const": false},
+        "raw_unlock_code_persistence": {"const": false}
+      }
+    },
+    "binding": {
+      "type": "object",
+      "required": ["algorithm","binding_id","proof_id"],
+      "properties": {
+        "algorithm": {"const": "HMAC-SHA256"},
+        "binding_id": {"type": "string","pattern": "^[a-f0-9]{64}$"},
+        "proof_id": {"type": "string","pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["unlock_requires_external_secret","self_unlock","self_promotion"],
+      "properties": {
+        "unlock_requires_external_secret": {"const": true},
+        "self_unlock": {"const": false},
+        "self_promotion": {"const": false}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": ["repository_contains_raw_identity","repository_contains_raw_phone","repository_contains_unlock_code"],
+      "properties": {
+        "repository_contains_raw_identity": {"const": false},
+        "repository_contains_raw_phone": {"const": false},
+        "repository_contains_unlock_code": {"const": false}
+      }
+    },
+    "manifest_hash": {"type": "string","pattern": "^[a-f0-9]{64}$"}
+  }
+}
