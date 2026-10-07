@@ -90,3 +90,18 @@ Do not create a new top-level system when an innovation can be expressed as:
 `Existing canonical owner + capability + explicit contract + evidence + proof + lifecycle + lineage`.
 
 A proposal becomes implementation only after code, tests, and evidence establish that state.
+
+## 2026-10-07 context additions
+
+62. Fragment-Aware Semantic Index / Between-the-Lines Recall
+63. VX Cognitive Federation
+64. Agent Mind Genome + Authority Envelope
+65. Ω-Pattern Forest / Pattern Generation
+66. Predictive Causal Scenario + Safe-Survival Planning
+67. Ω-IMMUNE Failure-to-Law + Cross-VX Inoculation
+68. Data / Tool / Developer Fabric
+69. Ω-ARENA Competitive Capability Evaluation
+70. Transversal Security Fabric
+71. System Context Closure / Semantic Reconstruction Fabric
+
+These entries are context-level proposals/specifications only unless separately supported by implementation evidence. Existing names and lineage remain authoritative.
