@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Pattern v1",
+  "type": "object",
+  "required": ["pattern_id", "language", "directions"],
+  "properties": {
+    "pattern_id": {"type": "string", "minLength": 1},
+    "language": {
+      "type": "object",
+      "required": ["language_id", "binding_fingerprint"],
+      "properties": {
+        "language_id": {"type": "string", "minLength": 1},
+        "binding_fingerprint": {"type": "string", "minLength": 64, "maxLength": 64}
+      },
+      "additionalProperties": false
+    },
+    "directions": {
+      "type": "array",
+      "const": ["semantic", "structural", "operational", "evolutionary"]
+    }
+  },
+  "additionalProperties": false
+}
