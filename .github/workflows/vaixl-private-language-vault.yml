@@ -1,0 +1,36 @@
+name: vaixl-private-language-vault
+
+on:
+  push:
+    paths:
+      - "scripts/vaixl_language_vault.py"
+      - "schemas/vaixl-private-language-vault-binding.schema.json"
+      - "tests/test_vaixl_language_vault.py"
+      - "registry/languages/vaixl-private-language-vault.v1.json"
+      - "docs/security/VAIXLNS_PRIVATE_LANGUAGE_VAULT_V1.md"
+      - ".github/workflows/vaixl-private-language-vault.yml"
+  pull_request:
+    paths:
+      - "scripts/vaixl_language_vault.py"
+      - "schemas/vaixl-private-language-vault-binding.schema.json"
+      - "tests/test_vaixl_language_vault.py"
+      - "registry/languages/vaixl-private-language-vault.v1.json"
+      - "docs/security/VAIXLNS_PRIVATE_LANGUAGE_VAULT_V1.md"
+      - ".github/workflows/vaixl-private-language-vault.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run vault binding tests
+        run: python -m unittest discover -s tests -p "test_vaixl_language_vault.py" -v
+      - name: Compile vault helper
+        run: python -m py_compile scripts/vaixl_language_vault.py
