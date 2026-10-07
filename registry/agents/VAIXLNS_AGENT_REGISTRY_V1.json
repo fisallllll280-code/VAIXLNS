@@ -1,0 +1,217 @@
+{
+  "schema": "VAIXLNS-Agent-Registry-1.0",
+  "status": "IMPLEMENTED",
+  "authority": "project.genome::v1.0.0",
+  "agents": [
+    {
+      "agent_id": "AG-001",
+      "canonical_name": "Index Archaeologist",
+      "role": "recovery",
+      "family": "knowledge",
+      "capabilities": [
+        "index-recovery"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-002",
+      "canonical_name": "Identity & Lineage Resolver",
+      "role": "identity",
+      "family": "knowledge",
+      "capabilities": [
+        "identity-resolution"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-003",
+      "canonical_name": "Capability Analyst",
+      "role": "capability",
+      "family": "architecture",
+      "capabilities": [
+        "capability-analysis"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-004",
+      "canonical_name": "Architecture Analyst",
+      "role": "architecture",
+      "family": "architecture",
+      "capabilities": [
+        "architecture-analysis"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-005",
+      "canonical_name": "Research / Evidence Agent",
+      "role": "research",
+      "family": "evidence",
+      "capabilities": [
+        "research"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-006",
+      "canonical_name": "Contradiction & Reality Auditor",
+      "role": "audit",
+      "family": "assurance",
+      "capabilities": [
+        "contradiction-audit"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-007",
+      "canonical_name": "Innovation Synthesizer",
+      "role": "innovation",
+      "family": "innovation",
+      "capabilities": [
+        "innovation-synthesis"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-008",
+      "canonical_name": "Architecture Search / Forge Agent",
+      "role": "forge",
+      "family": "architecture",
+      "capabilities": [
+        "architecture-search"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-009",
+      "canonical_name": "Adversarial / Security Agent",
+      "role": "security",
+      "family": "assurance",
+      "capabilities": [
+        "security-analysis"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-010",
+      "canonical_name": "Verification & Proof Agent",
+      "role": "verification",
+      "family": "assurance",
+      "capabilities": [
+        "verification"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-011",
+      "canonical_name": "Runtime / Integration Agent",
+      "role": "runtime",
+      "family": "execution",
+      "capabilities": [
+        "runtime-integration"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-012",
+      "canonical_name": "Operations / Recovery Agent",
+      "role": "operations",
+      "family": "execution",
+      "capabilities": [
+        "operations"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    },
+    {
+      "agent_id": "AG-013",
+      "canonical_name": "Meta-Evolution Judge",
+      "role": "governance",
+      "family": "governance",
+      "capabilities": [
+        "admission-judgment"
+      ],
+      "status": "ACTIVE",
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "TESTED",
+      "provenance": {
+        "source": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      }
+    }
+  ],
+  "handoff_chain": [
+    "AG-001",
+    "AG-002",
+    "AG-003",
+    "AG-004",
+    "AG-005",
+    "AG-006",
+    "AG-007",
+    "AG-008",
+    "AG-009",
+    "AG-010",
+    "AG-013",
+    "AG-011",
+    "AG-012"
+  ]
+}
