@@ -25,10 +25,12 @@ class ControlSurfaceTests(unittest.TestCase):
             "schemas/vaixl-agent-handoff-v1.schema.json",
             "schemas/vaixl-agent-wallet-authorization-v1.schema.json",
             "schemas/vaixl-agent-event-v1.schema.json",
+            "schemas/vaixl-mind-exchange-v1.schema.json",
             "schemas/vaixl-pattern-v1.schema.json",
             "schemas/vaixl-private-language-vault-binding.schema.json",
             "templates/agents/agent-record-v1.json",
             "templates/agents/agent-task-v1.json",
+            "templates/agents/mind-exchange-v1.json",
             "templates/pattern/pattern-language-v1.json",
             "templates/evidence/agent-evidence-v1.json",
         ]
@@ -40,10 +42,27 @@ class ControlSurfaceTests(unittest.TestCase):
         pattern = json.loads((ROOT / "templates/pattern/pattern-language-v1.json").read_text())
         self.assertEqual(pattern["directions"], FOUR_DIRECTIONS)
 
+    def test_mind_exchange_template_has_required_semantic_state(self):
+        exchange = json.loads((ROOT / "templates/agents/mind-exchange-v1.json").read_text())
+        self.assertEqual(
+            set(exchange["semantic_state"]),
+            {
+                "intent",
+                "requested_capability",
+                "assumptions",
+                "risk",
+                "evidence_refs",
+                "requested_action",
+                "authority_scope",
+            },
+        )
+
     def test_secret_placeholder_is_not_real_secret(self):
         task = json.loads((ROOT / "templates/agents/agent-task-v1.json").read_text())
-        self.assertEqual(task["pattern_context"]["language"]["binding_fingerprint"],
-                         "REPLACE_WITH_64_HEX_FINGERPRINT")
+        self.assertEqual(
+            task["pattern_context"]["language"]["binding_fingerprint"],
+            "REPLACE_WITH_64_HEX_FINGERPRINT",
+        )
 
 
 if __name__ == "__main__":
