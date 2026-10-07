@@ -59,6 +59,7 @@ class PrivatePatternDomainTests(unittest.TestCase):
                     "grants": ["PATTERN_LANGUAGE_DEPROVISION"],
                 },
                 recipient_scope="customer-demo",
+                event_timestamp="2026-10-07T02:00:00Z",
             )
         result = deprovision_pattern(
             pattern,
@@ -69,11 +70,24 @@ class PrivatePatternDomainTests(unittest.TestCase):
                 "grants": ["PATTERN_LANGUAGE_DEPROVISION"],
             },
             recipient_scope="customer-demo",
+            event_timestamp="2026-10-07T02:00:00Z",
         )
         self.assertEqual(result["status"], "DEPROVISIONED")
         self.assertEqual(result["delivered_pattern"]["private_language"]["lifecycle"]["state"], REVOKED)
         self.assertFalse(result["delivered_pattern"]["private_language"]["delivery"]["language_source_delivered"])
         self.assertTrue(result["event"]["event_hash"])
+        replay = deprovision_pattern(
+            pattern,
+            agent_id="agent-001",
+            authority_envelope={
+                "issuer": "external-pattern-authority",
+                "operation": "PATTERN_LANGUAGE_DEPROVISION",
+                "grants": ["PATTERN_LANGUAGE_DEPROVISION"],
+            },
+            recipient_scope="customer-demo",
+            event_timestamp="2026-10-07T02:00:00Z",
+        )
+        self.assertEqual(result["event"]["event_hash"], replay["event"]["event_hash"])
 
     def test_delivery_preserves_fabric_without_private_source(self):
         binding = self.binding()
