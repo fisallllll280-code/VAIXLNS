@@ -44,7 +44,8 @@ class VAIXLNSPatternFactoryTests(unittest.TestCase):
         self.assertEqual(result["topology"]["routes_per_direction"], 80)
         self.assertEqual(result["topology"]["total_logical_routes"], 800)
         self.assertTrue(result["deterministic"])
-        self.assertTrue(result["replay"]["match"])
+        replay = replay_factory_run(self.request(routes=80), result)
+        self.assertTrue(replay["match"])
 
     def test_all_reference_routes_survive_security_gates(self):
         result = build_factory_run(self.request(routes=3))
