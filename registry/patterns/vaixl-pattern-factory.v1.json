@@ -14,6 +14,13 @@
     "default_total_logical_routes": 800,
     "parallelism": "logical-bounded-scheduling"
   },
+  "private_language_fabric": {
+    "model": "5-LAYER-4-DIRECTION-FABRIC",
+    "layer_count": 5,
+    "directions_per_layer": 4,
+    "total_directions": 20,
+    "cross_layer_gate": "CROSS_LAYER_CONSISTENCY"
+  },
   "runtime_boundary": {
     "genome_engine": "REFERENCE_IMPLEMENTATION",
     "adversarial_engine": "DETERMINISTIC_MUTATION_SUITE",
