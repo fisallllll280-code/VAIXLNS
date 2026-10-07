@@ -1,0 +1,13 @@
+{
+  "pattern_id": "PATTERN-0001",
+  "language": {
+    "language_id": "PRIVATE-LANGUAGE-ID",
+    "binding_fingerprint": "REPLACE_WITH_64_HEX_FINGERPRINT"
+  },
+  "directions": [
+    "semantic",
+    "structural",
+    "operational",
+    "evolutionary"
+  ]
+}
