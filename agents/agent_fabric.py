@@ -174,8 +174,12 @@ class AgentFabric:
                 "events": events,
             }
 
-        pattern_context = dict(task.get("pattern_context") or {})
-        routes = self.pattern_factory.build(pattern_context)
+        raw_context = task.get("pattern_context")
+        if raw_context is None:
+            return {"state": "HOLD", "agent_id": agent.agent_id, "reason": "pattern_context_missing", "events": events}
+        if not isinstance(raw_context, Mapping):
+            return {"state": "HOLD", "agent_id": agent.agent_id, "reason": "pattern_context_not_mapping", "events": events}
+        routes = self.pattern_factory.build(dict(raw_context))
         if not routes:
             return {
                 "state": "HOLD",
@@ -199,12 +203,20 @@ class AgentFabric:
         reservation = None
         estimated_cost = str(task.get("estimated_cost", "0"))
         if wallet is not None and estimated_cost != "0":
-            reservation = wallet.authorize(
-                task_id=task_id,
-                agent_id=agent.agent_id,
-                amount=estimated_cost,
-                asset=str(task.get("asset", "USD")),
-            )
+            try:
+                reservation = wallet.authorize(
+                    task_id=task_id,
+                    agent_id=agent.agent_id,
+                    amount=estimated_cost,
+                    asset=str(task.get("asset", "USD")),
+                )
+            except (ValueError, PermissionError) as exc:
+                return {
+                    "state": "HOLD",
+                    "agent_id": agent.agent_id,
+                    "reason": f"wallet_authorization_blocked:{exc}",
+                    "events": events,
+                }
             events.append(self._event("WALLET_AUTHORIZED", {
                 "task_id": task_id,
                 "agent_id": agent.agent_id,
@@ -240,7 +252,15 @@ class AgentFabric:
         settlement = None
         if reservation is not None:
             actual_cost = str(task.get("actual_cost", estimated_cost))
-            settlement = wallet.settle(reservation.reservation_id, actual_amount=actual_cost)
+            try:
+                settlement = wallet.settle(reservation.reservation_id, actual_amount=actual_cost)
+            except ValueError as exc:
+                return {
+                    "state": "HOLD",
+                    "agent_id": agent.agent_id,
+                    "reason": f"wallet_settlement_blocked:{exc}",
+                    "events": events,
+                }
             events.append(self._event("WALLET_SETTLED", settlement))
 
         from verification.agent_verifier import AgentVerifier
