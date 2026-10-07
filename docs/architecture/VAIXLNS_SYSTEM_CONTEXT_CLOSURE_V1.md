@@ -830,3 +830,146 @@ The first implementation sequence should prioritize shared primitives rather tha
 10. Treasury integration through existing admission boundaries.
 
 Every target receives deterministic tests and evidence before promotion.
+
+
+---
+
+## 23. Ω-Pattern Foundry
+
+Ω-Pattern Foundry is the governed private invention boundary above Ω-Pattern Forest.
+
+    Problem
+      ↓
+    Problem Interrogation
+      ↓
+    Private Pattern Intelligence
+      ↓
+    Candidate Genome
+      ↓
+    Sanity Check
+      ↓
+    Ω-Pattern Adversarial Lab
+      ↓
+    Mutation / Recombination
+      ↓
+    Re-Attack
+      ↓
+    Evidence
+      ↓
+    Verification
+      ↓
+    Commercial Packaging
+
+The generation backend is provider-neutral. Private model prompts, private training artifacts, proprietary heuristics, customer secrets, and confidential DSL/compiler internals MUST remain outside the public repository.
+
+Customer exposure is contract/evidence based:
+
+    WHAT + CONTRACT + LIMITS + EVIDENCE + RIGHTS
+
+Internal know-how remains protected:
+
+    HOW + GENERATION PROCESS + PRIVATE HEURISTICS + PRIVATE MEMORY
+
+The generator is not the judge and neither is the authority:
+
+    Generator ≠ Judge ≠ Authority
+
+---
+
+## 24. VX Federation Gate / Connected VX Instances
+
+VX is capable of operating as a federation of specialized instances behind one governed gate.
+
+    VAIXLNS
+       ↓
+    VX Federation Gate
+       │
+       ├── VX-Code
+       ├── VX-Systems
+       ├── VX-Computer
+       ├── VX-Security
+       ├── VX-Math
+       ├── VX-Research
+       └── Future VX Instances
+
+The gate provides:
+
+    registration
+    identity verification
+    capability discovery
+    semantic routing
+    authority checks
+    health / lease tracking
+    event / evidence linkage
+    failure isolation
+    cross-VX task transfer
+
+Each instance remains a distinct identity. Federation MUST NOT collapse independent state, history, or authority boundaries.
+
+The desired live state machine is:
+
+    REGISTERED
+        ↓
+      ACTIVE
+        ↓
+    HEARTBEAT
+        ↓
+      ACTIVE
+        ↓
+     DEGRADED
+        ↓
+     ISOLATED
+        ↓
+    RECOVERING
+        ↓
+     RE-ADMISSION
+
+A LIVE production claim requires executable registration, heartbeat/lease evidence, route execution, and reproducible observation evidence.
+
+Cross-VX cognition SHOULD transfer semantic state including intent, capability, assumptions, risks, evidence, uncertainty, requested action, and authority scope.
+
+---
+
+## 25. Pattern Foundry ↔ VX Federation
+
+Ω-Pattern Foundry and the VX Federation Gate form a single invention/execution path without merging their authority.
+
+    Problem
+      ↓
+    Ω-Pattern Foundry
+      ↓
+    VX Federation Gate
+      ↓
+    Specialized VX Instances
+      ↓
+    Agents / Tools
+      ↓
+    Candidate Patterns
+      ↓
+    Adversarial Lab
+      ↓
+    Evidence / Verification
+      ↓
+    Promotion Gate
+
+Specialized VX instances can therefore compete, cooperate, or independently attack candidate patterns while the federation gate controls identity, capability routing, authority, and failure isolation.
+
+---
+
+## 26. 2026-10-07 Implementation-Bound Artifacts
+
+The following new artifacts define the reference surfaces for these capabilities:
+
+- `docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md`
+- `schemas/omega-pattern-genome.schema.yaml`
+- `schemas/omega-pattern-attack.schema.yaml`
+- `schemas/vx-federation-instance.schema.yaml`
+- `docs/architecture/VX_FEDERATION_GATE_V1.md`
+- `scripts/omega_pattern_foundry.py`
+- `scripts/vx_federation_gate.py`
+- `tests/test_omega_pattern_foundry.py`
+- `tests/test_vx_federation_gate.py`
+- `.github/workflows/omega-pattern-foundry.yml`
+- `.github/workflows/vx-federation-gate.yml`
+
+These are reference implementations/contracts on the additive branch and MUST NOT be treated as VERIFIED until executable evidence is inspected.

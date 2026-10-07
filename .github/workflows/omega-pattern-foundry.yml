@@ -1,0 +1,49 @@
+name: omega-pattern-foundry
+
+on:
+  push:
+    paths:
+      - "scripts/omega_pattern_foundry.py"
+      - "schemas/omega-pattern-*.schema.yaml"
+      - "tests/test_omega_pattern_foundry.py"
+      - "registry/patterns/omega-pattern-foundry.v1.json"
+      - "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md"
+      - ".github/workflows/omega-pattern-foundry.yml"
+  pull_request:
+    paths:
+      - "scripts/omega_pattern_foundry.py"
+      - "schemas/omega-pattern-*.schema.yaml"
+      - "tests/test_omega_pattern_foundry.py"
+      - "registry/patterns/omega-pattern-foundry.v1.json"
+      - "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md"
+      - ".github/workflows/omega-pattern-foundry.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run deterministic conformance suite
+        run: python -m unittest discover -s tests -p "test_omega_pattern_foundry.py" -v
+
+      - name: Generate and attack a candidate
+        run: |
+          mkdir -p artifacts
+          python scripts/omega_pattern_foundry.py generate             --problem "recover from architecture drift"             --objective "produce a bounded, evidence-backed recovery pattern"             --constraints "no-self-authorization" "replay-required"             --capabilities "observe" "replay" "verify" > artifacts/pattern.json
+          python scripts/omega_pattern_foundry.py attack artifacts/pattern.json             > artifacts/attack-report.json
+
+      - name: Upload execution evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-pattern-foundry-evidence
+          path: artifacts/
