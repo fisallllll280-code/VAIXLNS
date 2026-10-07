@@ -417,11 +417,20 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
     foundry_report = gate(effective)
     source = render_semantic_source(effective)
     corrector = correct_source(source)
-    guardian_source = guardian_parse(corrector["repaired_source"])
-    guardian = guardian_analyze(
-        guardian_source,
-        observed_capabilities=list(effective.get("tool_requirements") or []),
-    )
+    parse_error = None
+    try:
+        guardian_source = guardian_parse(corrector["repaired_source"])
+        guardian = guardian_analyze(
+            guardian_source,
+            observed_capabilities=list(effective.get("tool_requirements") or []),
+        )
+    except (TypeError, ValueError) as exc:
+        parse_error = str(exc)
+        guardian = {
+            "decision": "QUARANTINE",
+            "subject": {"source_hash": hashlib.sha256(corrector["repaired_source"].encode("utf-8")).hexdigest()},
+            "findings": [{"id": "GUARDIAN-PARSE-001", "severity": "CRITICAL", "details": parse_error}],
+        }
     attacks = adversarial_attack(effective)
     mutation_tests = adversarial_mutation_engine(effective)
     mutation_failures = [item for item in mutation_tests if not item["blocked"]]
@@ -456,6 +465,7 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
             "decision": guardian["decision"],
             "source_hash": guardian["subject"]["source_hash"],
             "finding_count": len(guardian["findings"]),
+            "parse_error": parse_error,
         },
         "attack_count": len(attacks),
         "mutation_tests": len(mutation_tests),
