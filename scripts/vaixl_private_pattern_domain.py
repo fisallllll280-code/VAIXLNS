@@ -96,7 +96,10 @@ def build_pattern_language_binding(
 
 
 def validate_pattern_language_boundary(pattern: Mapping[str, Any]) -> list[str]:
+    """Validate the boundary and fail closed on invalid pattern input."""
     findings: list[str] = []
+    if not isinstance(pattern, Mapping):
+        return ["PATTERN_INVALID_TYPE"]
     private_language = pattern.get("private_language")
     if not isinstance(private_language, Mapping):
         return ["PRIVATE_LANGUAGE_BINDING_MISSING"]
