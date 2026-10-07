@@ -1,0 +1,20 @@
+name: Agent Fabric Conformance
+
+on:
+  push:
+    branches: ["feat/vaixl-pattern-real-v1"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  agent-fabric:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile implementation
+        run: python -m compileall -q agents patterns verification
+      - name: Run deterministic test suite
+        run: python -m unittest discover -s tests -p "test_*.py" -v
