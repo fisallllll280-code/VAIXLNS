@@ -111,3 +111,11 @@ A proposal becomes implementation only after code, tests, and evidence establish
 77. VX Federation Gate / Live Multi-Instance Semantic Routing
 
 These entries are context-level proposals/specifications unless separately supported by implementation evidence. Existing names and lineage remain authoritative.
+
+## 2026-10-07 operational additions
+
+78. VX Stage Runtime Golden Scenario
+79. VX Stage Authority-Aware Routing
+80. VX Stage Failure Isolation + Recovery
+81. VX Stage Provenance Evidence
+82. VX Stage Release/Operational Runbook

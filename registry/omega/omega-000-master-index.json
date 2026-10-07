@@ -96,6 +96,33 @@
         "scripts/vx_federation_gate.py",
         "tests/test_vx_federation_gate.py"
       ]
+    },
+    {
+      "id": "VX-STAGE-001",
+      "type": "RUNTIME_SURFACE",
+      "role": "SINGLE_INSTANCE_STAGE_CONFORMANCE",
+      "lifecycle_state": "STAGE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VX.FEDERATION.GATE.001",
+      "evidence_refs": [
+        "scripts/vx_stage_runtime.py",
+        "tests/test_vx_stage_runtime.py",
+        "schemas/vx-stage-evidence.schema.json",
+        "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md"
+      ]
+    },
+    {
+      "id": "VX-STAGE-SECURITY-001",
+      "type": "CONTROL",
+      "role": "STAGE_AUTHORITY_AND_ISOLATION_PROFILE",
+      "lifecycle_state": "STAGE",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md",
+        "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
+      ]
     }
   ],
   "promotion_rules": {
