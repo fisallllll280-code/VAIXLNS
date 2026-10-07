@@ -1,0 +1,65 @@
+# VAIXLNS Agent Fabric V1
+
+State: IMPLEMENTED — CI verification pending for this revision.
+
+The executable Agent Fabric is connected to the Pattern and economic boundaries.
+
+INTENT
+  -> AGENT REGISTRY
+  -> AUTHORITY / POLICY
+  -> PATTERN SELECTION
+  -> PRIVATE LANGUAGE BINDING
+  -> 4 DIRECTIONS
+  -> SIGNED HANDOFF
+  -> SIMULATION
+  -> PAPER WALLET AUTHORIZATION / SETTLEMENT
+  -> EVENTS
+  -> INDEPENDENT PROOF
+  -> HOLD / GOVERNANCE
+
+## Agents
+
+AG-001 through AG-013 are registered as specialized roles spanning recovery, identity, capability analysis, architecture, research, contradiction audit, innovation synthesis, architecture forging, security, verification, runtime integration, recovery operations, and meta-evolution governance.
+
+The registry is capability-driven; no anonymous agent is admitted.
+
+## Pattern coupling
+
+An agent task cannot use the Pattern route generator without a language binding fingerprint. The private language source stays outside the repository and outside agent evidence.
+
+Each language expands only into the four canonical directions:
+semantic, structural, operational, evolutionary.
+
+## Handoff coupling
+
+A handoff includes source agent, target agent, task, capabilities, artifacts, evidence, constraints, authority scope, expiry, and an HMAC signature.
+
+Targets are constrained by the source agent's declared handoff targets.
+
+## Economic coupling
+
+AgentEconomicWallet is a paper-only execution layer. Authorization reserves budget. Settlement charges actual usage up to the reservation and reports the unused amount as a refund. Settlement produces balanced debit/credit entries and a ledger hash.
+
+No real funds are moved.
+
+## Verification
+
+AgentVerifier independently checks:
+- exact four-direction invariant;
+- binding presence;
+- HMAC-valid handoff;
+- event hashes;
+- paper-wallet real-value guard.
+
+A successful internal proof is evidence about the tested simulation path. It is not production authorization.
+
+## State discipline
+
+PROPOSED is not IMPLEMENTED.
+IMPLEMENTED is not VERIFIED.
+A simulation may receive verification_state=VERIFIED only after deterministic proof checks pass.
+The overall dispatch disposition remains HOLD until an external governance/admission decision exists.
+
+## Non-loss rules
+
+No agent may delete historical records, self-grant authority, bypass security rejection, convert speculative output into canonical truth, or expose private language source material.
