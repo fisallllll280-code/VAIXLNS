@@ -146,6 +146,8 @@ def build_transfer_artifact(
 ) -> dict[str, Any]:
     if not recipient_scope:
         raise ValueError("recipient_scope is required")
+    if not event_timestamp:
+        raise ValueError("event_timestamp is required")
     errors = validate_pattern_language_boundary(pattern)
     if errors:
         raise ValueError("cannot transfer invalid private-language boundary: " + ",".join(errors))
@@ -247,6 +249,7 @@ def deprovision_pattern(
     agent_id: str,
     authority_envelope: Mapping[str, Any],
     recipient_scope: str,
+    event_timestamp: str,
 ) -> dict[str, Any]:
     """Execute a governed agent-mediated language deprovisioning operation.
 
@@ -254,6 +257,8 @@ def deprovision_pattern(
     """
     if not agent_id:
         raise ValueError("agent_id is required")
+    if not event_timestamp:
+        raise ValueError("event_timestamp is required")
     errors = validate_pattern_language_boundary(pattern)
     if errors:
         raise ValueError("pattern language boundary invalid: " + ",".join(errors))
@@ -279,7 +284,7 @@ def deprovision_pattern(
         "source_state_after": TRANSFERRED,
         "delivery_state": REVOKED,
         "language_source_delivered": False,
-        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "timestamp": event_timestamp,
     }
     event["event_hash"] = sha256_json(event)
 
