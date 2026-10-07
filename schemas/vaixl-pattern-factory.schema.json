@@ -47,7 +47,37 @@
       }
     },
     "quarantined": {"type": "array"},
-    "selected_pattern": {"type": ["object", "null"]},
+    "selected_pattern": {
+      "type": ["object", "null"],
+      "properties": {
+        "private_language": {
+          "type": "object",
+          "required": ["binding_type","source","fabric","interface","lifecycle"],
+          "properties": {
+            "binding_type": {"const": "PATTERN_BOUND_PRIVATE_LANGUAGE"},
+            "source": {
+              "type": "object",
+              "required": ["location","repository_persistence","runtime_source_exposure","agent_source_exposure"],
+              "properties": {
+                "location": {"const": "EXTERNAL_SECRET_VAULT"},
+                "repository_persistence": {"const": false},
+                "runtime_source_exposure": {"const": false},
+                "agent_source_exposure": {"const": false}
+              }
+            },
+            "interface": {
+              "type": "object",
+              "properties": {
+                "mode": {"const": "CAPABILITY_ONLY"},
+                "allows_source_export": {"const": false},
+                "allows_source_reconstruction": {"const": false},
+                "allows_self_authorization": {"const": false}
+              }
+            }
+          }
+        }
+      }
+    },
     "replay_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "deterministic": {"const": true},
     "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
