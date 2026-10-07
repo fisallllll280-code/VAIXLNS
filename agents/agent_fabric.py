@@ -8,6 +8,7 @@ import hmac
 import json
 from typing import Any, Mapping
 
+from agents.mind_federation import MindFederation
 from patterns.vaixl_pattern_factory import DIRECTIONS, PatternFactory
 
 
@@ -138,7 +139,15 @@ def event_hash(event: Mapping[str, Any]) -> str:
 class AgentFabric:
     registry: AgentRegistry = field(default_factory=AgentRegistry)
     pattern_factory: PatternFactory = field(default_factory=lambda: PatternFactory(architectures=("agent-runtime",)))
+    mind_federation: MindFederation | None = None
     signing_key: bytes = b"vaixlns-test-signing-key"
+
+    def __post_init__(self) -> None:
+        if self.mind_federation is None:
+            self.mind_federation = MindFederation.from_registry(
+                tuple(agent.agent_id for agent in self.registry.all()),
+                DEFAULT_HANDOFF_CHAIN,
+            )
 
     def dispatch(self, task: Mapping[str, Any], *, wallet: Any | None = None) -> dict[str, Any]:
         task_id = str(task.get("task_id", ""))
@@ -179,6 +188,7 @@ class AgentFabric:
             return {"state": "HOLD", "agent_id": agent.agent_id, "reason": "pattern_context_missing", "events": events}
         if not isinstance(raw_context, Mapping):
             return {"state": "HOLD", "agent_id": agent.agent_id, "reason": "pattern_context_not_mapping", "events": events}
+
         routes = self.pattern_factory.build(dict(raw_context))
         if not routes:
             return {
@@ -198,6 +208,31 @@ class AgentFabric:
             "task_id": task_id,
             "agent_id": agent.agent_id,
             "route_count": len(routes),
+        }))
+
+        assert self.mind_federation is not None
+        semantic_state = {
+            "intent": str(task.get("intent", task_id)),
+            "requested_capability": capability,
+            "assumptions": list(task.get("assumptions", [])),
+            "risk": str(task.get("risk", "unassessed")),
+            "evidence_refs": list(task.get("evidence_refs", [])),
+            "requested_action": tool,
+            "authority_scope": [authority_scope],
+        }
+        mind_exchange = self.mind_federation.exchange(
+            source_agent=agent.agent_id,
+            target_agent=target,
+            semantic_state=semantic_state,
+            evidence_refs=tuple(str(x) for x in task.get("evidence_refs", ())),
+            authority_scope=(authority_scope,),
+        )
+        events.append(self._event("MIND_EXCHANGE", {
+            "task_id": task_id,
+            "exchange_id": mind_exchange.exchange_id,
+            "source_agent": mind_exchange.source_agent,
+            "target_agent": mind_exchange.target_agent,
+            "state_hash": mind_exchange.state_hash,
         }))
 
         reservation = None
@@ -271,6 +306,7 @@ class AgentFabric:
             signing_key=self.signing_key,
             events=events,
             wallet_settlement=settlement,
+            mind_exchange=mind_exchange.as_dict(),
         )
 
         evidence = {
@@ -283,6 +319,7 @@ class AgentFabric:
                 "route_count": len(routes),
                 "binding_fingerprints_present": all(bool(r.get("binding_fingerprint")) for r in routes),
             },
+            "mind_exchange": mind_exchange.as_dict(),
             "handoff_signature": signature,
             "simulation": {"real_side_effects": False},
             "verification": proof,
@@ -296,6 +333,7 @@ class AgentFabric:
             "final_disposition": "HOLD",
             "agent_id": agent.agent_id,
             "routes": routes,
+            "mind_exchange": mind_exchange.as_dict(),
             "handoff": envelope.payload(),
             "handoff_signature": signature,
             "wallet_settlement": settlement,
