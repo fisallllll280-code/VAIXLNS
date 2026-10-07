@@ -194,6 +194,53 @@ def build_transfer_artifact(
     return delivered
 
 
+def invoke_pattern_capability(
+    pattern: Mapping[str, Any],
+    *,
+    capability: str,
+    request: Mapping[str, Any],
+    authority_envelope: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Reference capability-only invocation; never returns private language source."""
+    errors = validate_pattern_language_boundary(pattern)
+    if errors:
+        raise ValueError("pattern language boundary invalid: " + ",".join(errors))
+    if not capability.strip():
+        raise ValueError("capability is required")
+    grants = authority_envelope.get("grants", [])
+    if capability not in grants and "PATTERN_LANGUAGE_USE" not in grants:
+        raise PermissionError("pattern capability is not authorized")
+    issuer = authority_envelope.get("issuer")
+    if not issuer:
+        raise PermissionError("authority issuer is required")
+
+    request_hash = sha256_json(
+        {
+            "pattern_id": pattern["pattern_id"],
+            "capability": capability,
+            "request": dict(request),
+        }
+    )
+    return {
+        "status": "CAPABILITY_RESULT",
+        "pattern_id": pattern["pattern_id"],
+        "capability": capability,
+        "interface_id": pattern["private_language"]["interface"]["id"],
+        "request_hash": request_hash,
+        "language_source_returned": False,
+        "language_source_exposed": False,
+        "authority_issuer": issuer,
+        "output": {
+            "mode": "SEALED_REFERENCE_RESULT",
+            "result_hash": sha256_json(
+                {
+                    "request_hash": request_hash,
+                    "binding_hash": pattern["private_language"]["binding_hash"],
+                }
+            ),
+        },
+    }
+
 def deprovision_pattern(
     pattern: Mapping[str, Any],
     *,
@@ -248,9 +295,31 @@ def deprovision_pattern(
 
 
 def main() -> int:
-    raise SystemExit(
-        "This module is a library boundary. Pattern language source is intentionally not exposed by a CLI."
+    parser = __import__("argparse").ArgumentParser(
+        description="VAIXLNS private pattern domain boundary"
     )
+    parser.add_argument(
+        "command",
+        choices=["info"],
+        help="Display the non-secret boundary contract.",
+    )
+    args = parser.parse_args()
+    if args.command == "info":
+        print(
+            json.dumps(
+                {
+                    "domain_id": DOMAIN_ID,
+                    "schema_version": SCHEMA_VERSION,
+                    "source_exposed": False,
+                    "agent_source_access": False,
+                    "customer_source_delivery": False,
+                    "capability_interface": "CAPABILITY_ONLY",
+                },
+                indent=2,
+            )
+        )
+        return 0
+    return 2
 
 
 if __name__ == "__main__":
