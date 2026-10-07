@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Pattern Factory Evidence",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "factory_id",
+    "input",
+    "topology",
+    "candidates",
+    "quarantined",
+    "selected_pattern",
+    "replay_hash",
+    "deterministic",
+    "evidence_hash",
+    "replay"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "factory_id": {"const": "VAIXLNS-PATTERN-FACTORY-001"},
+    "input": {
+      "type": "object",
+      "required": ["problem", "objective", "constraints", "capabilities", "routes_per_direction"],
+      "properties": {
+        "problem": {"type": "string"},
+        "objective": {"type": "string"},
+        "constraints": {"type": "array", "items": {"type": "string"}},
+        "capabilities": {"type": "array", "items": {"type": "string"}},
+        "routes_per_direction": {"type": "integer", "minimum": 1, "maximum": 80}
+      }
+    },
+    "topology": {
+      "type": "object",
+      "required": ["direction_count", "routes_per_direction", "total_logical_routes", "parallelism_model"],
+      "properties": {
+        "direction_count": {"const": 10},
+        "routes_per_direction": {"type": "integer", "minimum": 1, "maximum": 80},
+        "total_logical_routes": {"type": "integer", "minimum": 10, "maximum": 800},
+        "parallelism_model": {"const": "logical-bounded-scheduling"}
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["route_id", "direction_id", "pattern_id", "genome_hash", "status", "blocking_findings", "attack_count", "mutation_tests", "mutation_failures", "guardian_decision"]
+      }
+    },
+    "quarantined": {"type": "array"},
+    "selected_pattern": {"type": ["object", "null"]},
+    "replay_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "deterministic": {"const": true},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "replay": {
+      "type": "object",
+      "required": ["match", "reference_evidence_hash", "replay_evidence_hash", "reference_replay_hash", "replay_replay_hash"],
+      "properties": {
+        "match": {"type": "boolean"},
+        "reference_evidence_hash": {"type": "string"},
+        "replay_evidence_hash": {"type": "string"},
+        "reference_replay_hash": {"type": "string"},
+        "replay_replay_hash": {"type": "string"}
+      }
+    }
+  }
+}
