@@ -22,6 +22,11 @@ from typing import Any, Mapping
 
 from scripts.omega_pattern_foundry import adversarial_attack, gate
 from scripts.vaixl_code_corrector import correct_source
+from scripts.vaixl_private_pattern_domain import (
+    attach_private_language,
+    build_pattern_language_binding,
+    validate_pattern_language_boundary,
+)
 from scripts.vaixl_language_guardian import analyze as guardian_analyze
 from scripts.vaixl_language_guardian import parse_source as guardian_parse
 
@@ -262,7 +267,26 @@ def build_route_pattern(
             "customer_scope": "",
         },
     }
-    pattern["provenance"]["genome_hash"] = sha256_json(pattern)
+    language_hash = sha256_json(
+        {
+            "pattern_id": pattern_id,
+            "binding_type": "PATTERN_BOUND_PRIVATE_LANGUAGE",
+            "fabric": [
+                "syntax",
+                "semantics",
+                "grammar",
+                "transformation",
+                "security",
+                "verification",
+            ],
+        }
+    )
+    language_binding = build_pattern_language_binding(
+        pattern_id=pattern_id,
+        language_id=f"{pattern_id}-PRIVATE-LANGUAGE",
+        language_genome_hash=language_hash,
+    )
+    pattern = attach_private_language(pattern, language_binding)
     return pattern
 
 
@@ -381,6 +405,7 @@ def safe_repair(pattern: Mapping[str, Any], collisions: list[Mapping[str, Any]])
 
 def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
     collisions = detect_internal_collisions(pattern)
+    private_language_findings = validate_pattern_language_boundary(pattern)
     if collisions:
         repair = safe_repair(pattern, collisions)
         post_repair_collisions = detect_internal_collisions(repair["pattern"])
@@ -402,6 +427,7 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
     mutation_failures = [item for item in mutation_tests if not item["blocked"]]
 
     blocking = int(foundry_report["blocking_findings"])
+    blocking += len(private_language_findings)
     blocking += 1 if post_repair_collisions else 0
     blocking += 1 if guardian["decision"] == "QUARANTINE" else 0
     blocking += sum(1 for f in attacks if f.severity == "CRITICAL" or f.result == "BLOCK")
@@ -411,6 +437,7 @@ def evaluate_candidate(pattern: Mapping[str, Any]) -> dict[str, Any]:
         "pattern": effective,
         "foundry": foundry_report,
         "collisions": collisions,
+        "private_language_findings": private_language_findings,
         "post_repair_collisions": post_repair_collisions,
         "repair": {
             "changed": repair["changed"],
@@ -463,6 +490,7 @@ def build_factory_run(request: Mapping[str, Any]) -> dict[str, Any]:
                 "guardian_decision": evaluation["guardian"]["decision"],
                 "corrector_changed": evaluation["corrector"]["changed"],
                 "repair_changed": evaluation["repair"]["changed"],
+                "private_language_bound": not bool(evaluation["private_language_findings"]),
             }
             candidates.append(summary)
             candidate_patterns.append({"summary": summary, "pattern": pattern})
