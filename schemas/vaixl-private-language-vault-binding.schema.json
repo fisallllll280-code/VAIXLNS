@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Private Language Vault Binding v1",
+  "type": "object",
+  "required": ["pattern_id", "language_id", "binding_fingerprint", "secret_location"],
+  "properties": {
+    "pattern_id": {"type": "string"},
+    "language_id": {"type": "string"},
+    "binding_fingerprint": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "secret_location": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "task_id": "TASK-0001",
+  "capability": "architecture-analysis",
+  "authority_scope": "read.registry",
+  "tool": "registry.read",
+  "pattern_context": {
+    "language": {
+      "language_id": "PRIVATE-LANGUAGE-ID",
+      "binding_fingerprint": "REPLACE_WITH_64_HEX_FINGERPRINT"
+    },
+    "replay": {}
+  },
+  "architecture": "agent-runtime",
+  "estimated_cost": "0",
+  "asset": "USD",
+  "constraints": [],
+  "evidence_refs": [],
+  "expected_output": "evidence_bundle",
+  "expiry": "task-scope"
+}

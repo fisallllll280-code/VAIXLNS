@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Agent Handoff v1",
+  "type": "object",
+  "required": ["task_id", "source_agent", "target_agent", "reason", "required_capabilities", "authority_scope", "expiry", "signature"],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "source_agent": {"type": "string", "pattern": "^AG-[0-9]{3}$"},
+    "target_agent": {"type": "string", "pattern": "^AG-[0-9]{3}$"},
+    "reason": {"type": "string", "minLength": 1},
+    "required_capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "input_artifact_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "expected_output": {"type": "string"},
+    "authority_scope": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "expiry": {"type": "string", "minLength": 1},
+    "signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Agent Genome v1",
+  "type": "object",
+  "required": ["agent_id", "canonical_name", "role", "family", "capabilities", "allowed_tools", "authority_scope", "status", "version", "provenance"],
+  "properties": {
+    "agent_id": {"type": "string", "pattern": "^AG-[0-9]{3}$"},
+    "canonical_name": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "allowed_tools": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "authority_scope": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "handoff_targets": {"type": "array", "items": {"type": "string", "pattern": "^AG-[0-9]{3}$"}},
+    "status": {"enum": ["ACTIVE", "HOLD", "QUARANTINED", "RETIRED"]},
+    "version": {"type": "string", "minLength": 1},
+    "provenance": {"type": "object"}
+  },
+  "additionalProperties": false
+}

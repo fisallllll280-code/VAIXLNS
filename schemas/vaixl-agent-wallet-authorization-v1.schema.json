@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Agent Wallet Authorization v1",
+  "type": "object",
+  "required": ["reservation_id", "task_id", "agent_id", "authorized_amount", "asset", "status"],
+  "properties": {
+    "reservation_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "agent_id": {"type": "string", "pattern": "^AG-[0-9]{3}$"},
+    "authorized_amount": {"type": "string", "pattern": "^[0-9]+(\\.[0-9]{1,8})?$"},
+    "asset": {"type": "string", "minLength": 1},
+    "status": {"enum": ["AUTHORIZED", "SETTLED"]},
+    "real_value_moved": {"const": false}
+  },
+  "additionalProperties": false
+}

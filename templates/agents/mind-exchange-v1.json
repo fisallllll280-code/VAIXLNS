@@ -1,0 +1,17 @@
+{
+  "exchange_id": "EXCHANGE-0001",
+  "source_agent": "AG-004",
+  "target_agent": "AG-005",
+  "semantic_state": {
+    "intent": "REPLACE_WITH_INTENT",
+    "requested_capability": "research",
+    "assumptions": [],
+    "risk": "unassessed",
+    "evidence_refs": [],
+    "requested_action": "review",
+    "authority_scope": ["read.external"]
+  },
+  "evidence_refs": [],
+  "authority_scope": ["read.external"],
+  "state_hash": "REPLACE_WITH_64_HEX_HASH"
+}
