@@ -73,6 +73,8 @@ An agent is not admitted because its profile exists. Missing provider/tool confi
 
 ## 3. Agent roster and extension rule
 
+The canonical hub includes a proposed crosswalk for the 26 runtime role IDs (31 versioned identities) and five reviewer minds in `registry/vx-runtime-role-binding-map.v1.json`. Its mappings remain `CANDIDATE_MAPPING_NOT_APPROVED`; default runtime roles are design-only, so the map grants no tool permissions. It exists to preserve the old role identities while bringing each under the same VX-bound contract.
+
 The initial role catalog defines 35 logical role templates for the common engineering path:
 
 - Orchestration and architecture
