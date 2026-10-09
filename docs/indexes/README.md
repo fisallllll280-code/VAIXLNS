@@ -33,3 +33,5 @@
 - The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
 
 - [VAIXLNS Global Research System V1](../research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md) — provenance-first research architecture, evidence gates, source strategy, metrics and staged delivery.
+
+- [VAIXLNS Engineering Innovation Fabric V1](../engineering/VAIXLNS_ENGINEERING_INNOVATION_FABRIC_V1.md) — governed cross-domain math/physics/software engineering, task contracts, distributed compute and server federation, partner isolation, engineering boards, and assurance gates.
