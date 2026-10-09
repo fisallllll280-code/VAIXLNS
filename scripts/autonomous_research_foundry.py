@@ -108,7 +108,7 @@ def _validate_queue(queue: Mapping[str, Any]) -> list[dict[str, Any]]:
             raise ValueError(f"TASK_PRIORITY_INVALID:{task_id}") from exc
         if not 1 <= priority <= 10:
             raise ValueError(f"TASK_PRIORITY_OUT_OF_RANGE:{task_id}")
-        for field in ("constraints", "capabilities", "local_source_paths"):
+        for field in ("constraints", "capabilities", "local_source_paths", "public_repository_targets"):
             if not isinstance(item.get(field, []), list):
                 raise ValueError(f"TASK_{field.upper()}_MUST_BE_LIST:{task_id}")
         task = dict(item)
@@ -127,6 +127,13 @@ def _validate_queue(queue: Mapping[str, Any]) -> list[dict[str, Any]]:
             raise ValueError("PUBLIC_SOURCE_REPOSITORY_INVALID")
         if not isinstance(ref, str) or not REF_PATTERN.fullmatch(ref) or ".." in ref.split("/"):
             raise ValueError("PUBLIC_SOURCE_REF_INVALID")
+    approved_slugs = {source["repository"] for source in approved}
+    for task in normalized:
+        targets = task.get("public_repository_targets", [])
+        if not isinstance(targets, list):
+            raise ValueError(f"TASK_PUBLIC_REPOSITORY_TARGETS_MUST_BE_LIST:{task['task_id']}")
+        if any(not isinstance(target, str) or target not in approved_slugs for target in targets):
+            raise ValueError(f"TASK_PUBLIC_REPOSITORY_TARGET_NOT_ALLOWLISTED:{task['task_id']}")
     return normalized
 
 
@@ -278,9 +285,14 @@ def _source_refs_for_task(
         item = local_manifest.get(relative, {})
         if item.get("state") == "READ":
             refs.append(f"repo-file:{relative}#sha256={item['sha256']}")
+    task_targets = set(task.get("public_repository_targets", []))
     for item in public_manifest:
-        if item.get("state") in {"DISCOVERED", "PARTIAL_INVENTORY"} and item.get("tree_sha"):
-            refs.append(f"github-tree:{item['repository']}@{item['ref']}#sha={item['tree_sha']}")
+        if (
+            item.get("repository") in task_targets
+            and item.get("state") in {"DISCOVERED", "PARTIAL_INVENTORY"}
+            and item.get("tree_sha")
+        ):
+            refs.append(f"github-tree-inventory:{item['repository']}@{item['ref']}#sha={item['tree_sha']}")
     return sorted(set(refs))
 
 
