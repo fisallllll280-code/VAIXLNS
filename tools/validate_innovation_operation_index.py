@@ -48,6 +48,11 @@ def main() -> int:
             fail("generator must never grant canonical promotion: " + item["name"])
         if not isinstance(item.get("status_observations"), list):
             fail("status observations must be an array: " + item["name"])
+        for observation in item["status_observations"]:
+            if not isinstance(observation, dict) or not isinstance(observation.get("source"), str) or not isinstance(observation.get("state"), str):
+                fail("malformed status observation: " + item["name"])
+            if observation.get("axis") not in {"readiness", "measurement"}:
+                fail("unknown status axis for " + item["name"])
         for source in item.get("source_refs", []):
             if source.startswith("http://") or source.startswith("https://"):
                 continue
