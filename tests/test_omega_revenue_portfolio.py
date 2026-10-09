@@ -65,6 +65,13 @@ class OmegaRevenuePortfolioTests(unittest.TestCase):
         self.assertIsNone(item["economics"])
         self.assertIn("variable_cost_per_customer_period", item["missing_fields"])
 
+    def test_fractional_counts_are_rejected(self):
+        report = build_report(payload([opportunity(paid_pilots=1.5)]))
+        item = report["opportunities"][0]
+        self.assertEqual(item["decision"], "COLLECT_OR_CORRECT_ECONOMIC_DATA")
+        self.assertIn("paid_pilots", item["invalid_fields"])
+        self.assertIsNone(item["economics"])
+
     def test_duplicate_ids_are_rejected(self):
         with self.assertRaisesRegex(ValueError, "must be unique"):
             build_report(payload([opportunity(), opportunity()]))
