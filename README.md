@@ -20,6 +20,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
 - [Tools / ARC-X Ω](docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md)
+- [VA Genesis Operational Engine v1](docs/tools/VA_GENESIS_OPERATIONAL_ENGINE_V1.md)
 
 ## Canonical boundary
 

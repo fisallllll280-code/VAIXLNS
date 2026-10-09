@@ -1,0 +1,34 @@
+name: VA Genesis Contract
+
+on:
+  push:
+    paths:
+      - "va/**"
+      - "tests/test_va_genesis.py"
+      - ".github/workflows/va-genesis.yml"
+  pull_request:
+    paths:
+      - "va/**"
+      - "tests/test_va_genesis.py"
+      - ".github/workflows/va-genesis.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  va-genesis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile VA modules
+        run: python -m compileall -q va
+      - name: Run VA contract tests
+        run: python -m unittest discover -s tests -p "test_va_genesis.py" -v
+      - name: Check command surface
+        run: python -m va.genesis --help
