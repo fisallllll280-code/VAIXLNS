@@ -73,7 +73,18 @@ jobs:
         run: python scripts/emit_provenance.py
 
       - name: Run test suite
-        run: python -m unittest discover -s tests -v
+        id: test_suite
+        shell: bash
+        run: |
+          set +e
+          python -m unittest discover -s tests -v 2>&1 | tee test-suite.log
+          test_status=\${PIPESTATUS[0]}
+          exit "\$test_status"
+
+      - name: Diagnose test failure
+        if: failure() && steps.test_suite.outcome == 'failure'
+        continue-on-error: true
+        run: python scripts/omega_error_locator.py --root . --input test-suite.log --output omega-error-triage.json
 
       - name: Build federated innovation network manifest
         run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
@@ -107,4 +118,6 @@ jobs:
             innovation-network.json
             engineering-execution-plan.json
             omega-research-results.json
+            test-suite.log
+            omega-error-triage.json
           if-no-files-found: error
