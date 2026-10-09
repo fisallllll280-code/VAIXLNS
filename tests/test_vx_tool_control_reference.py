@@ -253,7 +253,7 @@ class VXToolControlReferenceTests(unittest.TestCase):
         catalog = json.loads((root / "registry/vx-agent-runtime-profiles.v1.json").read_text(encoding="utf-8"))
         self.assertEqual(catalog["invariant"], "EVERY_AGENT_USES_VX")
         self.assertEqual(catalog["agent_role_count"], len(catalog["agent_profiles"]))
-        self.assertEqual(catalog["agent_role_count"], 22)
+        self.assertEqual(catalog["agent_role_count"], 35)
         ids = [profile["agent_role_id"] for profile in catalog["agent_profiles"]]
         self.assertEqual(len(ids), len(set(ids)))
         for profile in catalog["agent_profiles"]:
