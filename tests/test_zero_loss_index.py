@@ -108,8 +108,8 @@ class ZeroLossIndexTests(unittest.TestCase):
         first = build_index(self.root, out, legacy_start=1, legacy_end=4)
         second = verify_artifacts(self.root, out)
         self.assertEqual(first, second)
-        index_path = out / ARTIFACT_NAMES["index"]
-        index_path.write_text(index_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+        source_path = out / ARTIFACT_NAMES["sources"]
+        source_path.write_text(source_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
         with self.assertRaisesRegex(IndexBuildError, "GENERATED_ARTIFACT_DIGEST_MISMATCH"):
             verify_artifacts(self.root, out)
 
