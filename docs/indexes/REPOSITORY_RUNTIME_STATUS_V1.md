@@ -46,3 +46,16 @@ The canonical VAIXLNS repository now contains a Stage reference runtime boundary
 - machine-readable Stage evidence.
 
 This is an IMPLEMENTED reference/conformance surface, not proof of production deployment. Production status still requires deployment infrastructure and sustained operational evidence.
+
+## 2026-10-09 Agent Action-Control Assurance reference
+
+A scoped VX reference implementation has been added in a separate feature branch for review:
+
+- Execution repository: `fisallllll280-code/vaixlns-nexent-vx`
+- Review boundary: [PR #1](https://github.com/fisallllll280-code/vaixlns-nexent-vx/pull/1)
+- Pinned CI evidence: [Agent Action Assurance run 37916624473](https://github.com/fisallllll280-code/vaixlns-nexent-vx/actions/runs/37916624473)
+- Observed result: 14 tests passed, including 5,000 randomized state-transition sequences; three targeted mutation canaries were killed.
+- State: **PARTIAL / REFERENCE IMPLEMENTATION ONLY**.
+
+This does not replace the historical 2026-10-03 snapshot above. It is additive evidence for the new agent-action assurance capability. The code is not merged to the default branch and is not a production actuator. Durable atomic idempotency, a real target adapter with atomic resource-version enforcement, isolated target-side audit/readback/tripwire services, concurrency/recovery tests, formal model checking and independent security review remain open.
+
