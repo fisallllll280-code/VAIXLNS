@@ -39,6 +39,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run contract and adversarial tests
-        run: python -m unittest tests.test_engineering_work_order_contract -v
+        run: python -m unittest discover -s tests -p 'test_engineering_work_order_contract.py' -v
       - name: Validate the example and print plan-only order
         run: python scripts/validate_engineering_work_order.py examples/engineering-work-order.example.json --schema schemas/engineering-work-order.schema.json --plan-only
