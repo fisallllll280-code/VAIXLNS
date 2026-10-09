@@ -31,3 +31,8 @@
 - VAIXLNS_ZERO_LOSS_INDEX_V1.md — unified 28-view zero-loss index contract, atomic record rules, and build/verify commands.
 - ../../registry/indexes/zero-loss-index-taxonomy.v1.json — machine-readable definitions of all 28 index views and transition gates.
 - The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
+
+## Agentic engineering
+
+- `../engineering/AGENTIC_SOFTWARE_ENGINEERING_FABRIC_V1.md` — governed multi-agent engineering fabric and lifecycle proposal.
+- `../engineering/AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md` — adaptive agent topology, clean-diff governance, repository impact graph, Ω Change Capsule, effect gate, adversarial regression and acceptance tests.
