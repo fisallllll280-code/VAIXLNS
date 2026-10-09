@@ -159,7 +159,7 @@ class EngineeringDiscoveryTests(unittest.TestCase):
             "gitlab", 2.0, opener=opener,
             environ={"GITLAB_TOKEN": "gitlab-com-secret"},
         )
-        self.assertIsNone(opener.request.get_header("Private-token"))
+        self.assertFalse(any(name.lower() == "private-token" for name, _value in opener.request.header_items()))
         self.assertEqual(opener.request.get_method(), "GET")
         self.assertLessEqual(opener.timeout, 20.0)
 
