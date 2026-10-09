@@ -163,7 +163,7 @@ def validate_mission_plan(plan: dict[str, Any], registry: AgentRegistry | None =
         if not isinstance(task_id, str) or not task_id or task_id in seen:
             errors.append(f"TASK_ID_INVALID:{index}")
         seen.add(task_id)
-        expected_deps = [previous] if previous else []
+        expected_deps = (previous,) if previous else ()
         if task.get("depends_on") != expected_deps:
             errors.append(f"TASK_DEPENDENCY_INVALID:{task_id}")
         if task.get("state") != "PLANNED":
