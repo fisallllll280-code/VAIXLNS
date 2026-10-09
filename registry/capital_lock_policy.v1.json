@@ -1,10 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "policy_id": "VAIXLNS-FOUNDER-CAPITAL-10K-30D",
-  "title": "Founder-Financed Launch Capital and 30-Day Innovation Reserve",
+  "policy_id": "VAIXLNS-FOUNDER-CAPITAL-10K-45D",
+  "title": "Founder-Financed Launch Capital and 45-Day Innovation Reserve",
   "status": "PROPOSED_NOT_ENFORCED",
   "date": "2026-10-09",
   "authority": "FOUNDER_DESIGNATED_AUTHORITY",
+  "management_model": {
+    "founder_scope": "Founder retains governance, ownership decisions, approval authority, and final authorization of capital allocation.",
+    "assistant_scope": "Assistant supports financial modeling, engineering planning, documentation, risk controls, and review; it does not hold funds, operate a bank account, or execute transfers.",
+    "joint_execution_rule": "Plans and repository records do not constitute financial execution; funds and account controls require evidence from the actual account or custodian."
+  },
   "currency": "USD",
   "planned_capital_amount": 10000,
   "planned_source": "FOUNDER_PERSONAL_PORTFOLIO_OR_WALLET",
@@ -44,15 +49,16 @@
     },
     {
       "id": "INNOVATION_RESERVE",
-      "name": "Residual Innovation Fund reserve for 30-day lock",
+      "name": "Residual Innovation Fund reserve for 45-day lock",
       "amount": "actual_reconciled_residual_only",
       "priority": 4,
       "proof_required": true
     }
   ],
-  "no_double_counting_rule": "Cash allocated to paid obligations cannot simultaneously be represented as locked reserve.",
+  "no_double_counting_rule": "Cash allocated to paid obligations cannot simultaneously be represented as locked reserve. The 45-day lock applies only to the reconciled residual reserve after prior obligations and approved costs have been separated.",
   "lock": {
-    "duration_calendar_days": 30,
+    "duration_calendar_days": 45,
+    "duration_label": "one_month_and_a_half",
     "trigger": "Only after all prior envelopes are reconciled and the designated residual reserve has cleared and is available.",
     "prohibitions": [
       "founder_distribution",
@@ -64,7 +70,7 @@
     "decision_for_discretionary_outflow_during_lock": "DENY_LOCK_ACTIVE",
     "automatic_unlock": false,
     "unlock_requires": [
-      "30_calendar_days_elapsed",
+      "45_calendar_days_elapsed",
       "founder_approval",
       "ledger_reconciliation",
       "obligations_review",
@@ -76,6 +82,18 @@
       "tested_access_or_transfer_restriction",
       "audit_log"
     ]
+  },
+  "development_during_lock": {
+    "continues": true,
+    "allowed_activities": [
+      "engineering_design_and_implementation",
+      "testing_and_security_review",
+      "documentation_and_indexing",
+      "deployment_preparation",
+      "customer_discovery_and_nonbinding_partnership_outreach"
+    ],
+    "spending_rule": "Development may proceed only from a separately approved and budgeted operating envelope; the locked reserve itself is not available for spending.",
+    "revenue_claims": "Targets, proposals, and outreach are not revenue until contracts and collected payments are evidenced."
   },
   "progress_claim": {
     "founder_reported_percent": 10,
