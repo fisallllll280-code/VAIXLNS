@@ -20,6 +20,8 @@ from typing import Any
 GENOME_PATH = "project.genome"
 MASTER_INDEX_PATH = "registry/omega/omega-000-master-index.json"
 AGENT_REGISTRY_PATH = "registry/agent_registry.v1.json"
+FEDERATION_INDEX_PATH = "registry/federation/vlns-capability-index.v1.json"
+VLNS_CONNECTION_STATUS_PATH = "registry/vlns_connection_status.v1.json"
 ZERO_HASH = "0" * 64
 
 
@@ -100,6 +102,16 @@ class CommandEngine:
             return self._agent_inspect(tokens[2])
         if command[:2] == ["agents", "route"] and len(tokens) >= 3:
             return self._agents_route(tokens[2:])
+        if command == ["federation", "status"]:
+            return self._federation_status()
+        if command[:2] == ["federation", "inspect"] and len(tokens) == 3:
+            return self._federation_inspect(tokens[2])
+        if command[:2] == ["federation", "capabilities"]:
+            return self._federation_capabilities(" ".join(tokens[2:]).strip() or "all")
+        if command[:2] == ["federation", "attributes"]:
+            return self._federation_attributes(" ".join(tokens[2:]).strip() or "all")
+        if command == ["federation", "gaps"]:
+            return self._federation_gaps()
         if command == ["genome", "inspect"]:
             return self._genome_inspect()
         if command == ["genome", "verify"]:
@@ -117,7 +129,9 @@ class CommandEngine:
             return self._history()
         known = [
             "help", "status", "map", "index list", "index search <terms>",
-            "agents list", "agents inspect <agent-id>", "agents route <capabilities>", "genome inspect",
+            "agents list", "agents inspect <agent-id>", "agents route <capabilities>",
+            "federation status", "federation inspect <system-id>", "federation capabilities [query]",
+            "federation attributes [query]", "federation gaps", "genome inspect",
             "genome verify", "proof verify", "runtime status",
             "runtime simulate <intent>", "tests run", "history",
         ]
@@ -153,6 +167,13 @@ class CommandEngine:
             "  agents list                    List agents from the canonical agent registry",
             "  agents inspect <agent-id>      Inspect scope, capabilities, and hard rules",
             "  agents route <capabilities>     Find definitions covering all requested capabilities",
+            "",
+            "FEDERATION & ENGINEERING",
+            "  federation status              Four-system inventory and recorded connection state",
+            "  federation inspect <system-id> Inspect a system and its identity boundary",
+            "  federation capabilities [query] Search declared capability records",
+            "  federation attributes [query]  Search individual indexed properties and sources",
+            "  federation gaps                Show evidence-backed integration blockers",
             "",
             "PROOF & EXECUTION",
             "  proof verify                   Validate canonical control surfaces and digest",
@@ -235,11 +256,17 @@ class CommandEngine:
         search_sources = [
             (MASTER_INDEX_PATH, "json"),
             (AGENT_REGISTRY_PATH, "json"),
+            (FEDERATION_INDEX_PATH, "json"),
+            (VLNS_CONNECTION_STATUS_PATH, "json"),
             ("registry/innovation_measurement.v1.json", "json"),
             ("registry/federation_backend_registry.v1.json", "json"),
             ("docs/innovation/innovation-federation.json", "json"),
             ("docs/indexes/INNOVATION_MASTER_INDEX.md", "text"),
             ("docs/indexes/REPOSITORY_FEDERATION_INDEX.md", "text"),
+            ("docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md", "text"),
+            ("docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md", "text"),
+            ("docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md", "text"),
+            ("docs/federation/VLNS_SYSTEM_FEDERATION_AND_ENGINEERING_DASHBOARD_V1.md", "text"),
             ("docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md", "text"),
         ]
         matches: list[dict[str, Any]] = []
@@ -262,7 +289,7 @@ class CommandEngine:
                 serialized = json.dumps(own_fields, ensure_ascii=False, sort_keys=True).casefold()
                 has_identity = any(
                     key in value for key in
-                    ("id", "index_id", "agent_id", "omega_id", "innovation_id", "pattern_id", "name", "title", "canonical_name")
+                    ("id", "index_id", "agent_id", "omega_id", "innovation_id", "pattern_id", "capability_id", "property_id", "gap_id", "connection_id", "system_id", "name", "title", "canonical_name")
                 )
                 if needle in serialized and has_identity and len(found) < per_source_limit:
                     found.append({"source": source, "record": value, "match_type": "registry-record"})
@@ -330,6 +357,176 @@ class CommandEngine:
             lines,
             {"query": query, "searched_sources": searched, "matches": matches[:120]},
             searched,
+        )
+
+    def _federation_document(self) -> dict[str, Any]:
+        document = self._read_json(FEDERATION_INDEX_PATH)
+        if not isinstance(document, dict) or not isinstance(document.get("systems"), list):
+            raise CommandError("Invalid federation capability index: systems array required.")
+        return document
+
+    def _federation_status(self) -> dict[str, Any]:
+        document = self._federation_document()
+        systems = document["systems"]
+        connection_record = self._read_json(VLNS_CONNECTION_STATUS_PATH, required=False)
+        connection_record = connection_record if isinstance(connection_record, dict) else {}
+        edges = document.get("connections", [])
+        verified_links = sum(
+            1 for edge in edges
+            if edge.get("live_state") == "VERIFIED" and edge.get("authenticated") is True
+        )
+        lines = [
+            "FOUR-SYSTEM FEDERATION INVENTORY — REPOSITORY EVIDENCE ONLY",
+            f"Catalog: {document.get('catalog_id', 'UNSET')} [{document.get('status', 'UNSET')}]",
+            f"Systems indexed: {len(systems)}",
+            f"Verified authenticated links in catalog: {verified_links}/{len(edges)}",
+            "",
+        ]
+        for item in systems:
+            surface = ", ".join(item.get("repository_surfaces", []))
+            lines.append(
+                f"{item.get('system_id', '?'):8} | identity={item.get('identity_status', 'UNKNOWN')} "
+                f"| maturity={item.get('epistemic_state', 'UNKNOWN')} | {surface}"
+            )
+        lines.extend([
+            "",
+            f"Recorded VLNS probe: {connection_record.get('status', 'UNKNOWN')}",
+            f"Probe timestamp: {connection_record.get('last_probe', 'UNKNOWN')}",
+            f"Authenticated connection recorded: {connection_record.get('authenticated_connection', False)}",
+            "No external health probe was performed by this command.",
+            "UNVERIFIED identity and connectivity are not promoted to connected/running.",
+        ])
+        return self._ok(
+            "Loaded indexed federation state; live connectivity remains unverified.",
+            lines,
+            {
+                "catalog_id": document.get("catalog_id"),
+                "catalog_status": document.get("status"),
+                "system_count": len(systems),
+                "systems": systems,
+                "connections": edges,
+                "verified_live_links": verified_links,
+                "recorded_vlns_connection": connection_record,
+                "external_probe_performed": False,
+            },
+            [FEDERATION_INDEX_PATH, VLNS_CONNECTION_STATUS_PATH],
+        )
+
+    def _federation_inspect(self, system_id: str) -> dict[str, Any]:
+        document = self._federation_document()
+        key = system_id.strip().casefold()
+        system = next(
+            (item for item in document["systems"]
+             if item.get("system_id", "").casefold() == key
+             or item.get("canonical_name", "").casefold() == key),
+            None,
+        )
+        if system is None:
+            raise CommandError(f"System not found in federation index: {system_id}")
+        lines = [
+            f"{system.get('system_id')} — {system.get('canonical_name', 'UNNAMED')}",
+            f"Role: {system.get('role', 'UNKNOWN')}",
+            f"Identity state: {system.get('identity_status', 'UNKNOWN')}",
+            f"Epistemic state: {system.get('epistemic_state', 'UNKNOWN')}",
+            f"Integration state: {system.get('integration_state', 'UNKNOWN')}",
+            "Repository surfaces:",
+            *[f"  - {value}" for value in system.get("repository_surfaces", [])],
+            "Declared capabilities:",
+            *[f"  - {value}" for value in system.get("declared_capabilities", [])],
+            "Source refs:",
+            *[f"  - {value}" for value in system.get("source_refs", [])],
+            "",
+            "Repository association does not itself prove system identity or runtime health.",
+        ]
+        return self._ok(
+            f"Inspected {system.get('system_id')} from the indexed federation record.",
+            lines,
+            system,
+            [FEDERATION_INDEX_PATH],
+        )
+
+    def _federation_capabilities(self, query: str) -> dict[str, Any]:
+        document = self._federation_document()
+        capabilities = document.get("capability_catalog", [])
+        needle = query.casefold()
+        matches = capabilities if needle in ("", "all", "*") else [
+            item for item in capabilities
+            if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold()
+        ]
+        lines = [
+            "VLNS CAPABILITY EXPLORER — CATALOG CLAIMS, NOT RUNTIME ASSERTIONS",
+            f"Query: {query}",
+            f"Matches: {len(matches)} / {len(capabilities)}",
+            "",
+        ]
+        for item in matches:
+            lines.append(
+                f"{item.get('capability_id', '?'):14} | {item.get('status', 'UNKNOWN'):14} "
+                f"| implementation={item.get('implementation_state', 'UNKNOWN')} "
+                f"| {item.get('name', 'Unnamed')}"
+            )
+            if item.get("description"):
+                lines.append(f"  {item['description']}")
+        return self._ok(
+            f"Found {len(matches)} indexed capability records.",
+            lines,
+            {"query": query, "capabilities": matches, "total": len(capabilities)},
+            [FEDERATION_INDEX_PATH],
+        )
+
+    def _federation_attributes(self, query: str) -> dict[str, Any]:
+        document = self._federation_document()
+        properties = document.get("properties", [])
+        needle = query.casefold()
+        matches = properties if needle in ("", "all", "*") else [
+            item for item in properties
+            if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold()
+        ]
+        lines = [
+            "VLNS DEEP ATTRIBUTE INDEX — EACH RESULT RETAINS ITS SOURCE REFERENCES",
+            f"Query: {query}",
+            f"Matches: {len(matches)} / {len(properties)}",
+            "",
+        ]
+        for item in matches:
+            refs = item.get("source_refs", [])
+            lines.append(
+                f"{item.get('property_id', '?'):16} | {item.get('category', 'UNKNOWN'):16} "
+                f"| {item.get('state', 'UNKNOWN')} | {item.get('name', 'Unnamed')}"
+            )
+            lines.append(f"  {item.get('value', '')}")
+            lines.append(f"  evidence: {'; '.join(refs)}")
+        return self._ok(
+            f"Found {len(matches)} indexed property records.",
+            lines,
+            {"query": query, "properties": matches, "total": len(properties)},
+            [FEDERATION_INDEX_PATH],
+        )
+
+    def _federation_gaps(self) -> dict[str, Any]:
+        document = self._federation_document()
+        gaps = document.get("gaps", [])
+        lines = [
+            "FEDERATION / ENGINEERING GAP BOARD",
+            f"Open catalogued gaps: {len(gaps)}",
+            "",
+        ]
+        for item in gaps:
+            lines.append(
+                f"[{item.get('severity', 'UNKNOWN')}] {item.get('gap_id', '?')} "
+                f"| {item.get('topic', 'Unclassified')}: {item.get('issue', '')}"
+            )
+            lines.append(f"  required evidence: {item.get('required_evidence', 'UNSET')}")
+            lines.append(f"  next action: {item.get('next_action', 'UNSET')}")
+        lines.extend([
+            "",
+            "Gap closure requires the named evidence; dashboard presence is not closure.",
+        ])
+        return self._ok(
+            f"Loaded {len(gaps)} integration/engineering gap records.",
+            lines,
+            {"gaps": gaps, "total": len(gaps)},
+            [FEDERATION_INDEX_PATH],
         )
 
     def _agents_list(self) -> dict[str, Any]:
