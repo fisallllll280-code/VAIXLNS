@@ -11,7 +11,7 @@ from typing import Any
 
 INPUT_SCHEMA = "vaixlns.omega-revenue-portfolio.v1"
 REPORT_SCHEMA = "vaixlns.omega-revenue-portfolio-report.v1"
-EVIDENCE_POINTS = {"IDEA": 0, "CUSTOMER_INTERVIEWS": 8, "DESIGN_PARTNER": 15, "PAID_PILOT": 22, "REPEATED_PAID": 30}
+EVIDENCE_POINTS = {"IDEA": 0, "CUSTOMER_INTERVIEWS": 5, "DESIGN_PARTNER": 10, "PAID_PILOT": 15, "REPEATED_PAID": 20}
 NUMERIC_FIELDS = (
     "price_per_customer_period",
     "variable_cost_per_customer_period",
