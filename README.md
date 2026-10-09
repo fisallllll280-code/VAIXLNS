@@ -15,6 +15,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Innovation separation matrix](docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md)
 - [Innovation federation JSON](docs/innovation/innovation-federation.json)
 - [Engineering decision register](docs/indexes/ENGINEERING_DECISION_REGISTER.md)
+- [Engineering Drawing Automation Fabric](docs/engineering/ENGINEERING_DRAWING_AUTOMATION_FABRIC_V1.md)
 - [Conformance gap closure v1](docs/indexes/CONFORMANCE_GAP_CLOSURE_V1.md)
 - [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
