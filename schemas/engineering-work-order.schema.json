@@ -1,0 +1,621 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.example/schemas/engineering-work-order.schema.json",
+  "title": "VAIXLNS Engineering Work Order",
+  "description": "Versioned, provenance-bound contract for cross-domain engineering tasks and controlled distributed execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "work_order_id",
+    "state",
+    "intent",
+    "domains",
+    "requested_outcomes",
+    "tasks",
+    "acceptance_criteria",
+    "policy",
+    "resource_budget",
+    "federation",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "work_order_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]+$"
+    },
+    "parent_work_order_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "state": {
+      "enum": [
+        "DRAFT",
+        "READY_FOR_PLAN",
+        "PLAN_VALIDATED",
+        "AUTHORIZATION_PENDING",
+        "QUEUED",
+        "LEASED",
+        "RUNNING",
+        "RESULT_SUBMITTED",
+        "VERIFYING",
+        "ACCEPTED",
+        "BLOCKED",
+        "RETRYABLE_FAILURE",
+        "FAILED",
+        "CANCELLED",
+        "QUARANTINED",
+        "INCONCLUSIVE",
+        "REJECTED",
+        "ROLLBACK_REQUIRED"
+      ]
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 12,
+      "maxLength": 12000
+    },
+    "exclusions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "maxItems": 100
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "mathematics",
+          "computational_mathematics",
+          "physics",
+          "computational_physics",
+          "software",
+          "systems_engineering",
+          "mechanical_engineering",
+          "electrical_electronics",
+          "controls_robotics",
+          "materials",
+          "chemical_process",
+          "manufacturing_industrial",
+          "ai_ml_data",
+          "security_infrastructure",
+          "cross_domain"
+        ]
+      }
+    },
+    "requested_outcomes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "outcome_id",
+          "description",
+          "artifact_kind"
+        ],
+        "properties": {
+          "outcome_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "artifact_kind": {
+            "enum": [
+              "REPORT",
+              "MODEL",
+              "EQUATION_SET",
+              "SOURCE_PATCH",
+              "TEST_REPORT",
+              "SIMULATION_RESULT",
+              "CAD_MODEL",
+              "CAE_RESULT",
+              "BOM",
+              "PROCESS_PLAN",
+              "DEPLOYMENT_PLAN",
+              "EVIDENCE_BUNDLE",
+              "OTHER"
+            ]
+          }
+        }
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "uri",
+          "relationship"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 3000
+          },
+          "source_location": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          },
+          "content_hash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "relationship": {
+            "enum": [
+              "REQUIREMENT",
+              "BACKGROUND",
+              "INPUT_DATA",
+              "PRIOR_ART",
+              "CONSTRAINT",
+              "COUNTEREVIDENCE",
+              "RELATED_WORK"
+            ]
+          },
+          "license_status": {
+            "enum": [
+              "KNOWN_PERMITTED",
+              "REVIEW_REQUIRED",
+              "RESTRICTED",
+              "UNKNOWN"
+            ]
+          }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 300,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_id",
+          "title",
+          "domain",
+          "role",
+          "depends_on",
+          "execution_mode",
+          "success_condition"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 300
+          },
+          "domain": {
+            "enum": [
+              "mathematics",
+              "computational_mathematics",
+              "physics",
+              "computational_physics",
+              "software",
+              "systems_engineering",
+              "mechanical_engineering",
+              "electrical_electronics",
+              "controls_robotics",
+              "materials",
+              "chemical_process",
+              "manufacturing_industrial",
+              "ai_ml_data",
+              "security_infrastructure",
+              "cross_domain"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          },
+          "depends_on": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required_capabilities": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "maxItems": 100
+          },
+          "execution_mode": {
+            "enum": [
+              "PLAN_ONLY",
+              "SANDBOX",
+              "AUTHORIZED_EXECUTION"
+            ]
+          },
+          "success_condition": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "independent_review_required": {
+            "type": "boolean"
+          },
+          "estimated_wall_time_seconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 604800
+          }
+        }
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "criterion_id",
+          "description",
+          "verification_method",
+          "required"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "verification_method": {
+            "enum": [
+              "SOURCE_REVIEW",
+              "UNIT_TEST",
+              "INTEGRATION_TEST",
+              "FORMAL_PROOF",
+              "NUMERICAL_CHECK",
+              "REPRODUCTION",
+              "INDEPENDENT_REVIEW",
+              "SECURITY_TEST",
+              "HUMAN_APPROVAL",
+              "PHYSICAL_TEST",
+              "OTHER"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tenant_id",
+        "data_classification",
+        "execution_mode",
+        "network_access",
+        "external_writes",
+        "physical_actuation",
+        "approval_required_for_side_effects"
+      ],
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "data_classification": {
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED"
+          ]
+        },
+        "execution_mode": {
+          "enum": [
+            "PLAN_ONLY",
+            "SANDBOX",
+            "AUTHORIZED_EXECUTION"
+          ]
+        },
+        "network_access": {
+          "type": "boolean"
+        },
+        "external_writes": {
+          "type": "boolean"
+        },
+        "physical_actuation": {
+          "type": "boolean"
+        },
+        "approval_required_for_side_effects": {
+          "const": true
+        },
+        "approval_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "maxItems": 30
+        },
+        "allowed_domains": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "maxItems": 100
+        }
+      }
+    },
+    "resource_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_wall_time_seconds",
+        "max_cpu_cores",
+        "max_gpu_units",
+        "max_parallel_tasks",
+        "max_cost_usd"
+      ],
+      "properties": {
+        "max_wall_time_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2592000
+        },
+        "max_cpu_cores": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "max_gpu_units": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "max_parallel_tasks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "budget_owner": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      }
+    },
+    "federation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design_state",
+        "requested_target_ids",
+        "targets",
+        "partner_refs"
+      ],
+      "properties": {
+        "design_state": {
+          "enum": [
+            "PLAN_ONLY",
+            "LOCAL_ONLY",
+            "MULTI_SERVER_REQUESTED",
+            "PARTNER_FEDERATION_REQUESTED"
+          ]
+        },
+        "requested_target_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "maxItems": 100
+        },
+        "targets": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "target_id",
+              "kind",
+              "connection_state",
+              "tenant_id",
+              "max_data_classification"
+            ],
+            "properties": {
+              "target_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "kind": {
+                "enum": [
+                  "LOCAL_SANDBOX",
+                  "CPU_SERVER",
+                  "GPU_SERVER",
+                  "HPC_CLUSTER",
+                  "APPROVED_CLOUD_WORKER",
+                  "PARTNER_WORKER"
+                ]
+              },
+              "connection_state": {
+                "enum": [
+                  "NOT_CONFIGURED",
+                  "CONFIGURED_PENDING_AUTHORIZATION",
+                  "AUTHORIZED_PENDING_HEALTH_CHECK",
+                  "HEALTHY",
+                  "DEGRADED",
+                  "QUARANTINED",
+                  "REVOKED"
+                ]
+              },
+              "tenant_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "max_data_classification": {
+                "enum": [
+                  "PUBLIC",
+                  "INTERNAL",
+                  "CONFIDENTIAL",
+                  "RESTRICTED"
+                ]
+              },
+              "capability_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                }
+              },
+              "data_region": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 120
+              },
+              "authorization_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300
+              },
+              "health_evidence_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300
+              }
+            }
+          }
+        },
+        "partner_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "maxItems": 100
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_by",
+        "created_at",
+        "source_revision"
+      ],
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "parent_record_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "change_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        }
+      }
+    }
+  }
+}
