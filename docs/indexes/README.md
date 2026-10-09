@@ -19,3 +19,7 @@
 - `REPOSITORY_PERPETUAL_ENGINE_V1.md` — continuous repository creation, development, verification and innovation loop.
 
 - `../architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md` — 2026-10-07 consolidated architecture context for index memory, VX cognitive federation, agent minds, Ω-Patterns, prediction/recovery, data/tools/developers, Ω-Arena, security, and treasury integration.
+
+- `../strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md` — Saudi-first engineering offers, founder-financed launch capital, sources-and-uses ledger, and 30-day reserve rule.
+- `../../registry/capital_lock_policy.v1.json` — machine-readable proposed capital policy; not technically enforced until separately evidenced.
+- `../../registry/saudi_innovation_launch.v1.json` — launch status, offer targets, partner-slot status, and acceptance gates.
