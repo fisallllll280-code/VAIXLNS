@@ -175,7 +175,6 @@ jobs:
             } else {
               await github.rest.issues.create({
                 owner, repo, title,
-                labels: ["microsoft-watch"],
                 body
               });
             }
