@@ -123,6 +123,28 @@
         "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md",
         "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
       ]
+    },
+    {
+      "id": "VLNS_FEDERATION_ENGINEERING_DASHBOARD_V1",
+      "type": "CAPABILITY_INDEX",
+      "role": "VLNS_CROSS_SYSTEM_CAPABILITY_AND_PROPERTY_CATALOG",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "related_systems": [
+        "VAIXLNS",
+        "VLNS",
+        "VX",
+        "NEXNET"
+      ],
+      "evidence_refs": [
+        "registry/federation/vlns-capability-index.v1.json",
+        "docs/federation/VLNS_SYSTEM_FEDERATION_AND_ENGINEERING_DASHBOARD_V1.md",
+        "tools/sovereign_console/engine.py",
+        "tools/sovereign_console/index.html",
+        "tests/test_federation_console.py"
+      ],
+      "authority_note": "Catalog and dashboard do not promote VLNS↔NAXLNS or NEXNET↔NEXENT identity mappings and do not assert live runtime connectivity."
     }
   ],
   "promotion_rules": {
