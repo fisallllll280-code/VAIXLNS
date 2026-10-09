@@ -98,6 +98,8 @@ class CommandEngine:
             return self._agents_list()
         if command[:2] == ["agents", "inspect"] and len(tokens) == 3:
             return self._agent_inspect(tokens[2])
+        if command[:2] == ["agents", "route"] and len(tokens) >= 3:
+            return self._agents_route(tokens[2:])
         if command == ["genome", "inspect"]:
             return self._genome_inspect()
         if command == ["genome", "verify"]:
@@ -115,7 +117,7 @@ class CommandEngine:
             return self._history()
         known = [
             "help", "status", "map", "index list", "index search <terms>",
-            "agents list", "agents inspect <agent-id>", "genome inspect",
+            "agents list", "agents inspect <agent-id>", "agents route <capabilities>", "genome inspect",
             "genome verify", "proof verify", "runtime status",
             "runtime simulate <intent>", "tests run", "history",
         ]
@@ -150,6 +152,7 @@ class CommandEngine:
             "AGENT FABRIC",
             "  agents list                    List agents from the canonical agent registry",
             "  agents inspect <agent-id>      Inspect scope, capabilities, and hard rules",
+            "  agents route <capabilities>     Find definitions covering all requested capabilities",
             "",
             "PROOF & EXECUTION",
             "  proof verify                   Validate canonical control surfaces and digest",
@@ -162,7 +165,7 @@ class CommandEngine:
             "  Runtime simulation is not a production run or VERIFIED evidence.",
             "  External model providers and a live VX runtime are not implied by this console.",
         ]
-        return CommandEngine._ok("Command reference loaded.", lines, {"count": 13})
+        return CommandEngine._ok("Command reference loaded.", lines, {"count": 14})
 
     def _read_json(self, relative: str, required: bool = True) -> Any:
         path = self.root / relative
@@ -228,27 +231,95 @@ class CommandEngine:
         needle = query.strip().casefold()
         if not needle:
             raise CommandError("Usage: index search <terms>")
-        sources: list[tuple[str, list[dict[str, Any]]]] = []
-        index = self._read_json(MASTER_INDEX_PATH)
-        agents = self._read_json(AGENT_REGISTRY_PATH)
-        sources.append((MASTER_INDEX_PATH, index.get("records", [])))
-        sources.append((AGENT_REGISTRY_PATH, agents.get("agents", [])))
+
+        search_sources = [
+            (MASTER_INDEX_PATH, "json"),
+            (AGENT_REGISTRY_PATH, "json"),
+            ("registry/innovation_measurement.v1.json", "json"),
+            ("registry/federation_backend_registry.v1.json", "json"),
+            ("docs/innovation/innovation-federation.json", "json"),
+            ("docs/indexes/INNOVATION_MASTER_INDEX.md", "text"),
+            ("docs/indexes/REPOSITORY_FEDERATION_INDEX.md", "text"),
+            ("docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md", "text"),
+        ]
         matches: list[dict[str, Any]] = []
-        for path, items in sources:
-            for item in items:
-                if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold():
-                    matches.append({"source": path, "record": item})
-        lines = [f"Search: {query}", f"Matches: {len(matches)}", ""]
-        for item in matches[:40]:
+        searched: list[str] = []
+        per_source_limit = 18
+
+        def visit(value: Any, source: str, found: list[dict[str, Any]]) -> None:
+            if isinstance(value, dict):
+                serialized = json.dumps(value, ensure_ascii=False, sort_keys=True).casefold()
+                has_identity = any(
+                    key in value for key in
+                    ("id", "index_id", "agent_id", "omega_id", "innovation_id", "pattern_id", "name", "title")
+                )
+                if needle in serialized and has_identity and len(found) < per_source_limit:
+                    found.append({"source": source, "record": value, "match_type": "registry-record"})
+                for child in value.values():
+                    if len(found) >= per_source_limit:
+                        break
+                    visit(child, source, found)
+            elif isinstance(value, list):
+                for child in value:
+                    if len(found) >= per_source_limit:
+                        break
+                    visit(child, source, found)
+
+        for relative, kind in search_sources:
+            path = self.root / relative
+            if not path.is_file():
+                continue
+            searched.append(relative)
+            local: list[dict[str, Any]] = []
+            try:
+                text = path.read_text(encoding="utf-8")
+                if kind == "json":
+                    visit(json.loads(text), relative, local)
+                else:
+                    for line_number, line in enumerate(text.splitlines(), start=1):
+                        if needle in line.casefold():
+                            local.append({
+                                "source": relative,
+                                "record": {"line_number": line_number, "text": line[:360]},
+                                "match_type": "source-line",
+                            })
+                            if len(local) >= per_source_limit:
+                                break
+            except (OSError, json.JSONDecodeError, RecursionError):
+                continue
+            matches.extend(local)
+
+        lines = [
+            f"Federated index search: {query}",
+            f"Searchable sources inspected: {len(searched)}",
+            f"Matching records/source lines: {len(matches)}",
+            "",
+        ]
+        for item in matches[:80]:
             record = item["record"]
-            identity = record.get("id") or record.get("agent_id") or record.get("canonical_name") or "record"
-            state = record.get("epistemic_state") or record.get("family") or record.get("authority_scope") or "metadata"
-            lines.append(f"{identity}  [{state}]  ← {item['source']}")
+            identity = (
+                record.get("id") or record.get("index_id") or record.get("agent_id")
+                or record.get("omega_id") or record.get("innovation_id") or record.get("pattern_id")
+                or record.get("name") or record.get("title")
+            )
+            if not identity:
+                identity = f"line {record.get('line_number', '?')}: {record.get('text', '')}"
+            state = record.get("epistemic_state") or record.get("family") or record.get("authority_scope") or item["match_type"]
+            lines.append(f"{identity}  [{state}]  <- {item['source']}")
         if not matches:
-            lines.append("No indexed match. This search covers Ω.000 and the agent registry, not the entire internet or all session history.")
-        elif len(matches) > 40:
-            lines.append(f"Showing 40 of {len(matches)} matching records.")
-        return self._ok(f"Found {len(matches)} records matching {query!r}.", lines, {"query": query, "matches": matches[:100]}, [MASTER_INDEX_PATH, AGENT_REGISTRY_PATH])
+            lines.append("No match in the configured local source set. This command does not search the internet or every conversation.")
+        elif len(matches) > 80:
+            lines.append("Output capped at 80 matches; refine the query for a smaller result set.")
+        lines.extend([
+            "",
+            "Search scope: local canonical/index/innovation records only; each result retains its source path.",
+        ])
+        return self._ok(
+            f"Found {len(matches)} local records or source lines matching {query!r}.",
+            lines,
+            {"query": query, "searched_sources": searched, "matches": matches[:120]},
+            searched,
+        )
 
     def _agents_list(self) -> dict[str, Any]:
         registry = self._read_json(AGENT_REGISTRY_PATH)
@@ -263,30 +334,42 @@ class CommandEngine:
         lines.append("Registry presence does not imply an agent process is currently running.")
         return self._ok(f"Loaded {len(agents)} registered agent definitions.", lines, {"status": registry.get("status"), "agents": agents}, [AGENT_REGISTRY_PATH])
 
-    def _agent_inspect(self, agent_id: str) -> dict[str, Any]:
-        registry = self._read_json(AGENT_REGISTRY_PATH)
-        agents = registry.get("agents", []) if isinstance(registry, dict) else []
-        needle = agent_id.casefold()
-        agent = next((item for item in agents if item.get("agent_id", "").casefold() == needle or item.get("canonical_name", "").casefold() == needle), None)
-        if agent is None:
-            raise CommandError(f"Agent not found in {AGENT_REGISTRY_PATH}: {agent_id}")
+    def _agents_route(self, required_capabilities: list[str]) -> dict[str, Any]:
+        from agents.agent_fabric import AgentRegistry
+
+        registry = AgentRegistry(self.root / AGENT_REGISTRY_PATH)
+        matches = registry.capable_of(required_capabilities)
         lines = [
-            f"{agent.get('agent_id')} — {agent.get('canonical_name')}",
-            f"Family: {agent.get('family', 'UNSET')}",
-            f"Authority scope: {agent.get('authority_scope', 'UNSET')}",
-            f"Primary output: {agent.get('primary_output', 'UNSET')}",
+            "CAPABILITY ROUTING PREVIEW — REGISTRY METADATA ONLY",
+            "Required capabilities: " + ", ".join(required_capabilities),
+            f"Eligible definitions: {len(matches)}",
             "",
-            "Capabilities:",
-            *[f"  • {value}" for value in agent.get("capabilities", [])],
-            "",
-            "Allowed tools:",
-            *[f"  • {value}" for value in agent.get("allowed_tools", [])],
-            "",
-            f"Hard rule: {agent.get('hard_rule', 'UNSET')}",
-            "",
-            "This is a registry inspection, not proof that this agent is running.",
         ]
-        return self._ok(f"Inspected {agent.get('agent_id')}.", lines, agent, [AGENT_REGISTRY_PATH])
+        for agent in matches:
+            lines.append(
+                f"{agent.agent_id:8} | {agent.canonical_name} | "
+                f"scope={agent.authority_scope} | capabilities={', '.join(agent.capabilities)}"
+            )
+        if not matches:
+            lines.append("No registered definition declares every requested capability.")
+        lines.extend([
+            "",
+            "This finds candidates only. It does not invoke a provider, grant authority, or start an agent process.",
+        ])
+        return self._ok(
+            f"Found {len(matches)} candidate agent definitions for the requested capabilities.",
+            lines,
+            {"required_capabilities": required_capabilities, "candidates": [
+                {
+                    "agent_id": agent.agent_id,
+                    "canonical_name": agent.canonical_name,
+                    "capabilities": list(agent.capabilities),
+                    "authority_scope": agent.authority_scope,
+                    "hard_rule": agent.hard_rule,
+                } for agent in matches
+            ]},
+            [AGENT_REGISTRY_PATH],
+        )
 
     def _genome_inspect(self) -> dict[str, Any]:
         genome = self._read_json(GENOME_PATH)
@@ -415,43 +498,103 @@ class CommandEngine:
     def _simulate(self, intent: str) -> dict[str, Any]:
         if len(intent) > 500:
             raise CommandError("Simulation intent must be 500 characters or fewer.")
-        stages = [
-            ("INTENT", "Capture request without mutating canonical state"),
-            ("CONTEXT", "Load canonical genome and index identity"),
-            ("ROUTE", "Map intent to a bounded agent capability"),
-            ("EVIDENCE", "Identify evidence obligations before action"),
-            ("VERIFY", "Apply deterministic local integrity checks"),
-            ("RECONCILE", "Return a proposed result with an explicit status"),
-        ]
+        from agents.agent_fabric import AgentRegistry, DEFAULT_HANDOFF_CHAIN
+        from agents.mind_federation import MindFederation
+
+        registry = AgentRegistry(self.root / AGENT_REGISTRY_PATH)
+        agent_by_id = {agent.agent_id: agent for agent in registry.all()}
+        chain = tuple(agent_id for agent_id in DEFAULT_HANDOFF_CHAIN if agent_id in agent_by_id)
+        if not chain:
+            chain = tuple(agent_by_id.keys())
+        if not chain:
+            raise CommandError("No registered agents are available for simulation.")
+
         genome = self._read_json(GENOME_PATH)
         index = self._read_json(MASTER_INDEX_PATH)
+        federation = MindFederation.from_registry(tuple(agent_by_id.keys()), chain)
         prior = ZERO_HASH
-        trace: list[dict[str, str]] = []
-        for sequence, (stage, description) in enumerate(stages, start=1):
+        trace: list[dict[str, Any]] = []
+        previous_agent = None
+
+        for sequence, agent_id in enumerate(chain, start=1):
+            agent = agent_by_id[agent_id]
+            exchange_ref = None
+            exchange_hash = None
+            if previous_agent is not None:
+                source = agent_by_id[previous_agent]
+                semantic_state = {
+                    "intent": intent,
+                    "requested_capability": ", ".join(agent.capabilities) or "general review",
+                    "assumptions": ["deterministic rehearsal only", "no external side effects"],
+                    "risk": "bounded; no provider calls; no runtime execution",
+                    "evidence_refs": [GENOME_PATH, MASTER_INDEX_PATH, AGENT_REGISTRY_PATH],
+                    "requested_action": "simulate governed agent handoff",
+                    "authority_scope": [source.authority_scope, agent.authority_scope],
+                }
+                exchange = federation.exchange(
+                    source_agent=previous_agent,
+                    target_agent=agent_id,
+                    semantic_state=semantic_state,
+                    evidence_refs=(GENOME_PATH, MASTER_INDEX_PATH, AGENT_REGISTRY_PATH),
+                    authority_scope=(source.authority_scope, agent.authority_scope),
+                )
+                exchange_ref = exchange.exchange_id
+                exchange_hash = exchange.state_hash
+
             event_data = {
                 "sequence": sequence,
-                "stage": stage,
+                "agent_id": agent.agent_id,
+                "agent_name": agent.canonical_name,
+                "family": agent.family,
+                "capabilities": list(agent.capabilities),
+                "authority_scope": agent.authority_scope,
+                "declared_hard_rule": agent.hard_rule,
                 "intent": intent,
-                "description": description,
                 "genome_version": genome.get("canonical_source", {}).get("version"),
                 "index_id": index.get("index_id"),
+                "handoff_id": exchange_ref,
+                "handoff_state_hash": exchange_hash,
                 "previous_hash": prior,
             }
             digest = canonical_digest(event_data)
             trace.append({**event_data, "event_hash": digest})
             prior = digest
+            previous_agent = agent_id
+
+        federation_state = federation.state()
         lines = [
             "MODE: SIMULATION_ONLY",
             f"Intent: {intent}",
-            f"Trace events: {len(trace)}",
+            f"Registry source: {AGENT_REGISTRY_PATH}",
+            f"Registered definitions: {len(registry.all())}",
+            f"Agents rehearsed in governed chain: {len(trace)}",
+            f"Semantic handoffs validated: {federation_state['exchange_count']}",
             "",
-            *[f"{item['sequence']:02d} {item['stage']:<12} {item['description']}  [{item['event_hash'][:12]}]" for item in trace],
+            *[
+                f"{item['sequence']:02d} {item['agent_id']} | {item['agent_name']} "
+                f"| scope={item['authority_scope']} | {item['event_hash'][:12]}"
+                for item in trace
+            ],
             "",
             f"Final trace hash: {prior}",
+            f"Federation history hash: {federation_state['history_hash']}",
             "No project files were changed. No external model or VX runtime was called.",
             "Result state: SPECIFIED (simulation trace only; not VERIFIED execution evidence).",
         ]
-        return self._ok("Deterministic rehearsal completed; no production execution occurred.", lines, {"mode": "SIMULATION_ONLY", "intent": intent, "trace": trace, "final_hash": prior, "epistemic_state": "SPECIFIED"}, [GENOME_PATH, MASTER_INDEX_PATH])
+        return self._ok(
+            "Deterministic governed-agent rehearsal completed; no production execution occurred.",
+            lines,
+            {
+                "mode": "SIMULATION_ONLY",
+                "intent": intent,
+                "trace": trace,
+                "final_hash": prior,
+                "federation_state": federation_state,
+                "epistemic_state": "SPECIFIED",
+                "chain": list(chain),
+            },
+            [GENOME_PATH, MASTER_INDEX_PATH, AGENT_REGISTRY_PATH],
+        )
 
     def _run_tests(self) -> dict[str, Any]:
         tests_dir = self.root / "tests"
