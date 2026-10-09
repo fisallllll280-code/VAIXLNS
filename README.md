@@ -50,7 +50,7 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [Tool action envelope schema](schemas/vx-tool-action-envelope.v1.schema.json)
 - [Tool policy decision schema](schemas/vx-tool-policy-decision.v1.schema.json)
 - [Agent runtime profile schema](schemas/vx-agent-runtime-profile.v1.schema.json)
-- [VX agent role catalog (22 logical profiles)](registry/vx-agent-runtime-profiles.v1.json)
+- [VX agent role catalog (35 logical role templates)](registry/vx-agent-runtime-profiles.v1.json)
 - [Default tool-control policy (inactive proposal)](registry/vx-tool-control-default-policy.v1.json)
 - [Reference policy evaluator](tools/vx_tool_control_reference.py)
 - [Evaluator unit tests](tests/test_vx_tool_control_reference.py)
