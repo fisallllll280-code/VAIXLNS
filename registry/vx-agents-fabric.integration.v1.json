@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "integration_id": "VX-AGENTS-FABRIC",
+  "canonical_owner": "VAIXLNS",
+  "execution_boundary": "VX",
+  "repository": {
+    "full_name": "fisallllll280-code/vx-agents-fabric",
+    "url": "https://github.com/fisallllll280-code/vx-agents-fabric",
+    "feature_branch": "feat/deep-engineering-company-forge",
+    "pull_request": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/1",
+    "disposition": "PROPOSED_NOT_ADMITTED"
+  },
+  "domains": {
+    "research": {
+      "role_ids": [
+        "VX-RES-COORD",
+        "VX-RES-SOURCE",
+        "VX-RES-LITERATURE",
+        "VX-RES-REPO",
+        "VX-RES-REPRO",
+        "VX-RES-CONTRA",
+        "VX-RES-SYNTH"
+      ],
+      "authority": "research_and_analysis_only"
+    },
+    "finance": {
+      "role_ids": [
+        "VX-FIN-COORD",
+        "VX-FIN-MARKET",
+        "VX-FIN-UNIT",
+        "VX-FIN-COST",
+        "VX-FIN-PRICE",
+        "VX-FIN-RISK",
+        "VX-FIN-COMP",
+        "VX-FIN-PORT"
+      ],
+      "authority": "analysis_and_proposal_only",
+      "forbidden": [
+        "external_payment",
+        "transfer_funds",
+        "execute_trade"
+      ]
+    },
+    "engineering": {
+      "role_ids": [
+        "VX-ENG-COORD",
+        "VX-ENG-REQ",
+        "VX-ENG-ARCH",
+        "VX-ENG-INNOV",
+        "VX-ENG-BUILD",
+        "VX-ENG-TEST",
+        "VX-ENG-RED",
+        "VX-ENG-PROOF",
+        "VX-ENG-OPS",
+        "VX-ENG-LEARN"
+      ],
+      "authority": "scoped_planning_sandbox_testing_and_proof"
+    },
+    "parent_multi_mind": {
+      "role_id": "VX-PARENT-COORD",
+      "minds": [
+        "MIND-SYS-ARCH",
+        "MIND-RESEARCH",
+        "MIND-FINANCE",
+        "MIND-SECURITY",
+        "MIND-PROOF"
+      ],
+      "decision_statuses": [
+        "CANDIDATE_READY_FOR_GOVERNANCE",
+        "HOLD",
+        "REJECT"
+      ],
+      "production_authority": false
+    }
+  },
+  "lifecycle": [
+    "INTAKE",
+    "RESEARCH",
+    "FINANCIAL_FEASIBILITY",
+    "ARCHITECTURE",
+    "INNOVATION",
+    "BUILD_PLAN_AND_IMPLEMENTATION",
+    "VALIDATION",
+    "OPERATIONS_AND_LEARNING",
+    "PARENT_DECISION",
+    "VAIXLNS_ADMISSION"
+  ],
+  "version_policy": {
+    "logical_identity": "role_id",
+    "implementation_identity": "role_id@semver",
+    "keep_parallel_versions": true,
+    "reject_silent_overwrite": true,
+    "pin_version_after_validation": true
+  },
+  "evidence_policy": {
+    "artifact_hash": "SHA-256 over canonical JSON",
+    "preserve_input_artifact_ids": true,
+    "preserve_evidence_refs": true,
+    "record_missing_adapters": true,
+    "record_failures": true,
+    "no_unrun_test_claims": true
+  },
+  "external_integration_gate": {
+    "required_stages": [
+      "QUARANTINE",
+      "IDENTITY_CONTRACT",
+      "SANDBOX",
+      "FUNCTIONAL_TEST",
+      "FAILURE_RECOVERY",
+      "REPLAY",
+      "INDEPENDENT_VERIFICATION",
+      "FRESH_PROOF",
+      "EXPLICIT_AUTHORITY",
+      "ADMISSION"
+    ],
+    "status": "NOT_YET_COMPLETED"
+  },
+  "operational_status": {
+    "coordinator_code": "IMPLEMENTED_ON_FEATURE_BRANCH",
+    "unit_tests": "GITHUB_ACTIONS_GREEN",
+    "model_providers": "NOT_CONNECTED_BY_DEFAULT",
+    "durable_vaixlns_event_ledger": "NOT_CONNECTED",
+    "production_admission": "NOT_GRANTED"
+  },
+  "canonical_references": {
+    "repository_inventory": "registry/REPOSITORY_INVENTORY.md",
+    "federation_index": "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+    "contract": "docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
+    "registry_record": "registry/vx-agents-fabric.integration.v1.json",
+    "universal_gate": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+  }
+}
