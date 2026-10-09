@@ -27,3 +27,7 @@
 - `../../registry/saudi_innovation_launch.v1.json` — launch status, offer targets, partner-slot status, and acceptance gates.
 
 - `../tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md` — implemented archive extraction/search core, zero-loss provenance rules, exact-repeat reporting, similarity review, and JSONL export. Live adapters and full 0001–2750 recovery remain pending.
+
+- VAIXLNS_ZERO_LOSS_INDEX_V1.md — unified 28-view zero-loss index contract, atomic record rules, and build/verify commands.
+- ../../registry/indexes/zero-loss-index-taxonomy.v1.json — machine-readable definitions of all 28 index views and transition gates.
+- The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
