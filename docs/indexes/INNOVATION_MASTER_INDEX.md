@@ -132,3 +132,26 @@ These entries are context-level proposals/specifications unless separately suppo
 89. Deterministic Research Decision Bundle and Non-Promotion Gate
 
 Implementation reference: `VAIXLNS-unified/innovation_control/research_fabric.py`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains `EVOLVING / IMPLEMENTED`: live search adapters and item-by-item recovery of the historical `0001–2750` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
+
+
+## 2026-10-09 deep engineering discovery implementation lane
+
+This lane reuses existing canonical capabilities rather than creating another top-level system:
+
+- ASDE / Master Capability Indexer: map external engineering sources to current system capabilities and gaps.
+- Ω Research-to-Engineering Decision Fabric: retain source identity, deltas, contradictions, release evidence and review state.
+- Engineering Architecture / Capability Genome: identify adapter capability, inputs, units, resource needs, failure modes and outputs.
+- Proof-Carrying Architecture / Replay Determinism Verifier: validate geometry, meshes and solver reference cases before adoption.
+- Self-Healing Architecture / Evolution Firewall: allow bounded proposals and isolated tests, never silent production self-mutation.
+
+Implementation surface on the discovery feature branch:
+
+- Registry: `registry/engineering/ENGINEERING_INNOVATION_SOURCES_V1.json` (15 upstream sources, 8 domains).
+- Collector: `tools/engineering_innovation_discovery.py` (source metadata, latest releases, recent commits, prior snapshot delta, per-source failure records).
+- Tests: `tests/test_engineering_innovation_discovery.py`.
+- Schedule: `.github/workflows/engineering-innovation-discovery.yml` (daily at 04:17 UTC / 07:17 Saudi time, plus manual dispatch).
+- Review runbook: `docs/engineering/ENGINEERING_INNOVATION_DISCOVERY_V1.md`.
+
+**Lifecycle:** `DISCOVERED → SOURCE-VERIFIED → INDEX-MATCHED → GAP-CLASSIFIED → LICENSE/SECURITY-REVIEWED → BENCHMARKED → INDEPENDENTLY-VERIFIED → AUTHORIZED → CANONICAL`.
+
+A report showing `NEW_RELEASE_SIGNAL` means a release tag changed against the last successful snapshot; it does not assert that the software introduced a novel scientific result. Initial CI and the first scheduled discovery run must pass before this lane is treated as verified.
