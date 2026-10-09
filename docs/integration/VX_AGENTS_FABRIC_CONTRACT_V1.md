@@ -61,3 +61,15 @@ The implementation in \`vx-agents-fabric\` main now includes an **opt-in OpenAI-
 This means provider binding code is available; it does **not** mean provider endpoints, model names, credentials or live inference are connected in this VAIXLNS deployment. The adapter is not itself a browser/search engine, GitHub repository client or code sandbox. Those integrations need separate, least-privilege adapters and must pass the universal integration gate.
 
 Current disposition remains \`PROPOSED_NOT_ADMITTED\`. The durable canonical Event/Ledger binding, crash-safe replay, full live integration verification, fresh proof and production admission remain outstanding. Missing model configuration must yield \`NOT_CONFIGURED/HOLD\`, never fabricated research or a claimed success.
+
+
+## Durable operations update — 2026-10-09
+
+The implementation repository's main branch now includes opt-in fsync-backed JSONL stores for the complete workflow-event payloads, immutable artifacts, and compact failure memory. Configuration:
+- \`VX_EVENT_LEDGER_PATH\`
+- \`VX_ARTIFACT_ARCHIVE_PATH\`
+- \`VX_FAILURE_MEMORY_PATH\`
+
+The event and artifact stores verify hash/digest integrity when loaded and refuse silent corruption or identity replacement. Failure memory provides prior incident patterns to subsequent tasks; it does not train model weights. Paths are local stores, not yet an adapter to the canonical VAIXLNS Event/Ledger authority.
+
+The integration is still \`PROPOSED_NOT_ADMITTED\`: canonical ledger federation, automatic crash-resume/checkpoint controller, real web/repository/sandbox tool bindings, cross-repository replay, independent fresh proof and production admission remain outstanding.
