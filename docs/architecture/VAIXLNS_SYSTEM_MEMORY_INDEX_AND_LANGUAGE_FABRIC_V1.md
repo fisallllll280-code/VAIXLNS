@@ -44,7 +44,7 @@ Contains search indexes, lexical indexes, graph projections, embeddings, caches,
 
 When a projection is corrupt or stale, rebuild it from Tier A plus the accepted Tier B event history. Never reconstruct the original source by pretending a summary or embedding is equivalent to the original.
 
-## 2A. Canonical composition with preserved VAIXLNS work
+## 2.1 Canonical composition with preserved VAIXLNS work
 
 This fabric is an integration contract, not a replacement authority. Reuse and cross-link the existing sources below; do not rename or silently absorb their concepts:
 
@@ -184,7 +184,7 @@ System languages SHALL be treated as typed engineering interfaces, not magical a
 | VPL | State policies, invariants, proof obligations, and admissibility rules | Fail-closed policy evaluation, versioned rules, explainable outcomes |
 | VQL | Query records and verify lineage, evidence, state, and conformance | Typed query results, scope, source refs, uncertainty and completeness |
 
-These names are not declared implemented by this document. Implemented parsers must publish a grammar/version and conformance fixtures.
+These names are not declared implemented by this document. Implemented parsers must publish a grammar/version and conformance fixtures. Compilation output should use schemas/vaixlns-language-compilation-record.schema.json to bind the source digest, grammar/compiler versions, parse diagnostics, AST digest, type and unit checks, EIR reference, proof obligations, and the non-authority boundary.
 
 ### Compiler pipeline
 
