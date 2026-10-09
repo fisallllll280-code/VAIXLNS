@@ -17,6 +17,13 @@ SOURCE_SUFFIXES = {".py", ".rs", ".go", ".js", ".jsx", ".ts", ".tsx", ".java", "
 PY_FRAME = re.compile(r'File ["\']([^"\']+)["\'], line (\d+)(?:, in ([^\n]+))?')
 PATH_LINE = re.compile(r'(?P<path>(?:[A-Za-z]:)?[\w./\\-]+\.(?:py|rs|go|js|jsx|ts|tsx|java|c|cc|cpp|h|hpp|cs|rb|php|swift|kt|toml|json|ya?ml)):(?P<line>\d+)(?::\d+)?')
 FAILED_TEST = re.compile(r'(?im)^\s*(?:FAILED|ERROR)\s+(?P<name>[^\n]+)')
+UNRESOLVED_SYMBOL_PATTERNS = (
+    re.compile(r"name ['\"]([A-Za-z_]\w*)['\"] is not defined", re.I),
+    re.compile(r"\b([A-Za-z_]\w*) is not defined\b", re.I),
+    re.compile(r"has no attribute ['\"]([A-Za-z_]\w*)['\"]", re.I),
+    re.compile(r"KeyError:\s*['\"]([A-Za-z_]\w*)['\"]", re.I),
+    re.compile(r"unresolved (?:name|symbol|import)\s*[:'\" ]+\s*([A-Za-z_]\w*)", re.I),
+)
 SECRET_PATTERNS = (
     (re.compile(r"(?i)(\b(?:api[_-]?key|access[_-]?token|password|passwd|secret)\b\s*[=:]\s*)[^\s,;]+"), r"\1[REDACTED]"),
     (re.compile(r"(?i)(authorization\s*:\s*bearer\s+)[^\s]+"), r"\1[REDACTED]"),
@@ -137,10 +144,37 @@ def locate(root: Path, log_text: str) -> dict[str, Any]:
             if relative in line and not any(item["path"] == relative for item in locations.values()):
                 add(relative, None, index, "EXPLICIT_REPOSITORY_PATH")
 
+    # An exception may name a symbol without a traceback path. Search local source
+    # occurrences and report them as candidates, never as an exact root-cause line.
+    suspected_symbols = []
+    for index, line in enumerate(lines, start=1):
+        for pattern in UNRESOLVED_SYMBOL_PATTERNS:
+            match = pattern.search(line)
+            if match:
+                symbol = match.group(1)
+                if (symbol, index) not in suspected_symbols:
+                    suspected_symbols.append((symbol, index))
+    for symbol, evidence_line in suspected_symbols[:40]:
+        symbol_match = re.compile(r"\b" + re.escape(symbol) + r"\b")
+        for relative in paths:
+            source = resolve_repo_file(root, relative)
+            if source is None:
+                continue
+            try:
+                if source.stat().st_size > 1_000_000:
+                    continue
+                source_lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
+            except OSError:
+                continue
+            for source_line_no, source_line in enumerate(source_lines, start=1):
+                if symbol_match.search(source_line):
+                    add(relative, source_line_no, evidence_line, "SYMBOL_REFERENCE_MATCH", symbol)
+                    break
+
     ranked = []
     for item in locations.values():
         methods = item["evidence_methods"]
-        score = 100 if "PYTHON_TRACEBACK_FRAME" in methods else 90 if "COMPILER_OR_TEST_PATH_LOCATION" in methods else 60 if "FAILED_TEST_NAME" in methods else 35
+        score = 100 if "PYTHON_TRACEBACK_FRAME" in methods else 90 if "COMPILER_OR_TEST_PATH_LOCATION" in methods else 60 if "FAILED_TEST_NAME" in methods else 50 if "SYMBOL_REFERENCE_MATCH" in methods else 35
         item["rank_score"] = score + min(10, len(item["evidence_log_lines"]))
         if item["line"] is not None:
             source = resolve_repo_file(root, item["path"])
