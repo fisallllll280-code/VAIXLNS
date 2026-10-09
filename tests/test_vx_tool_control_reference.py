@@ -1,4 +1,5 @@
 """Unit tests for the VX tool-control reference evaluator (stdlib only)."""
+import json
 import sys
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -245,6 +246,40 @@ class VXToolControlReferenceTests(unittest.TestCase):
         result = self.evaluate()
         self.assertEqual(result["decision"], "HOLD")
         self.assertIn("CAPABILITY_NOT_ADMITTED", result["reason_codes"])
+
+
+    def test_every_agent_role_is_vx_bound_and_has_no_direct_tool_path(self):
+        root = Path(__file__).resolve().parents[1]
+        catalog = json.loads((root / "registry/vx-agent-runtime-profiles.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["invariant"], "EVERY_AGENT_USES_VX")
+        self.assertEqual(catalog["agent_role_count"], len(catalog["agent_profiles"]))
+        self.assertEqual(catalog["agent_role_count"], 22)
+        ids = [profile["agent_role_id"] for profile in catalog["agent_profiles"]]
+        self.assertEqual(len(ids), len(set(ids)))
+        for profile in catalog["agent_profiles"]:
+            with self.subTest(agent_role=profile["agent_role_id"]):
+                binding = profile["vx_binding"]
+                self.assertIs(binding["required"], True)
+                self.assertEqual(binding["runtime_boundary"], "VX_AGENT_RUNTIME")
+                self.assertEqual(binding["federation_gate"], "VX_FEDERATION_GATE")
+                self.assertIs(binding["direct_tool_calls_allowed"], False)
+                self.assertEqual(
+                    binding["action_envelope_schema"],
+                    "schemas/vx-tool-action-envelope.v1.schema.json",
+                )
+                self.assertIs(profile["delegation"]["inherits_parent_scope"], True)
+                self.assertIs(profile["delegation"]["cannot_escalate_authority"], True)
+                self.assertIs(profile["verification"]["self_approval_allowed"], False)
+                self.assertEqual(profile["status"], "ROLE_TEMPLATE_NOT_DEPLOYED")
+
+    def test_default_policy_remains_inactive_and_conservative(self):
+        root = Path(__file__).resolve().parents[1]
+        policy = json.loads((root / "registry/vx-tool-control-default-policy.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(policy["status"], "PROPOSED_NOT_ADMITTED")
+        self.assertEqual(policy["enforcement_status"], "CONTRACT_ONLY_NOT_CONNECTED")
+        self.assertEqual(policy["default_max_authority"], "A3_SANDBOX_MUTATE")
+        self.assertIs(policy["hard_invariants"]["automatic_canonical_promotion"], False)
+        self.assertIs(policy["hard_invariants"]["agent_can_raise_own_authority"], False)
 
 
 if __name__ == "__main__":
