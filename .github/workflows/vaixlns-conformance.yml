@@ -53,8 +53,8 @@ jobs:
             scripts/engineering_agent_fabric.py \
             tests/test_engineering_agent_fabric.py \
             scripts/omega_research_fabric.py \
-            tests/test_omega_research_fabric.py \\
-            scripts/omega_error_locator.py \\
+            tests/test_omega_research_fabric.py \
+            scripts/omega_error_locator.py \
             tests/test_omega_error_locator.py
 
       - name: Run admission gate
