@@ -141,7 +141,11 @@
         "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/config/research-decision-bundle.schema.json",
         "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/docs/INNOVATION_RESEARCH_DECISION_FABRIC_V1.md",
         "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690691",
-        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690717"
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690717",
+        "agents/agent_fabric.py",
+        "tests/test_agent_fabric.py",
+        "tests/test_mind_federation.py",
+        "docs/agents/AGENT_FABRIC_V1.md"
       ],
       "capabilities": [
         "multi_lane_research_query_planning",
