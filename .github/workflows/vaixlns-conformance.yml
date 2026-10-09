@@ -46,7 +46,9 @@ jobs:
             tests/test_canonical_control_plane.py \
             tests/test_arc_x_reconstruct.py \
             scripts/innovation_network.py \
-            tests/test_innovation_network.py \\\n            scripts/engineering_agent_fabric.py \\\n            tests/test_engineering_agent_fabric.py
+            tests/test_innovation_network.py \
+            scripts/engineering_agent_fabric.py \
+            tests/test_engineering_agent_fabric.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -67,9 +69,13 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Build federated innovation network manifest
-        run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
+            innovation-network.json
+            engineering-execution-plan.json
 
-      - name: Build engineering agent plan\n        run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json\n\n      - name: Emit conformance evidence
+      - name: Build engineering agent plan
+        run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
+
+      - name: Emit conformance evidence
         if: always()
         shell: bash
         run: |
