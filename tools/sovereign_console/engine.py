@@ -248,10 +248,21 @@ class CommandEngine:
 
         def visit(value: Any, source: str, found: list[dict[str, Any]]) -> None:
             if isinstance(value, dict):
-                serialized = json.dumps(value, ensure_ascii=False, sort_keys=True).casefold()
+                # Match only this record's own scalar fields and scalar lists.
+                # Avoid matching ancestors merely because a descendant contains the term.
+                own_fields = {
+                    key: child
+                    for key, child in value.items()
+                    if not isinstance(child, dict)
+                    and (
+                        not isinstance(child, list)
+                        or all(not isinstance(element, (dict, list)) for element in child)
+                    )
+                }
+                serialized = json.dumps(own_fields, ensure_ascii=False, sort_keys=True).casefold()
                 has_identity = any(
                     key in value for key in
-                    ("id", "index_id", "agent_id", "omega_id", "innovation_id", "pattern_id", "name", "title")
+                    ("id", "index_id", "agent_id", "omega_id", "innovation_id", "pattern_id", "name", "title", "canonical_name")
                 )
                 if needle in serialized and has_identity and len(found) < per_source_limit:
                     found.append({"source": source, "record": value, "match_type": "registry-record"})
@@ -333,6 +344,35 @@ class CommandEngine:
         lines.append("")
         lines.append("Registry presence does not imply an agent process is currently running.")
         return self._ok(f"Loaded {len(agents)} registered agent definitions.", lines, {"status": registry.get("status"), "agents": agents}, [AGENT_REGISTRY_PATH])
+
+    def _agent_inspect(self, agent_id: str) -> dict[str, Any]:
+        registry = self._read_json(AGENT_REGISTRY_PATH)
+        agents = registry.get("agents", []) if isinstance(registry, dict) else []
+        needle = agent_id.casefold()
+        agent = next((
+            item for item in agents
+            if item.get("agent_id", "").casefold() == needle
+            or item.get("canonical_name", "").casefold() == needle
+        ), None)
+        if agent is None:
+            raise CommandError(f"Agent not found in {AGENT_REGISTRY_PATH}: {agent_id}")
+        lines = [
+            f"{agent.get('agent_id')} — {agent.get('canonical_name')}",
+            f"Family: {agent.get('family', 'UNSET')}",
+            f"Authority scope: {agent.get('authority_scope', 'UNSET')}",
+            f"Primary output: {agent.get('primary_output', 'UNSET')}",
+            "",
+            "Capabilities:",
+            *[f"  • {value}" for value in agent.get("capabilities", [])],
+            "",
+            "Allowed tools:",
+            *[f"  • {value}" for value in agent.get("allowed_tools", [])],
+            "",
+            f"Hard rule: {agent.get('hard_rule', 'UNSET')}",
+            "",
+            "This is a registry inspection, not proof that this agent is running.",
+        ]
+        return self._ok(f"Inspected {agent.get('agent_id')}.", lines, agent, [AGENT_REGISTRY_PATH])
 
     def _agents_route(self, required_capabilities: list[str]) -> dict[str, Any]:
         from agents.agent_fabric import AgentRegistry
