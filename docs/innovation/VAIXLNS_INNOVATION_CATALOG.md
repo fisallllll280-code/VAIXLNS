@@ -1,11 +1,11 @@
 # VAIXLNS — Innovation Catalog / Canonical Placement
 
 ## Status model
-\`RECOVERED\` = evidenced in the archive.
-\`CANONICAL\` = assigned to a single owner in the master architecture.
-\`PROPOSED\` = architectural proposal, not implementation proof.
-\`IMPLEMENTED\` = repository code/doc evidence exists.
-\`VERIFIED\` = supported by an explicit test/evidence path.
+`RECOVERED` = evidenced in the archive.
+`CANONICAL` = assigned to a single owner in the master architecture.
+`PROPOSED` = architectural proposal, not implementation proof.
+`IMPLEMENTED` = repository code/doc evidence exists.
+`VERIFIED` = supported by an explicit test/evidence path.
 
 ## A. Existing / recovered foundations
 | Family | System | Role | Canonical owner | Status |
@@ -26,9 +26,9 @@
 ## B. User-proposed execution refinements — canonical placement
 | Innovation | Canonical placement | Primary output | Relationship |
 |---|---|---|---|
-| CSE — Canonical Semantic Engine | Semantics / CME implementation | \`sir.json\`, semantic fingerprint | implementation specialization of canonical meaning |
-| DCEG — Deterministic Causal Execution Graph | Causality + Replay | \`dceg.trace\`, \`replay.trace\` | joins causal graph with deterministic replay |
-| eDNA — Evidence DNA | Evidence / Provenance | \`evidence.bundle\`, \`evidence.dna\` | provenance layer for evidence lineage |
+| CSE — Canonical Semantic Engine | Semantics / CME implementation | `sir.json`, semantic fingerprint | implementation specialization of canonical meaning |
+| DCEG — Deterministic Causal Execution Graph | Causality + Replay | `dceg.trace`, `replay.trace` | joins causal graph with deterministic replay |
+| eDNA — Evidence DNA | Evidence / Provenance | `evidence.bundle`, `evidence.dna` | provenance layer for evidence lineage |
 | AMF — Adversarial Mutation Framework | Adversarial / Architecture Lab | mutation logs/reports | operational form of adversarial architecture testing |
 | CREM — Cross-Runtime Equivalence Matrix | Conformance | matrix + semantic diff | compares runtime behavior without owning runtime truth |
 | FPO — Formal Proof Orchestrator | Formal / Proof | proof package + model-check report | orchestration around proof engines |
@@ -91,7 +91,7 @@
 40. Agentic Skills as Operational Genes
 
 ## D. Recommended canonical hierarchy
-\`\`\`
+```
 Ω∞ / Ω0 / CONSTITUTION
         ↓
 MEANING / TRUTH / DERIVATION
@@ -117,15 +117,15 @@ FORGE / GENERATION / BUILDER
 EVOLUTION FIREWALL / EVOLUTION / SRE Ω
         ↓
 DISTRIBUTED / INFRASTRUCTURE / WORLD / FEDERATION
-\`\`\`
+```
 
 ## E. Innovation anti-duplication rule
 Do not create a new top-level system when a proposal can be expressed as:
-\`Existing Canonical Owner + new capability + explicit contract + evidence + proof + lifecycle + lineage\`. 
+`Existing Canonical Owner + new capability + explicit contract + evidence + proof + lifecycle + lineage`. 
 
 ## F. Research-to-engineering decision fabric — implementation boundary
 
-The REDF capability is registered as \`VAIXLNS.RESEARCH.DECISION.FABRIC.001\` in \`Ω.000\`. Its executable implementation lives in the \`VAIXLNS-unified\` execution repository and is governed by the canonical VAIXLNS registry.
+The REDF capability is registered as `VAIXLNS.RESEARCH.DECISION.FABRIC.001` in `Ω.000`. Its executable implementation lives in the `VAIXLNS-unified` execution repository and is governed by the canonical VAIXLNS registry.
 
 Research roles:
 - Source Coverage: identify missing sources and failed mandatory search lanes.
@@ -134,4 +134,4 @@ Research roles:
 - Research-to-Engineering: expose missing contracts, invariants, failure handling, tests, verification and rollback fields.
 - Provenance Integrity: check source content digests and URI/revision conflicts.
 
-**State boundary:** \`READY_FOR_ENGINEERING_REVIEW\` is not \`VERIFIED\`, \`CANONICAL\`, or \`RUNNING\`. Canonical admission remains downstream of independent verification and explicit authority. Provider adapters for live GitHub/web/archive research are an integration task, not an implied property of the provider-neutral core.
+**State boundary:** `READY_FOR_ENGINEERING_REVIEW` is not `VERIFIED`, `CANONICAL`, or `RUNNING`. Canonical admission remains downstream of independent verification and explicit authority. Provider adapters for live GitHub/web/archive research are an integration task, not an implied property of the provider-neutral core.
