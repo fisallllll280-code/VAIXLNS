@@ -51,8 +51,8 @@ The prompt is treated as data in system.json. It is never interpolated into the 
 
 ## Next hard gates
 
-1. Execute generated unit tests inside an isolated runner.
-2. Start the generated service and record HTTP smoke-test evidence.
+1. Expand domain-specific acceptance tests beyond the current generic service endpoints.
+2. Record runtime and container evidence for each release candidate, not only the scaffold contract tests.
 3. Add dependency, secret, license, and container security scans.
 4. Connect a provider-backed design/implementation agent behind a typed contract.
 5. Route generated claims through ARC-X evidence separation and VV proof validation.
