@@ -24,3 +24,5 @@ jobs:
         run: python -m json.tool schemas/engineering-drawing-job.schema.json > /dev/null
       - name: Run engineering drawing contract tests
         run: python -m unittest discover -s tests -p "test_engineering_drawing_job.py" -v
+      - name: Run automated profile suggestion tests
+        run: python -m unittest discover -s tests -p "test_engineering_drawing_profile_suggestions.py" -v

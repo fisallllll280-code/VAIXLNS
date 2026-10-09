@@ -28,7 +28,7 @@ INTENT
   -> HUMAN RELEASE AUTHORIZATION
 ```
 
-The first implemented component is a fail-closed job-admission validator. It rejects malformed job contracts, duplicate identities, implicit units, untraceable standard references, and malformed evidence fields. A structurally valid request can still be **ineligible for release** until mandatory constraints have item-level evidence, standards have been confirmed or explicitly justified as not applicable, the CAD/BIM adapter capability is verified, required simulation passes with an evidence reference, an independent checker passes with an evidence reference, and configured human approval has a traceable approval reference.
+The first implemented components are a fail-closed job-admission validator and a profile-suggestion command that routes by discipline and explicit jurisdiction without selecting standards automatically. It rejects malformed job contracts, duplicate identities, implicit units, untraceable standard references, and malformed evidence fields. A structurally valid request can still be **ineligible for release** until mandatory constraints have item-level evidence, standards have been confirmed or explicitly justified as not applicable, the CAD/BIM adapter capability is verified, required simulation passes with an evidence reference, an independent checker passes with an evidence reference, and configured human approval has a traceable approval reference.
 
 ## Deliverables and adapters
 
@@ -70,7 +70,9 @@ This validator is a contract and workflow safety gate. It does not independently
 ```bash
 python tools/validate_engineering_drawing_job.py path/to/job.json
 python tools/validate_engineering_drawing_job.py path/to/job.json --require-release
+python tools/suggest_engineering_drawing_profiles.py path/to/job.json
 python -m unittest discover -s tests -p "test_engineering_drawing_job.py" -v
+python -m unittest discover -s tests -p "test_engineering_drawing_profile_suggestions.py" -v
 ```
 
 Exit codes: 0 = structurally valid (or release-eligible with --require-release); 2 = invalid job; 3 = valid job blocked from release.
