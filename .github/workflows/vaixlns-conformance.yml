@@ -48,7 +48,9 @@ jobs:
             scripts/innovation_network.py \
             tests/test_innovation_network.py \
             scripts/engineering_agent_fabric.py \
-            tests/test_engineering_agent_fabric.py
+            tests/test_engineering_agent_fabric.py \
+            scripts/omega_research_fabric.py \
+            tests/test_omega_research_fabric.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -74,6 +76,9 @@ jobs:
       - name: Build engineering agent plan
         run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
 
+      - name: Build Ω research index (offline)
+        run: python scripts/omega_research_fabric.py --root . --output omega-research-results.json
+
       - name: Emit conformance evidence
         if: always()
         shell: bash
@@ -96,4 +101,5 @@ jobs:
             provenance.json
             innovation-network.json
             engineering-execution-plan.json
+            omega-research-results.json
           if-no-files-found: error
