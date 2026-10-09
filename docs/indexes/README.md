@@ -23,3 +23,5 @@
 - `../strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md` — Saudi-first engineering offers, founder-financed launch capital, sources-and-uses ledger, and 30-day reserve rule.
 - `../../registry/capital_lock_policy.v1.json` — machine-readable proposed capital policy; not technically enforced until separately evidenced.
 - `../../registry/saudi_innovation_launch.v1.json` — launch status, offer targets, partner-slot status, and acceptance gates.
+
+- `../tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md` — implemented archive extraction/search core, zero-loss provenance rules, exact-repeat reporting, similarity review, and JSONL export. Live adapters and full 0001–2750 recovery remain pending.
