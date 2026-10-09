@@ -133,7 +133,7 @@ def validate_job(job: object) -> dict[str, object]:
                 blockers.append(f"MANDATORY_CONSTRAINT_NOT_PROVEN:{cid}")
             if set(constraint) - {"id", "type", "description", "mandatory", "verification_state", "evidence_ref"}:
                 errors.append(f"{prefix} contains unsupported fields")
-            if state in {"PASSED", "NOT_APPLICABLE_WITH_EVIDENCE"} and not _is_nonempty_string(constraint.get("evidence_ref")):
+            if _is_one_of(state, {"PASSED", "NOT_APPLICABLE_WITH_EVIDENCE"}) and not _is_nonempty_string(constraint.get("evidence_ref")):
                 errors.append(f"{prefix}: PASSED requires evidence_ref")
 
     standards = job["standards"]
@@ -179,7 +179,7 @@ def validate_job(job: object) -> dict[str, object]:
             errors.append("geometry_backend.adapter is unsupported")
         if not _is_nonempty_string(backend.get("version")):
             errors.append("geometry_backend.version must be pinned or explicitly marked")
-        if set(backend) - {"adapter", "version", "capability_contract_ref"}:
+        if set(backend) - {"adapter", "version", "capability_state", "capability_contract_ref"}:
             errors.append("geometry_backend contains unsupported fields")
         if backend.get("adapter") == "not_selected":
             blockers.append("GEOMETRY_BACKEND_NOT_SELECTED")
