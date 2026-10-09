@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.build_innovation_operation_index import build, outputs, rid
+from tools.build_innovation_operation_index import build, outputs, rid, state
 
 class TestInnovationOperationIndex(unittest.TestCase):
     def test_index_contains_cross_source_innovations(self):
@@ -22,6 +22,12 @@ class TestInnovationOperationIndex(unittest.TestCase):
             self.assertTrue(record["operating_mechanism"], record["name"])
             self.assertIn(record["profile_quality"], {"SOURCE_BACKED","CURATED_DESIGN_DRAFT","RULE_DERIVED_DRAFT"})
             self.assertFalse(record["canonical_promotion_allowed"], record["name"])
+
+    def test_state_parser_does_not_promote_substrings(self):
+        self.assertEqual(state("IMPLEMENTEDIFIED"), "SOURCE-ASSERTED")
+        self.assertEqual(state("IMPLEMENTED / PARTIAL"), "PARTIAL")
+        self.assertEqual(state("UNKNOWN"), "UNKNOWN")
+        self.assertEqual(state("PROPOSED"), "PROPOSAL")
 
     def test_stable_ids(self):
         self.assertEqual(rid("Identity Fabric","Identity"), rid("Identity Fabric","Identity"))
