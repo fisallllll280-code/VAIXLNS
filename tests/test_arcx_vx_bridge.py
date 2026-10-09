@@ -15,6 +15,7 @@ from scripts.arcx_vx_bridge import (
     sha256_hex,
     validate_task,
     verify_receipt,
+    _NoRedirectHandler,
     _configured_endpoint,
 )
 
@@ -168,6 +169,16 @@ class BridgeValidationTests(unittest.TestCase):
         task["input_artifacts"][0]["sha256"] = "not-a-digest"
         self.assertTrue(any(code.startswith("INVALID_ARTIFACT_DIGEST") for code in validate_task(task)))
 
+    def test_malformed_trust_state_does_not_crash(self):
+        task = sample_task()
+        task["input_artifacts"][0]["trust_state"] = ["TRUSTED"]
+        self.assertTrue(any(code.startswith("INVALID_ARTIFACT_TRUST_STATE") for code in validate_task(task)))
+
+    def test_malformed_execution_mode_does_not_crash(self):
+        task = sample_task()
+        task["execution_mode"] = ["EXECUTE"]
+        self.assertIn("INVALID_EXECUTION_MODE", validate_task(task))
+
     def test_build_envelope_binds_exact_task_digest(self):
         task = sample_task()
         key = b"request-signing-key-that-is-long-enough"
@@ -235,6 +246,18 @@ class ReceiptVerificationTests(unittest.TestCase):
                 receipt_key=key,
             )
 
+    def test_unhashable_status_cannot_crash_receipt_verifier(self):
+        key = b"receipt-verification-key-is-long-enough"
+        receipt = self.signed_receipt("task-1", "a" * 64, key)
+        receipt["status"] = ["QUEUED"]
+        with self.assertRaises(BridgeError):
+            verify_receipt(
+                receipt,
+                expected_task_id="task-1",
+                expected_task_digest="a" * 64,
+                receipt_key=key,
+            )
+
 
 class EndpointSafetyTests(unittest.TestCase):
     def test_endpoint_missing_is_rejected(self):
@@ -254,6 +277,16 @@ class EndpointSafetyTests(unittest.TestCase):
         }
         with patch.dict(os.environ, env, clear=True):
             self.assertEqual(_configured_endpoint(), "http://127.0.0.1:8787")
+
+    def test_malformed_url_is_rejected_without_traceback(self):
+        with patch.dict(os.environ, {"VX_ENGINEERING_SERVER_URL": "http://[broken"}, clear=True):
+            with self.assertRaises(BridgeError):
+                _configured_endpoint()
+
+    def test_redirects_are_not_followed(self):
+        handler = _NoRedirectHandler()
+        result = handler.redirect_request(None, None, 302, "Found", {}, "https://redirect.invalid/")
+        self.assertIsNone(result)
 
 
 if __name__ == "__main__":
