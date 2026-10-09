@@ -48,7 +48,7 @@ The runtime implementation posts the signed envelope to the configured activatio
       "envelope_hash": "SHA-256 of the exact signed request envelope"
     }
 
-The implementation rejects non-ACTIVATED states, missing values, and identifier or digest mismatch. Following receipt validation, it emits VLNS_MODEL_ACTIVATION_CONFIRMED to /events and requires acknowledgement to report ACTIVATED_AND_RECORDED.
+The implementation rejects non-ACTIVATED states, missing values, and identifier or digest mismatch. Following receipt validation, the unified runtime appends VLNS_MODEL_ACTIVATION_CONFIRMED to the local VX DurableEventStore SQLite ledger and checks the ledger's hash chain before reporting ACTIVATED_AND_RECORDED. It does not send VX evidence to the VLNS server. The specialist-agent reference branch also writes to its own local hash-linked SQLite journal; that journal is a separate source and still needs federation into the canonical VAIXLNS ledger.
 
 This is a defined integration protocol; it is not evidence that the separately hosted VLNS service already implements the protocol.
 
@@ -74,11 +74,11 @@ Reference implementation resides in VAIXLNS-unified:
 - tests/test_vlns_activation_bridge.py
 - docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md
 
-The unified runtime reference branch has a green repository verification run: https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720. Its review request is https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23. A companion pre-activation guard for specialist agents and parent-review minds exists on the vx-agents-fabric branch feat/vlns-provider-adapter-20261009, with green unit-test workflow: https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915189114. That branch has not been merged into its default branch. CI and faked-endpoint tests do not prove a live VLNS server connection. Canonical status remains SPECIFIED / PARTIAL while the live endpoint, identity mapping, and admission remain unverified.
+The unified runtime reference branch now records evidence in the local VX hash-linked ledger and has a green repository verification run: https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720. Its review request is https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23. A companion pre-activation guard for specialist agents and parent-review minds exists on the vx-agents-fabric branch feat/vlns-provider-adapter-20261009, with green unit-test workflow: https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915189114. That branch has not been merged into its default branch. CI and faked-endpoint tests do not prove a live VLNS server connection, and its standalone event journal is not yet automatically federated into the canonical VAIXLNS ledger. Canonical status remains SPECIFIED / PARTIAL while the live endpoint, identity mapping, and admission remain unverified.
 
 ## 7. Connection prerequisites
 
-Remote connectivity uses environment-only configuration:
+Remote connectivity uses environment-only configuration. The two SQLite paths must be placed on persistent runtime volumes and backed up under the deployment's evidence-retention policy:
 
     VLNS_SERVER_ENABLED=true
     VLNS_SERVER_URL=https://<configured-vlns-host>
@@ -86,6 +86,8 @@ Remote connectivity uses environment-only configuration:
     VLNS_SERVER_HEALTH_PATH=/health
     VLNS_SERVER_ACTIVATION_PATH=/v1/activations
     VLNS_SERVER_TIMEOUT=5
+    VLNS_ACTIVATION_EVIDENCE_DB=var/vx_activation_events.sqlite3
+    VX_VLNS_EVIDENCE_DB=var/vx_vlns_evidence.sqlite3
     VLNS_ACTIVATION_SIGNING_KEY=<separate-secret-of-at-least-32-bytes>
     VLNS_ALLOWED_PROVIDERS=ollama,openai-compatible
     VLNS_ALLOWED_CAPABILITIES=reasoning,research,engineering,verification
