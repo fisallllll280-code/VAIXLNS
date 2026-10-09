@@ -85,7 +85,7 @@ jobs:
           python -m json.tool schemas/omega-agent-task.schema.json >/dev/null
           python -m json.tool schemas/omega-evidence-bundle.schema.json >/dev/null
           python -m json.tool examples/omega-mind-simulation.example.json >/dev/null
-          python -m py_compile scripts/omega_mind_simulator.py tests/test_omega_mind_simulator.py
+          python -m py_compile scripts/omega_mind_simulator.py tests/test_omega_mind_simulator.py scripts/omega_git_diff_evidence.py tests/test_omega_git_diff_evidence.py
           python scripts/omega_mind_simulator.py --scenario examples/omega-mind-simulation.example.json --output /tmp/omega-mind-simulation-output.json
           python -m json.tool /tmp/omega-mind-simulation-output.json >/dev/null
 

@@ -47,3 +47,4 @@
 - ../../schemas/omega-evidence-bundle.schema.json — revision-bound evidence-bundle contract.
 - ../../examples/omega-mind-simulation.example.json — illustrative fixture, not live execution evidence.
 - ../../tests/test_omega_mind_simulator.py — deterministic and adversarial simulator tests.
+- ../../scripts/omega_git_diff_evidence.py — read-only Git-object-derived binding of a change capsule to the actual candidate diff and authorized changed paths; it does not admit or merge the change.

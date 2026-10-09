@@ -84,7 +84,7 @@ The schema checks structure; the policy evaluator checks authority. Every reques
 
 A production evidence bundle binds task/attempt IDs, repository, base and candidate revisions, actual diff SHA-256, environment digest, toolchain, exact commands, exit codes, log/artifact hashes, skipped/flaky checks, referee identity/policy/version, verdict and known limitations. Evidence references must be resolved and verified by the consumer. The reference simulator uses sim://fixture references solely to exercise gates; they are synthetic and never admissible as live evidence.
 
-The existing Ω Change Capsule validator checks structural invariants. The next required step before production admission is to calculate the digest from the actual Git diff/tree and compare it with the capsule; accepting a caller-provided digest is not sufficient.
+The existing Ω Change Capsule validator checks structural invariants. The added omega_git_diff_evidence tool calculates SHA-256 from an actual local Git diff and compares the digest and changed-path manifest with the capsule. This is a read-only binding check, not an admission decision; production admission still requires authenticated evidence references, environment/toolchain binding, independent test execution, review of protected-path changes, and human approval where policy requires it.
 
 ## 8. Event integrity and replay
 
@@ -143,6 +143,7 @@ The reference slice provides:
 - Explicit simulated verification states with fail-closed evidence handling.
 - Hash-linked event records plus chain validation.
 - A scenario fixture and negative/adversarial unit tests.
+- A read-only Git-object-derived change-capsule verifier with temporary-repository tests.
 - A standalone local HTML console using fixture data only.
 - Versioned task and evidence JSON Schemas.
 
