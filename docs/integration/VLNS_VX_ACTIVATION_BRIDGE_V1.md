@@ -74,7 +74,7 @@ Reference implementation resides in VAIXLNS-unified:
 - tests/test_vlns_activation_bridge.py
 - docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md
 
-The implementation branch is a review candidate until the feature branch CI is green and its pull request is admitted. The canonical status must remain SPECIFIED / PARTIAL while the live endpoint and repository identity mapping remain unverified.
+The unified runtime reference branch has a green repository verification run: https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720. Its review request is https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23. A companion pre-activation guard for specialist agents and parent-review minds exists on the vx-agents-fabric branch feat/vlns-provider-adapter-20261009, with green unit-test workflow: https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915189114. That branch has not been merged into its default branch. CI and faked-endpoint tests do not prove a live VLNS server connection. Canonical status remains SPECIFIED / PARTIAL while the live endpoint, identity mapping, and admission remain unverified.
 
 ## 7. Connection prerequisites
 
