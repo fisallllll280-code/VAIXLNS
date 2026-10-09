@@ -33,6 +33,16 @@ class TestInnovationOperationIndex(unittest.TestCase):
         self.assertEqual(rid("Identity Fabric","Identity"), rid("Identity Fabric","Identity"))
         self.assertNotEqual(rid("Identity Fabric","Identity"), rid("Contract Fabric","Contracts"))
 
+    def test_profile_enrichment_never_adds_a_synthetic_proposal_state(self):
+        records = {record["name"]: record for record in build(ROOT)}
+        redf = records["Ω Research-to-Engineering Decision Fabric (REDF)"]
+        self.assertEqual(redf["status"], "IMPLEMENTED")
+        self.assertNotIn("PROPOSAL", redf["source_statuses"])
+        generator = records["VAIXLNS Innovation Operation Index Generator"]
+        self.assertEqual(generator["status"], "SPECIFIED")
+        self.assertNotIn("PROPOSAL", generator["source_statuses"])
+        self.assertFalse(generator["canonical_promotion_allowed"])
+
     def test_generated_outputs_are_current(self):
         for path, expected in outputs(ROOT).items():
             self.assertTrue(path.is_file(), str(path))
