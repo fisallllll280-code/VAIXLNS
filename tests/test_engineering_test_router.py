@@ -1,6 +1,6 @@
 import unittest
 
-from tools.engineering_test_router import plan_tests
+from tools.engineering_test_router import _parse_test_summary, plan_tests
 
 
 class EngineeringTestRouterTests(unittest.TestCase):
@@ -43,6 +43,14 @@ class EngineeringTestRouterTests(unittest.TestCase):
         plan = plan_tests([path])
         self.assertEqual(plan["selection_mode"], "FULL_SUITE")
         self.assertIn(path, plan["unknown_or_cross_cutting_files"])
+
+    def test_test_summary_parser_reports_count_and_runtime(self):
+        self.assertEqual(_parse_test_summary("Ran 12 tests in 0.456s"), (12, 0.456))
+        self.assertEqual(_parse_test_summary("Ran 1 test in 0.010s"), (1, 0.01))
+
+    def test_zero_or_missing_test_summary_is_not_a_valid_test_run(self):
+        self.assertEqual(_parse_test_summary("Ran 0 tests in 0.000s"), (0, 0.0))
+        self.assertIsNone(_parse_test_summary("setup finished; no unittest summary"))
 
 
 if __name__ == "__main__":
