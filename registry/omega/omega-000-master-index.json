@@ -156,6 +156,32 @@
         "deterministic_research_decision_bundle"
       ],
       "promotion_rule": "Research output cannot self-promote; downstream innovation proof gates and explicit authority remain mandatory."
+    },
+    {
+      "id": "VAIXLNS.INNOVATION.OPERATION.INDEX.001",
+      "type": "CAPABILITY",
+      "role": "DETERMINISTIC_INNOVATION_CATALOG_AND_OPERATION_MECHANISM_GENERATOR",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VAIXLNS",
+      "capabilities": [
+        "multi-source-innovation-indexing",
+        "descriptive-and-operational-mechanism-enrichment",
+        "source-provenance-and-status-reconciliation",
+        "deterministic-json-and-markdown-projections",
+        "fail-closed-index-validation",
+        "automated-draft-pull-request-refresh"
+      ],
+      "evidence_refs": [
+        "registry/innovation-operation-profiles.v1.json",
+        "schemas/innovation-operation-index.schema.json",
+        "tools/build_innovation_operation_index.py",
+        "tools/validate_innovation_operation_index.py",
+        "tests/test_innovation_operation_index.py",
+        ".github/workflows/innovation-index-sync.yml"
+      ],
+      "promotion_rule": "This capability cannot promote innovation state or canonical authority. Implementation/readiness status may change only through a separately evidenced review after successful CI and operational verification."
     }
   ],
   "promotion_rules": {
