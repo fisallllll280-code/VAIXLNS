@@ -82,11 +82,17 @@ def validate(document: Any) -> list[str]:
             continue
         if any(not isinstance(field, str) or not field.strip() for field in fields):
             errors.append(f"invalid_attribute_field:{family_id}")
-        if len(fields) != len(set(fields)):
+        valid_fields = [field for field in fields if isinstance(field, str)]
+        if len(valid_fields) != len(set(valid_fields)):
             errors.append(f"duplicate_attribute_field:{family_id}")
         refs = family.get("source_refs")
         if not isinstance(refs, list) or not refs:
             errors.append(f"attribute_family_source_refs_required:{family_id}")
+
+    depth = document.get("catalog_depth")
+    if not isinstance(depth, dict):
+        errors.append("catalog_depth_must_be_object")
+        depth = {}
 
     for field, rows, expected_key in [
         ("identity_records", arrays["systems"], "systems"),
@@ -97,15 +103,15 @@ def validate(document: Any) -> list[str]:
         ("engineering_panels", arrays["engineering_panels"], "engineering_panels"),
         ("evidence_backed_gaps", arrays["gaps"], "gaps"),
     ]:
-        if document.get("catalog_depth", {}).get(field) != len(rows):
+        if depth.get(field) != len(rows):
             errors.append(f"catalog_depth_mismatch:{field}")
     expected_field_total = sum(
         len(row.get("fields", [])) for row in families if isinstance(row.get("fields"), list)
     )
-    if document.get("catalog_depth", {}).get("indexed_attribute_fields") != expected_field_total:
+    if depth.get("indexed_attribute_fields") != expected_field_total:
         errors.append(
             "catalog_depth_mismatch:indexed_attribute_fields:"
-            f"declared={document.get('catalog_depth', {}).get('indexed_attribute_fields')}:actual={expected_field_total}"
+            f"declared={depth.get('indexed_attribute_fields')}:actual={expected_field_total}"
         )
 
     # Reject accidentally stored raw credentials while allowing credential references/field names.
@@ -131,7 +137,7 @@ def main() -> int:
         print(json.dumps({"result": "FAIL", "path": str(path), "errors": [str(exc)]}, ensure_ascii=False, indent=2))
         return 1
     errors = validate(document)
-    depth = document.get("catalog_depth", {}) if isinstance(document, dict) else {}
+    depth = document.get("catalog_depth", {}) if isinstance(document, dict) else {}\n    if not isinstance(depth, dict):\n        depth = {}
     result = {
         "result": "PASS" if not errors else "FAIL",
         "path": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
