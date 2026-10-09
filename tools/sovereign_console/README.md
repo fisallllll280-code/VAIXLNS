@@ -27,6 +27,7 @@ The HTTP bridge binds only to loopback. It has no public listener and no free-fo
 | `index search <terms>` | Search `Ω.000` and agent registry metadata |
 | `agents list` | List registry definitions; does not imply live processes |
 | `agents inspect <agent-id>` | Inspect capabilities, authority scope, and hard rule |
+| `agents route <capabilities>` | Find registry definitions that declare all requested capabilities; metadata-only routing preview |
 | `genome inspect` | Inspect the canonical genome record |
 | `genome verify` | Recompute the declared SHA-256 canonical digest |
 | `proof verify` | Run local structural and digest checks |
@@ -48,7 +49,7 @@ The HTTP bridge binds only to loopback. It has no public listener and no free-fo
 ## Validation
 
 ```bash
-python -m unittest discover -s tests -p test_sovereign_console.py
+python -m unittest discover -s tests -p 'test_sovereign_console*.py'
 ```
 
 The automated test suite covers digest tampering, canonical surfaces, registry inspection, fail-closed command parsing, simulation determinism, and session hash chaining.
