@@ -1,0 +1,60 @@
+name: Deep Agent Innovation Conformance
+
+on:
+  push:
+    branches:
+      - feat/deep-agent-innovation-orchestrator-v1
+      - feat/windows-engineering-fabric-v1
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-mission-planner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: ""
+
+      - name: Compile agent fabric and planner
+        run: |
+          python -m py_compile \
+            agents/agent_fabric.py \
+            agents/innovation_orchestrator.py \
+            tests/test_agent_fabric.py \
+            tests/test_innovation_orchestrator.py
+
+      - name: Run agent fabric regression tests
+        run: python -m unittest tests.test_agent_fabric -v
+
+      - name: Run innovation planner regression tests
+        run: python -m unittest tests.test_innovation_orchestrator -v
+
+      - name: Generate deterministic plan and validate
+        run: |
+          python - <<'PY'
+          from agents.innovation_orchestrator import MissionRequest, build_mission_plan, validate_mission_plan
+          plan = build_mission_plan(MissionRequest(
+              intent="CI conformance mission: audit computational engineering",
+              required_capabilities=("test_generation", "source_coverage"),
+              constraints=("no production mutation", "preserve lineage"),
+              source_refs=("project.genome", "docs/agents/AGENT_FABRIC_V1.md"),
+          ))
+          errors = validate_mission_plan(plan)
+          assert not errors, errors
+          assert plan["status"] == "PLANNED"
+          assert len(plan["tasks"]) == 13
+          assert plan["governance"]["authority_decision"] == "PENDING"
+          print("PLAN_VALID", plan["mission_id"], plan["plan_hash"], len(plan["tasks"]))
+          PY
