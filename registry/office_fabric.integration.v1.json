@@ -2449,7 +2449,7 @@
   "coverage": {
     "offices_count": 16,
     "system_surfaces_count": 21,
-    "tool_integrations_count": 17,
+    "tool_integrations_count": 18,
     "basis": "Seeded from the repository files and official protocol/specification pages listed in sources. Counts refer only to the entries in this registry version.",
     "not_claimed": [
       "This is not a complete extraction of every historical item from the 0001-2750 master index.",
