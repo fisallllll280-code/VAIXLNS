@@ -49,6 +49,9 @@ def analyze_opportunity(item: dict[str, Any], data_state: str) -> dict[str, Any]
         "id": item.get("id", "UNKNOWN"),
         "name": item.get("name", ""),
         "evidence_stage": evidence_stage,
+        "target_customer": item.get("target_customer"),
+        "offer": item.get("offer"),
+        "economic_period": item.get("economic_period", "UNSPECIFIED"),
         "evidence_refs": item.get("evidence_refs", []),
         "data_state": data_state,
         "missing_fields": sorted(set(missing)),
@@ -88,6 +91,7 @@ def analyze_opportunity(item: dict[str, Any], data_state: str) -> dict[str, Any]
 
     evidence_points = EVIDENCE_POINTS[evidence_stage]
     margin_points = min(20, max(0, round((gross_margin or 0) * 25))) if price > 0 else 0
+    discovery_points = min(10, qualified_calls)
     cash_days = sales_days + collect_days
     cash_speed_points = 15 if cash_days <= 7 else 13 if cash_days <= 14 else 10 if cash_days <= 30 else 6 if cash_days <= 60 else 3 if cash_days <= 90 else 0
     contribution_points = 15 if contribution > 0 and price > 0 else 0
@@ -95,6 +99,7 @@ def analyze_opportunity(item: dict[str, Any], data_state: str) -> dict[str, Any]
     capacity_points = 10 if capacity > 0 and expected > 0 else 0
     score_components = {
         "commercial_evidence": evidence_points,
+        "qualified_discovery_calls": discovery_points,
         "gross_margin": margin_points,
         "time_to_cash": cash_speed_points,
         "contribution_after_acquisition": contribution_points,
