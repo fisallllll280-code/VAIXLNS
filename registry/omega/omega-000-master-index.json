@@ -123,6 +123,35 @@
         "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md",
         "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
       ]
+    },
+    {
+      "id": "VAIXLNS.RESEARCH.DECISION.FABRIC.001",
+      "type": "CAPABILITY",
+      "role": "EVIDENCE_FIRST_RESEARCH_AND_ENGINEERING_DECISION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VAIXLNS",
+      "framework": "Ω.120 Innovation Framework",
+      "execution_repository": "fisallllll280-code/VAIXLNS-unified",
+      "integration_status": "PROVIDER_NEUTRAL_BOUNDARY; LIVE_PROVIDER_ADAPTERS_PENDING",
+      "evidence_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/innovation_control/research_fabric.py",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/tests/test_research_fabric.py",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/config/research-decision-bundle.schema.json",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/docs/INNOVATION_RESEARCH_DECISION_FABRIC_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690691",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690717"
+      ],
+      "capabilities": [
+        "multi_lane_research_query_planning",
+        "source_provenance_and_content_hashing",
+        "novelty_and_lineage_screening",
+        "claim_support_and_counterevidence_analysis",
+        "engineering_specification_completeness",
+        "deterministic_research_decision_bundle"
+      ],
+      "promotion_rule": "Research output cannot self-promote; downstream innovation proof gates and explicit authority remain mandatory."
     }
   ],
   "promotion_rules": {
