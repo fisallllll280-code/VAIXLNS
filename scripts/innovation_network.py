@@ -158,7 +158,7 @@ def main() -> int:
         network = build_network(source)
         target = Path(args.output)
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(json.dumps(network, ensure_ascii=False, sort_keys=True, indent=2) + "\\n", encoding="utf-8")
+        target.write_text(json.dumps(network, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     print(json.dumps({"output": str(target), "innovation_count": network["summary"]["innovation_count"],
