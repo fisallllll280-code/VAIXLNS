@@ -30,9 +30,24 @@ def _is_nonempty_string(value: object) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def _is_one_of(value: object, allowed: set[str]) -> bool:
+    return isinstance(value, str) and value in allowed
+
+
+def _is_https_uri(value: object) -> bool:
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlsplit(value)
+        return parsed.scheme == "https" and bool(parsed.netloc)
+    except ValueError:
+        return False
+
+
 def validate_job(job: object) -> dict[str, object]:
     errors: list[str] = []
     blockers: list[str] = []
+    warnings: list[str] = []
     if not isinstance(job, dict):
         return {"valid": False, "release_eligible": False, "errors": ["job must be a JSON object"], "release_blockers": ["JOB_NOT_AN_OBJECT"]}
 
@@ -52,7 +67,7 @@ def validate_job(job: object) -> dict[str, object]:
         errors.append("schema_version must be 1.0.0")
     if not isinstance(job["job_id"], str) or not re.fullmatch(r"ED-[A-Z0-9][A-Z0-9._-]{1,70}", job["job_id"]):
         errors.append("job_id must match ED- plus a stable uppercase identity")
-    if job["discipline"] not in DISCIPLINES:
+    if not _is_one_of(job["discipline"], DISCIPLINES):
         errors.append("discipline is not supported by this contract")
     if not _is_nonempty_string(job["jurisdiction"]):
         errors.append("jurisdiction must be explicit; do not infer a governing code")
@@ -63,22 +78,22 @@ def validate_job(job: object) -> dict[str, object]:
     if not isinstance(units, dict):
         errors.append("units must be an object")
     else:
-        if units.get("length") not in {"mm", "cm", "m", "in", "ft"}:
+        if not _is_one_of(units.get("length"), {"mm", "cm", "m", "in", "ft"}):
             errors.append("units.length must be explicit")
-        if units.get("angle") not in {"deg", "rad"}:
+        if not _is_one_of(units.get("angle"), {"deg", "rad"}):
             errors.append("units.angle must be explicit")
         if set(units) - {"length", "angle", "force", "pressure"}:
             errors.append("units contains unsupported fields")
-        if "force" in units and units["force"] not in {"N", "kN", "lbf", "kip"}:
+        if "force" in units and not _is_one_of(units["force"], {"N", "kN", "lbf", "kip"}):
             errors.append("units.force is unsupported")
-        if "pressure" in units and units["pressure"] not in {"Pa", "kPa", "MPa", "bar", "psi"}:
+        if "pressure" in units and not _is_one_of(units["pressure"], {"Pa", "kPa", "MPa", "bar", "psi"}):
             errors.append("units.pressure is unsupported")
 
     coordinate = job["coordinate_system"]
     if not isinstance(coordinate, dict):
         errors.append("coordinate_system must be an object")
     else:
-        if coordinate.get("handedness") not in {"right", "left"}:
+        if not _is_one_of(coordinate.get("handedness"), {"right", "left"}):
             errors.append("coordinate_system.handedness must be explicit")
         if not _is_nonempty_string(coordinate.get("origin")):
             errors.append("coordinate_system.origin must be explicit")
@@ -103,20 +118,22 @@ def validate_job(job: object) -> dict[str, object]:
                 errors.append(f"duplicate constraint id: {cid}")
             else:
                 constraint_ids.add(cid)
-            if constraint.get("type") not in CONSTRAINT_TYPES:
+            if not _is_one_of(constraint.get("type"), CONSTRAINT_TYPES):
                 errors.append(f"{prefix}.type is unsupported")
             if not _is_nonempty_string(constraint.get("description")):
                 errors.append(f"{prefix}.description is required")
             if not isinstance(constraint.get("mandatory"), bool):
                 errors.append(f"{prefix}.mandatory must be boolean")
             state = constraint.get("verification_state")
-            if state not in CONSTRAINT_STATES:
+            if not _is_one_of(state, CONSTRAINT_STATES):
                 errors.append(f"{prefix}.verification_state is invalid")
-            elif constraint.get("mandatory") is True and state != "PASSED":
+            elif state == "FAILED":
+                blockers.append(f"CONSTRAINT_FAILED:{cid}")
+            elif constraint.get("mandatory") is True and state not in {"PASSED", "NOT_APPLICABLE_WITH_EVIDENCE"}:
                 blockers.append(f"MANDATORY_CONSTRAINT_NOT_PROVEN:{cid}")
             if set(constraint) - {"id", "type", "description", "mandatory", "verification_state", "evidence_ref"}:
                 errors.append(f"{prefix} contains unsupported fields")
-            if state == "PASSED" and not _is_nonempty_string(constraint.get("evidence_ref")):
+            if state in {"PASSED", "NOT_APPLICABLE_WITH_EVIDENCE"} and not _is_nonempty_string(constraint.get("evidence_ref")):
                 errors.append(f"{prefix}: PASSED requires evidence_ref")
 
     standards = job["standards"]
@@ -139,15 +156,18 @@ def validate_job(job: object) -> dict[str, object]:
                 errors.append(f"duplicate standard identity: {code}/{edition}/{jurisdiction}")
             standard_keys.add(key)
             uri = standard.get("source_uri")
-            if not _is_nonempty_string(uri) or urlsplit(uri).scheme != "https" or not urlsplit(uri).netloc:
+            if not _is_https_uri(uri):
                 errors.append(f"{prefix}.source_uri must be an HTTPS source")
             state = standard.get("selection_state")
-            if state not in STANDARD_STATES:
+            if not _is_one_of(state, STANDARD_STATES):
                 errors.append(f"{prefix}.selection_state is invalid")
-            elif state != "SELECTED":
-                blockers.append(f"STANDARD_SELECTION_UNCONFIRMED:{code}")
-                if state == "NOT_APPLICABLE_WITH_RATIONALE" and not _is_nonempty_string(standard.get("selection_rationale")):
-                    errors.append(f"{prefix}: non-applicability requires selection_rationale")
+            elif state == "NEEDS_REVIEW":
+                if isinstance(job.get("validation_policy"), dict) and job["validation_policy"].get("block_on_unknown_standards") is True:
+                    blockers.append(f"STANDARD_SELECTION_UNCONFIRMED:{code}")
+                else:
+                    warnings.append(f"STANDARD_SELECTION_UNCONFIRMED:{code}")
+            elif state == "NOT_APPLICABLE_WITH_RATIONALE" and not _is_nonempty_string(standard.get("selection_rationale")):
+                errors.append(f"{prefix}: non-applicability requires selection_rationale")
             if set(standard) - {"code", "edition", "jurisdiction", "source_uri", "selection_state", "selection_rationale"}:
                 errors.append(f"{prefix} contains unsupported fields")
 
@@ -155,7 +175,7 @@ def validate_job(job: object) -> dict[str, object]:
     if not isinstance(backend, dict):
         errors.append("geometry_backend must be an object")
     else:
-        if backend.get("adapter") not in ADAPTERS:
+        if not _is_one_of(backend.get("adapter"), ADAPTERS):
             errors.append("geometry_backend.adapter is unsupported")
         if not _is_nonempty_string(backend.get("version")):
             errors.append("geometry_backend.version must be pinned or explicitly marked")
@@ -163,6 +183,12 @@ def validate_job(job: object) -> dict[str, object]:
             errors.append("geometry_backend contains unsupported fields")
         if backend.get("adapter") == "not_selected":
             blockers.append("GEOMETRY_BACKEND_NOT_SELECTED")
+        if not _is_one_of(backend.get("capability_state"), {"NOT_CHECKED", "AVAILABLE", "VERIFIED", "UNAVAILABLE"}):
+            errors.append("geometry_backend.capability_state is invalid")
+        elif backend.get("capability_state") != "VERIFIED":
+            blockers.append("BACKEND_CAPABILITY_NOT_VERIFIED")
+        if backend.get("capability_state") == "VERIFIED" and not _is_nonempty_string(backend.get("capability_contract_ref")):
+            errors.append("VERIFIED backend capability requires capability_contract_ref")
 
     deliverables = job["deliverables"]
     deliverable_keys: set[tuple[str, str]] = set()
@@ -176,7 +202,7 @@ def validate_job(job: object) -> dict[str, object]:
                 errors.append(f"{prefix} must be an object")
                 continue
             fmt, purpose = item.get("format"), item.get("purpose")
-            if fmt not in FORMATS:
+            if not _is_one_of(fmt, FORMATS):
                 errors.append(f"{prefix}.format is unsupported")
             if not _is_nonempty_string(purpose):
                 errors.append(f"{prefix}.purpose is required")
@@ -193,6 +219,7 @@ def validate_job(job: object) -> dict[str, object]:
     policy_keys = {
         "require_independent_checker", "require_human_release", "block_on_unknown_standards",
         "independent_check_state", "human_approval_state", "simulation_required", "simulation_state",
+        "independent_check_evidence_ref", "human_approval_evidence_ref", "simulation_evidence_ref",
     }
     if not isinstance(policy, dict):
         errors.append("validation_policy must be an object")
@@ -202,20 +229,26 @@ def validate_job(job: object) -> dict[str, object]:
         for key in ("require_independent_checker", "require_human_release", "block_on_unknown_standards", "simulation_required"):
             if not isinstance(policy.get(key), bool):
                 errors.append(f"validation_policy.{key} must be boolean")
-        if policy.get("independent_check_state") not in {"NOT_RUN", "PASSED", "FAILED"}:
+        if not _is_one_of(policy.get("independent_check_state"), {"NOT_RUN", "PASSED", "FAILED"}):
             errors.append("validation_policy.independent_check_state is invalid")
-        if policy.get("human_approval_state") not in {"NOT_GRANTED", "APPROVED", "REJECTED"}:
+        if not _is_one_of(policy.get("human_approval_state"), {"NOT_GRANTED", "APPROVED", "REJECTED"}):
             errors.append("validation_policy.human_approval_state is invalid")
-        if policy.get("simulation_state") not in {"NOT_RUN", "PASSED", "FAILED", "NOT_APPLICABLE_WITH_EVIDENCE"}:
+        if not _is_one_of(policy.get("simulation_state"), {"NOT_RUN", "PASSED", "FAILED", "NOT_APPLICABLE_WITH_EVIDENCE"}):
             errors.append("validation_policy.simulation_state is invalid")
         if policy.get("require_independent_checker") is True and policy.get("independent_check_state") != "PASSED":
             blockers.append("INDEPENDENT_CHECK_NOT_PASSED")
+        if policy.get("independent_check_state") == "PASSED" and not _is_nonempty_string(policy.get("independent_check_evidence_ref")):
+            errors.append("PASSED independent check requires independent_check_evidence_ref")
         if policy.get("require_human_release") is True and policy.get("human_approval_state") != "APPROVED":
             blockers.append("HUMAN_RELEASE_NOT_APPROVED")
+        if policy.get("human_approval_state") == "APPROVED" and not _is_nonempty_string(policy.get("human_approval_evidence_ref")):
+            errors.append("APPROVED human release requires human_approval_evidence_ref")
         if policy.get("human_approval_state") == "REJECTED":
             blockers.append("HUMAN_RELEASE_REJECTED")
         if policy.get("simulation_required") is True and policy.get("simulation_state") != "PASSED":
             blockers.append("REQUIRED_SIMULATION_NOT_PASSED")
+        if policy.get("simulation_state") == "PASSED" and not _is_nonempty_string(policy.get("simulation_evidence_ref")):
+            errors.append("PASSED simulation requires simulation_evidence_ref")
         if policy.get("simulation_state") == "FAILED":
             blockers.append("SIMULATION_FAILED")
 
@@ -228,6 +261,7 @@ def validate_job(job: object) -> dict[str, object]:
         "release_eligible": not errors and not blockers,
         "errors": errors,
         "release_blockers": blockers,
+        "warnings": sorted(set(warnings)),
         "scope_notice": (
             "Structural validity of this request is not engineering/code compliance. "
             "Release eligibility requires cited evidence, the specified independent checks, "

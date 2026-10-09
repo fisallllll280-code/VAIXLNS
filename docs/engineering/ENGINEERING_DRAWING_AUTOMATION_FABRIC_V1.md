@@ -28,7 +28,7 @@ INTENT
   -> HUMAN RELEASE AUTHORIZATION
 ```
 
-The first implemented component is a fail-closed job-admission validator. It rejects malformed job contracts, duplicate identities, implicit units, untraceable standard references, and malformed evidence fields. A structurally valid request can still be **ineligible for release** until mandatory constraints have evidence, standards have been confirmed, required simulation passes, an independent checker passes, and the configured human approval is present.
+The first implemented component is a fail-closed job-admission validator. It rejects malformed job contracts, duplicate identities, implicit units, untraceable standard references, and malformed evidence fields. A structurally valid request can still be **ineligible for release** until mandatory constraints have item-level evidence, standards have been confirmed or explicitly justified as not applicable, the CAD/BIM adapter capability is verified, required simulation passes with an evidence reference, an independent checker passes with an evidence reference, and configured human approval has a traceable approval reference.
 
 ## Deliverables and adapters
 

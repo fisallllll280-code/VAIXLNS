@@ -226,7 +226,8 @@
       "additionalProperties": false,
       "required": [
         "adapter",
-        "version"
+        "version",
+        "capability_state"
       ],
       "properties": {
         "adapter": {
@@ -247,6 +248,14 @@
         "capability_contract_ref": {
           "type": "string",
           "maxLength": 500
+        },
+        "capability_state": {
+          "enum": [
+            "NOT_CHECKED",
+            "AVAILABLE",
+            "VERIFIED",
+            "UNAVAILABLE"
+          ]
         }
       }
     },
@@ -309,7 +318,10 @@
         "independent_check_state",
         "human_approval_state",
         "simulation_required",
-        "simulation_state"
+        "simulation_state",
+        "independent_check_evidence_ref",
+        "human_approval_evidence_ref",
+        "simulation_evidence_ref"
       ],
       "properties": {
         "require_independent_checker": {
@@ -345,6 +357,18 @@
             "FAILED",
             "NOT_APPLICABLE_WITH_EVIDENCE"
           ]
+        },
+        "independent_check_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "human_approval_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "simulation_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
         }
       }
     }
