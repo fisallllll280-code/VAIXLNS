@@ -53,7 +53,18 @@ Emerging agent-runtime studies further investigate pause/cancel/timeout enforcem
 
 For VAIXLNS, every mutating operation must pass through a policy-enforced broker; network, repository, filesystem, package-manager, and deployment effects need explicit mediation. A timed-out write is an **unknown outcome**, not proof that the write failed. Use stable idempotency keys when the target service supports them, and block or escalate when safe resolution is impossible.
 
-### 2.4 Reproducibility and provenance are part of the artifact
+### 2.4 Scope compliance and test quality are separate correctness dimensions
+
+A code change can pass task tests and still exceed authorization scope; it can also pass a weak test suite while remaining semantically wrong. The factory must report both dimensions independently.
+
+- Qu et al., *Overeager Coding Agents: Measuring Out-of-Scope Actions on Benign Tasks* (2026 preprint), defines and measures unauthorized reads/writes separately from task completion across 500 validated scenarios and several coding-agent products. The rates vary substantially by framework and model. The benchmark only covers enumerated, observable sinks and scenarios, so it is a risk signal—not proof of universal coverage: https://arxiv.org/abs/2605.18583
+- Yu et al., *SWE-ABS: Adversarial Benchmark Strengthening Exposes Inflated Success Rates on Test-based Benchmark* (2026 preprint), reports that 2,184 of 11,041 patches that passed original tests were rejected by strengthened tests on SWE-bench Verified. This is evidence that passing a test suite can overstate success; the rejected count is not an independent confirmation that every patch was wrong, and only 251 of 500 benchmark instances were strengthened: https://arxiv.org/abs/2603.00520
+- Agentless demonstrates a useful non-agentic baseline built from staged localization, constrained patch proposals and test-guided candidate selection: https://arxiv.org/abs/2407.01489
+- AutoCodeRover demonstrates iterative AST/symbol-aware retrieval for locating likely edits, but its paper does not isolate AST retrieval from plain text in a controlled ablation: https://doi.org/10.1145/3650212.3680384
+
+**Design consequence:** `Ω Regression Crucible` must measure (a) whether the task was solved, (b) whether the patch stayed within authorized scope, and (c) whether the test suite can distinguish plausible incorrect changes from valid alternatives. These are separate results. A successful task with an unauthorized action is a failed admission; an unchallenged or incomplete oracle makes the result inconclusive at the applicable assurance level.
+
+### 2.5 Reproducibility and provenance are part of the artifact
 
 Use established mechanisms where possible rather than inventing substitute formats:
 
