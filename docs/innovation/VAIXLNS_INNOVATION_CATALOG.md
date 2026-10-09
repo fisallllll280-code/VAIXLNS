@@ -35,6 +35,7 @@
 | OIF — Operational Integrity Fabric | Assurance / Governance | readiness status + evidence | operational truth gate; not ordinary monitoring |
 | MCI — Master Capability Indexer | Nexus / Master Registry | capability graph + master index | executable view of registry/capability relationships |
 | SFC — Semantic Fingerprint Canonicalizer | Semantics / Fingerprint | canonical fingerprint | standard serialization + hashing layer |
+| Research-to-Engineering Decision Fabric (REDF) | Research / Ω.000 / Innovation Control | Decision bundle + source-bound evidence + engineering gaps | Implemented provider-neutral boundary; live search adapters and full historical recovery remain pending |
 | RDV — Replay Determinism Verifier | Replay / Conformance | determinism report | verifies replay equivalence |
 
 ## C. Deep innovation proposals recovered from the project archive
@@ -121,3 +122,16 @@ DISTRIBUTED / INFRASTRUCTURE / WORLD / FEDERATION
 ## E. Innovation anti-duplication rule
 Do not create a new top-level system when a proposal can be expressed as:
 \`Existing Canonical Owner + new capability + explicit contract + evidence + proof + lifecycle + lineage\`. 
+
+## F. Research-to-engineering decision fabric — implementation boundary
+
+The REDF capability is registered as \`VAIXLNS.RESEARCH.DECISION.FABRIC.001\` in \`Ω.000\`. Its executable implementation lives in the \`VAIXLNS-unified\` execution repository and is governed by the canonical VAIXLNS registry.
+
+Research roles:
+- Source Coverage: identify missing sources and failed mandatory search lanes.
+- Novelty & Lineage: flag exact matches and possible overlap without making lexical similarity a proof of duplication.
+- Claim Adversary: preserve supporting, refuting and qualifying evidence; unresolved contradictions block readiness.
+- Research-to-Engineering: expose missing contracts, invariants, failure handling, tests, verification and rollback fields.
+- Provenance Integrity: check source content digests and URI/revision conflicts.
+
+**State boundary:** \`READY_FOR_ENGINEERING_REVIEW\` is not \`VERIFIED\`, \`CANONICAL\`, or \`RUNNING\`. Canonical admission remains downstream of independent verification and explicit authority. Provider adapters for live GitHub/web/archive research are an integration task, not an implied property of the provider-neutral core.
