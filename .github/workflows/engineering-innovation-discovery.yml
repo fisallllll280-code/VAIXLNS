@@ -1,0 +1,88 @@
+name: Engineering Innovation Discovery
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
+  pull_request:
+    paths:
+      - "registry/engineering/**"
+      - "tools/engineering_innovation_discovery.py"
+      - "tests/test_engineering_innovation_discovery.py"
+      - ".github/workflows/engineering-innovation-discovery.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: engineering-discovery-\${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: \${{ github.token }}
+    steps:
+      - name: Check out canonical sources
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile discovery runner
+        run: python -m py_compile tools/engineering_innovation_discovery.py
+
+      - name: Run offline unit tests
+        run: python -m unittest discover -s tests -p "test_engineering_innovation_discovery.py" -v
+
+      - name: Restore last successful main-branch report
+        id: baseline
+        env:
+          GH_TOKEN: \${{ github.token }}
+        shell: bash
+        run: |
+          echo "path=" >> "$GITHUB_OUTPUT"
+          mkdir -p .discovery-history
+          for run_id in $(gh run list \
+            --branch main \
+            --workflow engineering-innovation-discovery.yml \
+            --limit 20 \
+            --json databaseId,status,conclusion \
+            --jq '.[] | select(.status == "completed" and .conclusion == "success") | .databaseId'); do
+            if [ "$run_id" = "$GITHUB_RUN_ID" ]; then
+              continue
+            fi
+            rm -rf .discovery-history/*
+            if gh run download "$run_id" --name engineering-discovery-history --dir .discovery-history; then
+              baseline_file="$(find .discovery-history -type f -name 'engineering-discovery-report.json' -print -quit)"
+              if [ -n "$baseline_file" ]; then
+                echo "path=$baseline_file" >> "$GITHUB_OUTPUT"
+                echo "Restored baseline from successful main-branch run $run_id"
+                exit 0
+              fi
+            fi
+          done
+          echo "No prior successful discovery artifact found; this run becomes the initial baseline."
+
+      - name: Discover engineering releases and source changes
+        shell: bash
+        run: |
+          args=(--output-dir artifacts/engineering-discovery)
+          if [ -n "\${{ steps.baseline.outputs.path }}" ] && [ -f "\${{ steps.baseline.outputs.path }}" ]; then
+            args+=(--baseline "\${{ steps.baseline.outputs.path }}")
+          fi
+          python tools/engineering_innovation_discovery.py "\${args[@]}"
+
+      - name: Upload report and next-run baseline
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: engineering-discovery-history
+          path: artifacts/engineering-discovery/
+          if-no-files-found: warn
+          retention-days: 90
