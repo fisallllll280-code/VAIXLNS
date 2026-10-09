@@ -292,3 +292,7 @@ Until then, the correct status is `PROPOSAL`, `SPECIFIED`, or `PARTIAL` accordin
 
 ---
 **End of specification.**
+
+## Related engineering specification
+
+For a deeper implementation contract covering clean diffs, dependency-aware routing, proof-carrying patch capsules, effect mediation, regression challenge and acceptance criteria, see [`AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md`](AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md). This is a proposal and must not be read as evidence that those controls are deployed.
