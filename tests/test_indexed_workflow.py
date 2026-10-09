@@ -80,6 +80,28 @@ class IndexedWorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(WorkflowError, "unknown target_system_id"):
             build_plan(request, self.registry, self.registry_digest)
 
+    def test_caller_supplied_approval_reference_does_not_bypass_authority_gate(self):
+        request = read_json(FIXTURE)
+        request["mutation_scope"] = "CANONICAL"
+        request["approval_ref"] = "APPROVED-BY-CALLER"
+        plan = build_plan(request, self.registry, self.registry_digest)
+        self.assertEqual(plan["plan_status"], "HOLD_FOR_AUTHORITY_AND_ADAPTER")
+        self.assertFalse(plan["execution"]["approval_ref_is_verified"])
+        self.assertEqual(plan["approval_reference_not_verified"], "APPROVED-BY-CALLER")
+
+    def test_unknown_request_field_fails_closed(self):
+        request = read_json(FIXTURE)
+        request["grant_runtime_authority"] = True
+        with self.assertRaisesRegex(WorkflowError, "unsupported request fields"):
+            build_plan(request, self.registry, self.registry_digest)
+
+    def test_target_system_may_be_omitted_without_inventing_owner(self):
+        request = read_json(FIXTURE)
+        request.pop("target_system_id")
+        plan = build_plan(request, self.registry, self.registry_digest)
+        self.assertIsNone(plan["target_system_id"])
+        self.assertEqual(plan["plan_status"], "PLAN_READY_NOT_EXECUTED")
+
     def test_pipeline_cannot_move_execution_before_verification(self):
         registry = json.loads(json.dumps(self.registry))
         registry["pipelines"]["engineering"].remove("AG-010")
