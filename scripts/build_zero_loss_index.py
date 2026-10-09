@@ -722,9 +722,15 @@ def build_payloads(root: Path, output_dir: Path, legacy_start: int | None = None
                 else:
                     generated_children.extend(_extract_text_block_records(source, root_record["uid"], text))
             generated_children.extend(_extract_term_records(source, root_record["uid"], text))
+        generated_by_uid = {child["uid"]: child for child in generated_children}
         for child in generated_children:
             child["_search_text"] = child.get("_search_text", child.get("source_excerpt") or child["name"])
-            root_record["children"].append(child["uid"])
+            if child["parent"] == root_record["uid"]:
+                root_record["children"].append(child["uid"])
+            elif child["parent"] in generated_by_uid:
+                generated_by_uid[child["parent"]]["children"].append(child["uid"])
+            else:
+                raise IndexBuildError(f"ORPHAN_ATOMIC_PARENT:{child['uid']}")
             records.append(child)
         source["extracted_record_count"] = 1 + len(generated_children)
 
