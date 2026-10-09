@@ -52,3 +52,12 @@ The present repository has a green unit-test workflow on its feature branch. Liv
 ## Recovery and information-loss prevention
 
 Persist checkpoints outside process memory. Every exception, timeout, missing adapter, conflict, model/version mismatch and verification failure must be emitted to an append-only event ledger with a stable task ID and artifact lineage. Resume from the last verified checkpoint; never reconstruct missing facts silently. A durable VAIXLNS ledger adapter and replay tests are required before production operation.
+
+
+## Provider adapter status update — 2026-10-09
+
+The implementation in \`vx-agents-fabric\` main now includes an **opt-in OpenAI-compatible chat adapter** for specialist roles and parent minds. It supports family-level defaults, role overrides and exact role/version overrides, plus explicit bindings for each parent mind. See [the provider binding implementation](https://github.com/fisallllll280-code/vx-agents-fabric/tree/main/src/vx_agents_fabric/providers).
+
+This means provider binding code is available; it does **not** mean provider endpoints, model names, credentials or live inference are connected in this VAIXLNS deployment. The adapter is not itself a browser/search engine, GitHub repository client or code sandbox. Those integrations need separate, least-privilege adapters and must pass the universal integration gate.
+
+Current disposition remains \`PROPOSED_NOT_ADMITTED\`. The durable canonical Event/Ledger binding, crash-safe replay, full live integration verification, fresh proof and production admission remain outstanding. Missing model configuration must yield \`NOT_CONFIGURED/HOLD\`, never fabricated research or a claimed success.
