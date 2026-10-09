@@ -21,6 +21,13 @@
 - `REPOSITORY_PERPETUAL_ENGINE_V1.md` — continuous repository creation, development, verification and innovation loop.
 
 - `../architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md` — 2026-10-07 consolidated architecture context for index memory, VX cognitive federation, agent minds, Ω-Patterns, prediction/recovery, data/tools/developers, Ω-Arena, security, and treasury integration.
+- ../architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md — governed system memory, source lineage, Ω.000 synchronization, historical preservation, and typed engineering-language processing.
+- ../integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md — ARC-X to VX engineering task routing for mathematics, numerical computing, software and physics simulation; remains SPECIFIED until runtime evidence closes the gates.
+- ../../schemas/vaixlns-system-memory-record.schema.json — machine-readable provenance-preserving memory-record contract.
+- ../../schemas/arcx-vx-engineering-task.schema.json — typed task envelope for controlled engineering compute.
+- ../../scripts/arcx_vx_bridge.py — explicit fail-closed client for a configured VX engineering endpoint; receipt acknowledgement is not proof or admission.
+- ../../tests/test_arcx_vx_bridge.py — unit tests for preflight, receipt validation, and endpoint safety (test execution remains to be verified).
+
 
 - `../strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md` — Saudi-first engineering offers, founder-financed launch capital, sources-and-uses ledger, and 30-day reserve rule.
 - `../../registry/capital_lock_policy.v1.json` — machine-readable proposed capital policy; not technically enforced until separately evidenced.
