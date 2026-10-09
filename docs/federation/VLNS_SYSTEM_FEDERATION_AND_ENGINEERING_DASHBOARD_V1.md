@@ -37,18 +37,33 @@ This topology is a contract map, **not a live-connectivity claim**. In particula
 
 ## 3. VLNS attribute model
 
-The machine-readable record `registry/federation/vlns-capability-index.v1.json` separates:
+The machine-readable record `registry/federation/vlns-capability-index.v1.json` separates evidence-linked atomic properties from reusable attribute families.
 
-1. **Identity:** system ID, candidate repository surface, lineage status and canonical owner.
-2. **Role:** knowledge/discovery, adversarial analysis, repository intelligence and proposal production.
-3. **Capabilities:** discovery, adversarial analysis, architecture/capability candidates, evidence candidates, reconstruction inputs, model activation and external-integration gate.
-4. **Provider/model contract:** model/provider/version, role, capability profile, context hash, tool/permission profile, constraints, provenance and activation ID.
-5. **Authority envelope:** deny-by-default; model connection grants no execution authority; canonical admission remains with VAIXLNS.
-6. **Integration edges:** source, target, contract, allowed payload, prohibited effects, live status and evidence references.
-7. **Implementation maturity:** SPECIFIED vs PROPOSED vs IMPLEMENTED/VERIFIED. Unobserved code is not inferred.
-8. **Observability:** startup, health, test, event, evidence and replay requirements.
-9. **Engineering readiness:** identity, endpoint, runtime, adapter, telemetry, index and cross-system integration gaps.
-10. **Provenance:** each material property has source references; conflicts and unknowns remain explicit.
+**Current catalog depth (definition counts, not runtime-completion counts):**
+- 4 system identity records and 4 proposed/documented connection edges.
+- 11 capability records and 10 atomic property records.
+- **15 attribute families and 302 indexed field definitions.**
+- 7 engineering panel definitions and 8 evidence-backed integration gaps.
+
+The 15 field families are:
+
+1. **System/repository genome** — identity, ownership, branch/revision, languages, frameworks, modules, entrypoints, APIs, UI, database, models, agents, tools, workflows, security, tests, CI/CD, control/data flow, dependency/capability graphs, provenance, risks, gaps and unknowns.
+2. **Universal model/provider contract** — model/provider/version, protocol/endpoint, capabilities, context window, modalities, structured output, tool calling, streaming, embeddings, vision/audio, reasoning profile, local/remote, cost metadata, credential reference, health and conformance.
+3. **VLNS→VX activation envelope** — model/provider/version, role, capability profile, context hash, tools/permissions, constraints, provenance and activation ID.
+4. **Agent genome** — identity, role/family, capabilities/tools, authority scope, inputs/outputs, preconditions, evidence/proof obligations, failure handling, handoffs, version, lineage and performance/evidence history.
+5. **Capability contract** — domain/purpose, version, requirements, accepted inputs, outputs, model/tool compatibility, policy, preconditions, invariants, failure modes, verification and proof obligations.
+6. **Persistent memory object** — scope/owner/source, provenance, content/hash, confidence, permissions, lifecycle, dependencies, lineage, retention and integrity.
+7. **Execution event** — task/run/agent/model identity, timing, input/output hashes, tools, handoffs, policy decision, evidence, verification, failure, cost metadata, replay and correlation.
+8. **Evidence/provenance record** — claim, source URI/revision/path/range, content hash, collector/time, method/trust, verification, contradictions, freshness, replay and admission.
+9. **External integration gate** — identity, endpoint/protocol, request/response schemas, auth/credential reference, permission scope, sandbox, positive/negative tests, timeout/retry, recovery, replay, independent verification, impact budget, admission and rollback.
+10. **Health/observability** — health/readiness, metrics/logs/traces, correlation, service and source revision, last probe, probe origin/authentication, latency/error rate, dependencies and evidence timestamp.
+11. **Replay/reality capsule** — execution, task-contract hash, source/environment/provider/policy/tool versions, input/event/observation/output/evidence references, verification, replayability/hash and failure-injection results.
+12. **Engineering drawing job** — discipline, jurisdiction, units, coordinate frame, constraints/standards/editions, backend, deliverables, simulation, independent-check/human-approval obligations and release eligibility. This is specified in open PR #39, not merged.
+13. **Cross-platform runtime profile** — OS/architecture, browser/UI and local model support, runtime, memory/storage budget, network/credential storage, background limits, permissions, health and conformance.
+14. **Master-index atom/fragment** — record identity/aliases/type, repository/path/revision/range, original/normalized content, hash, epistemic/lifecycle state, ownership, relationships/dependencies, evidence, lineage, conflicts and reconstruction state.
+15. **Session continuity object** — project/model/agent, timing/goals/inputs/decisions/ideas/outputs, evidence/provenance, failures, resume state, access scope and retention. Durable persistence is still a proposal; the current console session chain is process-local.
+
+The exact field lists and source references are stored per family in the JSON index. A family state describes the evidence level of the design or implementation surface, **not proof that every field is populated in a live service**. The historical Ω.000 range 0001–2750 is not yet fully exposed record-by-record in the current corpus.
 
 ## 4. Engineering dashboard panels
 
