@@ -13,7 +13,7 @@
     "authority_inheritance": "CHILD_SCOPE_IS_SUBSET_OF_PARENT_SCOPE",
     "canonical_adoption": "GOVERNANCE_ONLY"
   },
-  "agent_role_count": 22,
+  "agent_role_count": 35,
   "agent_profiles": [
     {
       "schema_version": "1.0.0",
@@ -1669,6 +1669,1019 @@
         "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
         "review_state": "REVIEW_REQUIRED"
       }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-FINANCIAL-INTELLIGENCE",
+      "display_name": "VX Financial Intelligence Analyst",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Market, cost, resource, unit-economics and downside analysis; proposal-only authority",
+      "domains": [
+        "finance",
+        "market_research",
+        "cost_analysis"
+      ],
+      "authority_ceiling": "A1_RESEARCH",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "market_research",
+          "repo_read",
+          "cost_estimator"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE"
+        ],
+        "denied_operation_classes": [
+          "SANDBOX_MUTATE",
+          "BRANCH_MUTATE",
+          "RELEASE_PREPARE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "RESEARCH_ALLOWLIST"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 900,
+        "max_retries": 2,
+        "max_network_calls": 20,
+        "max_write_bytes": 0,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "source_provenance",
+          "assumption_disclosure",
+          "cost_sensitivity",
+          "no_transaction_authority"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-MECHANICAL-THERMAL",
+      "display_name": "VX Mechanical and Thermal Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Mechanical design, heat transfer, thermodynamics, stress and fluid-thermal simulation",
+      "domains": [
+        "mechanical",
+        "thermal",
+        "thermofluids"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "engineering_solver_gateway",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "assumption_register",
+          "boundary_conditions",
+          "mesh_or_solver_validation",
+          "sensitivity_analysis"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-ELECTRICAL-ELECTRONICS",
+      "display_name": "VX Electrical and Electronics Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Circuit design, electronics, power electronics and electrical-system simulation",
+      "domains": [
+        "electrical",
+        "electronics",
+        "circuits"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "circuit_simulator",
+          "engineering_solver_gateway",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "circuit_validation",
+          "safety_limits",
+          "simulation_required",
+          "assumption_register"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-CONTROL-SYSTEMS",
+      "display_name": "VX Control and Automation Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Control theory, embedded systems, robotics control and digital-twin evaluation",
+      "domains": [
+        "control",
+        "automation",
+        "embedded"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "control_simulator",
+          "digital_twin",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "stability_analysis",
+          "safety_invariants",
+          "simulation_required",
+          "actuation_denied"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-CIVIL-STRUCTURAL",
+      "display_name": "VX Civil and Structural Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Structural analysis, civil works, geotechnics and load-case modeling",
+      "domains": [
+        "civil",
+        "structural",
+        "geotechnical"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "engineering_solver_gateway",
+          "structural_simulator"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "code_and_standard_scope",
+          "load_case_coverage",
+          "independent_calculation",
+          "human_engineer_review"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-CHEMICAL-PROCESS",
+      "display_name": "VX Chemical and Process Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Process systems, transport phenomena, reaction models and plant-process simulation",
+      "domains": [
+        "chemical",
+        "process",
+        "reaction_engineering"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "process_simulator",
+          "engineering_solver_gateway",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 2,
+        "max_execution_seconds": 1200,
+        "max_retries": 1,
+        "max_network_calls": 10,
+        "max_write_bytes": 262144,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "hazard_review",
+          "mass_energy_balance",
+          "assumption_register",
+          "simulation_only"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-MATERIALS-MANUFACTURING",
+      "display_name": "VX Materials and Manufacturing Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Materials selection, manufacturing process, tolerances, fatigue and material-property analysis",
+      "domains": [
+        "materials",
+        "manufacturing",
+        "materials_science"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "materials_database_read",
+          "manufacturing_simulator",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1200,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "datasheet_provenance",
+          "property_uncertainty",
+          "manufacturing_constraints",
+          "validation_plan"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-AEROSPACE-FLUIDS",
+      "display_name": "VX Aerospace and Fluid Dynamics Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Aerodynamics, propulsion analysis, flight-system modeling and CFD proposal work",
+      "domains": [
+        "aerospace",
+        "aerodynamics",
+        "CFD"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "engineering_solver_gateway",
+          "cfd_simulator",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 2,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "boundary_conditions",
+          "model_validation",
+          "sensitivity_analysis",
+          "safety_review"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-ENERGY-POWER",
+      "display_name": "VX Energy and Power Systems Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Energy systems, grids, generation, storage and power-system simulation",
+      "domains": [
+        "energy",
+        "power_systems",
+        "storage"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "grid_simulator",
+          "engineering_solver_gateway",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 12,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "scenario_analysis",
+          "stability_limits",
+          "resource_budget",
+          "simulation_required"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-BIOMEDICAL",
+      "display_name": "VX Biomedical Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Biomedical-device concepts, bioinstrumentation and computational biomodel analysis",
+      "domains": [
+        "biomedical",
+        "bioinstrumentation",
+        "biomodeling"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "scientific_simulator",
+          "standards_research"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE"
+        ],
+        "denied_operation_classes": [
+          "SANDBOX_MUTATE",
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "RESEARCH_ALLOWLIST"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 2,
+        "max_execution_seconds": 900,
+        "max_retries": 1,
+        "max_network_calls": 10,
+        "max_write_bytes": 0,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "evidence_provenance",
+          "safety_and_regulatory_review",
+          "no_patient_action",
+          "clinical_claims_hold"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-QUANTUM-HPC",
+      "display_name": "VX Quantum and High-Performance Computing Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Quantum-algorithm research, parallel computing, numerical kernels and compute profiling",
+      "domains": [
+        "quantum",
+        "HPC",
+        "parallel_computing"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "numeric_simulation",
+          "hpc_job_planner",
+          "simulator_only"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1500,
+        "max_retries": 2,
+        "max_network_calls": 15,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "resource_budget",
+          "reproducible_benchmark",
+          "numerical_validation",
+          "no_unbounded_jobs"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-NETWORK-DISTRIBUTED",
+      "display_name": "VX Networking and Distributed Systems Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Protocols, network architecture, distributed state, resilience and consistency modeling",
+      "domains": [
+        "networking",
+        "distributed_systems",
+        "protocols"
+      ],
+      "authority_ceiling": "A3_SANDBOX_MUTATE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "network_simulator",
+          "protocol_test_sandbox",
+          "sandbox_write"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE",
+          "SANDBOX_MUTATE"
+        ],
+        "denied_operation_classes": [
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "ALLOWLIST_ONLY"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 3,
+        "max_execution_seconds": 1200,
+        "max_retries": 2,
+        "max_network_calls": 15,
+        "max_write_bytes": 524288,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "protocol_contracts",
+          "fault_injection",
+          "security_review",
+          "replay_or_consistency_checks"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "agent_role_id": "AG-ENVIRONMENTAL-GEO",
+      "display_name": "VX Environmental and Geospatial Engineer",
+      "status": "ROLE_TEMPLATE_NOT_DEPLOYED",
+      "specialization": "Environmental systems, geospatial analysis, hydrology and resource modeling",
+      "domains": [
+        "environmental",
+        "geospatial",
+        "hydrology"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "vx_binding": {
+        "required": true,
+        "runtime_boundary": "VX_AGENT_RUNTIME",
+        "federation_gate": "VX_FEDERATION_GATE",
+        "action_envelope_schema": "schemas/vx-tool-action-envelope.v1.schema.json",
+        "direct_tool_calls_allowed": false,
+        "event_receipt_required": true
+      },
+      "tool_access": {
+        "allowed_tool_classes": [
+          "repo_read",
+          "geospatial_analysis_sandbox",
+          "scientific_simulator"
+        ],
+        "allowed_operation_classes": [
+          "OBSERVE",
+          "RESEARCH",
+          "PROPOSE"
+        ],
+        "denied_operation_classes": [
+          "SANDBOX_MUTATE",
+          "BRANCH_MUTATE",
+          "RELEASE_DEPLOY",
+          "IRREVERSIBLE_OR_PHYSICAL"
+        ],
+        "egress_profile": "RESEARCH_ALLOWLIST"
+      },
+      "budgets": {
+        "max_parallel_subtasks": 2,
+        "max_execution_seconds": 900,
+        "max_retries": 1,
+        "max_network_calls": 12,
+        "max_write_bytes": 0,
+        "max_estimated_cost_usd": 0
+      },
+      "delegation": {
+        "can_delegate": false,
+        "can_spawn_agents": false,
+        "spawn_allowlist": [],
+        "inherits_parent_scope": true,
+        "cannot_escalate_authority": true
+      },
+      "verification": {
+        "required_checks": [
+          "source_provenance",
+          "uncertainty_map",
+          "units_validation",
+          "model_assumptions"
+        ],
+        "independent_verifier_required": true,
+        "self_approval_allowed": false
+      },
+      "lineage": {
+        "profile_version": "1.0.0",
+        "derived_from": [
+          "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "docs/architecture/VX_FEDERATION_GATE_V1.md"
+        ],
+        "policy_ref": "registry/vx-tool-control-default-policy.v1.json",
+        "review_state": "REVIEW_REQUIRED"
+      }
     }
-  ]
+  ],
+  "domain_coverage": {
+    "status": "STARTER_SPECIALIZATION_SET_NOT_EXHAUSTIVE",
+    "extension_rule": "Every new specialization must use VX_AGENT_RUNTIME and VX_FEDERATION_GATE; direct tool calls remain prohibited.",
+    "domains": [
+      "software",
+      "systems",
+      "mathematics",
+      "physics",
+      "compilers",
+      "languages",
+      "data",
+      "infrastructure",
+      "security",
+      "research",
+      "financial_analysis",
+      "mechanical",
+      "thermal",
+      "electrical",
+      "electronics",
+      "control_systems",
+      "automation",
+      "civil",
+      "structural",
+      "geotechnical",
+      "chemical",
+      "process",
+      "materials",
+      "manufacturing",
+      "aerospace",
+      "fluid_dynamics",
+      "energy",
+      "power_systems",
+      "biomedical",
+      "quantum",
+      "HPC",
+      "networking",
+      "distributed_systems",
+      "environmental",
+      "geospatial",
+      "hydrology"
+    ]
+  }
 }
