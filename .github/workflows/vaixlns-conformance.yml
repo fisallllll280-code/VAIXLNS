@@ -43,7 +43,10 @@ jobs:
             scripts/treasury_admission_probe.py \
             scripts/vcre_probe.py \
             tools/omega/validate_federation.py \
-            tests/test_canonical_control_plane.py
+            tests/test_canonical_control_plane.py \
+            agents/agent_fabric.py \
+            agents/innovation_orchestrator.py \
+            tests/test_innovation_orchestrator.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -84,3 +87,52 @@ jobs:
             reconstruction-evidence.json
             provenance.json
           if-no-files-found: error
+
+  arc-x-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout pinned source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: ""
+
+      - name: Compile ARC-X runtime
+        run: python -m py_compile scripts/arc_x_runtime.py tests/test_arc_x_runtime.py
+
+      - name: Run ARC-X regression tests
+        run: python -m unittest discover -s tests -p 'test_arc_x_runtime.py' -v
+
+      - name: Reconstruct repository evidence
+        run: |
+          python scripts/arc_x_runtime.py reconstruct \
+            --root . \
+            --output "$RUNNER_TEMP/arcx-evidence" \
+            --revision "$(git rev-parse HEAD)"
+
+      - name: Verify source receipt and EIR
+        run: |
+          python scripts/arc_x_runtime.py verify \
+            --root . \
+            --output "$RUNNER_TEMP/arcx-evidence"
+
+      - name: Replay reconstruction
+        run: |
+          python scripts/arc_x_runtime.py replay \
+            --root . \
+            --output "$RUNNER_TEMP/arcx-evidence"
+
+      - name: Upload ARC-X evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-x-runtime-evidence
+          path: ${{ runner.temp }}/arcx-evidence/
+          if-no-files-found: error
+

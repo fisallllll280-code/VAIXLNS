@@ -106,5 +106,15 @@ spec:
     - authority_decision
   implementationState:
     specification: SPECIFIED
-    implementation: NOT_PROVEN
+    implementation: PARTIAL
+    implementationRef: scripts/arc_x_runtime.py
+    runtimeConformance: PASS
+    runtimeConformanceEvidence:
+      workflowRun: https://github.com/fisallllll280-code/VAIXLNS/actions/runs/37913717309
+      conformanceRun: https://github.com/fisallllll280-code/VAIXLNS/actions/runs/37913717305
+      testedMergeCandidate: f67c6833f6883203bf4bb99cf9a0552edc953947
+      artifactId: "11608885486"
+      sourceContentHash: cfa5f53be1e9b14f67817863678c71410ad9dec065788e551fb0eb363efa4735
+      eirDigest: c947859f641c76c769d041cf0de0c160fa9444bdaa35c8077dda0307cb2c53d9
+    semanticVerification: NOT_CLAIMED
     productionRuntime: NOT_PROVEN
