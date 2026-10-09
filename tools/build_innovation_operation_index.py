@@ -151,12 +151,13 @@ def parse_master(root):
             if x: out.append(x)
     return out
 
-def parse_items_json(root, path, default_family=""):
+def parse_items_json(root, path, default_family="", status_axis="readiness"):
     d, out = readj(root, str(path)), []
     for r in d.get("items",[]) if isinstance(d,dict) else []:
         x = make(r.get("name"), r.get("family") or r.get("category") or default_family,
                  r.get("owner") or r.get("canonical_owner"), r.get("state") or r.get("status"),
-                 str(path), native_id=r.get("innovation_index_id",r.get("canonical_id","")),
+                 str(path), status_axis=status_axis,
+                 native_id=r.get("innovation_index_id",r.get("canonical_id","")),
                  evidence_refs=r.get("evidence_refs",[]))
         if x: out.append(x)
     return out
@@ -202,7 +203,7 @@ def draft_rule(name, family):
 
 def build(root=ROOT):
     profiles, by_profile, aliases = get_profiles(root)
-    candidates = parse_matrix(root)+parse_catalog(root)+parse_items_json(root,F)+parse_items_json(root,R)+parse_omega(root)+parse_master(root)
+    candidates = parse_matrix(root)+parse_catalog(root)+parse_items_json(root,F)+parse_items_json(root,R,status_axis="measurement")+parse_omega(root)+parse_master(root)
     # Profile aliases canonicalize the lookup key, but the key set itself must
     # also be normalized. Otherwise every curated profile is re-added as a new
     # PROPOSAL record and contaminates genuine source-state observations.
@@ -221,7 +222,7 @@ def build(root=ROOT):
         if priority < z["priority"]: z.update({"family":x["family"],"owner":x["owner"],"priority":priority})
         for field,value in [("families",x.get("family")),("owners",x.get("owner"))]:
             if value and value not in z[field]: z[field].append(value)
-        obs = {"source":x["source"],"state":x["state"]}
+        obs = {"source":x["source"],"state":x["state"],"axis":x.get("status_axis","readiness")}
         if obs not in z["states"]: z["states"].append(obs)
         if x["source"] not in z["sources"]: z["sources"].append(x["source"])
         desc = str(x.get("source_description","")).strip()
@@ -237,8 +238,10 @@ def build(root=ROOT):
         p=by_profile.get(norm(z["name"]),{})
         family=p.get("family") or z["family"] or (z["families"][0] if z["families"] else "Unclassified / needs review")
         owner=p.get("canonical_owner") or z["owner"] or (z["owners"][0] if z["owners"] else "UNRESOLVED_OWNER")
-        all_statuses=sorted({a["state"] for a in z["states"]},key=lambda s:(WEIGHT.get(s,1),s))
-        # UNKNOWN index membership is not implementation evidence and must not downgrade status.
+        readiness_observations=[a for a in z["states"] if a.get("axis","readiness")=="readiness"]
+        all_statuses=sorted({a["state"] for a in readiness_observations},key=lambda s:(WEIGHT.get(s,1),s))
+        # Measurement/registration states are retained as observations but not mixed
+        # with implementation/readiness claims from the canonical system registry.
         statuses=[s for s in all_statuses if s not in {"UNKNOWN","SOURCE-ASSERTED"}] or all_statuses
         status="CONFLICT" if "CONFLICT" in statuses else (min(statuses,key=lambda s:WEIGHT.get(s,1)) if statuses else "UNKNOWN")
         if any(s in {"IMPLEMENTED","VERIFIED","CANONICAL"} for s in statuses) and any(s in {"PROPOSAL","MISSING","QUARANTINED"} for s in statuses): status="CONFLICT"
