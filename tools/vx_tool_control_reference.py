@@ -114,6 +114,8 @@ def evaluate_action(
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     approvals = approvals or {}
     idempotency_records = idempotency_records or {}
+    if not isinstance(envelope, Mapping):
+        envelope = {}
     action_id = str(envelope.get("action_id", "unknown-action"))
     created_at = now.isoformat().replace("+00:00", "Z")
     requested_expiry = _timestamp(envelope.get("expires_at"))
