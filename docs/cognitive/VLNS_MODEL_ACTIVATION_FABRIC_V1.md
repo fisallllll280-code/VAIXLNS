@@ -54,6 +54,10 @@ Example roles:
 - recovery_mind
 - security_mind
 - innovation_mind
+- financial_mind
+- engineering_mind
+- governance_mind
+- operations_mind
 
 Each role has explicit read/propose/execute/modify/external-action permissions.
 
@@ -95,7 +99,7 @@ The canonical contract and machine-readable envelope schema are published in:
 - schemas/vlns-activation-envelope.schema.json
 - registry/vlns_activation_contract.v1.json
 
-The reference implementation is in the VAIXLNS-unified repository:
+The reference implementation is in the VAIXLNS-unified repository. Its optional specialist-agent gate also uses family-specific role identities (research, financial, engineering, governance, and operations) rather than flattening every agent into a generic model role:
 - vlns/activation.py
 - infra/vlns_server_client.py
 - scripts/vlns_activation_bridge.py
