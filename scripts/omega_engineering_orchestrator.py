@@ -90,7 +90,7 @@ def inspect_test_log(path: Path) -> dict[str, Any]:
 def build_report(root: Path) -> dict[str, Any]:
     root = root.resolve()
     artifact_specs = [
-        ("innovation-network.json", "network_sha256", "vaixlns.federated-innovation-network.v1", False),
+        ("innovation-network.json", "network_sha256", "vaixlns.innovation-network.v1", False),
         ("omega-research-results.json", "result_sha256", "vaixlns.omega-research-fabric.v1", False),
         ("engineering-execution-plan.json", "plan_sha256", "vaixlns.engineering-agent-fabric.v1", False),
         ("omega-error-triage.json", "report_sha256", "vaixlns.omega-error-locator.v1", True),
