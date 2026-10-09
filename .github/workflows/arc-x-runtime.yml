@@ -54,5 +54,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: arc-x-runtime-evidence
-          path: \${{ runner.temp }}/arcx-evidence/
+          path: ${{ runner.temp }}/arcx-evidence/
           if-no-files-found: error
