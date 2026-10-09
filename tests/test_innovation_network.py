@@ -25,9 +25,9 @@ class InnovationNetworkTests(unittest.TestCase):
     def test_each_innovation_has_full_bounded_research_lanes(self):
         network = build_network(self.source)
         self.assertEqual(network["summary"]["innovation_count"], 2)
-        self.assertEqual(network["summary"]["task_count"], 20)
+        self.assertEqual(network["summary"]["task_count"], 22)
         for packet in network["work_packets"]:
-            self.assertEqual(len(packet["research_lanes"]), 10)
+            self.assertEqual(len(packet["research_lanes"]), 11)
             self.assertTrue(all(task["dispatch_state"] == "PLANNED_NOT_DISPATCHED" for task in packet["research_lanes"]))
             self.assertTrue(all(task["authority_scope"] == "RESEARCH_AND_RECOMMENDATION_ONLY" for task in packet["research_lanes"]))
 
