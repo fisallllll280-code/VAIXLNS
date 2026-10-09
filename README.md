@@ -8,6 +8,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Master recovery status](docs/indexes/MASTER_RECOVERY_STATUS.md)
 - [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
 - [Innovation master index](docs/indexes/INNOVATION_MASTER_INDEX.md)
+- [Federated Innovation Intelligence Network](docs/innovation/VAIXLNS_FEDERATED_INNOVATION_INTELLIGENCE_NETWORK_V1.md)
 - [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
 - [Four-system reconciliation](docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md)
 - [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
