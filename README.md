@@ -61,3 +61,12 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [VLNS activation contract registry](registry/vlns_activation_contract.v1.json)
 
 The contract has a reference implementation under VAIXLNS-unified with a green verification run, plus a companion fail-closed pre-activation gate in the vx-agents-fabric feature branch with green unit-test CI. Live VLNS connectivity, external service conformance, VLNS↔NAXLNS identity, and canonical admission remain unverified until evidence closes the required gates.
+
+## Deep Engineering Innovation Discovery
+
+- [Engineering innovation discovery runbook](docs/engineering/ENGINEERING_INNOVATION_DISCOVERY_V1.md)
+- [Curated upstream engineering sources](registry/engineering/ENGINEERING_INNOVATION_SOURCES_V1.json)
+- [Automated discovery runner](tools/engineering_innovation_discovery.py)
+- [Scheduled discovery workflow](.github/workflows/engineering-innovation-discovery.yml)
+
+The discovery loop observes upstream metadata/releases/commits and compares them with the previous successful snapshot. It emits evidence-linked candidates for engineering review; it does not claim novelty, execute solvers, install dependencies, or promote an innovation automatically.
