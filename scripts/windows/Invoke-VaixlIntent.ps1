@@ -63,6 +63,7 @@ try {
         $exitCode = 2
     }
     elseif ([string]::IsNullOrWhiteSpace([string]$request.intent) -or
+            ([string]$request.intent).Length -lt 5 -or
             ([string]$request.intent).Length -gt 2000) {
         $result = [ordered]@{
             schemaVersion = "1.0"
