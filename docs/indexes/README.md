@@ -46,3 +46,9 @@
 - The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
 
 - [VAIXLNS Global Research System V1](../research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md) — provenance-first research architecture, evidence gates, source strategy, metrics and staged delivery.
+
+- ../architecture/VAIXLNS_ENGINEERING_MIND_AND_REPOSITORY_CONTINUITY_FABRIC_V1.md — integrated architecture for repository continuity, the Ω.000/XV/VCRE/VX/VV/ARC-X engineering minds, predictive model discipline, and governed self-improvement.
+- ../../vcre/predictive.py — reference RK4 predictive simulation kernel with step-doubling diagnostics, invariant checks, counterfactual scenario comparison, and explicit observation-validation states.
+- ../../tools/engineering_test_router.py — conservative change-impact test routing; unknown impact and missing Git-diff metadata fall back to the full unit-test suite and produce an execution receipt.
+- ../../tests/test_vcre_predictive.py and ../../tests/test_engineering_test_router.py — executable tests for the bounded predictive kernel and safe test-selection rules.
+- ../../.github/workflows/engineering-fast-feedback.yml — focused engineering feedback workflow that publishes a machine-readable test receipt; it does not waive other CI gates.
