@@ -74,6 +74,8 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
 
     if work_order.get("schema_version") != "1.0.0":
         errors.append("schema_version must be 1.0.0")
+    if not isinstance(work_order.get("state"), str):
+        errors.append("state must be a string lifecycle value")
     if not isinstance(work_order.get("work_order_id"), str) or not work_order["work_order_id"].strip():
         errors.append("work_order_id must be a non-empty string")
 
@@ -92,10 +94,13 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
             errors.append(f"tasks[{index}].task_id must be a non-empty string")
         else:
             task_ids.append(task_id)
-        if task.get("execution_mode") not in EXECUTION_RANK:
+        mode = task.get("execution_mode")
+        if not isinstance(mode, str) or mode not in EXECUTION_RANK:
             errors.append(f"{task_id or index}: invalid execution_mode")
         if not isinstance(task.get("depends_on"), list):
             errors.append(f"{task_id or index}: depends_on must be an array")
+        elif any(not isinstance(dep, str) or not dep.strip() for dep in task["depends_on"]):
+            errors.append(f"{task_id or index}: dependencies must be non-empty strings")
         elif len(task["depends_on"]) != len(set(task["depends_on"])):
             errors.append(f"{task_id or index}: duplicate dependency")
     if len(task_ids) != len(set(task_ids)):
@@ -122,7 +127,7 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
         policy = {}
 
     work_mode = policy.get("execution_mode")
-    if work_mode not in EXECUTION_RANK:
+    if not isinstance(work_mode, str) or work_mode not in EXECUTION_RANK:
         errors.append("policy.execution_mode is invalid")
     else:
         for task in tasks:
@@ -145,8 +150,12 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
                 errors.append(f"policy.{effect} requires at least one approval reference")
     if policy.get("approval_required_for_side_effects") is not True:
         errors.append("policy.approval_required_for_side_effects must be true")
-    if policy.get("network_access") is True and not policy.get("allowed_domains"):
-        errors.append("network access requires an explicit non-empty allowed_domains list")
+    allowed_domains = policy.get("allowed_domains", [])
+    if policy.get("network_access") is True:
+        if not isinstance(allowed_domains, list) or not allowed_domains or any(
+            not isinstance(domain, str) or not domain.strip() for domain in allowed_domains
+        ):
+            errors.append("network access requires an explicit non-empty allowed_domains list")
 
     budget = work_order.get("resource_budget")
     if not isinstance(budget, dict):
@@ -181,10 +190,12 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
         errors.append("federation.requested_target_ids must be an array")
         requested_targets = []
     for target_id in requested_targets:
-        if target_id not in target_by_id:
+        if not isinstance(target_id, str) or not target_id.strip():
+            errors.append("requested target IDs must be non-empty strings")
+        elif target_id not in target_by_id:
             errors.append(f"requested target does not exist in federation.targets: {target_id}")
 
-    if work_order.get("state") in ACTIVE_STATES:
+    if isinstance(work_order.get("state"), str) and work_order.get("state") in ACTIVE_STATES:
         tenant_id = policy.get("tenant_id")
         data_class = policy.get("data_classification")
         for target_id in requested_targets:
@@ -196,7 +207,10 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
             if target.get("tenant_id") != tenant_id:
                 errors.append(f"tenant mismatch for target: {target_id}")
             target_class = target.get("max_data_classification")
-            if data_class not in DATA_RANK or target_class not in DATA_RANK:
+            if (
+                not isinstance(data_class, str) or data_class not in DATA_RANK
+                or not isinstance(target_class, str) or target_class not in DATA_RANK
+            ):
                 errors.append(f"unknown data classification for target: {target_id}")
             elif DATA_RANK[target_class] < DATA_RANK[data_class]:
                 errors.append(f"target does not permit work-order data classification: {target_id}")
