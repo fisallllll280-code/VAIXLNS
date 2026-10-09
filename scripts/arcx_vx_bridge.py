@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "schemas" / "arcx-vx-engineering-task.schema.json"
@@ -37,6 +37,13 @@ RECEIPT_STATES = {
 
 class BridgeError(ValueError):
     """Raised for unsafe configuration or protocol violations."""
+
+
+class _NoRedirectHandler(HTTPRedirectHandler):
+    """Reject redirects so credentials and task payloads cannot follow them."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
 
 
 def canonical_json(value: Any) -> bytes:
@@ -293,7 +300,8 @@ def _request_json(url: str, *, method: str, payload: dict[str, Any] | None,
         ).decode("ascii") + ":"
     request = Request(url, data=body, headers=headers, method=method)
     try:
-        with urlopen(request, timeout=timeout) as response:
+        opener = build_opener(_NoRedirectHandler)
+        with opener.open(request, timeout=timeout) as response:
             raw = response.read(MAX_RESPONSE_BYTES + 1)
     except HTTPError as exc:
         # Do not print response bodies; servers may include sensitive diagnostics.
