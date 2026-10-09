@@ -1,0 +1,72 @@
+name: vaixl-pattern-factory
+
+on:
+  push:
+    paths:
+      - "scripts/vaixl_pattern_factory.py"
+      - "scripts/omega_pattern_foundry.py"
+      - "scripts/vaixl_language_guardian.py"
+      - "scripts/vaixl_code_corrector.py"
+      - "scripts/vaixl_private_pattern_domain.py"
+      - "schemas/vaixl-pattern-factory.schema.json"
+      - "tests/test_vaixl_pattern_factory.py"
+      - "registry/patterns/vaixl-pattern-factory.v1.json"
+      - "docs/omega/VAIXLNS_PATTERN_FACTORY_24H_V1.md"
+      - ".github/workflows/vaixl-pattern-factory.yml"
+  pull_request:
+    paths:
+      - "scripts/vaixl_pattern_factory.py"
+      - "scripts/omega_pattern_foundry.py"
+      - "scripts/vaixl_language_guardian.py"
+      - "scripts/vaixl_code_corrector.py"
+      - "schemas/vaixl-pattern-factory.schema.json"
+      - "tests/test_vaixl_pattern_factory.py"
+      - "registry/patterns/vaixl-pattern-factory.v1.json"
+      - "docs/omega/VAIXLNS_PATTERN_FACTORY_24H_V1.md"
+      - ".github/workflows/vaixl-pattern-factory.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run factory unit tests
+        run: python -m unittest discover -s tests -p "test_vaixl_pattern_factory.py" -v
+
+      - name: Run deterministic 10x80 factory
+        run: |
+          mkdir -p artifacts
+          python scripts/vaixl_pattern_factory.py run             --problem "recover from architecture drift"             --objective "produce a bounded evidence-backed recovery pattern"             --constraints "no-self-authorization" "replay-required"             --capabilities "observe" "replay" "verify"             --routes-per-direction 80             --output artifacts/pattern-factory.json
+
+      - name: Assert deterministic replay and topology
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("artifacts/pattern-factory.json").read_text(encoding="utf-8"))
+          assert data["deterministic"] is True
+          assert data["topology"]["direction_count"] == 10
+          assert data["topology"]["routes_per_direction"] == 80
+          assert data["topology"]["total_logical_routes"] == 800
+          assert data["replay"]["match"] is True
+          assert data["selected_pattern"] is not None
+          assert data["quarantined"] == []
+          print("factory topology + replay PASS")
+          PY
+
+      - name: Upload execution evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixl-pattern-factory-evidence
+          path: artifacts/

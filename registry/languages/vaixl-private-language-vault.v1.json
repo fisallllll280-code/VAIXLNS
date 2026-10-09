@@ -1,0 +1,21 @@
+{
+  "registry_id": "Ω.PRIVATE_LANGUAGE_VAULT.001",
+  "name": "VAIXLNS Private Language Vault",
+  "owner": "VAIXLNS",
+  "status": "IMPLEMENTED",
+  "epistemic_state": "IMPLEMENTED",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "storage": "EXTERNAL_SECRET_VAULT",
+  "raw_identity_persistence": false,
+  "raw_phone_persistence": false,
+  "raw_unlock_code_persistence": false,
+  "binding_algorithm": "HMAC-SHA256",
+  "self_unlock": false,
+  "self_promotion": false,
+  "links": {
+    "engine": "scripts/vaixl_language_vault.py",
+    "schema": "schemas/vaixl-private-language-vault-binding.schema.json",
+    "tests": "tests/test_vaixl_language_vault.py",
+    "spec": "docs/security/VAIXLNS_PRIVATE_LANGUAGE_VAULT_V1.md"
+  }
+}\n

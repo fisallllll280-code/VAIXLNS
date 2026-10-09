@@ -1,0 +1,44 @@
+name: vaixl-connection-fabric
+
+on:
+  push:
+    paths:
+      - "scripts/vaixl_connection_fabric.py"
+      - "tests/test_vaixl_connection_fabric.py"
+      - "schemas/vaixl-connection-fabric.schema.json"
+      - "docs/architecture/VAIXLNS_SEMANTIC_CONNECTION_FABRIC_V1.md"
+      - ".github/workflows/vaixl-connection-fabric.yml"
+  pull_request:
+    paths:
+      - "scripts/vaixl_connection_fabric.py"
+      - "tests/test_vaixl_connection_fabric.py"
+      - "schemas/vaixl-connection-fabric.schema.json"
+      - "docs/architecture/VAIXLNS_SEMANTIC_CONNECTION_FABRIC_V1.md"
+      - ".github/workflows/vaixl-connection-fabric.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fabric-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate schema
+        run: python -m json.tool schemas/vaixl-connection-fabric.schema.json >/dev/null
+      - name: Compile
+        run: python -m py_compile scripts/vaixl_connection_fabric.py tests/test_vaixl_connection_fabric.py
+      - name: Run tests
+        run: python -m unittest discover -s tests -p "test_vaixl_connection_fabric.py" -v
+      - name: Run golden fabric
+        run: python scripts/vaixl_connection_fabric.py golden --output connection-fabric-evidence.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixl-connection-fabric-evidence
+          path: connection-fabric-evidence.json

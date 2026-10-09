@@ -1,0 +1,51 @@
+{
+  "registry_id": "Ω.PATTERN_FACTORY.001",
+  "name": "VAIXLNS Deterministic Pattern Factory",
+  "type": "CAPABILITY",
+  "owner": "VAIXLNS",
+  "status": "IMPLEMENTED",
+  "epistemic_state": "IMPLEMENTED",
+  "canonical_context": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "parent": "Ω-Pattern Foundry",
+  "topology": {
+    "direction_count": 10,
+    "default_routes_per_direction": 80,
+    "default_total_logical_routes": 800,
+    "parallelism": "logical-bounded-scheduling"
+  },
+  "private_language_fabric": {
+    "model": "5-LAYER-4-DIRECTION-FABRIC",
+    "layer_count": 5,
+    "directions_per_layer": 4,
+    "total_directions": 20,
+    "cross_layer_gate": "CROSS_LAYER_CONSISTENCY"
+  },
+  "runtime_boundary": {
+    "genome_engine": "REFERENCE_IMPLEMENTATION",
+    "adversarial_engine": "DETERMINISTIC_MUTATION_SUITE",
+    "collision_detector": "ROUTE_LOCAL_SECURITY_COLLISION_CHECKS",
+    "code_corrector": "VAIXLNS-CODE-CORRECTOR-001",
+    "language_guardian": "Ω-LANGUAGE-GUARDIAN-001",
+    "promotion_gate": "AUTHORITY_REQUIRED"
+  },
+  "security_boundary": {
+    "auto_repair_can_change_intent": false,
+    "auto_repair_can_change_authority": false,
+    "auto_repair_can_change_invariants": false,
+    "auto_repair_can_change_security_constraints": false,
+    "self_promotion": false,
+    "private_pattern_default": true
+  },
+  "links": {
+    "engine": "scripts/vaixl_pattern_factory.py",
+    "schema": "schemas/vaixl-pattern-factory.schema.json",
+    "tests": "tests/test_vaixl_pattern_factory.py",
+    "spec": "docs/omega/VAIXLNS_PATTERN_FACTORY_24H_V1.md"
+  },
+  "admission": {
+    "surviving_candidate": "SELECTION_CANDIDATE",
+    "verified_requires": "reproducible executable evidence",
+    "canonical_requires": "verified evidence plus explicit authority"
+  }
+}

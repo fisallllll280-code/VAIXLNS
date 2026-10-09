@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Pattern-Bound Private Language Domain",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "domain_id",
+    "binding_type",
+    "pattern_id",
+    "language_ref",
+    "language_genome_hash",
+    "source",
+    "fabric",
+    "interface",
+    "lifecycle",
+    "provenance",
+    "binding_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "vaixlns.private_pattern_domain.v1"},
+    "domain_id": {"const": "VAIXLNS-PRIVATE-PATTERN-DOMAIN-001"},
+    "binding_type": {"const": "PATTERN_BOUND_PRIVATE_LANGUAGE"},
+    "pattern_id": {"type": "string", "minLength": 1},
+    "language_ref": {"type": "string", "pattern": "^PL-[a-f0-9]{20}$"},
+    "language_genome_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source": {
+      "type": "object",
+      "required": ["location","repository_persistence","runtime_source_exposure","agent_source_exposure"],
+      "properties": {
+        "location": {"const": "EXTERNAL_SECRET_VAULT"},
+        "repository_persistence": {"const": false},
+        "runtime_source_exposure": {"const": false},
+        "agent_source_exposure": {"const": false}
+      }
+    },
+    "fabric": {
+      "type": "object",
+      "required": ["preserved_dimensions","fabric_hash"],
+      "properties": {
+        "preserved_dimensions": {
+          "type": "array",
+          "items": {"enum": ["syntax","semantics","grammar","transformation","security","verification"]},
+          "minItems": 6,
+          "uniqueItems": true
+        },
+        "fabric_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "interface": {
+      "type": "object",
+      "required": ["id","mode","allows_source_export","allows_source_reconstruction","allows_self_authorization"],
+      "properties": {
+        "id": {"type": "string"},
+        "mode": {"const": "CAPABILITY_ONLY"},
+        "allows_source_export": {"const": false},
+        "allows_source_reconstruction": {"const": false},
+        "allows_self_authorization": {"const": false}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": ["state","transfer_policy","history_preserved"],
+      "properties": {
+        "state": {"enum": ["ACTIVE","SEALED","TRANSFERRED","LOCKED","REVOKED"]},
+        "transfer_policy": {"const": "REVOKE_LANGUAGE_SOURCE_FROM_DELIVERED_ARTIFACT"},
+        "history_preserved": {"const": true}
+      }
+    },
+    "provenance": {"type": "object"},
+    "binding_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

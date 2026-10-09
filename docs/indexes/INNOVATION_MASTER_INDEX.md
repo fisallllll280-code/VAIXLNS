@@ -119,3 +119,7 @@ These entries are context-level proposals/specifications unless separately suppo
 80. VX Stage Failure Isolation + Recovery
 81. VX Stage Provenance Evidence
 82. VX Stage Release/Operational Runbook
+83. VAIXLNS Deterministic Pattern Factory / 10×80 Route Fabric
+84. VAIXLNS Private Language Vault + Subject Binding
+85. Pattern-Bound Private Language Domain / Capability-Only Interface
+86. VX Global Private Pattern / Transfer-Time Language Deprovisioning
