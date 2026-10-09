@@ -86,3 +86,9 @@ These artifacts bind system identities to repository surfaces and define the req
 7. The implementation remains PROPOSED until sandbox, failure/recovery, replay, independent verification, fresh proof and explicit admission evidence are attached.
 
 Reference implementation review: https://github.com/fisallllll280-code/vx-agents-fabric/pull/1
+
+## Agent Skills, Prompt, Subscription & Innovation Delivery Fabric — 2026-10-09
+
+- [Agent/Skill/Prompt/Environment/Innovation Fabric V1](../integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md)
+
+This specification defines logical agent roles, versioned skill/prompt contracts, environment/subscription status, innovation lineage, build-source provenance, and gated delivery. It is a proposal pending review and admission; it does not assert that agents are deployed, subscriptions purchased, external accounts connected, or production systems changed. Provider/environment integration requires direct evidence, explicit authorization and the existing VX admission gates.
