@@ -1,0 +1,43 @@
+name: Closed Engineering Workspace Conformance
+
+on:
+  push:
+    branches:
+      - feat/closed-engineering-workspaces-v1
+      - feat/deep-agent-innovation-orchestrator-v1
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  workspace-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile workspace control
+        run: python -m py_compile scripts/closed_workspaces.py tests/test_closed_workspaces.py
+      - name: Run workspace security regression tests
+        run: python -m unittest discover -s tests -p 'test_closed_workspaces.py' -v
+      - name: Verify deterministic lifecycle and fail-closed policy
+        run: |
+          python - <<'PY'
+          import tempfile
+          from pathlib import Path
+          from scripts.closed_workspaces import create_workspace, seal_workspace, verify_workspace
+          with tempfile.TemporaryDirectory() as temp:
+              root = Path(temp) / "workspaces"
+              create_workspace(root, "ci-mission", mission_id="MIS-CI", source_revision="git:ci-pinned")
+              (root / "ci-mission" / "candidate.txt").write_text("isolated candidate\\n", encoding="utf-8")
+              seal_workspace(root, "ci-mission")
+              result = verify_workspace(root, "ci-mission")
+              assert result["valid"], result
+              print("CLOSED_WORKSPACE_INTEGRITY_PASS", result["baseline_hash"])
+          PY
