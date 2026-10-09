@@ -14,8 +14,10 @@ ARC-X is the Epistemic Reality Compiler: the repository/evidence reconstruction 
 
 - Canonical owner: VAIXLNS
 - Specification: SPECIFIED
-- Runtime implementation: PARTIAL (bootstrap code on an unmerged feature branch)
-- Regression-test execution: PENDING CI evidence
+- Runtime implementation: PARTIAL (bootstrap merged into feat/windows-engineering-fabric-v1)
+- Regression-test execution: PASS (6/6; run 37913717309)
+- Integrity/replay conformance: PASS (run 37913717309)
+- Semantic correctness: NOT CLAIMED
 - Production implementation: NOT PROVEN
 - Self-authority: prohibited
 
