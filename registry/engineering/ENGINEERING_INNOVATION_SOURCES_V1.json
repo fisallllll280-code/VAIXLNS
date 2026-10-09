@@ -1,0 +1,362 @@
+{
+  "schema_id": "VAIXLNS.ENGINEERING_INNOVATION_SOURCES",
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-10-09",
+  "purpose": "Curated, evidence-linked source set for recurring discovery of engineering software capabilities, releases and source changes.",
+  "policy": {
+    "source_claims_are_not_automatic_adoption": true,
+    "release_or_commit_activity_is_not_proof_of_novelty": true,
+    "source_identity_and_repository_forks_must_remain_distinct": true,
+    "license_and_dependency_review_required_before_integration": true,
+    "generated_reports_are_candidates_for_engineering_review": true,
+    "network_method": "GET_ONLY",
+    "response_size_limit_bytes": 2097152,
+    "per_request_timeout_seconds": 15
+  },
+  "domains": [
+    {
+      "id": "CAD_GEOMETRY",
+      "label": "Parametric CAD and geometric kernels"
+    },
+    {
+      "id": "MESH_FEA",
+      "label": "Meshing, finite-element and structural analysis"
+    },
+    {
+      "id": "CFD_MULTIPHYSICS",
+      "label": "Fluid dynamics, coupled physics and HPC"
+    },
+    {
+      "id": "MDO_OPTIMIZATION",
+      "label": "Multidisciplinary optimization and design-space search"
+    },
+    {
+      "id": "EDA_ELECTRONICS",
+      "label": "Electronic design automation"
+    },
+    {
+      "id": "SYSTEM_SIMULATION",
+      "label": "Model-based systems and multiphysics simulation"
+    },
+    {
+      "id": "ENGINEERING_VISUALIZATION",
+      "label": "Engineering visualization and inspection"
+    },
+    {
+      "id": "AEROSPACE",
+      "label": "Aerospace conceptual design"
+    }
+  ],
+  "sources": [
+    {
+      "id": "ENG-SRC-FREECAD",
+      "provider": "github",
+      "repository": "FreeCAD/FreeCAD",
+      "domain": "CAD_GEOMETRY",
+      "official_url": "https://www.freecad.org/",
+      "repository_url": "https://github.com/FreeCAD/FreeCAD",
+      "focus": [
+        "parametric modeling",
+        "Python API",
+        "technical drawings",
+        "CAM",
+        "BIM",
+        "FEM"
+      ],
+      "integration_role": "Primary candidate for interactive and scriptable CAD validation.",
+      "evidence_notes": "Project documentation says it supports parametric CAD and a Python API; deployment/runtime status in VAIXLNS is not implied.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-OCCT",
+      "provider": "github",
+      "repository": "Open-Cascade-SAS/OCCT",
+      "domain": "CAD_GEOMETRY",
+      "official_url": "https://www.opencascade.com/",
+      "repository_url": "https://github.com/Open-Cascade-SAS/OCCT",
+      "focus": [
+        "B-rep geometry",
+        "shape healing",
+        "STEP/IGES exchange",
+        "boolean operations",
+        "meshing"
+      ],
+      "integration_role": "Geometric kernel candidate beneath CAD adapters.",
+      "evidence_notes": "Track the exact upstream kernel and its license; never infer CadQuery/FreeCAD compatibility from names alone.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-CADQUERY",
+      "provider": "github",
+      "repository": "CadQuery/cadquery",
+      "domain": "CAD_GEOMETRY",
+      "official_url": "https://cadquery.readthedocs.io/",
+      "repository_url": "https://github.com/CadQuery/cadquery",
+      "focus": [
+        "scripted CAD",
+        "parametric solids",
+        "STEP",
+        "STL",
+        "3MF",
+        "automation"
+      ],
+      "integration_role": "Headless parametric CAD adapter candidate.",
+      "evidence_notes": "Python-based model generation is suited to controlled engineering pipelines; emitted geometry still requires kernel validation.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-GMSH",
+      "provider": "gitlab",
+      "host": "gitlab.onelab.info",
+      "project_path": "gmsh/gmsh",
+      "domain": "MESH_FEA",
+      "official_url": "https://gmsh.info/",
+      "repository_url": "https://gitlab.onelab.info/gmsh/gmsh",
+      "focus": [
+        "automatic 3D meshing",
+        "finite elements",
+        "mesh quality",
+        "geometry scripting",
+        "pre/post-processing"
+      ],
+      "integration_role": "Geometry-to-mesh and mesh-quality adapter candidate.",
+      "evidence_notes": "This is the upstream project host, not a guessed GitHub mirror. API availability may vary; failures must remain visible.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-OPENFOAM-FOUNDATION",
+      "provider": "github",
+      "repository": "OpenFOAM/OpenFOAM-dev",
+      "domain": "CFD_MULTIPHYSICS",
+      "official_url": "https://openfoam.org/",
+      "repository_url": "https://github.com/OpenFOAM/OpenFOAM-dev",
+      "focus": [
+        "CFD",
+        "turbulence",
+        "heat transfer",
+        "reacting flow",
+        "solid dynamics"
+      ],
+      "integration_role": "OpenFOAM Foundation source stream for simulation adapters.",
+      "evidence_notes": "Keep separate from the Keysight/OpenCFD distribution; the two source streams and release policies must not be conflated.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-OPENFOAM-KEYSIGHT",
+      "provider": "gitlab",
+      "host": "gitlab.com",
+      "project_path": "openfoam/core/openfoam",
+      "domain": "CFD_MULTIPHYSICS",
+      "official_url": "https://www.openfoam.com/",
+      "repository_url": "https://gitlab.com/openfoam/core/openfoam",
+      "focus": [
+        "CFD",
+        "engineering solvers",
+        "parallel computation",
+        "thermal flows",
+        "release engineering"
+      ],
+      "integration_role": "Distinct OpenCFD/Keysight source stream for release and capability comparison.",
+      "evidence_notes": "Do not merge metadata or assume binary/source parity with the OpenFOAM Foundation branch.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-ELMER",
+      "provider": "github",
+      "repository": "ElmerCSC/elmerfem",
+      "domain": "CFD_MULTIPHYSICS",
+      "official_url": "https://www.elmerfem.org/",
+      "repository_url": "https://github.com/ElmerCSC/elmerfem",
+      "focus": [
+        "finite elements",
+        "structural mechanics",
+        "fluid dynamics",
+        "heat transfer",
+        "electromagnetics",
+        "HPC"
+      ],
+      "integration_role": "Coupled multiphysics/FEM adapter candidate.",
+      "evidence_notes": "A solver is usable only after a reproducible case, mesh, boundary conditions and numerical checks are registered.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-DOLFINX",
+      "provider": "github",
+      "repository": "FEniCS/dolfinx",
+      "domain": "MESH_FEA",
+      "official_url": "https://fenicsproject.org/",
+      "repository_url": "https://github.com/FEniCS/dolfinx",
+      "focus": [
+        "finite-element programming",
+        "partial differential equations",
+        "C++",
+        "Python",
+        "parallel computing"
+      ],
+      "integration_role": "Programmable variational/FEM research adapter candidate.",
+      "evidence_notes": "Version and dependency compatibility must be pinned for reproducible simulations.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-OPENMDAO",
+      "provider": "github",
+      "repository": "OpenMDAO/OpenMDAO",
+      "domain": "MDO_OPTIMIZATION",
+      "official_url": "https://openmdao.org/",
+      "repository_url": "https://github.com/OpenMDAO/OpenMDAO",
+      "focus": [
+        "multidisciplinary optimization",
+        "analytic derivatives",
+        "design-space exploration",
+        "coupled models",
+        "feasibility"
+      ],
+      "integration_role": "Optimization orchestrator for combining verified disciplinary models.",
+      "evidence_notes": "Use only objective/constraint functions with explicit units, bounds, solver status and validation evidence.",
+      "priority": "P1"
+    },
+    {
+      "id": "ENG-SRC-OPENMODELICA",
+      "provider": "github",
+      "repository": "OpenModelica/OpenModelica",
+      "domain": "SYSTEM_SIMULATION",
+      "official_url": "https://openmodelica.org/",
+      "repository_url": "https://github.com/OpenModelica/OpenModelica",
+      "focus": [
+        "Modelica",
+        "physical systems",
+        "dynamic simulation",
+        "FMI",
+        "co-simulation"
+      ],
+      "integration_role": "Model-based dynamics and cross-domain simulation candidate.",
+      "evidence_notes": "Generated simulations need consistency checks and comparison against known reference cases.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-KICAD",
+      "provider": "github",
+      "repository": "KiCad/kicad-source-mirror",
+      "domain": "EDA_ELECTRONICS",
+      "official_url": "https://www.kicad.org/",
+      "repository_url": "https://github.com/KiCad/kicad-source-mirror",
+      "focus": [
+        "schematic capture",
+        "PCB layout",
+        "electrical rules",
+        "SPICE",
+        "3D board fit",
+        "Gerber/IPC-2581"
+      ],
+      "integration_role": "Electronics design and board validation candidate.",
+      "evidence_notes": "GitHub repository identifies itself as a mirror; use it for activity evidence, not as a GitHub pull-request integration target.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-KRATOS",
+      "provider": "github",
+      "repository": "KratosMultiphysics/Kratos",
+      "domain": "MESH_FEA",
+      "official_url": "https://github.com/KratosMultiphysics/Kratos",
+      "repository_url": "https://github.com/KratosMultiphysics/Kratos",
+      "focus": [
+        "multiphysics",
+        "computational mechanics",
+        "finite elements",
+        "optimization",
+        "parallel computing"
+      ],
+      "integration_role": "Large-scale multiphysics research adapter candidate.",
+      "evidence_notes": "Evaluate module/dependency footprint and reproducible benchmark results before adopting.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-OPENVSP",
+      "provider": "github",
+      "repository": "OpenVSP/OpenVSP",
+      "domain": "AEROSPACE",
+      "official_url": "https://openvsp.org/",
+      "repository_url": "https://github.com/OpenVSP/OpenVSP",
+      "focus": [
+        "parametric aircraft geometry",
+        "aerodynamic analysis integration",
+        "geometry interchange"
+      ],
+      "integration_role": "Aerospace conceptual geometry and early trade-study candidate.",
+      "evidence_notes": "Conceptual models are not substitutes for certified loads, high-fidelity CFD or airworthiness substantiation.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-OPENEMS",
+      "provider": "github",
+      "repository": "thliebig/openEMS",
+      "domain": "CFD_MULTIPHYSICS",
+      "official_url": "https://openems.de/",
+      "repository_url": "https://github.com/thliebig/openEMS",
+      "focus": [
+        "computational electromagnetics",
+        "FDTD",
+        "antenna simulation",
+        "RF"
+      ],
+      "integration_role": "Electromagnetic/RF solver candidate.",
+      "evidence_notes": "Confirm license, numerical validation cases and supported geometry formats before any integration.",
+      "priority": "P2"
+    },
+    {
+      "id": "ENG-SRC-BLENDER",
+      "provider": "github",
+      "repository": "blender/blender",
+      "domain": "ENGINEERING_VISUALIZATION",
+      "official_url": "https://www.blender.org/",
+      "repository_url": "https://github.com/blender/blender",
+      "focus": [
+        "3D visualization",
+        "geometry inspection",
+        "rendering",
+        "animation",
+        "Python automation"
+      ],
+      "integration_role": "Visualization and engineering communication adapter; not a substitute for a CAD kernel or solver.",
+      "evidence_notes": "Rendered imagery is visualization evidence, not engineering validation.",
+      "priority": "P3"
+    }
+  ],
+  "research_only_references": [
+    {
+      "id": "ENG-REF-GMSH-MANUAL",
+      "title": "Gmsh reference manual",
+      "url": "https://gmsh.info/doc/texinfo/",
+      "use": "Check scripting/API, mesh algorithms, element types and versioned behavior.",
+      "automation_state": "LINKED_REFERENCE_NOT_FETCHED_BY_RUNNER"
+    },
+    {
+      "id": "ENG-REF-OPENMDAO-DOCS",
+      "title": "OpenMDAO latest documentation",
+      "url": "https://openmdao.org/newdocs/versions/latest/index.html",
+      "use": "Verify optimization algorithms, derivatives, convergence and feasibility methods.",
+      "automation_state": "LINKED_REFERENCE_NOT_FETCHED_BY_RUNNER"
+    },
+    {
+      "id": "ENG-REF-OCCT-RELEASES",
+      "title": "Open CASCADE releases",
+      "url": "https://github.com/Open-Cascade-SAS/OCCT/releases",
+      "use": "Inspect geometry kernel reliability, shape-healing, meshing and STEP changes.",
+      "automation_state": "REPOSITORY_RELEASES_MONITORED"
+    },
+    {
+      "id": "ENG-REF-KICAD-NEWS",
+      "title": "KiCad official site and release notices",
+      "url": "https://www.kicad.org/",
+      "use": "Monitor electronics automation functionality and release-specific validation.",
+      "automation_state": "LINKED_REFERENCE_NOT_FETCHED_BY_RUNNER"
+    },
+    {
+      "id": "ENG-REF-OPENFOAM-FOUNDATION",
+      "title": "OpenFOAM Foundation release stream",
+      "url": "https://openfoam.org/",
+      "use": "Track independent solver features and releases.",
+      "automation_state": "REPOSITORY_ACTIVITY_MONITORED"
+    }
+  ]
+}
