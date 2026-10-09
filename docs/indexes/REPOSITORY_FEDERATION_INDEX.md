@@ -86,3 +86,16 @@ These artifacts bind system identities to repository surfaces and define the req
 7. The implementation remains PROPOSED until sandbox, failure/recovery, replay, independent verification, fresh proof and explicit admission evidence are attached.
 
 Reference implementation review: https://github.com/fisallllll280-code/vx-agents-fabric/pull/1
+
+## Operational Office Fabric — 2026-10-09
+
+The following additive registry groups logical engineering offices, observed system/repository surfaces, tool adapters, integration states and explicit relationships. It does not merge repositories or admit external tools.
+
+- [Office Fabric Specification](../integration/VAIXLNS_OPERATIONAL_OFFICE_FABRIC_V1.md)
+- [Office Fabric Registry](../../registry/office_fabric.integration.v1.json)
+- [Office Fabric JSON Schema](../../schemas/office-fabric-registry.schema.json)
+- [Office Fabric Validator](../../scripts/validate_office_fabric.py)
+- [Office Fabric Conformance Tests](../../tests/test_office_fabric.py)
+
+Current seed coverage is computed from registry entries. It is not a claim that all historical index items are recovered or all providers, clients, servers, databases, models or physical systems are connected. Unconfigured adapters remain disconnected; VLNS/NAXLNS and NEXNET/NEXENT identity mappings remain unresolved. The office fabric must continue to pass the Universal External Integration Gate before any adapter is admitted.
+

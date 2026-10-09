@@ -1,0 +1,2462 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "VAIXLNS-OFFICE-FABRIC",
+  "canonical_owner": "VAIXLNS",
+  "status": "PROPOSED_IMPLEMENTATION_SEED",
+  "as_of_date": "2026-10-09",
+  "semantics": {
+    "office_definition": "A logical engineering office is a bounded responsibility and routing domain, not a physical office or an independently privileged agent. It coordinates systems, tools, contracts, evidence, and handoffs.",
+    "zero_loss": true,
+    "no_implicit_admission": true,
+    "unverified_identity_rule": "Repository-name similarity never resolves system identity. VLNS/NAXLNS and NEXNET/NEXENT remain separate unresolved mappings until explicit evidence is attached.",
+    "external_execution_boundary": "External models, APIs, servers, repositories, databases, devices, and tools must pass the VAIXLNS Universal External Integration Gate and VX policy boundary before execution. This registry does not grant credentials or runtime authority."
+  },
+  "offices": [
+    {
+      "office_id": "OFF-CANONICAL-GOVERNANCE",
+      "name": "Canonical Governance & Master Registry Office",
+      "purpose": "Own canonical identities, policy references, architecture state, repository classification, and explicit admission records.",
+      "owner_system_ids": [
+        "SYS-VAIXLNS",
+        "SYS-NEXUS-LNS"
+      ],
+      "tool_ids": [
+        "TOOL-MASTER-REGISTRY",
+        "TOOL-REPOSITORY-INVENTORY"
+      ],
+      "authority_ceiling": "May classify and prepare governance records; canonical promotion or runtime admission requires the defined governance and proof gates.",
+      "status": "ACTIVE_REFERENCE",
+      "inputs": [
+        "system identity proposals",
+        "repository inventory changes",
+        "integration evidence packages",
+        "version and lineage records"
+      ],
+      "outputs": [
+        "canonical registry updates",
+        "identity conflict holds",
+        "admission decisions",
+        "lineage links"
+      ],
+      "handoff_rules": [
+        "No name-only merge or rename.",
+        "Every promotion must preserve source identity, evidence, version, and lineage.",
+        "Unknown evidence keeps the item in HOLD or UNVERIFIED."
+      ],
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE",
+        "SRC-REPOSITORY-INVENTORY",
+        "SRC-FEDERATION-INDEX"
+      ]
+    },
+    {
+      "office_id": "OFF-RESEARCH-DISCOVERY",
+      "name": "Research & System Discovery Office",
+      "purpose": "Discover sources, systems, tools, capability gaps, candidate architectures, contradictions, and evidence lineage.",
+      "owner_system_ids": [
+        "SYS-NEXENT",
+        "SYS-VLNS"
+      ],
+      "tool_ids": [
+        "TOOL-NEXENT-ARCH-SEARCH",
+        "TOOL-WEB-RESEARCH-ADAPTER",
+        "TOOL-GITHUB-ADAPTER"
+      ],
+      "authority_ceiling": "Research, retrieval, comparison, and proposal only; cannot self-admit research findings or modify canonical state.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "research objective",
+        "search scope",
+        "candidate systems",
+        "archive and repository sources"
+      ],
+      "outputs": [
+        "source-backed discovery records",
+        "candidate system graph",
+        "gap register",
+        "uncertainty and contradiction report"
+      ],
+      "handoff_rules": [
+        "Cite source URI and revision when available.",
+        "Mark reconstructed/inferred claims distinctly from directly observed repository evidence.",
+        "Missing search adapters must produce NOT_CONFIGURED/HOLD, not invented results."
+      ],
+      "source_refs": [
+        "SRC-NEXENT-ARCHITECTURE",
+        "SRC-NEXENT-INTERFACES",
+        "SRC-DISCOVERY-ROUTING"
+      ]
+    },
+    {
+      "office_id": "OFF-INTELLIGENCE-PLANNING",
+      "name": "Intelligence, Decomposition & Planning Office",
+      "purpose": "Translate intents and discoveries into decomposed tasks, typed plans, candidate solutions, and handoff envelopes.",
+      "owner_system_ids": [
+        "SYS-XV",
+        "SYS-NEXENT",
+        "SYS-VX-AGENTS-FABRIC"
+      ],
+      "tool_ids": [
+        "TOOL-NEXENT-ARCH-SEARCH"
+      ],
+      "authority_ceiling": "May plan and recommend; execution remains subject to VX capabilities, policy, and scoped authorization.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "intent",
+        "constraints",
+        "capability requirements",
+        "evidence and risk summaries"
+      ],
+      "outputs": [
+        "dependency plan",
+        "candidate architecture",
+        "bounded work packages",
+        "acceptance criteria"
+      ],
+      "handoff_rules": [
+        "Separate planning from execution.",
+        "Attach budget, expected state transition, risk, and evidence obligations to every executable proposal.",
+        "Do not treat agent consensus as proof."
+      ],
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-NEXENT-ARCHITECTURE",
+        "SRC-AGENT-FABRIC-CONTRACT"
+      ]
+    },
+    {
+      "office_id": "OFF-EXECUTION-RUNTIME",
+      "name": "VX Execution & Runtime Office",
+      "purpose": "Provide the governed execution boundary for admitted actions, typed adapters, event/state/ledger effects, and controlled recovery.",
+      "owner_system_ids": [
+        "SYS-VX-RUNTIME",
+        "SYS-VX-UNIFIED",
+        "SYS-VAIXLNS-CORE",
+        "SYS-CSD-KERNEL"
+      ],
+      "tool_ids": [
+        "TOOL-VX-ADMISSION-GATE",
+        "TOOL-DISCOVERY-ROUTER"
+      ],
+      "authority_ceiling": "Only explicitly admitted operations with a valid capability contract, policy approval, resource budget, and required evidence hooks.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "authorized execution object",
+        "contract-valid request",
+        "approved adapter",
+        "resource and deadline limits"
+      ],
+      "outputs": [
+        "execution result",
+        "events and state changes",
+        "failure/recovery records",
+        "evidence package"
+      ],
+      "handoff_rules": [
+        "No direct external action before VX policy gating.",
+        "Timeouts and partial failures must remain observable and resumable by stable task ID.",
+        "Physical-system adapters default to observe/simulate."
+      ],
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE",
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-DISCOVERY-ROUTING"
+      ]
+    },
+    {
+      "office_id": "OFF-KNOWLEDGE-LINEAGE",
+      "name": "Knowledge, Nexus & Lineage Office",
+      "purpose": "Maintain resolvable system, capability, file, artifact, evidence, dependency, and temporal relationships without losing legacy identities.",
+      "owner_system_ids": [
+        "SYS-NEXUS-LNS",
+        "SYS-VAIXLNS",
+        "SYS-VLNS"
+      ],
+      "tool_ids": [
+        "TOOL-MASTER-REGISTRY",
+        "TOOL-REPOSITORY-INVENTORY"
+      ],
+      "authority_ceiling": "Index and relationship maintenance only; cannot infer unresolved identity equivalence as canonical fact.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "repository metadata",
+        "archive fragments",
+        "artifact IDs",
+        "events",
+        "source references"
+      ],
+      "outputs": [
+        "identity graph",
+        "lineage graph",
+        "dependency graph",
+        "traceable index entries"
+      ],
+      "handoff_rules": [
+        "Preserve aliases and historical IDs.",
+        "Use explicit relationship types rather than destructive merges.",
+        "Mark source gaps and identity conflicts in the graph."
+      ],
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-REPOSITORY-INVENTORY",
+        "SRC-FEDERATION-INDEX"
+      ]
+    },
+    {
+      "office_id": "OFF-VERIFICATION-PROOF",
+      "name": "Verification, Evidence & Proof Office",
+      "purpose": "Check contracts, conformance, falsification cases, evidence freshness, reproducibility, and proof obligations.",
+      "owner_system_ids": [
+        "SYS-VV",
+        "SYS-ARCX",
+        "SYS-VAIXLNS"
+      ],
+      "tool_ids": [
+        "TOOL-ARCX-PROOF",
+        "TOOL-SERVER-DISCOVERY-PROBE"
+      ],
+      "authority_ceiling": "May verify and report; cannot grant its own execution authority or promote its own candidate.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "candidate artifact",
+        "contract",
+        "test cases",
+        "environment fingerprint",
+        "evidence references"
+      ],
+      "outputs": [
+        "verification report",
+        "failed obligations",
+        "freshness result",
+        "promotion recommendation"
+      ],
+      "handoff_rules": [
+        "Evidence is not proof until obligations are checked.",
+        "A reachable endpoint is not evidence of service correctness.",
+        "Missing observations force an explicit unobservable/hold result."
+      ],
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-ARCX-TOOL"
+      ]
+    },
+    {
+      "office_id": "OFF-OPERATIONS-RECOVERY",
+      "name": "Operations, Observability & Recovery Office",
+      "purpose": "Correlate runtime health, events, state, ledger, replay, recovery, capacity, and operational assurance.",
+      "owner_system_ids": [
+        "SYS-OIF",
+        "SYS-VX-RUNTIME",
+        "SYS-VX-UNIFIED"
+      ],
+      "tool_ids": [
+        "TOOL-SERVER-DISCOVERY-PROBE",
+        "TOOL-OTEL-OBSERVABILITY"
+      ],
+      "authority_ceiling": "Read/observe by default; recovery actions require explicit VX authority and runbook-defined scope.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "runtime events",
+        "health checks",
+        "resource metrics",
+        "failure and replay records"
+      ],
+      "outputs": [
+        "correlated trace",
+        "incident record",
+        "recovery proposal",
+        "operational readiness evidence"
+      ],
+      "handoff_rules": [
+        "Use a shared trace/task ID across offices.",
+        "Record health, metrics, logs, evidence, and replay references consistently.",
+        "Do not label production-ready without deployment and runtime evidence."
+      ],
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-UNIVERSAL-GATE",
+        "EXT-OPENTELEMETRY"
+      ]
+    },
+    {
+      "office_id": "OFF-SECURITY-IDENTITY",
+      "name": "Security, Identity & Authority Office",
+      "purpose": "Define trust boundaries, identity bindings, least-privilege scopes, data classification, egress controls, and revocation paths.",
+      "owner_system_ids": [
+        "SYS-VAIXLNS",
+        "SYS-VX-RUNTIME",
+        "SYS-ARCX"
+      ],
+      "tool_ids": [
+        "TOOL-MCP-ADAPTER",
+        "TOOL-GITHUB-ADAPTER",
+        "TOOL-WEB-RESEARCH-ADAPTER"
+      ],
+      "authority_ceiling": "Policy evaluation and restricted grants only; secrets are never stored in this registry and no adapter can expand its own authority.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "integration identity",
+        "capability contract",
+        "data classification",
+        "threat model",
+        "proof package"
+      ],
+      "outputs": [
+        "policy decision",
+        "allowed capability set",
+        "quarantine/hold/revoke decision"
+      ],
+      "handoff_rules": [
+        "Deny by default for write, financial, production, or physical actions.",
+        "Pin endpoint, version, environment, and contract for admissions.",
+        "Material changes invalidate prior admission and require revalidation."
+      ],
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-AGENT-FABRIC-CONTRACT"
+      ]
+    },
+    {
+      "office_id": "OFF-REPOSITORY-FEDERATION",
+      "name": "Repository Federation & Source Preservation Office",
+      "purpose": "Inventory known repositories, preserve their independent identities, classify architectural roles, and route integration through explicit contracts.",
+      "owner_system_ids": [
+        "SYS-VAIXLNS",
+        "SYS-NEXENT",
+        "SYS-REPOSITORY-FEDERATION",
+        "SYS-VLNS",
+        "SYS-NEXNET"
+      ],
+      "tool_ids": [
+        "TOOL-REPOSITORY-INVENTORY",
+        "TOOL-GITHUB-ADAPTER",
+        "TOOL-SERVER-DISCOVERY-PROBE"
+      ],
+      "authority_ceiling": "Read and classify source repositories; write changes only through authorized branches and pull requests.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "repository URLs",
+        "branch/ref",
+        "content inventory",
+        "license and security evidence"
+      ],
+      "outputs": [
+        "repository role record",
+        "source-to-canonical map",
+        "unresolved identity list",
+        "integration change proposal"
+      ],
+      "handoff_rules": [
+        "Never merge or rename based on name similarity alone.",
+        "Keep legacy and external repositories untouched until content, lineage, and license/security are reviewed.",
+        "Green CI is implementation evidence, not production admission."
+      ],
+      "source_refs": [
+        "SRC-REPOSITORY-INVENTORY",
+        "SRC-FEDERATION-INDEX",
+        "SRC-VAIXLNS-INTEROP",
+        "EXT-GITHUB-CONTENTS"
+      ]
+    },
+    {
+      "office_id": "OFF-TOOL-INTEROPERABILITY",
+      "name": "Tool & Adapter Interoperability Office",
+      "purpose": "Normalize tool, API, MCP server, model, database, cloud, device, and repository interfaces behind typed contracts.",
+      "owner_system_ids": [
+        "SYS-VX-RUNTIME",
+        "SYS-VAIXLNS",
+        "SYS-PHYSICAL-ADAPTERS"
+      ],
+      "tool_ids": [
+        "TOOL-GITHUB-ADAPTER",
+        "TOOL-WEB-RESEARCH-ADAPTER",
+        "TOOL-CODE-SANDBOX-ADAPTER",
+        "TOOL-MCP-ADAPTER",
+        "TOOL-DATA-CONNECTOR",
+        "TOOL-CLOUD-CONTROL-ADAPTER",
+        "TOOL-INDUSTRIAL-ADAPTER",
+        "TOOL-ROBOTICS-ADAPTER",
+        "TOOL-MOBILE-DESKTOP-ADAPTER"
+      ],
+      "authority_ceiling": "Discovery and sandbox adapter implementation; no production credentials or unrestricted egress.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "tool manifest",
+        "input/output schemas",
+        "auth requirements",
+        "capability requests",
+        "risk classification"
+      ],
+      "outputs": [
+        "normalized adapter contract",
+        "conformance suite",
+        "adapter build artifact",
+        "integration evidence"
+      ],
+      "handoff_rules": [
+        "Use one canonical request envelope across adapters.",
+        "Validate input and output schemas before results enter state.",
+        "Apply timeout, retry, rate/resource limits, egress policy, and revocation.",
+        "MCP is an interface protocol, not an admission or trust grant."
+      ],
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE",
+        "EXT-MCP",
+        "EXT-OPENAPI",
+        "EXT-JSON-SCHEMA"
+      ]
+    },
+    {
+      "office_id": "OFF-ENGINEERING-BUILD-TEST",
+      "name": "Engineering, Build & Conformance Office",
+      "purpose": "Turn accepted specifications into reviewed implementation slices, automated tests, reproducible build evidence, and release candidates.",
+      "owner_system_ids": [
+        "SYS-NEXENT",
+        "SYS-VX-AGENTS-FABRIC",
+        "SYS-VX-RUNTIME",
+        "SYS-VAIXLNS-CORE"
+      ],
+      "tool_ids": [
+        "TOOL-DISCOVERY-ROUTER",
+        "TOOL-VX-ADMISSION-GATE",
+        "TOOL-CODE-SANDBOX-ADAPTER"
+      ],
+      "authority_ceiling": "Branch-scoped code generation and sandbox testing; no direct production deployment or canonical self-promotion.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "accepted task",
+        "requirements",
+        "architecture decision",
+        "test obligations",
+        "source branch"
+      ],
+      "outputs": [
+        "patch or pull request",
+        "test results",
+        "build artifacts",
+        "change impact report"
+      ],
+      "handoff_rules": [
+        "Use additive branches for integration changes.",
+        "Run format/schema/compile/unit/conformance checks.",
+        "Failures must remain visible; do not rewrite a failed test into a pass without evidence."
+      ],
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-NEXENT-ARCHITECTURE",
+        "SRC-AGENT-FABRIC-CONTRACT",
+        "EXT-GITHUB-CONTENTS"
+      ]
+    },
+    {
+      "office_id": "OFF-FINANCIAL-ANALYSIS",
+      "name": "Financial Feasibility & Resource Analysis Office",
+      "purpose": "Estimate engineering cost, resource budgets, pricing options, unit economics, and downside scenarios for proposed capabilities.",
+      "owner_system_ids": [
+        "SYS-VX-AGENTS-FABRIC",
+        "SYS-NEXENT",
+        "SYS-VAIXLNS"
+      ],
+      "tool_ids": [
+        "TOOL-DATA-CONNECTOR",
+        "TOOL-WEB-RESEARCH-ADAPTER"
+      ],
+      "authority_ceiling": "Analysis and proposal only; no payments, account access, transfers, trades, or binding financial decisions.",
+      "status": "PROPOSED",
+      "inputs": [
+        "cost assumptions",
+        "usage estimates",
+        "provider pricing evidence",
+        "approved budget constraints"
+      ],
+      "outputs": [
+        "cost model",
+        "scenario comparison",
+        "resource budget proposal",
+        "uncertainty register"
+      ],
+      "handoff_rules": [
+        "Label estimates and assumptions.",
+        "Provider prices and live market data require source and retrieval timestamp.",
+        "Transaction capability requires separate legal, security, and explicit authority gates."
+      ],
+      "source_refs": [
+        "SRC-AGENT-FABRIC-CONTRACT",
+        "SRC-SYSTEM-CONTEXT"
+      ]
+    },
+    {
+      "office_id": "OFF-CLIENT-INTERFACES",
+      "name": "Multi-Platform Client & Session Office",
+      "purpose": "Expose a consistent operational contract across Linux, Windows, Android, desktop, and web clients without forking core authority.",
+      "owner_system_ids": [
+        "SYS-CLIENT-FABRIC",
+        "SYS-NEXENT",
+        "SYS-VAIXLNS"
+      ],
+      "tool_ids": [
+        "TOOL-NEXENT-CLIENT-GATEWAY",
+        "TOOL-MOBILE-DESKTOP-ADAPTER"
+      ],
+      "authority_ceiling": "User interaction, monitoring, search, status, and approval requests; clients do not become canonical execution authorities.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "user intents",
+        "session identity",
+        "display preferences",
+        "status and evidence queries"
+      ],
+      "outputs": [
+        "portable session view",
+        "approval request",
+        "status display",
+        "evidence view"
+      ],
+      "handoff_rules": [
+        "All clients use the same logical operations and identity model.",
+        "UI state is not canonical state.",
+        "Authenticated API gateway, event transport, and end-to-end conformance remain separate implementation requirements."
+      ],
+      "source_refs": [
+        "SRC-NEXENT-INTERFACES"
+      ]
+    },
+    {
+      "office_id": "OFF-INNOVATION-GENOME",
+      "name": "Innovation, Genome & Architecture Synthesis Office",
+      "purpose": "Capture inventions and capability gaps, build candidate architecture/genome records, compare alternatives, and hand off evidence packages.",
+      "owner_system_ids": [
+        "SYS-NEXENT",
+        "SYS-VAIXLNS",
+        "SYS-NEXUS-LNS"
+      ],
+      "tool_ids": [
+        "TOOL-NEXENT-ARCH-SEARCH",
+        "TOOL-ARCX-PROOF"
+      ],
+      "authority_ceiling": "Generate and evaluate candidates only; generator, judge, and authority remain separate responsibilities.",
+      "status": "SPECIFIED",
+      "inputs": [
+        "capability gap",
+        "innovation record",
+        "prior art",
+        "constraints and proof obligations"
+      ],
+      "outputs": [
+        "candidate genome",
+        "architecture alternatives",
+        "lineage-preserving innovation record",
+        "verification package"
+      ],
+      "handoff_rules": [
+        "Do not duplicate a concept before searching existing names and lineage.",
+        "Keep original formulations alongside normalized descriptions.",
+        "Promote only through VAIXLNS governance."
+      ],
+      "source_refs": [
+        "SRC-NEXENT-ARCHITECTURE",
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-ARCX-TOOL"
+      ]
+    },
+    {
+      "office_id": "OFF-SERVER-FEDERATION",
+      "name": "Server, Cloud & Capacity Federation Office",
+      "purpose": "Map compute, service, server, deployment, capacity and connectivity surfaces to bounded runtime contracts.",
+      "owner_system_ids": [
+        "SYS-VX-RUNTIME",
+        "SYS-VX-UNIFIED",
+        "SYS-REPOSITORY-FEDERATION"
+      ],
+      "tool_ids": [
+        "TOOL-SERVER-DISCOVERY-PROBE",
+        "TOOL-CLOUD-CONTROL-ADAPTER"
+      ],
+      "authority_ceiling": "Read-only discovery and capacity planning by default; deployment/mutation requires separate approval and runtime evidence.",
+      "status": "PARTIAL_EVIDENCE",
+      "inputs": [
+        "service manifest",
+        "health and capacity signals",
+        "environment fingerprint",
+        "deployment plan"
+      ],
+      "outputs": [
+        "server inventory",
+        "capacity proposal",
+        "deployment evidence",
+        "failure/recovery plan"
+      ],
+      "handoff_rules": [
+        "GET-only probes do not scan subnets or execute remote commands.",
+        "A reachable server is not proof of a correctly functioning service.",
+        "Do not invent endpoints, server IDs, or live instances."
+      ],
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-SERVER-PROBE"
+      ]
+    },
+    {
+      "office_id": "OFF-PHYSICAL-SYSTEMS",
+      "name": "Industrial, Robotics & Automotive Adapter Office",
+      "purpose": "Define bounded contracts for physical/embedded systems and require domain-specific hazard and safety validation.",
+      "owner_system_ids": [
+        "SYS-PHYSICAL-ADAPTERS",
+        "SYS-VX-RUNTIME"
+      ],
+      "tool_ids": [
+        "TOOL-INDUSTRIAL-ADAPTER",
+        "TOOL-ROBOTICS-ADAPTER"
+      ],
+      "authority_ceiling": "Observe/simulate only until a verified, domain-specific safety contract and explicit execution authorization are present.",
+      "status": "PROPOSED",
+      "inputs": [
+        "device/protocol specification",
+        "safety constraints",
+        "simulation fixture",
+        "capability grant"
+      ],
+      "outputs": [
+        "adapter specification",
+        "simulation evidence",
+        "hazard and failure analysis",
+        "restricted execution proposal"
+      ],
+      "handoff_rules": [
+        "No actuation from discovery-only or unverified adapters.",
+        "Physical operations require timeout, interlock, safe-state, and recovery definitions.",
+        "Unknown device behavior forces quarantine."
+      ],
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "SYS-VAIXLNS",
+      "name": "VAIXLNS",
+      "role": "Canonical architecture, governance, registry, recovery, and adoption authority.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "CANONICAL",
+      "office_ids": [
+        "OFF-CANONICAL-GOVERNANCE",
+        "OFF-RESEARCH-DISCOVERY",
+        "OFF-INTELLIGENCE-PLANNING",
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-KNOWLEDGE-LINEAGE",
+        "OFF-VERIFICATION-PROOF",
+        "OFF-OPERATIONS-RECOVERY",
+        "OFF-SECURITY-IDENTITY",
+        "OFF-REPOSITORY-FEDERATION",
+        "OFF-TOOL-INTEROPERABILITY",
+        "OFF-ENGINEERING-BUILD-TEST",
+        "OFF-FINANCIAL-ANALYSIS",
+        "OFF-CLIENT-INTERFACES",
+        "OFF-INNOVATION-GENOME"
+      ],
+      "authority_boundary": "Canonical adoption and governance; no capability is implicitly admitted merely because its design or registry record exists.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+        "registry/repository_registry.v1.json"
+      ],
+      "blockers": [
+        "The historical 0001-2750 index still requires item-by-item source reconciliation before claiming complete archive extraction."
+      ]
+    },
+    {
+      "system_id": "SYS-NEXENT",
+      "name": "NEXENT",
+      "role": "Independent discovery, architecture search, synthesis, verification support, and evolution-proposal engine.",
+      "repository": "https://github.com/fisallllll280-code/NEXENT",
+      "status": "IMPLEMENTED_PARTIAL",
+      "office_ids": [
+        "OFF-RESEARCH-DISCOVERY",
+        "OFF-INTELLIGENCE-PLANNING",
+        "OFF-ENGINEERING-BUILD-TEST",
+        "OFF-FINANCIAL-ANALYSIS",
+        "OFF-CLIENT-INTERFACES",
+        "OFF-INNOVATION-GENOME"
+      ],
+      "authority_boundary": "May discover, design, compare, simulate, verify, and propose; VAIXLNS controls canonical adoption.",
+      "contract_refs": [
+        "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/canonical/NEXENT_CANONICAL_ARCHITECTURE_V1.md",
+        "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md"
+      ],
+      "evidence_refs": [
+        "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/canonical/ARCHITECTURE_SEARCH.md"
+      ],
+      "blockers": [
+        "Specific executable components, runtime endpoints, and end-to-end conformance must be verified per implementation."
+      ]
+    },
+    {
+      "system_id": "SYS-VX-RUNTIME",
+      "name": "VX Runtime",
+      "role": "Governed execution boundary and runtime contract.",
+      "repository": "https://github.com/fisallllll280-code/VX-runtime",
+      "status": "PARTIAL_EVIDENCE",
+      "office_ids": [
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-VERIFICATION-PROOF",
+        "OFF-OPERATIONS-RECOVERY",
+        "OFF-SECURITY-IDENTITY",
+        "OFF-TOOL-INTEROPERABILITY",
+        "OFF-ENGINEERING-BUILD-TEST",
+        "OFF-SERVER-FEDERATION",
+        "OFF-PHYSICAL-SYSTEMS"
+      ],
+      "authority_boundary": "Execution only after contract, policy, capability, environment, and admission checks.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ],
+      "blockers": [
+        "This record does not assert that every integrated system is connected to a live VX instance."
+      ]
+    },
+    {
+      "system_id": "SYS-VX-UNIFIED",
+      "name": "VAIXLNS-unified",
+      "role": "Integrated runtime/fabric implementation surface.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS-unified",
+      "status": "PARTIAL_EVIDENCE",
+      "office_ids": [
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-OPERATIONS-RECOVERY",
+        "OFF-SERVER-FEDERATION"
+      ],
+      "authority_boundary": "Implementation surface; canonical authority stays in VAIXLNS and runtime operations require evidence.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ],
+      "blockers": [
+        "Implementation conformance and live runtime binding must be independently verified."
+      ]
+    },
+    {
+      "system_id": "SYS-VAIXLNS-CORE",
+      "name": "vaixlns-core",
+      "role": "Focused sovereign-core vertical slice.",
+      "repository": "https://github.com/fisallllll280-code/vaixlns-core",
+      "status": "IMPLEMENTED_PARTIAL",
+      "office_ids": [
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-ENGINEERING-BUILD-TEST"
+      ],
+      "authority_boundary": "Bounded core implementation; no authority beyond its validated contract.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "blockers": [
+        "Exact conformance with the current canonical execution contract requires validation."
+      ]
+    },
+    {
+      "system_id": "SYS-CSD-KERNEL",
+      "name": "vaixlns-csd-kernel",
+      "role": "Specialized signed/replayable kernel and DSL/compiler surface.",
+      "repository": "https://github.com/fisallllll280-code/vaixlns-csd-kernel",
+      "status": "IMPLEMENTED_PARTIAL",
+      "office_ids": [
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-ENGINEERING-BUILD-TEST"
+      ],
+      "authority_boundary": "Specialized kernel surface admitted only through explicit contract and compatible evidence.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "registry/repository_registry.v1.json"
+      ],
+      "blockers": [
+        "Cross-repository contract and replay conformance are not asserted by this registry."
+      ]
+    },
+    {
+      "system_id": "SYS-VLNS",
+      "name": "VLNS",
+      "role": "Independent system identity for knowledge/discovery/adversarial analysis.",
+      "repository": "https://github.com/fisallllll280-code/NAXLNS",
+      "status": "IDENTITY_UNVERIFIED",
+      "office_ids": [
+        "OFF-RESEARCH-DISCOVERY",
+        "OFF-KNOWLEDGE-LINEAGE",
+        "OFF-REPOSITORY-FEDERATION"
+      ],
+      "authority_boundary": "No canonical identity reassignment, merge, or admission until equivalence evidence is approved.",
+      "contract_refs": [],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ],
+      "blockers": [
+        "VLNS ↔ NAXLNS is explicitly unresolved in the federation records."
+      ]
+    },
+    {
+      "system_id": "SYS-NEXNET",
+      "name": "NEXNET",
+      "role": "Independent network/discovery system identity pending reconciliation.",
+      "repository": null,
+      "status": "IDENTITY_UNVERIFIED",
+      "office_ids": [
+        "OFF-RESEARCH-DISCOVERY",
+        "OFF-REPOSITORY-FEDERATION"
+      ],
+      "authority_boundary": "No equivalence to NEXENT is inferred from similar naming.",
+      "contract_refs": [],
+      "evidence_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "blockers": [
+        "NEXNET ↔ NEXENT requires explicit identity evidence; NEXENT remains a separately observed repository."
+      ]
+    },
+    {
+      "system_id": "SYS-VX-AGENTS-FABRIC",
+      "name": "VX Agents Fabric",
+      "role": "Specialist-agent orchestration for research, finance, engineering, and parent reviews.",
+      "repository": "https://github.com/fisallllll280-code/vx-agents-fabric",
+      "status": "PROPOSED_NOT_ADMITTED",
+      "office_ids": [
+        "OFF-INTELLIGENCE-PLANNING",
+        "OFF-ENGINEERING-BUILD-TEST",
+        "OFF-FINANCIAL-ANALYSIS"
+      ],
+      "authority_boundary": "Scoped proposal, research, sandbox, analysis, and review only; no production/canonical mutation or financial transaction authority.",
+      "contract_refs": [
+        "docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
+        "registry/vx-agents-fabric.integration.v1.json"
+      ],
+      "evidence_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "blockers": [
+        "Universal admission gate incomplete; provider configuration, live tool adapters, durable canonical ledger integration, replay, fresh proof, and production admission remain unproven."
+      ]
+    },
+    {
+      "system_id": "SYS-INTENT-REALITY",
+      "name": "VAIXLNS Intent-to-Reality",
+      "role": "Intent, state, and transformation specification surface.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "status": "PARTIAL_EVIDENCE",
+      "office_ids": [
+        "OFF-INTELLIGENCE-PLANNING",
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-INNOVATION-GENOME"
+      ],
+      "authority_boundary": "Specification/reference only unless a current implementation and contract are verified.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ],
+      "blockers": [
+        "Exact deployed integration not established in the reviewed references."
+      ]
+    },
+    {
+      "system_id": "SYS-NAMING-CONSTITUTION",
+      "name": "VAIXLNS Naming Constitution",
+      "role": "Naming and identity governance support.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-CANONICAL-GOVERNANCE",
+        "OFF-KNOWLEDGE-LINEAGE",
+        "OFF-SECURITY-IDENTITY"
+      ],
+      "authority_boundary": "Identity/naming constraints; does not independently grant runtime admission.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "registry/repository_registry.v1.json"
+      ],
+      "blockers": [
+        "Current version-to-runtime policy bindings must be checked before implementation claims."
+      ]
+    },
+    {
+      "system_id": "SYS-VX50-HISTORICAL",
+      "name": "VX50_COMPLETE_BUILD",
+      "role": "Historical/build surface retained for lineage and selective integration.",
+      "repository": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD",
+      "status": "HISTORICAL",
+      "office_ids": [
+        "OFF-REPOSITORY-FEDERATION",
+        "OFF-ENGINEERING-BUILD-TEST"
+      ],
+      "authority_boundary": "Historical source only until inspected and admitted through the integration gate.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md",
+        "registry/repository_registry.v1.json"
+      ],
+      "blockers": [
+        "No blind copy/rename or automatic canonical promotion."
+      ]
+    },
+    {
+      "system_id": "SYS-TUNNEL-CLIENT",
+      "name": "tunnel-client",
+      "role": "Connectivity/transport utility candidate.",
+      "repository": "https://github.com/fisallllll280-code/tunnel-client",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-TOOL-INTEROPERABILITY",
+        "OFF-SERVER-FEDERATION",
+        "OFF-REPOSITORY-FEDERATION"
+      ],
+      "authority_boundary": "Candidate transport adapter only; no assumed endpoint trust or network authority.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "blockers": [
+        "Repository-specific contract and security review required before use."
+      ]
+    },
+    {
+      "system_id": "SYS-CLIENT-FABRIC",
+      "name": "NEXENT Multi-Platform Client Surface",
+      "role": "Shared operational contract for Linux, Windows, Android, desktop and web clients.",
+      "repository": "https://github.com/fisallllll280-code/NEXENT",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-CLIENT-INTERFACES",
+        "OFF-SECURITY-IDENTITY"
+      ],
+      "authority_boundary": "Clients request/observe/approve; core owns canonical state and execution.",
+      "contract_refs": [
+        "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md"
+      ],
+      "evidence_refs": [
+        "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md"
+      ],
+      "blockers": [
+        "Native clients, authenticated gateway, event transport, and end-to-end conformance remain pending per the interface document."
+      ]
+    },
+    {
+      "system_id": "SYS-ARCX",
+      "name": "ARC-X Ω",
+      "role": "Evidence, claim, verification-obligation and proof boundary.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-VERIFICATION-PROOF",
+        "OFF-SECURITY-IDENTITY",
+        "OFF-INNOVATION-GENOME"
+      ],
+      "authority_boundary": "Produces/validates proof artifacts but does not approve its own execution or canonical promotion.",
+      "contract_refs": [
+        "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md"
+      ],
+      "blockers": [
+        "A referenced contract or document is not by itself evidence that every proof engine is running."
+      ]
+    },
+    {
+      "system_id": "SYS-NEXUS-LNS",
+      "name": "Canonical Nexus / LNS Knowledge Graph",
+      "role": "Canonical identity, capability, dependency, evidence, temporal and lineage relationship substrate.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-CANONICAL-GOVERNANCE",
+        "OFF-KNOWLEDGE-LINEAGE",
+        "OFF-INNOVATION-GENOME"
+      ],
+      "authority_boundary": "Resolves and links records under schema; unresolved conflicts remain explicit and cannot be rewritten as facts.",
+      "contract_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ],
+      "evidence_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+        "registry/omega/omega-000-master-index.json"
+      ],
+      "blockers": [
+        "Complete fragment-level indexing and 0001-2750 historical item reconciliation are not claimed by this seed."
+      ]
+    },
+    {
+      "system_id": "SYS-OIF",
+      "name": "Operational Integrity Fabric",
+      "role": "Operational assurance, event/state/ledger/replay, recovery and readiness controls.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-OPERATIONS-RECOVERY",
+        "OFF-EXECUTION-RUNTIME",
+        "OFF-VERIFICATION-PROOF"
+      ],
+      "authority_boundary": "Operational evidence and recovery control; not consensus, not an identity authority, and not proof merely by existing.",
+      "contract_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "blockers": [
+        "Live telemetry, durable canonical ledger integration and production readiness must be proven for each runtime."
+      ]
+    },
+    {
+      "system_id": "SYS-XV",
+      "name": "XV Intelligence & Planning",
+      "role": "Reasoning, planning and decision preparation.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-INTELLIGENCE-PLANNING",
+        "OFF-RESEARCH-DISCOVERY"
+      ],
+      "authority_boundary": "Prepares candidates and decision records; cannot bypass policy or perform unrestricted execution.",
+      "contract_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "evidence_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "blockers": [
+        "Implementation scope must be mapped to executable components before runtime claims."
+      ]
+    },
+    {
+      "system_id": "SYS-VV",
+      "name": "VV Verification & Validation",
+      "role": "Independent verification, conformance checking and proof-obligation evaluation.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "SPECIFIED",
+      "office_ids": [
+        "OFF-VERIFICATION-PROOF",
+        "OFF-SECURITY-IDENTITY",
+        "OFF-ENGINEERING-BUILD-TEST"
+      ],
+      "authority_boundary": "Verification results remain separate from governance approval and implementation ownership.",
+      "contract_refs": [
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+        "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md"
+      ],
+      "evidence_refs": [
+        "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "blockers": [
+        "Per-integration conformance evidence is required."
+      ]
+    },
+    {
+      "system_id": "SYS-REPOSITORY-FEDERATION",
+      "name": "Repository Federation Index",
+      "role": "Source inventory and role mapping for independently versioned repositories.",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "PARTIAL_EVIDENCE",
+      "office_ids": [
+        "OFF-REPOSITORY-FEDERATION",
+        "OFF-CANONICAL-GOVERNANCE",
+        "OFF-SERVER-FEDERATION"
+      ],
+      "authority_boundary": "Catalog and role evidence only; no implicit merge or repo identity equivalence.",
+      "contract_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "evidence_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+        "registry/REPOSITORY_INVENTORY.md"
+      ],
+      "blockers": [
+        "Inventory entries are not identical to full source-code audits of all repositories."
+      ]
+    },
+    {
+      "system_id": "SYS-PHYSICAL-ADAPTERS",
+      "name": "Industrial / Robotics / Automotive Adapter Family",
+      "role": "Potential integration surface for physical and embedded systems.",
+      "repository": null,
+      "status": "NOT_CONFIGURED",
+      "office_ids": [
+        "OFF-TOOL-INTEROPERABILITY",
+        "OFF-PHYSICAL-SYSTEMS"
+      ],
+      "authority_boundary": "Observe/simulate only until safety, isolation, authority, interlocks and recovery are proven.",
+      "contract_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+        "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ],
+      "evidence_refs": [
+        "docs/UNIVERSAL_VX_INTEROPERABILITY.md"
+      ],
+      "blockers": [
+        "No universal claim that any external device or vehicle is connected."
+      ]
+    }
+  ],
+  "tool_integrations": [
+    {
+      "tool_id": "TOOL-MASTER-REGISTRY",
+      "name": "Ω.000 Master Index Artifact",
+      "kind": "registry_artifact",
+      "owner_system_id": "SYS-VAIXLNS",
+      "office_id": "OFF-CANONICAL-GOVERNANCE",
+      "status": "AVAILABLE_ARTIFACT",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "lookup_registered_index_entries",
+        "preserve_legacy_identity",
+        "retrieve_registry_metadata"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-MASTER-INDEX-READ-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "registry/omega/omega-000-master-index.json",
+        "timeout_seconds": null,
+        "retry_policy": "No network retry for local registry reads.",
+        "idempotency": "Read-only and idempotent.",
+        "failure_modes": [
+          "file_missing",
+          "invalid_json",
+          "stale_index",
+          "duplicate_identity",
+          "unresolved_entry"
+        ]
+      },
+      "security": {
+        "authentication": "Repository access permissions.",
+        "data_boundary": "Public repository metadata only; private user secrets are out of scope.",
+        "egress_policy": "No external egress.",
+        "authority_ceiling": "Read-only lookup; no canonical mutation."
+      },
+      "observability": {
+        "event_names": [
+          "registry.read",
+          "registry.lookup_failed"
+        ],
+        "evidence_capture": "Record file revision or blob SHA when consumed.",
+        "replay": "Replay by pinned registry revision.",
+        "health": "Verify file exists and parses before use."
+      },
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-FEDERATION-INDEX"
+      ],
+      "blockers": [
+        "Artifact availability is not proof that all historical 0001-2750 entries are present or reconciled."
+      ]
+    },
+    {
+      "tool_id": "TOOL-REPOSITORY-INVENTORY",
+      "name": "Repository Federation Inventory",
+      "kind": "registry_artifact",
+      "owner_system_id": "SYS-REPOSITORY-FEDERATION",
+      "office_id": "OFF-REPOSITORY-FEDERATION",
+      "status": "AVAILABLE_ARTIFACT",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "list_known_repositories",
+        "read_repository_roles",
+        "identify_unresolved_mappings"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-REPOSITORY-INVENTORY-READ-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "registry/repository_registry.v1.json",
+        "timeout_seconds": null,
+        "retry_policy": "No network retry for local registry reads.",
+        "idempotency": "Read-only and idempotent.",
+        "failure_modes": [
+          "file_missing",
+          "stale_snapshot",
+          "role_conflict",
+          "identity_unverified"
+        ]
+      },
+      "security": {
+        "authentication": "Repository access permissions.",
+        "data_boundary": "Repository metadata and explicit public source references.",
+        "egress_policy": "No external egress.",
+        "authority_ceiling": "Classification only; no merge/rename/delete."
+      },
+      "observability": {
+        "event_names": [
+          "repository_inventory.read",
+          "repository_inventory.conflict"
+        ],
+        "evidence_capture": "Record registry revision and source refs.",
+        "replay": "Replay against pinned inventory revision.",
+        "health": "Parse inventory and check referenced paths."
+      },
+      "source_refs": [
+        "SRC-REPOSITORY-INVENTORY",
+        "SRC-FEDERATION-INDEX"
+      ],
+      "blockers": [
+        "Inventory completeness does not establish source-code review for every repository."
+      ]
+    },
+    {
+      "tool_id": "TOOL-NEXENT-ARCH-SEARCH",
+      "name": "NEXENT Architecture Search",
+      "kind": "system_capability",
+      "owner_system_id": "SYS-NEXENT",
+      "office_id": "OFF-RESEARCH-DISCOVERY",
+      "status": "PARTIAL_EVIDENCE",
+      "access_mode": "PROPOSE_ONLY",
+      "capabilities": [
+        "search_architecture_candidates",
+        "classify_capability_gaps",
+        "compare_candidate_architectures",
+        "preserve_candidate_lineage"
+      ],
+      "contract": {
+        "contract_id": "NEXENT-ARCH-SEARCH-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "docs/canonical/ARCHITECTURE_SEARCH.md",
+        "timeout_seconds": null,
+        "retry_policy": "Retry only with the same task and source revision after transient failure.",
+        "idempotency": "Candidate generation must include a stable task ID and input lineage.",
+        "failure_modes": [
+          "source_unavailable",
+          "candidate_timeout",
+          "conflicting_evidence",
+          "missing_proof_obligation"
+        ]
+      },
+      "security": {
+        "authentication": "Repository/provider-specific authentication to be configured by deployment.",
+        "data_boundary": "Only authorized research sources; secrets excluded from artifacts.",
+        "egress_policy": "No live web/repository access until the corresponding adapters are configured and admitted.",
+        "authority_ceiling": "Discovery and proposals only."
+      },
+      "observability": {
+        "event_names": [
+          "research.started",
+          "research.source_read",
+          "research.candidate_created",
+          "research.failed"
+        ],
+        "evidence_capture": "Each claim links to source URI/revision or is marked inferred/unverified.",
+        "replay": "Replay requires pinned prompt/provider/source versions when applicable.",
+        "health": "No live search capability is assumed from design docs alone."
+      },
+      "source_refs": [
+        "SRC-NEXENT-ARCHITECTURE",
+        "SRC-NEXENT-INTERFACES"
+      ],
+      "blockers": [
+        "Live web-search and repository adapters are explicitly not included in the current agent-fabric contract."
+      ]
+    },
+    {
+      "tool_id": "TOOL-VX-ADMISSION-GATE",
+      "name": "VX External Integration Admission Gate",
+      "kind": "source_script",
+      "owner_system_id": "SYS-VAIXLNS",
+      "office_id": "OFF-EXECUTION-RUNTIME",
+      "status": "PARTIAL_EVIDENCE",
+      "access_mode": "GOVERNED_EXECUTION",
+      "capabilities": [
+        "validate_integration_admission_inputs",
+        "enforce_policy_gate",
+        "hold_unverified_integrations"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-EXTERNAL-ADMISSION-GATE-V1",
+        "version": "1.0.0",
+        "input_schema_ref": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+        "output_schema_ref": null,
+        "timeout_seconds": null,
+        "retry_policy": "Do not retry a denied decision without a changed input/evidence revision.",
+        "idempotency": "Policy evaluation idempotent for a pinned input and policy version.",
+        "failure_modes": [
+          "missing_identity",
+          "contract_invalid",
+          "evidence_stale",
+          "policy_denied",
+          "proof_missing"
+        ]
+      },
+      "security": {
+        "authentication": "Invoker identity and explicit authority required by runtime.",
+        "data_boundary": "Registry metadata and bounded request artifacts.",
+        "egress_policy": "Gate does not authorize network egress by itself.",
+        "authority_ceiling": "Admission decision only within configured policy; no self-promotion."
+      },
+      "observability": {
+        "event_names": [
+          "admission.requested",
+          "admission.held",
+          "admission.denied",
+          "admission.accepted"
+        ],
+        "evidence_capture": "Pin contract, policy, environment, dependency fingerprint and proof digest.",
+        "replay": "Replay decision against recorded policy and evidence versions.",
+        "health": "Source presence and CI status must be checked before describing as running."
+      },
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-VAIXLNS-INTEROP"
+      ],
+      "blockers": [
+        "This registry does not prove the gate is deployed or wired to every runtime."
+      ]
+    },
+    {
+      "tool_id": "TOOL-DISCOVERY-ROUTER",
+      "name": "Evidence-First Discovery Router",
+      "kind": "source_script",
+      "owner_system_id": "SYS-VAIXLNS",
+      "office_id": "OFF-RESEARCH-DISCOVERY",
+      "status": "SOURCE_IMPLEMENTED",
+      "access_mode": "PROPOSE_ONLY",
+      "capabilities": [
+        "validate_discovery_envelope",
+        "route_to_bounded_workstreams",
+        "preserve_discovery_event_refs"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-DISCOVERY-ROUTING-V1",
+        "version": "1.0",
+        "input_schema_ref": "schemas/discovery-routing-record.schema.json",
+        "output_schema_ref": "schemas/discovery-routing-record.schema.json",
+        "timeout_seconds": null,
+        "retry_policy": "Retry idempotently using the same discovery and route IDs.",
+        "idempotency": "Stable discovery/route identifiers required.",
+        "failure_modes": [
+          "schema_invalid",
+          "identity_unresolved",
+          "license_hold",
+          "security_hold",
+          "router_timeout",
+          "partial_failure"
+        ]
+      },
+      "security": {
+        "authentication": "Repository/runtime permissions; caller identity must be separately bound in deployment.",
+        "data_boundary": "Source summaries, evidence references and route metadata.",
+        "egress_policy": "No live research source is implied by the router itself.",
+        "authority_ceiling": "Routes work and proposals; execution_authorization must remain false."
+      },
+      "observability": {
+        "event_names": [
+          "discovery.received",
+          "discovery.classified",
+          "discovery.routed",
+          "discovery.held"
+        ],
+        "evidence_capture": "Store source refs, evidence status, conflict and route history.",
+        "replay": "Deterministic routing tests and stable route IDs.",
+        "health": "Validate schema and run the repository conformance workflow."
+      },
+      "source_refs": [
+        "SRC-DISCOVERY-ROUTING",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "Live provider/search integrations remain separate adapters."
+      ]
+    },
+    {
+      "tool_id": "TOOL-SERVER-DISCOVERY-PROBE",
+      "name": "Read-Only Server Discovery Probe",
+      "kind": "source_script",
+      "owner_system_id": "SYS-VAIXLNS",
+      "office_id": "OFF-OPERATIONS-RECOVERY",
+      "status": "SOURCE_IMPLEMENTED",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "bounded_http_get_health_probe",
+        "report_reachability_observation",
+        "preserve_probe_evidence"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-SERVER-PROBE-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 5,
+        "retry_policy": "Bounded retries only when configured; no target expansion.",
+        "idempotency": "GET-only idempotent probe.",
+        "failure_modes": [
+          "dns_failure",
+          "connection_timeout",
+          "http_error",
+          "redirect_rejected",
+          "response_too_large",
+          "invalid_target"
+        ]
+      },
+      "security": {
+        "authentication": "No credentials by default; use explicit allowlist.",
+        "data_boundary": "Bounded health response only.",
+        "egress_policy": "GET-only checks; no subnet scanning, redirect following, or remote command execution.",
+        "authority_ceiling": "Observation only; reachability does not assert service correctness."
+      },
+      "observability": {
+        "event_names": [
+          "server_probe.started",
+          "server_probe.completed",
+          "server_probe.failed"
+        ],
+        "evidence_capture": "Record target, time, response status, bounds and error.",
+        "replay": "Replay stored observation; live request is not deterministic.",
+        "health": "Probe is available only when the script and its tests are present in the selected revision."
+      },
+      "source_refs": [
+        "SRC-SERVER-PROBE",
+        "SRC-VAIXLNS-INTEROP"
+      ],
+      "blockers": [
+        "Each target requires explicit authorization; no unknown endpoints are inferred."
+      ]
+    },
+    {
+      "tool_id": "TOOL-ARCX-PROOF",
+      "name": "ARC-X Evidence/Proof Boundary",
+      "kind": "system_capability",
+      "owner_system_id": "SYS-ARCX",
+      "office_id": "OFF-VERIFICATION-PROOF",
+      "status": "SPECIFICATION_ONLY",
+      "access_mode": "PROPOSE_ONLY",
+      "capabilities": [
+        "structure_claims",
+        "bind_evidence_refs",
+        "declare_proof_obligations",
+        "report_verification_state"
+      ],
+      "contract": {
+        "contract_id": "ARC-X-PROOF-PACKAGE-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+        "timeout_seconds": null,
+        "retry_policy": "Re-evaluate after a missing or stale evidence item changes.",
+        "idempotency": "Pin artifact and policy versions for deterministic re-check.",
+        "failure_modes": [
+          "evidence_missing",
+          "source_conflict",
+          "proof_obligation_unmet",
+          "proof_stale",
+          "observation_unavailable"
+        ]
+      },
+      "security": {
+        "authentication": "Bounded verifier identity required in runtime.",
+        "data_boundary": "Evidence references and authorized artifacts only.",
+        "egress_policy": "No implicit browsing or secret retrieval.",
+        "authority_ceiling": "Verification recommendation, not governance approval."
+      },
+      "observability": {
+        "event_names": [
+          "proof.requested",
+          "proof.checked",
+          "proof.stale",
+          "proof.failed"
+        ],
+        "evidence_capture": "Store claim-to-evidence mapping and verifier/version identity.",
+        "replay": "Replay against pinned source revisions and verification rules.",
+        "health": "Documentation alone does not imply an executable proof service."
+      },
+      "source_refs": [
+        "SRC-ARCX-TOOL",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "Executable proof-engine scope and independent run evidence must be attached per integration."
+      ]
+    },
+    {
+      "tool_id": "TOOL-GITHUB-ADAPTER",
+      "name": "GitHub Repository API Adapter",
+      "kind": "external_api_adapter",
+      "owner_system_id": "SYS-VX-RUNTIME",
+      "office_id": "OFF-TOOL-INTEROPERABILITY",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "repository_metadata_read",
+        "file_revision_read",
+        "pull_request_proposal"
+      ],
+      "contract": {
+        "contract_id": "VX-GITHUB-ADAPTER-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 30,
+        "retry_policy": "Bounded backoff for transient errors; no retries on permission denial.",
+        "idempotency": "Read requests idempotent; writes require branch+path+expected revision and pull request.",
+        "failure_modes": [
+          "auth_denied",
+          "repo_not_found",
+          "rate_limited",
+          "revision_conflict",
+          "permission_scope_missing",
+          "api_unavailable"
+        ]
+      },
+      "security": {
+        "authentication": "Installation or fine-grained token with least privilege; never embed token in registry.",
+        "data_boundary": "Repository paths, metadata and authorized source code.",
+        "egress_policy": "Pinned GitHub domains and repository allowlist only.",
+        "authority_ceiling": "Read-first; all writes branch-scoped and reviewable; no direct canonical promotion."
+      },
+      "observability": {
+        "event_names": [
+          "github.read",
+          "github.write_proposed",
+          "github.rate_limited",
+          "github.permission_denied"
+        ],
+        "evidence_capture": "Record repo, ref, path, blob/commit SHA, API result and task ID.",
+        "replay": "Replay reads from pinned revisions; writes are never replayed blindly.",
+        "health": "NOT_CONFIGURED until deployment credentials, scopes and integration tests are recorded."
+      },
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE",
+        "EXT-GITHUB-CONTENTS"
+      ],
+      "blockers": [
+        "The existence of a GitHub connector in another application does not mean a repository adapter is connected to VX runtime."
+      ]
+    },
+    {
+      "tool_id": "TOOL-WEB-RESEARCH-ADAPTER",
+      "name": "Web Search & Source Capture Adapter",
+      "kind": "external_api_adapter",
+      "owner_system_id": "SYS-NEXENT",
+      "office_id": "OFF-RESEARCH-DISCOVERY",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "PROPOSE_ONLY",
+      "capabilities": [
+        "search_public_sources",
+        "capture_url_and_retrieval_time",
+        "preserve_source_revision_when_available"
+      ],
+      "contract": {
+        "contract_id": "NEXENT-WEB-RESEARCH-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 30,
+        "retry_policy": "Bounded retry for transient responses only.",
+        "idempotency": "Queries are identified by task ID, query and retrieval time.",
+        "failure_modes": [
+          "provider_unavailable",
+          "empty_results",
+          "source_blocked",
+          "stale_result",
+          "citation_missing",
+          "rate_limited"
+        ]
+      },
+      "security": {
+        "authentication": "Provider-specific credentials managed outside source registry.",
+        "data_boundary": "Public or explicitly authorized sources only.",
+        "egress_policy": "Domain allowlist and rate limits required.",
+        "authority_ceiling": "Research and source retrieval only."
+      },
+      "observability": {
+        "event_names": [
+          "web_search.started",
+          "web_search.source_found",
+          "web_search.failed"
+        ],
+        "evidence_capture": "Store URL, title, retrieved_at, content digest when permitted and uncertainty.",
+        "replay": "Cached source snapshots where licensing permits; otherwise live replay is non-deterministic.",
+        "health": "No live web capability is assumed until an approved provider adapter is connected."
+      },
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-NEXENT-ARCHITECTURE"
+      ],
+      "blockers": [
+        "Search provider, license constraints, retrieval storage and live conformance tests are not bound in the reviewed agent-fabric contract."
+      ]
+    },
+    {
+      "tool_id": "TOOL-CODE-SANDBOX-ADAPTER",
+      "name": "Isolated Code Build/Test Sandbox",
+      "kind": "external_api_adapter",
+      "owner_system_id": "SYS-VX-RUNTIME",
+      "office_id": "OFF-ENGINEERING-BUILD-TEST",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "SANDBOX_ONLY",
+      "capabilities": [
+        "isolated_build",
+        "run_unit_tests",
+        "capture_stdout_stderr_and_exit_code",
+        "export_test_artifacts"
+      ],
+      "contract": {
+        "contract_id": "VX-CODE-SANDBOX-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 600,
+        "retry_policy": "Retry only infrastructure faults with identical immutable input; never retry destructive commands automatically.",
+        "idempotency": "Inputs pinned by commit and environment fingerprint.",
+        "failure_modes": [
+          "sandbox_unavailable",
+          "timeout",
+          "dependency_fetch_blocked",
+          "resource_exceeded",
+          "test_failed",
+          "artifact_digest_mismatch"
+        ]
+      },
+      "security": {
+        "authentication": "Scoped sandbox identity.",
+        "data_boundary": "Disposable worktree and synthetic or approved data.",
+        "egress_policy": "Network disabled by default; explicit per-task egress allowlist.",
+        "authority_ceiling": "Build/test only; no production secrets, deployments or canonical writes."
+      },
+      "observability": {
+        "event_names": [
+          "sandbox.started",
+          "sandbox.command_completed",
+          "sandbox.timeout",
+          "sandbox.artifact_created"
+        ],
+        "evidence_capture": "Capture immutable input ref, environment fingerprint, command, exit code, and artifact digests.",
+        "replay": "Repeatable when dependencies and environment are pinned.",
+        "health": "NOT_CONFIGURED until isolation and negative tests are demonstrated."
+      },
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-VAIXLNS-INTEROP"
+      ],
+      "blockers": [
+        "The current provider bindings are not a code sandbox; process/container isolation is not proven by this registry."
+      ]
+    },
+    {
+      "tool_id": "TOOL-MCP-ADAPTER",
+      "name": "Model Context Protocol Tool Adapter",
+      "kind": "protocol_adapter",
+      "owner_system_id": "SYS-VX-RUNTIME",
+      "office_id": "OFF-TOOL-INTEROPERABILITY",
+      "status": "PROPOSED_NOT_ADMITTED",
+      "access_mode": "SANDBOX_ONLY",
+      "capabilities": [
+        "discover_tool_manifest",
+        "validate_input_schema",
+        "invoke_scoped_tool",
+        "validate_structured_output"
+      ],
+      "contract": {
+        "contract_id": "VX-MCP-TOOL-ADAPTER-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "https://modelcontextprotocol.io/specification/draft/server/index",
+        "timeout_seconds": 30,
+        "retry_policy": "Retry only safe idempotent requests with same request ID.",
+        "idempotency": "Each call carries server identity, tool name, version and request ID.",
+        "failure_modes": [
+          "server_identity_unverified",
+          "tool_not_allowlisted",
+          "schema_invalid",
+          "timeout",
+          "permission_denied",
+          "malformed_result"
+        ]
+      },
+      "security": {
+        "authentication": "Transport and server authentication required; protocol conformance alone is not trust.",
+        "data_boundary": "Minimize data passed to tools; classify tool results as untrusted until validated.",
+        "egress_policy": "Explicit server allowlist; no automatic network discovery.",
+        "authority_ceiling": "Only individually admitted tools and capabilities."
+      },
+      "observability": {
+        "event_names": [
+          "mcp.server_discovered",
+          "mcp.tool_listed",
+          "mcp.tool_invoked",
+          "mcp.tool_denied"
+        ],
+        "evidence_capture": "Record server and tool identity, schema version, request ID, result digest and policy decision.",
+        "replay": "Replay from stored request/result envelopes when safe.",
+        "health": "Requires protocol conformance, auth tests, malicious-output tests and VX gate integration."
+      },
+      "source_refs": [
+        "EXT-MCP",
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "No statement that a general MCP gateway is connected to this VX runtime."
+      ]
+    },
+    {
+      "tool_id": "TOOL-OTEL-OBSERVABILITY",
+      "name": "OpenTelemetry-Compatible Observability Adapter",
+      "kind": "observability_adapter",
+      "owner_system_id": "SYS-OIF",
+      "office_id": "OFF-OPERATIONS-RECOVERY",
+      "status": "PROPOSED_NOT_ADMITTED",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "correlate_traces",
+        "normalize_metrics",
+        "collect_logs_and_resource_attributes"
+      ],
+      "contract": {
+        "contract_id": "VAIXLNS-OBSERVABILITY-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 10,
+        "retry_policy": "Drop or buffer within bounded limits; do not block critical execution indefinitely.",
+        "idempotency": "Signals are keyed by trace/span and source event identifiers.",
+        "failure_modes": [
+          "collector_unavailable",
+          "schema_mismatch",
+          "high_cardinality",
+          "sensitive_attribute_detected",
+          "buffer_exhausted"
+        ]
+      },
+      "security": {
+        "authentication": "Collector credentials and transport security configured per environment.",
+        "data_boundary": "Telemetry must redact secrets and sensitive payloads.",
+        "egress_policy": "Approved collector endpoints only.",
+        "authority_ceiling": "Observe and report; no execution control authority."
+      },
+      "observability": {
+        "event_names": [
+          "telemetry.exported",
+          "telemetry.dropped",
+          "telemetry.policy_violation"
+        ],
+        "evidence_capture": "Trace ID, span ID, resource/service identity and schema version.",
+        "replay": "Replay stored events or traces; live timing cannot be reproduced exactly.",
+        "health": "No live OTel export is claimed by this registry."
+      },
+      "source_refs": [
+        "EXT-OPENTELEMETRY",
+        "SRC-SYSTEM-CONTEXT"
+      ],
+      "blockers": [
+        "Instrumentation, collector endpoint, data redaction and runtime trace-context propagation remain to be implemented and verified."
+      ]
+    },
+    {
+      "tool_id": "TOOL-NEXENT-CLIENT-GATEWAY",
+      "name": "NEXENT Authenticated API/Event Gateway",
+      "kind": "client_gateway",
+      "owner_system_id": "SYS-CLIENT-FABRIC",
+      "office_id": "OFF-CLIENT-INTERFACES",
+      "status": "SPECIFICATION_ONLY",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "intent_submit",
+        "execution_status_read",
+        "event_stream_subscribe",
+        "governance_check",
+        "evidence_get",
+        "replay_verify",
+        "registry_resolve",
+        "session_sync"
+      ],
+      "contract": {
+        "contract_id": "NEXENT-MULTIPLATFORM-API-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md",
+        "timeout_seconds": 30,
+        "retry_policy": "Client-generated idempotency key for submitted intents.",
+        "idempotency": "Session and intent IDs remain portable between platforms.",
+        "failure_modes": [
+          "auth_missing",
+          "session_conflict",
+          "event_gap",
+          "gateway_unavailable",
+          "governance_pending"
+        ]
+      },
+      "security": {
+        "authentication": "Strong client/session identity and scoped authorization required before implementation.",
+        "data_boundary": "Only authorized user and session data.",
+        "egress_policy": "No direct client-to-tool bypass around core policy.",
+        "authority_ceiling": "Request, observe, search, and submit approval; no canonical client-side mutation."
+      },
+      "observability": {
+        "event_names": [
+          "client.intent_submitted",
+          "client.status_read",
+          "client.session_synced",
+          "client.auth_failed"
+        ],
+        "evidence_capture": "Link session, intent, request, event and evidence IDs.",
+        "replay": "Resume using canonical session and event identifiers.",
+        "health": "The NEXENT source explicitly marks authenticated gateway and event transport as pending."
+      },
+      "source_refs": [
+        "SRC-NEXENT-INTERFACES"
+      ],
+      "blockers": [
+        "Authenticated API gateway, event transport and end-to-end conformance remain pending."
+      ]
+    },
+    {
+      "tool_id": "TOOL-DATA-CONNECTOR",
+      "name": "Database / File / Stream / Vector / Graph Data Adapter",
+      "kind": "data_adapter",
+      "owner_system_id": "SYS-VX-RUNTIME",
+      "office_id": "OFF-TOOL-INTEROPERABILITY",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "typed_query",
+        "schema_normalization",
+        "source_metadata_capture",
+        "bounded_data_export"
+      ],
+      "contract": {
+        "contract_id": "VX-DATA-ADAPTER-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 30,
+        "retry_policy": "Bounded retry for idempotent reads; writes require separate capability and approval.",
+        "idempotency": "Read query plus source revision forms a request identity.",
+        "failure_modes": [
+          "auth_denied",
+          "schema_drift",
+          "query_timeout",
+          "data_classification_denied",
+          "partial_result"
+        ]
+      },
+      "security": {
+        "authentication": "Source-specific least-privilege credentials outside repository.",
+        "data_boundary": "Classification-aware filtering and minimization.",
+        "egress_policy": "Explicit source and export allowlists.",
+        "authority_ceiling": "Read-only by default; mutation needs a separate contract."
+      },
+      "observability": {
+        "event_names": [
+          "data.read_started",
+          "data.read_completed",
+          "data.schema_drift",
+          "data.access_denied"
+        ],
+        "evidence_capture": "Source identity, schema/version, query hash and result digest.",
+        "replay": "Replay from authorized snapshot or transaction/time boundary when available.",
+        "health": "No database, file store or data platform is assumed connected."
+      },
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "Concrete connector, credential scope, schema and replay semantics must be provided per source."
+      ]
+    },
+    {
+      "tool_id": "TOOL-CLOUD-CONTROL-ADAPTER",
+      "name": "Cloud / Deployment / Capacity Adapter",
+      "kind": "external_api_adapter",
+      "owner_system_id": "SYS-VX-RUNTIME",
+      "office_id": "OFF-SERVER-FEDERATION",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "OBSERVE_OR_SIMULATE_ONLY",
+      "capabilities": [
+        "list_resources_read_only",
+        "estimate_capacity",
+        "validate_deployment_plan"
+      ],
+      "contract": {
+        "contract_id": "VX-CLOUD-CONTROL-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 30,
+        "retry_policy": "Bounded retries for read operations only.",
+        "idempotency": "Resource observations pinned by environment and retrieval time.",
+        "failure_modes": [
+          "credential_denied",
+          "cloud_api_unavailable",
+          "quota_exceeded",
+          "environment_mismatch",
+          "deployment_policy_denied"
+        ]
+      },
+      "security": {
+        "authentication": "Provider IAM with least privilege.",
+        "data_boundary": "Resource metadata only unless separately approved.",
+        "egress_policy": "Allowlisted provider API endpoints.",
+        "authority_ceiling": "Read/plan only until explicit deployment authority is granted."
+      },
+      "observability": {
+        "event_names": [
+          "cloud.inventory_read",
+          "cloud.plan_validated",
+          "cloud.action_denied"
+        ],
+        "evidence_capture": "Provider, account/project alias, region, resource identity and retrieval timestamp.",
+        "replay": "Replay saved plan/observation; live control state is time-sensitive.",
+        "health": "No cloud account or server deployment is inferred from architecture files."
+      },
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-SYSTEM-CONTEXT"
+      ],
+      "blockers": [
+        "No provider account, endpoint, credentials, environment fingerprint or deployment test evidence attached."
+      ]
+    },
+    {
+      "tool_id": "TOOL-INDUSTRIAL-ADAPTER",
+      "name": "Industrial / Embedded Device Adapter",
+      "kind": "device_adapter",
+      "owner_system_id": "SYS-PHYSICAL-ADAPTERS",
+      "office_id": "OFF-PHYSICAL-SYSTEMS",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "OBSERVE_OR_SIMULATE_ONLY",
+      "capabilities": [
+        "read_device_telemetry",
+        "simulate_device_command",
+        "validate_safety_interlocks"
+      ],
+      "contract": {
+        "contract_id": "VX-INDUSTRIAL-ADAPTER-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 5,
+        "retry_policy": "No automatic retries for actuator/write commands.",
+        "idempotency": "Read-only probes keyed by device and observation window; actions require explicit idempotency behavior.",
+        "failure_modes": [
+          "device_identity_unknown",
+          "safety_interlock_open",
+          "stale_telemetry",
+          "command_timeout",
+          "unsafe_state"
+        ]
+      },
+      "security": {
+        "authentication": "Device-specific identity, network segmentation and per-capability grants.",
+        "data_boundary": "Telemetry and synthetic simulation by default.",
+        "egress_policy": "Dedicated device endpoint allowlist.",
+        "authority_ceiling": "Observe/simulate only until verified safety proof and explicit authorization."
+      },
+      "observability": {
+        "event_names": [
+          "device.observed",
+          "device.simulated",
+          "device.safety_hold",
+          "device.command_denied"
+        ],
+        "evidence_capture": "Device identity, firmware/protocol version, interlock state and safety evidence.",
+        "replay": "Simulation replay required; live actuator commands are not replayed automatically.",
+        "health": "Unconfigured until safety and physical integration tests pass."
+      },
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "No physical device connection or actuator authority is claimed."
+      ]
+    },
+    {
+      "tool_id": "TOOL-ROBOTICS-ADAPTER",
+      "name": "ROS / Robotics / Simulation Adapter",
+      "kind": "device_adapter",
+      "owner_system_id": "SYS-PHYSICAL-ADAPTERS",
+      "office_id": "OFF-PHYSICAL-SYSTEMS",
+      "status": "NOT_CONFIGURED",
+      "access_mode": "OBSERVE_OR_SIMULATE_ONLY",
+      "capabilities": [
+        "consume_sensor_state",
+        "run_simulation",
+        "validate_action_plan"
+      ],
+      "contract": {
+        "contract_id": "VX-ROBOTICS-ADAPTER-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": null,
+        "timeout_seconds": 5,
+        "retry_policy": "Retries are bounded and disabled for non-idempotent actuator actions.",
+        "idempotency": "Simulation run pinned by model, world, seed and action plan.",
+        "failure_modes": [
+          "robot_identity_unknown",
+          "simulator_mismatch",
+          "sensor_stale",
+          "collision_risk",
+          "action_timeout"
+        ]
+      },
+      "security": {
+        "authentication": "Authenticated robot/simulator identity and scoped control.",
+        "data_boundary": "Synthetic or approved telemetry.",
+        "egress_policy": "Robot/simulation network allowlist.",
+        "authority_ceiling": "Simulation and observation only until validated safety admission."
+      },
+      "observability": {
+        "event_names": [
+          "robot.sensor_observed",
+          "robot.simulation_run",
+          "robot.safety_hold",
+          "robot.action_denied"
+        ],
+        "evidence_capture": "Model/world/seed, state estimate, action plan and safety outcomes.",
+        "replay": "Deterministic simulator replay where supported.",
+        "health": "No live robot endpoint is inferred."
+      },
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ],
+      "blockers": [
+        "No robot, ROS graph, simulator or execution credentials are connected by this registry."
+      ]
+    },
+    {
+      "tool_id": "TOOL-MOBILE-DESKTOP-ADAPTER",
+      "name": "Mobile / Desktop / Browser Client Adapter",
+      "kind": "client_gateway",
+      "owner_system_id": "SYS-CLIENT-FABRIC",
+      "office_id": "OFF-CLIENT-INTERFACES",
+      "status": "SPECIFICATION_ONLY",
+      "access_mode": "READ_ONLY",
+      "capabilities": [
+        "display_status",
+        "submit_intent_request",
+        "request_approval",
+        "view_evidence",
+        "resume_session"
+      ],
+      "contract": {
+        "contract_id": "NEXENT-CLIENT-SURFACE-V1",
+        "version": "1.0.0",
+        "input_schema_ref": null,
+        "output_schema_ref": "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md",
+        "timeout_seconds": 30,
+        "retry_policy": "Submit with idempotency key; retry reads within bounded limits.",
+        "idempotency": "Client-generated request ID and canonical session ID.",
+        "failure_modes": [
+          "client_version_mismatch",
+          "session_expired",
+          "gateway_unavailable",
+          "authorization_denied",
+          "event_gap"
+        ]
+      },
+      "security": {
+        "authentication": "User identity and session authorization are required.",
+        "data_boundary": "Only user-authorized view and action-request data.",
+        "egress_policy": "No direct tool/server access from UI code.",
+        "authority_ceiling": "UI and intent submission only; core enforces policy and state."
+      },
+      "observability": {
+        "event_names": [
+          "client.session_started",
+          "client.intent_requested",
+          "client.evidence_viewed",
+          "client.session_error"
+        ],
+        "evidence_capture": "Client version, request ID, session ID and server response ID.",
+        "replay": "Session continuation through canonical session/event IDs.",
+        "health": "Native clients and gateway are not marked implemented by this spec."
+      },
+      "source_refs": [
+        "SRC-NEXENT-INTERFACES"
+      ],
+      "blockers": [
+        "The interface document lists clients as specified and gateway/event transport as pending."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "EDGE-001",
+      "from_type": "OFFICE",
+      "from_id": "OFF-CANONICAL-GOVERNANCE",
+      "relation": "GOVERNS",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VAIXLNS",
+      "boundary": "Canonical identity and admission remain in VAIXLNS.",
+      "status": "OBSERVED_IN_SOURCE",
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-002",
+      "from_type": "SYSTEM",
+      "from_id": "SYS-NEXENT",
+      "relation": "PROPOSES_TO",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VAIXLNS",
+      "boundary": "NEXENT candidate -> evidence package -> VAIXLNS governance; no direct canonical promotion.",
+      "status": "OBSERVED_IN_SOURCE",
+      "source_refs": [
+        "SRC-NEXENT-ARCHITECTURE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-003",
+      "from_type": "SYSTEM",
+      "from_id": "SYS-VAIXLNS",
+      "relation": "GOVERNS",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VX-RUNTIME",
+      "boundary": "VX executes only under canonical contract, policy and admission controls.",
+      "status": "SPECIFIED",
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-004",
+      "from_type": "SYSTEM",
+      "from_id": "SYS-VX-RUNTIME",
+      "relation": "OBSERVES",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-OIF",
+      "boundary": "Runtime events and evidence feed operational assurance; deployment must prove the actual binding.",
+      "status": "SPECIFIED",
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-005",
+      "from_type": "SYSTEM",
+      "from_id": "SYS-OIF",
+      "relation": "RECOVERS",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VX-RUNTIME",
+      "boundary": "Recovery proposal is policy-gated and must not bypass runtime authority.",
+      "status": "SPECIFIED",
+      "source_refs": [
+        "SRC-SYSTEM-CONTEXT"
+      ]
+    },
+    {
+      "edge_id": "EDGE-006",
+      "from_type": "OFFICE",
+      "from_id": "OFF-TOOL-INTEROPERABILITY",
+      "relation": "USES_ADAPTER",
+      "to_type": "TOOL",
+      "to_id": "TOOL-MCP-ADAPTER",
+      "boundary": "MCP tool server discovery does not imply trust or execution admission.",
+      "status": "PROPOSED",
+      "source_refs": [
+        "EXT-MCP",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-007",
+      "from_type": "OFFICE",
+      "from_id": "OFF-REPOSITORY-FEDERATION",
+      "relation": "INDEXES",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-REPOSITORY-FEDERATION",
+      "boundary": "Inventory is a source map, not proof of complete source-code audit.",
+      "status": "OBSERVED_IN_SOURCE",
+      "source_refs": [
+        "SRC-FEDERATION-INDEX",
+        "SRC-REPOSITORY-INVENTORY"
+      ]
+    },
+    {
+      "edge_id": "EDGE-008",
+      "from_type": "TOOL",
+      "from_id": "TOOL-DISCOVERY-ROUTER",
+      "relation": "PROPOSES_TO",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VAIXLNS",
+      "boundary": "Routing cannot set execution_authorization true or promote a candidate.",
+      "status": "OBSERVED_IN_SOURCE",
+      "source_refs": [
+        "SRC-DISCOVERY-ROUTING"
+      ]
+    },
+    {
+      "edge_id": "EDGE-009",
+      "from_type": "OFFICE",
+      "from_id": "OFF-VERIFICATION-PROOF",
+      "relation": "VERIFIES",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-VX-AGENTS-FABRIC",
+      "boundary": "Verification reports admission obligations; no self-approval.",
+      "status": "SPECIFIED",
+      "source_refs": [
+        "SRC-AGENT-FABRIC-CONTRACT",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-010",
+      "from_type": "OFFICE",
+      "from_id": "OFF-CLIENT-INTERFACES",
+      "relation": "CLIENT_OF",
+      "to_type": "SYSTEM",
+      "to_id": "SYS-NEXENT",
+      "boundary": "Clients share one protocol; client UI never becomes canonical state.",
+      "status": "OBSERVED_IN_SOURCE",
+      "source_refs": [
+        "SRC-NEXENT-INTERFACES"
+      ]
+    },
+    {
+      "edge_id": "EDGE-011",
+      "from_type": "OFFICE",
+      "from_id": "OFF-PHYSICAL-SYSTEMS",
+      "relation": "USES_ADAPTER",
+      "to_type": "TOOL",
+      "to_id": "TOOL-INDUSTRIAL-ADAPTER",
+      "boundary": "Observe/simulate only until safety proof and explicit authority exist.",
+      "status": "SPECIFIED",
+      "source_refs": [
+        "SRC-VAIXLNS-INTEROP",
+        "SRC-UNIVERSAL-GATE"
+      ]
+    },
+    {
+      "edge_id": "EDGE-012",
+      "from_type": "OFFICE",
+      "from_id": "OFF-OPERATIONS-RECOVERY",
+      "relation": "OBSERVES",
+      "to_type": "TOOL",
+      "to_id": "TOOL-OTEL-OBSERVABILITY",
+      "boundary": "Observability improves traceability but does not grant execution authority.",
+      "status": "PROPOSED",
+      "source_refs": [
+        "EXT-OPENTELEMETRY",
+        "SRC-SYSTEM-CONTEXT"
+      ]
+    },
+    {
+      "edge_id": "EDGE-013",
+      "from_type": "OFFICE",
+      "from_id": "OFF-ENGINEERING-BUILD-TEST",
+      "relation": "USES_ADAPTER",
+      "to_type": "TOOL",
+      "to_id": "TOOL-CODE-SANDBOX-ADAPTER",
+      "boundary": "Build/test is isolated; no production mutation or credential inheritance.",
+      "status": "PROPOSED",
+      "source_refs": [
+        "SRC-UNIVERSAL-GATE",
+        "SRC-AGENT-FABRIC-CONTRACT"
+      ]
+    }
+  ],
+  "lifecycle": [
+    "DISCOVER",
+    "CAPTURE_SOURCE_AND_REVISION",
+    "IDENTITY_AND_LINEAGE",
+    "QUARANTINE",
+    "CONTRACT_AND_SCHEMA_VALIDATION",
+    "SECURITY_AND_LICENSE_REVIEW",
+    "SANDBOX_OR_SIMULATION",
+    "FUNCTIONAL_AND_NEGATIVE_TESTS",
+    "FAILURE_AND_RECOVERY",
+    "REPLAY",
+    "INDEPENDENT_VERIFICATION",
+    "FRESH_PROOF",
+    "RESOURCE_AND_CAUSAL_IMPACT_REVIEW",
+    "EXPLICIT_AUTHORITY",
+    "ADMISSION",
+    "RUNTIME",
+    "CONTINUOUS_REVALIDATION"
+  ],
+  "sources": [
+    {
+      "source_id": "SRC-VAIXLNS-INTEROP",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "VX Universal Interoperability Architecture",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+      "use": "Canonical adapter boundary, adapter families, universal contract and acceptance gate.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-UNIVERSAL-GATE",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "VAIXLNS Universal External Integration Gate v1",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+      "use": "Required lifecycle, identity binding, model/API minimum controls and no implicit trust.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-REPOSITORY-INVENTORY",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "VAIXLNS GitHub Repository Inventory",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/registry/REPOSITORY_INVENTORY.md",
+      "use": "Observed repo roles and unresolved/partial states.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-FEDERATION-INDEX",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "GitHub Repository Federation Index",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+      "use": "Federation system boundaries, identity conflicts and existing integration candidates.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-NEXENT-ARCHITECTURE",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "NEXENT Canonical Architecture V1",
+      "uri": "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/canonical/NEXENT_CANONICAL_ARCHITECTURE_V1.md",
+      "use": "NEXENT discovery/proposal role and VAIXLNS adoption boundary.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-NEXENT-INTERFACES",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "NEXENT Multi-Platform Operational Interface Architecture",
+      "uri": "https://github.com/fisallllll280-code/NEXENT/blob/main/docs/NEXENT_MULTIPLATFORM_INTERFACE_ARCHITECTURE.md",
+      "use": "Linux/Windows/Android/desktop/web client contract and explicit implementation gaps.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-AGENT-FABRIC-CONTRACT",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "VX Agents Fabric Canonical Integration Contract V1",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
+      "use": "Agent authority, provider connection gaps, financial restrictions and admission requirements.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-SYSTEM-CONTEXT",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "VAIXLNS System Context Closure V1",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+      "use": "System boundary, VX federation, tool contracts, OIF and index role.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-DISCOVERY-ROUTING",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "Discovery Routing Contract and Schema",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/discovery-routing-record.schema.json",
+      "use": "Evidence-first source record and rule that discovery never authorizes execution.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-ARCX-TOOL",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "ARC-X Epistemic Reality Compiler V1",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+      "use": "Claim/evidence/proof boundary and system responsibility map.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "SRC-SERVER-PROBE",
+      "source_type": "INTERNAL_REPOSITORY",
+      "title": "Read-only server discovery probe",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/tools/server_discovery_probe.py",
+      "use": "Bounded GET-only observation; no subnet scan or remote command execution.",
+      "evidence_state": "OBSERVED_SOURCE"
+    },
+    {
+      "source_id": "EXT-MCP",
+      "source_type": "EXTERNAL_SPECIFICATION",
+      "title": "Model Context Protocol server primitives",
+      "uri": "https://modelcontextprotocol.io/specification/draft/server/index",
+      "use": "Reference for tools/resources/prompts; protocol availability is not trust or admission.",
+      "evidence_state": "OFFICIAL_REFERENCE"
+    },
+    {
+      "source_id": "EXT-OPENAPI",
+      "source_type": "EXTERNAL_SPECIFICATION",
+      "title": "OpenAPI Specification",
+      "uri": "https://spec.openapis.org/oas/",
+      "use": "Reference for explicit API request/response contracts and schema descriptions.",
+      "evidence_state": "OFFICIAL_REFERENCE"
+    },
+    {
+      "source_id": "EXT-JSON-SCHEMA",
+      "source_type": "EXTERNAL_SPECIFICATION",
+      "title": "JSON Schema Draft 2020-12",
+      "uri": "https://json-schema.org/draft/2020-12/schema",
+      "use": "Machine-readable validation of the office/system/tool registry.",
+      "evidence_state": "OFFICIAL_REFERENCE"
+    },
+    {
+      "source_id": "EXT-OPENTELEMETRY",
+      "source_type": "EXTERNAL_DOCUMENTATION",
+      "title": "OpenTelemetry Signals and Semantic Conventions",
+      "uri": "https://opentelemetry.io/docs/concepts/signals/",
+      "use": "Common traces, metrics and logs model for cross-office observability.",
+      "evidence_state": "OFFICIAL_REFERENCE"
+    },
+    {
+      "source_id": "EXT-GITHUB-CONTENTS",
+      "source_type": "EXTERNAL_DOCUMENTATION",
+      "title": "GitHub REST API Repository Contents",
+      "uri": "https://docs.github.com/en/rest/repos/contents",
+      "use": "Reference for repository file reads/writes and least-privilege content permissions.",
+      "evidence_state": "OFFICIAL_REFERENCE"
+    }
+  ],
+  "coverage": {
+    "offices_count": 16,
+    "system_surfaces_count": 21,
+    "tool_integrations_count": 18,
+    "basis": "Seeded from the repository files and official protocol/specification pages listed in sources. Counts refer only to the entries in this registry version.",
+    "not_claimed": [
+      "This is not a complete extraction of every historical item from the 0001-2750 master index.",
+      "This registry does not prove every described tool, office, agent, provider, server, database, client, or device is deployed or live-connected.",
+      "The registry does not authorize execution, canonical promotion, financial transactions, production deployment, or physical actuation.",
+      "Repository identity equivalence for VLNS/NAXLNS and NEXNET/NEXENT remains unresolved.",
+      "External adapters marked NOT_CONFIGURED remain disconnected until endpoints, credentials, permissions, tests and admission evidence are attached."
+    ]
+  }
+}
