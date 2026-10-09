@@ -197,7 +197,7 @@ def route_discovery(
     evidence_status = evidence.get("verification_status", "UNVERIFIED")
     if security in {"RISK_FOUND", "SECURITY_HOLD"}:
         route_status, reason = "SECURITY_HOLD", "Security review is required before further action"
-    elif license_status in {"RESTRICTED", "LICENSE_HOLD"}:
+    elif license_status in {"PENDING", "RESTRICTED", "LICENSE_HOLD"}:
         route_status, reason = "LICENSE_HOLD", "License review is required before further action"
     elif evidence_status in {"UNVERIFIED", "INSUFFICIENT", "CONTRADICTED"}:
         route_status, reason = "WAITING_FOR_EVIDENCE", "Evidence must be evaluated before admission"
