@@ -58,6 +58,11 @@ class VAGenesisTests(unittest.TestCase):
         self.assertNotIn(intent, app_source)
         self.assertEqual(spec["intent"], intent)
 
+    def test_arabic_intent_builds_without_explicit_name(self):
+        result = build_system("أنشئ نظامًا لإدارة المشاريع", output_dir=self.root / "arabic")
+        self.assertTrue(result["name"].startswith("va-system-"))
+        self.assertEqual(verify_build(result["path"])["status"], "STRUCTURAL_PASS_RUNTIME_NOT_RUN")
+
     def test_empty_intent_is_rejected(self):
         with self.assertRaises(ValueError):
             build_system("   ", output_dir=self.root / "out")
