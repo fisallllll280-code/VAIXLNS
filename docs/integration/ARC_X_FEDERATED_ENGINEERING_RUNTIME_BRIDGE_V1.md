@@ -8,7 +8,7 @@
 **Research and candidate synthesis:** NEXENT, subject to verified identity and adapter contracts  
 **Authority anchor:** Ω0_GENESIS_CORE  
 **Registry:** Ω.000  
-**Parent contracts:** docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md; deploy/federation/INDEX_RECOVERY_RUNTIME_PROTOCOL.md; docs/UNIVERSAL_VX_INTEROPERABILITY.md; docs/operations/FEDERATED_RUNTIME_BOOTSTRAP_AND_CAPACITY_PLAN_V1.md; docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md
+**Parent contracts:** docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md; deploy/federation/INDEX_RECOVERY_RUNTIME_PROTOCOL.md; docs/UNIVERSAL_VX_INTEROPERABILITY.md; docs/operations/FEDERATED_RUNTIME_BOOTSTRAP_AND_CAPACITY_PLAN_V1.md; docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md; docs/indexes/V_COMPUTATIONAL_REALITY_ENGINE_V1.md
 
 > This contract defines how ARC-X should connect evidence-backed engineering tasks to eligible VX execution workers. It does not claim that a production endpoint, GPU pool, remote physics solver, or multi-node federation is currently connected.
 
@@ -113,7 +113,7 @@ Required logical fields:
 
 Unknown required fields, unknown capabilities, unresolved identity, invalid policy versions, or missing mandatory provenance MUST fail closed.
 
-The envelope is a request, not proof and not authorization. A worker MUST receive only the minimal data and capability scope required for the task.
+The envelope is a request, not proof and not authorization. A worker MUST receive only the minimal data and capability scope required for the task. The declared memory coverage is only a statement about the recorded query scope: COMPLETE_FOR_SCOPE requires a pinned index revision, retrieval receipt, at least one referenced record and no declared uncovered items for that scope. It is not a claim of complete recovery of all historical VAIXLNS material. PARTIAL/NONE/CONFLICT states must retain their rationale and cannot be silently promoted to complete.
 
 ## 5. Domain-specific correctness contracts
 
@@ -134,7 +134,7 @@ Record algorithm, implementation version, compiler/runtime, library versions, pr
 Record repository and pinned commit, patch digest, dependency lock, build environment, test selection, coverage scope, static/security scan versions, and rollback strategy. Passing unit tests does not prove an architecture claim; compilation, tests, static analysis, security review, and runtime verification are separate evidence items. Generated patches remain candidates and must never self-merge into protected branches.
 
 ### 5.4 Physics and engineering simulation
-Before running a simulation, require:
+Integrate the existing V-COMPUTATIONAL REALITY ENGINE (VCRE) contract rather than creating a duplicate physics authority. Before running a simulation, require:
 - model equations and model/version identifier;
 - system boundaries, geometry/mesh digest where relevant, initial and boundary conditions;
 - material/property tables and source/licence provenance;
