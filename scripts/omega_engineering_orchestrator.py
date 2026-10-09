@@ -95,6 +95,7 @@ def build_report(root: Path) -> dict[str, Any]:
         ("engineering-execution-plan.json", "plan_sha256", "vaixlns.engineering-agent-fabric.v1", False),
         ("omega-error-triage.json", "report_sha256", "vaixlns.omega-error-locator.v1", True),
         ("omega-revenue-portfolio.json", "report_sha256", "vaixlns.omega-revenue-portfolio-report.v1", True),
+        ("omega-server-placement-plan.json", "plan_sha256", "vaixlns.omega-server-placement-plan.v1", True),
     ]
     artifacts = []
     for relative, hash_key, schema, optional in artifact_specs:
@@ -108,6 +109,8 @@ def build_report(root: Path) -> dict[str, Any]:
         {"from": "omega-research-results.json", "to": "engineering-execution-plan.json", "relation": "HASH_CHECKED_RESEARCH_CONTEXT"},
         {"from": "test-suite.log", "to": "omega-error-triage.json", "relation": "FAILURE_LOG_LOCALIZATION", "condition": "ONLY_WHEN_TESTS_FAIL"},
         {"from": "omega-revenue-portfolio.json", "to": "commercial_prioritization", "relation": "RANKS_OFFERS_USING_RECORDED_UNIT_ECONOMICS", "blocks_engineering_ci": False},
+        {"from": "innovation-network.json", "to": "omega-server-placement-plan.json", "relation": "PLANS_CAPABILITY_AWARE_TASK_PLACEMENT", "dispatch_state": "NOT_DISPATCHED"},
+        {"from": "omega-server-placement-plan.json", "to": "engineering-execution-plan.json", "relation": "SERVER_CAPABILITY_PLAN_IS_ADVISORY_NOT_RUNTIME_PROOF"},
         {"from": "all_artifacts", "to": "engineering_review", "relation": "HASHED_EVIDENCE_BUNDLE"},
     ]
 
