@@ -1,0 +1,58 @@
+VOSL 1.0-DRAFT
+
+WORKFLOW WindowsRecoveryPlan {
+    actor HUMAN_ACTOR {
+        authority: APPROVE_OR_REJECT;
+    }
+
+    actor AI_ACTOR {
+        authority: ANALYZE_AND_PROPOSE;
+        may_execute: FALSE;
+    }
+
+    actor SYSTEM_ACTOR {
+        authority: COLLECT_APPROVED_READ_ONLY_FACTS;
+        may_execute_repair: FALSE;
+    }
+
+    actor AUTHORITY_ACTOR {
+        authority: VERIFY_POLICY_AND_APPROVAL;
+    }
+
+    stage COLLECT {
+        requires: UserConsent;
+        capability: READ_ONLY_DIAGNOSTICS;
+        output: BootEvidence;
+    }
+
+    stage MODEL {
+        requires: BootEvidence;
+        capability: BUILD_DIAGNOSTIC_MODEL;
+        output: RankedDiagnosticHypotheses;
+    }
+
+    stage VERIFY {
+        requires: RankedDiagnosticHypotheses;
+        capability: INDEPENDENT_EVIDENCE_REVIEW;
+        output: VerifiedRecoveryProposal;
+    }
+
+    stage APPROVAL {
+        requires: VerifiedRecoveryProposal;
+        actor: HUMAN_ACTOR;
+        output: ApprovalReceiptOrRejection;
+    }
+
+    stage PLAN_ONLY {
+        requires: ApprovalReceiptOrRejection;
+        condition: execution_mode == PLAN_ONLY;
+        output: RecoveryPlan;
+        effects: NONE;
+    }
+
+    transition COLLECT -> MODEL -> VERIFY -> APPROVAL -> PLAN_ONLY;
+
+    deny any transition that lacks evidence, policy version, authority, or a valid approval receipt;
+    deny implicit retries that change effect class;
+    deny automatic edits to boot configuration, registry, partitions, or driver store;
+}
