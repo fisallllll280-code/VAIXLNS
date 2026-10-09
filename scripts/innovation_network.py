@@ -16,6 +16,7 @@ from typing import Any, Mapping
 SCHEMA = "vaixlns.innovation-network.v1"
 SYSTEMS = ("VAIXLNS", "VLNS", "VX", "NEXNET")
 ROLE_LANES = (
+    ("RAPID_HYPOTHESIS", "Generate at least three competing hypotheses quickly; label every hypothesis as unverified and state its assumptions."),
     ("SOURCE_DISCOVERY", "Find primary sources, immutable revisions, and external prior art."),
     ("HISTORICAL_RECOVERY", "Recover prior formulations and preserve original identifiers and lineage."),
     ("NOVELTY_LINEAGE", "Detect aliases, duplicates, derivatives, supersession, and related records."),
@@ -95,7 +96,7 @@ def build_network(source: Mapping[str, Any]) -> dict[str, Any]:
                 "lane": role,
                 "objective": objective,
                 "input_refs": [item["innovation_id"], item["source_record_sha256"]],
-                "required_outputs": ["findings.json", "source_refs.json", "counterevidence.json", "decision.json"],
+                "required_outputs": ["hypotheses.json", "findings.json", "source_refs.json", "counterevidence.json", "decision.json"],
                 "dispatch_state": "PLANNED_NOT_DISPATCHED",
                 "assigned_systems": list(SYSTEMS),
                 "sequence": index,
