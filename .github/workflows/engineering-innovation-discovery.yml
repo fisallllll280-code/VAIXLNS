@@ -48,12 +48,13 @@ jobs:
         run: |
           echo "path=" >> "$GITHUB_OUTPUT"
           mkdir -p .discovery-history
-          for run_id in $(gh run list \
+          run_ids="$(gh run list \
             --branch main \
             --workflow engineering-innovation-discovery.yml \
             --limit 20 \
             --json databaseId,status,conclusion \
-            --jq '.[] | select(.status == "completed" and .conclusion == "success") | .databaseId'); do
+            --jq '.[] | select(.status == "completed" and .conclusion == "success") | .databaseId' || true)"
+          for run_id in $run_ids; do
             if [ "$run_id" = "$GITHUB_RUN_ID" ]; then
               continue
             fi
