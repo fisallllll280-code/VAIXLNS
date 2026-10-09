@@ -35,4 +35,4 @@
 ## Agentic engineering
 
 - `../engineering/AGENTIC_SOFTWARE_ENGINEERING_FABRIC_V1.md` — governed multi-agent engineering fabric and lifecycle proposal.
-- `../engineering/AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md` — adaptive agent topology, clean-diff governance, repository impact graph, Ω Change Capsule, effect gate, adversarial regression and acceptance tests.
+- `../engineering/AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md` — adaptive agent topology, clean-diff governance, repository impact graph, Ω Change Capsule, effect gate, adversarial regression, acceptance tests, and research on scope creep, test-oracle strengthening and structure-aware repair.
