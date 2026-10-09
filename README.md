@@ -16,6 +16,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Ω Global Engineering Fabric Architecture](docs/architecture/OMEGA_GLOBAL_ENGINEERING_FABRIC_V1.md)
 - [Ω Index and Fabric Benchmark Plan](docs/operations/OMEGA_INDEX_AND_FABRIC_BENCHMARK_V1.md)
 - [Ω Server Manifest Example](config/omega-servers.example.json)
+- [Repository Protection and Closure Policy](docs/operations/REPOSITORY_PROTECTION_AND_CLOSURE_POLICY_V1.md)
 - [Ω Error Locator — Failure Localization](docs/operations/OMEGA_ERROR_LOCATOR_V1.md)
 - [Ω Error Locator Implementation](scripts/omega_error_locator.py)
 - [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
