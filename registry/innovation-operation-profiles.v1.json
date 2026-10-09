@@ -930,6 +930,64 @@
       ],
       "basis": "CURATED_ENGINEERING_DESIGN",
       "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "VAIXLNS Innovation Operation Index Generator",
+      "aliases": [
+        "VAIXLNS.INNOVATION.OPERATION.INDEX.001",
+        "Innovation Operation Index",
+        "Automatic Innovation Index"
+      ],
+      "family": "Registry / innovation engineering automation",
+      "canonical_owner": "VAIXLNS",
+      "description": "Deterministic repository capability that consolidates innovation candidates from the canonical master innovation list, separation matrix, catalog, federation JSON, Ω.000 records, and measurement registry into a machine-readable index and a detailed Markdown view. It enriches records with curated operating profiles or clearly labelled family-rule drafts while preserving source-state observations and prohibiting automatic canonical promotion.",
+      "mechanism": [
+        "Read versioned canonical sources and curated operation profiles from the repository without altering project.genome.",
+        "Normalize identity keys and reconcile aliases while preserving native identifiers, original source references, and individual status observations.",
+        "Merge records conservatively and surface unresolved identity or status conflicts rather than silently deleting or promoting them.",
+        "Generate deterministic JSON and Markdown projections, including descriptions, mechanism steps, inputs, outputs, gates, failure modes, lineage, and evidence references.",
+        "Validate required fields, identifier stability, source availability, profile quality, and generated-file freshness in CI.",
+        "On relevant source changes or scheduled refresh, open a draft pull request containing only generated projections for review."
+      ],
+      "inputs": [
+        "canonical innovation index",
+        "innovation separation matrix",
+        "innovation catalog",
+        "federation JSON",
+        "Ω.000 registry",
+        "measurement registry",
+        "curated profile registry"
+      ],
+      "outputs": [
+        "registry/innovation-operation-index.v1.json",
+        "docs/innovation/INNOVATION_OPERATION_INDEX.md",
+        "validation report",
+        "draft refresh pull request"
+      ],
+      "gates": [
+        "source existence",
+        "stable identity",
+        "status-conflict handling",
+        "deterministic regeneration",
+        "source provenance",
+        "human review of generated projections"
+      ],
+      "failure_modes": [
+        "missing source file",
+        "duplicate generated identity",
+        "dangling source reference",
+        "stale generated output",
+        "conflicting implementation states"
+      ],
+      "evidence_refs": [
+        "tools/build_innovation_operation_index.py",
+        "tools/validate_innovation_operation_index.py",
+        "schemas/innovation-operation-index.schema.json",
+        "tests/test_innovation_operation_index.py",
+        ".github/workflows/innovation-index-sync.yml"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
     }
   ]
 }
