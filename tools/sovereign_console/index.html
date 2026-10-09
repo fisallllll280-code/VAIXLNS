@@ -24,6 +24,7 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visib
 .output{padding:14px 15px 20px;overflow:auto;flex:1;min-height:250px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.75;scrollbar-width:thin;scrollbar-color:#354052 transparent}.welcome{color:#93a2b7;white-space:pre-wrap}.line{white-space:pre-wrap;overflow-wrap:anywhere}.promptline{color:#a1b0c2;margin:10px 0 3px}.promptline .sig{color:var(--cyan)}.outputline{color:#c5cfdd}.outputline.dim{color:#8090a5}.outputline.good{color:var(--green)}.outputline.bad{color:var(--red)}.outputline.warn{color:var(--amber)}.evidence{margin-top:9px;padding:8px 10px;border:1px solid #253342;border-radius:7px;color:#7e94a9;background:#0d131b;font-size:10px}.eventhash{color:#627f88}.inputbar{display:flex;align-items:center;gap:9px;padding:13px 14px;border-top:1px solid var(--line);background:#0e121a}.inputprompt{font-family:ui-monospace,monospace;font-weight:800;color:var(--cyan);white-space:nowrap}.command-input{border:0;background:transparent;outline:none;color:var(--text);flex:1;min-width:0;font-family:ui-monospace,monospace;font-size:12px}.command-input::placeholder{color:#566375}.send{border:1px solid #32786f;background:#102c29;color:var(--cyan);border-radius:7px;padding:7px 11px;font-size:11px}.send:hover{background:#153b36}.terminal-foot{display:flex;justify-content:space-between;gap:12px;padding:7px 13px;border-top:1px solid var(--line);color:#66748a;font-size:9px}
 .rightcol{display:flex;flex-direction:column;gap:13px;min-width:0}.cardhead{display:flex;align-items:center;justify-content:space-between;padding:13px 13px 10px;border-bottom:1px solid var(--line)}.cardhead strong{font-size:11px}.cardhead span{font-size:9px;color:var(--muted)}.cardbody{padding:12px 13px}.kv{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #202735;font-size:10px}.kv:last-child{border-bottom:0}.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:right;overflow-wrap:anywhere}.status-good{color:var(--green)}.status-warn{color:var(--amber)}.status-bad{color:var(--red)}.agentrow{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid #202735}.agentrow:last-child{border:0}.agentbadge{width:25px;height:25px;display:grid;place-items:center;border:1px solid #31444d;border-radius:7px;background:#122329;color:var(--cyan);font-size:10px;font-weight:700}.agentinfo{min-width:0;flex:1}.agentinfo b{font-size:10px;display:block;line-height:1.4}.agentinfo span{font-size:9px;color:var(--muted);display:block;margin-top:3px}.scope{font-size:8px;border:1px solid #2b3747;border-radius:4px;padding:3px 5px;color:#a6b6ca}
 .flow{display:grid;gap:7px}.flowstep{display:flex;gap:9px;align-items:flex-start}.num{color:var(--cyan);font:10px ui-monospace,monospace;border:1px solid #2b4e4e;border-radius:5px;padding:3px 5px}.flowtext b{display:block;font-size:10px}.flowtext span{display:block;font-size:9px;color:var(--muted);margin-top:3px;line-height:1.5}.hashbox{font-family:ui-monospace,monospace;color:#8099aa;background:#0b1118;padding:9px;border-radius:7px;overflow-wrap:anywhere;font-size:9px;line-height:1.6;border:1px solid #202c39}
+.systemmap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.systemnode{border:1px solid #2a3646;border-radius:8px;background:#101823;padding:9px;min-width:0}.systemnode b{display:block;font-size:10px;letter-spacing:.04em}.systemnode span{display:block;color:var(--muted);font-size:9px;line-height:1.5;margin-top:4px}.edge-list{display:grid;gap:7px;margin-top:10px}.edge-row{border-left:2px solid #5a6575;padding:3px 0 3px 9px;font-size:9px;line-height:1.55;color:#b3c1d3}.edge-row strong{display:block;color:var(--text);font-weight:650}.edge-row.warn{border-left-color:var(--amber)}.family-list{display:grid;gap:6px}.family-item{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid #202735;padding:6px 0}.family-item:last-child{border-bottom:0}.family-item b{font-size:9px;font-weight:600}.family-item span{font-size:8px;color:var(--muted);text-align:right}.gapitem{padding:7px 0;border-bottom:1px solid #202735;font-size:9px;line-height:1.55}.gapitem:last-child{border-bottom:0}.gapitem b{display:block;font-size:9px}.gapitem span{color:var(--muted)}.mini-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .bottomnote{font-size:9px;color:#6f7b8e;display:flex;justify-content:space-between;gap:10px;padding:0 3px 3px}.bottomnote a{color:#8ca6c4;text-decoration:none}.bottomnote a:hover{color:var(--cyan)}
 @media(max-width:1180px){.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace{grid-template-columns:180px minmax(380px,1fr)}.rightcol{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.rightcol .wide{grid-column:span 2}.sidebar{height:auto;min-height:calc(100vh - 90px)}}
 @media(max-width:760px){.shell{grid-template-rows:56px 1fr}.topbar{padding:0 11px;gap:8px}.brand{min-width:0;flex:1}.brand small{font-size:8px}.topmeta .pill:nth-child(2){display:none}.top-actions .btn{padding:7px 8px}.workspace{display:flex;flex-direction:column;padding:10px;gap:10px}.sidebar{position:static;height:auto;display:block;padding:9px}.sidebar .navgroup{display:flex;flex-wrap:wrap}.sidebar .section-label{margin:7px 0 5px}.navitem{width:auto;white-space:nowrap;padding:7px 9px}.sidebar .sidefoot{display:none}.content{display:flex;flex-direction:column;gap:10px}.pagehead{padding:4px 2px}.pagehead h1{font-size:19px}.pagehead p{font-size:10px}.pageactions{display:none}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric{min-height:68px;padding:10px}.metric .value{font-size:20px}.terminal{min-height:570px}.output{min-height:370px;padding:11px}.rightcol{display:grid;grid-template-columns:1fr}.rightcol .wide{grid-column:auto}.bottomnote{line-height:1.6}.topmeta{flex:0}.topmeta .pill:first-child{font-size:9px}.terminal-tools span{display:none}}
@@ -95,6 +96,52 @@ Examples: index search VX · agents list · proof verify · runtime simulate "ve
     </main>
 
     <aside class="rightcol">
+      <section class="panel wide">
+        <div class="cardhead"><strong>Cross-system federation map</strong><span>4 identities · live links not asserted</span></div>
+        <div class="cardbody">
+          <div class="systemmap">
+            <div class="systemnode"><b>VAIXLNS</b><span>CANONICAL · governance, registry, admission, recovery</span></div>
+            <div class="systemnode"><b>VLNS</b><span>UNVERIFIED identity mapping · candidate repository NAXLNS</span></div>
+            <div class="systemnode"><b>VX</b><span>PARTIAL · governed execution / runtime boundary</span></div>
+            <div class="systemnode"><b>NEXNET</b><span>UNVERIFIED identity mapping · candidate repository NEXENT</span></div>
+          </div>
+          <div class="edge-list">
+            <div class="edge-row warn"><strong>VLNS → VAIXLNS</strong>Discovery / evidence proposals → canonical admission · contract documented; live state UNVERIFIED.</div>
+            <div class="edge-row warn"><strong>VLNS → VX</strong>Model activation envelope · specified contract; live state UNVERIFIED.</div>
+            <div class="edge-row warn"><strong>VX → VAIXLNS</strong>Execution events / observations / replay evidence · documented boundary; live state UNVERIFIED.</div>
+            <div class="edge-row warn"><strong>NEXNET → VLNS</strong>Research / architecture-candidate exchange · proposal only; live link not established.</div>
+          </div>
+          <div class="mini-actions"><button class="btn" data-cmd="federation status">Inspect all links</button><button class="btn" data-cmd="federation inspect VLNS">Inspect VLNS</button></div>
+        </div>
+      </section>
+      <section class="panel wide">
+        <div class="cardhead"><strong>Deep attribute / index families</strong><span>15 families · 302 fields</span></div>
+        <div class="cardbody">
+          <div class="family-list">
+            <div class="family-item"><b>System/repository genome</b><span>46 fields · identity, modules, flows, risks</span></div>
+            <div class="family-item"><b>Model/provider contract</b><span>21 fields · protocols, modalities, conformance</span></div>
+            <div class="family-item"><b>VLNS→VX activation envelope</b><span>11 fields · role, context, permissions, provenance</span></div>
+            <div class="family-item"><b>Agent genome / capability</b><span>45 fields · tools, scopes, evidence, invariants</span></div>
+            <div class="family-item"><b>Persistent memory / session</b><span>26 fields · lineage, access, retention, resume</span></div>
+            <div class="family-item"><b>Execution / replay</b><span>39 fields · hashes, events, results, replayability</span></div>
+            <div class="family-item"><b>Evidence / integration gate</b><span>45 fields · sources, auth, sandbox, admission</span></div>
+            <div class="family-item"><b>Health / platform / engineering job</b><span>56 fields · metrics, OS profile, constraints, release</span></div>
+            <div class="family-item"><b>Master index atoms</b><span>21 fields · source pins, relationships, conflicts</span></div>
+          </div>
+          <p style="color:var(--muted);font-size:9px;line-height:1.6;margin:10px 0 0">Field counts above are an explanatory grouping. The JSON index is authoritative for each exact family/field list; declarations do not imply implementation.</p>
+          <div class="mini-actions"><button class="btn" data-cmd="federation attributes all">Open full attribute index</button><button class="btn" data-cmd="federation attributes provider">Search provider/model fields</button></div>
+        </div>
+      </section>
+      <section class="panel wide">
+        <div class="cardhead"><strong>Integration readiness / blockers</strong><span>8 catalogued gaps</span></div>
+        <div class="cardbody">
+          <div class="gapitem"><b>BLOCKER · VLNS identity</b><span>VLNS ↔ NAXLNS remains UNVERIFIED; preserve both identities until authority evidence exists.</span></div>
+          <div class="gapitem"><b>BLOCKER · Authenticated connection</b><span>Historical probe dated 2026-10-06 was unreachable and unauthenticated; no fresh probe was performed here.</span></div>
+          <div class="gapitem"><b>HIGH · Executable VLNS runtime</b><span>Observed NAXLNS tree is specification/document/workflow oriented; runnable entrypoint and tested service not established.</span></div>
+          <div class="gapitem"><b>HIGH · Model adapters / telemetry</b><span>Neutral activation and observability are specified; provider conformance and deployed health/log/metric pipeline remain unverified.</span></div>
+          <div class="mini-actions"><button class="btn" data-cmd="federation gaps">View all gaps</button><button class="btn" data-cmd="proof verify">Run local proof gate</button></div>
+        </div>
+      </section>
       <section class="panel"><div class="cardhead"><strong>Canonical surfaces</strong><span id="surface-count">3 checks</span></div><div class="cardbody">
         <div class="kv"><span>Golden source</span><b id="s-genome">project.genome</b></div>
         <div class="kv"><span>Master index</span><b id="s-index">Ω.000</b></div>
