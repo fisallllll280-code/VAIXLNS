@@ -128,6 +128,53 @@ class OmegaServerFabricTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "must not contain live endpoints"):
             build_plan(manifest, workload)
 
+    def test_innovation_index_is_translated_to_internal_server_tasks(self):
+        from scripts.omega_server_fabric import workload_from_innovation_network
+
+        network = {
+            "schema": "vaixlns.innovation-network.v1",
+            "network_sha256": "a" * 64,
+            "work_packets": [{
+                "innovation_id": "INNOVATION-1",
+                "priority_score": 90,
+                "research_lanes": [
+                    {"task_id": "TASK-A", "lane": "SOURCE_DISCOVERY",
+                     "objective": "Locate primary sources",
+                     "input_refs": ["INNOVATION-1"], "required_outputs": ["sources.json"]},
+                    {"task_id": "TASK-B", "lane": "TEST_REPLAY",
+                     "objective": "Reproduce the claim",
+                     "input_refs": ["INNOVATION-1"], "required_outputs": ["receipt.json"]},
+                ],
+            }],
+        }
+        workload = workload_from_innovation_network(network)
+        self.assertEqual(workload["task_count"], 2)
+        self.assertEqual(workload["tasks"][0]["data_classification"], "INTERNAL")
+        self.assertEqual(workload["tasks"][0]["task_type"], "PRIVATE_SOURCE_RESEARCH")
+        self.assertEqual(workload["dispatch_state"], "NOT_DISPATCHED")
+        plan = build_plan({
+            "schema": MANIFEST_SCHEMA, "control_mode": "PLAN_ONLY",
+            "server_pools": [pool("local-research", ["PRIVATE_SOURCE_RESEARCH"]),
+                             pool("cpu", ["UNIT_TEST"])],
+        }, workload)
+        by_id = {item["task_id"]: item for item in plan["placements"]}
+        self.assertEqual(by_id["TASK-A"]["recommended_pool_id"], "local-research")
+        self.assertEqual(by_id["TASK-B"]["recommended_pool_id"], "cpu")
+        self.assertEqual(plan["summary"]["dispatched_count"], 0)
+
+    def test_unknown_innovation_lane_fails_closed(self):
+        from scripts.omega_server_fabric import workload_from_innovation_network
+
+        network = {
+            "schema": "vaixlns.innovation-network.v1",
+            "work_packets": [{
+                "innovation_id": "INNOVATION-2",
+                "research_lanes": [{"task_id": "TASK-X", "lane": "UNREGISTERED_LANE"}],
+            }],
+        }
+        with self.assertRaisesRegex(ValueError, "no server capability mapping"):
+            workload_from_innovation_network(network)
+
     def test_plan_is_deterministic_and_hash_is_correct(self):
         manifest, workload = inputs([
             pool("cpu-b", ["UNIT_TEST"]),
