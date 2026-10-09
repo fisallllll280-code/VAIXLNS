@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 from urllib.error import HTTPError, URLError
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 from urllib.request import Request, urlopen
 
 MAX_TIMEOUT = 20.0
@@ -80,8 +80,12 @@ def request_json(
         token = env.get("GITHUB_TOKEN") or env.get("GH_TOKEN")
         if token:
             headers["Authorization"] = f"Bearer {token}"
-    elif provider == "gitlab" and env.get("GITLAB_TOKEN"):
-        headers["PRIVATE-TOKEN"] = env["GITLAB_TOKEN"]
+    elif provider == "gitlab":
+        # Never forward a gitlab.com credential to the separate Gmsh host.
+        target_host = urlsplit(url).hostname
+        token_name = "GITLAB_TOKEN" if target_host == "gitlab.com" else "GITLAB_ONELAB_INFO_TOKEN" if target_host == "gitlab.onelab.info" else ""
+        if token_name and env.get(token_name):
+            headers["PRIVATE-TOKEN"] = env[token_name]
     try:
         with opener(Request(url, headers=headers, method="GET"), timeout=min(max(timeout, 1.0), MAX_TIMEOUT)) as response:
             raw = response.read(MAX_BYTES + 1)
