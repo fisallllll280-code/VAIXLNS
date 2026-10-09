@@ -1,0 +1,83 @@
+{
+  "schema": "vaixlns.federated-engineering-deployment.v1",
+  "version": 1,
+  "authority": "VAIXLNS",
+  "mode": "PLAN_ONLY",
+  "defaults": {
+    "execution_enabled": false,
+    "automatic_production_deployment": false,
+    "unverified_identity_action": "HOLD",
+    "require_pinned_commit_sha": true,
+    "require_independent_verification": true,
+    "max_parallel_system_rollouts": 4
+  },
+  "release_gates": [
+    "PINNED_SOURCE_REVISION",
+    "DEPENDENCIES_RESOLVED",
+    "BUILD_AND_TEST_PASS",
+    "SANDBOX_STARTUP_AND_HEALTH_PASS",
+    "INTEGRATION_SMOKE_PASS",
+    "INDEPENDENT_VERIFICATION_PASS",
+    "EVIDENCE_AND_ROLLBACK_READY",
+    "SEPARATE_GOVERNANCE_ADMISSION"
+  ],
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "role": "control-plane",
+      "identity_status": "VERIFIED",
+      "depends_on": [],
+      "repositories": [
+        {
+          "full_name": "fisallllll280-code/VAIXLNS",
+          "surface": "GitHub source and CI",
+          "runtime_status": "CI_SURFACE_OBSERVED_RUNTIME_NOT_IMPLIED"
+        }
+      ]
+    },
+    {
+      "system_id": "VX",
+      "role": "execution-runtime",
+      "identity_status": "VERIFIED",
+      "depends_on": ["VAIXLNS"],
+      "repositories": [
+        {
+          "full_name": "fisallllll280-code/VX-runtime",
+          "surface": "GitHub source",
+          "runtime_status": "REPOSITORY_SURFACE_REGISTERED_RUNTIME_NOT_VERIFIED"
+        },
+        {
+          "full_name": "fisallllll280-code/VX50_COMPLETE_BUILD",
+          "surface": "GitHub source",
+          "runtime_status": "REPOSITORY_SURFACE_REGISTERED_RUNTIME_NOT_VERIFIED"
+        }
+      ]
+    },
+    {
+      "system_id": "VLNS",
+      "role": "knowledge-discovery",
+      "identity_status": "UNVERIFIED",
+      "depends_on": ["VAIXLNS"],
+      "repositories": [
+        {
+          "full_name": "fisallllll280-code/NAXLNS",
+          "surface": "candidate repository mapping",
+          "runtime_status": "IDENTITY_MAPPING_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "system_id": "NEXNET",
+      "role": "discovery-network",
+      "identity_status": "UNVERIFIED",
+      "depends_on": ["VAIXLNS"],
+      "repositories": [
+        {
+          "full_name": "fisallllll280-code/NEXENT",
+          "surface": "candidate repository mapping",
+          "runtime_status": "IDENTITY_MAPPING_UNVERIFIED"
+        }
+      ]
+    }
+  ]
+}
