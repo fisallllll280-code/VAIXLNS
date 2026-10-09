@@ -45,6 +45,43 @@
       ]
     },
     {
+      "id": "VX.AGENT.ACTION.ASSURANCE.001",
+      "type": "CAPABILITY",
+      "role": "AGENT_ACTION_AUTHORIZATION_AND_EFFECT_ASSURANCE",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "PARTIAL",
+      "canonical_owner": "VAIXLNS",
+      "execution_repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "implementation_state": "REFERENCE_IMPLEMENTATION",
+      "integration_status": "FEATURE_PR_OPEN; CI_PASS; PRODUCTION_ADAPTERS_PENDING",
+      "evidence_refs": [
+        "docs/tools/AGENT_ACTION_CONTROL_ASSURANCE_V1.md",
+        "registry/tools/agent-action-assurance.yaml",
+        "https://github.com/fisallllll280-code/vaixlns-nexent-vx/pull/1",
+        "https://github.com/fisallllll280-code/vaixlns-nexent-vx/actions/runs/37916624473"
+      ],
+      "capabilities": [
+        "signed_contract_bound_permits",
+        "permit_expiry_and_action_scope_checks",
+        "trusted_resource_version_toctou_guard",
+        "partial_effect_and_compensation_states",
+        "independent_target_audit_readback_tripwire",
+        "contract_bound_idempotency_key",
+        "hash_chained_transition_receipts",
+        "randomized_transition_invariant_checks",
+        "targeted_mutation_canaries"
+      ],
+      "production_blockers": [
+        "durable_atomic_idempotency",
+        "real_target_actuator_and_resource_version_cas",
+        "isolated_target_audit_readback_and_tripwire_services",
+        "concurrency_crash_replay_and_compensation_failure_tests",
+        "formal_model_checking",
+        "independent_security_review"
+      ],
+      "promotion_rule": "Remain PARTIAL until production blockers are closed and evidence is reviewed; passing reference CI does not grant production authority."
+    },
+    {
       "id": "XV",
       "type": "SYSTEM",
       "role": "INTELLIGENCE_PLANNING_EVOLUTION",
