@@ -75,6 +75,10 @@ def _nonempty_list(value: Any) -> bool:
     return isinstance(value, list) and bool(value)
 
 
+def _string_list(value: Any) -> bool:
+    return isinstance(value, list) and bool(value) and all(_text(item) for item in value)
+
+
 def _positive_number(value: Any) -> bool:
     return (
         isinstance(value, (int, float))
@@ -130,7 +134,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
         errors.append("intent_required")
 
     required_domains = candidate.get("required_domains")
-    if not isinstance(required_domains, list) or any(not _text(d) for d in required_domains):
+    if not isinstance(required_domains, list) or not required_domains or any(not _text(d) for d in required_domains):
         errors.append("required_domains_must_be_nonempty_string_list")
         required_domains = []
     else:
@@ -161,7 +165,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
         if not _text(math_contract.get(field)):
             errors.append(f"mathematics.{field}_required")
     for field in ("assumptions", "constraints", "proof_obligations"):
-        if not _nonempty_list(math_contract.get(field)):
+        if not _string_list(math_contract.get(field)):
             errors.append(f"mathematics.{field}_must_be_nonempty_list")
 
     comp_contract = domains.get("computation", {})
@@ -193,7 +197,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
         if not _text(software_contract.get(field)):
             errors.append(f"software.{field}_required")
     for field in ("test_targets", "static_security_checks"):
-        if not _nonempty_list(software_contract.get(field)):
+        if not _string_list(software_contract.get(field)):
             errors.append(f"software.{field}_must_be_nonempty_list")
 
     physics = domains.get("physics", {})
@@ -210,7 +214,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
     units = physics.get("units", {})
     if isinstance(units, Mapping) and any(not _text(k) or not _text(v) for k, v in units.items()):
         errors.append("physics.units_require_named_variables_and_unit_labels")
-    if not _nonempty_list(physics.get("invariants")):
+    if not _string_list(physics.get("invariants")):
         errors.append("physics.invariants_must_be_nonempty_list")
     physics_tolerances = physics.get("numerical_tolerances")
     if not isinstance(physics_tolerances, Mapping) or not physics_tolerances:
@@ -252,6 +256,8 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
             if not isinstance(refs, list):
                 errors.append(f"{prefix}.evidence_refs_must_be_list")
                 refs = []
+            elif any(not _text(ref) for ref in refs):
+                errors.append(f"{prefix}.evidence_refs_must_contain_strings")
             if status == "FAIL" and kind == "HARD":
                 rejection_reasons.append(f"HARD_CONSTRAINT_FAILED:{item.get('constraint_id', index)}")
             elif status == "FAIL" and kind == "SOFT":
@@ -295,7 +301,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
             continue
         assigned_roles.add(role)
         agent_by_role.setdefault(role, agent_id)
-        if not _nonempty_list(agent.get("capabilities")):
+        if not _string_list(agent.get("capabilities")):
             errors.append(f"{prefix}.capabilities_must_be_nonempty_list")
     missing_roles = sorted(REQUIRED_AGENT_ROLES - assigned_roles)
     if missing_roles:
@@ -333,7 +339,7 @@ def assess_candidate(candidate: Mapping[str, Any]) -> CandidateAssessment:
     if not isinstance(verification, Mapping):
         errors.append("verification_plan_must_be_object")
     else:
-        if not _nonempty_list(verification.get("required_checks")):
+        if not _string_list(verification.get("required_checks")):
             errors.append("verification_plan.required_checks_required")
         if verification.get("independent_replay_required") is not True:
             errors.append("independent_replay_must_be_required")
@@ -447,6 +453,9 @@ def pareto_frontier(candidates: Sequence[Mapping[str, Any]]) -> list[str]:
             )
         return result
 
+    candidate_ids = [str(candidate["candidate_id"]) for candidate in eligible]
+    if len(set(candidate_ids)) != len(candidate_ids):
+        raise CandidateSynthesisError("candidate_id values must be unique for Pareto comparison")
     vectors = {str(candidate["candidate_id"]): vector(candidate) for candidate in eligible}
     reference_id = next(iter(vectors))
     reference = vectors[reference_id]
