@@ -33,6 +33,7 @@ AGENTS = (
     ("PERFORMANCE_AND_COST", "Identify measurable latency, memory, throughput, reliability, and cost constraints.", ("benchmark_plan.json", "cost_model.json")),
     ("INDEPENDENT_VERIFIER", "Try to falsify claims and independently reproduce the result using pinned inputs.", ("verification_report.json", "counterevidence.json")),
     ("RELEASE_AND_RECOVERY", "Prepare rollback, migration, release evidence, and recovery steps.", ("release_plan.json", "rollback_plan.json")),
+    ("FEDERATED_RESEARCH_AND_INDEX", "Retrieve evidence from configured public sources and approved server adapters; preserve citations, source identities, normalized hashes, confidence boundaries, and unanswered research gaps.", ("source_evidence.json", "omega_index_delta.json")),
 )
 # Exact argument vectors only. No arbitrary shell strings or discovered scripts are executed.
 RECIPES = {
