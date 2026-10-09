@@ -128,3 +128,11 @@ Agents may propose changes in an authorized sandbox but cannot change the policy
 ## 13. Explicit implementation boundary
 
 This document defines the next kernel contract. It does not assert that a distributed agent runtime, cryptographic identity service, authority service, evidence store, or autonomous scheduler has already been deployed. Those require code, integration tests, and observed runtime receipts before being reported as operational.
+## 14. Executable reference slice
+
+The repository now includes:
+- `vcre/agent_orchestration.py`: task-envelope validation, scoped authority-grant checks, registered-principal/capability checks, explicit task-state transitions, deterministic result quarantine fingerprints, evidence provenance checks, stale candidate/source-revision rejection, independent-verifier separation, and explicit admission-decision handling.
+- `tests/test_agent_orchestration.py`: tests for expiry, identity/capability mismatch, quarantine ordering, evidence drift, producer/verifier separation, HOLD behavior, successful gated closure, timezone requirements, and illegal state transitions.
+- `schemas/agent-task-envelope.schema.json`: JSON Schema for the bounded task envelope.
+
+This is an executable reference kernel, not a distributed agent service. The runtime still needs to bind real authenticated principals, retrieve grants from the authority service, persist immutable evidence, and dispatch work to configured agent providers. Passing unit tests must not be reported as proof that those external services are live.
