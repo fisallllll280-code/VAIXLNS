@@ -182,12 +182,20 @@ def assess_server_candidate(candidate: ServerInnovationCandidate) -> ServerInnov
 
     # A request field cannot alter this gate: candidates never self-authorize.
     if blockers:
-        decision = (
-            ServerAssessmentDecision.QUARANTINED
-            if any("IDENTITY" in item or "SOURCE_REFERENCE" in item for item in blockers)
-            else ServerAssessmentDecision.REJECTED
-        )
-        next_steps.extend(["PRESERVE_CANDIDATE_AND_EVIDENCE", "REVIEW_BLOCKERS_BEFORE_RETRY"])
+        if set(blockers) == {"NO_UNMET_CAPABILITY_DELTA_IDENTIFIED"}:
+            decision = ServerAssessmentDecision.NOT_NOVEL_FOR_CURRENT_SCOPE
+            next_steps.extend([
+                "PRESERVE_CANDIDATE_AND_EVIDENCE",
+                "LINK_TO_EXISTING_CAPABILITY_OWNER",
+                "DO_NOT_CREATE_A_NEW_CANONICAL_INNOVATION",
+            ])
+        else:
+            decision = (
+                ServerAssessmentDecision.QUARANTINED
+                if any("IDENTITY" in item or "SOURCE_REFERENCE" in item for item in blockers)
+                else ServerAssessmentDecision.REJECTED
+            )
+            next_steps.extend(["PRESERVE_CANDIDATE_AND_EVIDENCE", "REVIEW_BLOCKERS_BEFORE_RETRY"])
     elif missing:
         decision = ServerAssessmentDecision.RESEARCH_REQUIRED
         next_steps.extend(sorted(set(missing)))
