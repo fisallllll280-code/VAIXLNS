@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0",
+  "requestId": "inventory-baseline-001",
+  "intent": "Collect a baseline inventory of Windows and boot/recovery status without changing settings.",
+  "target": "local_windows_host",
+  "operation": "windows.inventory.readonly",
+  "risk": "R0",
+  "mode": "plan"
+}
