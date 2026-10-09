@@ -30,6 +30,8 @@ jobs:
           python -m json.tool registry/evidence/control-plane-proof.json >/dev/null
           python -m json.tool registry/omega/federation-source-lock.v1.json >/dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json >/dev/null
+          python -m json.tool schemas/omega-change-capsule.schema.json >/dev/null
+          python -m json.tool examples/omega-change-capsule.example.json >/dev/null
 
       - name: Compile control tooling
         run: |
@@ -45,6 +47,8 @@ jobs:
             tools/omega/validate_federation.py \
             tools/build_innovation_operation_index.py \
             tools/validate_innovation_operation_index.py \
+            scripts/validate_change_capsule.py \
+            tests/test_change_capsule.py \
             tests/test_canonical_control_plane.py \
             tests/test_innovation_operation_index.py
 
@@ -71,6 +75,9 @@ jobs:
 
       - name: Verify deterministic index output
         run: python tools/build_innovation_operation_index.py --check
+
+      - name: Validate example Ω Change Capsule
+        run: python scripts/validate_change_capsule.py examples/omega-change-capsule.example.json
 
       - name: Run test suite
         run: python -m unittest discover -s tests -v
