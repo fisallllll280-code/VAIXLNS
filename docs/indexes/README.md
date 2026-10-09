@@ -17,5 +17,6 @@
 - `ENGINEERING_DECISION_REGISTER.md` — concise architecture rationale; not private chain-of-thought.
 - `CANONICAL_REPOSITORY_LAYOUT.md` — target structure and ownership boundaries.
 - `REPOSITORY_PERPETUAL_ENGINE_V1.md` — continuous repository creation, development, verification and innovation loop.
+- `../federation/VLNS_SYSTEM_FEDERATION_AND_ENGINEERING_DASHBOARD_V1.md` — cross-system VLNS attributes, integration edges, engineering panels and evidence-backed gaps.
 
 - `../architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md` — 2026-10-07 consolidated architecture context for index memory, VX cognitive federation, agent minds, Ω-Patterns, prediction/recovery, data/tools/developers, Ω-Arena, security, and treasury integration.

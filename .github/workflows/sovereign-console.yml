@@ -1,0 +1,53 @@
+name: VAIXLNS Sovereign Console
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "tools/sovereign_console/**"
+      - "registry/federation/**"
+      - "registry/vlns_connection_status.v1.json"
+      - "docs/federation/**"
+      - "tests/test_federation_console.py"
+      - "scripts/validate_vlns_capability_index.py"
+      - "tests/test_vlns_capability_index.py"
+      - "tests/test_sovereign_console.py"
+      - "tests/test_sovereign_console_http.py"
+      - ".github/workflows/sovereign-console.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "tools/sovereign_console/**"
+      - "registry/federation/**"
+      - "registry/vlns_connection_status.v1.json"
+      - "docs/federation/**"
+      - "tests/test_federation_console.py"
+      - "scripts/validate_vlns_capability_index.py"
+      - "tests/test_vlns_capability_index.py"
+      - "tests/test_sovereign_console.py"
+      - "tests/test_sovereign_console_http.py"
+      - ".github/workflows/sovereign-console.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-console:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile console modules
+        run: python -m py_compile tools/sovereign_console/engine.py tools/sovereign_console/server.py
+      - name: Run console tests
+        run: |
+          python -m unittest discover -s tests -p 'test_sovereign_console*.py'
+          python -m unittest discover -s tests -p 'test_federation_console.py'
+          python scripts/validate_vlns_capability_index.py
+          python -m unittest discover -s tests -p 'test_vlns_capability_index.py'

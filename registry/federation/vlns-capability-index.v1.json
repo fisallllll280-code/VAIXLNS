@@ -1,0 +1,1045 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "Ω.FEDERATION.VLNS.001",
+  "title": "VLNS Cross-System Capability and Attribute Index",
+  "authority": "VAIXLNS",
+  "status": "PROPOSED",
+  "observed_at": "2026-10-09",
+  "scope_note": "Evidence-preserving inventory. Described capability is not proof of executable runtime. System/repository identity mappings remain unresolved where stated.",
+  "index_contract": {
+    "source_of_truth": "This registry plus its evidence_refs; runtime connectivity must be measured independently.",
+    "property_classes": [
+      "IDENTITY",
+      "ROLE",
+      "CAPABILITY",
+      "INTERFACE",
+      "AUTHORITY",
+      "MODEL",
+      "DATA",
+      "SECURITY",
+      "OBSERVABILITY",
+      "LIFECYCLE",
+      "ENGINEERING",
+      "EVIDENCE",
+      "GAP"
+    ],
+    "epistemic_states": [
+      "VERIFIED",
+      "IMPLEMENTED",
+      "SPECIFIED",
+      "PARTIAL",
+      "MISSING",
+      "PROPOSED",
+      "UNVERIFIED",
+      "CONFLICT",
+      "UNKNOWN"
+    ],
+    "promotion_rule": "No property is promoted from SPECIFIED/PROPOSED to IMPLEMENTED or VERIFIED without executable evidence and explicit authority."
+  },
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "canonical_name": "VAIXLNS",
+      "role": "Sovereign control plane, canonical registry, governance, provenance, recovery, admission",
+      "authority_role": "CANONICAL_AUTHORITY",
+      "identity_status": "CANONICAL",
+      "epistemic_state": "IMPLEMENTED_CONTROL_PLANE_SURFACE",
+      "repository_surfaces": [
+        "fisallllll280-code/VAIXLNS"
+      ],
+      "integration_state": "CANONICAL_INDEX_AND_GOVERNANCE_SURFACE",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/README.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/registry/omega/omega-000-master-index.json",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md"
+      ]
+    },
+    {
+      "system_id": "VLNS",
+      "canonical_name": "VLNS",
+      "role": "Knowledge, discovery, adversarial analysis, repository intelligence, model-independent engineering fabric",
+      "authority_role": "PROPOSAL_AND_DISCOVERY_ONLY",
+      "identity_status": "UNVERIFIED",
+      "epistemic_state": "SPECIFIED_WITH_PARTIAL_REPOSITORY_SURFACE",
+      "repository_surfaces": [
+        "fisallllll280-code/NAXLNS (candidate surface; identity not proven)"
+      ],
+      "integration_state": "DOCUMENTED_CONTRACT; LIVE_CONNECTION_UNVERIFIED",
+      "declared_capabilities": [
+        "repository_system_discovery",
+        "adversarial_analysis",
+        "capability_and_architecture_candidates",
+        "evidence_candidates",
+        "reconstruction_inputs",
+        "research_and_evolution_proposals"
+      ],
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/VAIXLNS_REPOSITORY_CONTRACT.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_BOUNDARY.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_ROLE_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "system_id": "VX",
+      "canonical_name": "VX",
+      "role": "Governed execution, state transitions, runtime, generation, verification, replay",
+      "authority_role": "EXECUTION_WITHIN_ADMITTED_SCOPE",
+      "identity_status": "CANONICAL_SYSTEM_MULTI_REPOSITORY_SURFACE",
+      "epistemic_state": "PARTIAL",
+      "repository_surfaces": [
+        "fisallllll280-code/VX-runtime",
+        "fisallllll280-code/VX50_COMPLETE_BUILD",
+        "fisallllll280-code/VAIXLNS-unified"
+      ],
+      "integration_state": "CONTRACT_AND_STAGE_REFERENCE_PRESENT; PRODUCTION_DEPLOYMENT_UNVERIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "system_id": "NEXNET",
+      "canonical_name": "NEXNET",
+      "role": "Discovery network, architecture search, research, synthesis",
+      "authority_role": "DISCOVERY_AND_PROPOSAL",
+      "identity_status": "UNVERIFIED",
+      "epistemic_state": "NEXENT_DISCOVERY_BASELINE_EXISTS; SYSTEM_IDENTITY_UNVERIFIED",
+      "repository_surfaces": [
+        "fisallllll280-code/NEXENT (candidate surface; identity not proven)"
+      ],
+      "integration_state": "FEDERATION_REFERENCE; LIVE_LINK_UNVERIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "connection_id": "FED-EDGE-001",
+      "source_system": "VLNS",
+      "target_system": "VAIXLNS",
+      "contract": "Discovery output becomes a sourced proposal; canonical admission remains with VAIXLNS.",
+      "contract_state": "DOCUMENTED",
+      "live_state": "UNVERIFIED",
+      "authenticated": false,
+      "allowed_payloads": [
+        "discovery_result",
+        "architecture_candidate",
+        "capability_candidate",
+        "evidence_candidate",
+        "provenance_refs",
+        "risk_report"
+      ],
+      "prohibited_effects": [
+        "canonical_self_promotion",
+        "governance_override",
+        "unreviewed_production_mutation"
+      ],
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_BOUNDARY.md"
+      ]
+    },
+    {
+      "connection_id": "FED-EDGE-002",
+      "source_system": "VLNS",
+      "target_system": "VX",
+      "contract": "Model/semantic activation envelope carries identity, provider/model version, role, capability profile, context hash, tool and permission profiles, constraints, provenance and activation ID.",
+      "contract_state": "SPECIFIED",
+      "live_state": "UNVERIFIED",
+      "authenticated": false,
+      "allowed_payloads": [
+        "activation_envelope",
+        "context_ref",
+        "capability_profile",
+        "provenance_ref"
+      ],
+      "prohibited_effects": [
+        "granting_execution_authority_by_model_connection",
+        "bypassing_VX_admission"
+      ],
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "connection_id": "FED-EDGE-003",
+      "source_system": "NEXNET",
+      "target_system": "VLNS",
+      "contract": "Research and architecture candidates may be exchanged as versioned, provenance-bearing artifacts; a direct live API contract has not been established in inspected sources.",
+      "contract_state": "PROPOSED",
+      "live_state": "NOT_ESTABLISHED",
+      "authenticated": false,
+      "allowed_payloads": [
+        "research_result",
+        "architecture_candidate",
+        "capability_gap",
+        "counterexample"
+      ],
+      "prohibited_effects": [
+        "silent_identity_merge",
+        "automatic_canonical_admission"
+      ],
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md"
+      ]
+    },
+    {
+      "connection_id": "FED-EDGE-004",
+      "source_system": "VX",
+      "target_system": "VAIXLNS",
+      "contract": "Execution emits events, observations, test outcomes and evidence references; VAIXLNS governs reconciliation and admission.",
+      "contract_state": "DOCUMENTED",
+      "live_state": "UNVERIFIED",
+      "authenticated": false,
+      "allowed_payloads": [
+        "execution_event",
+        "observation",
+        "test_result",
+        "evidence_bundle",
+        "replay_ref",
+        "failure_record"
+      ],
+      "prohibited_effects": [
+        "self_verified_runtime_state",
+        "loss_of_prior_evidence"
+      ],
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ]
+    }
+  ],
+  "capability_catalog": [
+    {
+      "capability_id": "VLNS-CAP-001",
+      "name": "Repository and system discovery",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Identify repositories, modules, contracts, dependencies and candidate system relationships.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/VAIXLNS_REPOSITORY_CONTRACT.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_BOUNDARY.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-002",
+      "name": "Adversarial analysis",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Search for hidden assumptions, contradictions, failure modes, security risks and unproven claims.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-003",
+      "name": "Capability and architecture candidates",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Produce candidate capability graphs, architecture alternatives and integration plans.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_BOUNDARY.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-004",
+      "name": "Evidence candidates and provenance",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Return source references, evidence candidates and reconstruction inputs without granting authority.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/VAIXLNS_REPOSITORY_CONTRACT.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-005",
+      "name": "Model/provider-neutral activation",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Provider-neutral model activation envelope and roles; live adapter conformance remains to be measured.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-006",
+      "name": "Model adapter fabric",
+      "status": "PROPOSED",
+      "implementation_state": "NOT_ESTABLISHED_IN_INSPECTED_TREE",
+      "description": "Ollama, local runtimes and remote providers behind common adapters; no executable provider adapter was established by the inspected nine-path NAXLNS tree.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-007",
+      "name": "Dynamic capability marketplace",
+      "status": "PROPOSED",
+      "implementation_state": "NOT_ESTABLISHED_IN_INSPECTED_TREE",
+      "description": "Search/register/verify capabilities through a registry rather than fixed folders.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-008",
+      "name": "Persistent knowledge and session continuity",
+      "status": "PROPOSED",
+      "implementation_state": "NOT_ESTABLISHED_IN_INSPECTED_TREE",
+      "description": "Durable project, agent, model, session, decision, failure and evidence memory with provenance and access controls.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-009",
+      "name": "Universal external integration gate",
+      "status": "SPECIFIED",
+      "implementation_state": "DOCUMENTED_ONLY",
+      "description": "Discover, contract, sandbox, test, handle failure/recovery, replay, independently verify and obtain explicit admission before use.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-010",
+      "name": "Cross-system evidence/replay flow",
+      "status": "SPECIFIED",
+      "implementation_state": "UNVERIFIED",
+      "description": "Connect observations, evidence, verification and replay into canonical lifecycle records.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ]
+    },
+    {
+      "capability_id": "VLNS-CAP-011",
+      "name": "Universal engineering dashboard",
+      "status": "PROPOSED",
+      "implementation_state": "PARTIAL_REFERENCE_CONSOLE",
+      "description": "Mobile-responsive system, capability, integration, engineering-job and evidence panels. This PR adds local index/command surfaces, not remote live connectivity.",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/pull/40"
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "property_id": "VLNS-PROP-001",
+      "category": "IDENTITY",
+      "name": "System/repository identity",
+      "value": "VLNS ↔ NAXLNS is a candidate mapping only; not proven by name similarity.",
+      "state": "UNVERIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_ROLE_V1.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-002",
+      "category": "ROLE",
+      "name": "Knowledge/discovery role",
+      "value": "Repository intelligence, adversarial analysis, discovery, engineering analysis and proposals.",
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/VAIXLNS_REPOSITORY_CONTRACT.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-003",
+      "category": "AUTHORITY",
+      "name": "Authority ceiling",
+      "value": "VLNS/NAXLNS proposals cannot self-promote to canonical or production status; VAIXLNS retains admission authority.",
+      "state": "DOCUMENTED_CONTRACT",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/VAIXLNS_FEDERATION_BOUNDARY.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-004",
+      "category": "INTERFACE",
+      "name": "Activation envelope",
+      "value": "model_id, provider, model_version, role, capability_profile, context_hash, tool_profile, permission_profile, constraints, provenance, activation_id.",
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-005",
+      "category": "SECURITY",
+      "name": "Default permissions",
+      "value": "Deny by default; activation cannot grant canonical writes, unrestricted network, external actions, governance override or automatic adoption.",
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-006",
+      "category": "INTEGRATION",
+      "name": "Connection status",
+      "value": "Last recorded probe: UNREACHABLE_FROM_CURRENT_EXECUTION_ENVIRONMENT; authenticated_connection=false. This is historical status, not a fresh live probe.",
+      "state": "STALE_OBSERVATION_2026-10-06",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/registry/vlns_connection_status.v1.json"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-007",
+      "category": "IMPLEMENTATION",
+      "name": "Inspected candidate repository tree",
+      "value": "Nine tree entries at inspected revision: README, repository contract, three federation/integration documents, and one conformance workflow hierarchy; no executable Python/package entrypoint was established in that tree snapshot.",
+      "state": "OBSERVED_TREE_NOT_RUNTIME_PROOF",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-008",
+      "category": "OBSERVABILITY",
+      "name": "Runtime metrics/logs/traces",
+      "value": "Federation deployment manifest requires metrics and logs and recommends traces; deployed pipeline was not verified.",
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/federation.yaml"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-009",
+      "category": "EVIDENCE",
+      "name": "Promotion rule",
+      "value": "An artifact or README does not prove running implementation; require source revision, dependencies, startup, health, tests, execution evidence, verification state and timestamp.",
+      "state": "CANONICAL_REQUIREMENT",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/README.md"
+      ]
+    },
+    {
+      "property_id": "VLNS-PROP-010",
+      "category": "ENGINEERING",
+      "name": "Engineering dashboard reachability",
+      "value": "The console bridge currently binds loopback. Remote phone access requires an authenticated host/gateway or approved hosted front end; do not expose the unauthenticated local bridge directly.",
+      "state": "SECURITY_CONSTRAINT",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/pull/40"
+      ]
+    }
+  ],
+  "engineering_panels": [
+    {
+      "panel_id": "DASH-001",
+      "name": "Federation Overview",
+      "purpose": "Four system identities, role boundaries, canonical owner and readiness state.",
+      "command": "federation status"
+    },
+    {
+      "panel_id": "DASH-002",
+      "name": "VLNS System Inspector",
+      "purpose": "Identity, repository surfaces, capabilities and authority ceiling.",
+      "command": "federation inspect VLNS"
+    },
+    {
+      "panel_id": "DASH-003",
+      "name": "Capability Explorer",
+      "purpose": "Search capability definitions and their implementation/evidence state.",
+      "command": "federation capabilities all"
+    },
+    {
+      "panel_id": "DASH-004",
+      "name": "Attribute/Index Explorer",
+      "purpose": "Search individual VLNS properties by ID, category, value or evidence source.",
+      "command": "federation attributes VLNS"
+    },
+    {
+      "panel_id": "DASH-005",
+      "name": "Integration Links",
+      "purpose": "Documented edges versus live/authenticated connections, with explicit unknown state.",
+      "command": "federation status"
+    },
+    {
+      "panel_id": "DASH-006",
+      "name": "Gap and Release Board",
+      "purpose": "Identity, runtime, adapter, telemetry and index-coverage gaps with next proof obligation.",
+      "command": "federation gaps"
+    },
+    {
+      "panel_id": "DASH-007",
+      "name": "Evidence and Replay",
+      "purpose": "Evidence, replay and finality; must use real event records, not simulated dashboard values.",
+      "command": "proof verify"
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "VLNS-GAP-001",
+      "severity": "BLOCKER",
+      "topic": "Identity",
+      "issue": "VLNS ↔ NAXLNS identity mapping is explicitly UNVERIFIED.",
+      "required_evidence": "Canonical identity/lineage statement accepted by VAIXLNS plus source-owner evidence.",
+      "next_action": "Resolve identity without renaming or merging repositories."
+    },
+    {
+      "gap_id": "VLNS-GAP-002",
+      "severity": "BLOCKER",
+      "topic": "Live connection",
+      "issue": "Connection registry records the VLNS control endpoint as unreachable from the prior execution environment and unauthenticated.",
+      "required_evidence": "Fresh authenticated health probe from the target network with endpoint revision and timestamp.",
+      "next_action": "Configure endpoint and credentials in the target runtime secret store; rerun probe."
+    },
+    {
+      "gap_id": "VLNS-GAP-003",
+      "severity": "HIGH",
+      "topic": "Executable runtime",
+      "issue": "The inspected NAXLNS tree is document/workflow-only in the observed snapshot; a runnable service entrypoint/dependency set was not established.",
+      "required_evidence": "Entrypoint, dependency lock/manifest, reproducible start, health check and tests.",
+      "next_action": "Inventory all branches/history, then implement only the missing runtime slice."
+    },
+    {
+      "gap_id": "VLNS-GAP-004",
+      "severity": "HIGH",
+      "topic": "Model adapters",
+      "issue": "Model/provider-neutral activation is specified but provider adapter conformance is not demonstrated.",
+      "required_evidence": "Adapter contract tests for one local model runtime, then each additional provider.",
+      "next_action": "Start with a local Ollama adapter behind the neutral activation envelope."
+    },
+    {
+      "gap_id": "VLNS-GAP-005",
+      "severity": "HIGH",
+      "topic": "Observability",
+      "issue": "Deployment requires metrics/logs; traces are recommended, but a deployed telemetry pipeline is not verified.",
+      "required_evidence": "Probeable health endpoint, structured logs, metrics, trace correlation and durable evidence references.",
+      "next_action": "Add health/readiness and trace/event correlation before production promotion."
+    },
+    {
+      "gap_id": "VLNS-GAP-006",
+      "severity": "HIGH",
+      "topic": "Legacy index coverage",
+      "issue": "Historical master index records 0001–2750 are not all exposed item-by-item in current corpus.",
+      "required_evidence": "Atomic row inventory with stable IDs, provenance and lossless source references.",
+      "next_action": "Run index archaeology and produce coverage/missing-range report."
+    },
+    {
+      "gap_id": "VLNS-GAP-007",
+      "severity": "MEDIUM",
+      "topic": "Phone and cross-platform access",
+      "issue": "Existing command console uses a loopback-only bridge; this protects local access but prevents direct access from a separate phone to a remote host.",
+      "required_evidence": "Authenticated HTTPS gateway or hosted static UI with narrowly scoped authenticated API.",
+      "next_action": "Keep loopback default; add remote access only behind identity and policy enforcement."
+    },
+    {
+      "gap_id": "VLNS-GAP-008",
+      "severity": "MEDIUM",
+      "topic": "Live cross-system links",
+      "issue": "Architectural edges are documented, but live authenticated VLNS↔VAIXLNS, VLNS↔VX and NEXNET↔VLNS links are not verified.",
+      "required_evidence": "Per-edge contract test, authentication evidence, correlation ID, replayable request/response and failure-injection test.",
+      "next_action": "Implement one connector at a time and gate it through sandbox and independent verification."
+    }
+  ],
+  "attribute_families": [
+    {
+      "family_id": "ATTR-SYS-001",
+      "name": "System/repository genome",
+      "owner": "VAIXLNS",
+      "fields": [
+        "system_id",
+        "canonical_name",
+        "repository_owner",
+        "repository_name",
+        "canonical_owner",
+        "role",
+        "family",
+        "identity_status",
+        "lifecycle_state",
+        "epistemic_state",
+        "default_branch",
+        "head_sha",
+        "languages",
+        "frameworks",
+        "dependencies",
+        "modules",
+        "entrypoints",
+        "APIs",
+        "CLI",
+        "UI",
+        "database",
+        "storage",
+        "models",
+        "agents",
+        "skills",
+        "tools",
+        "MCP",
+        "workflows",
+        "policies",
+        "security",
+        "tests",
+        "benchmarks",
+        "CI_CD",
+        "documentation",
+        "data_flow",
+        "control_flow",
+        "dependency_graph",
+        "capability_graph",
+        "evidence_refs",
+        "provenance_refs",
+        "risks",
+        "gaps",
+        "technical_debt",
+        "extension_points",
+        "unknowns"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "notes": "Required inventory shape. Values must be discovered, not inferred from folder names."
+    },
+    {
+      "family_id": "ATTR-MODEL-001",
+      "name": "Universal model/provider contract",
+      "owner": "VLNS",
+      "fields": [
+        "model_id",
+        "provider",
+        "version",
+        "protocol",
+        "endpoint",
+        "capabilities",
+        "context_window",
+        "modalities",
+        "structured_output",
+        "tool_calling",
+        "streaming",
+        "embeddings",
+        "vision",
+        "audio",
+        "reasoning_profile",
+        "local_or_remote",
+        "cost_profile",
+        "credential_ref",
+        "health_state",
+        "provenance",
+        "conformance_state"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ],
+      "notes": "Capability flags stay UNKNOWN until adapter discovery and conformance."
+    },
+    {
+      "family_id": "ATTR-ACTIVATION-001",
+      "name": "VLNS to VX activation envelope",
+      "owner": "VLNS",
+      "fields": [
+        "model_id",
+        "provider",
+        "model_version",
+        "role",
+        "capability_profile",
+        "context_hash",
+        "tool_profile",
+        "permission_profile",
+        "constraints",
+        "provenance",
+        "activation_id"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md"
+      ],
+      "notes": "Connecting a model does not give it execution authority."
+    },
+    {
+      "family_id": "ATTR-AGENT-001",
+      "name": "Governed agent definition/genome",
+      "owner": "VAIXLNS",
+      "fields": [
+        "agent_id",
+        "canonical_name",
+        "role",
+        "family",
+        "capabilities",
+        "allowed_tools",
+        "authority_scope",
+        "input_contract",
+        "output_contract",
+        "preconditions",
+        "evidence_requirements",
+        "verification_requirements",
+        "failure_policy",
+        "handoff_targets",
+        "status",
+        "version",
+        "provenance",
+        "lineage",
+        "model_portfolio",
+        "memory_partitions",
+        "epistemic_profile",
+        "failure_history",
+        "evidence_history",
+        "performance_history"
+      ],
+      "state": "SPECIFIED_WITH_REGISTRY_ADAPTER",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "notes": "Registry metadata does not prove an agent process is running."
+    },
+    {
+      "family_id": "ATTR-CAP-001",
+      "name": "Capability contract",
+      "owner": "VLNS",
+      "fields": [
+        "capability_id",
+        "version",
+        "domain",
+        "purpose",
+        "requires",
+        "accepts",
+        "outputs",
+        "compatible_models",
+        "required_tools",
+        "policy_requirements",
+        "preconditions",
+        "invariants",
+        "failure_modes",
+        "verification_required",
+        "proof_obligations",
+        "implementation_state",
+        "conformance_state",
+        "owner",
+        "dependencies",
+        "provenance",
+        "lineage"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "notes": "A proposal is not an installed or executable capability."
+    },
+    {
+      "family_id": "ATTR-MEM-001",
+      "name": "Persistent memory object",
+      "owner": "VLNS",
+      "fields": [
+        "memory_id",
+        "type",
+        "scope",
+        "owner",
+        "source",
+        "provenance",
+        "content",
+        "content_hash",
+        "confidence",
+        "status",
+        "permissions",
+        "created_at",
+        "updated_at",
+        "dependencies",
+        "version",
+        "lineage",
+        "retention_policy",
+        "integrity_state"
+      ],
+      "state": "PROPOSED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ],
+      "notes": "Persistent memory is not equivalent to an in-memory chat/session log."
+    },
+    {
+      "family_id": "ATTR-EXEC-001",
+      "name": "Agent invocation/execution event",
+      "owner": "VX",
+      "fields": [
+        "agent_run_id",
+        "task_id",
+        "agent_id",
+        "provider",
+        "model_id",
+        "model_version",
+        "start_time",
+        "end_time",
+        "input_hash",
+        "output_hash",
+        "tools",
+        "events",
+        "handoffs",
+        "policy_decision",
+        "evidence_refs",
+        "verification_state",
+        "usage_cost_metadata",
+        "failure_state",
+        "replay_ref",
+        "final_disposition",
+        "source_revision",
+        "correlation_id"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "notes": "These are designed evidence fields, not proof of a deployed event pipeline."
+    },
+    {
+      "family_id": "ATTR-EVID-001",
+      "name": "Evidence/provenance record",
+      "owner": "VAIXLNS",
+      "fields": [
+        "evidence_id",
+        "claim_id",
+        "source_uri",
+        "source_revision",
+        "source_path",
+        "line_or_fragment",
+        "content_hash",
+        "collector",
+        "collection_time",
+        "method",
+        "trust_level",
+        "verification_state",
+        "related_entities",
+        "contradictions",
+        "replay_ref",
+        "freshness",
+        "admission_decision"
+      ],
+      "state": "CANONICAL_REQUIREMENT",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/federation.yaml"
+      ],
+      "notes": "Collection, verification and admission are separate stages."
+    },
+    {
+      "family_id": "ATTR-INTEG-001",
+      "name": "Universal external integration gate",
+      "owner": "NAXLNS/VAIXLNS",
+      "fields": [
+        "candidate_id",
+        "system_identity",
+        "endpoint",
+        "protocol",
+        "request_schema",
+        "response_schema",
+        "authentication_mode",
+        "credential_reference",
+        "permission_scope",
+        "sandbox_result",
+        "contract_test_result",
+        "negative_test_result",
+        "timeout_policy",
+        "retry_policy",
+        "failure_recovery",
+        "replay_result",
+        "independent_verification",
+        "impact_budget",
+        "admission_authority",
+        "rollback_switch",
+        "live_health"
+      ],
+      "state": "DOCUMENTED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/federation.yaml"
+      ],
+      "notes": "Discovery is not authorization; never store secret values in the index."
+    },
+    {
+      "family_id": "ATTR-OBS-001",
+      "name": "Health and observability envelope",
+      "owner": "Federation",
+      "fields": [
+        "health_endpoint",
+        "readiness_state",
+        "metrics_endpoint",
+        "structured_logs",
+        "trace_endpoint",
+        "correlation_id",
+        "service_version",
+        "source_revision",
+        "uptime_window",
+        "last_successful_probe",
+        "probe_origin",
+        "probe_authentication",
+        "latency",
+        "error_rate",
+        "dependency_health",
+        "evidence_timestamp"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/federation.yaml"
+      ],
+      "notes": "A stored last-probe result is historical, not current health."
+    },
+    {
+      "family_id": "ATTR-REPLAY-001",
+      "name": "Replay / reality capsule",
+      "owner": "VX",
+      "fields": [
+        "execution_id",
+        "task_contract_hash",
+        "source_revision",
+        "environment_fingerprint",
+        "provider_model_version",
+        "policy_version",
+        "tool_versions",
+        "input_refs",
+        "event_sequence",
+        "observations",
+        "output_refs",
+        "evidence_refs",
+        "verification_result",
+        "replayability",
+        "replay_hash",
+        "failure_injection_results"
+      ],
+      "state": "SPECIFIED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ],
+      "notes": "Deterministic simulation must be distinct from real external execution."
+    },
+    {
+      "family_id": "ATTR-ENG-001",
+      "name": "Engineering drawing job contract",
+      "owner": "VAIXLNS",
+      "fields": [
+        "job_id",
+        "discipline",
+        "jurisdiction",
+        "units",
+        "coordinate_frame",
+        "constraints",
+        "governing_standards",
+        "standard_editions",
+        "backend_adapter",
+        "deliverables",
+        "simulation_required",
+        "independent_check_required",
+        "human_approval_required",
+        "release_eligibility",
+        "evidence_refs",
+        "risk_class"
+      ],
+      "state": "SPECIFIED_IN_OPEN_PR_NOT_MERGED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/pull/39"
+      ],
+      "notes": "Does not itself implement CAD/BIM kernels or certify engineering compliance."
+    },
+    {
+      "family_id": "ATTR-PLATFORM-001",
+      "name": "Cross-platform runtime profile",
+      "owner": "Federation",
+      "fields": [
+        "platform_id",
+        "operating_system",
+        "architecture",
+        "browser_support",
+        "ui_support",
+        "local_runtime_support",
+        "model_runtime",
+        "memory_budget",
+        "storage_budget",
+        "network_requirements",
+        "secure_credential_store",
+        "background_execution_limits",
+        "tool_permissions",
+        "health_probe",
+        "conformance_suite",
+        "runtime_status"
+      ],
+      "state": "PROPOSED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/deploy/federation/federation.yaml"
+      ],
+      "notes": "UI availability does not guarantee local-model support on every OS/version."
+    },
+    {
+      "family_id": "ATTR-INDEX-001",
+      "name": "Master index atom/fragment",
+      "owner": "VAIXLNS",
+      "fields": [
+        "record_id",
+        "canonical_identity",
+        "aliases",
+        "record_type",
+        "source_repository",
+        "source_path",
+        "source_revision",
+        "source_range",
+        "content_hash",
+        "original_text",
+        "normalized_text",
+        "classification",
+        "epistemic_state",
+        "lifecycle_state",
+        "canonical_owner",
+        "relationships",
+        "dependencies",
+        "evidence_refs",
+        "lineage_refs",
+        "conflicts",
+        "reconstruction_state"
+      ],
+      "state": "PARTIAL_COVERAGE",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/registry/omega/omega-000-master-index.json",
+        "https://github.com/fisallllll280-code/VAIXLNS/blob/main/docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md"
+      ],
+      "notes": "The entire historical 0001–2750 range is not currently exposed item by item."
+    },
+    {
+      "family_id": "ATTR-SESSION-001",
+      "name": "Session continuity object",
+      "owner": "VLNS",
+      "fields": [
+        "session_id",
+        "project_id",
+        "model_id",
+        "agent_id",
+        "start_time",
+        "end_time",
+        "goals",
+        "inputs",
+        "decisions",
+        "ideas",
+        "outputs",
+        "evidence",
+        "provenance",
+        "failure_events",
+        "resume_state",
+        "access_scope",
+        "retention_status"
+      ],
+      "state": "PROPOSED",
+      "source_refs": [
+        "https://github.com/fisallllll280-code/NAXLNS/blob/main/README.md"
+      ],
+      "notes": "Existing console history is process-local, not durable memory."
+    }
+  ],
+  "catalog_depth": {
+    "identity_records": 4,
+    "connection_edges": 4,
+    "declared_capabilities": 11,
+    "atomic_properties": 10,
+    "attribute_families": 15,
+    "indexed_attribute_fields": 302,
+    "engineering_panels": 7,
+    "evidence_backed_gaps": 8,
+    "note": "Counts describe indexed declarations and fields, not implemented runtime capabilities."
+  }
+}
