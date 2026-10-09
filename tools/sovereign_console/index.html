@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:">
+<title>VAIXLNS Ω Console</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0d12;--panel:#10141d;--panel2:#151b27;--line:#262e3b;--muted:#8d99aa;--text:#e9eef7;--cyan:#6ae3d2;--green:#6ee7a8;--amber:#f2c879;--red:#ff8585;--blue:#8db8ff;--radius:13px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 65% -15%,#1b2940 0,transparent 45%),var(--bg);color:var(--text);min-height:100vh;font-size:13px}
+button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.shell{min-height:100vh;display:grid;grid-template-rows:62px 1fr}.topbar{display:flex;align-items:center;gap:15px;padding:0 20px;border-bottom:1px solid var(--line);background:rgba(11,13,18,.86);position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:10px;min-width:230px}.mark{height:34px;width:34px;border:1px solid #34786f;border-radius:10px;display:grid;place-items:center;background:#102a2a;color:var(--cyan);font-size:19px;font-weight:800}.brand strong{font-size:14px;letter-spacing:.035em}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:2px;letter-spacing:.12em;text-transform:uppercase}
+.topmeta{display:flex;align-items:center;gap:9px;flex:1}.pill{border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:#b6c2d3;background:#111722;font-size:10px;letter-spacing:.05em;white-space:nowrap}.dot{height:6px;width:6px;border-radius:100%;display:inline-block;background:var(--green);margin-right:5px}.dot.warn{background:var(--amber)}.top-actions{display:flex;gap:7px}.btn{border:1px solid var(--line);background:#151c27;border-radius:8px;padding:8px 11px;font-size:11px}.btn:hover{border-color:#536177;background:#1a2433}.btn.primary{color:#061a18;background:var(--cyan);border-color:var(--cyan);font-weight:750}.btn.subtle{background:transparent}
+.workspace{display:grid;grid-template-columns:208px minmax(400px,1fr) 260px;gap:13px;padding:14px;max-width:1800px;width:100%;margin:auto}
+.panel{background:linear-gradient(180deg,rgba(18,23,33,.96),rgba(13,16,23,.98));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;min-width:0}
+.sidebar{padding:13px 10px;display:flex;flex-direction:column;gap:19px;height:calc(100vh - 90px);position:sticky;top:76px}.section-label{font-size:9px;color:#718096;letter-spacing:.16em;text-transform:uppercase;padding:0 9px;margin-bottom:7px}.navgroup{display:grid;gap:3px}.navitem{border:1px solid transparent;background:transparent;border-radius:8px;text-align:left;padding:9px;color:#aeb9c9;display:flex;align-items:center;gap:9px;width:100%;font-size:11px}.navitem:hover,.navitem.active{background:#1a2532;border-color:#293849;color:var(--text)}.navicon{width:18px;text-align:center;color:#7f91a7;font-weight:700}.navitem.active .navicon{color:var(--cyan)}.navlabel{flex:1}.key{font-size:9px;color:#6d7a8d;border:1px solid #30394a;padding:2px 5px;border-radius:5px}
+.sidefoot{margin-top:auto;border-top:1px solid var(--line);padding:13px 8px 2px;color:#6d7b8f;font-size:10px;line-height:1.8}.sidefoot b{color:#a5b2c3;font-weight:600}
+.content{min-width:0;display:grid;grid-template-rows:auto auto minmax(430px,1fr) auto;gap:13px}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:5px 3px}.eyebrow{font-size:9px;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}.pagehead h1{font-size:22px;letter-spacing:-.04em;margin:0;font-weight:680}.pagehead p{margin:7px 0 0;color:var(--muted);font-size:11px;line-height:1.6}.pageactions{display:flex;gap:7px;flex-wrap:wrap}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{padding:12px 14px;min-height:82px}.metric .label{font-size:10px;color:var(--muted)}.metric .value{font-size:22px;margin:7px 0 3px;font-weight:720;letter-spacing:-.04em}.metric .foot{font-size:9px;color:#718096}.value.mint{color:var(--cyan)}.value.good{color:var(--green)}.value.warning{color:var(--amber)}
+.terminal{display:flex;flex-direction:column;min-height:0}.terminal-head{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.015)}.terminal-title{display:flex;align-items:center;gap:9px;font-weight:650}.lights{display:flex;gap:5px}.lights span{height:7px;width:7px;border-radius:50%;background:#374252}.lights span:first-child{background:#ff6d70}.lights span:nth-child(2){background:#f0bd58}.lights span:nth-child(3){background:#5fce9b}.terminal-tools{display:flex;gap:12px;color:var(--muted);font-size:10px}.terminal-tools button{background:none;border:0;color:inherit;padding:0}.terminal-tools button:hover{color:var(--text)}
+.notice{padding:8px 13px;background:rgba(242,200,121,.06);border-bottom:1px solid #51452f;color:#c7af7a;font-size:10px;line-height:1.55}.notice strong{color:var(--amber)}
+.output{padding:14px 15px 20px;overflow:auto;flex:1;min-height:250px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.75;scrollbar-width:thin;scrollbar-color:#354052 transparent}.welcome{color:#93a2b7;white-space:pre-wrap}.line{white-space:pre-wrap;overflow-wrap:anywhere}.promptline{color:#a1b0c2;margin:10px 0 3px}.promptline .sig{color:var(--cyan)}.outputline{color:#c5cfdd}.outputline.dim{color:#8090a5}.outputline.good{color:var(--green)}.outputline.bad{color:var(--red)}.outputline.warn{color:var(--amber)}.evidence{margin-top:9px;padding:8px 10px;border:1px solid #253342;border-radius:7px;color:#7e94a9;background:#0d131b;font-size:10px}.eventhash{color:#627f88}.inputbar{display:flex;align-items:center;gap:9px;padding:13px 14px;border-top:1px solid var(--line);background:#0e121a}.inputprompt{font-family:ui-monospace,monospace;font-weight:800;color:var(--cyan);white-space:nowrap}.command-input{border:0;background:transparent;outline:none;color:var(--text);flex:1;min-width:0;font-family:ui-monospace,monospace;font-size:12px}.command-input::placeholder{color:#566375}.send{border:1px solid #32786f;background:#102c29;color:var(--cyan);border-radius:7px;padding:7px 11px;font-size:11px}.send:hover{background:#153b36}.terminal-foot{display:flex;justify-content:space-between;gap:12px;padding:7px 13px;border-top:1px solid var(--line);color:#66748a;font-size:9px}
+.rightcol{display:flex;flex-direction:column;gap:13px;min-width:0}.cardhead{display:flex;align-items:center;justify-content:space-between;padding:13px 13px 10px;border-bottom:1px solid var(--line)}.cardhead strong{font-size:11px}.cardhead span{font-size:9px;color:var(--muted)}.cardbody{padding:12px 13px}.kv{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #202735;font-size:10px}.kv:last-child{border-bottom:0}.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:right;overflow-wrap:anywhere}.status-good{color:var(--green)}.status-warn{color:var(--amber)}.status-bad{color:var(--red)}.agentrow{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid #202735}.agentrow:last-child{border:0}.agentbadge{width:25px;height:25px;display:grid;place-items:center;border:1px solid #31444d;border-radius:7px;background:#122329;color:var(--cyan);font-size:10px;font-weight:700}.agentinfo{min-width:0;flex:1}.agentinfo b{font-size:10px;display:block;line-height:1.4}.agentinfo span{font-size:9px;color:var(--muted);display:block;margin-top:3px}.scope{font-size:8px;border:1px solid #2b3747;border-radius:4px;padding:3px 5px;color:#a6b6ca}
+.flow{display:grid;gap:7px}.flowstep{display:flex;gap:9px;align-items:flex-start}.num{color:var(--cyan);font:10px ui-monospace,monospace;border:1px solid #2b4e4e;border-radius:5px;padding:3px 5px}.flowtext b{display:block;font-size:10px}.flowtext span{display:block;font-size:9px;color:var(--muted);margin-top:3px;line-height:1.5}.hashbox{font-family:ui-monospace,monospace;color:#8099aa;background:#0b1118;padding:9px;border-radius:7px;overflow-wrap:anywhere;font-size:9px;line-height:1.6;border:1px solid #202c39}
+.bottomnote{font-size:9px;color:#6f7b8e;display:flex;justify-content:space-between;gap:10px;padding:0 3px 3px}.bottomnote a{color:#8ca6c4;text-decoration:none}.bottomnote a:hover{color:var(--cyan)}
+@media(max-width:1180px){.workspace{grid-template-columns:180px minmax(380px,1fr)}.rightcol{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.rightcol .wide{grid-column:span 2}.sidebar{height:auto;min-height:calc(100vh - 90px)}}
+@media(max-width:760px){.shell{grid-template-rows:56px 1fr}.topbar{padding:0 11px;gap:8px}.brand{min-width:0;flex:1}.brand small{font-size:8px}.topmeta .pill:nth-child(2){display:none}.top-actions .btn{padding:7px 8px}.workspace{display:flex;flex-direction:column;padding:10px;gap:10px}.sidebar{position:static;height:auto;display:block;padding:9px}.sidebar .navgroup{display:flex;flex-wrap:wrap}.sidebar .section-label{margin:7px 0 5px}.navitem{width:auto;white-space:nowrap;padding:7px 9px}.sidebar .sidefoot{display:none}.content{display:flex;flex-direction:column;gap:10px}.pagehead{padding:4px 2px}.pagehead h1{font-size:19px}.pagehead p{font-size:10px}.pageactions{display:none}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric{min-height:68px;padding:10px}.metric .value{font-size:20px}.terminal{min-height:570px}.output{min-height:370px;padding:11px}.rightcol{display:grid;grid-template-columns:1fr}.rightcol .wide{grid-column:auto}.bottomnote{line-height:1.6}.topmeta{flex:0}.topmeta .pill:first-child{font-size:9px}.terminal-tools span{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="mark">Ω</div><div><strong>VAIXLNS</strong><small>Sovereign Command Fabric</small></div></div>
+    <div class="topmeta"><div class="pill"><i class="dot warn" id="connection-dot"></i><span id="connection-label">LOCAL BRIDGE STARTING</span></div><div class="pill">CANONICAL · Ω.000</div></div>
+    <div class="top-actions"><button class="btn subtle" id="focus-btn" title="Focus command input (Ctrl/⌘ K)">⌘ K</button><button class="btn primary" id="proof-btn">Run proof gate ↗</button></div>
+  </header>
+  <div class="workspace">
+    <aside class="panel sidebar">
+      <div><div class="section-label">Control plane</div><div class="navgroup">
+        <button class="navitem active" data-cmd="status"><span class="navicon">◈</span><span class="navlabel">System status</span></button>
+        <button class="navitem" data-cmd="map"><span class="navicon">⌘</span><span class="navlabel">System map</span></button>
+        <button class="navitem" data-cmd="history"><span class="navicon">↳</span><span class="navlabel">Session trail</span></button>
+      </div></div>
+      <div><div class="section-label">Sovereign index</div><div class="navgroup">
+        <button class="navitem" data-cmd="index list"><span class="navicon">⊞</span><span class="navlabel">Master index</span></button>
+        <button class="navitem" data-cmd="index search VX"><span class="navicon">⌕</span><span class="navlabel">Search index</span></button>
+        <button class="navitem" data-cmd="genome inspect"><span class="navicon">⟐</span><span class="navlabel">Project genome</span></button>
+        <button class="navitem" data-cmd="genome verify"><span class="navicon">✓</span><span class="navlabel">Verify digest</span></button>
+      </div></div>
+      <div><div class="section-label">Agent fabric</div><div class="navgroup">
+        <button class="navitem" data-cmd="agents list"><span class="navicon">⋈</span><span class="navlabel">Agent registry</span></button>
+        <button class="navitem" data-cmd="agents inspect AG-006"><span class="navicon">⌁</span><span class="navlabel">Adversarial auditor</span></button>
+      </div></div>
+      <div><div class="section-label">Proof & execution</div><div class="navgroup">
+        <button class="navitem" data-cmd="proof verify"><span class="navicon">⛨</span><span class="navlabel">Proof gate</span></button>
+        <button class="navitem" data-cmd="runtime status"><span class="navicon">▷</span><span class="navlabel">VX runtime</span></button>
+        <button class="navitem" data-cmd="runtime simulate verify index, agents and genome"><span class="navicon">≋</span><span class="navlabel">Simulate pipeline</span></button>
+        <button class="navitem" data-cmd="tests run"><span class="navicon">⊳</span><span class="navlabel">Run test suite</span></button>
+      </div></div>
+      <div class="sidefoot"><b>SECURITY PROFILE</b><br>Allow-listed commands only<br>Loopback-bound local API<br>No arbitrary shell execution<br><b id="session-id">SESSION · INITIALIZING</b></div>
+    </aside>
+
+    <main class="content">
+      <div class="pagehead"><div><div class="eyebrow">Ω / LOCAL ENGINEERING WORKSPACE</div><h1>Sovereign Command Console</h1><p>Index-aware operations, bounded agents, provenance checks and deterministic rehearsal.</p></div><div class="pageactions"><button class="btn" id="agents-btn">Inspect agents</button><button class="btn" id="simulate-btn">Simulate pipeline</button></div></div>
+      <div class="metrics">
+        <div class="panel metric"><div class="label">Canonical index</div><div class="value mint" id="m-index">—</div><div class="foot" id="m-index-foot">Checking Ω.000</div></div>
+        <div class="panel metric"><div class="label">Registered agents</div><div class="value" id="m-agents">—</div><div class="foot">Definitions, not process count</div></div>
+        <div class="panel metric"><div class="label">VX boundary</div><div class="value warning" id="m-runtime">—</div><div class="foot">External connectivity</div></div>
+        <div class="panel metric"><div class="label">Session events</div><div class="value" id="m-events">0</div><div class="foot">Hash-linked · process-local</div></div>
+      </div>
+      <section class="panel terminal">
+        <div class="terminal-head"><div class="terminal-title"><div class="lights"><span></span><span></span><span></span></div><span>vlns / sovereign-shell</span></div><div class="terminal-tools"><span>UTF-8</span><span>·</span><span>SAFE MODE</span><span>·</span><button id="clear-btn">Clear output</button></div></div>
+        <div class="notice"><strong>REFERENCE CONSOLE</strong> — commands inspect the current local checkout. Simulations are not real VX execution; registered agents are not assumed to be live processes.</div>
+        <div class="output" id="output" role="log" aria-live="polite"><div class="welcome">VAIXLNS // Ω Sovereign Command Fabric
+────────────────────────────────────────────────────────
+Loading local repository bridge…
+
+Type help to inspect the command surface.
+Examples: index search VX · agents list · proof verify · runtime simulate "verify canonical identity"</div></div>
+        <form class="inputbar" id="command-form" autocomplete="off"><span class="inputprompt">Ω ›</span><input class="command-input" id="command-input" name="command" placeholder="Enter a governed command…" spellcheck="false" autocapitalize="off" aria-label="Command input"><button class="send" type="submit">Execute ↵</button></form>
+        <div class="terminal-foot"><span id="terminal-status">Awaiting input</span><span>↑/↓ history · Ctrl/⌘ K focus · help</span></div>
+      </section>
+      <div class="bottomnote"><span>Authority → evidence → execution. No promotion without proof.</span><span><a href="https://github.com/fisallllll280-code/VAIXLNS" target="_blank" rel="noreferrer">Repository ↗</a> · <a href="https://github.com/fisallllll280-code/VAIXLNS/pull/26" target="_blank" rel="noreferrer">Admission gate PR #26 ↗</a></span></div>
+    </main>
+
+    <aside class="rightcol">
+      <section class="panel"><div class="cardhead"><strong>Canonical surfaces</strong><span id="surface-count">3 checks</span></div><div class="cardbody">
+        <div class="kv"><span>Golden source</span><b id="s-genome">project.genome</b></div>
+        <div class="kv"><span>Master index</span><b id="s-index">Ω.000</b></div>
+        <div class="kv"><span>Agent registry</span><b id="s-agents">registry/v1</b></div>
+        <div class="kv"><span>Digest check</span><b id="s-digest" class="status-warn">NOT RUN</b></div>
+        <div class="kv"><span>Proof gate</span><b id="s-proof" class="status-warn">NOT RUN</b></div>
+      </div></section>
+      <section class="panel"><div class="cardhead"><strong>Agent registry</strong><span id="agent-count-label">waiting</span></div><div class="cardbody" id="agent-preview"><div class="agentrow"><div class="agentbadge">Ω</div><div class="agentinfo"><b>Loading canonical registry…</b><span>Source: registry/agent_registry.v1.json</span></div></div></div></section>
+      <section class="panel wide"><div class="cardhead"><strong>Governed execution path</strong><span>6 stages</span></div><div class="cardbody flow">
+        <div class="flowstep"><span class="num">01</span><div class="flowtext"><b>Intent & context</b><span>Normalize request and load canonical identity.</span></div></div>
+        <div class="flowstep"><span class="num">02</span><div class="flowtext"><b>Capability routing</b><span>Select bounded agent scope; no implied authority escalation.</span></div></div>
+        <div class="flowstep"><span class="num">03</span><div class="flowtext"><b>Evidence obligations</b><span>Attach sources, hashes and explicit unknowns.</span></div></div>
+        <div class="flowstep"><span class="num">04</span><div class="flowtext"><b>Simulation before reality</b><span>Deterministic rehearsal is isolated from live execution.</span></div></div>
+        <div class="flowstep"><span class="num">05</span><div class="flowtext"><b>Verify & reconcile</b><span>Reject missing evidence, identity drift and digest mismatch.</span></div></div>
+        <div class="flowstep"><span class="num">06</span><div class="flowtext"><b>Record or hold</b><span>Hash-linked session trail; no automatic canonical promotion.</span></div></div>
+      </div></section>
+      <section class="panel wide"><div class="cardhead"><strong>Latest session hash</strong><span>SHA-256 chain</span></div><div class="cardbody"><div class="hashbox" id="latest-hash">No session events yet.</div><div style="color:var(--muted);font-size:9px;line-height:1.7;margin-top:8px">In-memory trace only. Restarting the server resets this session log; it is not a durable evidence ledger.</div></div></section>
+    </aside>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var output = document.getElementById("output");
+  var input = document.getElementById("command-input");
+  var form = document.getElementById("command-form");
+  var uiHistory = [];
+  var historyPointer = 0;
+  var lastState = null;
+  var examples = ["help","status","map","index list","index search VX","agents list","agents inspect AG-006","genome inspect","genome verify","proof verify","runtime status","runtime simulate verify canonical identity","tests run","history"];
+  function makeLine(text, cls){
+    var el = document.createElement("div");
+    el.className = "line " + (cls || "outputline");
+    el.textContent = text;
+    return el;
+  }
+  function scrollBottom(){ output.scrollTop = output.scrollHeight; }
+  function writeCommand(cmd){
+    output.appendChild(makeLine("","promptline"));
+    var prompt = output.lastChild;
+    var sig = document.createElement("span");
+    sig.className = "sig";
+    sig.textContent = "Ω › ";
+    prompt.appendChild(sig);
+    prompt.appendChild(document.createTextNode(cmd));
+  }
+  function renderResult(result){
+    (result.lines || []).forEach(function(line){
+      var cls = "outputline";
+      if (/^\[PASS\]|Result: PASS|INTEGRITY_PASS|PASS:/.test(line)) cls += " good";
+      if (/^\[FAIL\]|Result: FAIL|BLOCKED|mismatch|failed|FAIL:/.test(line)) cls += " bad";
+      if (/SIMULATION_ONLY|NOT_CONNECTED|not the same|not VERIFIED|not imply/i.test(line)) cls += " warn";
+      output.appendChild(makeLine(line, cls));
+    });
+    if (result.evidence && result.evidence.length){
+      var e = document.createElement("div"); e.className="evidence";
+      e.textContent = "EVIDENCE SOURCES  ·  " + result.evidence.join("  ·  ");
+      output.appendChild(e);
+    }
+    if (result.event){
+      var h = document.createElement("div"); h.className="eventhash";
+      h.textContent = "EVENT #" + result.event.sequence + "  ·  SHA-256 " + result.event.event_hash;
+      output.appendChild(h);
+      document.getElementById("latest-hash").textContent = result.event.event_hash;
+    }
+    if (result.command === "genome verify"){
+      var digestNode=document.getElementById("s-digest");
+      digestNode.textContent=result.ok?"PASS":"FAIL";digestNode.className=result.ok?"status-good":"status-bad";
+    }
+    if (result.command === "proof verify"){
+      var proofNode=document.getElementById("s-proof");
+      proofNode.textContent=result.ok?"PASS":"BLOCKED";proofNode.className=result.ok?"status-good":"status-bad";
+    }
+    if(result.command === "agents list" && result.data && result.data.agents) renderAgentPreview(result.data.agents);
+    document.getElementById("terminal-status").textContent = (result.ok ? "Completed" : "Blocked") + " · " + (result.summary || "");
+    refreshState();
+    scrollBottom();
+  }
+  async function runCommand(command, record){
+    var cmd=(command || "").trim();
+    if(!cmd) return;
+    if(cmd.toLowerCase()==="clear"){
+      output.replaceChildren(makeLine("Output cleared locally. Session history remains available via: history","dim"));
+      input.value="";return;
+    }
+    if(record !== false){uiHistory.push(cmd);historyPointer=uiHistory.length;}
+    writeCommand(cmd);
+    output.appendChild(makeLine("dispatching to local allow-listed command engine…","dim"));
+    document.getElementById("terminal-status").textContent="Executing: "+cmd;
+    scrollBottom();
+    try{
+      var response=await fetch("/api/command",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({command:cmd})});
+      if(!response.ok) throw new Error("Local bridge returned HTTP "+response.status);
+      var result=await response.json();
+      var last=output.lastChild;
+      if(last && last.textContent==="dispatching to local allow-listed command engine…") output.removeChild(last);
+      renderResult(result);
+      updateActiveNav(cmd);
+    }catch(err){
+      output.appendChild(makeLine("LOCAL BRIDGE UNAVAILABLE: "+err.message,"bad"));
+      output.appendChild(makeLine("Start the console from the repository root with: python tools/sovereign_console/server.py","warn"));
+      document.getElementById("connection-dot").className="dot warn";
+      document.getElementById("connection-label").textContent="BRIDGE OFFLINE";
+      document.getElementById("terminal-status").textContent="No backend connection";
+      scrollBottom();
+    }
+  }
+  function updateActiveNav(cmd){
+    document.querySelectorAll(".navitem").forEach(function(node){
+      node.classList.toggle("active",node.getAttribute("data-cmd")===cmd);
+    });
+  }
+  function renderAgentPreview(agents){
+    var el=document.getElementById("agent-preview");el.replaceChildren();
+    var chosen=agents.slice(0,4);
+    chosen.forEach(function(agent){
+      var row=document.createElement("div");row.className="agentrow";
+      var badge=document.createElement("div");badge.className="agentbadge";badge.textContent=String(agent.agent_id||"AG").replace("AG-","");
+      var info=document.createElement("div");info.className="agentinfo";
+      var name=document.createElement("b");name.textContent=agent.canonical_name||agent.agent_id;
+      var meta=document.createElement("span");meta.textContent=(agent.family||"unknown family")+" · "+(agent.capabilities||[]).length+" capabilities";
+      info.append(name,meta);
+      var scope=document.createElement("div");scope.className="scope";scope.textContent=agent.authority_scope||"UNSET";
+      row.append(badge,info,scope);el.appendChild(row);
+    });
+    if(agents.length>4){
+      var more=document.createElement("div");more.style.cssText="font-size:9px;color:var(--muted);padding-top:10px";
+      more.textContent="+"+(agents.length-4)+" more registered definitions · agents list";el.appendChild(more);
+    }
+    document.getElementById("agent-count-label").textContent=agents.length+" definitions";
+  }
+  async function refreshState(){
+    try{
+      var response=await fetch("/api/state",{cache:"no-store"});
+      if(!response.ok) throw new Error("state endpoint unavailable");
+      lastState=await response.json();
+      document.getElementById("connection-dot").className="dot";
+      document.getElementById("connection-label").textContent="LOCAL BRIDGE ONLINE";
+      document.getElementById("m-index").textContent=lastState.index_id||"MISSING";
+      document.getElementById("m-index-foot").textContent=lastState.index_status||"Unknown index state";
+      document.getElementById("m-agents").textContent=String(lastState.agent_count||0);
+      document.getElementById("m-runtime").textContent=lastState.runtime==="NOT_CONNECTED"?"OFFLINE":"CONFIGURED";
+      document.getElementById("m-runtime").className="value "+(lastState.runtime==="NOT_CONNECTED"?"warning":"mint");
+      document.getElementById("m-events").textContent=String(lastState.event_count||0);
+      document.getElementById("s-index").textContent=lastState.index_status||"MISSING";
+      document.getElementById("session-id").textContent="SESSION · "+String(lastState.last_event_hash||"NO EVENTS").slice(0,12).toUpperCase();
+      if(lastState.last_event_hash && lastState.last_event_hash!=="0".repeat(64)) document.getElementById("latest-hash").textContent=lastState.last_event_hash;
+    }catch(err){
+      document.getElementById("connection-dot").className="dot warn";
+      document.getElementById("connection-label").textContent="BRIDGE OFFLINE";
+      document.getElementById("m-runtime").textContent="OFFLINE";
+      document.getElementById("m-runtime").className="value warning";
+    }
+  }
+  form.addEventListener("submit",function(event){event.preventDefault();var cmd=input.value;input.value="";runCommand(cmd,true);});
+  document.querySelectorAll("[data-cmd]").forEach(function(button){button.addEventListener("click",function(){runCommand(button.getAttribute("data-cmd"),true);});});
+  document.getElementById("proof-btn").addEventListener("click",function(){runCommand("proof verify",true);});
+  document.getElementById("agents-btn").addEventListener("click",function(){runCommand("agents list",true);});
+  document.getElementById("simulate-btn").addEventListener("click",function(){runCommand("runtime simulate verify canonical identity and agent registry",true);});
+  document.getElementById("clear-btn").addEventListener("click",function(){output.replaceChildren(makeLine("Output cleared locally. Session history remains available via: history","dim"));});
+  document.getElementById("focus-btn").addEventListener("click",function(){input.focus();});
+  input.addEventListener("keydown",function(event){
+    if(event.key==="ArrowUp"){event.preventDefault();if(uiHistory.length){historyPointer=Math.max(0,historyPointer-1);input.value=uiHistory[historyPointer]||"";}}
+    if(event.key==="ArrowDown"){event.preventDefault();historyPointer=Math.min(uiHistory.length,historyPointer+1);input.value=uiHistory[historyPointer]||"";}
+    if(event.key==="Tab"){event.preventDefault();var val=input.value.trim();var next=examples.find(function(item){return item.indexOf(val)===0 && item!==val;});if(next)input.value=next;}
+  });
+  document.addEventListener("keydown",function(event){
+    if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();input.focus();}
+    if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="l"){event.preventDefault();output.replaceChildren(makeLine("Output cleared locally. Session history remains available via: history","dim"));}
+  });
+  refreshState();
+  runCommand("status",false);
+  runCommand("agents list",false);
+})();
+</script>
+</body>
+</html>
