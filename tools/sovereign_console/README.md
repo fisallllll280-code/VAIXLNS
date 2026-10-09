@@ -28,6 +28,11 @@ The HTTP bridge binds only to loopback. It has no public listener and no free-fo
 | `agents list` | List registry definitions; does not imply live processes |
 | `agents inspect <agent-id>` | Inspect capabilities, authority scope, and hard rule |
 | `agents route <capabilities>` | Find registry definitions that declare all requested capabilities; metadata-only routing preview |
+| `federation status` | List the four indexed system identities and recorded connection state; does not probe remote systems |
+| `federation inspect <system-id>` | Inspect role, identity state, repository surfaces and source references |
+| `federation capabilities [query]` | Search the capability catalog and distinguish specification from implementation evidence |
+| `federation attributes [query]` | Search individual VLNS properties and evidence references |
+| `federation gaps` | Show integration blockers and the evidence needed for closure |
 | `genome inspect` | Inspect the canonical genome record |
 | `genome verify` | Recompute the declared SHA-256 canonical digest |
 | `proof verify` | Run local structural and digest checks |
@@ -53,3 +58,14 @@ python -m unittest discover -s tests -p 'test_sovereign_console*.py'
 ```
 
 The automated test suite covers digest tampering, canonical surfaces, registry inspection, fail-closed command parsing, simulation determinism, and session hash chaining.
+
+
+## VLNS federation and engineering panels
+
+The dashboard adds a source-linked local catalog at `registry/federation/vlns-capability-index.v1.json`. Its seven navigation items/command paths cover federation overview, VLNS inspection, capabilities, deep properties, integration edges and gap/release readiness.
+
+The catalog retains VLNS↔NAXLNS as `UNVERIFIED`. The connection entry is a recorded status from 2026-10-06, not a fresh live health probe. These new commands perform local reads only; they do not contact remote systems or claim connectivity.
+
+For the canonical design, property inventory and connection acceptance rules, see [VLNS System Federation and Engineering Dashboard v1](../../docs/federation/VLNS_SYSTEM_FEDERATION_AND_ENGINEERING_DASHBOARD_V1.md).
+
+The UI is responsive, but the server deliberately binds to loopback. For phone access to a remote host, use an authenticated HTTPS gateway or approved hosted deployment. Do not expose the loopback bridge by merely changing the bind address.
