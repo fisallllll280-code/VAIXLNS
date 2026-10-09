@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vaixlns.example/schemas/engineering-work-order.schema.json",
+  "$id": "urn:vaixlns:schema:engineering-work-order:1.0.0",
   "title": "VAIXLNS Engineering Work Order",
   "description": "Versioned, provenance-bound contract for cross-domain engineering tasks and controlled distributed execution.",
   "type": "object",
