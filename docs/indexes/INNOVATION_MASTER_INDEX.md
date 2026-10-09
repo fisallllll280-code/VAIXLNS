@@ -131,4 +131,4 @@ These entries are context-level proposals/specifications unless separately suppo
 88. Engineering Contract Completeness Agent
 89. Deterministic Research Decision Bundle and Non-Promotion Gate
 
-Implementation reference: \`VAIXLNS-unified/innovation_control/research_fabric.py\`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains \`EVOLVING / IMPLEMENTED\`: live search adapters and item-by-item recovery of the historical \`0001–2750\` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
+Implementation reference: `VAIXLNS-unified/innovation_control/research_fabric.py`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains `EVOLVING / IMPLEMENTED`: live search adapters and item-by-item recovery of the historical `0001–2750` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
