@@ -46,6 +46,13 @@ class ChangeCapsuleTests(unittest.TestCase):
         with self.assertRaisesRegex(CapsuleError, "outside authorized scope"):
             validate_capsule(capsule)
 
+    def test_rejects_backslash_path_separators(self):
+        capsule = valid_capsule()
+        capsule["change"]["changed_paths"] = ["tests\\\\..\\\\project.genome"]
+        capsule["change"]["allowed_paths"] = ["tests\\\\..\\\\project.genome"]
+        with self.assertRaisesRegex(CapsuleError, "invalid path"):
+            validate_capsule(capsule)
+
     def test_rejects_parent_path_traversal(self):
         capsule = valid_capsule()
         capsule["change"]["changed_paths"] = ["../project.genome"]
