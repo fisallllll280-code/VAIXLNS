@@ -44,7 +44,7 @@ jobs:
             scripts/vcre_probe.py \
             tools/omega/validate_federation.py \
             tests/test_canonical_control_plane.py \
-            tests/test_arc_x_reconstruct.py
+            tests/test_arc_x_reconstruct.py \\\n            scripts/innovation_network.py \\\n            tests/test_innovation_network.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
