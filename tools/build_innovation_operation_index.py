@@ -184,8 +184,17 @@ def get_profiles(root):
 
 def draft_rule(name, family):
     text = (family+" "+name).casefold()
-    for keys, rule in RULES:
-        if any(k in text for k in keys): return rule
+    for keys, description, steps, inputs, outputs in RULES:
+        if any(k in text for k in keys):
+            # Family rules provide draft mechanics only; admission remains evidence-gated.
+            return {
+                "description": description,
+                "steps": steps,
+                "inputs": inputs,
+                "outputs": outputs,
+                "gates": ["source provenance", "explicit contract/constraints", "acceptance criteria", "independent verification"],
+                "failures": ["missing specification", "unsupported claim", "unknown dependency", "unresolved conflict", "missing evidence"],
+            }
     return {"description":f"{name} is listed under {family}. Current source catalogs do not contain a reviewed functional specification.",
             "steps":["Capture the source identity, revision, and provenance.","Extract declared purpose, inputs, outputs, dependencies, and authority scope.","Link every substantive claim to a source or mark it unknown.","Run available contract, security, and verification checks.","Publish the profile with gaps visible; do not promote without implementation evidence."],
             "inputs":["source records","requirements","evidence references"],"outputs":["innovation profile","lineage","engineering gaps"],
