@@ -242,8 +242,7 @@ def _project_files(spec: Mapping[str, Any]) -> dict[str, str]:
             '      - "8765:8765"\n'
             "    restart: unless-stopped\n"
             "    healthcheck:\n"
-            '      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen(\\'
-            "http://127.0.0.1:8765/health\\', timeout=2)"]\n"
+            "      test: [\"CMD\", \"python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/health', timeout=2)\"]\n"
             "      interval: 15s\n"
             "      timeout: 3s\n"
             "      retries: 3\n"
