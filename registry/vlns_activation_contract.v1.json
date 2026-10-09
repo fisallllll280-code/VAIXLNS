@@ -19,7 +19,7 @@
     "rule": "Repository name or architectural mention alone does not establish system identity."
   },
   "connection": {
-    "status": "UNREACHABLE_FROM_CURRENT_EXECUTION_ENVIRONMENT",
+    "status": "NOT_CONNECTED_UNVERIFIED",
     "authenticated": false,
     "endpoint_source": "trusted deployment configuration only",
     "credentials": "environment or secret manager only",
@@ -28,10 +28,14 @@
       "activation_id",
       "envelope_hash"
     ],
-    "event_ack_required": true
+    "event_ack_required": true,
+    "last_recorded_probe": "2026-10-06"
   },
   "default_authority": {
-    "role_permissions": ["read", "propose"],
+    "role_permissions": [
+      "read",
+      "propose"
+    ],
     "non_delegable": [
       "canonical_write",
       "governance_override",
@@ -52,7 +56,7 @@
     "explicit_authority",
     "live_endpoint_conformance"
   ],
-  "epistemic_state": "SPECIFIED_IMPLEMENTATION_PENDING_VERIFICATION",
+  "epistemic_state": "SPECIFIED_REFERENCE_IMPLEMENTATION_PENDING_CI_AND_LIVE_ENDPOINT",
   "canonical_admission": "NOT_ADMITTED",
   "updated_on": "2026-10-09"
 }
