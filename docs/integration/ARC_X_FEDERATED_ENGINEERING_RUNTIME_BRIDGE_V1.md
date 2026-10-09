@@ -102,7 +102,9 @@ A task MUST declare its domain and correctness contract before scheduling. Recom
 
 Required logical fields:
 - **schema_version**, **task_id**, **idempotency_key**, **parent_task_id**, **created_at**, **deadline**;
-- **source_revision**, **input_artifact_hashes**, **eir_ref**, **claim_refs**, **lineage_refs**;
+- **source_revision**, **input_artifacts**, **eir_ref**, **claim_refs**, **lineage** and cross-system context references;
+- **memory_context** with record references, index revision, retrieval receipt, query reference, explicit COMPLETE_FOR_SCOPE/PARTIAL/NONE/CONFLICT state, rationale and uncovered scopes;
+- **language_artifact_refs** and optional **index_delta_ref** so language provenance and proposed Ω.000 updates remain traceable;
 - **domain**, **operation**, **required_capabilities**, **input_schema**, **output_schema**;
 - **assumptions**, **constraints**, **proof_obligations**, **verification_profile**;
 - **resource_request** including CPU, RAM, accelerator class, disk, wall time, and concurrency;
