@@ -27,7 +27,7 @@ Agent Framework is the preferred first candidate because its official repository
 From the repository root, with Python 3.12 (Python 3.10+ is expected for this stdlib-only prototype):
 
 ```bash
-python -m unittest tests.test_microsoft_agent_framework_prototype -v
+python -m unittest discover -s tests -p 'test_microsoft_agent_framework_prototype.py' -v
 ```
 
 The tests use only the Python standard library. No network, secrets, model API, or Microsoft SDK is required.
