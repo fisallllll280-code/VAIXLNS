@@ -192,7 +192,7 @@ class CommandEngine:
             "  Runtime simulation is not a production run or VERIFIED evidence.",
             "  External model providers and a live VX runtime are not implied by this console.",
         ]
-        return CommandEngine._ok("Command reference loaded.", lines, {"count": 14})
+        return CommandEngine._ok("Command reference loaded.", lines, {"count": 19})
 
     def _read_json(self, relative: str, required: bool = True) -> Any:
         path = self.root / relative
