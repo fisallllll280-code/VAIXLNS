@@ -1,0 +1,44 @@
+name: Engineering Work Order Contract
+
+on:
+  pull_request:
+    paths:
+      - "schemas/engineering-work-order.schema.json"
+      - "examples/engineering-work-order.example.json"
+      - "scripts/validate_engineering_work_order.py"
+      - "tests/test_engineering_work_order_contract.py"
+      - "registry/engineering/engineering-innovation-fabric.v1.json"
+      - "docs/engineering/VAIXLNS_ENGINEERING_INNOVATION_FABRIC_V1.md"
+  push:
+    branches: [main]
+    paths:
+      - "schemas/engineering-work-order.schema.json"
+      - "examples/engineering-work-order.example.json"
+      - "scripts/validate_engineering_work_order.py"
+      - "tests/test_engineering_work_order_contract.py"
+      - "registry/engineering/engineering-innovation-fabric.v1.json"
+      - "docs/engineering/VAIXLNS_ENGINEERING_INNOVATION_FABRIC_V1.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engineering-work-order-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run contract and adversarial tests
+        run: python -m unittest tests.test_engineering_work_order_contract -v
+      - name: Validate the example and print plan-only order
+        run: python scripts/validate_engineering_work_order.py examples/engineering-work-order.example.json --schema schemas/engineering-work-order.schema.json --plan-only
