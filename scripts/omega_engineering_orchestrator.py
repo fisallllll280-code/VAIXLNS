@@ -114,7 +114,7 @@ def build_report(root: Path) -> dict[str, Any]:
         {"from": "all_artifacts", "to": "engineering_review", "relation": "HASHED_EVIDENCE_BUNDLE"},
     ]
 
-    required = [a for a in artifacts if not a["path"].startswith("omega-error-triage") and not a["path"].startswith("omega-revenue-portfolio")]
+    required = [a for a in artifacts if a.get("blocks_readiness", True)]
     invalid_required = [a["path"] for a in required if a["state"] != "PRESENT_HASH_VALID"]
     missing_test_evidence = tests["state"] in {"MISSING", "UNREADABLE", "UNKNOWN"}
     mismatched = [a["path"] for a in required if a["embedded_hash_state"] == "HASH_MISMATCH" or a["schema_state"] == "SCHEMA_MISMATCH"]
