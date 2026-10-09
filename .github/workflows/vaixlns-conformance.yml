@@ -69,8 +69,7 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Build federated innovation network manifest
-            innovation-network.json
-            engineering-execution-plan.json
+        run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
 
       - name: Build engineering agent plan
         run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
@@ -95,5 +94,6 @@ jobs:
             conformance-evidence.txt
             reconstruction-evidence.json
             provenance.json
-            innovation-network.json\n            engineering-execution-plan.json
+            innovation-network.json
+            engineering-execution-plan.json
           if-no-files-found: error
