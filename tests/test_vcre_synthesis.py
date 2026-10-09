@@ -1,4 +1,6 @@
 import copy
+import json
+from pathlib import Path
 import unittest
 
 from vcre.synthesis import (
@@ -114,6 +116,12 @@ class CrossDomainSynthesisTests(unittest.TestCase):
         self.assertIn("NOT_A_VERIFICATION_RESULT", report.warnings)
         self.assertIn("NO_RUNTIME_OR_PHYSICAL_ACTUATION_PERFORMED", report.warnings)
 
+    def test_candidate_schema_is_valid_json(self):
+        schema_path = Path(__file__).resolve().parents[1] / "schemas" / "engineering-system-candidate.schema.json"
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        self.assertIn("domain_contracts", schema["required"])
+
     def test_dictionary_key_order_does_not_change_fingerprint(self):
         first = {"b": 2, "a": {"y": 1, "x": 0}}
         second = {"a": {"x": 0, "y": 1}, "b": 2}
@@ -187,6 +195,10 @@ class CrossDomainSynthesisTests(unittest.TestCase):
         b = candidate("B", latency=120.0, accuracy=0.98, cost=1.5)
         c = candidate("C", latency=150.0, accuracy=0.80, cost=3.0)
         self.assertEqual(pareto_frontier([a, b, c]), ["A", "B"])
+
+    def test_pareto_comparison_rejects_duplicate_candidate_ids(self):
+        with self.assertRaisesRegex(CandidateSynthesisError, "candidate_id values must be unique"):
+            pareto_frontier([candidate("DUP"), candidate("DUP", latency=80.0)])
 
     def test_pareto_comparison_rejects_incomparable_evidence_states(self):
         a = candidate("A")
