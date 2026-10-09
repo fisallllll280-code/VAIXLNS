@@ -66,7 +66,10 @@ jobs:
             scripts/omega_revenue_portfolio.py \
             tests/test_omega_revenue_portfolio.py \
             scripts/omega_engineering_orchestrator.py \
-            tests/test_omega_engineering_orchestrator.py
+            tests/test_omega_engineering_orchestrator.py \
+            scripts/omega_repository_lifecycle_audit.py \
+            tests/test_omega_repository_lifecycle_audit.py \
+            scripts/omega_system_memory.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
