@@ -11,6 +11,8 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Federated Innovation Intelligence Network](docs/innovation/VAIXLNS_FEDERATED_INNOVATION_INTELLIGENCE_NETWORK_V1.md)
 - [Engineering Agent Fabric](docs/innovation/ENGINEERING_AGENT_FABRIC_V1.md)
 - [Ω Research Fabric — Federated Engineering Index](docs/innovation/OMEGA_RESEARCH_FABRIC_V1.md)
+- [Ω Research Result Schema](schemas/omega-research-result.schema.json)
+- [Ω Global Research Source Registry](registry/omega/research-source-registry.v1.json)
 - [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
 - [Four-system reconciliation](docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md)
 - [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
