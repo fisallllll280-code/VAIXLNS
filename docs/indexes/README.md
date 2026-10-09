@@ -26,6 +26,8 @@
 - ../../schemas/vaixlns-system-memory-record.schema.json — machine-readable provenance-preserving memory-record contract.
 - ../../schemas/arcx-vx-engineering-task.schema.json — typed task envelope for controlled engineering compute.
 - ../../schemas/arcx-vx-engineering-receipt.schema.json — signed acknowledgement contract that cannot itself establish verification or canonical admission.
+- ../../registry/omega/proposals/arcx-memory-engineering-federation.v1.json — proposal-only Ω.000 delta; not a canonical write.
+- ../../registry/tools/arc-x.yaml — ARC-X tool contract with memory, language-processing and engineering-compute operations.
 - ../../scripts/arcx_vx_bridge.py — explicit fail-closed client for a configured VX engineering endpoint; receipt acknowledgement is not proof or admission.
 - ../../tests/test_arcx_vx_bridge.py — unit tests for preflight, receipt validation, and endpoint safety (test execution remains to be verified).
 
