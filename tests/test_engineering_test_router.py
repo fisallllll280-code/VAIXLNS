@@ -38,6 +38,12 @@ class EngineeringTestRouterTests(unittest.TestCase):
         self.assertEqual(plan["selection_mode"], "FULL_SUITE")
         self.assertTrue(plan["unknown_or_cross_cutting_files"])
 
+    def test_hidden_github_path_is_preserved_exactly(self):
+        path = ".github/workflows/fast.yml"
+        plan = plan_tests([path])
+        self.assertEqual(plan["selection_mode"], "FULL_SUITE")
+        self.assertIn(path, plan["unknown_or_cross_cutting_files"])
+
 
 if __name__ == "__main__":
     unittest.main()
