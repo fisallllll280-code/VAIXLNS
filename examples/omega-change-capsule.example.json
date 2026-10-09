@@ -1,0 +1,39 @@
+{
+  "capsule_version": "1.0.0",
+  "capsule_id": "example-not-evidence",
+  "task": {
+    "task_id": "example-task",
+    "summary": "Illustrative capsule only",
+    "acceptance_criteria": [
+      "Replace with task-specific acceptance criteria"
+    ]
+  },
+  "repository": {
+    "repository": "owner/repository",
+    "base_revision": "0000000000000000000000000000000000000000"
+  },
+  "change": {
+    "allowed_paths": [
+      "docs/example.md"
+    ],
+    "changed_paths": [
+      "docs/example.md"
+    ],
+    "diff_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "verification": {
+    "environment": "Record actual environment before use",
+    "checks": [
+      {
+        "name": "replace-with-real-check",
+        "result": "SKIP",
+        "command": "replace-with-real-command"
+      }
+    ],
+    "evidence_refs": []
+  },
+  "admission": {
+    "state": "PROPOSED",
+    "reason": "Example only; not an execution record"
+  }
+}
