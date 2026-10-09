@@ -43,7 +43,10 @@ jobs:
             scripts/treasury_admission_probe.py \
             scripts/vcre_probe.py \
             tools/omega/validate_federation.py \
-            tests/test_canonical_control_plane.py
+            tests/test_canonical_control_plane.py \
+            agents/agent_fabric.py \
+            agents/innovation_orchestrator.py \
+            tests/test_innovation_orchestrator.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
