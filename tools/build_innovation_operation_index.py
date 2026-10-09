@@ -54,14 +54,22 @@ def norm(value):
     return " ".join(re.sub(r"[^a-z0-9\u0600-\u06ff]+", " ", value).split())
 
 def state(value):
-    s = str(value or "").upper().replace("_"," ").strip()
-    for needle, result in [("CONFLICT","CONFLICT"),("QUARANTINED","QUARANTINED"),("MISSING","MISSING"),
-        ("VERIFIED","VERIFIED"),("IMPLEMENTED","IMPLEMENTED"),("PARTIAL","PARTIAL"),
-        ("SPECIFIED","SPECIFIED"),("PROPOSAL","PROPOSAL"),("SOURCE ASSERTED","SOURCE-ASSERTED")]:
-        if needle in s: return result
-    if "RECOVERED" in s and "CANONICAL" in s: return "CANONICAL"
-    if "CANONICAL" in s: return "CANONICAL"
-    if "RECOVERED" in s: return "RECOVERED"
+    s = str(value or "").upper().replace("_", " ").strip()
+    # Match complete state tokens, not accidental substrings such as IMPLEMENTEDIFIED.
+    if re.search(r"\\bCONFLICT\\b", s): return "CONFLICT"
+    if re.search(r"\\bQUARANTINED\\b", s): return "QUARANTINED"
+    if re.search(r"\\bMISSING\\b", s): return "MISSING"
+    if re.search(r"\\bUNKNOWN\\b|\\bUNSPECIFIED\\b", s): return "UNKNOWN"
+    if re.search(r"\\b(PARTIAL)\\b", s) and re.search(r"\\b(VERIFIED|IMPLEMENTED|SPECIFIED)\\b", s): return "PARTIAL"
+    if re.search(r"\\bVERIFIED\\b", s): return "VERIFIED"
+    if re.search(r"\\bIMPLEMENTED\\b", s): return "IMPLEMENTED"
+    if re.search(r"\\bPARTIAL\\b", s): return "PARTIAL"
+    if re.search(r"\\bSPECIFIED\\b", s): return "SPECIFIED"
+    if re.search(r"\\bPROPOS(AL|ED)\\b", s): return "PROPOSAL"
+    if re.search(r"\\bSOURCE[ -]+ASSERTED\\b", s): return "SOURCE-ASSERTED"
+    if re.search(r"\\bRECOVERED\\b", s) and re.search(r"\\bCANONICAL\\b", s): return "CANONICAL"
+    if re.search(r"\\bCANONICAL\\b", s): return "CANONICAL"
+    if re.search(r"\\bRECOVERED\\b", s): return "RECOVERED"
     return "SOURCE-ASSERTED"
 
 def rid(name, family):
@@ -139,7 +147,7 @@ def parse_master(root):
         m = re.match(r"^\s*\d+\.\s+(.+?)\s*$", line)
         if m:
             x = make(m.group(1), SECTION[section.casefold()], "VAIXLNS (index-derived; owner review)",
-                     "SOURCE-ASSERTED", path)
+                     "UNKNOWN", path)
             if x: out.append(x)
     return out
 
@@ -217,9 +225,11 @@ def build(root=ROOT):
         p=by_profile.get(norm(z["name"]),{})
         family=p.get("family") or z["family"] or (z["families"][0] if z["families"] else "Unclassified / needs review")
         owner=p.get("canonical_owner") or z["owner"] or (z["owners"][0] if z["owners"] else "UNRESOLVED_OWNER")
-        statuses=sorted({a["state"] for a in z["states"]},key=lambda s:(WEIGHT.get(s,1),s))
+        all_statuses=sorted({a["state"] for a in z["states"]},key=lambda s:(WEIGHT.get(s,1),s))
+        # UNKNOWN index membership is not implementation evidence and must not downgrade status.
+        statuses=[s for s in all_statuses if s not in {"UNKNOWN","SOURCE-ASSERTED"}] or all_statuses
         status="CONFLICT" if "CONFLICT" in statuses else (min(statuses,key=lambda s:WEIGHT.get(s,1)) if statuses else "UNKNOWN")
-        if any(s in {"IMPLEMENTED","VERIFIED","CANONICAL"} for s in statuses) and any(s in {"PROPOSAL","SOURCE-ASSERTED","MISSING"} for s in statuses): status="CONFLICT"
+        if any(s in {"IMPLEMENTED","VERIFIED","CANONICAL"} for s in statuses) and any(s in {"PROPOSAL","MISSING","QUARANTINED"} for s in statuses): status="CONFLICT"
         if p:
             description=p.get("description",""); mechanism=p.get("mechanism",[]); inputs=p.get("inputs",[]); outputs=p.get("outputs",[])
             gates=p.get("gates",[]); failures=p.get("failure_modes",[]); basis=p.get("basis","CURATED_PROFILE")
