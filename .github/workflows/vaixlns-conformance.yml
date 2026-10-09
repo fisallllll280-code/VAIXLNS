@@ -73,11 +73,11 @@ jobs:
       - name: Build federated innovation network manifest
         run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
 
+      - name: Build Ω research index (offline)
+        run: python scripts/omega_research_fabric.py --root . --query "proof provenance" --output omega-research-results.json
+
       - name: Build engineering agent plan
         run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
-
-      - name: Build Ω research index (offline)
-        run: python scripts/omega_research_fabric.py --root . --output omega-research-results.json
 
       - name: Emit conformance evidence
         if: always()
