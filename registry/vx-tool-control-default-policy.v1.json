@@ -162,5 +162,7 @@
     "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
     "docs/architecture/VX_FEDERATION_GATE_V1.md",
     "docs/canonical/FINALITY_GATE_V1.md"
-  ]
+  ],
+  "default_max_authority": "A3_SANDBOX_MUTATE",
+  "enforcement_note": "Default ceiling is sandbox mutation or lower. A4+ requires an explicitly reviewed policy/environment profile; this policy remains inactive until separately admitted."
 }
