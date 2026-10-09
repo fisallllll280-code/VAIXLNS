@@ -288,7 +288,14 @@ def build_system(
     if len(normalized_intent) > MAX_INTENT_CHARS:
         raise ValueError("intent exceeds the %d character limit" % MAX_INTENT_CHARS)
 
-    slug = safe_slug(name if name and name.strip() else normalized_intent[:64])
+    candidate_name = name if name and name.strip() else normalized_intent[:64]
+    try:
+        slug = safe_slug(candidate_name)
+    except ValueError:
+        if name and name.strip():
+            raise
+        # Non-Latin intents (including Arabic) still receive a deterministic safe directory name.
+        slug = "va-system-" + sha256_bytes(normalized_intent.encode("utf-8"))[:10]
     destination_root = Path(output_dir).expanduser().resolve()
     destination_root.mkdir(parents=True, exist_ok=True)
     target = destination_root / slug
