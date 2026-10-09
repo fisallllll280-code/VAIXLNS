@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "capture_id": "ARCHIVE-20261009T090659Z",
+  "captured_at": "2026-10-09T09:07:01.997214+00:00",
+  "policy": "zero-loss",
+  "records": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS-unified'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/NEXENT'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/vaixlns-nexent-vx'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VX50_COMPLETE_BUILD'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-ARCHIVE",
+      "status": "SKIPPED_PLANNED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-RECOVERY",
+      "status": "SKIPPED_PLANNED"
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VX-runtime'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/vaixlns-core'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/vaixlns-csd-kernel'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS-Intent-to-Reality'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS-Naming-Constitution-v1.0'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS-'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VAIXLNS_OPERATIONAL_ASSURANCE.md'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/tools-vaixlns-meta-core-v0.3.ts'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/-VAIXLNS",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/-VAIXLNS'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    },
+    {
+      "repository": "fisallllll280-code/NAXLNS",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-l1oihkv8/sources/NAXLNS'...\nfatal: could not read Username for 'https://github.com': terminal prompts disabled"
+    }
+  ]
+}
