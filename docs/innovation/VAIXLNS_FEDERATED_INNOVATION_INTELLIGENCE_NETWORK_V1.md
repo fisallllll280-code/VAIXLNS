@@ -31,7 +31,7 @@ Historical + current innovation records
    +-------------+-------------+-------------+
                  |
                  v
-     Ten independent research lanes
+     Eleven independent research lanes
                  |
                  v
  Sources + alternatives + counterevidence
@@ -43,18 +43,19 @@ Historical + current innovation records
        Governed recommendation only
 ```
 
-## Ten research lanes per innovation
+## Eleven research lanes per innovation
 
-1. Source discovery and primary-source capture.
-2. Historical recovery and provenance.
-3. Novelty, aliases, duplicates, and lineage.
-4. Counterevidence and competing explanations.
-5. Competing architecture synthesis.
-6. Engineering contracts and measurable invariants.
-7. Security, privacy, authority, and misuse analysis.
-8. Deterministic tests, replay, and experiments.
-9. Proof-integrity and evidence-quality review.
-10. Governance recommendation, without self-promotion.
+1. **Rapid hypothesis generation:** produce at least three competing hypotheses; mark each unverified and state assumptions.
+2. Source discovery and primary-source capture.
+3. Historical recovery and provenance.
+4. Novelty, aliases, duplicates, and lineage.
+5. Counterevidence and competing explanations.
+6. Competing architecture synthesis.
+7. Engineering contracts and measurable invariants.
+8. Security, privacy, authority, and misuse analysis.
+9. Deterministic tests, replay, and experiments.
+10. Proof-integrity and evidence-quality review.
+11. Governance recommendation, without self-promotion.
 
 The roles are work contracts, not a claim that ten live AI models or servers are running. Independent verification should use diverse evidence and, where available, separate implementations—not merely ten copies of the same model.
 
