@@ -67,3 +67,22 @@ The factory executes only from \`registry/repository-orchestration/REPOSITORY_FA
 - [Federation deployment manifest](../../deploy/federation/federation.yaml)
 
 These artifacts bind system identities to repository surfaces and define the required server infrastructure. They do not claim that the server has been deployed or that identity mappings marked UNVERIFIED have been proven.
+
+
+## VX specialist-agent fabric binding — proposal (2026-10-09)
+
+| Implementation repository | System boundary | Current evidence state | Canonical treatment |
+|---|---|---|---|
+| vx-agents-fabric | VX adapter-based coordination for research, financial analysis, engineering and parent multi-mind reviews | IMPLEMENTED ON FEATURE BRANCH; UNIT TESTS GREEN; LIVE PROVIDERS AND DURABLE LEDGER NOT CONNECTED | PROPOSED / NOT ADMITTED |
+
+### Binding rules
+
+1. Agent identities and versions remain immutable; a role may have multiple explicit versions.
+2. Agents route through VX contracts and scoped adapters. Do not wire all agents directly to all systems.
+3. Research outputs preserve source/evidence provenance; financial agents analyse and propose only, with no payment/trading authority.
+4. The Ω Parent council records an independent review only when that mind's provider adapter actually runs.
+5. Missing providers, proof gaps or hard-gate failures force HOLD/REJECT; votes cannot override them.
+6. The fabric cannot adopt canonical state or deploy production changes. VAIXLNS governance and the universal external integration gate remain authoritative.
+7. The implementation remains PROPOSED until sandbox, failure/recovery, replay, independent verification, fresh proof and explicit admission evidence are attached.
+
+Reference implementation review: https://github.com/fisallllll280-code/vx-agents-fabric/pull/1
