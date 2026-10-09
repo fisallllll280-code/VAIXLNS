@@ -32,6 +32,7 @@ class IndexPathDepthTests(unittest.TestCase):
             encoding="utf-8",
         )
         (self.root / "tools/probe.py").write_text("# small fixture\n", encoding="utf-8")
+        (self.root / "docs/reference.md").write_text("# external URL basename collision\n", encoding="utf-8")
         (self.root / "docs/unreachable.md").write_text("# not referenced\n", encoding="utf-8")
 
     def tearDown(self) -> None:
