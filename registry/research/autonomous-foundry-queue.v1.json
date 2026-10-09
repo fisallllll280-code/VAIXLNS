@@ -1,0 +1,152 @@
+{
+  "schema": "VAIXLNS-AUTONOMOUS-FOUNDRY-QUEUE-1",
+  "schema_version": "1.0.0",
+  "queue_id": "VAIXLNS.RESEARCH.AUTONOMOUS_FOUNDRY.V1",
+  "state": "ACTIVE",
+  "purpose": "Bounded research cycles that inspect registered project evidence and emit auditable system proposals.",
+  "limits": {
+    "max_tasks_per_cycle": 4,
+    "max_local_source_files": 96,
+    "max_local_file_bytes": 512000,
+    "max_local_total_bytes": 3000000,
+    "max_public_repositories": 4,
+    "public_scan_timeout_seconds": 5
+  },
+  "approved_public_repositories": [
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "ref": "main",
+      "purpose": "Research lifecycle, engineering compiler, evidence and orchestration inventory"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "ref": "main",
+      "purpose": "Federated integration and execution-boundary inventory"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "ref": "main",
+      "purpose": "Core runtime and kernel inventory"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "ref": "main",
+      "purpose": "CSD kernel inventory"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "RF-001",
+      "priority": 10,
+      "problem": "VAIXLNS research specifications and NEXENT engineering lifecycle need a traceable cross-repository handoff that keeps discovery, evidence, and authority separate.",
+      "objective": "Propose a governed cross-repository research handoff with inventory provenance, lineage, source-coverage limits, and explicit admission boundaries.",
+      "constraints": [
+        "Public-source scans are inventory-only unless a separately authorized content adapter is implemented",
+        "Do not execute code from scanned repositories",
+        "Keep novelty unassessed until relevant source content and prior art have been reviewed",
+        "Do not self-authorize or promote a canonical change"
+      ],
+      "capabilities": [
+        "repository_inventory",
+        "source_provenance",
+        "typed_handoffs",
+        "lineage_preservation",
+        "coverage_reporting"
+      ],
+      "public_repository_targets": [
+        "fisallllll280-code/NEXENT",
+        "fisallllll280-code/VAIXLNS-unified"
+      ],
+      "local_source_paths": [
+        "docs/research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md",
+        "registry/research/global-research-system.v1.json",
+        "agents/agent_fabric.py",
+        "scripts/discovery_router.py"
+      ]
+    },
+    {
+      "task_id": "RF-002",
+      "priority": 9,
+      "problem": "Research and candidate-generation tasks need explicit processing budgets, bounded concurrency, timeouts, and graceful handling of unavailable sources.",
+      "objective": "Propose a fail-closed research processor with deterministic task ordering, bounded parallel scans, retry ceilings, execution receipts, and reproducible cycle identity.",
+      "constraints": [
+        "Do not retry indefinitely",
+        "Limit work per cycle and record skipped work",
+        "Do not make a failed external source appear successfully searched",
+        "Keep processing read-only"
+      ],
+      "capabilities": [
+        "budget_accounting",
+        "bounded_concurrency",
+        "timeout_management",
+        "deterministic_scheduling",
+        "failure_receipts"
+      ],
+      "public_repository_targets": [
+        "fisallllll280-code/vaixlns-core"
+      ],
+      "local_source_paths": [
+        ".github/workflows/engineering-fast-feedback.yml",
+        "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md",
+        "scripts/omega_pattern_foundry.py",
+        "tools/engineering_test_router.py"
+      ]
+    },
+    {
+      "task_id": "RF-003",
+      "priority": 8,
+      "problem": "Generated system candidates need a reproducible path from architecture proposal through contracts, negative tests, simulation evidence, and independent review.",
+      "objective": "Propose a staged system-manufacturing pipeline that emits an implementation plan, test obligations, rollback criteria, and a reviewable evidence bundle.",
+      "constraints": [
+        "Candidate generation is not implementation",
+        "Tests must include counterexamples and failure cases",
+        "Do not claim VERIFIED without attached test evidence",
+        "Do not modify or deploy runtime state automatically"
+      ],
+      "capabilities": [
+        "architecture_synthesis",
+        "contract_generation",
+        "adversarial_test_planning",
+        "evidence_packaging",
+        "rollback_planning"
+      ],
+      "public_repository_targets": [
+        "fisallllll280-code/vaixlns-csd-kernel"
+      ],
+      "local_source_paths": [
+        "scripts/omega_pattern_foundry.py",
+        "tests/test_omega_pattern_foundry.py",
+        "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md",
+        "registry/patterns/omega-pattern-foundry.v1.json"
+      ]
+    },
+    {
+      "task_id": "RF-004",
+      "priority": 7,
+      "problem": "Innovation throughput must increase without converting fast generation into unreviewed code changes or unsupported novelty claims.",
+      "objective": "Propose an innovation throughput processor that ranks work by evidence gaps, preserves source lineage, quarantines weak candidates, and measures cycle latency and review readiness.",
+      "constraints": [
+        "Priority is scheduling guidance and not truth confidence",
+        "Novelty is unassessed without documented prior-art coverage",
+        "Keep unreviewed candidates out of canonical registries",
+        "Never self-merge or deploy generated changes"
+      ],
+      "capabilities": [
+        "evidence_gap_ranking",
+        "candidate_deduplication",
+        "novelty_state_tracking",
+        "cycle_metrics",
+        "human_review_handoff"
+      ],
+      "public_repository_targets": [
+        "fisallllll280-code/NEXENT"
+      ],
+      "local_source_paths": [
+        "registry/innovation_measurement.v1.json",
+        "scripts/measure_innovations.py",
+        "registry/research/global-research-system.v1.json",
+        "docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md"
+      ]
+    }
+  ]
+}
