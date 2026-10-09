@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -61,6 +62,15 @@ def validate_inputs(manifest: dict[str, Any], workload: dict[str, Any]) -> None:
             raise ValueError(f"pool {pool_id} max_parallel_tasks must be a positive integer")
         if pool.get("network_egress_policy") not in {"DENY_BY_DEFAULT", "ALLOWLIST_ONLY", "EXPLICITLY_APPROVED"}:
             raise ValueError(f"pool {pool_id} has invalid network egress policy")
+        capacity = pool.get("capacity_estimate")
+        if not isinstance(capacity, dict):
+            raise ValueError(f"pool {pool_id} needs a capacity_estimate object")
+        for field in ("cpu_units_per_task", "memory_gib_per_task"):
+            value = capacity.get(field)
+            if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
+                raise ValueError(f"pool {pool_id} {field} must be a positive number")
+        if not isinstance(capacity.get("gpu_capable"), bool):
+            raise ValueError(f"pool {pool_id} gpu_capable must be boolean")
         if pool.get("endpoint") not in (None, ""):
             raise ValueError("PLAN_ONLY example must not contain live endpoints")
     if len(set(pool_ids)) != len(pool_ids):
@@ -81,6 +91,12 @@ def validate_inputs(manifest: dict[str, Any], workload: dict[str, Any]) -> None:
             raise ValueError(f"task {task_id} priority must be an integer from 0 to 100")
         if not isinstance(task.get("requires_isolation", False), bool):
             raise ValueError(f"task {task_id} requires_isolation must be boolean")
+        if not isinstance(task.get("requires_gpu", False), bool):
+            raise ValueError(f"task {task_id} requires_gpu must be boolean")
+        for field in ("estimated_cpu_units", "estimated_memory_gib"):
+            value = task.get(field, 0)
+            if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value) or value < 0:
+                raise ValueError(f"task {task_id} {field} must be a non-negative number")
     if len(set(task_ids)) != len(task_ids):
         raise ValueError("task_id values must be unique")
 
@@ -92,8 +108,15 @@ def compatible(pool: dict[str, Any], task: dict[str, Any]) -> tuple[bool, list[s
         reasons.append("DATA_CLASSIFICATION_EXCEEDS_POOL_POLICY")
     if task.get("requires_isolation", False) and not pool.get("isolated_execution", False):
         reasons.append("ISOLATION_REQUIRED")
-    if DATA_RANK[task["data_classification"]] >= DATA_RANK["CONFIDENTIAL"] and pool["network_egress_policy"] == "EXPLICITLY_APPROVED":
-        reasons.append("CONFIDENTIAL_TASK_BLOCKED_FROM_GENERAL_EGRESS")
+    if DATA_RANK[task["data_classification"]] >= DATA_RANK["CONFIDENTIAL"] and pool["network_egress_policy"] != "DENY_BY_DEFAULT":
+        reasons.append("CONFIDENTIAL_TASK_REQUIRES_EGRESS_DENY")
+    capacity = pool.get("capacity_estimate", {})
+    if task.get("estimated_cpu_units", 0) > capacity.get("cpu_units_per_task", 0):
+        reasons.append("CPU_CAPACITY_INSUFFICIENT")
+    if task.get("estimated_memory_gib", 0) > capacity.get("memory_gib_per_task", 0):
+        reasons.append("MEMORY_CAPACITY_INSUFFICIENT")
+    if task.get("requires_gpu", False) and not capacity.get("gpu_capable", False):
+        reasons.append("GPU_REQUIRED")
     if not isinstance(pool.get("capabilities"), list):
         reasons.append("CAPABILITIES_NOT_DECLARED")
     return not reasons, reasons
