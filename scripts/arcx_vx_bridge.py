@@ -68,7 +68,7 @@ def validate_task(task: Any) -> list[str]:
     errors: list[str] = []
     required = {
         "schema_version", "task_id", "idempotency_key", "created_at",
-        "source_revision", "input_artifacts", "eir_ref", "domain", "operation",
+        "source_revision", "input_artifacts", "eir_ref", "memory_context", "domain", "operation",
         "required_capabilities", "assumptions", "constraints", "proof_obligations",
         "verification_profile", "resource_request", "security", "reproducibility",
         "execution_mode", "policy_version", "authorization_ref", "lineage",
@@ -88,6 +88,31 @@ def validate_task(task: Any) -> list[str]:
         errors.append("MISSING_SOURCE_REVISION")
     if not isinstance(task["eir_ref"], str) or not task["eir_ref"].strip():
         errors.append("MISSING_EIR_REFERENCE")
+
+    memory = task["memory_context"]
+    if not isinstance(memory, dict):
+        errors.append("MEMORY_CONTEXT_REQUIRED")
+    else:
+        coverage = memory.get("coverage_state")
+        if not isinstance(coverage, str) or coverage not in {"COMPLETE_FOR_SCOPE", "PARTIAL", "NONE", "CONFLICT"}:
+            errors.append("INVALID_MEMORY_COVERAGE_STATE")
+        if not isinstance(memory.get("query_ref"), str) or not memory.get("query_ref", "").strip():
+            errors.append("MEMORY_QUERY_REFERENCE_REQUIRED")
+        if not isinstance(memory.get("rationale"), str) or not memory.get("rationale", "").strip():
+            errors.append("MEMORY_COVERAGE_RATIONALE_REQUIRED")
+        refs = memory.get("record_refs")
+        if not isinstance(refs, list) or any(not isinstance(ref, str) or not ref.strip() for ref in refs):
+            errors.append("INVALID_MEMORY_RECORD_REFERENCES")
+        if coverage == "COMPLETE_FOR_SCOPE":
+            if not isinstance(refs, list) or not refs:
+                errors.append("COMPLETE_MEMORY_SCOPE_REQUIRES_RECORDS")
+            if not isinstance(memory.get("index_revision"), str) or not memory.get("index_revision", "").strip():
+                errors.append("COMPLETE_MEMORY_SCOPE_REQUIRES_INDEX_REVISION")
+            if not isinstance(memory.get("retrieval_receipt_ref"), str) or not memory.get("retrieval_receipt_ref", "").strip():
+                errors.append("COMPLETE_MEMORY_SCOPE_REQUIRES_RETRIEVAL_RECEIPT")
+            if memory.get("uncovered_scopes") != []:
+                errors.append("COMPLETE_MEMORY_SCOPE_CANNOT_HIDE_UNCOVERED_SCOPES")
+
     if not isinstance(task["policy_version"], str) or not task["policy_version"].strip():
         errors.append("MISSING_POLICY_VERSION")
 
