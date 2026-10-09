@@ -42,4 +42,6 @@ jobs:
       - name: Compile console modules
         run: python -m py_compile tools/sovereign_console/engine.py tools/sovereign_console/server.py
       - name: Run console tests
-        run: python -m unittest discover -s tests -p 'test_sovereign_console*.py'
+        run: |
+          python -m unittest discover -s tests -p 'test_sovereign_console*.py'
+          python -m unittest discover -s tests -p 'test_federation_console.py'
