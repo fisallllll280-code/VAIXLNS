@@ -12,7 +12,9 @@
     "client": "infra/vlns_server_client.py",
     "entrypoint": "scripts/vlns_activation_bridge.py",
     "tests": "tests/test_vlns_activation_bridge.py",
-    "status": "IMPLEMENTED_REFERENCE_PENDING_CI"
+    "status": "REFERENCE_CI_GREEN_REVIEW_PENDING",
+    "pull_request": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23",
+    "ci_run": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720"
   },
   "identity": {
     "vlns_to_naxlns": "UNVERIFIED",
@@ -56,7 +58,18 @@
     "explicit_authority",
     "live_endpoint_conformance"
   ],
-  "epistemic_state": "SPECIFIED_REFERENCE_IMPLEMENTATION_PENDING_CI_AND_LIVE_ENDPOINT",
+  "epistemic_state": "SPECIFIED_REFERENCE_CI_GREEN_LIVE_ENDPOINT_UNVERIFIED",
   "canonical_admission": "NOT_ADMITTED",
-  "updated_on": "2026-10-09"
+  "updated_on": "2026-10-09",
+  "agent_fabric_gate": {
+    "repository": "fisallllll280-code/vx-agents-fabric",
+    "branch": "feat/vlns-provider-adapter-20261009",
+    "module": "src/vx_agents_fabric/vlns_activation.py",
+    "factory": "src/vx_agents_fabric/providers/factory.py",
+    "tests": "tests/test_vlns_activation.py",
+    "status": "BRANCH_CI_GREEN_REVIEW_PENDING",
+    "ci_run": "https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915189114",
+    "enforcement": "VX_VLNS_ACTIVATION_REQUIRED=true",
+    "limitation": "live VLNS endpoint not verified; not merged into the default branch"
+  }
 }
