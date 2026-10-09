@@ -106,6 +106,18 @@ Initial adapter classes:
 
 An adapter passes conformance only after positive, negative, timeout, duplicate request, permission denial, stale version, malformed response and partial-failure tests pass. Availability is not correctness, and interoperability is not inferred from similar names.
 
+## Interoperability standards and research boundary
+
+The adapter architecture should reuse standards where they fit, while keeping VAIXLNS governance above transport and message exchange:
+
+- **MCP (Model Context Protocol), specification dated 2026-07-28:** tool discovery/invocation and contextual integration. Tool input schemas, access controls, user-visible invocation and confirmation guidance are relevant at the tool-adapter boundary. An MCP-compatible server is not automatically trusted; validate its outputs, scope, side effects and identity. Official sources: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/server/tools.mdx and https://blog.modelcontextprotocol.io/posts/2026-07-28/
+- **A2A Protocol v1.0.0:** interoperability among independent agent systems through capability discovery, task exchange, modalities and handoffs. It is a federation transport/interaction contract, not a replacement for canonical authority, permission mediation, evidence admission or an independent referee. Official source: https://a2a-protocol.org/v1.0.0/
+- **SLSA provenance v1.2:** source-to-artifact provenance and supply-chain integrity signals. Map applicable attestations into the evidence bundle; do not treat a provenance record alone as proof of functional correctness or acceptance. Official source: https://slsa.dev/spec/v1.2/provenance
+
+The resulting stack is layered: MCP for tool-facing interfaces where appropriate, A2A for inter-agent communication where appropriate, SLSA/in-toto-style provenance for artifact-origin evidence where applicable, and Ω-MIND/1 for task authority, scheduling, side-effect limits, system state, refusal semantics and admission. Transport compatibility cannot override any of these gates.
+
+These standards evolve. Pin the exact protocol version and adapter test suite in each system registry record; compatibility must be re-verified on version change rather than inferred from a URL called latest.
+
 ## 10. Failure semantics
 
 - Missing or conflicting authority: BLOCKED; preserve both source references.
