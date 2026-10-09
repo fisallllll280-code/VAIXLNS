@@ -8,7 +8,7 @@
 
 The fabric indexes local project files, extracts system and Ω identifiers and engineering signal classes, then combines local results with explicit public-source discovery and configured server search endpoints. A persistent SQLite/FTS5 index avoids FTS writes for content-identical files between runs.
 
-This is not a universal crawler and cannot claim to search every worldwide source. It queries the enabled providers, local project, and server adapters listed by the operator. Remote records are discovery leads, not engineering proof.
+This is not a universal crawler and cannot claim to search every worldwide source. It queries the enabled providers, local project, and server adapters listed by the operator. Remote records are discovery leads, not engineering proof. The registry at `registry/omega/research-source-registry.v1.json` records available providers and marks VLNS, VX, and NEXNET server/repository locations as configuration-required rather than inventing endpoints. The output contract is defined in `schemas/omega-research-result.schema.json`.
 
 ## Local indexing and retrieval
 
