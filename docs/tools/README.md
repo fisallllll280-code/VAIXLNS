@@ -27,3 +27,13 @@ ARC-X composes existing recovery, registry, NEXENT, VV, VX, evidence, replay, an
 - Contract tests: `../../tests/test_va_genesis.py`
 
 Current state: IMPLEMENTED-PROTOTYPE / PARTIAL. Static structural verification does not imply runtime verification or production admission.
+
+## Agent Action-Control Assurance v1
+
+- [Specification and implementation boundary](AGENT_ACTION_CONTROL_ASSURANCE_V1.md)
+- Registry record: `../../registry/tools/agent-action-assurance.yaml`
+- Reference implementation: [vaixlns-nexent-vx PR #1](https://github.com/fisallllll280-code/vaixlns-nexent-vx/pull/1)
+- CI evidence: [VX Agent Action Assurance](https://github.com/fisallllll280-code/vaixlns-nexent-vx/actions/runs/37916624473)
+
+Current state: **PARTIAL**. The feature-branch reference passed 14 tests, 5,000 randomized transition sequences, and three targeted mutation canaries. Production integration remains unproven. The in-memory idempotency store, target adapter, isolated audit/readback/tripwire services, concurrency tests, formal model checking, and independent security review remain blockers. Passing reference tests does not authorize a production or canonical promotion.
+
