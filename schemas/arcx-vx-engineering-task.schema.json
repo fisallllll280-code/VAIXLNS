@@ -13,6 +13,7 @@
     "source_revision",
     "input_artifacts",
     "eir_ref",
+    "memory_context",
     "domain",
     "operation",
     "required_capabilities",
@@ -574,6 +575,95 @@
         "BLOCKED",
         "QUARANTINED"
       ]
+    },
+    "memory_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_refs",
+        "index_revision",
+        "retrieval_receipt_ref",
+        "coverage_state",
+        "query_ref",
+        "uncovered_scopes",
+        "rationale"
+      ],
+      "properties": {
+        "record_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "index_revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieval_receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "coverage_state": {
+          "enum": [
+            "COMPLETE_FOR_SCOPE",
+            "PARTIAL",
+            "NONE",
+            "CONFLICT"
+          ]
+        },
+        "query_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uncovered_scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "language_artifact_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "References to the exact grammar/parser/compiler artifacts that produced typed inputs; absence must not be represented as verified language support."
+    },
+    "index_delta_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optional proposed Ω.000 delta; a reference does not authorize canonical write."
+    },
+    "system_context_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Evidenced system IDs or contract refs that bound the cross-system task."
     }
   },
   "allOf": [
@@ -622,6 +712,47 @@
               "unit_system",
               "solver_version"
             ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "memory_context": {
+            "properties": {
+              "coverage_state": {
+                "const": "COMPLETE_FOR_SCOPE"
+              }
+            },
+            "required": [
+              "coverage_state"
+            ]
+          }
+        },
+        "required": [
+          "memory_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "memory_context": {
+            "properties": {
+              "record_refs": {
+                "minItems": 1
+              },
+              "index_revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "retrieval_receipt_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uncovered_scopes": {
+                "maxItems": 0
+              }
+            }
           }
         }
       }
