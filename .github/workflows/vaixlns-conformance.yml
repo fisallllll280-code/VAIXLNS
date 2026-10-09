@@ -66,6 +66,9 @@ jobs:
       - name: Run test suite
         run: python -m unittest discover -s tests -v
 
+      - name: Build federated innovation network manifest
+        run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
+
       - name: Emit conformance evidence
         if: always()
         shell: bash
@@ -86,4 +89,5 @@ jobs:
             conformance-evidence.txt
             reconstruction-evidence.json
             provenance.json
+            innovation-network.json
           if-no-files-found: error
