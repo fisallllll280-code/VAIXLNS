@@ -1,0 +1,68 @@
+name: VAIXLNS Zero-Loss Index
+
+on:
+  push:
+    paths:
+      - "registry/indexes/zero-loss-index-taxonomy.v1.json"
+      - "schemas/zero-loss-atomic-record.schema.json"
+      - "scripts/build_zero_loss_index.py"
+      - "tests/test_zero_loss_index.py"
+      - "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md"
+      - "docs/indexes/README.md"
+      - "archive/**"
+      - "recovery/**"
+      - ".github/workflows/zero-loss-index.yml"
+  pull_request:
+    paths:
+      - "registry/indexes/zero-loss-index-taxonomy.v1.json"
+      - "schemas/zero-loss-atomic-record.schema.json"
+      - "scripts/build_zero_loss_index.py"
+      - "tests/test_zero_loss_index.py"
+      - "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md"
+      - "docs/indexes/README.md"
+      - "archive/**"
+      - "recovery/**"
+      - ".github/workflows/zero-loss-index.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-verify-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout pinned source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: ""
+
+      - name: Compile index builder and tests
+        run: |
+          python -m py_compile scripts/build_zero_loss_index.py tests/test_zero_loss_index.py
+          python -m json.tool registry/indexes/zero-loss-index-taxonomy.v1.json >/dev/null
+          python -m json.tool schemas/zero-loss-atomic-record.schema.json >/dev/null
+
+      - name: Run zero-loss index regression tests
+        run: python -m unittest discover -s tests -p 'test_zero_loss_index.py' -v
+
+      - name: Build all 28 index views
+        run: python scripts/build_zero_loss_index.py --root . --output-dir "$RUNNER_TEMP/vaixlns-zero-loss-index"
+
+      - name: Verify source digests and cross-reference integrity
+        run: python scripts/build_zero_loss_index.py --root . --output-dir "$RUNNER_TEMP/vaixlns-zero-loss-index" --verify-only
+
+      - name: Upload reproducible index bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-zero-loss-index-${{ github.sha }}
+          path: ${{ runner.temp }}/vaixlns-zero-loss-index/
+          if-no-files-found: error
+          retention-days: 90
