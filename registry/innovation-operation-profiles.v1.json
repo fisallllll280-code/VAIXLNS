@@ -8,7 +8,9 @@
       "aliases": [
         "Research-to-Engineering Decision Fabric",
         "REDF",
-        "Ω Research-to-Engineering Decision Fabric"
+        "Ω Research-to-Engineering Decision Fabric",
+        "VAIXLNS.RESEARCH.DECISION.FABRIC.001",
+        "VAIXLNS Research Decision Fabric"
       ],
       "family": "Research / evidence / engineering admission",
       "canonical_owner": "VAIXLNS",
@@ -61,7 +63,8 @@
         "Ω Pattern Foundry",
         "Pattern Foundry",
         "Private Pattern Intelligence Boundary",
-        "Ω-Pattern Foundry"
+        "Ω-Pattern Foundry",
+        "Ω.PATTERN_FOUNDRY.001"
       ],
       "family": "Pattern generation / adversarial evaluation / protected IP",
       "canonical_owner": "VAIXLNS",
