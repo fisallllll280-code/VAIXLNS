@@ -12,12 +12,16 @@
     "client": "infra/vlns_server_client.py",
     "entrypoint": "scripts/vlns_activation_bridge.py",
     "tests": "tests/test_vlns_activation_bridge.py",
-    "status": "MERGED_POST_MERGE_CI_PENDING",
+    "status": "MERGED_CI_GREEN",
     "pull_request": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23",
     "ci_run": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720",
     "merge_commit": "https://github.com/fisallllll280-code/VAIXLNS-unified/commit/b4fd3c441bc1a78152588af446f4c56fc4974444",
     "pre_merge_ci": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37915949357",
-    "post_merge_ci": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916253970"
+    "post_merge_ci": {
+      "unified_verification": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916369023",
+      "vx_invention_engine": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916369399",
+      "canonical_conformance": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/37916370435"
+    }
   },
   "identity": {
     "vlns_to_naxlns": "UNVERIFIED",
@@ -61,7 +65,7 @@
     "explicit_authority",
     "live_endpoint_conformance"
   ],
-  "epistemic_state": "IMPLEMENTATION_MERGED_POST_MERGE_CI_PENDING_LIVE_ENDPOINT_UNVERIFIED",
+  "epistemic_state": "IMPLEMENTATION_MERGED_CI_GREEN_LIVE_ENDPOINT_UNVERIFIED",
   "canonical_admission": "NOT_ADMITTED",
   "updated_on": "2026-10-09",
   "agent_fabric_gate": {
