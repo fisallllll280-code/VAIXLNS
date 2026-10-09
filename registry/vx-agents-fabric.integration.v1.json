@@ -10,7 +10,8 @@
     "pull_request": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/1",
     "disposition": "PROPOSED_NOT_ADMITTED",
     "main_provider_bindings_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/2",
-    "main_durable_ops_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/4"
+    "main_durable_ops_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/4",
+    "main_cli_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/5"
   },
   "domains": {
     "research": {
@@ -120,14 +121,15 @@
   "operational_status": {
     "coordinator_code": "IMPLEMENTED_IN_MAIN",
     "provider_binding_support": "AVAILABLE_OPT_IN_OPENAI_COMPATIBLE",
-    "unit_tests": "GITHUB_ACTIONS_GREEN",
+    "unit_tests": "GITHUB_ACTIONS_GREEN_ON_CLI_PR_HEAD",
     "model_providers": "NOT_CONNECTED_UNTIL_ENDPOINT_AND_MODELS_ARE_CONFIGURED",
     "durable_vaixlns_event_ledger": "NOT_CONNECTED",
     "production_admission": "NOT_GRANTED",
     "local_durable_event_ledger": "AVAILABLE_OPT_IN_JSONL_FSYNC",
     "local_artifact_archive": "AVAILABLE_OPT_IN_JSONL_FSYNC",
     "failure_memory": "AVAILABLE_OPT_IN_RETRIEVAL",
-    "crash_resume_controller": "NOT_IMPLEMENTED"
+    "crash_resume_controller": "NOT_IMPLEMENTED",
+    "cli_entrypoint": "IMPLEMENTED_IN_MAIN"
   },
   "canonical_references": {
     "repository_inventory": "registry/REPOSITORY_INVENTORY.md",
@@ -135,7 +137,8 @@
     "contract": "docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
     "registry_record": "registry/vx-agents-fabric.integration.v1.json",
     "universal_gate": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
-    "provider_bindings": "src/vx_agents_fabric/providers/"
+    "provider_bindings": "src/vx_agents_fabric/providers/",
+    "cli_entrypoint": "src/vx_agents_fabric/cli.py"
   },
   "model_binding": {
     "adapter": "OpenAI-compatible chat completions",
@@ -170,5 +173,16 @@
     "fsync_on_append": true,
     "model_weight_retraining": false,
     "automatic_crash_resume": false
+  },
+  "automation_surface": {
+    "command": "python -m vx_agents_fabric.cli",
+    "full_workflow_orchestration": true,
+    "objective_file_input": true,
+    "scoped_context_file_input": true,
+    "exact_agent_version_pinning": true,
+    "atomic_json_report_output": true,
+    "missing_adapters": "HOLD",
+    "failed_hard_gate": "REJECT_OR_HOLD",
+    "production_authority": false
   }
 }
