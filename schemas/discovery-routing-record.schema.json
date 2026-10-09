@@ -1,0 +1,507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/discovery-routing-record.schema.json",
+  "title": "VAIXLNS Discovery Routing Record",
+  "description": "Evidence-first discovery record and multi-destination routing envelope. This schema does not authorize execution.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "discovery_id",
+    "record_version",
+    "created_at",
+    "origin_agent_id",
+    "research_task_id",
+    "objective",
+    "discovery_summary",
+    "parent_directive_id",
+    "classification",
+    "routes",
+    "evidence",
+    "security_status",
+    "license_status",
+    "execution_authorization",
+    "lineage"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "discovery_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin_agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "research_task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "discovery_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_directive_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "policy_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceRef"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "statement",
+          "epistemic_state"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "epistemic_state": {
+            "enum": [
+              "HYPOTHESIS",
+              "INFERRED",
+              "OBSERVED",
+              "SUPPORTED",
+              "CONTRADICTED",
+              "UNVERIFIED"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uncertainty": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "description",
+          "claim_refs"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "resolution_status": {
+            "enum": [
+              "OPEN",
+              "RESOLVED",
+              "DEFERRED"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "candidate_families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "family_id",
+          "identity_status"
+        ],
+        "properties": {
+          "family_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identity_status": {
+            "enum": [
+              "VERIFIED",
+              "PROVISIONAL",
+              "UNVERIFIED",
+              "CONFLICT"
+            ]
+          },
+          "relationship": {
+            "enum": [
+              "PRIMARY",
+              "AFFECTED",
+              "DEPENDENCY",
+              "RELATED"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "affected_systems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "classification": {
+      "type": "object",
+      "required": [
+        "status",
+        "domains",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PROVISIONAL",
+            "CONFIRMED",
+            "CONFLICT_HOLD",
+            "CLASSIFICATION_PENDING"
+          ]
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "FINANCIAL",
+              "ENGINEERING",
+              "SECURITY",
+              "RESEARCH",
+              "OPERATIONS",
+              "LEGAL",
+              "OTHER"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/route"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "verification_status"
+      ],
+      "properties": {
+        "verification_status": {
+          "enum": [
+            "UNVERIFIED",
+            "PARTIAL",
+            "VERIFIED",
+            "CONTRADICTED",
+            "INSUFFICIENT"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verification_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proof_obligations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "security_status": {
+      "enum": [
+        "PENDING",
+        "CLEAR",
+        "RISK_FOUND",
+        "SECURITY_HOLD",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "license_status": {
+      "enum": [
+        "PENDING",
+        "CLEAR",
+        "RESTRICTED",
+        "LICENSE_HOLD",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "privacy_status": {
+      "enum": [
+        "PENDING",
+        "CLEAR",
+        "REVIEW_REQUIRED",
+        "PRIVACY_HOLD",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "dependency_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_discovery_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution_authorization": {
+      "type": "boolean",
+      "const": false,
+      "description": "This discovery-record schema intentionally prohibits authorizing execution. Authorization must be a separate governed admission artifact."
+    },
+    "decision_record_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "audit_event_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "related_discovery_refs"
+      ],
+      "properties": {
+        "parent_discovery_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_discovery_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "supersedes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "sourceRef": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "uri",
+        "source_kind"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "enum": [
+            "REPOSITORY",
+            "PAPER",
+            "WEB_PAGE",
+            "PATENT",
+            "DATASET",
+            "RUNTIME_TRACE",
+            "ARCHIVE",
+            "INTERNAL_RECORD",
+            "OTHER"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieved_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "content_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "trust_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "route": {
+      "type": "object",
+      "required": [
+        "route_id",
+        "destination",
+        "status",
+        "required_capabilities",
+        "priority_policy",
+        "priority_rationale"
+      ],
+      "properties": {
+        "route_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "destination": {
+          "enum": [
+            "VX-FINANCIAL",
+            "VX-ENGINEERING",
+            "PARENT_REVIEW",
+            "CLASSIFICATION_HOLD"
+          ]
+        },
+        "status": {
+          "enum": [
+            "RECEIVED",
+            "CLASSIFICATION_PENDING",
+            "ROUTED",
+            "IN_PROGRESS",
+            "WAITING_FOR_EVIDENCE",
+            "CONFLICT_HOLD",
+            "SECURITY_HOLD",
+            "LICENSE_HOLD",
+            "PARENT_REVIEW",
+            "VERIFIED",
+            "ADMISSION_PENDING",
+            "ADMITTED",
+            "REJECTED",
+            "SUPERSEDED",
+            "CLOSED"
+          ]
+        },
+        "assigned_agent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "priority_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "priority_rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handoff_event_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "output_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decision_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
