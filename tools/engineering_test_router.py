@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -136,7 +137,21 @@ def changed_files_from_git(base: str | None, head: str | None) -> tuple[list[str
     return [line.strip() for line in result.stdout.splitlines() if line.strip()], None
 
 
-def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float]:
+def _parse_test_summary(output: str) -> tuple[int, float] | None:
+    """Parse unittest's completion summary; zero or missing tests are not a pass."""
+    summaries = re.findall(
+        r"Ran\s+(\d+)\s+tests?\s+in\s+([0-9]+(?:\.[0-9]+)?)s",
+        output,
+    )
+    if not summaries:
+        return None
+    return (
+        sum(int(count) for count, _ in summaries),
+        sum(float(seconds) for _, seconds in summaries),
+    )
+
+
+def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int]:
     if plan["selection_mode"] == "FULL_SUITE":
         commands = [[sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", ALL_TEST_PATTERN, "-v"]]
     else:
@@ -147,6 +162,9 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float]:
     outputs: list[str] = []
     started = time.monotonic()
     code = 0
+    test_case_count = 0
+    unittest_runtime = 0.0
+    commands_executed = 0
     for command in commands:
         try:
             result = subprocess.run(
@@ -154,7 +172,17 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float]:
                 stderr=subprocess.STDOUT, check=False,
                 env={**os.environ, "PYTHONPATH": str(ROOT)},
             )
+            commands_executed += 1
             outputs.append("$ " + " ".join(command) + "\n" + result.stdout)
+            summary = _parse_test_summary(result.stdout)
+            if summary is None or summary[0] == 0:
+                outputs.append(
+                    "FAIL_CLOSED: unittest did not report a recognized, non-zero test count."
+                )
+                code = 2
+                break
+            test_case_count += summary[0]
+            unittest_runtime += summary[1]
             if result.returncode:
                 code = result.returncode
                 break
@@ -162,7 +190,10 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float]:
             outputs.append(f"execution_error:{type(exc).__name__}:{exc}")
             code = 127
             break
-    return code, "\n".join(outputs), time.monotonic() - started
+    return (
+        code, "\n".join(outputs), time.monotonic() - started,
+        test_case_count, unittest_runtime, commands_executed,
+    )
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -184,19 +215,29 @@ def main(argv: Sequence[str] | None = None) -> int:
         "status": "PLANNED" if args.plan_only else "PENDING",
         "selection": plan,
         "test_command_family": "PYTHON_UNITTEST",
-        "measurement": {"wall_time_seconds": None, "test_execution_exit_code": None},
+        "measurement": {
+            "wall_time_seconds": None,
+            "test_execution_exit_code": None,
+            "test_case_count": None,
+            "unittest_reported_runtime_seconds": None,
+            "commands_executed": None,
+        },
         "assurance_boundary": {
             "focused_selection_is_not_release_approval": True,
             "unknown_impact_falls_back_to_full_suite": True,
             "required_independent_ci_gates_are_not_waived": True,
+            "zero_discovered_tests_cannot_pass": True,
         },
     }
     if not args.plan_only:
-        exit_code, output, elapsed = _run_tests(plan)
-        receipt["status"] = "PASS" if exit_code == 0 else "FAIL"
+        exit_code, output, elapsed, test_count, unittest_runtime, commands_executed = _run_tests(plan)
+        receipt["status"] = "PASS" if exit_code == 0 and test_count > 0 else "FAIL"
         receipt["measurement"] = {
             "wall_time_seconds": round(elapsed, 6),
             "test_execution_exit_code": exit_code,
+            "test_case_count": test_count,
+            "unittest_reported_runtime_seconds": round(unittest_runtime, 6),
+            "commands_executed": commands_executed,
         }
         receipt["output_sha256"] = hashlib.sha256(output.encode("utf-8")).hexdigest()
         print(output, end="" if output.endswith("\n") else "\n")
