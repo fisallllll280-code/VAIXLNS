@@ -69,7 +69,8 @@ jobs:
             tests/test_omega_engineering_orchestrator.py \
             scripts/omega_repository_lifecycle_audit.py \
             tests/test_omega_repository_lifecycle_audit.py \
-            scripts/omega_system_memory.py
+            scripts/omega_system_memory.py \
+            tests/test_omega_system_memory.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -79,6 +80,12 @@ jobs:
 
       - name: Verify canonical proof
         run: python scripts/proof_verifier.py registry/evidence/control-plane-proof.json
+
+      - name: Verify append-only system memory chain
+        run: python scripts/omega_system_memory.py verify --ledger registry/omega/system-memory/ledger.v1.jsonl
+
+      - name: Replay system memory snapshot
+        run: python scripts/omega_system_memory.py replay --ledger registry/omega/system-memory/ledger.v1.jsonl --output system-memory-snapshot.json
 
       - name: Reconstruct control plane
         run: python scripts/reconstruct_control_plane.py > reconstruction-evidence.json
@@ -154,4 +161,5 @@ jobs:
             omega-server-placement-demo.json
             omega-revenue-portfolio.json
             engineering-orchestration.json
+            system-memory-snapshot.json
           if-no-files-found: warn
