@@ -38,6 +38,15 @@ class SovereignConsoleTests(unittest.TestCase):
                 "authority_scope": "read-only",
                 "primary_output": "atomic index records",
                 "hard_rule": "source pin + hash + provenance",
+            }, {
+                "agent_id": "AG-002",
+                "canonical_name": "Identity & Lineage Resolver",
+                "family": "identity",
+                "capabilities": ["identity", "lineage"],
+                "allowed_tools": ["search", "fetch_file"],
+                "authority_scope": "read-only",
+                "primary_output": "identity and lineage proposals",
+                "hard_rule": "never silent-merge conflicts",
             }],
         })
         self.write_text("registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md", "# test contract\n")
@@ -83,6 +92,15 @@ class SovereignConsoleTests(unittest.TestCase):
         self.assertIn("read-only", "\n".join(result["lines"]))
         self.assertIn("source pin", "\n".join(result["lines"]))
 
+    def test_capability_route_returns_declared_agent_candidates(self):
+        result = self.engine.execute("agents route index archive")
+        self.assertTrue(result["ok"], result["lines"])
+        self.assertEqual(
+            [item["agent_id"] for item in result["data"]["candidates"]],
+            ["AG-001"],
+        )
+        self.assertIn("does not invoke", "\n".join(result["lines"]))
+
     def test_free_form_shell_command_is_not_executed(self):
         marker = self.root / "must-not-exist.txt"
         result = self.engine.execute(f"touch {marker}")
@@ -98,6 +116,14 @@ class SovereignConsoleTests(unittest.TestCase):
         self.assertEqual(first["data"]["mode"], "SIMULATION_ONLY")
         self.assertEqual(first["data"]["epistemic_state"], "SPECIFIED")
         self.assertTrue(any("No project files were changed" in line for line in first["lines"]))
+
+    def test_simulation_rehearses_registered_agent_handoff(self):
+        result = self.engine.execute("runtime simulate trace agent handoff")
+        self.assertTrue(result["ok"], result["lines"])
+        self.assertEqual(result["data"]["chain"], ["AG-001", "AG-002"])
+        self.assertEqual(result["data"]["federation_state"]["exchange_count"], 1)
+        self.assertEqual(len(result["data"]["trace"][1]["handoff_state_hash"]), 64)
+        self.assertEqual(result["data"]["epistemic_state"], "SPECIFIED")
 
     def test_session_events_are_hash_linked(self):
         first = self.engine.execute("status")
