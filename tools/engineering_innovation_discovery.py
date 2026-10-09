@@ -375,6 +375,10 @@ def main(argv: list[str] | None = None) -> int:
             "json_report": str(json_path), "markdown_report": str(md_path),
             "source_count": report["source_count"], "successful_source_count": report["successful_source_count"],
             "failed_source_count": report["failed_source_count"], "baseline_available": report["baseline_available"],
+            "failed_sources": [
+                {"source_id": item.get("source_id"), "slug": item.get("slug"), "error_code": item.get("error_code")}
+                for item in report["source_snapshots"] if item.get("fetch_status") != "SUCCESS"
+            ],
             "state_counts": report["state_counts"],
         }, ensure_ascii=False, indent=2))
         return 0 if report["successful_source_count"] > 0 else 1
