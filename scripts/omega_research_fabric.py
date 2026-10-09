@@ -174,7 +174,8 @@ def store_evidence(db: sqlite3.Connection,items: list[dict[str,Any]]) -> None:
         db.execute("""INSERT INTO evidence VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
           title=excluded.title,url=excluded.url,abstract=excluded.abstract,published=excluded.published,
           retrieved=excluded.retrieved,content_sha256=excluded.content_sha256,state=excluded.state,metadata=excluded.metadata""",vals)
-        if new: db.execute("INSERT INTO evidence_fts VALUES(?,?,?,?)",(x["id"],x["provider"],x["title"],x["abstract"]))
+        db.execute("DELETE FROM evidence_fts WHERE id=?",(x["id"],))
+        db.execute("INSERT INTO evidence_fts VALUES(?,?,?,?)",(x["id"],x["provider"],x["title"],x["abstract"]))
     db.commit()
 def remote_search(db: sqlite3.Connection,q: str,limit: int) -> list[dict[str,Any]]:
     match=terms(q)
