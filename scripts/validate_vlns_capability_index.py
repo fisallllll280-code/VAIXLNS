@@ -137,7 +137,9 @@ def main() -> int:
         print(json.dumps({"result": "FAIL", "path": str(path), "errors": [str(exc)]}, ensure_ascii=False, indent=2))
         return 1
     errors = validate(document)
-    depth = document.get("catalog_depth", {}) if isinstance(document, dict) else {}\n    if not isinstance(depth, dict):\n        depth = {}
+    depth = document.get("catalog_depth", {}) if isinstance(document, dict) else {}
+    if not isinstance(depth, dict):
+        depth = {}
     result = {
         "result": "PASS" if not errors else "FAIL",
         "path": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
