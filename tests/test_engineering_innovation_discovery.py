@@ -32,6 +32,7 @@ def source_manifest():
 
 def snapshot(release="v1.0.0", sha="abc123", license_id="MIT"):
     return {
+        "fetch_status": "SUCCESS",
         "provider": "github",
         "slug": "sample/solver",
         "repository_url": "https://github.com/sample/solver",
