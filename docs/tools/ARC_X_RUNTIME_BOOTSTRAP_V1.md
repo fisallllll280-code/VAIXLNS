@@ -38,4 +38,6 @@ The runtime reports `PARTIAL` for the reconstruction record. Passing receipt and
 
 It always keeps `authority_decision=PENDING`, `self_authority=false`, and `canonical_write_permitted=false`. No automated changes to `project.genome`, Ω.000, or canonical admission records occur.
 
-A clean and successful CI run is required before classifying this slice as `VERIFIED` under the project's evidence model. Production status requires separately governed deployment and operational evidence.
+CI execution evidence for the bootstrap is recorded at [ARC-X Runtime Conformance run 37913717309](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/37913717309): six regression tests passed, reconstruction created a 199-file manifest, integrity verification passed, and replay matched. This verifies the bootstrap's declared integrity/replay scope only; the full ARC-X compiler remains `PARTIAL`, and production status requires separately governed deployment and operational evidence.
+
+The receipt is hash-based, not digitally signed. It detects changes relative to a trusted captured receipt; it does not independently prevent an attacker from replacing both the source and the receipt. Protect the commit history and retain the uploaded evidence artifact for trustworthy audit.
