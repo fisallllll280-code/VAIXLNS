@@ -201,6 +201,87 @@ def workload_from_innovation_network(network: dict[str, Any]) -> dict[str, Any]:
         "dispatch_state": "NOT_DISPATCHED",
     }
 
+GAP_TO_TASK_TYPE = {
+    "DECLARED_EVIDENCE_PATH_UNRESOLVED": "PRIVATE_SOURCE_RESEARCH",
+    "UNRESOLVED_DERIVATION_REFERENCE": "INDEX_QUERY",
+    "UNRESOLVED_RELATION_REFERENCE": "INDEX_QUERY",
+    "NO_EXPLICIT_IMPLEMENTATION_OR_EVIDENCE_PATH": "PRIVATE_SOURCE_RESEARCH",
+    "POSSIBLE_DUPLICATE_INNOVATION": "INDEPENDENT_VERIFY",
+    "POSSIBLE_OVERLAPPING_FAMILY": "TECHNICAL_SYNTHESIS",
+    "DECLARED_DERIVATION_CYCLE": "INDEPENDENT_VERIFY",
+}
+
+def workload_from_integration_graph(graph: dict[str, Any]) -> dict[str, Any]:
+    if graph.get("schema") != "vaixlns.omega-innovation-integration-graph.v1":
+        raise ValueError("innovation integration graph schema mismatch")
+    gaps = graph.get("integration_gaps")
+    if not isinstance(gaps, list):
+        raise ValueError("integration graph integration_gaps must be a list")
+    tasks = []
+    for index, gap in enumerate(gaps, start=1):
+        if not isinstance(gap, dict):
+            raise ValueError("every integration gap must be an object")
+        gap_type = gap.get("gap_type")
+        task_type = GAP_TO_TASK_TYPE.get(gap_type)
+        if task_type is None:
+            continue
+        identity = str(gap.get("node_id") or gap.get("related_node_id") or "UNSCOPED")
+        ref = str(gap.get("reference") or gap.get("related_node_id") or gap.get("gap_type") or "")
+        task_id = "INTEG-" + hashlib.sha256(
+            (str(gap_type) + "\x1f" + identity + "\x1f" + ref).encode("utf-8")
+        ).hexdigest()[:16].upper()
+        priority = 100 if gap.get("severity") == "BLOCK_REVIEW" else 70 if gap.get("severity") == "REVIEW" else 50
+        cpu_units, memory_gib = {
+            "PRIVATE_SOURCE_RESEARCH": (2, 8),
+            "INDEX_QUERY": (1, 4),
+            "INDEPENDENT_VERIFY": (2, 8),
+            "TECHNICAL_SYNTHESIS": (2, 8),
+        }[task_type]
+        tasks.append({
+            "task_id": task_id,
+            "task_type": task_type,
+            "priority": priority,
+            "data_classification": "INTERNAL",
+            "requires_isolation": True,
+            "requires_gpu": False,
+            "estimated_cpu_units": cpu_units,
+            "estimated_memory_gib": memory_gib,
+            "origin_gap_type": gap_type,
+            "origin_node_id": gap.get("node_id"),
+            "origin_related_node_id": gap.get("related_node_id"),
+            "source_reference": ref,
+            "severity": gap.get("severity", "REVIEW"),
+            "mission": "Resolve or independently review this integration gap; preserve the candidate/unknown state until evidence is reproduced.",
+            "authority_scope": "RESEARCH_AND_RECOMMENDATION_ONLY",
+        })
+    return {
+        "schema": TASKS_SCHEMA,
+        "source_schema": graph["schema"],
+        "source_graph_sha256": graph.get("graph_sha256"),
+        "task_count": len(tasks),
+        "tasks": tasks,
+        "data_classification_default": "INTERNAL_FAIL_CLOSED",
+        "dispatch_state": "NOT_DISPATCHED",
+    }
+
+def combine_workloads(workloads: list[dict[str, Any]]) -> dict[str, Any]:
+    tasks = [task for workload in workloads for task in workload.get("tasks", [])]
+    ids = [task.get("task_id") for task in tasks]
+    if len(ids) != len(set(ids)):
+        raise ValueError("combined workloads contain duplicate task_id values")
+    return {
+        "schema": TASKS_SCHEMA,
+        "source_schemas": [workload.get("source_schema", workload.get("schema")) for workload in workloads],
+        "source_hashes": [
+            workload.get("source_network_sha256") or workload.get("source_graph_sha256")
+            for workload in workloads
+        ],
+        "task_count": len(tasks),
+        "tasks": tasks,
+        "data_classification_default": "INTERNAL_FAIL_CLOSED",
+        "dispatch_state": "NOT_DISPATCHED",
+    }
+
 def build_plan(manifest: dict[str, Any], workload: dict[str, Any]) -> dict[str, Any]:
     validate_inputs(manifest, workload)
     pools = sorted(manifest["server_pools"], key=lambda row: row["pool_id"])
@@ -301,18 +382,28 @@ def build_plan(manifest: dict[str, Any], workload: dict[str, Any]) -> dict[str, 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True, help="Server pool manifest JSON")
-    task_source = parser.add_mutually_exclusive_group(required=True)
-    task_source.add_argument("--tasks", help="Task workload JSON")
-    task_source.add_argument("--innovation-network", help="Derive tasks from a validated local innovation network manifest")
+    parser.add_argument("--tasks", help="Task workload JSON; exclusive with index-derived inputs")
+    parser.add_argument("--innovation-network", help="Derive tasks from the innovation planner output")
+    parser.add_argument("--innovation-integration", help="Derive tasks from the integration graph gap register")
     parser.add_argument("--output", default="omega-server-placement-plan.json", help="Placement proposal output")
     args = parser.parse_args()
     try:
         manifest = load_object(Path(args.manifest))
+        selected = sum(bool(value) for value in (args.tasks, args.innovation_network, args.innovation_integration))
+        if selected == 0:
+            parser.error("choose --tasks, --innovation-network, or --innovation-integration")
+        if args.tasks and (args.innovation_network or args.innovation_integration):
+            parser.error("--tasks cannot be combined with index-derived inputs")
+        workloads = []
+        if args.tasks:
+            workloads.append(load_object(Path(args.tasks)))
         if args.innovation_network:
             network = load_object(Path(args.innovation_network))
-            workload = workload_from_innovation_network(network)
-        else:
-            workload = load_object(Path(args.tasks))
+            workloads.append(workload_from_innovation_network(network))
+        if args.innovation_integration:
+            graph = load_object(Path(args.innovation_integration))
+            workloads.append(workload_from_integration_graph(graph))
+        workload = workloads[0] if len(workloads) == 1 else combine_workloads(workloads)
         plan = build_plan(manifest, workload)
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
