@@ -43,6 +43,20 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [OpenVLA provider registry](registry/vla.openvla.7b.json)
 
 
+## VX Sovereign Tool Control & Universal Agents
+
+- [Sovereign Tool Control Fabric](docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md)
+- [Universal VX Agent Runtime & Engineering Fabric](docs/architecture/VX_UNIVERSAL_AGENT_RUNTIME_AND_ENGINEERING_FABRIC_V1.md)
+- [Tool action envelope schema](schemas/vx-tool-action-envelope.v1.schema.json)
+- [Tool policy decision schema](schemas/vx-tool-policy-decision.v1.schema.json)
+- [Agent runtime profile schema](schemas/vx-agent-runtime-profile.v1.schema.json)
+- [VX agent role catalog (22 logical profiles)](registry/vx-agent-runtime-profiles.v1.json)
+- [Default tool-control policy (inactive proposal)](registry/vx-tool-control-default-policy.v1.json)
+- [Reference policy evaluator](tools/vx_tool_control_reference.py)
+- [Evaluator unit tests](tests/test_vx_tool_control_reference.py)
+
+**Boundary:** every agent profile requires the VX runtime and federation gate; direct tool invocation is disabled by contract. The catalog is a set of role templates, not evidence of deployed agents. The reference evaluator does not execute tools and does not itself establish runtime enforcement.
+
 ## VX Cognitive Fabric
 
 - [VX Ω-Cognitive Fabric](docs/cognitive/VX_OMEGA_COGNITIVE_FABRIC_V1.md)
