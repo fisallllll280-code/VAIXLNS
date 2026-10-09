@@ -36,10 +36,10 @@ jobs:
             tests/test_innovation_orchestrator.py
 
       - name: Run agent fabric regression tests
-        run: python -m unittest tests.test_agent_fabric -v
+        run: python -m unittest discover -s tests -p 'test_agent_fabric.py' -v
 
       - name: Run innovation planner regression tests
-        run: python -m unittest tests.test_innovation_orchestrator -v
+        run: python -m unittest discover -s tests -p 'test_innovation_orchestrator.py' -v
 
       - name: Generate deterministic plan and validate
         run: |
