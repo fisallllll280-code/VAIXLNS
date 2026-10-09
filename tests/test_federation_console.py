@@ -76,6 +76,24 @@ class FederationDashboardTests(unittest.TestCase):
         self.assertTrue(result["ok"], result["lines"])
         self.assertEqual(result["data"]["gaps"][0]["severity"], "BLOCKER")
 
+    def test_attribute_family_fields_are_searchable_without_promoting_them(self):
+        catalog = json.loads((self.root / "registry/federation/vlns-capability-index.v1.json").read_text(encoding="utf-8"))
+        catalog["attribute_families"] = [{
+            "family_id": "MODEL-1",
+            "name": "Universal model contract",
+            "owner": "VLNS",
+            "fields": ["model_id", "provider", "context_window", "tool_calling"],
+            "state": "SPECIFIED",
+            "source_refs": ["docs/model-contract.md"],
+            "notes": "Fields are requirements only."
+        }]
+        self.write_json("registry/federation/vlns-capability-index.v1.json", catalog)
+        result = self.engine.execute("federation attributes provider")
+        self.assertTrue(result["ok"], result["lines"])
+        self.assertEqual(result["data"]["attribute_families"][0]["family_id"], "MODEL-1")
+        self.assertIn("provider", " ".join(result["data"]["attribute_families"][0]["fields"]))
+        self.assertEqual(result["data"]["attribute_families"][0]["state"], "SPECIFIED")
+
     def test_missing_federation_catalog_fails_closed(self):
         empty = CommandEngine(self.root / "empty")
         result = empty.execute("federation status")
