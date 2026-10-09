@@ -1,0 +1,38 @@
+{
+  "schema": "vaixlns.omega-server-manifest.v1",
+  "policy": {
+    "read_only": true,
+    "max_servers": 25,
+    "remote_http_forbidden": true,
+    "credentials_forwarded": false
+  },
+  "servers": [
+    {
+      "server_id": "vlns-adapter-replace-me",
+      "base_url": "https://replace-with-operator-approved-vlns-host.example",
+      "health_path": "/health",
+      "search_path": "/search",
+      "owner": "replace-with-service-owner",
+      "contract_version": "v1",
+      "state": "EXAMPLE_NOT_CONFIGURED"
+    },
+    {
+      "server_id": "vx-adapter-replace-me",
+      "base_url": "https://replace-with-operator-approved-vx-host.example",
+      "health_path": "/health",
+      "search_path": "/search",
+      "owner": "replace-with-service-owner",
+      "contract_version": "v1",
+      "state": "EXAMPLE_NOT_CONFIGURED"
+    },
+    {
+      "server_id": "nexnet-adapter-replace-me",
+      "base_url": "https://replace-with-operator-approved-nexnet-host.example",
+      "health_path": "/health",
+      "search_path": "/search",
+      "owner": "replace-with-service-owner",
+      "contract_version": "v1",
+      "state": "EXAMPLE_NOT_CONFIGURED"
+    }
+  ]
+}
