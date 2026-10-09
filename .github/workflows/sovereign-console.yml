@@ -5,6 +5,10 @@ on:
     branches: ["main"]
     paths:
       - "tools/sovereign_console/**"
+      - "registry/federation/**"
+      - "registry/vlns_connection_status.v1.json"
+      - "docs/federation/**"
+      - "tests/test_federation_console.py"
       - "tests/test_sovereign_console.py"
       - "tests/test_sovereign_console_http.py"
       - ".github/workflows/sovereign-console.yml"
@@ -12,6 +16,10 @@ on:
     branches: ["main"]
     paths:
       - "tools/sovereign_console/**"
+      - "registry/federation/**"
+      - "registry/vlns_connection_status.v1.json"
+      - "docs/federation/**"
+      - "tests/test_federation_console.py"
       - "tests/test_sovereign_console.py"
       - "tests/test_sovereign_console_http.py"
       - ".github/workflows/sovereign-console.yml"
