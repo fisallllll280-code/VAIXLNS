@@ -175,6 +175,42 @@ class OmegaServerFabricTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no server capability mapping"):
             workload_from_innovation_network(network)
 
+    def test_integration_gap_graph_becomes_review_tasks(self):
+        from scripts.omega_server_fabric import workload_from_integration_graph
+
+        graph = {
+            "schema": "vaixlns.omega-innovation-integration-graph.v1",
+            "graph_sha256": "b" * 64,
+            "integration_gaps": [
+                {"gap_type": "DECLARED_EVIDENCE_PATH_UNRESOLVED",
+                 "node_id": "innovation:A", "reference": "missing.py", "severity": "REVIEW"},
+                {"gap_type": "DECLARED_DERIVATION_CYCLE",
+                 "node_id": "innovation:A", "severity": "BLOCK_REVIEW"},
+            ],
+        }
+        workload = workload_from_integration_graph(graph)
+        self.assertEqual(workload["task_count"], 2)
+        self.assertTrue(all(t["data_classification"] == "INTERNAL" for t in workload["tasks"]))
+        self.assertEqual(workload["dispatch_state"], "NOT_DISPATCHED")
+        plan = build_plan({
+            "schema": MANIFEST_SCHEMA, "control_mode": "PLAN_ONLY",
+            "server_pools": [
+                pool("research", ["PRIVATE_SOURCE_RESEARCH"]),
+                pool("verify", ["INDEPENDENT_VERIFY"]),
+            ],
+        }, workload)
+        by_type = {item["task_type"]: item for item in plan["placements"]}
+        self.assertEqual(by_type["PRIVATE_SOURCE_RESEARCH"]["recommended_pool_id"], "research")
+        self.assertEqual(by_type["INDEPENDENT_VERIFY"]["recommended_pool_id"], "verify")
+        self.assertEqual(plan["summary"]["dispatched_count"], 0)
+
+    def test_combined_workloads_reject_duplicate_task_ids(self):
+        from scripts.omega_server_fabric import combine_workloads
+
+        sample = {"schema": TASKS_SCHEMA, "source_schema": "test", "tasks": [{"task_id": "DUP"}]}
+        with self.assertRaisesRegex(ValueError, "duplicate task_id"):
+            combine_workloads([sample, sample])
+
     def test_plan_is_deterministic_and_hash_is_correct(self):
         manifest, workload = inputs([
             pool("cpu-b", ["UNIT_TEST"]),
