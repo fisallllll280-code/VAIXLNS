@@ -1,0 +1,51 @@
+name: vaixlns-indexed-workflow
+
+on:
+  push:
+    paths:
+      - "registry/agents/indexed-workflow.v1.json"
+      - "schemas/indexed-workflow-*.schema.json"
+      - "scripts/indexed_workflow.py"
+      - "tests/test_indexed_workflow.py"
+      - "tests/fixtures/research-request.v1.json"
+      - "docs/operations/INDEX_DRIVEN_WORKFLOW_V1.md"
+      - ".github/workflows/indexed-workflow.yml"
+  pull_request:
+    paths:
+      - "registry/agents/indexed-workflow.v1.json"
+      - "schemas/indexed-workflow-*.schema.json"
+      - "scripts/indexed_workflow.py"
+      - "tests/test_indexed_workflow.py"
+      - "tests/fixtures/research-request.v1.json"
+      - "docs/operations/INDEX_DRIVEN_WORKFLOW_V1.md"
+      - ".github/workflows/indexed-workflow.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plan-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate JSON syntax
+        run: |
+          python -m json.tool registry/agents/indexed-workflow.v1.json > /dev/null
+          python -m json.tool schemas/indexed-workflow-request.schema.json > /dev/null
+          python -m json.tool schemas/indexed-workflow-plan.schema.json > /dev/null
+          python -m json.tool tests/fixtures/research-request.v1.json > /dev/null
+      - name: Validate system and agent routing registry
+        run: python scripts/indexed_workflow.py --validate-registry
+      - name: Run workflow conformance tests
+        run: python -m unittest discover -s tests -p "test_indexed_workflow.py" -v
+      - name: Generate deterministic plan evidence
+        run: python scripts/indexed_workflow.py --request tests/fixtures/research-request.v1.json --output indexed-workflow-plan.json
+      - name: Upload plan evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-indexed-workflow-plan
+          path: indexed-workflow-plan.json
