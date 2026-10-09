@@ -24,6 +24,11 @@ NUMERIC_FIELDS = (
     "paid_pilots",
     "qualified_discovery_calls",
 )
+INTEGER_FIELDS = {
+    "expected_new_customers_per_period", "delivery_capacity_per_period",
+    "sales_cycle_days", "cash_collection_days", "paid_pilots",
+    "qualified_discovery_calls",
+}
 
 def canonical_bytes(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
@@ -38,6 +43,11 @@ def analyze_opportunity(item: dict[str, Any], data_state: str) -> dict[str, Any]
     required = ("id", "name", "evidence_stage", *NUMERIC_FIELDS, "evidence_refs")
     missing = [key for key in required if key not in item or item[key] is None]
     invalid = [key for key in NUMERIC_FIELDS if key in item and item[key] is not None and not nonnegative_number(item[key])]
+    invalid.extend(
+        key for key in INTEGER_FIELDS
+        if key in item and item[key] is not None
+        and (not isinstance(item[key], int) or isinstance(item[key], bool))
+    )
     evidence_stage = item.get("evidence_stage")
     if evidence_stage not in EVIDENCE_POINTS:
         invalid.append("evidence_stage")
