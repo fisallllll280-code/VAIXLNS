@@ -33,6 +33,9 @@ jobs:
           python -m json.tool schemas/omega-research-result.schema.json >/dev/null
           python -m json.tool registry/omega/research-source-registry.v1.json >/dev/null
           python -m json.tool config/omega-servers.example.json >/dev/null
+          python -m json.tool config/omega-server-fabric.example.json >/dev/null
+          python -m json.tool config/omega-server-workload.example.json >/dev/null
+          python -m json.tool config/omega-revenue-experiments.example.json >/dev/null
 
       - name: Compile control tooling
         run: |
@@ -55,7 +58,13 @@ jobs:
             scripts/omega_research_fabric.py \
             tests/test_omega_research_fabric.py \
             scripts/omega_error_locator.py \
-            tests/test_omega_error_locator.py
+            tests/test_omega_error_locator.py \
+            scripts/omega_server_fabric.py \
+            tests/test_omega_server_fabric.py \
+            scripts/omega_revenue_portfolio.py \
+            tests/test_omega_revenue_portfolio.py \
+            scripts/omega_engineering_orchestrator.py \
+            tests/test_omega_engineering_orchestrator.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -95,6 +104,18 @@ jobs:
       - name: Build engineering agent plan
         run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
 
+      - name: Build capability-aware server placement from innovation index
+        run: python scripts/omega_server_fabric.py --manifest config/omega-server-fabric.example.json --innovation-network innovation-network.json --output omega-server-placement-plan.json
+
+      - name: Build example workload placement plan
+        run: python scripts/omega_server_fabric.py --manifest config/omega-server-fabric.example.json --tasks config/omega-server-workload.example.json --output omega-server-placement-demo.json
+
+      - name: Build evidence-gated revenue portfolio
+        run: python scripts/omega_revenue_portfolio.py --input config/omega-revenue-experiments.example.json --output omega-revenue-portfolio.json
+
+      - name: Link indexes, servers, diagnostics and commercial evidence
+        run: python scripts/omega_engineering_orchestrator.py --root . --output engineering-orchestration.json
+
       - name: Emit conformance evidence
         if: always()
         shell: bash
@@ -120,4 +141,8 @@ jobs:
             omega-research-results.json
             test-suite.log
             omega-error-triage.json
-          if-no-files-found: error
+            omega-server-placement-plan.json
+            omega-server-placement-demo.json
+            omega-revenue-portfolio.json
+            engineering-orchestration.json
+          if-no-files-found: warn
