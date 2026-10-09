@@ -109,7 +109,8 @@
       "type": "object",
       "required": [
         "source",
-        "state"
+        "state",
+        "axis"
       ],
       "properties": {
         "source": {
@@ -117,6 +118,12 @@
         },
         "state": {
           "type": "string"
+        },
+        "axis": {
+          "enum": [
+            "readiness",
+            "measurement"
+          ]
         }
       },
       "additionalProperties": false
