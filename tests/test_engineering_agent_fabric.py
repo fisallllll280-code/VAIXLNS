@@ -73,5 +73,27 @@ class EngineeringAgentFabricTests(unittest.TestCase):
                 execute_approved(root, plan, approval)
 
 
+    def test_research_context_is_hash_checked_and_manifest_not_reindexed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_project(root)
+            research = {
+                "schema": "vaixlns.omega-research-fabric.v1",
+                "index": {"inventory_sha256": "a" * 64},
+                "query": "proof provenance",
+                "local_results": [{"path": "docs/proof.md"}],
+                "remote_discoveries": [],
+                "provider_status": [],
+                "server_status": [],
+            }
+            research["result_sha256"] = sha256_value(research)
+            (root / "omega-research-results.json").write_text(json.dumps(research), encoding="utf-8")
+            plan = build_plan(root)
+            self.assertEqual(plan["research_context"]["state"], "PRESENT_HASH_VALID")
+            self.assertEqual(plan["research_context"]["local_result_count"], 1)
+            self.assertTrue(plan["research_context"]["remote_discoveries_remain_unverified"])
+            self.assertNotIn("omega-research-results.json", {row["path"] for row in plan["artifacts"]})
+
+
 if __name__ == "__main__":
     unittest.main()
