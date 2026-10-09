@@ -62,6 +62,8 @@ def _valid_path(value: Any, field: str) -> str:
         raise DiffEvidenceError(f"{field}: expected normalized non-empty path")
     if chr(92) in value or chr(0) in value:
         raise DiffEvidenceError(f"{field}: backslash and NUL are prohibited")
+    if len(value) >= 2 and value[0].isascii() and value[0].isalpha() and value[1] == ":":
+        raise DiffEvidenceError(f"{field}: drive-qualified path is prohibited: {value}")
     path = PurePosixPath(value)
     if value.startswith("/") or path.is_absolute() or ".." in path.parts or "." in path.parts:
         raise DiffEvidenceError(f"{field}: absolute/traversal path is prohibited: {value}")

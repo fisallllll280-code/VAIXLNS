@@ -62,6 +62,12 @@ class OmegaMindSimulatorTests(unittest.TestCase):
         with self.assertRaisesRegex(ScenarioError, "traversal"):
             simulate(fixture)
 
+    def test_windows_drive_path_is_rejected(self):
+        fixture = load_fixture()
+        fixture["tasks"][0]["authorized_paths"] = ["C:/Windows/system32"]
+        with self.assertRaisesRegex(ScenarioError, "drive-qualified"):
+            simulate(fixture)
+
     def test_failed_check_does_not_pass(self):
         fixture = load_fixture()
         fixture["tasks"][0]["verification"]["tests"] = "FAIL"

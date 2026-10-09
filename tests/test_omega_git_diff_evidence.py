@@ -72,6 +72,12 @@ class OmegaGitDiffEvidenceTests(unittest.TestCase):
         self.assertEqual(result["state"], "MISMATCH")
         self.assertEqual(result["scope_violations"], ["new.txt"])
 
+    def test_drive_qualified_scope_grant_is_rejected(self):
+        capsule = self.capsule()
+        capsule["change"]["allowed_paths"] = ["C:/Windows"]
+        with self.assertRaisesRegex(ValueError, "drive-qualified"):
+            verify_capsule(self.root, capsule, self.candidate)
+
     def test_candidate_revision_must_be_a_full_commit_sha(self):
         with self.assertRaisesRegex(ValueError, "full 40-character"):
             calculate_diff(self.root, self.base, "HEAD")

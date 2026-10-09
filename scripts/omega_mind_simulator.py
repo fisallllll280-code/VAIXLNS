@@ -45,6 +45,8 @@ def safe_repo_path(raw: Any, field: str) -> str:
         raise ScenarioError(f"{field}: expected normalized non-empty repository path")
     if chr(92) in raw or chr(0) in raw:
         raise ScenarioError(f"{field}: backslash and NUL are prohibited")
+    if len(raw) >= 2 and raw[0].isascii() and raw[0].isalpha() and raw[1] == ":":
+        raise ScenarioError(f"{field}: drive-qualified path is prohibited: {raw}")
     path = PurePosixPath(raw)
     if path.is_absolute() or raw.startswith("/") or ".." in path.parts or "." in path.parts:
         raise ScenarioError(f"{field}: absolute and traversal paths are prohibited: {raw}")
