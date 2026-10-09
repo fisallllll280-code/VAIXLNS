@@ -18,7 +18,7 @@ import time
 from pathlib import Path
 from typing import Any
 
-SCHEMA = "vaixlन्स.engineering-agent-fabric.v1"
+SCHEMA = "vaixlns.engineering-agent-fabric.v1"
 IGNORE_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build", "target", ".next"}
 AGENTS = (
     ("PROJECT_ARCHAEOLOGY", "Reconstruct the project structure, entry points, and historical boundaries.", ("repository_inventory.json", "entrypoints.json")),
