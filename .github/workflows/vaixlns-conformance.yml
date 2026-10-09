@@ -79,6 +79,16 @@ jobs:
       - name: Validate example Ω Change Capsule
         run: python scripts/validate_change_capsule.py examples/omega-change-capsule.example.json
 
+      - name: Validate Ω Mind schemas and simulation fixture
+        run: |
+          set -euo pipefail
+          python -m json.tool schemas/omega-agent-task.schema.json >/dev/null
+          python -m json.tool schemas/omega-evidence-bundle.schema.json >/dev/null
+          python -m json.tool examples/omega-mind-simulation.example.json >/dev/null
+          python -m py_compile scripts/omega_mind_simulator.py tests/test_omega_mind_simulator.py
+          python scripts/omega_mind_simulator.py --scenario examples/omega-mind-simulation.example.json --output /tmp/omega-mind-simulation-output.json
+          python -m json.tool /tmp/omega-mind-simulation-output.json >/dev/null
+
       - name: Run test suite
         run: python -m unittest discover -s tests -v
 

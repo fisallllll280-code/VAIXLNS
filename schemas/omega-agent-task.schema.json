@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schemas/omega-agent-task.schema.json",
+  "title": "VAIXLNS Ω Agent Task",
+  "description": "Versioned task contract for a bounded worker. Schema validity is not authorization or execution evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "goal", "role", "depends_on", "risk", "authorized_paths", "write_paths", "allowed_tools", "requested_tools", "estimated_cost", "verification", "requires_human_approval"],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9._:-]+$"},
+    "goal": {"type": "string", "minLength": 1},
+    "role": {"enum": ["context_cartographer", "system_architect", "task_compiler", "implementation_planner", "implementation_worker", "adversarial_challenger", "evidence_referee", "registry_steward"]},
+    "depends_on": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "risk": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "authorized_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryPath"}},
+    "write_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryPath"}},
+    "allowed_tools": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "requested_tools": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "estimated_cost": {"type": "integer", "minimum": 0},
+    "requires_human_approval": {"type": "boolean"},
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tests", "adversarial", "replay", "evidence_refs"],
+      "properties": {
+        "tests": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "SKIP"]},
+        "adversarial": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "SKIP"]},
+        "replay": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "SKIP"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  },
+  "$defs": {
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {"pattern": "(^/|\\\\\\\\|\\\\u0000|(^|/)\\\\.\\\\.?(/|$)|//)"}
+    }
+  }
+}

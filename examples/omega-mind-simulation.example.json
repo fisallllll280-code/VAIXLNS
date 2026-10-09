@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "simulation_id": "OMEGA-MIND-DEMO-0001",
+  "mode": "SIMULATION",
+  "budgets": {"max_tasks": 20, "max_parallelism": 3, "max_estimated_cost": 100},
+  "systems": [
+    {"system_id": "VAIXLNS", "reported_state": "CANONICAL_CONTROL_PLANE"},
+    {"system_id": "VV/VLNS", "reported_state": "SPECIFIED"},
+    {"system_id": "VI/OMEGA-000", "reported_state": "CANONICAL_REGISTRY"},
+    {"system_id": "XV", "reported_state": "SPECIFIED"},
+    {"system_id": "VX", "reported_state": "PARTIAL"},
+    {"system_id": "ARC-X", "reported_state": "SPECIFIED"},
+    {"system_id": "OMEGA-ARENA", "reported_state": "SPECIFIED"},
+    {"system_id": "NEXENT", "reported_state": "IMPLEMENTED_CLAIM_REQUIRES_EVIDENCE"},
+    {"system_id": "NEXNET", "reported_state": "UNKNOWN"}
+  ],
+  "tasks": [
+    {
+      "task_id": "t01_inventory_knowledge",
+      "goal": "Map knowledge and provenance boundaries without changing canonical data",
+      "role": "context_cartographer", "depends_on": [], "risk": "LOW",
+      "authorized_paths": ["docs", "registry"], "write_paths": [],
+      "allowed_tools": ["repo.read", "docs.read", "registry.read"],
+      "requested_tools": ["repo.read", "docs.read", "registry.read"],
+      "estimated_cost": 8, "requires_human_approval": false,
+      "verification": {"tests": "PASS", "adversarial": "PASS", "replay": "PASS", "evidence_refs": ["sim://fixture/t01/context", "sim://fixture/t01/replay"]}
+    },
+    {
+      "task_id": "t02_inventory_runtime",
+      "goal": "Map execution runtime and conformance controls without invoking tools",
+      "role": "context_cartographer", "depends_on": [], "risk": "LOW",
+      "authorized_paths": ["scripts", "tests", ".github"], "write_paths": [],
+      "allowed_tools": ["repo.read", "history.read", "docs.read"],
+      "requested_tools": ["repo.read", "history.read", "docs.read"],
+      "estimated_cost": 8, "requires_human_approval": false,
+      "verification": {"tests": "PASS", "adversarial": "PASS", "replay": "PASS", "evidence_refs": ["sim://fixture/t02/inventory"]}
+    },
+    {
+      "task_id": "t03_contract_design",
+      "goal": "Draft the task protocol after both discovery inventories are available",
+      "role": "system_architect", "depends_on": ["t01_inventory_knowledge", "t02_inventory_runtime"], "risk": "MEDIUM",
+      "authorized_paths": ["docs/engineering"], "write_paths": ["docs/engineering/OMEGA_MIND_CONTROL_PLANE_V1.md"],
+      "allowed_tools": ["repo.read", "docs.read", "graph.read", "tests.read", "docs.propose"],
+      "requested_tools": ["repo.read", "docs.read", "graph.read", "docs.propose"],
+      "estimated_cost": 18, "requires_human_approval": false,
+      "verification": {"tests": "PASS", "adversarial": "PASS", "replay": "PASS", "evidence_refs": ["sim://fixture/t03/contracts"]}
+    },
+    {
+      "task_id": "t04_negative_tests",
+      "goal": "Challenge permission and task-boundary assumptions using isolated test fixtures",
+      "role": "adversarial_challenger", "depends_on": ["t03_contract_design"], "risk": "MEDIUM",
+      "authorized_paths": ["tests"], "write_paths": [],
+      "allowed_tools": ["repo.read", "diff.read", "tests.read", "tests.run", "security.scan"],
+      "requested_tools": ["repo.read", "tests.read", "tests.run", "security.scan"],
+      "estimated_cost": 14, "requires_human_approval": false,
+      "verification": {"tests": "PASS", "adversarial": "PASS", "replay": "PASS", "evidence_refs": ["sim://fixture/t04/negative-tests"]}
+    },
+    {
+      "task_id": "t05_canonical_mutation_probe",
+      "goal": "Verify that a worker attempting to rewrite the Genome is blocked",
+      "role": "implementation_worker", "depends_on": [], "risk": "CRITICAL",
+      "authorized_paths": ["project.genome"], "write_paths": ["project.genome"],
+      "allowed_tools": ["repo.read", "workspace.write", "tests.run", "build.run"],
+      "requested_tools": ["repo.read", "workspace.write", "tests.run"],
+      "estimated_cost": 4, "requires_human_approval": true,
+      "verification": {"tests": "PASS", "adversarial": "PASS", "replay": "PASS", "evidence_refs": ["sim://fixture/t05/protected-path-probe"]}
+    }
+  ]
+}

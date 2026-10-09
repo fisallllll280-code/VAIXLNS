@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VAIXLNS Ω Mind Console — Simulation</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101929;--panel2:#0b1422;--line:#22334a;--text:#e6efff;--muted:#89a0bd;--cyan:#62e3db;--blue:#83aaff;--amber:#ffc66d;--red:#ff7e8a;--green:#7de6b0;--violet:#bd9aff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#152849 0%,var(--bg) 42%);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}
+button,select{font:inherit;color:inherit;border:1px solid var(--line);border-radius:9px;background:#142239;padding:9px 12px;cursor:pointer}button:hover{border-color:var(--cyan)}button:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.shell{max-width:1500px;margin:auto;padding:24px}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--cyan);font-size:11px;font-weight:800}.title{font-size:clamp(27px,4vw,42px);font-weight:800;letter-spacing:-.04em;margin:6px 0}.sub{color:var(--muted);max-width:760px}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.primary{background:linear-gradient(135deg,#16444b,#183a69);border-color:#3d9da5}.warning{color:var(--amber)}
+.notice{display:flex;gap:12px;align-items:flex-start;margin:22px 0;padding:14px 16px;border:1px solid #66502b;border-radius:12px;background:rgba(76,54,20,.24)}.dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:var(--amber);margin-top:6px;box-shadow:0 0 16px #ffbd58}.notice strong{color:var(--amber)}.notice p{margin:2px 0 0;color:#c5cbd8}
+.grid{display:grid;gap:14px}.metrics{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:14px}.layout{grid-template-columns:minmax(0,1.35fr) minmax(320px,.9fr);align-items:start}.panel{min-width:0;background:linear-gradient(160deg,rgba(17,28,46,.96),rgba(10,18,32,.96));border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:0 14px 36px #0002}.metric-label,.muted,.small{color:var(--muted)}.metric-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em}.metric-value{font-size:29px;font-weight:800;letter-spacing:-.04em;margin:5px 0}.metric-foot{font-size:11px;color:var(--muted)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.section-head h2{font-size:15px;margin:0;letter-spacing:-.01em}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);border-radius:999px;padding:4px 7px;color:var(--muted);white-space:nowrap}.tag.sim{color:var(--amber);border-color:#6d572f}.tag.pass{color:var(--green);border-color:#285f4d}.tag.block{color:var(--red);border-color:#6d3341}.tag.unknown{color:var(--muted)}
+.systems{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.system{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:12px;min-height:115px}.system-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.system-name{font-weight:800}.system-role{font-size:11px;color:var(--muted);margin:8px 0}.system-state{font-size:11px;color:var(--blue)}.connection{font-size:10px;color:var(--amber);margin-top:4px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.agents{display:grid;gap:8px}.agent{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}.glyph{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:#1b2d48;color:var(--cyan);font-weight:800}.agent-name{font-weight:700;font-size:12px}.agent-desc{font-size:11px;color:var(--muted)}.agent-state{font-size:10px;color:var(--amber)}
+.schedule{display:grid;gap:8px}.wave{border:1px solid var(--line);border-radius:11px;padding:10px;background:var(--panel2)}.wave-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.wave-label{font-size:12px;font-weight:700}.wave-mode{font-size:10px;color:var(--cyan)}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.chip{border:1px solid #2d4260;border-radius:7px;padding:4px 7px;font-size:10px;color:#bed4f5}
+.tasks{display:grid;gap:8px}.task{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel2)}.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.task-id{font-size:11px;color:var(--cyan);font-weight:800}.task-title{font-size:12px;margin-top:4px}.reasons{font-size:11px;color:var(--amber);margin-top:8px}.gate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gate{padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}.gate-name{font-weight:700;font-size:12px}.gate-state{font-size:11px;color:var(--amber);margin-top:5px}
+.events{max-height:330px;overflow:auto;display:grid;gap:7px}.event{display:grid;grid-template-columns:42px minmax(0,1fr);gap:9px;padding:8px;border-bottom:1px solid #1c2b40}.seq{color:var(--cyan);font:11px ui-monospace,monospace}.event-name{font:11px ui-monospace,monospace;overflow-wrap:anywhere}.event-hash{font-size:10px;color:var(--muted);overflow-wrap:anywhere}.empty{padding:20px;color:var(--muted);text-align:center}
+footer{color:var(--muted);font-size:11px;padding:22px 4px 6px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:1050px){.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.layout{grid-template-columns:1fr}}@media(max-width:700px){.shell{padding:14px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.systems{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.panel{padding:13px}.notice{padding:12px}}@media(max-width:420px){.systems{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div><div class="eyebrow">VAIXLNS · VX · XV · ARC-X · Ω-Arena</div><h1 class="title">Ω Mind Control Plane</h1><div class="sub">One governed operating view for cognitive roles, task routing, evidence gates and federated systems. This build is a deterministic local simulation console, not a live deployment.</div></div>
+<div class="actions"><button id="run" class="primary">Run demo simulation</button><button id="reset">Reset fixture</button><select id="systemFilter" aria-label="Filter systems"><option value="ALL">All systems</option><option value="UNKNOWN">Unknown only</option><option value="PARTIAL">Partial only</option><option value="SPECIFIED">Specified only</option></select></div></header>
+<div class="notice" role="status" aria-live="polite"><span class="dot"></span><div><strong>SIMULATION ONLY — external systems not connected</strong><p>Agent profiles and evidence below are synthetic fixtures. No model calls, repository writes, deployments or production actions occur from this page.</p></div></div>
+<section class="grid metrics" aria-label="Simulation summary">
+<div class="panel"><div class="metric-label">Systems observed</div><div class="metric-value" id="mSystems">9</div><div class="metric-foot">reported registry snapshot</div></div>
+<div class="panel"><div class="metric-label">Cognitive roles</div><div class="metric-value">8</div><div class="metric-foot">separated duties</div></div>
+<div class="panel"><div class="metric-label">Tasks in fixture</div><div class="metric-value" id="mTasks">5</div><div class="metric-foot">dependency-aware schedule</div></div>
+<div class="panel"><div class="metric-label">Policy blocks</div><div class="metric-value warning" id="mBlocked">1</div><div class="metric-foot">protected authority probe</div></div>
+<div class="panel"><div class="metric-label">Event-chain integrity</div><div class="metric-value" id="mChain">—</div><div class="metric-foot">local digest verification</div></div>
+</section>
+<div class="grid layout"><main class="grid">
+<section class="panel"><div class="section-head"><h2>Federated systems map</h2><span class="tag sim">Simulated registry</span></div><div class="systems" id="systems"></div></section>
+<div class="split"><section class="panel"><div class="section-head"><h2>Cognitive worker roster</h2><span class="tag">Role contracts</span></div><div class="agents" id="agents"></div></section>
+<section class="panel"><div class="section-head"><h2>Adaptive task topology</h2><span class="tag sim">Plan only</span></div><div class="schedule" id="schedule"></div></section></div>
+<section class="panel"><div class="section-head"><h2>Task admission ledger</h2><span class="tag">Fail-closed gates</span></div><div id="tasks" class="tasks"></div></section>
+</main><aside class="grid">
+<section class="panel"><div class="section-head"><h2>Assurance control stack</h2><span class="tag block">Not production-verified</span></div><div class="gate-grid" id="gates"></div></section>
+<section class="panel"><div class="section-head"><h2>Event fabric</h2><span class="tag sim" id="eventBadge">Waiting</span></div><div class="events" id="events"><div class="empty">No simulation events yet.</div></div></section>
+<section class="panel"><div class="section-head"><h2>Runtime boundaries</h2><span class="tag">Contracts</span></div><div class="tasks">
+<div class="task"><div class="task-id">VX · EFFECT GATE</div><div class="task-title">Task-scoped tools, path grants, budgets and cancellation. No unrestricted tool execution in this reference build.</div></div>
+<div class="task"><div class="task-id">ARC-X · EVIDENCE</div><div class="task-title">Candidate revision, diff digest, environment and raw check artifacts must be bound before live admission.</div></div>
+<div class="task"><div class="task-id">Ω-Arena · CHALLENGE</div><div class="task-title">The implementing worker cannot judge its own patch. Security and correctness are hard gates, not compensable scores.</div></div>
+<div class="task"><div class="task-id">VI · REGISTRY</div><div class="task-title">Unknown or stale status remains unknown. Synchronization failures are surfaced separately from task outcomes.</div></div>
+</div></section></aside></div>
+<footer><span>VAIXLNS Ω Mind Console · UI schema v1.0.0</span><span id="footerState">Mode: SIMULATION · Model providers: disconnected · Repository writes: disabled</span></footer>
+</div>
+<script>
+(function(){
+"use strict";
+const systems=[
+{id:"VAIXLNS",role:"Canonical control plane",state:"CANONICAL",note:"Authority boundary"},
+{id:"VV / VLNS",role:"Knowledge & provenance",state:"SPECIFIED",note:"Retrieval boundary"},
+{id:"VI / Ω.000",role:"Registry fabric",state:"CANONICAL",note:"Index boundary"},
+{id:"XV",role:"Planning & topology",state:"SPECIFIED",note:"Planner contract"},
+{id:"VX",role:"Execution & event fabric",state:"PARTIAL",note:"Runtime incomplete"},
+{id:"ARC-X",role:"Evidence assurance",state:"SPECIFIED",note:"Independent checks"},
+{id:"Ω-Arena",role:"Adversarial evaluation",state:"SPECIFIED",note:"Hard-gated score"},
+{id:"NEXENT",role:"Research & synthesis",state:"IMPLEMENTED CLAIM",note:"Evidence still required"},
+{id:"NEXNET",role:"Federation adapters",state:"UNKNOWN",note:"Connection unverified"}
+];
+const agents=[
+["C","Context Cartographer","Read-only retrieval & lineage"],["A","System Architect","Contracts, graph & design proposals"],
+["T","Task Compiler","Acceptance criteria and task DAG"],["P","Implementation Planner","Scoped patch plan, no approval"],
+["I","Implementation Worker","Disposable workspace only"],["X","Adversarial Challenger","Negative tests & threat probing"],
+["R","Evidence Referee","Independent, read-only verdict"],["Ω","Registry Steward","Append-only index proposals"]
+];
+const taskSeed=[
+{id:"t01_inventory_knowledge",title:"Map knowledge and provenance boundaries",status:"SIMULATION_PASS",reason:"Synthetic checks all PASS; no live context retrieval."},
+{id:"t02_inventory_runtime",title:"Map execution and conformance controls",status:"SIMULATION_PASS",reason:"Synthetic checks all PASS; no tools were invoked."},
+{id:"t03_contract_design",title:"Draft protocol after inventory dependencies",status:"SIMULATION_PASS",reason:"Dependency DAG satisfied in the fixture."},
+{id:"t04_negative_tests",title:"Challenge task and permission boundaries",status:"SIMULATION_PASS",reason:"Fixture assumes checks pass; no test command executed."},
+{id:"t05_canonical_mutation_probe",title:"Attempted Genome mutation is denied",status:"BLOCKED",reason:"Canonical authority path requires a separate approved change protocol."}
+];
+const gates=[["Authority","SPECIFIED · not mutated"],["Path / tool policy","SIMULATED PASS + protected-path block"],["Test execution","NOT EXECUTED"],["Adversarial review","SIMULATED ONLY"],["Evidence provenance","SYNTHETIC REFERENCES"],["Independent referee","NOT INVOKED"],["Merge / release","DISABLED"],["Canonical sync","NO CHANGE"]];
+let events=[];
+const $=id=>document.getElementById(id);
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+function tag(value,cls){return el("span","tag "+(cls||""),value);}
+function renderSystems(){
+ const filter=$("systemFilter").value,visible=systems.filter(s=>filter==="ALL"||s.state===filter);
+ $("mSystems").textContent=visible.length;const host=$("systems");host.replaceChildren();
+ visible.forEach(s=>{const card=el("div","system"),top=el("div","system-top");top.append(el("div","system-name",s.id),tag(s.state,s.state==="UNKNOWN"?"unknown":s.state==="PARTIAL"||s.state==="IMPLEMENTED CLAIM"?"sim":""));card.append(top,el("div","system-role",s.role),el("div","system-state",s.note),el("div","connection",s.state==="UNKNOWN"?"Connection: UNKNOWN":"Connection: NOT CONNECTED IN DEMO"));host.append(card);});
+}
+function renderAgents(){const host=$("agents");host.replaceChildren();agents.forEach(a=>{const row=el("div","agent");row.append(el("div","glyph",a[0]));const txt=el("div");txt.append(el("div","agent-name",a[1]),el("div","agent-desc",a[2]));row.append(txt,el("div","agent-state","SIMULATED"));host.append(row);});}
+function renderTasks(){const host=$("tasks");host.replaceChildren();taskSeed.forEach(t=>{const card=el("div","task"),top=el("div","task-top"),left=el("div");left.append(el("div","task-id",t.id),el("div","task-title",t.title));top.append(left,tag(t.status,t.status==="BLOCKED"?"block":"pass"));card.append(top,el("div","reasons",t.reason));host.append(card);});$("mTasks").textContent=taskSeed.length;$("mBlocked").textContent=taskSeed.filter(t=>t.status==="BLOCKED").length;}
+function renderGates(){const host=$("gates");host.replaceChildren();gates.forEach(g=>{const box=el("div","gate");box.append(el("div","gate-name",g[0]),el("div","gate-state",g[1]));host.append(box);});}
+function stable(obj){if(obj===null||typeof obj!=="object")return JSON.stringify(obj);if(Array.isArray(obj))return "["+obj.map(stable).join(",")+"]";return "{"+Object.keys(obj).sort().map(k=>JSON.stringify(k)+":"+stable(obj[k])).join(",")+"}";}
+async function sha(text){const bytes=new TextEncoder().encode(text);const hash=await crypto.subtle.digest("SHA-256",bytes);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");}
+async function makeEvent(type,taskId,details){const body={sequence:events.length+1,logical_tick:events.length+1,event_type:type,task_id:taskId,details:details,previous_hash:events.length?events[events.length-1].event_hash:"0".repeat(64)};events.push({...body,event_hash:await sha(stable(body))});}
+function renderEvents(){const host=$("events");host.replaceChildren();if(!events.length){host.append(el("div","empty","No simulation events yet."));return;}events.slice().reverse().forEach(e=>{const row=el("div","event");row.append(el("div","seq",String(e.sequence).padStart(3,"0")));const data=el("div");data.append(el("div","event-name",e.event_type),el("div","event-hash",e.event_hash.slice(0,20)+"…"));row.append(data);host.append(row);});$("eventBadge").textContent=events.length+" events · chained";}
+function renderSchedule(){const host=$("schedule");host.replaceChildren();const waves=[{label:"Wave 1",mode:"ISOLATED PARALLEL PLAN",ids:["t01_inventory_knowledge","t02_inventory_runtime","t05_canonical_mutation_probe"]},{label:"Wave 2",mode:"DEPENDENCY GATE",ids:["t03_contract_design"]},{label:"Wave 3",mode:"ADVERSARIAL CHALLENGE",ids:["t04_negative_tests"]}];waves.forEach(w=>{const box=el("div","wave"),top=el("div","wave-top");top.append(el("div","wave-label",w.label),el("div","wave-mode",w.mode));const chips=el("div","chips");w.ids.forEach(id=>chips.append(el("span","chip",id)));box.append(top,chips);host.append(box);});}
+async function runDemo(){
+ $("run").disabled=true;$("run").textContent="Simulating…";events=[];renderEvents();
+ try{
+ await makeEvent("simulation.started",null,{mode:"SIMULATION_ONLY",tasks:5,systems:9,provider_invoked:false});
+ for(const task of taskSeed){await makeEvent("router.topology_selected",task.id,{topology:task.id==="t01_inventory_knowledge"||task.id==="t02_inventory_runtime"?"ISOLATED_PARALLEL_PLAN":"SERIAL_SPECIALIST_PLAN"});await makeEvent("policy.gate",task.id,{result:task.status,reason:task.reason});await makeEvent("task.outcome.simulated",task.id,{status:task.status,evidence_is_synthetic:true});}
+ await makeEvent("simulation.completed",null,{repository_modified:false,production_verified:false});
+ $("mChain").textContent="GENERATED";$("eventBadge").textContent=events.length+" chained events";$("footerState").textContent="Mode: SIMULATION · Model providers: disconnected · Repository writes: disabled";renderEvents();
+ }catch(e){$("mChain").textContent="ERROR";$("eventBadge").textContent="Local digest unavailable";console.error(e);}
+ finally{$("run").disabled=false;$("run").textContent="Run demo simulation";}
+}
+function reset(){$("mChain").textContent="—";$("eventBadge").textContent="Waiting";$("events").replaceChildren(el("div","empty","No simulation events yet."));renderSystems();renderTasks();renderSchedule();events=[];}
+$("run").addEventListener("click",runDemo);$("reset").addEventListener("click",reset);$("systemFilter").addEventListener("change",renderSystems);
+renderSystems();renderAgents();renderTasks();renderGates();renderSchedule();
+})();
+</script>
+</body>
+</html>

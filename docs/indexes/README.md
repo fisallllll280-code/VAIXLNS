@@ -36,3 +36,14 @@
 
 - `../engineering/AGENTIC_SOFTWARE_ENGINEERING_FABRIC_V1.md` — governed multi-agent engineering fabric and lifecycle proposal.
 - `../engineering/AGENTIC_CLEAN_CHANGE_ENGINEERING_V1.md` — adaptive agent topology, clean-diff governance, repository impact graph, Ω Change Capsule, effect gate, adversarial regression, acceptance tests, and research on scope creep, test-oracle strengthening and structure-aware repair.
+
+ 
+## Ω Mind Control Plane and simulation fabric
+
+- ../engineering/OMEGA_MIND_CONTROL_PLANE_V1.md — bounded cognitive-worker roles, Ω-MIND/1 task protocol, adaptive routing, effect-gate design, revision-bound evidence and cross-system adapter conformance.
+- ../console/OMEGA_MIND_CONSOLE_V1.html — standalone local simulation console. Seeded state is synthetic; external providers are not connected.
+- ../../scripts/omega_mind_simulator.py — deterministic offline simulator for task DAGs, role/tool grants, path-scope checks, protected canonical paths, budgets and SHA-256-linked events.
+- ../../schemas/omega-agent-task.schema.json — versioned bounded-task contract.
+- ../../schemas/omega-evidence-bundle.schema.json — revision-bound evidence-bundle contract.
+- ../../examples/omega-mind-simulation.example.json — illustrative fixture, not live execution evidence.
+- ../../tests/test_omega_mind_simulator.py — deterministic and adversarial simulator tests.

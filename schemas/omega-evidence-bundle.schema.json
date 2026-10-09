@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schemas/omega-evidence-bundle.schema.json",
+  "title": "VAIXLNS Ω Evidence Bundle",
+  "description": "Evidence manifest bound to a candidate revision. References and hashes require independent resolution and verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evidence_id", "task_id", "attempt_id", "repository", "base_revision", "candidate_revision", "diff_sha256", "environment_digest", "toolchain", "checks", "artifacts", "referee", "state"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+    "base_revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "candidate_revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "diff_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "environment_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "toolchain": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "checks": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["check_id", "command", "result", "exit_code", "log_sha256"],
+        "properties": {
+          "check_id": {"type": "string", "minLength": 1},
+          "command": {"type": "string", "minLength": 1},
+          "result": {"enum": ["PASS", "FAIL", "SKIP", "INCONCLUSIVE"]},
+          "exit_code": {"type": ["integer", "null"]},
+          "log_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "artifacts": {"type": "array", "items": {"type": "object", "required": ["ref", "sha256"], "properties": {"ref": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false}},
+    "referee": {
+      "type": "object", "additionalProperties": false,
+      "required": ["identity", "policy_version", "verdict"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1},
+        "policy_version": {"type": "string", "minLength": 1},
+        "verdict": {"enum": ["PASS", "FAIL", "INCONCLUSIVE"]},
+        "rationale_ref": {"type": "string"}
+      }
+    },
+    "state": {"enum": ["PROPOSED", "INCONCLUSIVE", "REJECTED", "ADMITTED"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "ADMITTED"}}, "required": ["state"]},
+      "then": {"properties": {
+        "checks": {"items": {"properties": {"result": {"const": "PASS"}}}},
+        "referee": {"properties": {"verdict": {"const": "PASS"}}}
+      }}
+    }
+  ]
+}
