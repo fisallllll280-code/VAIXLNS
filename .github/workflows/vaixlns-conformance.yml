@@ -59,6 +59,8 @@ jobs:
             tests/test_omega_research_fabric.py \
             scripts/omega_error_locator.py \
             tests/test_omega_error_locator.py \
+            scripts/omega_innovation_integration.py \
+            tests/test_omega_innovation_integration.py \
             scripts/omega_server_fabric.py \
             tests/test_omega_server_fabric.py \
             scripts/omega_revenue_portfolio.py \
@@ -98,14 +100,17 @@ jobs:
       - name: Build federated innovation network manifest
         run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
 
+      - name: Analyze cross-system innovation relationships and evidence gaps
+        run: python scripts/omega_innovation_integration.py --input docs/innovation/innovation-federation.json --root . --output omega-innovation-integration-graph.json
+
       - name: Build Ω research index (offline)
         run: python scripts/omega_research_fabric.py --root . --query "proof provenance" --output omega-research-results.json
 
       - name: Build engineering agent plan
         run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
 
-      - name: Build capability-aware server placement from innovation index
-        run: python scripts/omega_server_fabric.py --manifest config/omega-server-fabric.example.json --innovation-network innovation-network.json --output omega-server-placement-plan.json
+      - name: Build capability-aware server placement from innovation and integration indexes
+        run: python scripts/omega_server_fabric.py --manifest config/omega-server-fabric.example.json --innovation-network innovation-network.json --innovation-integration omega-innovation-integration-graph.json --output omega-server-placement-plan.json
 
       - name: Build example workload placement plan
         run: python scripts/omega_server_fabric.py --manifest config/omega-server-fabric.example.json --tasks config/omega-server-workload.example.json --output omega-server-placement-demo.json
@@ -139,6 +144,7 @@ jobs:
             innovation-network.json
             engineering-execution-plan.json
             omega-research-results.json
+            omega-innovation-integration-graph.json
             test-suite.log
             omega-error-triage.json
             omega-server-placement-plan.json
