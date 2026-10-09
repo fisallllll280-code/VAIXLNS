@@ -74,6 +74,11 @@ class DiscoveryRouterTests(unittest.TestCase):
         result = route_discovery(discovery(license_status="RESTRICTED"), POLICY)
         self.assertTrue(all(route["status"] == "LICENSE_HOLD" for route in result["routes"]))
 
+    def test_pending_license_status_holds(self):
+        result = route_discovery(discovery(license_status="PENDING"), POLICY)
+        self.assertTrue(all(route["status"] == "LICENSE_HOLD" for route in result["routes"]))
+        self.assertFalse(result["execution_authorization"])
+
     def test_engineering_only_does_not_route_to_finance(self):
         value = discovery(classification={
             "status": "CONFIRMED", "domains": ["ENGINEERING"], "rationale": "Engineering-only"
