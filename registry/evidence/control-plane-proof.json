@@ -13,7 +13,7 @@
     {
       "kind": "file_sha256",
       "ref": "registry/omega/omega-000-master-index.json",
-      "digest": "3c8afee73c6407ce55738feea3f0e6a6f3c148b9abcda6b35f0b07e5c24d224b"
+      "digest": "ec7921407d16f81072f80b62e59d664690c77bb3906f0fd005909a76bb856c48"
     }
   ],
   "verification": {
