@@ -1,0 +1,660 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/office-fabric-registry.schema.json",
+  "title": "VAIXLNS Operational Office Fabric Registry",
+  "description": "Zero-loss registry for logical engineering offices, governed systems, tool/adaptor integration states, and evidence-backed relationships. Registry membership does not grant execution authority.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "registry_id",
+    "canonical_owner",
+    "status",
+    "as_of_date",
+    "semantics",
+    "offices",
+    "systems",
+    "tool_integrations",
+    "edges",
+    "lifecycle",
+    "sources",
+    "coverage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "registry_id": {
+      "const": "VAIXLNS-OFFICE-FABRIC"
+    },
+    "canonical_owner": {
+      "const": "VAIXLNS"
+    },
+    "status": {
+      "enum": [
+        "PROPOSED_IMPLEMENTATION_SEED",
+        "PARTIAL",
+        "READY_FOR_REVIEW",
+        "CANONICAL"
+      ]
+    },
+    "as_of_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "semantics": {
+      "type": "object",
+      "required": [
+        "office_definition",
+        "zero_loss",
+        "no_implicit_admission",
+        "unverified_identity_rule",
+        "external_execution_boundary"
+      ],
+      "properties": {
+        "office_definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zero_loss": {
+          "const": true
+        },
+        "no_implicit_admission": {
+          "const": true
+        },
+        "unverified_identity_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "external_execution_boundary": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "offices": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/office"
+      }
+    },
+    "systems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/system"
+      }
+    },
+    "tool_integrations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/toolIntegration"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "lifecycle": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "offices_count",
+        "system_surfaces_count",
+        "tool_integrations_count",
+        "basis",
+        "not_claimed"
+      ],
+      "properties": {
+        "offices_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "system_surfaces_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tool_integrations_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "not_claimed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "office": {
+      "type": "object",
+      "required": [
+        "office_id",
+        "name",
+        "purpose",
+        "owner_system_ids",
+        "tool_ids",
+        "authority_ceiling",
+        "status",
+        "handoff_rules",
+        "source_refs"
+      ],
+      "properties": {
+        "office_id": {
+          "type": "string",
+          "pattern": "^OFF-[A-Z0-9-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner_system_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "tool_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "authority_ceiling": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "SPECIFIED",
+            "PARTIAL_EVIDENCE",
+            "ACTIVE_REFERENCE",
+            "PROPOSED"
+          ]
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "handoff_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "unresolved_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "system": {
+      "type": "object",
+      "required": [
+        "system_id",
+        "name",
+        "role",
+        "repository",
+        "status",
+        "office_ids",
+        "authority_boundary",
+        "contract_refs",
+        "evidence_refs",
+        "blockers"
+      ],
+      "properties": {
+        "system_id": {
+          "type": "string",
+          "pattern": "^SYS-[A-Z0-9-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repository": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "CANONICAL",
+            "IMPLEMENTED_PARTIAL",
+            "SPECIFIED",
+            "PARTIAL_EVIDENCE",
+            "PROPOSED_NOT_ADMITTED",
+            "HISTORICAL",
+            "IDENTITY_UNVERIFIED",
+            "NOT_CONFIGURED"
+          ]
+        },
+        "office_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "authority_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "toolIntegration": {
+      "type": "object",
+      "required": [
+        "tool_id",
+        "name",
+        "kind",
+        "owner_system_id",
+        "office_id",
+        "status",
+        "access_mode",
+        "capabilities",
+        "contract",
+        "security",
+        "observability",
+        "source_refs",
+        "blockers"
+      ],
+      "properties": {
+        "tool_id": {
+          "type": "string",
+          "pattern": "^TOOL-[A-Z0-9-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "registry_artifact",
+            "source_script",
+            "system_capability",
+            "external_api_adapter",
+            "protocol_adapter",
+            "client_gateway",
+            "observability_adapter",
+            "data_adapter",
+            "device_adapter"
+          ]
+        },
+        "owner_system_id": {
+          "type": "string"
+        },
+        "office_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "SOURCE_IMPLEMENTED",
+            "AVAILABLE_ARTIFACT",
+            "SPECIFICATION_ONLY",
+            "PARTIAL_EVIDENCE",
+            "NOT_CONFIGURED",
+            "PROPOSED_NOT_ADMITTED",
+            "PROTOCOL_REFERENCE"
+          ]
+        },
+        "access_mode": {
+          "enum": [
+            "READ_ONLY",
+            "PROPOSE_ONLY",
+            "SANDBOX_ONLY",
+            "GOVERNED_EXECUTION",
+            "OBSERVE_OR_SIMULATE_ONLY"
+          ]
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "contract": {
+          "type": "object",
+          "required": [
+            "contract_id",
+            "version",
+            "input_schema_ref",
+            "output_schema_ref",
+            "timeout_seconds",
+            "retry_policy",
+            "idempotency",
+            "failure_modes"
+          ],
+          "properties": {
+            "contract_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "input_schema_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "output_schema_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "timeout_seconds": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "retry_policy": {
+              "type": "string",
+              "minLength": 1
+            },
+            "idempotency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "failure_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "security": {
+          "type": "object",
+          "required": [
+            "authentication",
+            "data_boundary",
+            "egress_policy",
+            "authority_ceiling"
+          ],
+          "properties": {
+            "authentication": {
+              "type": "string",
+              "minLength": 1
+            },
+            "data_boundary": {
+              "type": "string",
+              "minLength": 1
+            },
+            "egress_policy": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authority_ceiling": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "observability": {
+          "type": "object",
+          "required": [
+            "event_names",
+            "evidence_capture",
+            "replay",
+            "health"
+          ],
+          "properties": {
+            "event_names": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            },
+            "evidence_capture": {
+              "type": "string",
+              "minLength": 1
+            },
+            "replay": {
+              "type": "string",
+              "minLength": 1
+            },
+            "health": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": [
+        "edge_id",
+        "from_type",
+        "from_id",
+        "relation",
+        "to_type",
+        "to_id",
+        "boundary",
+        "status",
+        "source_refs"
+      ],
+      "properties": {
+        "edge_id": {
+          "type": "string",
+          "pattern": "^EDGE-[0-9]{3,}$"
+        },
+        "from_type": {
+          "enum": [
+            "OFFICE",
+            "SYSTEM",
+            "TOOL"
+          ]
+        },
+        "from_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relation": {
+          "enum": [
+            "OWNS",
+            "COORDINATES",
+            "DISCOVERS_FOR",
+            "PROPOSES_TO",
+            "EXECUTES_THROUGH",
+            "OBSERVES",
+            "VERIFIES",
+            "RECOVERS",
+            "INDEXES",
+            "USES_ADAPTER",
+            "CONSUMES_CONTRACT",
+            "GOVERNS",
+            "CLIENT_OF",
+            "DEPENDS_ON",
+            "QUARANTINES"
+          ]
+        },
+        "to_type": {
+          "enum": [
+            "OFFICE",
+            "SYSTEM",
+            "TOOL"
+          ]
+        },
+        "to_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "OBSERVED_IN_SOURCE",
+            "SPECIFIED",
+            "PROPOSED",
+            "UNVERIFIED"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_type",
+        "title",
+        "uri",
+        "use",
+        "evidence_state"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^(SRC|EXT)-[A-Z0-9-]+$"
+        },
+        "source_type": {
+          "enum": [
+            "INTERNAL_REPOSITORY",
+            "EXTERNAL_SPECIFICATION",
+            "EXTERNAL_DOCUMENTATION"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "use": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_state": {
+          "enum": [
+            "OBSERVED_SOURCE",
+            "OFFICIAL_REFERENCE",
+            "DESIGN_INPUT"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
