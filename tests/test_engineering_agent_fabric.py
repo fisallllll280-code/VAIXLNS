@@ -16,6 +16,11 @@ class EngineeringAgentFabricTests(unittest.TestCase):
         (root / "tests" / "test_example.py").write_text("def test_ok():\n    assert True\n", encoding="utf-8")
         (root / "src.py").write_text("VALUE = 1\n", encoding="utf-8")
         (root / "README.md").write_text("Example project\n", encoding="utf-8")
+        subprocess.run(["git", "init", "-q", str(root)], check=True, capture_output=True)
+        subprocess.run(["git", "-C", str(root), "config", "user.email", "tests@example.invalid"], check=True)
+        subprocess.run(["git", "-C", str(root), "config", "user.name", "Test Runner"], check=True)
+        subprocess.run(["git", "-C", str(root), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(root), "commit", "-q", "-m", "fixture"], check=True, capture_output=True)
 
     def test_plan_is_deterministic_and_hash_matches(self):
         with tempfile.TemporaryDirectory() as directory:
