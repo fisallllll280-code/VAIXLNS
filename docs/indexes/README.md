@@ -25,6 +25,7 @@
 - ../integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md — ARC-X to VX engineering task routing for mathematics, numerical computing, software and physics simulation; remains SPECIFIED until runtime evidence closes the gates.
 - ../../schemas/vaixlns-system-memory-record.schema.json — machine-readable provenance-preserving memory-record contract.
 - ../../schemas/arcx-vx-engineering-task.schema.json — typed task envelope for controlled engineering compute.
+- ../../schemas/arcx-vx-engineering-receipt.schema.json — signed acknowledgement contract that cannot itself establish verification or canonical admission.
 - ../../scripts/arcx_vx_bridge.py — explicit fail-closed client for a configured VX engineering endpoint; receipt acknowledgement is not proof or admission.
 - ../../tests/test_arcx_vx_bridge.py — unit tests for preflight, receipt validation, and endpoint safety (test execution remains to be verified).
 
