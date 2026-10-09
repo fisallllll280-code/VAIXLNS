@@ -9,7 +9,8 @@
     "feature_branch": "feat/deep-engineering-company-forge",
     "pull_request": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/1",
     "disposition": "PROPOSED_NOT_ADMITTED",
-    "main_provider_bindings_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/2"
+    "main_provider_bindings_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/2",
+    "main_durable_ops_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/4"
   },
   "domains": {
     "research": {
@@ -119,10 +120,14 @@
   "operational_status": {
     "coordinator_code": "IMPLEMENTED_IN_MAIN",
     "provider_binding_support": "AVAILABLE_OPT_IN_OPENAI_COMPATIBLE",
-    "unit_tests": "GITHUB_ACTIONS_GREEN_ON_PR_HEAD",
+    "unit_tests": "GITHUB_ACTIONS_GREEN",
     "model_providers": "NOT_CONNECTED_UNTIL_ENDPOINT_AND_MODELS_ARE_CONFIGURED",
     "durable_vaixlns_event_ledger": "NOT_CONNECTED",
-    "production_admission": "NOT_GRANTED"
+    "production_admission": "NOT_GRANTED",
+    "local_durable_event_ledger": "AVAILABLE_OPT_IN_JSONL_FSYNC",
+    "local_artifact_archive": "AVAILABLE_OPT_IN_JSONL_FSYNC",
+    "failure_memory": "AVAILABLE_OPT_IN_RETRIEVAL",
+    "crash_resume_controller": "NOT_IMPLEMENTED"
   },
   "canonical_references": {
     "repository_inventory": "registry/REPOSITORY_INVENTORY.md",
@@ -152,5 +157,18 @@
     "internet_search_adapter": "NOT_INCLUDED",
     "repository_tool_adapter": "NOT_INCLUDED",
     "code_sandbox_adapter": "NOT_INCLUDED"
+  },
+  "durable_operations": {
+    "event_ledger_env": "VX_EVENT_LEDGER_PATH",
+    "artifact_archive_env": "VX_ARTIFACT_ARCHIVE_PATH",
+    "failure_memory_env": "VX_FAILURE_MEMORY_PATH",
+    "hash_chain_validation": true,
+    "persist_full_event_payloads": true,
+    "immutable_artifact_ids": true,
+    "artifact_digest_validation": true,
+    "failure_pattern_retrieval": true,
+    "fsync_on_append": true,
+    "model_weight_retraining": false,
+    "automatic_crash_resume": false
   }
 }
