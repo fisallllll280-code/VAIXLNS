@@ -74,7 +74,7 @@ jobs:
                       parser = TextExtractor()
                       parser.feed(text)
                       text = " ".join(parser.parts)
-                  text = re.sub(r"\\s+", " ", text).strip()
+                  text = re.sub(r"\s+", " ", text).strip()
                   if not text:
                       raise RuntimeError("empty normalized response")
                   digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -167,7 +167,7 @@ jobs:
               report,
               "",
               "Workflow run: " + context.serverUrl + "/" + owner + "/" + repo + "/actions/runs/" + context.runId
-            ].join("\\n");
+            ].join("\n");
             if (existing) {
               await github.rest.issues.createComment({
                 owner, repo, issue_number: existing.number, body
