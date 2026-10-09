@@ -1,0 +1,48 @@
+apiVersion: vaixlns.io/v1
+kind: CapabilityRegistryRecord
+metadata:
+  id: VX.AGENT.ACTION.ASSURANCE.001
+  name: Agent Action-Control Assurance
+  version: 1.0.0
+  status: PARTIAL
+spec:
+  canonicalOwner: VAIXLNS
+  authority:
+    goldenSource: project.genome::v1.0.0
+    authorityAnchor: Ω0_GENESIS_CORE
+    masterIndex: Ω.000
+  executionRepository: fisallllll280-code/vaixlns-nexent-vx
+  implementation:
+    branch: feat/agent-action-control-assurance-v1
+    pullRequest: https://github.com/fisallllll280-code/vaixlns-nexent-vx/pull/1
+    ciEvidence: https://github.com/fisallllll280-code/vaixlns-nexent-vx/actions/runs/37916624473
+    ciSummary:
+      unitAndPropertyTests: 14
+      randomizedTransitionSequences: 5000
+      targetedMutationsKilled: 3
+      targetedMutationsTotal: 3
+  capabilities:
+    - signed_contract_bound_permits
+    - expiry_and_action_scope_checks
+    - trusted_resource_version_toctou_guard
+    - partial_effect_and_compensation_states
+    - independent_target_audit_readback_tripwire
+    - contract_bound_idempotency_key
+    - hash_chained_transition_receipts
+    - randomized_transition_invariant_checks
+    - targeted_mutation_canaries
+  epistemicState: PARTIAL
+  productionReadiness: NOT_PROVEN
+  boundaries:
+    mayEvaluatePermit: true
+    mayCollectEvidence: through_configured_adapters_only
+    mayAuthorizeSelf: false
+    mayPromoteCanonicalState: false
+    mayExecuteExternalActions: false
+  blockers:
+    - durable_atomic_idempotency
+    - real_target_actuator_and_resource_version_cas
+    - isolated_target_audit_readback_and_tripwire_services
+    - concurrency_crash_replay_and_compensation_failure_tests
+    - formal_model_checking
+    - independent_security_review
