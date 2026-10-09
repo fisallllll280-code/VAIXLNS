@@ -9,6 +9,7 @@ admission: the remote server must revalidate policy and authorization.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import hmac
 import ipaddress
@@ -101,7 +102,8 @@ def validate_task(task: Any) -> list[str]:
             digest = artifact.get("sha256")
             if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
                 errors.append(f"INVALID_ARTIFACT_DIGEST:{index}")
-            if artifact.get("trust_state") not in {
+            trust_state = artifact.get("trust_state")
+            if not isinstance(trust_state, str) or trust_state not in {
                 "UNTRUSTED", "SCREENED", "TRUSTED_FOR_DECLARED_USE"
             }:
                 errors.append(f"INVALID_ARTIFACT_TRUST_STATE:{index}")
@@ -127,7 +129,7 @@ def validate_task(task: Any) -> list[str]:
         errors.append("EXTERNAL_SIDE_EFFECTS_MUST_BE_DISABLED")
 
     mode = task["execution_mode"]
-    if mode not in {"ANALYZE", "SIMULATE", "TEST", "EXECUTE"}:
+    if not isinstance(mode, str) or mode not in {"ANALYZE", "SIMULATE", "TEST", "EXECUTE"}:
         errors.append("INVALID_EXECUTION_MODE")
     if mode == "EXECUTE" and not (
         isinstance(task["authorization_ref"], str)
@@ -180,13 +182,17 @@ def _configured_endpoint() -> str:
     raw = os.getenv("VX_ENGINEERING_SERVER_URL", "").strip()
     if not raw:
         raise BridgeError("VX_ENGINEERING_SERVER_URL is required for remote submission")
-    parsed = urlsplit(raw)
-    if parsed.scheme not in {"https", "http"} or not parsed.hostname:
+    try:
+        parsed = urlsplit(raw)
+        hostname = parsed.hostname
+    except ValueError as exc:
+        raise BridgeError("endpoint URL is malformed") from exc
+    if parsed.scheme not in {"https", "http"} or not hostname:
         raise BridgeError("endpoint must be an absolute HTTP(S) URL")
     if parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise BridgeError("endpoint must not contain credentials, query, or fragment")
 
-    host = parsed.hostname.lower()
+    host = hostname.lower()
     loopback = host == "localhost"
     try:
         loopback = loopback or ipaddress.ip_address(host).is_loopback
@@ -232,7 +238,8 @@ def verify_receipt(
         raise BridgeError("receipt task_id mismatch")
     if receipt["task_digest"] != expected_task_digest:
         raise BridgeError("receipt task digest mismatch")
-    if receipt["status"] not in RECEIPT_STATES:
+    status = receipt["status"]
+    if not isinstance(status, str) or status not in RECEIPT_STATES:
         raise BridgeError("receipt contains an unrecognized lifecycle state")
 
     unsigned = dict(receipt)
@@ -255,7 +262,7 @@ def _request_json(url: str, *, method: str, payload: dict[str, Any] | None,
         if len(body) > MAX_TASK_BYTES:
             raise BridgeError("request exceeds maximum allowed size")
         headers["Content-Type"] = "application/json"
-        headers["Content-Digest"] = "sha-256=:" + __import__("base64").b64encode(
+        headers["Content-Digest"] = "sha-256=:" + base64.b64encode(
             hashlib.sha256(body).digest()
         ).decode("ascii") + ":"
     request = Request(url, data=body, headers=headers, method=method)
@@ -286,6 +293,8 @@ def submit_task(task: dict[str, Any], *, timeout: float = DEFAULT_TIMEOUT_SECOND
         raise BridgeError("VX_ENGINEERING_BEARER_TOKEN is required")
     request_key = _secret("VX_ENGINEERING_REQUEST_SIGNING_KEY")
     receipt_key = _secret("VX_ENGINEERING_RECEIPT_SIGNING_KEY")
+    if hmac.compare_digest(request_key, receipt_key):
+        raise BridgeError("request-signing and receipt-verification keys must be different")
 
     envelope = build_envelope(task, request_key)
     task_digest = envelope["task_digest"]
