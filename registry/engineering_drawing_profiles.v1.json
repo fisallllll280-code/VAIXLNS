@@ -1,0 +1,121 @@
+{
+  "schema": "VAIXLNS.EngineeringDrawingProfiles.v1",
+  "registry_state": "REFERENCE_ONLY",
+  "selection_policy": {
+    "mode": "suggest_only",
+    "require_project_jurisdiction": true,
+    "require_human_confirmation_of_governing_edition": true,
+    "verify_current_edition_at_job_admission": true,
+    "never_infer_loads_material_properties_or_tolerances": true
+  },
+  "profiles": [
+    {
+      "id": "TPD-GENERAL-ISO",
+      "discipline": [
+        "architectural",
+        "civil_structural",
+        "mechanical",
+        "electrical",
+        "process_piping",
+        "other"
+      ],
+      "purpose": "General technical drawing presentation",
+      "standards": [
+        {
+          "code": "ISO 128-1",
+          "edition": "2020",
+          "url": "https://www.iso.org/standard/65296.html"
+        },
+        {
+          "code": "ISO 128-3",
+          "edition": "2022",
+          "url": "https://www.iso.org/standard/83356.html"
+        },
+        {
+          "code": "ISO 129-1",
+          "edition": "2018",
+          "url": "https://www.iso.org/standard/64007.html"
+        }
+      ],
+      "notes": "References are suggestions; select the applicable discipline parts and current editions for the job."
+    },
+    {
+      "id": "MECHANICAL-GDT-ISO",
+      "discipline": [
+        "mechanical"
+      ],
+      "purpose": "Geometric product specifications and tolerancing",
+      "standards": [
+        {
+          "code": "ISO 1101",
+          "edition": "2017",
+          "url": "https://www.iso.org/standard/66777.html"
+        },
+        {
+          "code": "ISO 22081",
+          "edition": "2021",
+          "url": "https://www.iso.org/standard/72514.html"
+        }
+      ],
+      "notes": "Do not combine ISO GPS and ASME Y14.5 defaults without an explicit interoperability/contract rule."
+    },
+    {
+      "id": "MECHANICAL-GDT-ASME",
+      "discipline": [
+        "mechanical"
+      ],
+      "purpose": "ASME dimensioning and tolerancing",
+      "standards": [
+        {
+          "code": "ASME Y14.5",
+          "edition": "2018 (R2024)",
+          "url": "https://www.asme.org/codes-standards/find-codes-standards/dimensioning-and-tolerancing"
+        }
+      ],
+      "notes": "Confirm the customer-required revision and any contract amendments before selecting this profile."
+    },
+    {
+      "id": "BIM-ISO-IFC",
+      "discipline": [
+        "architectural",
+        "civil_structural"
+      ],
+      "purpose": "BIM information management and open model exchange",
+      "standards": [
+        {
+          "code": "ISO 19650-1",
+          "edition": "2018; recheck at execution",
+          "url": "https://www.iso.org/standard/68078.html"
+        },
+        {
+          "code": "IFC",
+          "edition": "select explicit buildingSMART release",
+          "url": "https://standards.buildingsmart.org/"
+        }
+      ],
+      "notes": "A model-exchange schema is not, by itself, a building-code compliance certificate."
+    },
+    {
+      "id": "SAUDI-BUILDING-2024",
+      "discipline": [
+        "architectural",
+        "civil_structural"
+      ],
+      "jurisdiction": "Saudi Arabia",
+      "purpose": "Saudi building-code profile candidate",
+      "standards": [
+        {
+          "code": "SBC 201",
+          "edition": "2024",
+          "url": "https://sbc.gov.sa/ar/bc/pages/buildingcode/BCDetails.aspx?codeId=501&year=2018"
+        },
+        {
+          "code": "SBC 301",
+          "edition": "2024; verify project applicability",
+          "url": "https://sbc.gov.sa/ar/bc/pages/buildingcode/BCDetails.aspx?codeId=501&year=2018"
+        }
+      ],
+      "notes": "Profile is a candidate list, not automatic proof of applicability; confirm occupancy, authority, local requirements and all discipline-specific codes."
+    }
+  ]
+}

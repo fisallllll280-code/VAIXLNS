@@ -1,0 +1,28 @@
+name: VAIXLNS Engineering Drawing Contract
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate registry JSON
+        run: python -m json.tool registry/engineering_drawing_profiles.v1.json > /dev/null
+      - name: Validate JSON schema syntax
+        run: python -m json.tool schemas/engineering-drawing-job.schema.json > /dev/null
+      - name: Run engineering drawing contract tests
+        run: python -m unittest discover -s tests -p "test_engineering_drawing_job.py" -v
+      - name: Run automated profile suggestion tests
+        run: python -m unittest discover -s tests -p "test_engineering_drawing_profile_suggestions.py" -v

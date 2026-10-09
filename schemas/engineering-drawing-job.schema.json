@@ -1,0 +1,376 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/engineering-drawing-job.schema.json",
+  "title": "VAIXLNS Engineering Drawing Job",
+  "description": "Kernel-neutral, evidence-gated request contract for engineering drawing generation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "job_id",
+    "discipline",
+    "jurisdiction",
+    "intent",
+    "units",
+    "coordinate_system",
+    "constraints",
+    "standards",
+    "geometry_backend",
+    "deliverables",
+    "validation_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "job_id": {
+      "type": "string",
+      "pattern": "^ED-[A-Z0-9][A-Z0-9._-]{1,70}$"
+    },
+    "discipline": {
+      "enum": [
+        "architectural",
+        "civil_structural",
+        "mechanical",
+        "electrical",
+        "process_piping",
+        "robotics",
+        "scientific",
+        "other"
+      ]
+    },
+    "jurisdiction": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 8000
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "length",
+        "angle"
+      ],
+      "properties": {
+        "length": {
+          "enum": [
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ]
+        },
+        "angle": {
+          "enum": [
+            "deg",
+            "rad"
+          ]
+        },
+        "force": {
+          "enum": [
+            "N",
+            "kN",
+            "lbf",
+            "kip"
+          ]
+        },
+        "pressure": {
+          "enum": [
+            "Pa",
+            "kPa",
+            "MPa",
+            "bar",
+            "psi"
+          ]
+        }
+      }
+    },
+    "coordinate_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handedness",
+        "origin"
+      ],
+      "properties": {
+        "handedness": {
+          "enum": [
+            "right",
+            "left"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "axis_convention": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "description",
+          "mandatory",
+          "verification_state"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^C-[A-Z0-9][A-Z0-9._-]{1,40}$"
+          },
+          "type": {
+            "enum": [
+              "dimension",
+              "parametric_equation",
+              "clearance",
+              "collision_free",
+              "load_case",
+              "code_rule",
+              "topology",
+              "tolerance",
+              "accessibility",
+              "egress",
+              "electrical_rating",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 2000
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "verification_state": {
+            "enum": [
+              "NOT_CHECKED",
+              "PASSED",
+              "FAILED",
+              "NOT_APPLICABLE_WITH_EVIDENCE"
+            ]
+          },
+          "evidence_ref": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "standards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "edition",
+          "jurisdiction",
+          "source_uri",
+          "selection_state"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "jurisdiction": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "source_uri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "selection_state": {
+            "enum": [
+              "SELECTED",
+              "NEEDS_REVIEW",
+              "NOT_APPLICABLE_WITH_RATIONALE"
+            ]
+          },
+          "selection_rationale": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        }
+      }
+    },
+    "geometry_backend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter",
+        "version",
+        "capability_state"
+      ],
+      "properties": {
+        "adapter": {
+          "enum": [
+            "freecad",
+            "opencascade",
+            "autodesk_aps",
+            "ifc_bim",
+            "custom",
+            "not_selected"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "capability_contract_ref": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "capability_state": {
+          "enum": [
+            "NOT_CHECKED",
+            "AVAILABLE",
+            "VERIFIED",
+            "UNAVAILABLE"
+          ]
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "format",
+          "purpose",
+          "required"
+        ],
+        "properties": {
+          "format": {
+            "enum": [
+              "svg",
+              "dxf",
+              "dwg",
+              "step",
+              "iges",
+              "ifc",
+              "rvt",
+              "stl",
+              "glb",
+              "pdf",
+              "json"
+            ]
+          },
+          "purpose": {
+            "enum": [
+              "2d_drawing",
+              "3d_model",
+              "bim_model",
+              "manufacturing_model",
+              "coordination_model",
+              "calculation_report",
+              "evidence_bundle",
+              "other"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "profile_ref": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "validation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "require_independent_checker",
+        "require_human_release",
+        "block_on_unknown_standards",
+        "independent_check_state",
+        "human_approval_state",
+        "simulation_required",
+        "simulation_state",
+        "independent_check_evidence_ref",
+        "human_approval_evidence_ref",
+        "simulation_evidence_ref"
+      ],
+      "properties": {
+        "require_independent_checker": {
+          "type": "boolean"
+        },
+        "require_human_release": {
+          "type": "boolean"
+        },
+        "block_on_unknown_standards": {
+          "type": "boolean"
+        },
+        "independent_check_state": {
+          "enum": [
+            "NOT_RUN",
+            "PASSED",
+            "FAILED"
+          ]
+        },
+        "human_approval_state": {
+          "enum": [
+            "NOT_GRANTED",
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "simulation_required": {
+          "type": "boolean"
+        },
+        "simulation_state": {
+          "enum": [
+            "NOT_RUN",
+            "PASSED",
+            "FAILED",
+            "NOT_APPLICABLE_WITH_EVIDENCE"
+          ]
+        },
+        "independent_check_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "human_approval_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "simulation_evidence_ref": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    }
+  }
+}
