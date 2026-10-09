@@ -19,7 +19,7 @@ class IndexPathDepthTests(unittest.TestCase):
         (self.root / "docs/indexes/README.md").write_text(
             "# Root\n[A](A.md)\n[A duplicate](A.md)\n"
             "tools/probe.py\n"
-            "[External](https://example.test/ref.md)\n"
+            "[External](https://example.test/reference.md)\n"
             "[Broken](missing.md)\n[Escape](../../../outside.md)\n",
             encoding="utf-8",
         )
@@ -49,7 +49,8 @@ class IndexPathDepthTests(unittest.TestCase):
             ["docs/indexes/README.md", "docs/indexes/A.md", "docs/architecture/C.md"],
         )
         self.assertIsNone(nodes["docs/unreachable.md"]["depth"])
-        self.assertEqual(report["unreachable_file_count"], 1)
+        self.assertIsNone(nodes["docs/reference.md"]["depth"])
+        self.assertEqual(report["unreachable_file_count"], 2)
         validate_report(report)
 
     def test_reports_broken_and_blocks_path_escape(self) -> None:

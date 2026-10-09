@@ -42,7 +42,7 @@ def _indexable_files(repo_root: Path) -> set[str]:
         relative = path.relative_to(repo_root)
         if any(part in SKIP_DIRS for part in relative.parts):
             continue
-        if not path.is_file() or path.suffix.lower() not in INDEXABLE_SUFFIXES:
+        if path.is_symlink() or not path.is_file() or path.suffix.lower() not in INDEXABLE_SUFFIXES:
             continue
         rel = relative.as_posix()
         # Exclude generated output as an input to prevent self-referential drift.
@@ -137,8 +137,14 @@ def _collect_edges(repo_root: Path, files: set[str]):
             elif status == "blocked":
                 blocked.add((source, raw, line))
 
-        # Also index explicit file-path mentions, including plain filename bullets.
-        for match in PATH_REFERENCE_RE.finditer(text):
+        # Index plain file-path mentions, but mask complete Markdown links and URL text first.
+        # Otherwise a remote URL ending in a local filename can create a false local edge.
+        def mask_non_newlines(match: re.Match[str]) -> str:
+            return "".join("\\n" if char == "\\n" else " " for char in match.group(0))
+
+        reference_text = MARKDOWN_LINK_RE.sub(mask_non_newlines, text)
+        reference_text = re.sub(r"https?://[^\\s)>]+", mask_non_newlines, reference_text, flags=re.IGNORECASE)
+        for match in PATH_REFERENCE_RE.finditer(reference_text):
             raw = match.group(1)
             resolved, status = _resolve_reference(source, raw, files)
             if status != "resolved" or not resolved:
