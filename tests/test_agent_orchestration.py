@@ -134,7 +134,7 @@ class AgentOrchestrationTests(unittest.TestCase):
     def test_result_is_quarantined_before_evidence(self):
         record = dispatched_record()
         with self.assertRaisesRegex(OrchestrationError, "quarantined"):
-            validate_and_record_evidence(record, receipt(), now=NOW)
+            validate_and_record_evidence(record, receipt=receipt(), now=NOW)
         digest = quarantine_result(record, result={"success": True, "payload": "untrusted"})
         self.assertTrue(digest.startswith("sha256:"))
         validate_and_record_evidence(record, receipt(record.envelope), now=NOW)
