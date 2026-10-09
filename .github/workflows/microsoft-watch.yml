@@ -1,0 +1,181 @@
+name: Microsoft Windows & Security Watch
+
+on:
+  schedule:
+    - cron: "23 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: microsoft-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Restore previous source snapshots
+        uses: actions/cache/restore@v4
+        with:
+          path: .watch-cache
+          key: microsoft-watch-${{ github.run_id }}
+          restore-keys: |
+            microsoft-watch-
+
+      - name: Fetch and normalize official Microsoft sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p current
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          import hashlib, re, sys
+
+          SOURCES = {
+              "windows-release-health": "https://learn.microsoft.com/en-us/windows/release-health/",
+              "windows-11-release-information": "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information",
+              "msrc-security-update-guide": "https://msrc.microsoft.com/update-guide/",
+              "windows-experience-blog": "https://blogs.windows.com/windowsexperience/feed/",
+          }
+
+          class TextExtractor(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.parts = []
+                  self.skip = 0
+              def handle_starttag(self, tag, attrs):
+                  if tag in ("script", "style", "noscript", "svg"):
+                      self.skip += 1
+              def handle_endtag(self, tag):
+                  if tag in ("script", "style", "noscript", "svg") and self.skip:
+                      self.skip -= 1
+              def handle_data(self, data):
+                  if not self.skip:
+                      self.parts.append(data)
+
+          failures = []
+          for name, url in SOURCES.items():
+              try:
+                  req = Request(url, headers={"User-Agent": "VAIXLNS-Microsoft-Watch/1.0"})
+                  with urlopen(req, timeout=25) as response:
+                      raw = response.read(5_000_000)
+                      status = response.status
+                      content_type = response.headers.get("Content-Type", "")
+                  if status < 200 or status >= 300:
+                      raise RuntimeError("HTTP " + str(status))
+                  text = raw.decode("utf-8", errors="replace")
+                  if "html" in content_type.lower():
+                      parser = TextExtractor()
+                      parser.feed(text)
+                      text = " ".join(parser.parts)
+                  text = re.sub(r"\\s+", " ", text).strip()
+                  if not text:
+                      raise RuntimeError("empty normalized response")
+                  digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
+                  Path("current", name + ".txt").write_text(
+                      "source=" + url + "\nsha256=" + digest + "\n\n" + text[:200000] + "\n",
+                      encoding="utf-8"
+                  )
+                  print("OK " + name + " " + digest)
+              except Exception as exc:
+                  failures.append(name + ": " + str(exc))
+                  print("ERROR " + name + ": " + str(exc), file=sys.stderr)
+
+          Path("current", "fetch-errors.txt").write_text("\n".join(failures), encoding="utf-8")
+          if len(failures) == len(SOURCES):
+              raise SystemExit("All official Microsoft sources failed to fetch.")
+          PY
+
+      - name: Compare with previous snapshot
+        id: compare
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .watch-cache
+          {
+            echo "## Microsoft official-source watch"
+            echo
+            echo "- Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- Time (UTC): $(date -u +'%Y-%m-%d %H:%M:%S')"
+            echo "- Policy: report changes only; never install updates or modify Windows hosts."
+            echo
+          } > report.md
+          changed=0
+          for file in current/*.txt; do
+            base="$(basename "$file")"
+            [[ "$base" == "fetch-errors.txt" ]] && continue
+            old=".watch-cache/$base"
+            if [[ ! -f "$old" ]]; then
+              echo "- BASELINE: $base has no previous snapshot available." >> report.md
+            elif ! cmp -s "$file" "$old"; then
+              echo "- CHANGED: $base normalized source content differs from the prior snapshot." >> report.md
+              changed=1
+            else
+              echo "- UNCHANGED: $base" >> report.md
+            fi
+            cp "$file" ".watch-cache/$base"
+          done
+          if [[ -s current/fetch-errors.txt ]]; then
+            echo >> report.md
+            echo "### Fetch warnings" >> report.md
+            sed 's/^/- /' current/fetch-errors.txt >> report.md
+          fi
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save current snapshots
+        uses: actions/cache/save@v4
+        with:
+          path: .watch-cache
+          key: microsoft-watch-${{ github.run_id }}
+
+      - name: Upload source report
+        uses: actions/upload-artifact@v4
+        with:
+          name: microsoft-watch-${{ github.run_id }}
+          path: |
+            report.md
+            current/
+          retention-days: 90
+
+      - name: Open or update a tracking issue when sources change
+        if: steps.compare.outputs.changed == '1'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "Microsoft Watch: official source content changed";
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const fs = require("fs");
+            const report = fs.readFileSync("report.md", "utf8");
+            const result = await github.rest.issues.listForRepo({
+              owner, repo, state: "open", per_page: 100
+            });
+            const existing = result.data.find(i => !i.pull_request && i.title === title);
+            const body = [
+              "Automated notice: one or more official Microsoft source snapshots changed.",
+              "",
+              "This is a review signal, not a claim that an update applies to a specific host.",
+              "Check the official source, affected versions, known issues/safeguard holds, and rollback guidance before deployment.",
+              "",
+              report,
+              "",
+              "Workflow run: " + context.serverUrl + "/" + owner + "/" + repo + "/actions/runs/" + context.runId
+            ].join("\\n");
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: existing.number, body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner, repo, title,
+                labels: ["microsoft-watch"],
+                body
+              });
+            }
