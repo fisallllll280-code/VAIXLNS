@@ -132,3 +132,29 @@ These entries are context-level proposals/specifications unless separately suppo
 89. Deterministic Research Decision Bundle and Non-Promotion Gate
 
 Implementation reference: `VAIXLNS-unified/innovation_control/research_fabric.py`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains `EVOLVING / IMPLEMENTED`: live search adapters and item-by-item recovery of the historical `0001–2750` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
+
+## 2026-10-09 Saudi-first launch and capital-governance additions
+
+These are programme-level engineering proposals, not evidence of earned revenue, deployed capital controls, or signed partnerships.
+
+90. Saudi-First Startup Engineering Support Fabric
+91. Customer-Bounded Agent / Workflow Pilot Contract
+92. Founder-Financed Launch Capital and Sources-and-Uses Ledger
+93. Innovation Reserve 30-Day No-Distribution Gate
+94. Saudi–US Six-Company Innovation Federation (3 Saudi + 3 US target slots)
+95. Financial-Agent Safe-Action Boundary (research/reporting/preparation; human authorization)
+96. Founder-Controlled Legacy Classification and Zero-Loss Lineage Gate
+97. Engineering Offer-to-Acceptance Evidence Pipeline
+
+Implementation / policy references:
+- `docs/strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md`
+- `registry/capital_lock_policy.v1.json`
+
+Status notes:
+- The US$10,000 is proposed as founder-provided capital from the founder's own portfolio/wallet. It is not customer revenue and is not classified as bank lending unless bank facility documents prove that classification.
+- The sales offer ladder is an illustrative test target, not achieved or guaranteed income.
+- Funds earmarked for essential obligations cannot also count as the locked Innovation Fund reserve. The 30-day lock applies only to a reconciled, available residual reserve after due obligations and required operating envelopes are separated.
+- The founder-reported 10% progress is not independently verified until milestones and denominator are evidenced.
+- The six-company structure is a target only; all partner slots remain unfilled until due diligence and signed agreements.
+- The founder decides historic/legacy classifications. AI tools can recommend with evidence but cannot silently delete, merge, rename, or supersede entries.
+
