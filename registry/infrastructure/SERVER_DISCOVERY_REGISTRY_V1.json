@@ -15,6 +15,33 @@
   },
   "targets": [
     {
+      "id": "VAIXLNS-UNIFIED-API-001",
+      "role": "local-first VAIXLNS runtime API and durable event store",
+      "endpoint": "http://127.0.0.1:8080/health",
+      "source_evidence": {
+        "kind": "source_and_runbook",
+        "repository": "https://github.com/fisallllll280-code/VAIXLNS-unified",
+        "runbook": "docs/operations/LOCAL_SERVER_V1.md",
+        "source": "api/server.py",
+        "storage": "infra/durable_store.py (SQLite-backed hash-linked event/snapshot store)",
+        "claim": "A FastAPI entrypoint and health endpoint exist in source; a local process has not been observed running from this environment."
+      },
+      "status": "SOURCE_PRESENT_NOT_PROBED",
+      "probe": {
+        "enabled": true,
+        "method": "GET",
+        "scope": "loopback only",
+        "max_timeout_seconds": 5,
+        "follows_redirects": false
+      },
+      "notes": [
+        "This is the preferred first runtime candidate for local-first bring-up because the source provides a local API and SQLite persistence.",
+        "The runbook declares uvicorn api.server:app --host 127.0.0.1 --port 8080.",
+        "Before exposing beyond loopback, require a non-empty VAIXLNS_API_TOKEN, TLS or a private authenticated network path, and explicit firewall policy.",
+        "Source currently treats API authorization as allowed when VAIXLNS_API_TOKEN is unset; POST and federation-probe routes therefore require the token to be configured before any non-loopback deployment."
+      ]
+    },
+    {
       "id": "LAN-HTTP-001",
       "role": "previously documented private-network HTTP service",
       "endpoint_source": {
