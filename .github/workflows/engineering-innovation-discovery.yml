@@ -16,7 +16,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: engineering-discovery-\${{ github.ref }}
+  group: engineering-discovery-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      GITHUB_TOKEN: \${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Check out canonical sources
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
       - name: Restore last successful main-branch report
         id: baseline
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           echo "path=" >> "$GITHUB_OUTPUT"
@@ -73,10 +73,10 @@ jobs:
         shell: bash
         run: |
           args=(--output-dir artifacts/engineering-discovery)
-          if [ -n "\${{ steps.baseline.outputs.path }}" ] && [ -f "\${{ steps.baseline.outputs.path }}" ]; then
-            args+=(--baseline "\${{ steps.baseline.outputs.path }}")
+          if [ -n "${{ steps.baseline.outputs.path }}" ] && [ -f "${{ steps.baseline.outputs.path }}" ]; then
+            args+=(--baseline "${{ steps.baseline.outputs.path }}")
           fi
-          python tools/engineering_innovation_discovery.py "\${args[@]}"
+          python tools/engineering_innovation_discovery.py "${args[@]}"
 
       - name: Upload report and next-run baseline
         if: always()
