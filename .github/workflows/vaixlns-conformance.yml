@@ -43,7 +43,10 @@ jobs:
             scripts/treasury_admission_probe.py \
             scripts/vcre_probe.py \
             tools/omega/validate_federation.py \
-            tests/test_canonical_control_plane.py
+            tools/build_innovation_operation_index.py \
+            tools/validate_innovation_operation_index.py \
+            tests/test_canonical_control_plane.py \
+            tests/test_innovation_operation_index.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -59,6 +62,15 @@ jobs:
 
       - name: Emit provenance
         run: python scripts/emit_provenance.py
+
+      - name: Build deterministic innovation operation index
+        run: python tools/build_innovation_operation_index.py
+
+      - name: Validate innovation operation index
+        run: python tools/validate_innovation_operation_index.py
+
+      - name: Verify deterministic index output
+        run: python tools/build_innovation_operation_index.py --check
 
       - name: Run test suite
         run: python -m unittest discover -s tests -v
