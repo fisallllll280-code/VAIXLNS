@@ -22,8 +22,13 @@ Turn a project, repository, specification, or partial implementation into a stru
 10. Performance & Cost — measurable runtime/cost constraints.
 11. Independent Verifier — counterevidence and independent reproduction.
 12. Release & Recovery — rollback, migration, release evidence.
+13. Federated Research & Index — search configured sources and approved server adapters, preserve source IDs/citations, and separate discovered leads from verified proof.
 
 These are deterministic task contracts, not a claim that twelve live model agents have been provisioned. Actual dispatch adapters remain separate and must report their own health, provider, model/version, task ID, input fingerprint, and result fingerprint.
+
+## Federated retrieval integration
+
+The Ω Research Fabric provides the local incremental SQLite/FTS5 index, optional Crossref/OpenAlex/arXiv/GitHub research adapters, and explicit read-only server adapters. It is a retrieval plane for specialist work packets, not a live agent provider. Configure it separately using `docs/innovation/OMEGA_RESEARCH_FABRIC_V1.md`. Its output state `DISCOVERED_UNVERIFIED` must remain distinct from implementation and verification evidence.
 
 ## Lifecycle
 
