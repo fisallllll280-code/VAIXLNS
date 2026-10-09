@@ -54,10 +54,17 @@ def _matches(path: str, pattern: str) -> bool:
     return fnmatch.fnmatchcase(path, pattern)
 
 
+def _normalize_path(value: object) -> str:
+    path = str(value).replace("\\", "/")
+    while path.startswith("./"):
+        path = path[2:]
+    return path
+
+
 def plan_tests(changed_paths: Sequence[str] | None, diff_error: str | None = None) -> dict[str, Any]:
     """Return a conservative plan; unknown or unavailable impact means full suite."""
     normalized = sorted({
-        str(path).replace("\\", "/").lstrip("./")
+        _normalize_path(path)
         for path in (changed_paths or []) if str(path).strip()
     })
     if diff_error:
