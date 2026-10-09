@@ -156,6 +156,32 @@
         "deterministic_research_decision_bundle"
       ],
       "promotion_rule": "Research output cannot self-promote; downstream innovation proof gates and explicit authority remain mandatory."
+    },
+    {
+      "id": "VAIXLNS.PERMANENT.ENGINEERING.MEMORY.001",
+      "type": "CAPABILITY",
+      "role": "PROVENANCE_BOUND_APPEND_ONLY_ENGINEERING_MEMORY",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "PARTIAL",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VAIXLNS",
+      "integration_status": "LOCAL_LEDGER_IMPLEMENTED; TEST_EXECUTION_PENDING; FEDERATED_BACKEND_NOT_IMPLEMENTED",
+      "evidence_refs": [
+        "docs/PERMANENT_ENGINEERING_MEMORY_V1.md",
+        "schemas/permanent-engineering-memory-record.schema.json",
+        "scripts/permanent_engineering_memory.py",
+        "tests/test_permanent_engineering_memory.py"
+      ],
+      "capabilities": [
+        "provenance_bound_memory_records",
+        "append_only_jsonl_ledger",
+        "sha256_hash_chain_integrity_verification",
+        "duplicate_record_rejection",
+        "fail_closed_verified_promotion",
+        "deterministic_lexical_retrieval",
+        "supersession_lineage"
+      ],
+      "promotion_rule": "Do not promote to VERIFIED until repeatable tests pass and the storage, concurrency, backup, restore, and cross-repository integration boundaries are independently evidenced."
     }
   ],
   "promotion_rules": {
