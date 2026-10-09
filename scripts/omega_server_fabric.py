@@ -121,6 +121,86 @@ def compatible(pool: dict[str, Any], task: dict[str, Any]) -> tuple[bool, list[s
         reasons.append("CAPABILITIES_NOT_DECLARED")
     return not reasons, reasons
 
+ROLE_TO_TASK_TYPE = {
+    "RAPID_HYPOTHESIS": "TECHNICAL_SYNTHESIS",
+    "SOURCE_DISCOVERY": "PRIVATE_SOURCE_RESEARCH",
+    "HISTORICAL_RECOVERY": "INDEX_INCREMENTAL",
+    "NOVELTY_LINEAGE": "INDEX_QUERY",
+    "COUNTEREVIDENCE": "INDEPENDENT_VERIFY",
+    "ARCHITECTURE_SYNTHESIS": "TECHNICAL_SYNTHESIS",
+    "ENGINEERING_CONTRACT": "POLICY_VALIDATE",
+    "SECURITY_ADVERSARY": "SECURITY_SCAN",
+    "TEST_REPLAY": "UNIT_TEST",
+    "PROOF_INTEGRITY": "SCHEMA_VALIDATE",
+    "GOVERNANCE_REVIEW": "POLICY_VALIDATE",
+}
+
+def workload_from_innovation_network(network: dict[str, Any]) -> dict[str, Any]:
+    if network.get("schema") != "vaixlns.innovation-network.v1":
+        raise ValueError("innovation network schema mismatch")
+    packets = network.get("work_packets")
+    if not isinstance(packets, list):
+        raise ValueError("innovation network work_packets must be a list")
+    tasks = []
+    for packet in packets:
+        if not isinstance(packet, dict):
+            raise ValueError("every innovation work packet must be an object")
+        lanes = packet.get("research_lanes")
+        if not isinstance(lanes, list):
+            raise ValueError("each innovation packet needs research_lanes")
+        for lane in lanes:
+            if not isinstance(lane, dict):
+                raise ValueError("each innovation research lane must be an object")
+            lane_name = lane.get("lane")
+            task_type = ROLE_TO_TASK_TYPE.get(lane_name)
+            if task_type is None:
+                raise ValueError(f"no server capability mapping registered for innovation lane: {lane_name}")
+            if not isinstance(lane.get("task_id"), str) or not lane["task_id"]:
+                raise ValueError("every innovation lane needs a stable task_id")
+            # Unknown source classification defaults to INTERNAL. A reviewer may downgrade it
+            # to PUBLIC only with evidence that no private repository/customer content is involved.
+            cpu_units, memory_gib = {
+                "INDEX_INCREMENTAL": (2, 8),
+                "INDEX_QUERY": (1, 4),
+                "PRIVATE_SOURCE_RESEARCH": (2, 8),
+                "TECHNICAL_SYNTHESIS": (2, 8),
+                "INDEPENDENT_VERIFY": (2, 8),
+                "POLICY_VALIDATE": (1, 2),
+                "SECURITY_SCAN": (2, 8),
+                "UNIT_TEST": (4, 8),
+                "SCHEMA_VALIDATE": (2, 8),
+            }[task_type]
+            priority_raw = packet.get("priority_score", 50)
+            priority = max(0, min(100, int(priority_raw))) if isinstance(priority_raw, (int, float)) else 50
+            tasks.append({
+                "task_id": lane["task_id"],
+                "task_type": task_type,
+                "priority": priority,
+                "data_classification": "INTERNAL",
+                "requires_isolation": True,
+                "requires_gpu": False,
+                "estimated_cpu_units": cpu_units,
+                "estimated_memory_gib": memory_gib,
+                "origin_innovation_id": packet.get("innovation_id"),
+                "origin_lane": lane_name,
+                "mission": lane.get("objective", ""),
+                "input_refs": lane.get("input_refs", []),
+                "required_outputs": lane.get("required_outputs", []),
+                "authority_scope": "RESEARCH_AND_RECOMMENDATION_ONLY",
+            })
+    if not tasks:
+        raise ValueError("innovation network contains no research tasks")
+    return {
+        "schema": TASKS_SCHEMA,
+        "source_schema": network["schema"],
+        "source_network_sha256": network.get("network_sha256"),
+        "source_innovation_count": len(packets),
+        "task_count": len(tasks),
+        "tasks": tasks,
+        "data_classification_default": "INTERNAL_FAIL_CLOSED",
+        "dispatch_state": "NOT_DISPATCHED",
+    }
+
 def build_plan(manifest: dict[str, Any], workload: dict[str, Any]) -> dict[str, Any]:
     validate_inputs(manifest, workload)
     pools = sorted(manifest["server_pools"], key=lambda row: row["pool_id"])
@@ -221,12 +301,18 @@ def build_plan(manifest: dict[str, Any], workload: dict[str, Any]) -> dict[str, 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True, help="Server pool manifest JSON")
-    parser.add_argument("--tasks", required=True, help="Task workload JSON")
+    task_source = parser.add_mutually_exclusive_group(required=True)
+    task_source.add_argument("--tasks", help="Task workload JSON")
+    task_source.add_argument("--innovation-network", help="Derive tasks from a validated local innovation network manifest")
     parser.add_argument("--output", default="omega-server-placement-plan.json", help="Placement proposal output")
     args = parser.parse_args()
     try:
         manifest = load_object(Path(args.manifest))
-        workload = load_object(Path(args.tasks))
+        if args.innovation_network:
+            network = load_object(Path(args.innovation_network))
+            workload = workload_from_innovation_network(network)
+        else:
+            workload = load_object(Path(args.tasks))
         plan = build_plan(manifest, workload)
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
