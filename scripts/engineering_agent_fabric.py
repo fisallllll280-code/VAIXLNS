@@ -19,7 +19,8 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA = "vaixlns.engineering-agent-fabric.v1"
-IGNORE_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build", "target", ".next"}
+IGNORE_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build", "target", ".next", ".vaixl_ns"}
+IGNORE_FILES = {"omega-research-results.json", "engineering-execution-plan.json", "engineering-execution-receipt.json", "innovation-network.json", "conformance-evidence.txt"}
 AGENTS = (
     ("PROJECT_ARCHAEOLOGY", "Reconstruct the project structure, entry points, and historical boundaries.", ("repository_inventory.json", "entrypoints.json")),
     ("REQUIREMENTS_RECOVERY", "Extract explicit requirements, implicit assumptions, constraints, and acceptance criteria.", ("requirements.json", "unknowns.json")),
@@ -79,7 +80,7 @@ def inventory(root: Path) -> list[dict[str, Any]]:
         dirs[:] = sorted(d for d in dirs if d not in IGNORE_DIRS and not (Path(current) / d).is_symlink())
         for filename in sorted(files):
             path = Path(current) / filename
-            if path.is_symlink() or not path.is_file():
+            if path.is_symlink() or not path.is_file() or filename in IGNORE_FILES:
                 continue
             relative = path.relative_to(root).as_posix()
             try:
@@ -97,6 +98,42 @@ def inventory(root: Path) -> list[dict[str, Any]]:
             )
             rows.append({"path": relative, "bytes": len(raw), "sha256": sha256_bytes(raw), "category": category})
     return sorted(rows, key=lambda row: row["path"])
+
+
+
+def load_research_context(root: Path) -> dict[str, Any]:
+    """Bind a prior Ω Research Fabric result to this execution plan without treating it as proof."""
+    artifact = root / "omega-research-results.json"
+    if not artifact.is_file():
+        return {"state": "NOT_AVAILABLE", "artifact": artifact.name, "verified": False}
+    try:
+        payload = json.loads(artifact.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"state": "UNREADABLE", "artifact": artifact.name, "verified": False}
+    if not isinstance(payload, dict) or payload.get("schema") != "vaixlns.omega-research-fabric.v1":
+        return {"state": "SCHEMA_MISMATCH", "artifact": artifact.name, "verified": False}
+    claimed = payload.get("result_sha256")
+    core = {key: value for key, value in payload.items() if key != "result_sha256"}
+    integrity_ok = bool(claimed) and claimed == sha256_value(core)
+    return {
+        "state": "PRESENT_HASH_VALID" if integrity_ok else "HASH_MISMATCH",
+        "artifact": artifact.name,
+        "result_sha256": claimed,
+        "inventory_sha256": (payload.get("index") or {}).get("inventory_sha256"),
+        "query": payload.get("query", ""),
+        "local_result_count": len(payload.get("local_results", [])),
+        "remote_discovery_count": len(payload.get("remote_discoveries", [])),
+        "provider_status": [
+            {"provider": item.get("provider"), "state": item.get("state"), "count": item.get("count", 0)}
+            for item in payload.get("provider_status", []) if isinstance(item, dict)
+        ],
+        "server_status": [
+            {"server_id": item.get("server_id"), "state": item.get("state"), "result_count": len(item.get("results", []))}
+            for item in payload.get("server_status", []) if isinstance(item, dict)
+        ],
+        "remote_discoveries_remain_unverified": True,
+        "verified": integrity_ok,
+    }
 
 
 def build_plan(root: Path) -> dict[str, Any]:
@@ -153,6 +190,7 @@ def build_plan(root: Path) -> dict[str, Any]:
         },
         "agents": agents,
         "artifacts": files,
+        "research_context": load_research_context(root),
         "execution_candidates": candidates,
         "execution_gate": {
             "default": "BLOCKED_UNTIL_EXPLICIT_APPROVAL",
