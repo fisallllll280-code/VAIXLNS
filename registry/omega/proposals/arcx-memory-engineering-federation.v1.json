@@ -50,7 +50,13 @@
         "schemas/arcx-vx-engineering-receipt.schema.json"
       ],
       "state": "SPECIFIED",
-      "change": "Typed request and acknowledgement schemas; the receipt cannot establish semantic verification or canonical admission."
+      "change": "Typed request and acknowledgement schemas; the task requires an explicit memory/index retrieval coverage statement and the receipt cannot establish semantic verification or canonical admission."
+    },
+    {
+      "operation": "ADD_LANGUAGE_COMPILATION_SCHEMA",
+      "target_path": "schemas/vaixlns-language-compilation-record.schema.json",
+      "state": "SPECIFIED",
+      "change": "Bind historical/current language names, grammar and compiler versions, source digest, AST/type/unit checks, EIR, proof obligations and no-authority guarantees."
     },
     {
       "operation": "ADD_REFERENCE_CLIENT_AND_TESTS",
@@ -59,8 +65,9 @@
         "tests/test_arcx_vx_bridge.py"
       ],
       "implementation_state": "IMPLEMENTED",
-      "verification_state": "NOT_RUN_IN_THIS_ENVIRONMENT",
-      "change": "Add an explicit, environment-configured client with fail-closed preflight, endpoint checks, HMAC request signatures and task-bound signed receipt validation."
+      "verification_state": "NOT_RUN",
+      "change": "Explicit, environment-configured client with fail-closed preflight, required memory coverage context, redirect denial, HMAC request signatures and task-bound signed receipt validation.",
+      "test_case_count": 22
     },
     {
       "operation": "UPDATE_INDEX_NAVIGATION",
@@ -82,12 +89,13 @@
     "registry/omega/omega-000-master-index.json"
   ],
   "acceptance_gates": [
-    "JSON schemas parse and pass the repository's schema-validation tool",
+    "All four JSON Schema artifacts parse and pass repository schema-validation tooling",
     "Python unit tests execute and pass in the repository environment",
     "Existing admission, federation-integrity, and VX Stage tests remain green",
-    "Task receipt signature, digest-binding, duplicate-request and stale-policy negative tests pass",
+    "Task receipt signature, digest binding, duplicate-request and stale-policy negative tests pass",
+    "Memory retrieval coverage is explicit; COMPLETE_FOR_SCOPE requires a pinned index revision, receipt and no declared gaps",
+    "Historical fragment classifications and original IDs survive re-ingestion and index rebuild",
     "No production endpoint, remote worker, GPU or specialist solver is treated as connected without direct evidence",
-    "Memory source/lineage and index delta are replayable without historical loss",
     "Independent governance approves any canonical Ω.000 modification"
   ],
   "current_evidence": {
@@ -104,7 +112,9 @@
     "remote_endpoint": "NOT_CONFIGURED",
     "production_runtime": "NOT_PROVEN",
     "pytest": "NOT_RUN",
-    "canonical_index_changed": false
+    "canonical_index_changed": false,
+    "python_unit_test_count": 22,
+    "commit_reference_note": "Use the Git branch history as the authoritative change ledger; embedded SHA lists are intentionally not claimed complete."
   },
   "historical_preservation": {
     "rule": "ADDITIVE_ONLY",
