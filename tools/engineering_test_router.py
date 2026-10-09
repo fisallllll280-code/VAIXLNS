@@ -10,6 +10,8 @@ import fnmatch
 import hashlib
 import json
 import os
+import platform
+from datetime import datetime, timezone
 from pathlib import Path
 import re
 import subprocess
@@ -33,6 +35,8 @@ ROUTES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("schemas/vx-stage-evidence.schema.json", ("test_vx_stage_runtime.py",)),
     ("scripts/discovery_router.py", ("test_discovery_router.py", "test_server_discovery_probe.py")),
     ("tools/server_discovery_probe.py", ("test_server_discovery_probe.py",)),
+    ("tools/server_innovation_fabric.py", ("test_server_innovation_fabric.py",)),
+    ("src/research/r2_external_engine/evaluation/contradiction_engine.py", ("test_contradiction_engine.py",)),
     ("scripts/admission_evaluator.py", ("test_admission_evaluator.py", "test_canonical_control_plane.py")),
     ("scripts/admission_gate.py", ("test_admission_evaluator.py", "test_canonical_control_plane.py")),
     ("scripts/omega_pattern_foundry.py", ("test_omega_pattern_foundry.py",)),
@@ -45,6 +49,8 @@ ROUTED_TEST_STEMS = {
     "test_vcre_predictive", "test_vcre_runtime",
     "test_arcx_vx_bridge", "test_vx_federation_gate", "test_vx_stage_runtime",
     "test_discovery_router", "test_server_discovery_probe",
+    "test_server_innovation_fabric",
+    "test_contradiction_engine",
     "test_admission_evaluator", "test_canonical_control_plane",
     "test_omega_pattern_foundry", "test_innovation_measurement",
     "test_innovation_operation_index", "test_zero_loss_index", "test_paper_treasury",
@@ -151,7 +157,7 @@ def _parse_test_summary(output: str) -> tuple[int, float] | None:
     )
 
 
-def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int]:
+def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int, list[dict[str, Any]]]:
     if plan["selection_mode"] == "FULL_SUITE":
         commands = [[sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", ALL_TEST_PATTERN, "-v"]]
     else:
@@ -160,12 +166,15 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int]:
             for filename in plan["test_files"]
         ]
     outputs: list[str] = []
+    command_receipts: list[dict[str, Any]] = []
     started = time.monotonic()
     code = 0
     test_case_count = 0
     unittest_runtime = 0.0
     commands_executed = 0
     for command in commands:
+        command_started = time.monotonic()
+        test_file = "FULL_SUITE" if command[-2] == ALL_TEST_PATTERN else command[-2]
         try:
             result = subprocess.run(
                 command, cwd=ROOT, text=True, stdout=subprocess.PIPE,
@@ -173,8 +182,18 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int]:
                 env={**os.environ, "PYTHONPATH": str(ROOT)},
             )
             commands_executed += 1
+            elapsed_command = time.monotonic() - command_started
             outputs.append("$ " + " ".join(command) + "\n" + result.stdout)
             summary = _parse_test_summary(result.stdout)
+            command_receipts.append({
+                "test_file": test_file,
+                "duration_seconds": round(elapsed_command, 6),
+                "exit_code": int(result.returncode),
+                "test_count": summary[0] if summary else None,
+                "unittest_reported_runtime_seconds": round(summary[1], 6) if summary else None,
+                "output_sha256": hashlib.sha256(result.stdout.encode("utf-8")).hexdigest(),
+                "result": "PASS" if result.returncode == 0 and summary is not None and summary[0] > 0 else "FAIL",
+            })
             if summary is None or summary[0] == 0:
                 outputs.append(
                     "FAIL_CLOSED: unittest did not report a recognized, non-zero test count."
@@ -187,12 +206,23 @@ def _run_tests(plan: dict[str, Any]) -> tuple[int, str, float, int, float, int]:
                 code = result.returncode
                 break
         except OSError as exc:
+            elapsed_command = time.monotonic() - command_started
             outputs.append(f"execution_error:{type(exc).__name__}:{exc}")
+            command_receipts.append({
+                "test_file": test_file,
+                "duration_seconds": round(elapsed_command, 6),
+                "exit_code": 127,
+                "test_count": None,
+                "unittest_reported_runtime_seconds": None,
+                "output_sha256": None,
+                "result": "FAIL",
+                "error_type": type(exc).__name__,
+            })
             code = 127
             break
     return (
         code, "\n".join(outputs), time.monotonic() - started,
-        test_case_count, unittest_runtime, commands_executed,
+        test_case_count, unittest_runtime, commands_executed, command_receipts,
     )
 
 
@@ -211,7 +241,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     plan = plan_tests(changed, diff_error)
     receipt: dict[str, Any] = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
+        "policy_version": "VAIXLNS-TEST-IMPACT-1.1.0",
+        "run_context": {
+            "started_at": datetime.now(timezone.utc).isoformat(),
+            "repository": os.environ.get("GITHUB_REPOSITORY", "LOCAL"),
+            "commit_sha": os.environ.get("GITHUB_SHA", "UNPINNED_LOCAL_RUN"),
+            "python_version": sys.version.split()[0],
+            "platform": platform.platform(),
+            "runner_os": os.environ.get("RUNNER_OS", "LOCAL"),
+            "workflow": os.environ.get("GITHUB_WORKFLOW", "LOCAL"),
+            "run_id": os.environ.get("GITHUB_RUN_ID", "LOCAL"),
+            "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT", "LOCAL"),
+        },
         "status": "PLANNED" if args.plan_only else "PENDING",
         "selection": plan,
         "test_command_family": "PYTHON_UNITTEST",
@@ -230,7 +272,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         },
     }
     if not args.plan_only:
-        exit_code, output, elapsed, test_count, unittest_runtime, commands_executed = _run_tests(plan)
+        exit_code, output, elapsed, test_count, unittest_runtime, commands_executed, command_receipts = _run_tests(plan)
         receipt["status"] = "PASS" if exit_code == 0 and test_count > 0 else "FAIL"
         receipt["measurement"] = {
             "wall_time_seconds": round(elapsed, 6),
@@ -238,10 +280,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             "test_case_count": test_count,
             "unittest_reported_runtime_seconds": round(unittest_runtime, 6),
             "commands_executed": commands_executed,
+            "per_command": command_receipts,
         }
         receipt["output_sha256"] = hashlib.sha256(output.encode("utf-8")).hexdigest()
         print(output, end="" if output.endswith("\n") else "\n")
 
+    receipt["run_context"]["finished_at"] = datetime.now(timezone.utc).isoformat()
+    receipt["measurement"]["interpretation"] = (
+        "This receipt records one run; it is not a speedup claim. Compare matched revisions and workloads over repeated runs before reporting p50/p95 gains."
+    )
     serialized = json.dumps(receipt, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
     output_path = Path(args.output)
     if not output_path.is_absolute():
