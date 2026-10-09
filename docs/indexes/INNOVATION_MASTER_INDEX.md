@@ -4,6 +4,10 @@
 
 The list below is a source-derived innovation catalog from the available project corpus and the existing VAIXLNS/NEXENT catalogs. It does not imply implementation.
 
+**Operational detail:** [`docs/innovation/INNOVATION_OPERATION_INDEX.md`](../innovation/INNOVATION_OPERATION_INDEX.md) is the generated, detailed projection containing descriptions, operating mechanisms, inputs, outputs, admission gates, failure modes, source references, and status disagreements. The machine-readable projection is `registry/innovation-operation-index.v1.json`; its builder is `tools/build_innovation_operation_index.py`.
+
+**Automation and truth boundary:** the generated index is rebuilt from source catalogs and Ω.000, validated in CI, and refreshed through a draft pull request. Any family-rule description is labelled `RULE_DERIVED_DRAFT`; profile details are not evidence of implementation. Automatic canonical promotion is disabled, and source conflicts remain visible.
+
 ## Discovery / synthesis
 
 1. Architecture Self-Discovery Engine (ASDE)
