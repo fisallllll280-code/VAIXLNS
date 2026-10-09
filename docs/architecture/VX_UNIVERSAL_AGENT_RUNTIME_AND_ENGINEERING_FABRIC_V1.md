@@ -73,7 +73,7 @@ An agent is not admitted because its profile exists. Missing provider/tool confi
 
 ## 3. Agent roster and extension rule
 
-The initial role catalog defines 22 logical profiles for the common engineering path:
+The initial role catalog defines 35 logical role templates for the common engineering path:
 
 - Orchestration and architecture
 - Research and innovation discovery
@@ -89,7 +89,7 @@ The initial role catalog defines 22 logical profiles for the common engineering 
 - Security, release preparation and operations/recovery
 - Cost/resource analysis and technical writing
 
-Add new specialties by creating a versioned profile that conforms to `schemas/vx-agent-runtime-profile.v1.schema.json`. A new profile must not create a bypass or new authority root. The catalog’s 22 entries are role templates only; they do not claim 22 live agents or configured provider connections.
+Add new specialties by creating a versioned profile that conforms to `schemas/vx-agent-runtime-profile.v1.schema.json`. A new profile must not create a bypass or new authority root. The catalog’s 35 entries are role templates only; they do not claim 22 live agents or configured provider connections.
 
 ## 4. Engineering task graph — optimize speed without weakening assurance
 
