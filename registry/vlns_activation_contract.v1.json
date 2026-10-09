@@ -12,9 +12,12 @@
     "client": "infra/vlns_server_client.py",
     "entrypoint": "scripts/vlns_activation_bridge.py",
     "tests": "tests/test_vlns_activation_bridge.py",
-    "status": "REFERENCE_CI_GREEN_REVIEW_PENDING",
+    "status": "MERGED_POST_MERGE_CI_PENDING",
     "pull_request": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23",
-    "ci_run": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720"
+    "ci_run": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720",
+    "merge_commit": "https://github.com/fisallllll280-code/VAIXLNS-unified/commit/b4fd3c441bc1a78152588af446f4c56fc4974444",
+    "pre_merge_ci": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37915949357",
+    "post_merge_ci": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916253970"
   },
   "identity": {
     "vlns_to_naxlns": "UNVERIFIED",
@@ -58,7 +61,7 @@
     "explicit_authority",
     "live_endpoint_conformance"
   ],
-  "epistemic_state": "SPECIFIED_REFERENCE_CI_GREEN_LIVE_ENDPOINT_UNVERIFIED",
+  "epistemic_state": "IMPLEMENTATION_MERGED_POST_MERGE_CI_PENDING_LIVE_ENDPOINT_UNVERIFIED",
   "canonical_admission": "NOT_ADMITTED",
   "updated_on": "2026-10-09",
   "agent_fabric_gate": {
@@ -67,9 +70,9 @@
     "module": "src/vx_agents_fabric/vlns_activation.py",
     "factory": "src/vx_agents_fabric/providers/factory.py",
     "tests": "tests/test_vlns_activation.py",
-    "status": "BRANCH_CI_GREEN_REVIEW_PENDING",
-    "ci_run": "https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915189114",
+    "status": "FEATURE_BRANCH_CI_GREEN_NOT_MERGED",
+    "latest_ci": "https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915954800",
     "enforcement": "VX_VLNS_ACTIVATION_REQUIRED=true",
-    "limitation": "live VLNS endpoint not verified; not merged into the default branch"
+    "limitation": "separate journal not yet federated; live endpoint unverified; no pull request created"
   }
 }
