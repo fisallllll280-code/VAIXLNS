@@ -1,0 +1,86 @@
+{
+  "schema": "vaixlns.omega-server-workload.v1",
+  "notes": "Synthetic planning workload for placement tests only. It is not observed production traffic.",
+  "tasks": [
+    {
+      "task_id": "OMEGA-001-INDEX",
+      "task_type": "INDEX_INCREMENTAL",
+      "priority": 100,
+      "data_classification": "RESTRICTED",
+      "requires_isolation": true,
+      "estimated_cpu_units": 2,
+      "estimated_memory_gib": 8,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-002-RESEARCH",
+      "task_type": "PUBLIC_RESEARCH",
+      "priority": 90,
+      "data_classification": "PUBLIC",
+      "requires_isolation": true,
+      "estimated_cpu_units": 1,
+      "estimated_memory_gib": 2,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-003-BUILD",
+      "task_type": "UNIT_TEST",
+      "priority": 95,
+      "data_classification": "INTERNAL",
+      "requires_isolation": true,
+      "estimated_cpu_units": 4,
+      "estimated_memory_gib": 8,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-004-SIMULATION",
+      "task_type": "NUMERICAL_SIMULATION",
+      "priority": 70,
+      "data_classification": "CONFIDENTIAL",
+      "requires_isolation": true,
+      "estimated_cpu_units": 4,
+      "estimated_memory_gib": 16,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-005-MODEL",
+      "task_type": "MODEL_INFERENCE",
+      "priority": 65,
+      "data_classification": "INTERNAL",
+      "requires_isolation": true,
+      "estimated_cpu_units": 2,
+      "estimated_memory_gib": 8,
+      "requires_gpu": true
+    },
+    {
+      "task_id": "OMEGA-006-VERIFY",
+      "task_type": "INDEPENDENT_VERIFY",
+      "priority": 85,
+      "data_classification": "RESTRICTED",
+      "requires_isolation": true,
+      "estimated_cpu_units": 2,
+      "estimated_memory_gib": 8,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-007-EVIDENCE",
+      "task_type": "PROVENANCE_EMIT",
+      "priority": 80,
+      "data_classification": "RESTRICTED",
+      "requires_isolation": false,
+      "estimated_cpu_units": 1,
+      "estimated_memory_gib": 2,
+      "requires_gpu": false
+    },
+    {
+      "task_id": "OMEGA-008-PRIVATE-RESEARCH",
+      "task_type": "PRIVATE_SOURCE_RESEARCH",
+      "priority": 75,
+      "data_classification": "RESTRICTED",
+      "requires_isolation": true,
+      "estimated_cpu_units": 2,
+      "estimated_memory_gib": 4,
+      "requires_gpu": false
+    }
+  ]
+}

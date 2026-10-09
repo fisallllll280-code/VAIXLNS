@@ -1,0 +1,274 @@
+{
+  "schema": "vaixlns.omega-server-fabric.v1",
+  "policy_version": "OMEGA-SERVER-POLICY-v1",
+  "control_mode": "PLAN_ONLY",
+  "description": "Planning-only example. All pools are unprovisioned placeholders; capacities are design targets, not measured server performance.",
+  "federation": {
+    "canonical_authority": "VAIXLNS",
+    "semantic_model_boundary": "VLNS",
+    "execution_simulation_replay": "VX",
+    "discovery_research_synthesis": "NEXNET",
+    "connectivity_state": "NOT_CONFIGURED",
+    "dispatch_state": "DISABLED"
+  },
+  "global_policy": {
+    "default_network_egress": "DENY_BY_DEFAULT",
+    "private_content_may_be_sent_to_external_providers": false,
+    "endpoints_must_be_configured_and_independently_verified": true,
+    "workload_identity_required": true,
+    "immutable_task_id_and_input_hash_required": true,
+    "automatic_merge_deploy_or_canonical_promotion": false,
+    "secrets_in_task_payloads": "PROHIBITED",
+    "execution_requires_isolation_and_resource_limits": true
+  },
+  "server_pools": [
+    {
+      "pool_id": "omega-control-plane",
+      "plane": "CONTROL",
+      "task_types": [
+        "CONTROL_PLAN",
+        "POLICY_VALIDATE"
+      ],
+      "capabilities": [
+        "workflow_dag",
+        "idempotency",
+        "quota_enforcement"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 2,
+      "capacity_estimate": {
+        "cpu_units_per_task": 1,
+        "memory_gib_per_task": 2,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-index-workers",
+      "plane": "INDEX_AND_KNOWLEDGE",
+      "task_types": [
+        "INDEX_INCREMENTAL",
+        "INDEX_QUERY",
+        "INDEX_REBUILD",
+        "DEPENDENCY_GRAPH"
+      ],
+      "capabilities": [
+        "sqlite_fts",
+        "hash_deduplication",
+        "incremental_scan",
+        "index_generation"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 4,
+      "capacity_estimate": {
+        "cpu_units_per_task": 2,
+        "memory_gib_per_task": 8,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-research-local",
+      "plane": "RESEARCH_AND_SYNTHESIS",
+      "task_types": [
+        "PUBLIC_RESEARCH",
+        "PRIOR_ART_DISCOVERY",
+        "TECHNICAL_SYNTHESIS",
+        "PRIVATE_SOURCE_RESEARCH"
+      ],
+      "capabilities": [
+        "source_provenance",
+        "research_deduplication",
+        "citation_graph",
+        "counterevidence"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 3,
+      "capacity_estimate": {
+        "cpu_units_per_task": 2,
+        "memory_gib_per_task": 8,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-public-research-burst",
+      "plane": "PUBLIC_RESEARCH_BURST",
+      "task_types": [
+        "PUBLIC_RESEARCH",
+        "PRIOR_ART_DISCOVERY",
+        "TECHNICAL_SYNTHESIS"
+      ],
+      "capabilities": [
+        "parallel_public_retrieval",
+        "source_normalization",
+        "public_source_cache"
+      ],
+      "max_data_classification": "PUBLIC",
+      "isolated_execution": true,
+      "network_egress_policy": "ALLOWLIST_ONLY",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 8,
+      "capacity_estimate": {
+        "cpu_units_per_task": 1,
+        "memory_gib_per_task": 4,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-cpu-compute",
+      "plane": "CPU_COMPUTE",
+      "task_types": [
+        "UNIT_TEST",
+        "PYTHON_BUILD",
+        "NUMERICAL_SIMULATION",
+        "DETERMINISTIC_REPLAY",
+        "STATIC_ANALYSIS"
+      ],
+      "capabilities": [
+        "reproducible_toolchain",
+        "resource_limits",
+        "pinned_dependencies",
+        "artifact_capture"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 4,
+      "capacity_estimate": {
+        "cpu_units_per_task": 4,
+        "memory_gib_per_task": 16,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-gpu-compute",
+      "plane": "GPU_COMPUTE",
+      "task_types": [
+        "MODEL_INFERENCE",
+        "GPU_SIMULATION",
+        "VECTOR_EMBEDDING"
+      ],
+      "capabilities": [
+        "gpu_runtime",
+        "batching",
+        "model_version_pinning",
+        "compute_budget"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 2,
+      "capacity_estimate": {
+        "cpu_units_per_task": 4,
+        "memory_gib_per_task": 32,
+        "gpu_capable": true,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-independent-verification",
+      "plane": "ASSURANCE",
+      "task_types": [
+        "INDEPENDENT_VERIFY",
+        "SECURITY_SCAN",
+        "SCHEMA_VALIDATE",
+        "REPRODUCE_FAILURE"
+      ],
+      "capabilities": [
+        "independent_test_runner",
+        "counterevidence",
+        "replay",
+        "threat_checks"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": true,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 3,
+      "capacity_estimate": {
+        "cpu_units_per_task": 4,
+        "memory_gib_per_task": 16,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    },
+    {
+      "pool_id": "omega-evidence-ledger",
+      "plane": "EVIDENCE_AND_INDEX_REGISTRY",
+      "task_types": [
+        "PROVENANCE_EMIT",
+        "EVIDENCE_SEAL",
+        "INDEX_PUBLISH",
+        "BENCHMARK_RECORD"
+      ],
+      "capabilities": [
+        "append_only_receipts",
+        "sha256_manifests",
+        "revision_binding",
+        "audit_query"
+      ],
+      "max_data_classification": "RESTRICTED",
+      "isolated_execution": false,
+      "network_egress_policy": "DENY_BY_DEFAULT",
+      "operational_state": "NOT_PROVISIONED",
+      "provider": "NOT_CONFIGURED",
+      "region": "NOT_CONFIGURED",
+      "endpoint": null,
+      "max_parallel_tasks": 2,
+      "capacity_estimate": {
+        "cpu_units_per_task": 1,
+        "memory_gib_per_task": 4,
+        "gpu_capable": false,
+        "estimate_state": "DESIGN_TARGET_NOT_BENCHMARKED"
+      }
+    }
+  ],
+  "routing_policy": {
+    "task_order": [
+      "priority_descending",
+      "task_id_ascending"
+    ],
+    "assignment": "deterministic_least_planned_utilization",
+    "utilization_basis": "assignments_in_this_plan_divided_by_configured_max_parallel_tasks",
+    "runtime_load": "NOT_AVAILABLE",
+    "tie_break": "pool_id_ascending",
+    "rejection": "FAIL_CLOSED_IF_NO_POLICY_COMPATIBLE_POOL",
+    "retry": "same_idempotency_key_and_same_immutable_inputs_only",
+    "unprovisioned_pools": "MAY_APPEAR_AS_PROPOSED_TARGETS_BUT_MUST_NEVER_RECEIVE_DISPATCH"
+  }
+}

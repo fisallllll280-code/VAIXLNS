@@ -30,6 +30,9 @@ jobs:
           python -m json.tool registry/evidence/control-plane-proof.json >/dev/null
           python -m json.tool registry/omega/federation-source-lock.v1.json >/dev/null
           python -m json.tool registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json >/dev/null
+          python -m json.tool schemas/omega-research-result.schema.json >/dev/null
+          python -m json.tool registry/omega/research-source-registry.v1.json >/dev/null
+          python -m json.tool config/omega-servers.example.json >/dev/null
 
       - name: Compile control tooling
         run: |
@@ -43,7 +46,16 @@ jobs:
             scripts/treasury_admission_probe.py \
             scripts/vcre_probe.py \
             tools/omega/validate_federation.py \
-            tests/test_canonical_control_plane.py
+            tests/test_canonical_control_plane.py \
+            tests/test_arc_x_reconstruct.py \
+            scripts/innovation_network.py \
+            tests/test_innovation_network.py \
+            scripts/engineering_agent_fabric.py \
+            tests/test_engineering_agent_fabric.py \
+            scripts/omega_research_fabric.py \
+            tests/test_omega_research_fabric.py \
+            scripts/omega_error_locator.py \
+            tests/test_omega_error_locator.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -61,7 +73,27 @@ jobs:
         run: python scripts/emit_provenance.py
 
       - name: Run test suite
-        run: python -m unittest discover -s tests -v
+        id: test_suite
+        shell: bash
+        run: |
+          set +e
+          python -m unittest discover -s tests -v 2>&1 | tee test-suite.log
+          test_status=${PIPESTATUS[0]}
+          exit "$test_status"
+
+      - name: Diagnose test failure
+        if: failure() && steps.test_suite.outcome == 'failure'
+        continue-on-error: true
+        run: python scripts/omega_error_locator.py --root . --input test-suite.log --output omega-error-triage.json
+
+      - name: Build federated innovation network manifest
+        run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
+
+      - name: Build Ω research index (offline)
+        run: python scripts/omega_research_fabric.py --root . --query "proof provenance" --output omega-research-results.json
+
+      - name: Build engineering agent plan
+        run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json
 
       - name: Emit conformance evidence
         if: always()
@@ -83,4 +115,9 @@ jobs:
             conformance-evidence.txt
             reconstruction-evidence.json
             provenance.json
+            innovation-network.json
+            engineering-execution-plan.json
+            omega-research-results.json
+            test-suite.log
+            omega-error-triage.json
           if-no-files-found: error
