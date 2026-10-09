@@ -13,7 +13,7 @@ The engineering discovery loop should not add another top-level agent for every 
 
 ## 2. Research architecture
 
-\`\`\`text
+```text
 VAIXLNS / NEXENT OWNED INDEX
         │
         ├── existing innovation IDs, capabilities, gaps, lineage
@@ -56,7 +56,7 @@ SANDBOX → BENCHMARK → COUNTEREXAMPLE → REPLAY → INDEPENDENT VERIFY
         │
         ▼
 VAIXLNS ADMISSION GATE → approved canonical adoption
-\`\`\`
+```
 
 ### Why this is a deep engineering loop
 
@@ -66,7 +66,7 @@ A release tag alone is not an innovation proof. A commit alone is not a feature 
 
 ### Source registry
 
-\`registry/engineering/ENGINEERING_INNOVATION_SOURCES_V1.json\` contains 15 curated upstream sources across eight domains:
+`registry/engineering/ENGINEERING_INNOVATION_SOURCES_V1.json` contains 15 curated upstream sources across eight domains:
 
 - CAD and geometric kernels
 - Meshing and finite elements
@@ -81,17 +81,17 @@ The upstream identity is provider-aware. The two OpenFOAM source streams are rec
 
 ### Collector
 
-\`tools/engineering_innovation_discovery.py\` uses GET-only public APIs for repository metadata, the latest three releases and the latest five commits. It generates JSON evidence plus a Markdown review report. It compares the result against the latest prior successful report when available.
+`tools/engineering_innovation_discovery.py` uses GET-only public APIs for repository metadata, the latest three releases and the latest five commits. It generates JSON evidence plus a Markdown review report. It compares the result against the latest prior successful report when available.
 
 The collector has source-host allowlists, response-size limits, bounded timeouts, limited stored text, and per-source failure isolation. The GitLab.com token is never forwarded to the separate Gmsh host. Tokens, private endpoint URLs and raw API responses are not written to the report.
 
 ### Unit tests
 
-\`tests/test_engineering_innovation_discovery.py\` covers manifest allowlisting, duplicate identity, release/commit/license delta classification, one-source failure without losing other sources, evidence links, engineering keyword triage, and cross-host token isolation.
+`tests/test_engineering_innovation_discovery.py` covers manifest allowlisting, duplicate identity, release/commit/license delta classification, one-source failure without losing other sources, evidence links, engineering keyword triage, and cross-host token isolation.
 
 ### Schedule
 
-\`.github/workflows/engineering-innovation-discovery.yml\` runs daily at 04:17 UTC (07:17 in Saudi Arabia), and can also be dispatched manually. It restores the prior successful report from the main branch when one exists, runs offline tests, queries upstream APIs, and stores JSON/Markdown as a 90-day GitHub Actions artifact.
+`.github/workflows/engineering-innovation-discovery.yml` runs daily at 04:17 UTC (07:17 in Saudi Arabia), and can also be dispatched manually. It restores the prior successful report from the main branch when one exists, runs offline tests, queries upstream APIs, and stores JSON/Markdown as a 90-day GitHub Actions artifact.
 
 No source change is automatically merged, no package is automatically installed, and no solver is automatically executed by the scheduled discovery run. The first task is to identify and prioritize candidates. Engineering execution begins only after a separate bounded benchmark job is configured.
 
@@ -153,18 +153,18 @@ Each run should produce:
 ## 8. Admission contract
 
 A source event becomes an engineering innovation candidate only after the reviewer records:
-\`CandidateID + ExistingIndexMatches + CapabilityGap + SourceEvidence + LicenseReview + BenchmarkPlan + FailureCases + Owner + Lifecycle\`.
+`CandidateID + ExistingIndexMatches + CapabilityGap + SourceEvidence + LicenseReview + BenchmarkPlan + FailureCases + Owner + Lifecycle`.
 
 It can be marked implemented only after code or adapter tests exist. It can be marked verified only after a reproducible reference test passes with a pinned environment and retained evidence. Only the VAIXLNS admission authority may promote a candidate to canonical state; the research collector cannot approve its own findings.
 
 ## 9. Reproduce locally
 
-\`\`\`bash
+```bash
 python -m py_compile tools/engineering_innovation_discovery.py
 python -m unittest discover -s tests -p "test_engineering_innovation_discovery.py" -v
 python tools/engineering_innovation_discovery.py --output-dir artifacts/engineering-discovery
-\`\`\`
+```
 
-To compare against an earlier report, pass its JSON file via \`--baseline path/to/engineering-discovery-report.json\`.
+To compare against an earlier report, pass its JSON file via `--baseline path/to/engineering-discovery-report.json`.
 
 The report is data for review. A successful HTTP API call proves access to the metadata endpoint at that time, not the correctness or safety of the upstream solver and not the readiness of the VAIXLNS integration.
