@@ -8,7 +8,8 @@
     "url": "https://github.com/fisallllll280-code/vx-agents-fabric",
     "feature_branch": "feat/deep-engineering-company-forge",
     "pull_request": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/1",
-    "disposition": "PROPOSED_NOT_ADMITTED"
+    "disposition": "PROPOSED_NOT_ADMITTED",
+    "main_provider_bindings_pr": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/2"
   },
   "domains": {
     "research": {
@@ -116,9 +117,10 @@
     "status": "NOT_YET_COMPLETED"
   },
   "operational_status": {
-    "coordinator_code": "IMPLEMENTED_ON_FEATURE_BRANCH",
-    "unit_tests": "GITHUB_ACTIONS_GREEN",
-    "model_providers": "NOT_CONNECTED_BY_DEFAULT",
+    "coordinator_code": "IMPLEMENTED_IN_MAIN",
+    "provider_binding_support": "AVAILABLE_OPT_IN_OPENAI_COMPATIBLE",
+    "unit_tests": "GITHUB_ACTIONS_GREEN_ON_PR_HEAD",
+    "model_providers": "NOT_CONNECTED_UNTIL_ENDPOINT_AND_MODELS_ARE_CONFIGURED",
     "durable_vaixlns_event_ledger": "NOT_CONNECTED",
     "production_admission": "NOT_GRANTED"
   },
@@ -127,6 +129,28 @@
     "federation_index": "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
     "contract": "docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
     "registry_record": "registry/vx-agents-fabric.integration.v1.json",
-    "universal_gate": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+    "universal_gate": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+    "provider_bindings": "src/vx_agents_fabric/providers/"
+  },
+  "model_binding": {
+    "adapter": "OpenAI-compatible chat completions",
+    "opt_in": true,
+    "configuration_keys": [
+      "VX_OPENAI_COMPAT_BASE_URL",
+      "VX_OPENAI_COMPAT_API_KEY",
+      "VX_PROVIDER_TIMEOUT_SECONDS",
+      "VX_RESEARCH_MODEL",
+      "VX_FINANCE_MODEL",
+      "VX_ENGINEERING_MODEL",
+      "VX_GOVERNANCE_MODEL",
+      "VX_AGENT_MODEL_<ROLE_ID>",
+      "VX_AGENT_MODEL_<ROLE_ID>_<SEMVER>",
+      "VX_MIND_MODEL_<MIND_ID>"
+    ],
+    "exact_role_version_routing": true,
+    "evidence_reference_filtering": true,
+    "internet_search_adapter": "NOT_INCLUDED",
+    "repository_tool_adapter": "NOT_INCLUDED",
+    "code_sandbox_adapter": "NOT_INCLUDED"
   }
 }
