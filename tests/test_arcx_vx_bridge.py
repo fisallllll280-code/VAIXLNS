@@ -38,6 +38,19 @@ def sample_task() -> dict:
             "license_ref": "license-record-001",
         }],
         "eir_ref": "eir-001",
+        "memory_context": {
+            "record_refs": ["memory-record-001"],
+            "index_revision": "omega-000@revision-001",
+            "retrieval_receipt_ref": "retrieval-receipt-001",
+            "coverage_state": "PARTIAL",
+            "query_ref": "memory-query-001",
+            "uncovered_scopes": ["historical archive not fully enumerated"],
+            "rationale": "Relevant records were found; historical coverage remains partial.",
+            "context_digest": "e" * 64,
+        },
+        "language_artifact_refs": ["language-contract-v1"],
+        "index_delta_ref": None,
+        "system_context_refs": ["ARC-X-OMEGA", "VX"],
         "claim_refs": ["claim-001"],
         "lineage": {
             "parent_record_refs": ["source-001"],
@@ -112,6 +125,21 @@ class BridgeValidationTests(unittest.TestCase):
         task = sample_task()
         task["proof_obligations"] = []
         self.assertIn("PROOF_OBLIGATIONS_REQUIRED", validate_task(task))
+
+    def test_missing_memory_context_is_rejected(self):
+        task = sample_task()
+        task.pop("memory_context")
+        self.assertTrue(any(code.startswith("MISSING_REQUIRED_FIELDS:") and "memory_context" in code
+                            for code in validate_task(task)))
+
+    def test_complete_memory_scope_requires_receipt_and_no_hidden_gaps(self):
+        task = sample_task()
+        task["memory_context"]["coverage_state"] = "COMPLETE_FOR_SCOPE"
+        task["memory_context"]["retrieval_receipt_ref"] = None
+        task["memory_context"]["uncovered_scopes"] = ["missing old archive"]
+        errors = validate_task(task)
+        self.assertIn("COMPLETE_MEMORY_SCOPE_REQUIRES_RETRIEVAL_RECEIPT", errors)
+        self.assertIn("COMPLETE_MEMORY_SCOPE_CANNOT_HIDE_UNCOVERED_SCOPES", errors)
 
     def test_fail_closed_must_be_true(self):
         task = sample_task()
