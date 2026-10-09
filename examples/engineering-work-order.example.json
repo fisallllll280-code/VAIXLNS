@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "work_order_id": "EXAMPLE-ENGINEERING-WORK-ORDER-001",
+  "parent_work_order_id": null,
+  "state": "DRAFT",
+  "intent": "Demonstrate a bounded, reproducible software and computational-mathematics workflow for a fictional model. This example is a contract fixture, not a real scientific result.",
+  "exclusions": [
+    "No external network access",
+    "No production writes",
+    "No physical actuation",
+    "No claim of validated physics or industrial suitability"
+  ],
+  "domains": [
+    "software",
+    "computational_mathematics",
+    "cross_domain"
+  ],
+  "requested_outcomes": [
+    {
+      "outcome_id": "OUT-001",
+      "description": "A reviewable model definition, deterministic test output, and evidence manifest.",
+      "artifact_kind": "EVIDENCE_BUNDLE"
+    }
+  ],
+  "source_refs": [
+    {
+      "source_id": "REF-FABRIC-SPEC",
+      "uri": "https://github.com/fisallllll280-code/VAIXLNS/pull/79",
+      "source_location": "Related research-system specification; example linkage only",
+      "content_hash": null,
+      "relationship": "RELATED_WORK",
+      "license_status": "REVIEW_REQUIRED"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "T-001",
+      "title": "Define assumptions and a mathematical interface",
+      "domain": "computational_mathematics",
+      "role": "MATHEMATICAL_MODELER",
+      "depends_on": [],
+      "required_capabilities": [
+        "contract-validation"
+      ],
+      "execution_mode": "PLAN_ONLY",
+      "success_condition": "Inputs, units, assumptions, and expected outputs are explicit.",
+      "independent_review_required": true,
+      "estimated_wall_time_seconds": 120
+    },
+    {
+      "task_id": "T-002",
+      "title": "Implement a deterministic toy solver and tests",
+      "domain": "software",
+      "role": "SOFTWARE_ARCHITECT",
+      "depends_on": [
+        "T-001"
+      ],
+      "required_capabilities": [
+        "python",
+        "unit-tests"
+      ],
+      "execution_mode": "SANDBOX",
+      "success_condition": "Tests pass and environment/input identifiers are captured.",
+      "independent_review_required": true,
+      "estimated_wall_time_seconds": 600
+    },
+    {
+      "task_id": "T-003",
+      "title": "Independently review evidence and reproduce the output",
+      "domain": "cross_domain",
+      "role": "INDEPENDENT_VERIFIER",
+      "depends_on": [
+        "T-002"
+      ],
+      "required_capabilities": [
+        "independent-review"
+      ],
+      "execution_mode": "SANDBOX",
+      "success_condition": "Reviewer records reproduced, failed, or inconclusive with reasons.",
+      "independent_review_required": true,
+      "estimated_wall_time_seconds": 300
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "criterion_id": "AC-001",
+      "description": "The work order and task DAG are structurally valid and dependency IDs resolve.",
+      "verification_method": "UNIT_TEST",
+      "required": true
+    },
+    {
+      "criterion_id": "AC-002",
+      "description": "The run can be reproduced from recorded source, inputs, and environment.",
+      "verification_method": "REPRODUCTION",
+      "required": true
+    },
+    {
+      "criterion_id": "AC-003",
+      "description": "An independent reviewer records a supported outcome or an explicit inconclusive result.",
+      "verification_method": "INDEPENDENT_REVIEW",
+      "required": true
+    }
+  ],
+  "policy": {
+    "tenant_id": "vaixlns-development",
+    "data_classification": "INTERNAL",
+    "execution_mode": "SANDBOX",
+    "network_access": false,
+    "external_writes": false,
+    "physical_actuation": false,
+    "approval_required_for_side_effects": true,
+    "approval_refs": [],
+    "allowed_domains": []
+  },
+  "resource_budget": {
+    "max_wall_time_seconds": 1800,
+    "max_cpu_cores": 4,
+    "max_gpu_units": 0,
+    "max_parallel_tasks": 2,
+    "max_cost_usd": 10,
+    "budget_owner": "EXAMPLE_ONLY"
+  },
+  "federation": {
+    "design_state": "LOCAL_ONLY",
+    "requested_target_ids": [
+      "local-sandbox"
+    ],
+    "targets": [
+      {
+        "target_id": "local-sandbox",
+        "kind": "LOCAL_SANDBOX",
+        "connection_state": "NOT_CONFIGURED",
+        "tenant_id": "vaixlns-development",
+        "max_data_classification": "INTERNAL",
+        "capability_refs": [
+          "contract-validation",
+          "python",
+          "unit-tests",
+          "independent-review"
+        ],
+        "data_region": null,
+        "authorization_ref": null,
+        "health_evidence_ref": null
+      }
+    ],
+    "partner_refs": []
+  },
+  "provenance": {
+    "created_by": "EXAMPLE_FIXTURE_ONLY",
+    "created_at": "2026-10-09T19:00:00Z",
+    "source_revision": "SPECIFIED_EXAMPLE_NO_EXECUTION_EVIDENCE",
+    "parent_record_ids": [],
+    "change_reason": "Illustrative validation fixture; not a real work order."
+  }
+}
