@@ -8,7 +8,7 @@
 **Research and candidate synthesis:** NEXENT, subject to verified identity and adapter contracts  
 **Authority anchor:** Ω0_GENESIS_CORE  
 **Registry:** Ω.000  
-**Parent contracts:** docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md; deploy/federation/INDEX_RECOVERY_RUNTIME_PROTOCOL.md; docs/UNIVERSAL_VX_INTEROPERABILITY.md; docs/operations/FEDERATED_RUNTIME_BOOTSTRAP_AND_CAPACITY_PLAN_V1.md
+**Parent contracts:** docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md; deploy/federation/INDEX_RECOVERY_RUNTIME_PROTOCOL.md; docs/UNIVERSAL_VX_INTEROPERABILITY.md; docs/operations/FEDERATED_RUNTIME_BOOTSTRAP_AND_CAPACITY_PLAN_V1.md; docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md
 
 > This contract defines how ARC-X should connect evidence-backed engineering tasks to eligible VX execution workers. It does not claim that a production endpoint, GPU pool, remote physics solver, or multi-node federation is currently connected.
 
@@ -211,11 +211,11 @@ The transport may vary; the bridge should expose equivalent operations:
 
 These are proposed paths, not claims that endpoints currently exist. Health routes must not reveal secrets, internal topology, or sensitive worker data.
 
-Request authentication, TLS, scoped authorization, rate limits, request-size limits, deadlines, replay protection, audit events, and secret-manager integration are mandatory before exposing endpoints beyond loopback/private test infrastructure.
+The reference client is scripts/arcx_vx_bridge.py. Its validate command uses no network; submit requires an operator-configured endpoint and separate request-signing and receipt-verification keys of at least 32 bytes, plus a bearer token. It enforces HTTPS except explicitly enabled loopback tests, signs the canonical task envelope with HMAC-SHA256, and verifies a receipt bound to the exact task ID and digest. A valid receipt is only an acknowledgement of RECEIVED/QUEUED/PENDING_VERIFICATION/BLOCKED/REJECTED; it never means VERIFIED or ADMITTED. The server must implement the matching request/receipt protocol and independently validate the JSON Schema, policy, authorization, identity, and signature. Request authentication, TLS, scoped authorization, rate limits, request-size limits, deadlines, replay protection, audit events, and secret-manager integration are mandatory before exposing endpoints beyond loopback/private test infrastructure.
 
 ## 9. R2 / ARC-X / R4 / VX handshake
 
-1. **R2 retrieval:** pin revision and configuration, hash source artifacts, store retrieval receipt, classify external content as untrusted.
+1. **R2 retrieval:** pin revision and configuration, hash source artifacts, store retrieval receipt, classify external content as untrusted, and preserve each source in the governed memory/index lineage defined by docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md.
 2. **ARC-X compile:** normalize source evidence into EIR; extract claims, assumptions, conflicts, units, dependencies, and explicit proof obligations.
 3. **Policy prepare:** VAIXLNS resolves system identity, licenses, privacy, allowed capabilities, resource/cost bounds, and authorization reference.
 4. **VX plan:** scheduler returns an explainable route plan; no worker runs until required admission passes.
