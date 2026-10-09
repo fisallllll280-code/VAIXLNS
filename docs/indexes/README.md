@@ -13,6 +13,7 @@
 - `MASTER_RECOVERY_STATUS.md` — current corpus and federation coverage.
 - `ARCHIVE_SOURCE_INDEX.md` — supplied project sources, hashes, classifications.
 - `INNOVATION_MASTER_INDEX.md` — innovation catalog with canonical placement.
+- `INNOVATION_LINEAGE_OVERLAP_REVIEW_V1.md` — review-only cross-reference to prior innovation entries, server discovery, VESG-001, and the historical 151-strategy source gap.
 - `../innovation/INNOVATION_OPERATION_INDEX.md` — generated detailed innovation descriptions, operation steps, inputs/outputs, admission gates, failure modes, source lineage, and status disagreements.
 - `../../registry/innovation-operation-index.v1.json` — machine-readable generated innovation operation index; regenerate with `python tools/build_innovation_operation_index.py`.
 - `REPOSITORY_FEDERATION_INDEX.md` — all 40 currently visible owned repositories and their role.
