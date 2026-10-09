@@ -1,0 +1,316 @@
+# VAIXLNS Omega — System Memory, Index Continuity, and Engineering Language Fabric v1
+
+**Status:** SPECIFIED — additive architecture contract  
+**Canonical owner:** VAIXLNS  
+**Authority anchor:** Ω0_GENESIS_CORE  
+**Golden Source:** project.genome::v1.0.0  
+**Master Index:** Ω.000  
+**Compiler and evidence reconstruction:** ARC-X Ω  
+**Execution and replay:** VX  
+**Independent verification:** VV / verification fabric  
+**Candidate discovery and synthesis:** NEXENT, subject to evidenced identity and adapter contracts
+
+> This specification protects continuity across projects, repositories, conversations, languages, and runtime evidence. It does not claim every subsystem described here is already implemented.
+
+## 1. Mission: memory that reconstructs systems, not merely stores text
+
+The VAIXLNS memory fabric SHALL preserve the exact source, identity, history, reasoning context, relationships, decisions, constraints, engineering artifacts, and verification evidence needed to reconstruct why a system has its current design and state.
+
+Memory is not a flat transcript, a vector database, a README, or a model's implicit recollection. It is a governed, typed, provenance-bearing record system whose derived indexes can be rebuilt.
+
+Core invariants:
+1. No original artifact or historical idea is silently deleted by deduplication, summarization, normalization, or supersession.
+2. Similar labels do not prove that two projects, repositories, workers, capabilities, or system identities are the same.
+3. A derived summary, embedding, inference, or generated model is not the authority for its own source material.
+4. Every material claim and engineering decision retains navigable lineage to exact source locations and revisions.
+5. Missing, stale, inaccessible, or contradictory evidence remains explicitly visible.
+6. Memory retrieval may inform a proposal, but only the governed admission path can change canonical state.
+7. Rebuilding a derived index from the same pinned records and configuration MUST produce an equivalent canonical projection.
+
+## 2. Three-tier memory architecture
+
+### Tier A — Immutable Source Vault
+Contains source snapshots and native artifacts: repository commit/path/blob hash, documents, equations, schemas, logs, test outputs, execution receipts, decisions, and historical drafts. Store content-addressed objects where permitted. Access, privacy, licence, retention, and deletion obligations remain attached to every object.
+
+The vault preserves originals. It does not imply that all sources are trusted.
+
+### Tier B — Canonical Identity and Event Ledger
+Contains stable object IDs, aliases, lineage edges, append-only lifecycle events, reviewed decisions, policy versions, proof references, and canonical Ω.000 entries. A canonical record refers to source objects; it does not silently replace them.
+
+State transitions are explicit events such as DISCOVERED, INGESTED, NORMALIZED, LINK_CANDIDATE, REVIEW_REQUIRED, VERIFIED, ADMITTED, SUPERSEDED, or REJECTED_WITH_REASON. Invalid transitions fail closed.
+
+### Tier C — Rebuildable Retrieval Projections
+Contains search indexes, lexical indexes, graph projections, embeddings, caches, summaries, dependency graphs, language AST caches, and workload-routing features. These are performance structures, not the golden source. Each projection records its source revision set, extractor/model version, config digest, and build evidence.
+
+When a projection is corrupt or stale, rebuild it from Tier A plus the accepted Tier B event history. Never reconstruct the original source by pretending a summary or embedding is equivalent to the original.
+
+## 3. Canonical memory record
+
+Every material item receives a stable identifier and typed schema. Recommended record fields:
+
+- **record_id**, **record_type**, **schema_version**, **version**, **family_id**;
+- **title**, **aliases**, **language**, **domain**, **system_id**, **repository_id**;
+- **source_refs**, **source_revision**, **source_locations**, **content_digest**;
+- **created_at**, **observed_at**, **retrieved_at**, **valid_from**, **valid_until**;
+- **epistemic_state**, **trust_state**, **privacy_class**, **licence_refs**;
+- **claim_refs**, **evidence_refs**, **assumption_refs**, **proof_refs**;
+- **relations**, **parent_refs**, **child_refs**, **related_refs**, **supersedes**, **superseded_by**;
+- **canonical_owner**, **authority_decision_ref**, **policy_version**;
+- **preservation_state**, **conflict_refs**, **uncertainty_rationale**;
+- **extraction_version**, **normalization_version**, **index_build_ref**.
+
+A confidence score MUST include a rationale and method. It is not a proof, does not supersede a missing source, and cannot itself authorize admission.
+
+### Typed memory classes
+- SOURCE_OBJECT: original immutable artifact.
+- OBSERVATION: what an instrument, service, or repository inspection returned.
+- CLAIM: proposition that may be supported or contradicted.
+- EVIDENCE: source-bound material relevant to a claim.
+- ASSUMPTION: condition not yet established.
+- PROOF: a proof artifact or bounded verification result.
+- DECISION: authorized decision, policy version, actor and reason.
+- SPECIFICATION: described contract, not proof of implementation.
+- IMPLEMENTATION: revision-bound implementation artifact.
+- EXECUTION_RECEIPT: observed execution and environment details.
+- FAILURE: a failure with diagnostics and recovery lineage.
+- INNOVATION_CANDIDATE: proposed design with prior-art and proof obligations.
+- LANGUAGE_ARTIFACT: grammar, parser, AST, type rules, compiler version, or conformance result.
+- METRIC: measured value, measurement semantics, unit, denominator, period, and provenance.
+
+Do not collapse these record types into one generic “knowledge” score.
+
+## 4. Historical preservation and identity resolution
+
+Deduplication may identify likely equivalent content, not delete history. It MUST:
+1. preserve both original IDs and source locations;
+2. calculate content and semantic similarity as separate signals;
+3. distinguish exact duplicate, near duplicate, translation, version, fork, summary, and independent corroboration;
+4. record the proposed relation and match rationale;
+5. retain unresolved identity as UNRESOLVED or CONFLICT;
+6. require review or domain-appropriate proof before merging canonical identities;
+7. preserve supersession lineage when a version replaces an older specification.
+
+Two repositories pointing to the same copied code are not necessarily independent evidence. Multiple mirrors of the same original source count as one evidentiary origin unless independence is demonstrated.
+
+A deleted or inaccessible source creates a tombstone/provenance event with a reason and permitted metadata retention; it is not silently erased from history. Legal/privacy deletion requirements override general retention, but must still be handled through a controlled, audited process that does not expose the removed payload.
+
+## 5. Zero-loss indexing and deterministic synchronization
+
+Synchronization is a reconciliation protocol, not an unconditional overwrite.
+
+~~~text
+PIN SOURCE REVISION
+    ↓
+CAPTURE ORIGINAL + HASH + ACCESS/LICENCE METADATA
+    ↓
+PARSE / EXTRACT WITH VERSIONED RULES
+    ↓
+CREATE PROVISIONAL CLAIMS, IDENTITIES, RELATIONS AND GAPS
+    ↓
+COMPARE WITH Ω.000 + HISTORICAL LEDGER
+    ↓
+GENERATE INDEX DELTA (ADD / UPDATE / LINK / CONFLICT / TOMBSTONE)
+    ↓
+VALIDATE SCHEMA, LINEAGE, IDENTITY, SECURITY AND PROOF OBLIGATIONS
+    ↓
+INDEPENDENT REVIEW / AUTHORITY DECISION
+    ↓
+APPEND DECISION EVENT AND UPDATE APPROVED CANONICAL PROJECTION
+    ↓
+REBUILD SEARCH/GRAPH/VECTOR PROJECTIONS
+    ↓
+REPLAY / COVERAGE CHECK / DRIFT AUDIT
+~~~
+
+### Synchronization rules
+- Use a deterministic idempotency key derived from pinned source identity, revision, path/object, extraction version, and relevant configuration.
+- An extraction retry MUST not create duplicate canonical items or duplicate external effects.
+- New content creates a new revision or event; prior content remains addressable.
+- Unknown schema fields, invalid references, missing hashes, untrusted source instructions, or unresolved identities do not silently pass into canonical state.
+- Changes to extraction rules create a new projection/version and preserve the old projection's build metadata.
+- Source deletion, index removal, and identity merge are explicit operations requiring the relevant authority and retention policy.
+- A successful index build is not proof that source coverage is complete. Report inaccessible sources, parser failures, rejected items, and unresolved references.
+
+## 6. Retrieval and memory economy
+
+Route queries across multiple retrieval modes rather than relying on one embedding score:
+1. exact identifiers, hashes, filenames, and canonical IDs;
+2. lexical retrieval for precise technical terms and API names;
+3. structured graph traversal for dependencies, decisions, supersession, and lineage;
+4. semantic retrieval for related concepts and paraphrases;
+5. temporal filtering for the correct project version and time;
+6. authority/evidence filtering before claims are used in an admission decision.
+
+Retrieval ranking may consider exactness, relevance, freshness, provenance, and task scope. Authority and security eligibility are hard filters, not compensable ranking features.
+
+To improve performance:
+- place frequently used, compact metadata in a hot index;
+- keep original artifacts and large arrays in durable object storage;
+- load long source content on demand using exact references;
+- cache only by complete content/configuration keys and compatible privacy scope;
+- invalidate or rebuild derived indexes after source, extractor, schema, policy, or language-version changes;
+- use query plans and bounded retrieval rather than injecting the entire archive into every model context;
+- record which source refs were retrieved and which eligible corpus was not searched.
+
+Memory completeness should be measured by coverage and lineage, not by total tokens or vector count.
+
+## 7. System processing and engineering language fabric
+
+System languages SHALL be treated as typed engineering interfaces, not magical authority syntax. Candidate language families already described in ARC-X remain SPECIFIED/PROPOSED until their grammars, parsers, type rules, test suites, and implementation revisions are evidenced.
+
+| Language family | Intended role | Required contract |
+|---|---|---|
+| VSL | Declare intent, semantics, capabilities, and desired outcomes | Explicit nouns/relations, ambiguity reporting, source/actor binding |
+| VML | Define ontology, quantities, states, equations, models, and dimensions | Typed values, units, assumptions, state semantics |
+| VDL | Decompose systems into components, dependencies, interfaces, and lifecycle | Graph constraints, identity, dependency and failure contracts |
+| VPL | State policies, invariants, proof obligations, and admissibility rules | Fail-closed policy evaluation, versioned rules, explainable outcomes |
+| VQL | Query records and verify lineage, evidence, state, and conformance | Typed query results, scope, source refs, uncertainty and completeness |
+
+These names are not declared implemented by this document. Implemented parsers must publish a grammar/version and conformance fixtures.
+
+### Compiler pipeline
+
+~~~text
+Human intent / authorized system input
+    ↓
+VSL parse → AST + ambiguity report
+    ↓
+VDL system decomposition + identity binding
+    ↓
+VML typed model, equations, units, assumptions
+    ↓
+VPL policy and proof-obligation compilation
+    ↓
+Static checks + type/dimensional analysis
+    ↓
+EIR with exact source lineage
+    ↓
+Typed task DAG + VX engineering-task envelope
+    ↓
+VAIXLNS policy / authority / privacy / licensing gate
+    ↓
+VX worker selection and isolated execution
+    ↓
+Execution receipt + VV verification
+    ↓
+ARC-X reality reconciliation
+    ↓
+Memory event + proposed Ω.000 delta
+~~~
+
+A parser or language model output is never sent directly to a privileged shell, production server, physical actuator, or canonical-write path. A natural-language instruction must be compiled into a reviewable typed object and separately authorized.
+
+## 8. Epistemic type safety
+
+The type system MUST prevent implicit conversion between:
+- Observation<T> and Evidence<T>;
+- Evidence<T> and Claim<T>;
+- Claim<T> and SupportedClaim<T>;
+- SupportedClaim<T> and Proof<T>;
+- Proof<T> and AuthorityDecision;
+- Candidate<T> and AdmittedArtifact<T>;
+- SimulationResult<T> and ValidatedPhysicalClaim<T>.
+
+Each conversion requires an explicit operation, required data, policy, and audit event. A proof object may be valid only for a particular assumptions set, problem statement, code revision, solver, or environment. Changes to those dependencies trigger freshness checks and possible re-verification.
+
+For mathematical and physical quantities, dimensioned values must not be mixed without explicit valid transformations. For code, passing a build or unit-test stage does not transform an architecture claim into proof. For physics, numerical convergence does not alone establish model validity.
+
+## 9. Cross-system integration contract
+
+Each participating subsystem exposes an adapter rather than a mesh of undocumented direct calls.
+
+An adapter declares:
+- stable system and instance identity, version, lineage, and trust state;
+- supported operations, typed input/output schemas, and capabilities;
+- preconditions, postconditions, timeouts, resource budgets, and failure states;
+- authorization and data-classification constraints;
+- event/evidence receipt, content digests, replay semantics, and recovery behavior;
+- independent conformance fixtures and operator-configured endpoint identity.
+
+The intended boundaries are:
+- ARC-X: memory/index reconstruction, claims, semantic normalization, uncertainty, gap and drift analysis;
+- VX: queue, scheduling, capability checks, isolation, execution state, evidence receipts, replay;
+- VV: independent verification and conformance evaluation;
+- NEXENT: authorized discovery and candidate generation;
+- VAIXLNS / Ω.000: canonical identity, policy, admitted index state, historical references and governance;
+- domain adapters: mathematics, numeric computing, software/build/test, physics/CAE and other specialized solvers.
+
+Do not assume a named repository and a named subsystem have the same identity. Confirm identity and live endpoint configuration through their own evidence.
+
+## 10. Security and privacy model
+
+- Retrieved content is data, never instruction authority.
+- Apply schema validation, parser limits, decompression limits, timeouts, and resource quotas to untrusted artifacts.
+- Keep bearer tokens, signing keys, private source payloads, and personal data out of logs and generated evidence bundles.
+- Use least-privilege tokens, authenticated TLS, scoped capabilities, secret managers, and key rotation.
+- Treat embeddings and summaries as potentially sensitive derived data; enforce the original data's access classification.
+- Do not send restricted data to external models, remote workers, analytics, or artifact hosts without explicit policy and residency authorization.
+- Security scanner failure, unknown provenance, policy mismatch, or tampered digest blocks promotion.
+- Store security findings with restricted access; never render exploit payloads as trusted system commands.
+
+## 11. Metrics for memory quality and engineering integration
+
+Each metric needs owner, exact definition, unit, denominator, measurement window, source, and version.
+
+Memory/index metrics:
+- source and historical-identity coverage;
+- percent of material claims with exact source lineage;
+- unresolved identity and false-merge rates;
+- duplicate-ingestion rate and idempotent replay success;
+- stale index and missing-reference rates;
+- inaccessible-source and parser-failure coverage;
+- historical reconstruction success.
+
+Language/integration metrics:
+- parse/type-check/conformance pass rates by language version;
+- units/dimensional-analysis defect detection;
+- fraction of execution requests with complete proof obligations;
+- route latency, queue wait, and evidence persistence latency;
+- accepted-and-verified tasks per second by domain;
+- p50/p95 end-to-end latency and cost per verified result;
+- reproducibility and independent-verification rates;
+- rollback, recovery, and failed-evidence-write rates.
+
+A growing index or lower latency is not a success if provenance, correctness, privacy, or verification completeness degrades.
+
+## 12. Acceptance tests
+
+The initial conformance suite must demonstrate:
+1. unchanged pinned sources produce equivalent normalized records;
+2. re-ingestion is idempotent;
+3. original source IDs and versions survive duplicate detection and supersession;
+4. source changes generate a diff instead of silent replacement;
+5. unresolved identity conflicts stay unresolved;
+6. a summary/embedding cannot replace or promote the original evidence;
+7. missing lineage or a corrupt digest blocks canonical admission;
+8. changed schema/extractor/policy invalidates incompatible cache keys;
+9. unauthorized queries cannot retrieve restricted source payloads;
+10. unsupported language syntax produces a diagnostic, not guessed execution;
+11. unit mismatch is rejected or marked inconclusive unless a valid conversion exists;
+12. generated candidate code cannot self-authorize or self-merge;
+13. remote worker loss or evidence-store failure leaves a recoverable pending state;
+14. replay from recorded inputs preserves decision history and reports any divergent output;
+15. an approved index delta never silently deletes historical records;
+16. the complete lineage chain can be traversed from Ω.000 record to source revision and verification receipt.
+
+## 13. Status and implementation boundary
+
+This contract is SPECIFIED until schemas, persistence, event transitions, index rebuild, parser/type-checker implementations, adapter tests, and repeatable evidence demonstrate each claimed capability.
+
+The first useful vertical slice should implement only:
+- one source artifact ingested with pinned revision and hash;
+- one typed claim linked to an exact source location;
+- one Ω.000 delta proposal retaining historical lineage;
+- one typed math or software verification task routed through a local VX reference worker;
+- one durable receipt;
+- one deterministic replay;
+- one independent admission decision;
+- one coverage report showing what remains missing.
+
+Do not implement broad autonomous mutation before this slice is reliable.
+
+## 14. Governing rule
+
+> No memory without lineage; no index update without reconciliation; no language without types and contracts; no execution without capability and authorization; no promotion without independent evidence; no historical loss hidden by optimization.
+
+This document is additive. It preserves prior definitions and requires old items to remain discoverable through stable IDs, source references, aliases, and supersession relations.
