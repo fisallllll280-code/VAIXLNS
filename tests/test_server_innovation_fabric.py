@@ -64,8 +64,9 @@ class ServerInnovationFabricTests(unittest.TestCase):
             capability_claims=("capability:text-generation",),
             capability_gap_ids=("capability:text-generation",),
         ))
-        self.assertEqual(result.decision, ServerAssessmentDecision.REJECTED)
+        self.assertEqual(result.decision, ServerAssessmentDecision.NOT_NOVEL_FOR_CURRENT_SCOPE)
         self.assertIn("NO_UNMET_CAPABILITY_DELTA_IDENTIFIED", result.blockers)
+        self.assertIn("DO_NOT_CREATE_A_NEW_CANONICAL_INNOVATION", result.required_next_steps)
 
     def test_failed_sandbox_blocks_admission(self):
         result = assess_server_candidate(self.valid_candidate(sandbox_test_status=GateStatus.FAIL))
