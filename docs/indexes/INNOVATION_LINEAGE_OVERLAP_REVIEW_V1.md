@@ -37,6 +37,18 @@ The generated operation-index summary reports these states: 8 CANONICAL, 2 CONFL
 
 **Decision:** `tools/server_innovation_fabric.py` is a derived assessment capability under the existing discovery/capability/verification fabric. It is not a new canonical server system. It evaluates explicit candidates; it does not perform network discovery, claim market novelty, admit a runtime, or grant canonical-write authority.
 
+### R2 contradiction engine implementation
+
+The supplied contradiction-engine path was not present in the inspected GitHub tree, so a reviewable implementation was added at `src/research/r2_external_engine/evaluation/contradiction_engine.py` rather than silently replacing an unobserved file. It strengthens contextual numeric comparison, multilingual word-boundary negation, metadata version/environment checks, and prompt-injection quarantine signals.
+
+- Dedicated tests: `tests/test_contradiction_engine.py` (13 test cases).
+- Full VAIXLNS conformance run after this addition: **139 tests passed**.
+- Fast-feedback workflow: **139 full-suite tests passed**, plus the existing focused VCRE route; per-command durations are now preserved in the run receipt.
+- The detector's no-conflict outcome maps to `PENDING_EVIDENCE_ADMISSION`, not approval.
+- The adapter produces a decision record only; it does not itself call R4, write to Ω.000, sign records, or grant runtime authority.
+
+This is implementation and test evidence on a feature branch, not proof that the remote ARC-X service or Ω.000 write path is live.
+
 ## 3. VX-Equity Strategy Genome (VESG-001): preserve the old strategy family
 
 ### Existing lineage
