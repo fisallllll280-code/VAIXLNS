@@ -78,8 +78,8 @@ jobs:
         run: |
           set +e
           python -m unittest discover -s tests -v 2>&1 | tee test-suite.log
-          test_status=\${PIPESTATUS[0]}
-          exit "\$test_status"
+          test_status=${PIPESTATUS[0]}
+          exit "$test_status"
 
       - name: Diagnose test failure
         if: failure() && steps.test_suite.outcome == 'failure'
