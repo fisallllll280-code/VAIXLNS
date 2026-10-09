@@ -106,5 +106,8 @@ spec:
     - authority_decision
   implementationState:
     specification: SPECIFIED
-    implementation: NOT_PROVEN
+    implementation: PARTIAL
+    implementationRef: scripts/arc_x_runtime.py
+    runtimeConformance: PENDING_CI_EVIDENCE
+    semanticVerification: NOT_CLAIMED
     productionRuntime: NOT_PROVEN
