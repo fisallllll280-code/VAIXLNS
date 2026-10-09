@@ -114,7 +114,9 @@
     "pytest": "NOT_RUN",
     "canonical_index_changed": false,
     "python_unit_test_count": 22,
-    "commit_reference_note": "Use the Git branch history as the authoritative change ledger; embedded SHA lists are intentionally not claimed complete."
+    "commit_reference_note": "Use the Git branch history as the authoritative change ledger; embedded SHA lists are intentionally not claimed complete.",
+    "json_syntax_parse": "PASS_FOR_FOUR_SCHEMAS",
+    "json_schema_meta_validation": "NOT_RUN"
   },
   "historical_preservation": {
     "rule": "ADDITIVE_ONLY",
