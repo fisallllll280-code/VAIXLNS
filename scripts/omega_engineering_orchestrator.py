@@ -74,7 +74,7 @@ def inspect_test_log(path: Path) -> dict[str, Any]:
         text = path.read_text(encoding="utf-8", errors="replace")
     except OSError:
         return {"state": "UNREADABLE", "test_count": None, "summary_line": None, "file_sha256": None}
-    matches = re.findall(r"\bRan\s+(\d+)\s+tests?\s+in\s+[0-9.]+\s+s", text)
+    matches = re.findall(r"\bRan\s+(\d+)\s+tests?\s+in\s+[0-9.]+\s*s", text)
     count = int(matches[-1]) if matches else None
     summary_line = next((line.strip() for line in reversed(text.splitlines()) if re.fullmatch(r"OK(?:\s+\(.*\))?", line.strip())), None)
     failed = bool(re.search(r"(?m)^FAILED\s*\(", text)) or "ERROR: test suite failed" in text
