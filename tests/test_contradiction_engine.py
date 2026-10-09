@@ -65,7 +65,10 @@ class ContradictionEngineTests(unittest.TestCase):
         self.assertEqual(result.severity, ContradictionSeverity.CRITICAL)
 
     def test_substrings_without_word_boundaries_do_not_trigger_negation(self):
-        result = self.analyze("The feature is supported.", "The feature is supported by default.")
+        result = self.analyze(
+            "The state is valid.",
+            "The string contains the identifier invalidator, but its state was not evaluated.",
+        )
         self.assertFalse(result.has_contradiction)
 
     def test_arabic_negation_pair_is_detected(self):
