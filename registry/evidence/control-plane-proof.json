@@ -1,5 +1,5 @@
 {
-  "proof_id": "da5d529bc7afe18508cdb4c2398cc483de07a8df634c1fe175b90d95b69d3974",
+  "proof_id": "2613bdad16ffee8ce22d6fbea0b5880fd203d941a3dbbbc8c3519352da5f5edd",
   "claim_id": "CPL-GENOME-001",
   "statement": "VAIXLNS Golden Source files are present and content-addressed",
   "subject": "project.genome",
@@ -13,7 +13,7 @@
     {
       "kind": "file_sha256",
       "ref": "registry/omega/omega-000-master-index.json",
-      "digest": "4410a5bbf43f322a6733977e89d2a55a9153580b32863d2cce1ea8f43cc0a8d3"
+      "digest": "1f17a641a5e99e47caad8461ec326a5d7aeea0a269e27081e2c7d7c36f91c833"
     }
   ],
   "verification": {

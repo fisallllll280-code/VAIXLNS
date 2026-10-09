@@ -11,6 +11,7 @@
 ## Index set
 
 - `MASTER_RECOVERY_STATUS.md` — current corpus and federation coverage.
+- `../operations/INDEX_DRIVEN_WORKFLOW_V1.md` — executable reference planner, agent routing, and authority gates.
 - `ARCHIVE_SOURCE_INDEX.md` — supplied project sources, hashes, classifications.
 - `INNOVATION_MASTER_INDEX.md` — innovation catalog with canonical placement.
 - `REPOSITORY_FEDERATION_INDEX.md` — all 40 currently visible owned repositories and their role.

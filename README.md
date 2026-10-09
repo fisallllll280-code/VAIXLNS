@@ -5,6 +5,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 ## Navigation
 
 - [Master index navigation](docs/indexes/README.md)
+- [Index-driven workflow V1](docs/operations/INDEX_DRIVEN_WORKFLOW_V1.md)
 - [Master recovery status](docs/indexes/MASTER_RECOVERY_STATUS.md)
 - [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
 - [Innovation master index](docs/indexes/INNOVATION_MASTER_INDEX.md)

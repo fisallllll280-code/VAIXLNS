@@ -156,6 +156,35 @@
         "deterministic_research_decision_bundle"
       ],
       "promotion_rule": "Research output cannot self-promote; downstream innovation proof gates and explicit authority remain mandatory."
+    },
+    {
+      "id": "VAIXLNS.INDEXED_WORKFLOW.ORCHESTRATOR.001",
+      "type": "CAPABILITY",
+      "role": "INDEX_DRIVEN_AGENT_ROUTING_AND_GOVERNED_WORKFLOW_PLANNING",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "Ω.000",
+      "execution_scope": "REFERENCE_PLANNER_ONLY",
+      "capabilities": [
+        "system_and_agent_identity_validation",
+        "capability_aware_workflow_routing",
+        "typed_agent_handoff_planning",
+        "authority_and_risk_holds",
+        "deterministic_plan_hashing",
+        "workflow_trace_integrity"
+      ],
+      "evidence_refs": [
+        "registry/agents/indexed-workflow.v1.json",
+        "schemas/indexed-workflow-request.schema.json",
+        "schemas/indexed-workflow-plan.schema.json",
+        "scripts/indexed_workflow.py",
+        "tests/test_indexed_workflow.py",
+        "tests/fixtures/research-request.v1.json",
+        "docs/operations/INDEX_DRIVEN_WORKFLOW_V1.md",
+        ".github/workflows/indexed-workflow.yml"
+      ],
+      "promotion_rule": "Keep proposed until independent CI evidence, trusted authorization issuer, live adapter contracts, runtime events, replay, and explicit governance admission are verified. The reference planner does not execute or self-promote."
     }
   ],
   "promotion_rules": {

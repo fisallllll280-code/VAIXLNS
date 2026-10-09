@@ -151,3 +151,19 @@ The following artifacts were added on an additive branch:
 - deterministic unit tests and CI workflows for both reference surfaces.
 
 These artifacts remain SPECIFIED / implementation-bound until their executable evidence is inspected and promotion is authorized.
+
+
+## 2026-10-09 — Index-Driven Workflow Reference Planner
+
+A new proposed capability, `VAIXLNS.INDEXED_WORKFLOW.ORCHESTRATOR.001`, is registered in the Ω.000 Master Index on an additive branch. It adds a deterministic, provider-neutral workflow planner tied to the existing AG-001 through AG-013 operating model.
+
+Preservation and authority limits:
+
+- Missing historical 0001–2750 item-level rows remain explicitly unmapped; no IDs or source wording were invented.
+- System and agent identities are explicit, and each agent has one primary system assignment.
+- NEXENT remains a discovery/proposal boundary; VX runtime execution remains disabled in this reference planner.
+- The planner emits deterministic plan traces only; these are not a runtime ledger or proof that work executed.
+- Mutations, high-risk work, critical-risk work, and runtime requests are held. A caller-provided approval reference is recorded as unverified and cannot bypass the gate.
+- Canonical promotion requires independent execution evidence and explicit governance admission.
+
+Artifacts: `registry/agents/indexed-workflow.v1.json`, `scripts/indexed_workflow.py`, the request/plan schemas, conformance tests, fixture, documentation, and the indexed-workflow CI workflow.
