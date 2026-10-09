@@ -483,18 +483,29 @@ class CommandEngine:
     def _federation_attributes(self, query: str) -> dict[str, Any]:
         document = self._federation_document()
         properties = document.get("properties", [])
+        families = document.get("attribute_families", [])
         needle = query.casefold()
-        matches = properties if needle in ("", "all", "*") else [
-            item for item in properties
-            if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold()
-        ]
+        if needle in ("", "all", "*"):
+            matching_properties = properties
+            matching_families = families
+        else:
+            matching_properties = [
+                item for item in properties
+                if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold()
+            ]
+            matching_families = [
+                item for item in families
+                if needle in json.dumps(item, ensure_ascii=False, sort_keys=True).casefold()
+            ]
         lines = [
-            "VLNS DEEP ATTRIBUTE INDEX — EACH RESULT RETAINS ITS SOURCE REFERENCES",
+            "VLNS DEEP ATTRIBUTE INDEX — DECLARATIONS, NOT AUTOMATIC IMPLEMENTATION PROOF",
             f"Query: {query}",
-            f"Matches: {len(matches)} / {len(properties)}",
+            f"Atomic properties: {len(matching_properties)} / {len(properties)}",
+            f"Attribute families: {len(matching_families)} / {len(families)}",
+            f"Indexed field definitions returned: {sum(len(item.get('fields', [])) for item in matching_families)}",
             "",
         ]
-        for item in matches:
+        for item in matching_properties:
             refs = item.get("source_refs", [])
             lines.append(
                 f"{item.get('property_id', '?'):16} | {item.get('category', 'UNKNOWN'):16} "
@@ -502,10 +513,30 @@ class CommandEngine:
             )
             lines.append(f"  {item.get('value', '')}")
             lines.append(f"  evidence: {'; '.join(refs)}")
+        if matching_families and matching_properties:
+            lines.append("")
+        for item in matching_families:
+            fields = item.get("fields", [])
+            lines.append(
+                f"{item.get('family_id', '?'):18} | {item.get('state', 'UNKNOWN')} "
+                f"| {item.get('owner', 'UNKNOWN')} | {item.get('name', 'Unnamed')} "
+                f"| fields={len(fields)}"
+            )
+            lines.append("  fields: " + ", ".join(fields))
+            lines.append(f"  evidence: {'; '.join(item.get('source_refs', []))}")
+            if item.get("notes"):
+                lines.append("  note: " + item["notes"])
         return self._ok(
-            f"Found {len(matches)} indexed property records.",
+            f"Found {len(matching_properties)} atomic property and {len(matching_families)} attribute-family records.",
             lines,
-            {"query": query, "properties": matches, "total": len(properties)},
+            {
+                "query": query,
+                "properties": matching_properties,
+                "attribute_families": matching_families,
+                "property_total": len(properties),
+                "attribute_family_total": len(families),
+                "indexed_field_total": sum(len(item.get("fields", [])) for item in families),
+            },
             [FEDERATION_INDEX_PATH],
         )
 
