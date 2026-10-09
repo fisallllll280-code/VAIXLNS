@@ -237,3 +237,12 @@ It is to make computational models:
 ## 13. Non-Claims
 
 VCRE does not claim to discover new physical laws automatically, provide exact solutions to arbitrary physical systems, or replace experiments. Such capabilities remain hypotheses until evidence supports them.
+
+
+## 14. Governed Multidomain System Synthesis
+
+The candidate-to-review implementation is specified in [V_MULTIDOMAIN_SYSTEM_SYNTHESIS_ENGINE_V1.md](V_MULTIDOMAIN_SYSTEM_SYNTHESIS_ENGINE_V1.md).
+
+The reference module at vcre/synthesis.py validates mathematics, computation, software, physics, integrations, specialist assignment, verification obligations, and bounded evolution metadata. It compiles a deterministic verification DAG and provides constrained Pareto comparison for structurally reviewable candidates.
+
+The module is not a physics solver or production admission service. READY_FOR_REVIEW is not proof, validation, authority, or deployment permission. Generated plans are marked PLANNED_NOT_EXECUTED. Real actuation remains on hold unless separate authority and safety contracts are present, and this module never performs actuation.

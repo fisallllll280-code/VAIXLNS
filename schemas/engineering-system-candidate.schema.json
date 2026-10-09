@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/engineering-system-candidate.schema.json",
+  "title": "VAIXLNS Multidomain Engineering System Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "candidate_id", "intent", "required_domains",
+    "domain_contracts", "constraints", "objectives", "integrations",
+    "agent_assignments", "verification_plan", "evidence", "evolution"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "minLength": 1 },
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "intent": { "type": "string", "minLength": 1 },
+    "required_domains": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 4,
+      "items": {
+        "enum": ["mathematics", "computation", "software", "physics", "integration", "agents", "operations", "security"]
+      },
+      "allOf": [
+        { "contains": { "const": "mathematics" } },
+        { "contains": { "const": "computation" } },
+        { "contains": { "const": "software" } },
+        { "contains": { "const": "physics" } }
+      ]
+    },
+    "domain_contracts": {
+      "type": "object",
+      "required": ["mathematics", "computation", "software", "physics"],
+      "properties": {
+        "mathematics": {
+          "type": "object",
+          "required": ["model_id", "formalism", "assumptions", "constraints", "proof_obligations"],
+          "properties": {
+            "model_id": { "type": "string", "minLength": 1 },
+            "formalism": { "type": "string", "minLength": 1 },
+            "assumptions": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "constraints": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "proof_obligations": { "$ref": "#/$defs/nonEmptyStringArray" }
+          },
+          "additionalProperties": true
+        },
+        "computation": {
+          "type": "object",
+          "required": ["model_id", "algorithm", "determinism_policy", "resource_budget", "numerical_tolerances"],
+          "properties": {
+            "model_id": { "type": "string", "minLength": 1 },
+            "algorithm": { "type": "string", "minLength": 1 },
+            "determinism_policy": { "type": "string", "minLength": 1 },
+            "resource_budget": {
+              "type": "object",
+              "required": ["max_steps", "max_memory_mb", "max_wall_time_ms"],
+              "properties": {
+                "max_steps": { "type": "integer", "minimum": 1 },
+                "max_memory_mb": { "type": "number", "exclusiveMinimum": 0 },
+                "max_wall_time_ms": { "type": "number", "exclusiveMinimum": 0 }
+              },
+              "additionalProperties": false
+            },
+            "numerical_tolerances": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          },
+          "additionalProperties": true
+        },
+        "software": {
+          "type": "object",
+          "required": ["model_id", "implementation_language", "build_recipe", "dependency_lock_ref", "test_targets", "static_security_checks", "rollback_plan"],
+          "properties": {
+            "model_id": { "type": "string", "minLength": 1 },
+            "implementation_language": { "type": "string", "minLength": 1 },
+            "build_recipe": { "type": "string", "minLength": 1 },
+            "dependency_lock_ref": { "type": "string", "minLength": 1 },
+            "test_targets": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "static_security_checks": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "rollback_plan": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": true
+        },
+        "physics": {
+          "type": "object",
+          "required": ["model_id", "validity_domain", "units", "invariants", "initial_conditions", "boundary_conditions", "numerical_tolerances", "validation_basis"],
+          "properties": {
+            "model_id": { "type": "string", "minLength": 1 },
+            "validity_domain": { "type": "string", "minLength": 1 },
+            "units": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": { "type": "string", "minLength": 1 }
+            },
+            "invariants": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "initial_conditions": { "type": "object", "minProperties": 1 },
+            "boundary_conditions": { "type": "object", "minProperties": 1 },
+            "numerical_tolerances": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": { "type": "number", "exclusiveMinimum": 0 }
+            },
+            "validation_basis": {
+              "enum": ["ANALYTIC_REFERENCE", "BENCHMARK", "EXPERIMENT", "INDEPENDENT_SOLVER", "TEST_FIXTURE", "NONE"]
+            },
+            "actuation_mode": { "enum": ["OBSERVE_SIMULATE", "HARDWARE_IN_LOOP", "REAL_ACTUATION"] },
+            "safety_contract_ref": { "type": "string" },
+            "hil_plan_ref": { "type": "string" },
+            "authority_ref": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["constraint_id", "kind", "status", "evidence_refs"],
+        "properties": {
+          "constraint_id": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["HARD", "SOFT"] },
+          "status": { "enum": ["PASS", "FAIL", "UNKNOWN"] },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["metric", "direction", "unit", "value", "evidence_state"],
+        "properties": {
+          "metric": { "type": "string", "minLength": 1 },
+          "direction": { "enum": ["MINIMIZE", "MAXIMIZE"] },
+          "unit": { "type": "string", "minLength": 1 },
+          "value": { "type": "number" },
+          "evidence_state": { "enum": ["TARGET", "ESTIMATED", "SIMULATED", "MEASURED"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["adapter_id", "version", "input_schema_ref", "output_schema_ref", "permission_scope", "failure_policy", "timeout_ms", "idempotency_supported"],
+        "properties": {
+          "adapter_id": { "type": "string", "minLength": 1 },
+          "version": { "type": "string", "minLength": 1 },
+          "input_schema_ref": { "type": "string", "minLength": 1 },
+          "output_schema_ref": { "type": "string", "minLength": 1 },
+          "permission_scope": { "type": "string", "minLength": 1 },
+          "failure_policy": { "type": "string", "minLength": 1 },
+          "timeout_ms": { "type": "number", "exclusiveMinimum": 0 },
+          "idempotency_supported": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "agent_assignments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["role", "agent_id", "capabilities"],
+        "properties": {
+          "role": { "type": "string", "minLength": 1 },
+          "agent_id": { "type": "string", "minLength": 1 },
+          "capabilities": { "$ref": "#/$defs/nonEmptyStringArray" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "verification_plan": {
+      "type": "object",
+      "required": ["required_checks", "independent_replay_required", "security_review_required"],
+      "properties": {
+        "required_checks": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "independent_replay_required": { "const": true },
+        "security_review_required": { "const": true }
+      },
+      "additionalProperties": true
+    },
+    "evidence": { "type": "object", "additionalProperties": true },
+    "evolution": {
+      "type": "object",
+      "required": ["mutation_scope", "self_promotion", "rollback_plan", "regression_suite_ref", "max_generations"],
+      "properties": {
+        "mutation_scope": { "enum": ["SANDBOX_ONLY", "CANDIDATE_BRANCH_ONLY"] },
+        "self_promotion": { "const": false },
+        "rollback_plan": { "type": "string", "minLength": 1 },
+        "regression_suite_ref": { "type": "string", "minLength": 1 },
+        "max_generations": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}
