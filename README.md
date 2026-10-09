@@ -59,4 +59,4 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [Signed activation envelope schema](schemas/vlns-activation-envelope.schema.json)
 - [VLNS activation contract registry](registry/vlns_activation_contract.v1.json)
 
-The contract is specified and has a reference implementation under VAIXLNS-unified. Live VLNS connectivity, external service conformance, VLNS↔NAXLNS identity, and canonical admission remain unverified until evidence closes the required gates.
+The contract has a reference implementation under VAIXLNS-unified with a green verification run, plus a companion fail-closed pre-activation gate in the vx-agents-fabric feature branch with green unit-test CI. Live VLNS connectivity, external service conformance, VLNS↔NAXLNS identity, and canonical admission remain unverified until evidence closes the required gates.
