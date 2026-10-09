@@ -185,6 +185,7 @@ def _configured_endpoint() -> str:
     try:
         parsed = urlsplit(raw)
         hostname = parsed.hostname
+        _ = parsed.port
     except ValueError as exc:
         raise BridgeError("endpoint URL is malformed") from exc
     if parsed.scheme not in {"https", "http"} or not hostname:
@@ -272,7 +273,7 @@ def _request_json(url: str, *, method: str, payload: dict[str, Any] | None,
     except HTTPError as exc:
         # Do not print response bodies; servers may include sensitive diagnostics.
         raise BridgeError(f"server returned HTTP {exc.code}") from exc
-    except (URLError, TimeoutError, OSError) as exc:
+    except (URLError, TimeoutError, OSError, ValueError) as exc:
         raise BridgeError(f"server request failed: {type(exc).__name__}") from exc
 
     if len(raw) > MAX_RESPONSE_BYTES:
@@ -291,6 +292,12 @@ def submit_task(task: dict[str, Any], *, timeout: float = DEFAULT_TIMEOUT_SECOND
     token = os.getenv("VX_ENGINEERING_BEARER_TOKEN", "")
     if not token:
         raise BridgeError("VX_ENGINEERING_BEARER_TOKEN is required")
+    try:
+        token.encode("ascii")
+    except UnicodeEncodeError as exc:
+        raise BridgeError("bearer token must be ASCII") from exc
+    if any(ord(char) <= 32 or ord(char) == 127 for char in token):
+        raise BridgeError("bearer token contains whitespace or control characters")
     request_key = _secret("VX_ENGINEERING_REQUEST_SIGNING_KEY")
     receipt_key = _secret("VX_ENGINEERING_RECEIPT_SIGNING_KEY")
     if hmac.compare_digest(request_key, receipt_key):
