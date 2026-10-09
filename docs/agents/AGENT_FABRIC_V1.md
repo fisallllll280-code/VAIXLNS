@@ -6,7 +6,7 @@
 
 ## Authority rule
 
-Agents are bounded role identities, not autonomous authorities. They may search, recover, compare, design, test, and recommend. No agent in the default chain may directly execute production changes or promote its candidate to \`VERIFIED\` or \`CANONICAL\`. The authorized governance path remains separate.
+Agents are bounded role identities, not autonomous authorities. They may search, recover, compare, design, test, and recommend. No agent in the default chain may directly execute production changes or promote its candidate to `VERIFIED` or `CANONICAL`. The authorized governance path remains separate.
 
 ## Thirteen-role handoff chain
 
@@ -26,11 +26,11 @@ Agents are bounded role identities, not autonomous authorities. They may search,
 
 ## Typed handoffs
 
-Each agent declares accepted input artifacts, output artifacts, capabilities, and an authority scope. The registry rejects duplicate identities, unknown IDs, mismatched adjacent handoff contracts, and any role configured to self-promote. The canonical chain is deterministic and integrates with \`agents.mind_federation\`; federation links do not imply that a live model/server is connected.
+Each agent declares accepted input artifacts, output artifacts, capabilities, and an authority scope. The registry rejects duplicate identities, unknown IDs, mismatched adjacent handoff contracts, and any role configured to self-promote. The canonical chain is deterministic and integrates with `agents.mind_federation`; federation links do not imply that a live model/server is connected.
 
 ## Binding to the research decision fabric
 
-The provider-neutral implementation in \`VAIXLNS-unified/innovation_control/research_fabric.py\` implements focused source-coverage, novelty/lineage, claim-adversary, engineering-completeness and provenance-integrity roles. This canonical roster supplies the broader federation/handoff contract around that implementation. Provider adapters and live runtime bindings must be admitted and tested separately.
+The provider-neutral implementation in `VAIXLNS-unified/innovation_control/research_fabric.py` implements focused source-coverage, novelty/lineage, claim-adversary, engineering-completeness and provenance-integrity roles. This canonical roster supplies the broader federation/handoff contract around that implementation. Provider adapters and live runtime bindings must be admitted and tested separately.
 
 ## Required proof before admission
 
