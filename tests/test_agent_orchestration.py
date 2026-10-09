@@ -137,7 +137,7 @@ class AgentOrchestrationTests(unittest.TestCase):
             validate_and_record_evidence(record, receipt=receipt(), now=NOW)
         digest = quarantine_result(record, result={"success": True, "payload": "untrusted"})
         self.assertTrue(digest.startswith("sha256:"))
-        validate_and_record_evidence(record, receipt(record.envelope), now=NOW)
+        validate_and_record_evidence(record, receipt=receipt(record.envelope), now=NOW)
         self.assertEqual(record.state, TaskState.EVIDENCE_RECORDED)
 
     def test_stale_candidate_evidence_is_rejected(self):
