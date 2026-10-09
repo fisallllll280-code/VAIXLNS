@@ -119,3 +119,16 @@ These entries are context-level proposals/specifications unless separately suppo
 80. VX Stage Failure Isolation + Recovery
 81. VX Stage Provenance Evidence
 82. VX Stage Release/Operational Runbook
+
+
+## 2026-10-09 research-to-engineering decision additions
+
+83. Ω Research-to-Engineering Decision Fabric (REDF)
+84. Multi-Lane Research Query Planner
+85. Source Provenance and Content Identity Gate
+86. Claim / Counterevidence / Contradiction Investigator
+87. Novelty and Legacy-Lineage Investigator
+88. Engineering Contract Completeness Agent
+89. Deterministic Research Decision Bundle and Non-Promotion Gate
+
+Implementation reference: \`VAIXLNS-unified/innovation_control/research_fabric.py\`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains \`EVOLVING / IMPLEMENTED\`: live search adapters and item-by-item recovery of the historical \`0001–2750\` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
