@@ -46,7 +46,7 @@ jobs:
             tests/test_canonical_control_plane.py \
             tests/test_arc_x_reconstruct.py \
             scripts/innovation_network.py \
-            tests/test_innovation_network.py
+            tests/test_innovation_network.py \\\n            scripts/engineering_agent_fabric.py \\\n            tests/test_engineering_agent_fabric.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -69,7 +69,7 @@ jobs:
       - name: Build federated innovation network manifest
         run: python scripts/innovation_network.py --input docs/innovation/innovation-federation.json --output innovation-network.json
 
-      - name: Emit conformance evidence
+      - name: Build engineering agent plan\n        run: python scripts/engineering_agent_fabric.py --root . --output engineering-execution-plan.json\n\n      - name: Emit conformance evidence
         if: always()
         shell: bash
         run: |
@@ -89,5 +89,5 @@ jobs:
             conformance-evidence.txt
             reconstruction-evidence.json
             provenance.json
-            innovation-network.json
+            innovation-network.json\n            engineering-execution-plan.json
           if-no-files-found: error
