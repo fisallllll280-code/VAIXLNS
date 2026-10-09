@@ -1,9 +1,11 @@
 """Unit tests for the VX tool-control reference evaluator (stdlib only)."""
-import copy
+import sys
 import unittest
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
-from tools.vx_tool_control_reference import evaluate_action, policy_digest
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from vx_tool_control_reference import evaluate_action, policy_digest
 
 
 def active_policy():
