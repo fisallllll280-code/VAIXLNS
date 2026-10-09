@@ -87,3 +87,20 @@ Default permissions are deny-by-default. Model activation cannot grant:
 - governance override;
 - automatic capability adoption.
 
+
+## 10. Implementation trace — 2026-10-09
+
+The canonical contract and machine-readable envelope schema are published in:
+- docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md
+- schemas/vlns-activation-envelope.schema.json
+- registry/vlns_activation_contract.v1.json
+
+The reference implementation is in the VAIXLNS-unified repository:
+- vlns/activation.py
+- infra/vlns_server_client.py
+- scripts/vlns_activation_bridge.py
+- tests/test_vlns_activation_bridge.py
+
+The implementation creates a deterministic signed envelope, applies provider/capability/tool/role allowlists, validates a remote receipt against the exact activation identifier and envelope digest, and requires acknowledgement of an evidence event before reporting full success.
+
+Epistemic boundary: this trace is not evidence of a live VLNS server connection. The reference code remains pending automated CI and remote endpoint conformance. VLNS↔NAXLNS repository/system identity remains UNVERIFIED. No canonical runtime admission is implied.
