@@ -25,6 +25,7 @@
 - ../integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md — ARC-X to VX engineering task routing for mathematics, numerical computing, software and physics simulation; remains SPECIFIED until runtime evidence closes the gates.
 - ../../schemas/vaixlns-system-memory-record.schema.json — machine-readable provenance-preserving memory-record contract.
 - ../../schemas/vaixlns-language-compilation-record.schema.json — typed language compile receipt with provenance, AST/type/unit checks, EIR links, and no-authority guarantees.
+- ../testing/ENGINEERING_TEST_ACCELERATION_AND_ASSURANCE_PLAN_V1.md — staged plan for faster CI feedback, impact-aware selection, stronger adversarial/domain tests, deterministic replay, and measured assurance.
 - ../../schemas/arcx-vx-engineering-task.schema.json — typed task envelope for controlled engineering compute.
 - ../../schemas/arcx-vx-engineering-receipt.schema.json — signed acknowledgement contract that cannot itself establish verification or canonical admission.
 - ../../registry/omega/proposals/arcx-memory-engineering-federation.v1.json — proposal-only Ω.000 delta; not a canonical write.
