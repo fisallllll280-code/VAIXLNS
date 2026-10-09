@@ -72,6 +72,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "PROPOSAL"
         }
@@ -131,6 +132,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "RECOVERED"
         }
@@ -188,16 +190,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -255,16 +259,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -322,16 +328,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -394,6 +402,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "PROPOSAL"
         }
@@ -455,6 +464,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "PROPOSAL"
         }
@@ -516,6 +526,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -577,6 +588,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -638,6 +650,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -696,24 +709,21 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -774,28 +784,27 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -856,6 +865,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -916,28 +926,27 @@
         "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md",
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -999,6 +1008,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -1059,6 +1069,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -1117,28 +1128,27 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -1198,6 +1208,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -1256,28 +1267,27 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -1338,6 +1348,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "IMPLEMENTED"
         }
@@ -1400,28 +1411,27 @@
         "docs/indexes/ENGINEERING_DECISION_REGISTER.md",
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -1482,6 +1492,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -1542,6 +1553,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -1602,6 +1614,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -1660,20 +1673,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -1732,28 +1749,27 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -1814,6 +1830,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -1874,6 +1891,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -1934,6 +1952,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -1994,6 +2013,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2054,6 +2074,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2114,6 +2135,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2174,6 +2196,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2234,6 +2257,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2294,6 +2318,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2354,6 +2379,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -2415,6 +2441,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -2476,6 +2503,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -2537,6 +2565,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -2598,6 +2627,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -2658,6 +2688,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "IMPLEMENTED"
         }
@@ -2718,6 +2749,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "IMPLEMENTED"
         }
@@ -2776,20 +2808,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -2848,20 +2884,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -2922,6 +2962,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -2980,20 +3021,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3052,20 +3097,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3124,20 +3173,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3198,6 +3251,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -3258,6 +3312,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         }
@@ -3317,21 +3372,23 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "IMPLEMENTED"
       ],
-      "status": "CONFLICT",
-      "status_disagreement": true,
+      "status": "IMPLEMENTED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "IMPLEMENTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3393,6 +3450,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "IMPLEMENTED"
         }
@@ -3452,20 +3510,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3525,20 +3587,24 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3600,6 +3666,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -3661,6 +3728,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -3723,28 +3791,27 @@
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "SOURCE-ASSERTED",
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": false,
+      "status": "SOURCE-ASSERTED",
+      "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3804,6 +3871,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -3863,6 +3931,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -3920,16 +3989,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -3987,16 +4058,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4054,16 +4127,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4121,16 +4196,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4190,6 +4267,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4249,6 +4327,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4308,6 +4387,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4369,6 +4449,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4429,6 +4510,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4488,6 +4570,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4547,6 +4630,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -4607,6 +4691,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SOURCE-ASSERTED"
         }
@@ -4667,6 +4752,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "IMPLEMENTED"
         }
@@ -4727,6 +4813,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "CANONICAL"
         }
@@ -4784,16 +4871,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4851,16 +4940,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4918,16 +5009,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -4986,16 +5079,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5053,16 +5148,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5121,16 +5218,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5188,16 +5287,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5255,16 +5356,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5322,16 +5425,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5389,16 +5494,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5456,16 +5563,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5526,6 +5635,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "IMPLEMENTED"
         }
@@ -5588,10 +5698,12 @@
       "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         }
@@ -5653,10 +5765,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         }
@@ -5716,34 +5830,32 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json",
         "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "CANONICAL"
       ],
-      "status": "CONFLICT",
-      "status_disagreement": true,
+      "status": "CANONICAL",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5806,33 +5918,31 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "CANONICAL"
       ],
-      "status": "CONFLICT",
-      "status_disagreement": true,
+      "status": "CANONICAL",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -5895,14 +6005,17 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         }
@@ -5966,7 +6079,6 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
@@ -5976,22 +6088,22 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6057,18 +6169,22 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6135,18 +6251,22 @@
       "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6207,33 +6327,31 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "CANONICAL"
       ],
-      "status": "CONFLICT",
-      "status_disagreement": true,
+      "status": "CANONICAL",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6293,25 +6411,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6371,25 +6492,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6451,25 +6575,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6530,10 +6657,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         }
@@ -6603,25 +6732,21 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/omega/omega-000-master-index.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "SPECIFIED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "SPECIFIED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "readiness",
           "source": "registry/omega/omega-000-master-index.json",
           "state": "SPECIFIED"
         }
@@ -6683,10 +6808,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         }
@@ -6746,24 +6873,21 @@
         "docs/canonical/MASTER_REGISTRY_SCHEMA.md",
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -6833,7 +6957,6 @@
       "review_required": true,
       "source_refs": [
         ".github/workflows/innovation-index-sync.yml",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/omega/omega-000-master-index.json",
         "schemas/innovation-operation-index.schema.json",
         "tests/test_innovation_operation_index.py",
@@ -6841,17 +6964,13 @@
         "tools/validate_innovation_operation_index.py"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "SPECIFIED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "SPECIFIED",
+      "status_disagreement": false,
       "status_observations": [
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "readiness",
           "source": "registry/omega/omega-000-master-index.json",
           "state": "SPECIFIED"
         }
@@ -6916,24 +7035,21 @@
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md",
         "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -7005,33 +7121,30 @@
       "relationships": [
         "Implemented provider-neutral boundary; live search adapters and full historical recovery remain pending"
       ],
-      "review_required": true,
+      "review_required": false,
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/omega/omega-000-master-index.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "IMPLEMENTED"
       ],
-      "status": "CONFLICT",
-      "status_disagreement": true,
+      "status": "IMPLEMENTED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "readiness",
           "source": "registry/omega/omega-000-master-index.json",
           "state": "IMPLEMENTED"
         }
@@ -7091,25 +7204,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -7169,25 +7285,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -7247,25 +7366,28 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL",
         "RECOVERED"
       ],
-      "status": "PROPOSAL",
-      "status_disagreement": true,
+      "status": "RECOVERED",
+      "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -7327,10 +7449,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         }
@@ -7393,14 +7517,17 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         }
@@ -7459,24 +7586,21 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -7538,14 +7662,17 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "CANONICAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "CANONICAL"
         }
@@ -7612,6 +7739,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "registry/omega/omega-000-master-index.json",
           "state": "SPECIFIED"
         }
@@ -7674,6 +7802,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -7735,6 +7864,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -7797,6 +7927,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -7858,6 +7989,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -7920,6 +8052,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -7981,6 +8114,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -8043,6 +8177,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -8104,6 +8239,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -8166,6 +8302,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -8228,6 +8365,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "SOURCE-ASSERTED"
         }
@@ -8289,6 +8427,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8349,6 +8488,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8410,6 +8550,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8470,6 +8611,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8530,6 +8672,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8592,6 +8735,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8652,6 +8796,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8714,6 +8859,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8774,6 +8920,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8834,6 +8981,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8894,6 +9042,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -8954,6 +9103,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9014,6 +9164,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9074,6 +9225,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9134,6 +9286,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9194,6 +9347,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9254,6 +9408,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9314,6 +9469,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9374,6 +9530,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9434,6 +9591,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9494,6 +9652,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9555,6 +9714,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9616,6 +9776,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9676,6 +9837,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9736,6 +9898,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9797,6 +9960,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9859,6 +10023,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9919,6 +10084,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -9979,6 +10145,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10039,6 +10206,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10099,6 +10267,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10159,6 +10328,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10219,6 +10389,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10279,6 +10450,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         }
@@ -10338,8 +10510,7 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md",
-        "registry/innovation-operation-profiles.v1.json"
+        "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md"
       ],
       "source_statuses": [
         "PROPOSAL"
@@ -10348,15 +10519,13 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
-          "state": "PROPOSAL"
-        },
-        {
-          "source": "registry/innovation-operation-profiles.v1.json",
           "state": "PROPOSAL"
         }
       ]
@@ -10417,10 +10586,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "RECOVERED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "RECOVERED"
         }
@@ -10479,16 +10650,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10545,16 +10718,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10612,16 +10787,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10678,16 +10855,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10744,16 +10923,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10810,16 +10991,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10876,16 +11059,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -10942,16 +11127,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -11008,16 +11195,18 @@
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -11079,10 +11268,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         }
@@ -11143,24 +11334,21 @@
       "source_refs": [
         "docs/indexes/INNOVATION_MASTER_INDEX.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
-        "PROPOSAL"
+        "UNKNOWN"
       ],
-      "status": "PROPOSAL",
+      "status": "UNKNOWN",
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -11219,7 +11407,6 @@
         "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
         "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
         "docs/innovation/innovation-federation.json",
-        "registry/innovation-operation-profiles.v1.json",
         "registry/innovation_measurement.v1.json"
       ],
       "source_statuses": [
@@ -11229,22 +11416,22 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/indexes/INNOVATION_MASTER_INDEX.md",
           "state": "UNKNOWN"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PROPOSAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PROPOSAL"
         },
         {
-          "source": "registry/innovation-operation-profiles.v1.json",
-          "state": "PROPOSAL"
-        },
-        {
+          "axis": "measurement",
           "source": "registry/innovation_measurement.v1.json",
           "state": "PROPOSAL"
         }
@@ -11308,14 +11495,17 @@
       "status_disagreement": true,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PARTIAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "IMPLEMENTED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PARTIAL"
         }
@@ -11377,10 +11567,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PARTIAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PARTIAL"
         }
@@ -11442,10 +11634,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PARTIAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PARTIAL"
         }
@@ -11507,10 +11701,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "SPECIFIED"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "SPECIFIED"
         }
@@ -11571,6 +11767,7 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
           "state": "IMPLEMENTED"
         }
@@ -11631,10 +11828,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PARTIAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PARTIAL"
         }
@@ -11695,10 +11894,12 @@
       "status_disagreement": false,
       "status_observations": [
         {
+          "axis": "readiness",
           "source": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
           "state": "PARTIAL"
         },
         {
+          "axis": "readiness",
           "source": "docs/innovation/innovation-federation.json",
           "state": "PARTIAL"
         }
@@ -11708,7 +11909,7 @@
   "master_index": "Ω.000",
   "schema": "VAIXLNS.InnovationOperationIndex.v1",
   "summary": {
-    "manual_review_required": 175,
+    "manual_review_required": 174,
     "profile_quality_counts": {
       "CURATED_DESIGN_DRAFT": 18,
       "RULE_DERIVED_DRAFT": 156,
@@ -11716,15 +11917,15 @@
     },
     "record_count": 177,
     "status_counts": {
-      "CANONICAL": 5,
-      "CONFLICT": 7,
-      "IMPLEMENTED": 19,
+      "CANONICAL": 8,
+      "CONFLICT": 2,
+      "IMPLEMENTED": 21,
       "PARTIAL": 5,
-      "PROPOSAL": 66,
-      "RECOVERED": 2,
-      "SOURCE-ASSERTED": 37,
-      "SPECIFIED": 2,
-      "UNKNOWN": 34
+      "PROPOSAL": 11,
+      "RECOVERED": 8,
+      "SOURCE-ASSERTED": 52,
+      "SPECIFIED": 4,
+      "UNKNOWN": 66
     }
   }
 }

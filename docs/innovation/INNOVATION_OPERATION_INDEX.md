@@ -7,20 +7,20 @@ This generator never upgrades implementation, verification, or canonical authori
 ## Generation summary
 
 - Records: 177
-- Requires review: 175
+- Requires review: 174
 - Canonical promotion by this generator: DISABLED
 
 | State | Count |
 |---|---:|
-| CANONICAL | 5 |
-| CONFLICT | 7 |
-| IMPLEMENTED | 19 |
+| CANONICAL | 8 |
+| CONFLICT | 2 |
+| IMPLEMENTED | 21 |
 | PARTIAL | 5 |
-| PROPOSAL | 66 |
-| RECOVERED | 2 |
-| SOURCE-ASSERTED | 37 |
-| SPECIFIED | 2 |
-| UNKNOWN | 34 |
+| PROPOSAL | 11 |
+| RECOVERED | 8 |
+| SOURCE-ASSERTED | 52 |
+| SPECIFIED | 4 |
+| UNKNOWN | 66 |
 
 | Profile quality | Count |
 |---|---:|
@@ -34,30 +34,30 @@ This generator never upgrades implementation, verification, or canonical authori
 |---|---|---|---|---|---|
 | INNOV-B0EA89B24BB7 | VV / Proof / OIF | Assurance | Assurance | PROPOSAL | RULE_DERIVED_DRAFT |
 | INNOV-7F064D5489EA | Ω∞ / Ω0 / Constitution | Meta | Constitution / Meta | RECOVERED | RULE_DERIVED_DRAFT |
-| INNOV-DF52A6B34176 | Blockchain Bridge | Economy / interoperability | Domain / Economy & Interoperability | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-EE480C82A9CD | Economic / Financial Fabric | Economy / interoperability | Domain / Economy & Interoperability | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-3FE9C9DCA133 | V-EXCHANGE | Economy / interoperability | Domain / Economy & Interoperability | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-DF52A6B34176 | Blockchain Bridge | Economy / interoperability | Domain / Economy & Interoperability | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-EE480C82A9CD | Economic / Financial Fabric | Economy / interoperability | Domain / Economy & Interoperability | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-3FE9C9DCA133 | V-EXCHANGE | Economy / interoperability | Domain / Economy & Interoperability | UNKNOWN | RULE_DERIVED_DRAFT |
 | INNOV-B69B540511B0 | AEF / GROT / SRE Ω | Evolution | Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
 | INNOV-D5C1F428B42A | ASGF / Forge / Builder | Generation | Generation | PROPOSAL | RULE_DERIVED_DRAFT |
 | INNOV-8C875DB478A3 | Laboratory | Architecture Search | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-229DA0BB32D9 | Recombination | Architecture Search | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-7FCD14C180DB | Search Space | Architecture Search | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-4DF4B684CD76 | Architecture Laboratory | Architecture search / evaluation | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
-| INNOV-0E6B6AF68FB2 | Architecture Genome + Mutation | Architecture search / evolution | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-4DF4B684CD76 | Architecture Laboratory | Architecture search / evaluation | NEXENT | UNKNOWN | CURATED_DESIGN_DRAFT |
+| INNOV-0E6B6AF68FB2 | Architecture Genome + Mutation | Architecture search / evolution | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-114F8DBF4E46 | Discovery | ASDE, Missing System Discovery Engine, Canonical Indexing Engine, Semantic Linking / Auto-Classification | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-0B4C47BD4F4E | Capability Genome | Capability / architecture synthesis | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-0B4C47BD4F4E | Capability Genome | Capability / architecture synthesis | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-120A3DAE3C1A | Architecture Search | Capability Genome, Architecture Genome + Mutation, Search Space, Laboratory, Recombination | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-A98E9EB6D0F7 | Impact / Causality | Causal Architecture Graph, Blast-Radius Prediction, Temporal Architecture, Counterfactual Engine | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-CBC1CFAE3C20 | Causal Architecture Graph | Causality / impact analysis | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-CBC1CFAE3C20 | Causal Architecture Graph | Causality / impact analysis | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-889802DC7AAB | Verification Research | Contradiction Engine, Formal Proof Orchestrator, Cross-Runtime Equivalence, Proof-Carrying Architecture | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-960AFCF588C2 | Architecture Self-Discovery Engine (ASDE) | Discovery / synthesis | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-960AFCF588C2 | Architecture Self-Discovery Engine (ASDE) | Discovery / synthesis | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-CDDB9B9209EC | Memory / Evolution | Event Ledger, Replay, Provenance, Evolution Genealogy, Assumption Lifecycle, Semantic Regression | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
-| INNOV-F483CABDDA55 | Evolution Firewall | Evolution / compatibility / governance | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-F483CABDDA55 | Evolution Firewall | Evolution / compatibility / governance | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-DE515751B0C0 | Resilience | Failure Genome, Architecture Immune System, Complexity Budget, Conservation Laws, Evolution Firewall, Self-Healing Architecture, Recovery Certificate | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-5F01D421ADBC | Blast-Radius Prediction | Impact / Causality | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-D84F0A0C21DF | Counterfactual Engine | Impact / Causality | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-449CB0CD2A5C | Temporal Architecture | Impact / Causality | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-6BED36C785B6 | Contradiction Engine | Knowledge / evidence reconciliation | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-449CB0CD2A5C | Temporal Architecture | Impact / Causality | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
+| INNOV-6BED36C785B6 | Contradiction Engine | Knowledge / evidence reconciliation | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-CBBA63FB8C05 | Atomic Record | Language / Ontology | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-713A2803A33F | Canonical ID generation | Language / Ontology | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-65436C02E4BD | NEO | Language / Ontology | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
@@ -74,27 +74,27 @@ This generator never upgrades implementation, verification, or canonical authori
 | INNOV-CC729B2D3EFD | Specialist Registry | Multi-Mind | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-B12F872A2D98 | Language / Ontology | NEX-DSL, NEO, Atomic Record, Canonical ID generation | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-BAB61654F19E | Simulation / Reality | Reality Divergence, Reality Twin + Architecture Twin, physics and deterministic simulation | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
-| INNOV-AA79EF9133AD | Architecture Immune System | Resilience | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-7744301345B4 | Complexity Budget | Resilience | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-AA79EF9133AD | Architecture Immune System | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
+| INNOV-7744301345B4 | Complexity Budget | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-A2017CE94E1A | Conservation Laws | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-12EBE2DAD5DE | Failure Genome | Resilience | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-5A4D5E314711 | Recovery Certificate | Resilience | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-D4C3A93162CC | Self-Healing Architecture | Resilience | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-12EBE2DAD5DE | Failure Genome | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
+| INNOV-5A4D5E314711 | Recovery Certificate | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
+| INNOV-D4C3A93162CC | Self-Healing Architecture | Resilience | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-246D94F810D9 | physics and deterministic simulation | Simulation / Reality | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-1A9FFFCFB4C4 | Reality Divergence | Simulation / Reality | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
-| INNOV-AB06F1612783 | Reality Twin + Architecture Twin | Simulation / Reality | NEXENT | CONFLICT | RULE_DERIVED_DRAFT |
+| INNOV-AB06F1612783 | Reality Twin + Architecture Twin | Simulation / Reality | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-D884BBEE9903 | Multi-Mind | Specialist Registry, Capability Routing, Dependency Coordination, Bounded Autonomy | NEXENT | IMPLEMENTED | RULE_DERIVED_DRAFT |
-| INNOV-EB5235BC7941 | Recursive Generation | Synthesis | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-38F42BAB23C6 | System-of-Systems Compiler / T2C | Synthesis | NEXENT | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-EB5235BC7941 | Recursive Generation | Synthesis | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
+| INNOV-38F42BAB23C6 | System-of-Systems Compiler / T2C | Synthesis | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-2BB2CC4F33C0 | Theory-to-Rule | Synthesis | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-204C0B89F95B | Synthesis | System-of-Systems Compiler / T2C, Theory-to-Rule, Recursive Generation | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-38A47D9E4FC9 | Proof-Carrying Architecture | Verification / assurance | NEXENT | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-38A47D9E4FC9 | Proof-Carrying Architecture | Verification / assurance | NEXENT | SOURCE-ASSERTED | CURATED_DESIGN_DRAFT |
 | INNOV-82A7794AD734 | Cross-Runtime Equivalence | Verification Research | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-4841DBE0508C | Formal Proof Orchestrator | Verification Research | NEXENT | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
-| INNOV-2CD598504907 | Architecture Recombination Engine | Discovery / synthesis | NEXENT / Architecture Generation | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-20B169BB8DB8 | Architecture Search Space | Discovery / synthesis | NEXENT / Architecture Generation | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-C001C9B3261A | Multi-Mind Architecture Synthesis | Discovery / synthesis | NEXENT / Architecture Generation | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-80781A439B33 | Self-Description Engine | Discovery / synthesis | NEXENT / Architecture Generation | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-2CD598504907 | Architecture Recombination Engine | Discovery / synthesis | NEXENT / Architecture Generation | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-20B169BB8DB8 | Architecture Search Space | Discovery / synthesis | NEXENT / Architecture Generation | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-C001C9B3261A | Multi-Mind Architecture Synthesis | Discovery / synthesis | NEXENT / Architecture Generation | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-80781A439B33 | Self-Description Engine | Discovery / synthesis | NEXENT / Architecture Generation | UNKNOWN | RULE_DERIVED_DRAFT |
 | INNOV-D59DFD35566B | Benchmarking | Ecosystem | NEXENT research | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-334ADC3806D7 | Certification | Ecosystem | NEXENT research | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-119D231D7596 | Compatibility | Ecosystem | NEXENT research | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
@@ -105,43 +105,43 @@ This generator never upgrades implementation, verification, or canonical authori
 | INNOV-4E0B9648CEB0 | Ecosystem | Standards, Certification, Integration, Compatibility, Benchmarking, Innovation Exchange, SDK | NEXENT research | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
 | INNOV-F4CC39CBCEA4 | NEXENT Boundary | Integration | NEXENT ↔ VAIXLNS | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-AA104BDE65B6 | Master Registry / Nexus | Nexus | Nexus | CANONICAL | RULE_DERIVED_DRAFT |
-| INNOV-8A51A5894C8C | Context Fabric | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-1999B5BE64EE | Knowledge Decay Engine | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-9615DED5DCAA | Master Index as Computational Substrate | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-3EB776BD990D | Meta-Architecture | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-06D7ED48D123 | Reality Divergence Engine | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-81CEB6FA4135 | Ω∞ Architecture Recursion | Knowledge / reality / meta-control | Nexus / Meta-Architecture | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-BEF31B52C0EE | Architecture Adversarial Engine | Failure / resilience / evolution | OIF / Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-FAD0A06AE7E2 | Architecture Conservation Law | Failure / resilience / evolution | OIF / Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-FC279AE29D91 | Authority Conservation | Failure / resilience / evolution | OIF / Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-21554C74B9FE | Capability-Aware Readiness | Failure / resilience / evolution | OIF / Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-F065BAC60D66 | Operational Finality | Failure / resilience / evolution | OIF / Evolution | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-8A51A5894C8C | Context Fabric | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-1999B5BE64EE | Knowledge Decay Engine | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-9615DED5DCAA | Master Index as Computational Substrate | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-3EB776BD990D | Meta-Architecture | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-06D7ED48D123 | Reality Divergence Engine | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-81CEB6FA4135 | Ω∞ Architecture Recursion | Knowledge / reality / meta-control | Nexus / Meta-Architecture | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-BEF31B52C0EE | Architecture Adversarial Engine | Failure / resilience / evolution | OIF / Evolution | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-FAD0A06AE7E2 | Architecture Conservation Law | Failure / resilience / evolution | OIF / Evolution | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-FC279AE29D91 | Authority Conservation | Failure / resilience / evolution | OIF / Evolution | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-21554C74B9FE | Capability-Aware Readiness | Failure / resilience / evolution | OIF / Evolution | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-F065BAC60D66 | Operational Finality | Failure / resilience / evolution | OIF / Evolution | UNKNOWN | RULE_DERIVED_DRAFT |
 | INNOV-3D42AA5D9ADD | Replay Engine | Replay | Replay | IMPLEMENTED | RULE_DERIVED_DRAFT |
 | INNOV-EB693D1507A0 | Master Registry | Canon | VAIXLNS | CONFLICT | RULE_DERIVED_DRAFT |
 | INNOV-01B6CFCBE6CE | Semantic Fingerprint Canonicalizer | Canonicalization | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-AAFBC788AA43 | Contract Fabric | Contracts / interoperability | VAIXLNS | CONFLICT | CURATED_DESIGN_DRAFT |
-| INNOV-1E2113B1BE3E | Decision Fabric | Decision / governance | VAIXLNS | CONFLICT | CURATED_DESIGN_DRAFT |
+| INNOV-AAFBC788AA43 | Contract Fabric | Contracts / interoperability | VAIXLNS | CANONICAL | CURATED_DESIGN_DRAFT |
+| INNOV-1E2113B1BE3E | Decision Fabric | Decision / governance | VAIXLNS | CANONICAL | CURATED_DESIGN_DRAFT |
 | INNOV-7A833C8B751F | CDG | Derivation / Lineage | VAIXLNS | CANONICAL | RULE_DERIVED_DRAFT |
 | INNOV-39DD3F9E86C3 | Evidence DNA (eDNA) | Evidence / provenance | VAIXLNS | PROPOSAL | CURATED_DESIGN_DRAFT |
 | INNOV-7A0434FCC840 | Policy Algebra | Governance | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
 | INNOV-C227799060F1 | Nexus / Graph of Everything | Graph / Canon | VAIXLNS | CONFLICT | RULE_DERIVED_DRAFT |
-| INNOV-EAFAF2FF0066 | Identity Fabric | Identity / lineage | VAIXLNS | CONFLICT | CURATED_DESIGN_DRAFT |
-| INNOV-5FBB05A2AE45 | External World Boundary | Integration | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-B109329C9B8E | Knowledge Lifecycle | Knowledge | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-41F8513B45C9 | Lifecycle Engine | Lifecycle | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-EAFAF2FF0066 | Identity Fabric | Identity / lineage | VAIXLNS | CANONICAL | CURATED_DESIGN_DRAFT |
+| INNOV-5FBB05A2AE45 | External World Boundary | Integration | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
+| INNOV-B109329C9B8E | Knowledge Lifecycle | Knowledge | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
+| INNOV-41F8513B45C9 | Lifecycle Engine | Lifecycle | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
 | INNOV-095CF757A90F | Omega infinity / Constitution | Meta / Constitution | VAIXLNS | CANONICAL | RULE_DERIVED_DRAFT |
-| INNOV-A04AE228B393 | Ω-Pattern Foundry / Private Pattern Intelligence Boundary | Pattern generation / adversarial evaluation / protected IP | VAIXLNS | PROPOSAL | SOURCE_BACKED |
+| INNOV-A04AE228B393 | Ω-Pattern Foundry / Private Pattern Intelligence Boundary | Pattern generation / adversarial evaluation / protected IP | VAIXLNS | SPECIFIED | SOURCE_BACKED |
 | INNOV-E0C1D8187D24 | Master Capability Indexer | Registry / Capability | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-29F4D860D63C | Master Capability Indexer (MCI) | Registry / capability graph | VAIXLNS | PROPOSAL | CURATED_DESIGN_DRAFT |
-| INNOV-D19B450D3138 | VAIXLNS Innovation Operation Index Generator | Registry / innovation engineering automation | VAIXLNS | PROPOSAL | CURATED_DESIGN_DRAFT |
-| INNOV-14030201D138 | ARC-X Ω — Epistemic Reality Compiler / Repository Reconstruction | Repository reconstruction / epistemic verification / admission | VAIXLNS | PROPOSAL | SOURCE_BACKED |
-| INNOV-B776E3EFC5DE | Ω Research-to-Engineering Decision Fabric (REDF) | Research / evidence / engineering admission | VAIXLNS | CONFLICT | SOURCE_BACKED |
-| INNOV-A70EA684AF3B | Resource Fabric | Resource | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-4082CA22F758 | Contract-Centered Runtime | Runtime governance | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-823AE60D5E30 | Trust Boundary | Security | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-29F4D860D63C | Master Capability Indexer (MCI) | Registry / capability graph | VAIXLNS | UNKNOWN | CURATED_DESIGN_DRAFT |
+| INNOV-D19B450D3138 | VAIXLNS Innovation Operation Index Generator | Registry / innovation engineering automation | VAIXLNS | SPECIFIED | CURATED_DESIGN_DRAFT |
+| INNOV-14030201D138 | ARC-X Ω — Epistemic Reality Compiler / Repository Reconstruction | Repository reconstruction / epistemic verification / admission | VAIXLNS | UNKNOWN | SOURCE_BACKED |
+| INNOV-B776E3EFC5DE | Ω Research-to-Engineering Decision Fabric (REDF) | Research / evidence / engineering admission | VAIXLNS | IMPLEMENTED | SOURCE_BACKED |
+| INNOV-A70EA684AF3B | Resource Fabric | Resource | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
+| INNOV-4082CA22F758 | Contract-Centered Runtime | Runtime governance | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
+| INNOV-823AE60D5E30 | Trust Boundary | Security | VAIXLNS | RECOVERED | RULE_DERIVED_DRAFT |
 | INNOV-21B1BC66F1E1 | Canonical Semantic Engine | Semantics | VAIXLNS | PROPOSAL | RULE_DERIVED_DRAFT |
 | INNOV-AA296E7B55A1 | CME | Semantics | VAIXLNS | CANONICAL | RULE_DERIVED_DRAFT |
-| INNOV-37038B50CD48 | Canonical Semantic Engine (CSE) | Semantics / canonicalization | VAIXLNS | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-37038B50CD48 | Canonical Semantic Engine (CSE) | Semantics / canonicalization | VAIXLNS | UNKNOWN | CURATED_DESIGN_DRAFT |
 | INNOV-23EF55DCA92C | CTM | Truth | VAIXLNS | CANONICAL | RULE_DERIVED_DRAFT |
 | INNOV-FFEE2BB843A9 | VX.FEDERATION.GATE.001 | VX Cognitive Federation | VAIXLNS | SPECIFIED | RULE_DERIVED_DRAFT |
 | INNOV-C2792C6E2D8E | AMF — Adversarial Mutation Framework | Adversarial / Architecture Lab | VAIXLNS (catalog placement; owner review) | SOURCE-ASSERTED | RULE_DERIVED_DRAFT |
@@ -190,17 +190,17 @@ This generator never upgrades implementation, verification, or canonical authori
 | INNOV-86D9D504A33C | VX Stage Runtime Golden Scenario | Runtime operations / evidence | VAIXLNS (index-derived; owner review) | UNKNOWN | RULE_DERIVED_DRAFT |
 | INNOV-113EAD81252F | Operational Integrity Fabric (OIF) | Assurance / operational readiness | VAIXLNS + VX | PROPOSAL | CURATED_DESIGN_DRAFT |
 | INNOV-BA59148020E1 | V-IR / VAMM | Semantic IR | VAIXLNS + VX | RECOVERED | RULE_DERIVED_DRAFT |
-| INNOV-A5F9CAB4A643 | Agentic Skills as Operational Genes | Core architectural fabrics | VAIXLNS Canonical Core | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-6BC31B0827C4 | Meta-Control Verification Gates (TEST-006…TEST-012) | Core architectural fabrics | VAIXLNS Canonical Core | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-C7A5D9E9C55B | VAMM / VAIXLNS-IR | Core architectural fabrics | VAIXLNS Canonical Core | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-3D4D7F2EC2BD | Architecture Blast-Radius Prediction | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-D3EEF5108803 | Constitutional Optimization | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-1F8EDB76082D | Counterfactual Architecture Engine | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-2563E9622270 | Cross-Runtime Equivalence Matrix (CREM) | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-6F368ABE9FA7 | Formal Proof Orchestrator (FPO) | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-AF38CFBF4734 | Semantic Fingerprint Canonicalizer (SFC) | Proof / causality / impact | VV / Verification & Proof | PROPOSAL | RULE_DERIVED_DRAFT |
+| INNOV-A5F9CAB4A643 | Agentic Skills as Operational Genes | Core architectural fabrics | VAIXLNS Canonical Core | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-6BC31B0827C4 | Meta-Control Verification Gates (TEST-006…TEST-012) | Core architectural fabrics | VAIXLNS Canonical Core | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-C7A5D9E9C55B | VAMM / VAIXLNS-IR | Core architectural fabrics | VAIXLNS Canonical Core | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-3D4D7F2EC2BD | Architecture Blast-Radius Prediction | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-D3EEF5108803 | Constitutional Optimization | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-1F8EDB76082D | Counterfactual Architecture Engine | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-2563E9622270 | Cross-Runtime Equivalence Matrix (CREM) | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-6F368ABE9FA7 | Formal Proof Orchestrator (FPO) | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
+| INNOV-AF38CFBF4734 | Semantic Fingerprint Canonicalizer (SFC) | Proof / causality / impact | VV / Verification & Proof | UNKNOWN | RULE_DERIVED_DRAFT |
 | INNOV-91CE26F9B76B | Deterministic Causal Execution Graph | Causality / Runtime | VX | PROPOSAL | RULE_DERIVED_DRAFT |
-| INNOV-4112E34EF47A | Deterministic Causal Execution Graph (DCEG) | Causality / runtime / replay | VX | PROPOSAL | CURATED_DESIGN_DRAFT |
+| INNOV-4112E34EF47A | Deterministic Causal Execution Graph (DCEG) | Causality / runtime / replay | VX | UNKNOWN | CURATED_DESIGN_DRAFT |
 | INNOV-6D56365B4C90 | Replay Determinism Verifier (RDV) | Conformance / replay | VX | PROPOSAL | CURATED_DESIGN_DRAFT |
 | INNOV-4478EA387835 | Event + State + Ledger | Event / State | VX | PARTIAL | RULE_DERIVED_DRAFT |
 | INNOV-25754A7AB717 | VX deterministic runtime | Execution | VX | PARTIAL | RULE_DERIVED_DRAFT |
@@ -332,7 +332,7 @@ Native/legacy IDs
 
 - Family: Economy / interoperability
 - Owner: Domain / Economy & Interoperability
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -393,7 +393,7 @@ Native/legacy IDs
 
 - Family: Economy / interoperability
 - Owner: Domain / Economy & Interoperability
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -454,7 +454,7 @@ Native/legacy IDs
 
 - Family: Economy / interoperability
 - Owner: Domain / Economy & Interoperability
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -821,7 +821,7 @@ Native/legacy IDs
 
 - Family: Architecture search / evaluation
 - Owner: NEXENT
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -870,7 +870,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -885,7 +884,7 @@ Native/legacy IDs
 
 - Family: Architecture search / evolution
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -936,7 +935,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -944,6 +942,8 @@ Evidence references
 
 Native/legacy IDs
 - I-003
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -1011,7 +1011,7 @@ Native/legacy IDs
 
 - Family: Capability / architecture synthesis
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -1061,7 +1061,6 @@ Source references
 - docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -1070,6 +1069,8 @@ Evidence references
 
 Native/legacy IDs
 - I-002
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -1198,7 +1199,7 @@ Native/legacy IDs
 
 - Family: Causality / impact analysis
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -1247,7 +1248,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -1255,6 +1255,8 @@ Evidence references
 
 Native/legacy IDs
 - I-013
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -1321,7 +1323,7 @@ Native/legacy IDs
 
 - Family: Discovery / synthesis
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -1369,7 +1371,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -1378,6 +1379,8 @@ Evidence references
 
 Native/legacy IDs
 - I-001
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -1445,7 +1448,7 @@ Native/legacy IDs
 
 - Family: Evolution / compatibility / governance
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -1497,7 +1500,6 @@ Source references
 - docs/indexes/ENGINEERING_DECISION_REGISTER.md
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -1506,6 +1508,8 @@ Evidence references
 
 Native/legacy IDs
 - I-028
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -1693,7 +1697,7 @@ Native/legacy IDs
 
 - Family: Impact / Causality
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -1749,13 +1753,15 @@ Evidence references
 Native/legacy IDs
 - I-015
 
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
+
 ---
 
 ### INNOV-6BED36C785B6 — Contradiction Engine
 
 - Family: Knowledge / evidence reconciliation
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -1804,7 +1810,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -1812,6 +1817,8 @@ Evidence references
 
 Native/legacy IDs
 - I-033
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -2783,7 +2790,7 @@ Native/legacy IDs
 
 - Family: Resilience
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -2839,13 +2846,15 @@ Evidence references
 Native/legacy IDs
 - I-024
 
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
+
 ---
 
 ### INNOV-7744301345B4 — Complexity Budget
 
 - Family: Resilience
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -2900,6 +2909,8 @@ Evidence references
 
 Native/legacy IDs
 - I-025
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -2967,7 +2978,7 @@ Native/legacy IDs
 
 - Family: Resilience
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3023,13 +3034,15 @@ Evidence references
 Native/legacy IDs
 - I-023
 
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
+
 ---
 
 ### INNOV-5A4D5E314711 — Recovery Certificate
 
 - Family: Resilience
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3085,13 +3098,15 @@ Evidence references
 Native/legacy IDs
 - I-032
 
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
+
 ---
 
 ### INNOV-D4C3A93162CC — Self-Healing Architecture
 
 - Family: Resilience
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3146,6 +3161,8 @@ Evidence references
 
 Native/legacy IDs
 - I-029
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -3273,7 +3290,7 @@ Native/legacy IDs
 
 - Family: Simulation / Reality
 - Owner: NEXENT
-- State: CONFLICT
+- State: IMPLEMENTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3329,8 +3346,6 @@ Evidence references
 
 Native/legacy IDs
 - I-036
-
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -3399,7 +3414,7 @@ Native/legacy IDs
 
 - Family: Synthesis
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3456,13 +3471,15 @@ Evidence references
 Native/legacy IDs
 - I-010
 
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
+
 ---
 
 ### INNOV-38F42BAB23C6 — System-of-Systems Compiler / T2C
 
 - Family: Synthesis
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3518,6 +3535,8 @@ Evidence references
 
 Native/legacy IDs
 - I-006
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -3647,7 +3666,7 @@ Native/legacy IDs
 
 - Family: Verification / assurance
 - Owner: NEXENT
-- State: PROPOSAL
+- State: SOURCE-ASSERTED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -3699,7 +3718,6 @@ Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -3708,6 +3726,8 @@ Evidence references
 
 Native/legacy IDs
 - I-012
+
+WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -3833,7 +3853,7 @@ Native/legacy IDs
 
 - Family: Discovery / synthesis
 - Owner: NEXENT / Architecture Generation
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3894,7 +3914,7 @@ Native/legacy IDs
 
 - Family: Discovery / synthesis
 - Owner: NEXENT / Architecture Generation
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -3955,7 +3975,7 @@ Native/legacy IDs
 
 - Family: Discovery / synthesis
 - Owner: NEXENT / Architecture Generation
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4016,7 +4036,7 @@ Native/legacy IDs
 
 - Family: Discovery / synthesis
 - Owner: NEXENT / Architecture Generation
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4673,7 +4693,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4734,7 +4754,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4795,7 +4815,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4856,7 +4876,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4918,7 +4938,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -4979,7 +4999,7 @@ Native/legacy IDs
 
 - Family: Knowledge / reality / meta-control
 - Owner: Nexus / Meta-Architecture
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5041,7 +5061,7 @@ Native/legacy IDs
 
 - Family: Failure / resilience / evolution
 - Owner: OIF / Evolution
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5102,7 +5122,7 @@ Native/legacy IDs
 
 - Family: Failure / resilience / evolution
 - Owner: OIF / Evolution
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5163,7 +5183,7 @@ Native/legacy IDs
 
 - Family: Failure / resilience / evolution
 - Owner: OIF / Evolution
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5224,7 +5244,7 @@ Native/legacy IDs
 
 - Family: Failure / resilience / evolution
 - Owner: OIF / Evolution
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5285,7 +5305,7 @@ Native/legacy IDs
 
 - Family: Failure / resilience / evolution
 - Owner: OIF / Evolution
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -5530,7 +5550,7 @@ Native/legacy IDs
 
 - Family: Contracts / interoperability
 - Owner: VAIXLNS
-- State: CONFLICT
+- State: CANONICAL
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -5579,7 +5599,6 @@ Source references
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 - registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md
 
@@ -5590,15 +5609,13 @@ Evidence references
 Native/legacy IDs
 - I-044
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-1E2113B1BE3E — Decision Fabric
 
 - Family: Decision / governance
 - Owner: VAIXLNS
-- State: CONFLICT
+- State: CANONICAL
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -5650,7 +5667,6 @@ Source references
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -5659,8 +5675,6 @@ Evidence references
 
 Native/legacy IDs
 - I-045
-
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -5783,7 +5797,6 @@ Source references
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -5927,7 +5940,7 @@ WARNING: source states differ or a conflict is explicitly recorded. Review obser
 
 - Family: Identity / lineage
 - Owner: VAIXLNS
-- State: CONFLICT
+- State: CANONICAL
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -5977,7 +5990,6 @@ Source references
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -5987,15 +5999,13 @@ Evidence references
 Native/legacy IDs
 - I-043
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-5FBB05A2AE45 — External World Boundary
 
 - Family: Integration
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6052,15 +6062,13 @@ Evidence references
 Native/legacy IDs
 - I-046
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-B109329C9B8E — Knowledge Lifecycle
 
 - Family: Knowledge
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6117,15 +6125,13 @@ Evidence references
 Native/legacy IDs
 - I-041
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-41F8513B45C9 — Lifecycle Engine
 
 - Family: Lifecycle
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6183,8 +6189,6 @@ Evidence references
 
 Native/legacy IDs
 - I-049
-
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -6252,7 +6256,7 @@ Native/legacy IDs
 
 - Family: Pattern generation / adversarial evaluation / protected IP
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: SPECIFIED
 - Profile quality: SOURCE_BACKED
 - Description basis: REPOSITORY_SPECIFICATION
 - Mechanism basis: SPECIFICATION_BACKED
@@ -6308,7 +6312,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/omega/omega-000-master-index.json
 
 Evidence references
@@ -6320,8 +6323,6 @@ Evidence references
 
 Native/legacy IDs
 - Ω.PATTERN_FOUNDRY.001
-
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -6390,7 +6391,7 @@ Native/legacy IDs
 
 - Family: Registry / capability graph
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -6439,7 +6440,6 @@ Source references
 - docs/canonical/MASTER_REGISTRY_SCHEMA.md
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -6455,7 +6455,7 @@ Native/legacy IDs
 
 - Family: Registry / innovation engineering automation
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: SPECIFIED
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -6510,7 +6510,6 @@ Relationships
 
 Source references
 - .github/workflows/innovation-index-sync.yml
-- registry/innovation-operation-profiles.v1.json
 - registry/omega/omega-000-master-index.json
 - schemas/innovation-operation-index.schema.json
 - tests/test_innovation_operation_index.py
@@ -6528,15 +6527,13 @@ Evidence references
 Native/legacy IDs
 - VAIXLNS.INNOVATION.OPERATION.INDEX.001
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-14030201D138 — ARC-X Ω — Epistemic Reality Compiler / Repository Reconstruction
 
 - Family: Repository reconstruction / epistemic verification / admission
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: SOURCE_BACKED
 - Description basis: REPOSITORY_SPECIFICATION
 - Mechanism basis: SPECIFICATION_BACKED
@@ -6590,7 +6587,6 @@ Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md
 - docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -6606,11 +6602,11 @@ Native/legacy IDs
 
 - Family: Research / evidence / engineering admission
 - Owner: VAIXLNS
-- State: CONFLICT
+- State: IMPLEMENTED
 - Profile quality: SOURCE_BACKED
 - Description basis: REPOSITORY_SPECIFICATION
 - Mechanism basis: SPECIFICATION_BACKED
-- Review required: YES
+- Review required: NO
 
 Provider-neutral decision boundary that turns research results into a source-bound, contradiction-aware engineering decision bundle. It identifies uncovered research lanes, tracks novelty and lineage, preserves supporting and refuting evidence, and exposes gaps in contracts, invariants, tests, verification, and rollback before downstream admission.
 
@@ -6658,7 +6654,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
-- registry/innovation-operation-profiles.v1.json
 - registry/omega/omega-000-master-index.json
 
 Evidence references
@@ -6679,15 +6674,13 @@ Evidence references
 Native/legacy IDs
 - VAIXLNS.RESEARCH.DECISION.FABRIC.001
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-A70EA684AF3B — Resource Fabric
 
 - Family: Resource
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6744,15 +6737,13 @@ Evidence references
 Native/legacy IDs
 - I-048
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-4082CA22F758 — Contract-Centered Runtime
 
 - Family: Runtime governance
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6809,15 +6800,13 @@ Evidence references
 Native/legacy IDs
 - I-051
 
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
-
 ---
 
 ### INNOV-823AE60D5E30 — Trust Boundary
 
 - Family: Security
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: RECOVERED
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -6873,8 +6862,6 @@ Evidence references
 
 Native/legacy IDs
 - I-047
-
-WARNING: source states differ or a conflict is explicitly recorded. Review observations before promotion.
 
 ---
 
@@ -7005,7 +6992,7 @@ Native/legacy IDs
 
 - Family: Semantics / canonicalization
 - Owner: VAIXLNS
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -7053,7 +7040,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -9891,7 +9877,6 @@ Source references
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
 - docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md
-- registry/innovation-operation-profiles.v1.json
 
 Evidence references
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
@@ -9967,7 +9952,7 @@ Native/legacy IDs
 
 - Family: Core architectural fabrics
 - Owner: VAIXLNS Canonical Core
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10029,7 +10014,7 @@ Native/legacy IDs
 
 - Family: Core architectural fabrics
 - Owner: VAIXLNS Canonical Core
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10089,7 +10074,7 @@ Native/legacy IDs
 
 - Family: Core architectural fabrics
 - Owner: VAIXLNS Canonical Core
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10150,7 +10135,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10210,7 +10195,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10270,7 +10255,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10330,7 +10315,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10390,7 +10375,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10450,7 +10435,7 @@ Native/legacy IDs
 
 - Family: Proof / causality / impact
 - Owner: VV / Verification & Proof
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: RULE_DERIVED_DRAFT
 - Description basis: RULE_DERIVED_DRAFT
 - Mechanism basis: RULE_DERIVED_DRAFT
@@ -10571,7 +10556,7 @@ Native/legacy IDs
 
 - Family: Causality / runtime / replay
 - Owner: VX
-- State: PROPOSAL
+- State: UNKNOWN
 - Profile quality: CURATED_DESIGN_DRAFT
 - Description basis: CURATED_ENGINEERING_DESIGN
 - Mechanism basis: DESIGN_DRAFT
@@ -10621,7 +10606,6 @@ Relationships
 Source references
 - docs/indexes/INNOVATION_MASTER_INDEX.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
@@ -10686,7 +10670,6 @@ Source references
 - docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md
 - docs/innovation/VAIXLNS_INNOVATION_CATALOG.md
 - docs/innovation/innovation-federation.json
-- registry/innovation-operation-profiles.v1.json
 - registry/innovation_measurement.v1.json
 
 Evidence references
