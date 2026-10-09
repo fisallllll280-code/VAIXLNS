@@ -1,0 +1,100 @@
+{
+  "schema": "vaixlns.omega-research-source-registry.v1",
+  "registry_state": "SPECIFIED_CONNECTORS_WITH_OFFLINE_INDEX_VERIFIED",
+  "authority": "VAIXLNS Ω.000 governs canonical state; this registry is a source configuration projection.",
+  "coverage_policy": "Search only enabled providers and explicitly configured server adapters. Do not claim exhaustive worldwide coverage.",
+  "federation_targets": [
+    {
+      "system_id": "VAIXLNS",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "state": "KNOWN_REPOSITORY",
+      "role": "Canonical governance, index, proof and provenance hub"
+    },
+    {
+      "system_id": "VLNS",
+      "repository": null,
+      "state": "SOURCE_ENDPOINT_CONFIGURATION_REQUIRED",
+      "role": "Model and semantic activation boundary"
+    },
+    {
+      "system_id": "VX",
+      "repository": null,
+      "state": "SOURCE_ENDPOINT_CONFIGURATION_REQUIRED",
+      "role": "Cognitive execution, simulation, replay and capability synthesis"
+    },
+    {
+      "system_id": "NEXNET",
+      "repository": null,
+      "state": "SOURCE_ENDPOINT_CONFIGURATION_REQUIRED",
+      "role": "Federated network/system boundary"
+    }
+  ],
+  "public_providers": [
+    {
+      "provider_id": "crossref",
+      "adapter": "scripts/omega_research_fabric.py",
+      "endpoint": "https://api.crossref.org/works",
+      "state": "AVAILABLE_OPT_IN",
+      "evidence_type": "Scholarly metadata and DOI registration",
+      "authentication": "Public; optional VAIXLNS_MAILTO for polite pool"
+    },
+    {
+      "provider_id": "openalex",
+      "adapter": "scripts/omega_research_fabric.py",
+      "endpoint": "https://api.openalex.org/works",
+      "state": "AVAILABLE_OPT_IN",
+      "evidence_type": "Scholarly work metadata and abstract index",
+      "authentication": "Optional OPENALEX_API_KEY"
+    },
+    {
+      "provider_id": "arxiv",
+      "adapter": "scripts/omega_research_fabric.py",
+      "endpoint": "https://export.arxiv.org/api/query",
+      "state": "AVAILABLE_OPT_IN",
+      "evidence_type": "Preprint metadata and abstracts",
+      "authentication": "Public Atom API"
+    },
+    {
+      "provider_id": "github",
+      "adapter": "scripts/omega_research_fabric.py",
+      "endpoint": "https://api.github.com/search/repositories",
+      "state": "AVAILABLE_OPT_IN",
+      "evidence_type": "Public repository metadata, README-oriented discovery",
+      "authentication": "Optional GITHUB_TOKEN; unauthenticated rate limits apply"
+    }
+  ],
+  "server_adapter": {
+    "state": "CONFIGURATION_REQUIRED",
+    "default_configured_server_count": 0,
+    "manifest_path_example": "config/omega-servers.json",
+    "read_only_methods": [
+      "GET /health",
+      "GET /search?q=..."
+    ],
+    "required_server_fields": [
+      "server_id",
+      "base_url",
+      "health_path",
+      "search_path"
+    ],
+    "security": "HTTPS for non-loopback hosts; no credentials sent in v1; explicit operator-owned manifest required",
+    "supported_response_shape": {
+      "results": [
+        {
+          "id": "source identifier",
+          "omega_id": "optional existing Omega ID",
+          "title": "display title",
+          "url": "source URL",
+          "summary": "evidence summary"
+        }
+      ]
+    }
+  },
+  "evidence_rules": {
+    "local_record_hash": "SHA-256 over complete file bytes",
+    "remote_record_hash": "SHA-256 over normalized metadata, not the full remote document",
+    "discovery_state": "DISCOVERED_UNVERIFIED",
+    "verification_gate": "Independent source review, immutable locator, reproducible artifact/hash where applicable, and counterevidence review",
+    "canonical_promotion": "Prohibited by search/index tool"
+  }
+}
