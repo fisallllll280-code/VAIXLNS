@@ -47,6 +47,10 @@ class CommandEngine:
         genome = self._read_json(GENOME_PATH, required=False)
         index = self._read_json(MASTER_INDEX_PATH, required=False)
         agents = self._read_json(AGENT_REGISTRY_PATH, required=False)
+        federation = self._read_json(FEDERATION_INDEX_PATH, required=False)
+        fed_systems = federation.get("systems", []) if isinstance(federation, dict) else []
+        fed_edges = federation.get("connections", []) if isinstance(federation, dict) else []
+        verified_links = sum(1 for edge in fed_edges if edge.get("live_state") == "VERIFIED" and edge.get("authenticated") is True)
         runtime_configured = bool(os.environ.get("VX_RUNTIME_URL", "").strip())
         return {
             "system": "VAIXLNS",
@@ -57,6 +61,8 @@ class CommandEngine:
                 if isinstance(genome, dict) else None
             ),
             "agent_count": len(agents.get("agents", [])) if isinstance(agents, dict) else 0,
+            "federation_system_count": len(fed_systems),
+            "federation_verified_links": verified_links,
             "runtime": "CONFIGURED_UNCHECKED" if runtime_configured else "NOT_CONNECTED",
             "event_count": len(self._events),
             "last_event_hash": self._last_event_hash,
