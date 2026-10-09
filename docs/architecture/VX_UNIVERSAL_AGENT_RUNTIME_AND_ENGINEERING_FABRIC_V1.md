@@ -91,7 +91,7 @@ The initial role catalog defines 35 logical role templates for the common engine
 - Security, release preparation and operations/recovery
 - Cost/resource analysis and technical writing
 
-Add new specialties by creating a versioned profile that conforms to `schemas/vx-agent-runtime-profile.v1.schema.json`. A new profile must not create a bypass or new authority root. The catalog’s 35 entries are role templates only; they do not claim 22 live agents or configured provider connections.
+Add new specialties by creating a versioned profile that conforms to `schemas/vx-agent-runtime-profile.v1.schema.json`. A new profile must not create a bypass or new authority root. The catalog’s 35 entries are role templates only; they do not claim any deployed agents or configured provider connections.
 
 ## 4. Engineering task graph — optimize speed without weakening assurance
 
