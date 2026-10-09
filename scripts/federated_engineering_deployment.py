@@ -343,7 +343,11 @@ def choose_worker(task: Mapping[str, Any], workers: Sequence[Mapping[str, Any]])
     )
     return {
         "status": "ROUTED_FOR_PLANNING",
-        **selected,
+        "selected_worker_id": selected["worker_id"],
+        "estimated_completion_ms": selected["estimated_completion_ms"],
+        "capability": selected["capability"],
+        "authority_scope": selected["authority_scope"],
+        "data_classification": selected["data_classification"],
         "route_class": "FAST_PATH" if fast_path else "CONTROLLED_PATH",
         "execution_authorized": False,
         "rejected_workers": sorted(rejected, key=lambda item: str(item["worker_id"])),
