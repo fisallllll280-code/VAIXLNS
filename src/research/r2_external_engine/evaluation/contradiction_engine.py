@@ -297,6 +297,18 @@ class ARCXContradictionEngine:
         claim_meta: Dict[str, Any],
         evidence_meta: Dict[str, Any],
     ) -> tuple[ContradictionType, str] | None:
+        target_version = claim_meta.get("target_version")
+        source_version = evidence_meta.get("source_version")
+        if (
+            target_version is not None
+            and source_version is not None
+            and target_version != source_version
+        ):
+            return (
+                ContradictionType.VERSION_MISMATCH,
+                f"Version mismatch: claim targets {target_version!r}, evidence describes {source_version!r}.",
+            )
+
         for key in _VERSION_KEYS:
             left = claim_meta.get(key)
             right = evidence_meta.get(key)
