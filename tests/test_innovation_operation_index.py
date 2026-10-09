@@ -43,6 +43,16 @@ class TestInnovationOperationIndex(unittest.TestCase):
         self.assertNotIn("PROPOSAL", generator["source_statuses"])
         self.assertFalse(generator["canonical_promotion_allowed"])
 
+    def test_measurement_states_do_not_overwrite_readiness_state(self):
+        records = {record["name"]: record for record in build(ROOT)}
+        identity = records["Identity Fabric"]
+        self.assertEqual(identity["status"], "CANONICAL")
+        self.assertNotIn("CONFLICT", identity["source_statuses"])
+        self.assertTrue(any(
+            obs["axis"] == "measurement" and obs["state"] == "PROPOSAL"
+            for obs in identity["status_observations"]
+        ))
+
     def test_generated_outputs_are_current(self):
         for path, expected in outputs(ROOT).items():
             self.assertTrue(path.is_file(), str(path))
