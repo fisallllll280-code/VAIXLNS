@@ -38,6 +38,24 @@ class OmegaErrorLocatorTests(unittest.TestCase):
             self.assertEqual(report["locations"][0]["path"], "tests/test_module.py")
             self.assertIsNone(report["locations"][0]["line"])
 
+    def test_unresolved_symbol_search_finds_candidate_occurrences(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_root(root)
+            (root / "scripts" / "broken.py").write_text(
+                "def entry():\n    ghost_call()\n", encoding="utf-8"
+            )
+            report = locate(root, "NameError: name 'ghost_call' is not defined\n")
+            self.assertEqual(report["state"], "CANDIDATE_LOCATION_FOUND")
+            matches = [
+                item for item in report["locations"]
+                if item["path"] == "scripts/broken.py"
+                and item["symbol"] == "ghost_call"
+            ]
+            self.assertTrue(matches)
+            self.assertEqual(matches[0]["line"], 2)
+            self.assertIn("SYMBOL_REFERENCE_MATCH", matches[0]["evidence_methods"])
+
     def test_missing_location_is_reported_as_insufficient_evidence(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
