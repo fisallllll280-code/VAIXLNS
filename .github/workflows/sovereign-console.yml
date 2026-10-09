@@ -9,6 +9,8 @@ on:
       - "registry/vlns_connection_status.v1.json"
       - "docs/federation/**"
       - "tests/test_federation_console.py"
+      - "scripts/validate_vlns_capability_index.py"
+      - "tests/test_vlns_capability_index.py"
       - "tests/test_sovereign_console.py"
       - "tests/test_sovereign_console_http.py"
       - ".github/workflows/sovereign-console.yml"
@@ -20,6 +22,8 @@ on:
       - "registry/vlns_connection_status.v1.json"
       - "docs/federation/**"
       - "tests/test_federation_console.py"
+      - "scripts/validate_vlns_capability_index.py"
+      - "tests/test_vlns_capability_index.py"
       - "tests/test_sovereign_console.py"
       - "tests/test_sovereign_console_http.py"
       - ".github/workflows/sovereign-console.yml"
@@ -45,3 +49,5 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_sovereign_console*.py'
           python -m unittest discover -s tests -p 'test_federation_console.py'
+          python scripts/validate_vlns_capability_index.py
+          python -m unittest discover -s tests -p 'test_vlns_capability_index.py'
