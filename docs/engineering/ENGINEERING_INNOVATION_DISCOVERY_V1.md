@@ -3,7 +3,7 @@
 **Authority:** VAIXLNS  
 **Research / synthesis boundary:** NEXENT  
 **Execution / replay boundary:** VX  
-**State:** Implemented as a curated-source discovery runner and scheduled workflow proposal; external changes remain review candidates, not canonical innovations.
+**State:** Implementation present on a feature branch; CI and the first scheduled source scan are pending. External changes remain review candidates, not canonical innovations.
 
 ## 1. The problem being solved
 
