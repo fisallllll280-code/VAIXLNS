@@ -203,7 +203,10 @@ def draft_rule(name, family):
 def build(root=ROOT):
     profiles, by_profile, aliases = get_profiles(root)
     candidates = parse_matrix(root)+parse_catalog(root)+parse_items_json(root,F)+parse_items_json(root,R)+parse_omega(root)+parse_master(root)
-    found = {aliases.get(norm(x["name"]),norm(x["name"])) for x in candidates if x.get("name")}
+    # Profile aliases canonicalize the lookup key, but the key set itself must
+    # also be normalized. Otherwise every curated profile is re-added as a new
+    # PROPOSAL record and contaminates genuine source-state observations.
+    found = {norm(aliases.get(norm(x["name"]), x["name"])) for x in candidates if x.get("name")}
     for p in profiles:
         if p.get("canonical_name") and norm(p["canonical_name"]) not in found:
             candidates.append(make(p["canonical_name"],p.get("family",""),p.get("canonical_owner",""),"PROPOSAL",str(P),
