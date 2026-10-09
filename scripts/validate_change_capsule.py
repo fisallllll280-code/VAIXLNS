@@ -32,7 +32,7 @@ def _safe_repo_path(value: object, field: str) -> str:
     path = PurePosixPath(value)
     _require(not path.is_absolute(), f"{field}: absolute paths are prohibited: {value}")
     _require(".." not in path.parts, f"{field}: parent traversal is prohibited: {value}")
-    _require("\\\\" not in value and "\x00" not in value, f"{field}: invalid path: {value}")
+    _require(chr(92) not in value and chr(0) not in value, f"{field}: invalid path: {value}")
     return value
 
 
