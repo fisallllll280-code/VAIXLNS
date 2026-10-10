@@ -1,0 +1,51 @@
+VDL 1.0-DRAFT
+
+TYPE DeviceIdentity {
+    hardware_id: Optional<String>;
+    vendor_id: Optional<String>;
+    device_id: Optional<String>;
+    architecture: Enum { X64, ARM64, UNKNOWN };
+}
+
+TYPE DriverEvidence {
+    provider: Optional<String>;
+    version: Optional<String>;
+    source_uri: Optional<URI>;
+    signature_status: Enum { VALID, INVALID, UNKNOWN };
+    compatibility_evidence: EvidenceRef[];
+    digest_sha256: Optional<HexString64>;
+}
+
+TYPE BootEvidence {
+    firmware_mode: Enum { UEFI, LEGACY, UNKNOWN };
+    boot_symptoms: BootSymptom[];
+    startup_error_code: Optional<String>;
+    recovery_environment_available: Enum { YES, NO, UNKNOWN };
+    storage_health: Enum { HEALTHY, WARNING, FAILED, UNKNOWN };
+    collected_at: Timestamp;
+    provenance: EvidenceRef[];
+}
+
+TYPE RecoveryCase {
+    case_id: Identifier;
+    device: DeviceIdentity;
+    boot_evidence: BootEvidence;
+    driver_evidence: DriverEvidence[];
+    diagnostic_state: Enum {
+        PROPOSED,
+        EVIDENCE_COLLECTED,
+        VERIFICATION_PENDING,
+        VERIFIED,
+        AUTHORIZED,
+        EXECUTED
+    };
+    canonical_write_allowed: Boolean = FALSE;
+}
+
+CONSTRAINT SIGNATURE_REQUIRED_FOR_DRIVER_RECOMMENDATION:
+    DriverEvidence.signature_status == VALID
+    AND DriverEvidence.source_uri IS KNOWN;
+
+CONSTRAINT UNKNOWN_EVIDENCE_FAILS_CLOSED:
+    AnyRequiredEvidence == UNKNOWN
+    IMPLIES RecommendationState != VERIFIED;

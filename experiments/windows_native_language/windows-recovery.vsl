@@ -1,0 +1,48 @@
+VSL 1.0-DRAFT
+
+SYSTEM WindowsBootRecovery {
+    identity: "VAIXLNS.WINDOWS.RECOVERY";
+    state: PROPOSED;
+    purpose: "Describe, diagnose, and safely plan Windows boot recovery";
+    execution_mode: PLAN_ONLY;
+    canonical_mutation: DENY;
+    host_effects: DENY;
+}
+
+REQUIREMENT BOOT_READINESS {
+    input: UserSuppliedBootFacts;
+    output: BootReadinessAssessment;
+    side_effects: NONE;
+    evidence_required: TRUE;
+}
+
+REQUIREMENT RECOVERY_TRIAGE {
+    input: ValidatedSymptomSet;
+    output: RankedDiagnosticHypotheses;
+    ranking_semantics: HEURISTIC_NOT_PROBABILITY;
+    automatic_repair: DENY;
+}
+
+REQUIREMENT DEVICE_PROFILE {
+    input: DeviceIdentityAndDriverEvidence;
+    output: CompatibilityAssessment;
+    unsigned_driver_installation: DENY;
+    driver_source_must_be_traceable: TRUE;
+}
+
+REQUIREMENT REPAIR_PROPOSAL {
+    input: VerifiedDiagnosticEvidence;
+    output: ProposedRecoveryPlan;
+    requires_backup_assessment: TRUE;
+    requires_explicit_human_approval: TRUE;
+    execute_during_prototype: FALSE;
+}
+
+ACCEPTANCE {
+    deterministic_outputs: REQUIRED;
+    unknown_inputs: REJECT;
+    missing_evidence: FAIL_CLOSED;
+    destructive_actions: DENY;
+    boot_security_bypass: DENY;
+    canonical_writes: DENY;
+}
