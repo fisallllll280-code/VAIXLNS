@@ -10,6 +10,7 @@ counterevidence
 UNKNOWN
 INCONCLUSIVE
 no merge or deployment is implied
+does not itself mutate
 
 ## Recovery findings that govern this register
 ## Current engineering shortlist
