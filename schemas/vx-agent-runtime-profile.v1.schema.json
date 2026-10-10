@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/vx-agent-runtime-profile.v1.schema.json",
+  "title": "VX Agent Runtime Profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "agent_role_id",
+    "display_name",
+    "status",
+    "specialization",
+    "authority_ceiling",
+    "vx_binding",
+    "tool_access",
+    "budgets",
+    "delegation",
+    "verification",
+    "lineage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "agent_role_id": {
+      "type": "string",
+      "pattern": "^AG-[A-Z0-9-]+$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "ROLE_TEMPLATE_NOT_DEPLOYED",
+        "CONFIGURED_NOT_ADMITTED",
+        "ADMITTED",
+        "QUARANTINED",
+        "REVOKED",
+        "DEPRECATED"
+      ]
+    },
+    "specialization": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "authority_ceiling": {
+      "enum": [
+        "A0_OBSERVE",
+        "A1_RESEARCH",
+        "A2_PROPOSE",
+        "A3_SANDBOX_MUTATE",
+        "A4_BRANCH_MUTATE",
+        "A5_RELEASE_PREPARE",
+        "A6_RELEASE_DEPLOY",
+        "A7_IRREVERSIBLE_OR_PHYSICAL"
+      ]
+    },
+    "vx_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "runtime_boundary",
+        "federation_gate",
+        "action_envelope_schema",
+        "direct_tool_calls_allowed"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "runtime_boundary": {
+          "const": "VX_AGENT_RUNTIME"
+        },
+        "federation_gate": {
+          "const": "VX_FEDERATION_GATE"
+        },
+        "action_envelope_schema": {
+          "const": "schemas/vx-tool-action-envelope.v1.schema.json"
+        },
+        "direct_tool_calls_allowed": {
+          "const": false
+        },
+        "event_receipt_required": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "tool_access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_tool_classes",
+        "allowed_operation_classes",
+        "denied_operation_classes",
+        "egress_profile"
+      ],
+      "properties": {
+        "allowed_tool_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_operation_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "OBSERVE",
+              "RESEARCH",
+              "PROPOSE",
+              "SANDBOX_MUTATE",
+              "BRANCH_MUTATE",
+              "RELEASE_PREPARE",
+              "RELEASE_DEPLOY",
+              "IRREVERSIBLE_OR_PHYSICAL"
+            ]
+          }
+        },
+        "denied_operation_classes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "OBSERVE",
+              "RESEARCH",
+              "PROPOSE",
+              "SANDBOX_MUTATE",
+              "BRANCH_MUTATE",
+              "RELEASE_PREPARE",
+              "RELEASE_DEPLOY",
+              "IRREVERSIBLE_OR_PHYSICAL"
+            ]
+          }
+        },
+        "egress_profile": {
+          "enum": [
+            "NONE",
+            "ALLOWLIST_ONLY",
+            "RESEARCH_ALLOWLIST",
+            "ADAPTER_POLICY_ONLY"
+          ]
+        },
+        "target_allowlist_ref": {
+          "type": "string"
+        },
+        "network_allowlist_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_parallel_subtasks",
+        "max_execution_seconds",
+        "max_retries",
+        "max_network_calls",
+        "max_write_bytes",
+        "max_estimated_cost_usd"
+      ],
+      "properties": {
+        "max_parallel_subtasks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "max_execution_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "max_network_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_write_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "can_delegate",
+        "can_spawn_agents",
+        "spawn_allowlist",
+        "inherits_parent_scope"
+      ],
+      "properties": {
+        "can_delegate": {
+          "type": "boolean"
+        },
+        "can_spawn_agents": {
+          "type": "boolean"
+        },
+        "spawn_allowlist": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^AG-[A-Z0-9-]+$"
+          }
+        },
+        "inherits_parent_scope": {
+          "const": true
+        },
+        "cannot_escalate_authority": {
+          "const": true
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_checks",
+        "independent_verifier_required",
+        "self_approval_allowed"
+      ],
+      "properties": {
+        "required_checks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "independent_verifier_required": {
+          "type": "boolean"
+        },
+        "self_approval_allowed": {
+          "const": false
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_version",
+        "derived_from",
+        "policy_ref",
+        "review_state"
+      ],
+      "properties": {
+        "profile_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derived_from": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy_ref": {
+          "const": "registry/vx-tool-control-default-policy.v1.json"
+        },
+        "review_state": {
+          "enum": [
+            "DRAFT",
+            "REVIEW_REQUIRED",
+            "APPROVED",
+            "REJECTED",
+            "SUPERSEDED"
+          ]
+        }
+      }
+    }
+  }
+}
