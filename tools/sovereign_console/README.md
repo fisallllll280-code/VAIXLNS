@@ -38,6 +38,8 @@ The HTTP bridge binds only to loopback. It has no public listener and no free-fo
 | `proof verify` | Run local structural and digest checks |
 | `runtime status` | Inspect the VX connection boundary and reference artifacts |
 | `runtime simulate <intent>` | Produce deterministic hash-linked rehearsal events without changing files |
+| `scale simulate [scenario]` | Diagnose growth, federation, agent capacity, knowledge, and security obstacles; scenarios: `all`, `growth`, `federation`, `agent-capacity`, `knowledge`, `security` |
+| `scale report` | Summarize repeated obstacle candidates from this process's simulations |
 | `tests run` | Run the repository unittest suite with a 60-second timeout |
 | `history` | Show recent process-local hash-linked command events |
 
@@ -69,3 +71,19 @@ The catalog retains VLNS↔NAXLNS as `UNVERIFIED`. The connection entry is a rec
 For the canonical design, property inventory and connection acceptance rules, see [VLNS System Federation and Engineering Dashboard v1](../../docs/federation/VLNS_SYSTEM_FEDERATION_AND_ENGINEERING_DASHBOARD_V1.md).
 
 The UI is responsive, but the server deliberately binds to loopback. For phone access to a remote host, use an authenticated HTTPS gateway or approved hosted deployment. Do not expose the loopback bridge by merely changing the bind address.
+
+
+## Ω-SCALE obstacle learning
+
+The scale simulator reads local repository metadata and produces deterministic, hash-linked findings for growth, federation connectivity, agent/model/runtime readiness, canonical knowledge availability, and command-boundary controls. Findings include severity, observation, recommended next action, and an explicit evidence gate.
+
+The readiness score is a heuristic prioritization aid, not a measured production SLO. Simulation findings are not automatically promoted to the canonical index. The learning report is process-local and resets on restart; durable cross-session learning requires a separate reviewed, append-only evidence store. The simulator does not launch workers, call model providers, probe remote systems, or modify canonical files.
+
+Example commands:
+
+```text
+scale simulate all
+scale simulate federation
+scale simulate agent-capacity
+scale report
+```
