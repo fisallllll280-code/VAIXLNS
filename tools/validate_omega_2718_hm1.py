@@ -36,6 +36,6 @@ def main():
     except (OSError, json.JSONDecodeError) as e:
         print(json.dumps({"valid":False,"errors":[f"LOAD_FAILED:{e}"]}, ensure_ascii=False)); return 2
     errors = validate(manifest)
-    print(json.dumps({"valid":not errors,"errors":errors,"domain_id":manifest.get("domain_id"),"state":manifest.get("state"),"closure_state":manifest.get("closure_state"),"layer_count":len(manifest.get("layers",[]))}, ensure_ascii=False, indent=2))
+    print(json.dumps({"valid":not errors,"errors":errors,"domain_id":manifest.get("domain_id"),"state":manifest.get("state"),"closure_state":manifest.get("closure_state"),"layer_count":len(manifest.get("layers",[]))}, ensure_ascii=True, indent=2))
     return 1 if errors else 0
 if __name__ == "__main__": sys.exit(main())
