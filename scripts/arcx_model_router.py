@@ -31,7 +31,9 @@ def plan_route(request: dict[str, Any], registry: list[dict[str, Any]], policy: 
             if entry.get("metadata_state")!="VERIFIED": continue
             if entry.get("provider_id") not in allowed_providers: continue
             if entry.get("model_id") not in allowed_models: continue
-            entry_caps=entry.get("capabilities",[])\n            if not isinstance(entry_caps,list) or any(not isinstance(v,str) for v in entry_caps): continue\n            if not set(request["required_capabilities"]).issubset(set(entry_caps)): continue
+            entry_caps=entry.get("capabilities",[])
+            if not isinstance(entry_caps,list) or any(not isinstance(v,str) for v in entry_caps): continue
+            if not set(request["required_capabilities"]).issubset(set(entry_caps)): continue
             if entry.get("data_policy_allows") is not True: continue
             if entry.get("tenant_isolation_verified") is not True: continue
             candidates.append({"provider_id":entry["provider_id"],"model_id":entry["model_id"],"revision":entry.get("revision"),"contract_sha256":entry.get("contract_sha256")})
