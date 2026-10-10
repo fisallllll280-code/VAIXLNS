@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "tools/arcx_mcp/**"
-      - "tests/test_arcx_mcp_server.py"
+      - "tests/arcx_mcp_contract_tests.py"
       - "requirements-arcx-mcp.txt"
       - "scripts/windows/**"
       - "docs/windows/ARC_X_WINDOWS_MCP_QUICKSTART_V1.md"
@@ -13,7 +13,7 @@ on:
     branches: [main]
     paths:
       - "tools/arcx_mcp/**"
-      - "tests/test_arcx_mcp_server.py"
+      - "tests/arcx_mcp_contract_tests.py"
       - "requirements-arcx-mcp.txt"
       - "scripts/windows/**"
       - "docs/windows/ARC_X_WINDOWS_MCP_QUICKSTART_V1.md"
@@ -40,4 +40,4 @@ jobs:
       - name: Run ARC-X MCP unit tests
         env:
           ARCX_REPOSITORY_ROOT: ${{ github.workspace }}
-        run: python -m unittest discover -s tests -p test_arcx_mcp_server.py -v
+        run: python -m unittest discover -s tests -p arcx_mcp_contract_tests.py -v
