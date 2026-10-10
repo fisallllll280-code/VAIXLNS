@@ -1,0 +1,36 @@
+name: Self-Evolution and Growth Checks
+
+on:
+  pull_request:
+    paths:
+      - "services/innovation_server/**"
+      - "tests/test_innovation_server.py"
+      - "scripts/benchmark_innovation_workers.py"
+      - "docs/engineering/SELF_EVOLUTION_GOVERNANCE_V1.md"
+      - "docs/growth/VAIXLNS_GO_TO_MARKET_APPROVAL_PLAN_V1.md"
+      - ".github/workflows/self-evolution-growth-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run innovation server regression tests
+        run: python -m unittest tests.test_innovation_server -v
+      - name: Benchmark 1, 2, 4, and 8 workers
+        shell: bash
+        run: set -o pipefail; python scripts/benchmark_innovation_workers.py --jobs 100 --workers 1 2 4 8 | tee benchmark-results.json
+      - name: Upload benchmark evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-worker-benchmark
+          path: benchmark-results.json
+          if-no-files-found: error
