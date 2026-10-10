@@ -415,8 +415,10 @@ def evaluate_completion(
         blockers.append("independent check did not pass")
     return {
         "task_id": task.get("task_id"),
-        "decision": "ACCEPT" if not blockers else "HOLD",
-        "epistemic_state": "VERIFIED" if not blockers else "PARTIAL",
+        "decision": "ELIGIBLE_FOR_GOVERNANCE_REVIEW" if not blockers else "HOLD",
+        "epistemic_state": "IMPLEMENTED" if not blockers else "PARTIAL",
+        "requested_epistemic_state": "VERIFIED" if not blockers else None,
+        "canonical_promotion": "NOT_PERFORMED",
         "blockers": blockers,
         "source_revision": source_revision,
         "evidence_digest": evidence_digest,
