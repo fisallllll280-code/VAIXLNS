@@ -174,7 +174,11 @@ class Supervisor:
   if not t or t.get("cancelled_or_expired"): raise RuntimeError("TASK_NOT_DISPATCHABLE")
   receipt=self.adapter.task(t["task_id"],t["value"]); self.ledger.append("TASK_EXECUTED","task-scheduler",t["task_id"],{"receipt":receipt,"receipt_hash":digest(receipt),"verified_output":True}); return receipt
  def fail_and_recover(self):
-  old_pid=self.adapter.process.pid; self.ledger.append("FAILURE_INJECTED","bootstrap-test",self.agent_id,{"kind":"controlled-process-termination","pid":old_pid}); self.adapter.stop(graceful=False); self.transition(State.RECOVERY_PENDING,"health-monitor","process-exit-detected")
+  old_pid=self.adapter.process.pid; self.ledger.append("FAILURE_INJECTED","bootstrap-test",self.agent_id,{"kind":"controlled-process-termination","pid":old_pid}); self.adapter.stop(graceful=False)
+  exit_code=self.adapter.process.poll() if self.adapter.process else None
+  if exit_code is None: raise RuntimeError("FAILURE_NOT_OBSERVED_BY_PROCESS_MONITOR")
+  self.ledger.append("PROCESS_FAILURE_DETECTED","health-monitor",self.agent_id,{"pid":old_pid,"exit_code":exit_code,"detector":"subprocess.poll"})
+  self.transition(State.RECOVERY_PENDING,"health-monitor","process-exit-observed")
   if not self.recovery.may_restart(): self.transition(State.QUARANTINED,"recovery-manager","restart-budget-exhausted"); return {"recovered":False,"reason":"RESTART_BUDGET_EXHAUSTED"}
   self.policy.authorize("restart",restart_count=self.restart_count); self.restart_count+=1; self.ledger.append("RECOVERY_ATTEMPT","recovery-manager",self.agent_id,{"attempt":self.restart_count,"budget":self.policy.max_restarts}); self.transition(State.STARTING,"recovery-manager","bounded-restart-authorized"); self.adapter.start(self.workdir/"service.log")
   if not self.health.wait_ready(self.adapter): self.transition(State.FAILED,"recovery-manager","readiness-after-restart-failed"); self.ledger.append("RECOVERY_FAILED","recovery-manager",self.agent_id,{"restart_count":self.restart_count}); return {"recovered":False,"reason":"READINESS_FAILED"}
