@@ -20,6 +20,10 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
 - [Tools / ARC-X Ω](docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md)
+- [ARC-X Federated Integration & Link Compiler](docs/tools/ARC_X_FEDERATED_INTEGRATION_LINK_COMPILER_V1.md)
+- [ARC-X Bounded Adaptive Evolution Planner](docs/tools/ARC_X_BOUNDED_ADAPTIVE_EVOLUTION_V1.md)
+- [ARC-X Universal Model Gateway](docs/tools/ARC_X_UNIVERSAL_MODEL_GATEWAY_V1.md)
+- [ARC-X Bounded Self-Provisioning Compute Fabric](docs/tools/ARC_X_SELF_PROVISIONING_COMPUTE_FABRIC_V1.md)
 - [VA Genesis Operational Engine v1](docs/tools/VA_GENESIS_OPERATIONAL_ENGINE_V1.md)
 
 ## Canonical boundary
