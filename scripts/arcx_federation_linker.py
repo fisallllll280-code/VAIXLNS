@@ -47,7 +47,7 @@ def plan_links(systems: list[dict[str, Any]], candidates: list[dict[str, Any]]) 
             blockers.append("INVALID_SOURCE_REVISION")
         if not isinstance(contract_digest, str) or len(contract_digest) != 64 or any(c not in "0123456789abcdefABCDEF" for c in contract_digest):
             blockers.append("INVALID_CONTRACT_DIGEST")
-        if direction not in {"SOURCE_TO_TARGET", "BIDIRECTIONAL"}:
+        if not isinstance(direction, str) or direction not in {"SOURCE_TO_TARGET", "BIDIRECTIONAL"}:
             blockers.append("INVALID_LINK_DIRECTION")
         if isinstance(src, str) and isinstance(dst, str) and frozenset((src, dst)) in UNRESOLVED_IDENTITIES:
             blockers.append("IDENTITY_EQUIVALENCE_UNRESOLVED")
