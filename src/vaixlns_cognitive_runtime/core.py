@@ -49,7 +49,7 @@ class ClaimAssessment:
     reasons: tuple[str, ...]
 
 
-def evaluate_claim(claim: Claim, evidence: Iterable[Evidence]) -> ClaimAssessment:
+def evaluate_claim(claim: Claim, evidence: Iterable[Evidence] = ()) -> ClaimAssessment:
     """Fail closed: a VERIFIED label needs hashed evidence and a review method."""
     evidence_by_id = {item.evidence_id: item for item in evidence}
     if claim.state not in EPISTEMIC_STATES:
