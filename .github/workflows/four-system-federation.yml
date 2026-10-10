@@ -4,15 +4,21 @@ on:
   pull_request:
     paths:
       - "registry/federation/four_system_unification.v1.json"
+      - "registry/federation/federation_contract_edges.v1.json"
       - "scripts/validate_four_system_federation.py"
+      - "scripts/validate_federation_contract_edges.py"
       - "tests/test_four_system_federation.py"
+      - "tests/test_federation_contract_edges.py"
       - ".github/workflows/four-system-federation.yml"
   push:
     branches: [main]
     paths:
       - "registry/federation/four_system_unification.v1.json"
+      - "registry/federation/federation_contract_edges.v1.json"
       - "scripts/validate_four_system_federation.py"
+      - "scripts/validate_federation_contract_edges.py"
       - "tests/test_four_system_federation.py"
+      - "tests/test_federation_contract_edges.py"
       - ".github/workflows/four-system-federation.yml"
   workflow_dispatch:
 
@@ -28,7 +34,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate federation manifest
+      - name: Validate four-system identity manifest
         run: python scripts/validate_four_system_federation.py
-      - name: Run federation regression tests
+      - name: Validate typed federation contract edges
+        run: python scripts/validate_federation_contract_edges.py
+      - name: Run four-system regression tests
         run: python -m unittest tests.test_four_system_federation -v
+      - name: Run contract-edge adversarial regression tests
+        run: python -m unittest tests.test_federation_contract_edges -v
