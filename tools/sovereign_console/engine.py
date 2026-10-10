@@ -40,6 +40,7 @@ class CommandEngine:
     def __init__(self, root: str | Path | None = None) -> None:
         self.root = Path(root or Path(__file__).resolve().parents[2]).resolve()
         self._events: list[dict[str, Any]] = []
+        self._scale_runs: list[dict[str, Any]] = []
         self._last_event_hash = ZERO_HASH
         self._lock = threading.RLock()
 
@@ -129,6 +130,11 @@ class CommandEngine:
         if command[:2] == ["runtime", "simulate"]:
             intent = " ".join(tokens[2:]).strip() or "VAIXLNS safe execution rehearsal"
             return self._simulate(intent)
+        if command[:2] == ["scale", "simulate"]:
+            scenario = " ".join(tokens[2:]).strip() or "all"
+            return self._scale_simulate(scenario)
+        if command == ["scale", "report"]:
+            return self._scale_report()
         if command == ["tests", "run"]:
             return self._run_tests()
         if command == ["history"]:
@@ -139,7 +145,7 @@ class CommandEngine:
             "federation status", "federation inspect <system-id>", "federation capabilities [query]",
             "federation attributes [query]", "federation gaps", "genome inspect",
             "genome verify", "proof verify", "runtime status",
-            "runtime simulate <intent>", "tests run", "history",
+            "runtime simulate <intent>", "scale simulate [scenario]", "scale report", "tests run", "history",
         ]
         return {
             "ok": False,
@@ -185,6 +191,12 @@ class CommandEngine:
             "  proof verify                   Validate canonical control surfaces and digest",
             "  runtime status                 Check whether an external VX endpoint is configured",
             "  runtime simulate <intent>      Deterministic rehearsal; never claims real execution",
+            "",
+            "SCALE & EVOLUTION",
+            "  scale simulate [scenario]      Simulate growth and detect integration/knowledge/security obstacles",
+            "                                 Scenarios: all, growth, federation, agent-capacity, knowledge, security",
+            "  scale report                   Summarize findings from this process's simulation runs",
+            "",
             "  tests run                      Run the repository unittest suite (60-second limit)",
             "",
             "SAFETY",
@@ -192,7 +204,7 @@ class CommandEngine:
             "  Runtime simulation is not a production run or VERIFIED evidence.",
             "  External model providers and a live VX runtime are not implied by this console.",
         ]
-        return CommandEngine._ok("Command reference loaded.", lines, {"count": 19})
+        return CommandEngine._ok("Command reference loaded.", lines, {"count": 21})
 
     def _read_json(self, relative: str, required: bool = True) -> Any:
         path = self.root / relative
@@ -868,6 +880,127 @@ class CommandEngine:
                 "chain": list(chain),
             },
             [GENOME_PATH, MASTER_INDEX_PATH, AGENT_REGISTRY_PATH],
+        )
+
+    def _scale_simulate(self, scenario: str) -> dict[str, Any]:
+        from dataclasses import asdict
+        from tools.sovereign_console.scale_engine import ScaleEngine, SUPPORTED_SCENARIOS
+
+        key = scenario.strip().casefold()
+        if key not in SUPPORTED_SCENARIOS:
+            raise CommandError("Unsupported scale scenario. Choose: " + ", ".join(SUPPORTED_SCENARIOS))
+
+        index = self._read_json(MASTER_INDEX_PATH, required=False)
+        genome = self._read_json(GENOME_PATH, required=False)
+        agents = self._read_json(AGENT_REGISTRY_PATH, required=False)
+        federation = self._read_json(FEDERATION_INDEX_PATH, required=False)
+        connections = federation.get("connections", []) if isinstance(federation, dict) else []
+        systems = federation.get("systems", []) if isinstance(federation, dict) else []
+        facts = {
+            "agent_count": len(agents.get("agents", [])) if isinstance(agents, dict) else 0,
+            "system_count": len(systems),
+            "connection_count": len(connections),
+            "verified_connections": sum(
+                1 for edge in connections
+                if edge.get("live_state") == "VERIFIED"
+            ),
+            "authenticated_connections": sum(
+                1 for edge in connections
+                if edge.get("live_state") == "VERIFIED" and edge.get("authenticated") is True
+            ),
+            "genome_available": isinstance(genome, dict) and bool(genome.get("canonical_source")),
+            "index_available": isinstance(index, dict) and index.get("index_id") == "Ω.000",
+            "runtime_configured": bool(os.environ.get("VX_RUNTIME_URL", "").strip()),
+            "provider_configured": bool(
+                os.environ.get("MODEL_PROVIDER_URL", "").strip()
+                or os.environ.get("OPENAI_API_KEY", "").strip()
+            ),
+            "allowlisted_commands": True,
+            "durable_learning_store": False,
+            "evidence_refs": [
+                path for path in (
+                    GENOME_PATH, MASTER_INDEX_PATH, AGENT_REGISTRY_PATH,
+                    FEDERATION_INDEX_PATH, VLNS_CONNECTION_STATUS_PATH,
+                ) if (self.root / path).is_file()
+            ],
+        }
+        run = ScaleEngine().simulate(key, facts)
+        payload = asdict(run)
+        self._scale_runs.append(payload)
+        self._scale_runs = self._scale_runs[-50:]
+        findings = payload["findings"]
+        lines = [
+            "Ω-SCALE — DETERMINISTIC OBSTACLE SIMULATION",
+            f"Scenario: {payload['scenario']}",
+            f"Outcome: {payload['outcome']}",
+            f"Heuristic scale-readiness score: {payload['scale_readiness_score']}/100",
+            f"Findings: {len(findings)} | blockers: {sum(1 for item in findings if item['severity'] == 'BLOCKER')}",
+            f"Trace hash: {payload['trace_hash']}",
+            "",
+        ]
+        for item in findings:
+            lines.extend([
+                f"[{item['severity']}] {item['finding_id']} — {item['obstacle']}",
+                f"  Observation: {item['observation']}",
+                f"  Next action: {item['recommended_action']}",
+                f"  Promotion gate: {item['promotion_gate']}",
+                "",
+            ])
+        lines.extend([
+            "Learning rule: findings are candidates, not canonical truth.",
+            "No repository files were changed; no workers, model providers, or live VX runtime were invoked.",
+            "Epistemic state: SPECIFIED. The score is heuristic, not a production SLO.",
+        ])
+        return self._ok(
+            f"Scale simulation completed: {payload['outcome']} with {len(findings)} findings.",
+            lines,
+            payload,
+            list(payload["evidence_refs"]),
+        )
+
+    def _scale_report(self) -> dict[str, Any]:
+        runs = list(self._scale_runs)
+        findings = [item for run in runs for item in run.get("findings", [])]
+        blockers = [item for item in findings if item.get("severity") == "BLOCKER"]
+        counts: dict[str, int] = {}
+        for item in findings:
+            key = str(item.get("finding_id", "UNKNOWN"))
+            counts[key] = counts.get(key, 0) + 1
+        recurring = sorted(
+            ({"finding_id": key, "occurrences": count} for key, count in counts.items()),
+            key=lambda item: (-item["occurrences"], item["finding_id"]),
+        )
+        lines = [
+            "Ω-SCALE — SESSION LEARNING REPORT",
+            f"Simulation runs in this process: {len(runs)}",
+            f"Total findings: {len(findings)}",
+            f"Blocker observations: {len(blockers)}",
+            "",
+            "Recurring obstacle candidates:",
+        ]
+        lines.extend(
+            f"  {item['finding_id']} × {item['occurrences']}"
+            for item in recurring[:20]
+        )
+        if not runs:
+            lines.append("  No scale simulations have been run in this process.")
+        lines.extend([
+            "",
+            "Persistence: process-local only; the report resets when the console restarts.",
+            "Canonical promotion: none. Findings need reproducible evidence and review.",
+        ])
+        return self._ok(
+            f"Summarized {len(runs)} scale simulations; {len(blockers)} blocker observations.",
+            lines,
+            {
+                "run_count": len(runs),
+                "finding_count": len(findings),
+                "blocker_count": len(blockers),
+                "recurring_obstacles": recurring,
+                "persistence": "PROCESS_LOCAL",
+                "epistemic_state": "SPECIFIED",
+            },
+            sorted({ref for run in runs for ref in run.get("evidence_refs", [])}),
         )
 
     def _run_tests(self) -> dict[str, Any]:
