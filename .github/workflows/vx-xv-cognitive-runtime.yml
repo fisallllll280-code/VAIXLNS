@@ -3,6 +3,7 @@ name: vx-xv-cognitive-runtime
 on:
   pull_request:
     paths:
+      - "README.md"
       - "src/vaixlns_cognitive_runtime/**"
       - "tests/test_vx_xv_cognitive_runtime.py"
       - "schemas/cognitive-claim-evidence.v1.schema.json"
@@ -11,6 +12,7 @@ on:
   push:
     branches: ["feat/vx-xv-cognitive-continuity-v1"]
     paths:
+      - "README.md"
       - "src/vaixlns_cognitive_runtime/**"
       - "tests/test_vx_xv_cognitive_runtime.py"
       - ".github/workflows/vx-xv-cognitive-runtime.yml"
