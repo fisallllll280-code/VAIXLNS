@@ -95,7 +95,7 @@ def _remote_assess(worker: RemoteWorker, problem: dict[str, Any], task_id: str) 
 def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
               remote_workers: list[RemoteWorker] | None = None,
               allow_local_fallback: bool = True) -> dict[str, Any]:
-    """Run independent tasks concurrently, preserving input order and bounded concurrency."""
+    """Run independent tasks concurrently, preserving input order with bounded concurrency."""
     if not isinstance(problems, list) or not all(isinstance(p, dict) for p in problems):
         raise ValueError("problems must be a list of JSON objects")
     if not 1 <= max_workers <= MAX_WORKERS:
@@ -103,42 +103,60 @@ def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
     workers = remote_workers or []
     if len(workers) > MAX_REMOTE_NODES:
         raise ValueError(f"at most {MAX_REMOTE_NODES} remote workers are supported")
-    for w in workers:
-        w.validate()
+    for worker in workers:
+        worker.validate()
     if len({w.worker_id for w in workers}) != len(workers):
         raise ValueError("remote worker IDs must be unique")
+    if not problems:
+        return {"engine": "OMEGA-IMPOSSIBILITY-ENGINE", "fabric": "OMEGA-DISTRIBUTED-EXECUTION-FABRIC",
+                "state": "NO_TASKS", "task_count": 0, "max_concurrency": max_workers,
+                "configured_remote_workers": [w.worker_id for w in workers],
+                "completed_count": 0, "failed_count": 0, "elapsed_ms": 0.0, "results": [],
+                "limits": ["An empty batch is not reported as successful execution."]}
     prepared = [(i, p, "omega-" + hashlib.sha256(f"{i}:{canonical_hash(p)}".encode()).hexdigest()[:24])
                 for i, p in enumerate(problems)]
     started = time.perf_counter()
     ordered: list[dict[str, Any] | None] = [None] * len(prepared)
+
+    def local(i: int, problem: dict[str, Any], task_id: str, status: str,
+              remote_worker_id: str | None = None, remote_error: Exception | None = None) -> dict[str, Any]:
+        task_start = time.perf_counter()
+        try:
+            value = assess(problem)
+            execution = {"status": status, "transport": "local",
+                         "worker_id": f"local-{i % max_workers + 1}" if status == "SUCCEEDED" else "local-fallback"}
+            if remote_worker_id:
+                execution["remote_worker_id"] = remote_worker_id
+                execution["remote_error_type"] = type(remote_error).__name__ if remote_error else "RemoteError"
+                execution["remote_error"] = str(remote_error)[:300] if remote_error else "remote task failed"
+        except (TypeError, ValueError) as exc:
+            execution = {"status": "FAILED", "transport": "local",
+                         "worker_id": f"local-{i % max_workers + 1}",
+                         "error_type": type(exc).__name__, "error": str(exc)[:300]}
+            if remote_worker_id:
+                execution["remote_worker_id"] = remote_worker_id
+        row = {"task_id": task_id, "result": value if "value" in locals() else None, "execution": execution}
+        row["execution"]["elapsed_ms"] = round((time.perf_counter() - task_start) * 1000, 3)
+        return row
+
     def dispatch(i: int, problem: dict[str, Any], task_id: str) -> dict[str, Any]:
         task_start = time.perf_counter()
-        if workers:
+        if not workers:
+            row = local(i, problem, task_id, "SUCCEEDED")
+        else:
             worker = workers[i % len(workers)]
             try:
                 row = _remote_assess(worker, problem, task_id)
             except (HTTPError, URLError, TimeoutError, OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
-                if not allow_local_fallback:
+                if allow_local_fallback:
+                    row = local(i, problem, task_id, "FALLBACK_LOCAL", worker.worker_id, exc)
+                else:
                     row = {"task_id": task_id, "result": None,
                            "execution": {"status": "FAILED", "transport": "https", "worker_id": worker.worker_id,
                                          "error_type": type(exc).__name__, "error": str(exc)[:300]}}
-                else:
-                    row = {"task_id": task_id, "result": assess(problem),
-                           "execution": {"status": "FALLBACK_LOCAL", "transport": "local",
-                                         "worker_id": "local-fallback", "remote_worker_id": worker.worker_id,
-                                         "error_type": type(exc).__name__, "error": str(exc)[:300]}}
-        else:
-            try:
-                row = {"task_id": task_id, "result": assess(problem),
-                       "execution": {"status": "SUCCEEDED", "transport": "local",
-                                     "worker_id": f"local-{i % max_workers + 1}"}}
-            except (TypeError, ValueError) as exc:
-                row = {"task_id": task_id, "result": None,
-                       "execution": {"status": "FAILED", "transport": "local",
-                                     "worker_id": f"local-{i % max_workers + 1}",
-                                     "error_type": type(exc).__name__, "error": str(exc)[:300]}}
         row["execution"]["elapsed_ms"] = round((time.perf_counter() - task_start) * 1000, 3)
         return row
+
     with ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="omega-worker") as pool:
         futures = {pool.submit(dispatch, i, p, task_id): i for i, p, task_id in prepared}
         for future in as_completed(futures):
