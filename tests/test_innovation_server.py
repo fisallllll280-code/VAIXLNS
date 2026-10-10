@@ -4,12 +4,13 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 from http.server import ThreadingHTTPServer
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 from services.innovation_server.server import (
-    JobStore, Worker, make_handler, public_job, run_builtin
+    JobStore, Worker, WorkerPool, make_handler, public_job, run_builtin
 )
 
 
