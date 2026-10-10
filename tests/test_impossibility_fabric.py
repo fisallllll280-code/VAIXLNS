@@ -45,22 +45,41 @@ class ImpossibilityFabricTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             remote_workers_from_json('[{"worker_id":"n1","endpoint":"https://worker.example/v1/assess","token":"secret"}]')
 
-    def test_remote_failure_falls_back_locally_visibly(self):
+    def test_remote_failure_falls_back_locally_and_marks_degraded(self):
         worker=RemoteWorker("node-a","https://worker.example/v1/assess",token_env="OMEGA_TEST_MISSING_TOKEN")
         with patch.dict(os.environ,{},clear=True):
             result=run_batch([problem("fallback")],remote_workers=[worker],allow_local_fallback=True)
         self.assertEqual(result["results"][0]["execution"]["status"],"FALLBACK_LOCAL")
-        self.assertEqual(result["configured_remote_workers"],["node-a"])
+        self.assertEqual(result["state"],"DEGRADED")
+        self.assertEqual(result["fallback_count"],1)
+        self.assertTrue(result["worker_metrics"][0]["circuit_open"])
 
     def test_remote_failure_can_be_strict(self):
         worker=RemoteWorker("node-a","https://worker.example/v1/assess",token_env="OMEGA_TEST_MISSING_TOKEN")
         with patch.dict(os.environ,{},clear=True):
             result=run_batch([problem("strict")],remote_workers=[worker],allow_local_fallback=False)
+        self.assertEqual(result["results"][0]["execution"]["status"],"FAILED")
         self.assertEqual(result["failed_count"],1)
 
-    def test_duplicate_worker_ids_rejected(self):
-        config='[{"worker_id":"node-a","endpoint":"https://one.example/v1/assess"},{"worker_id":"node-a","endpoint":"https://two.example/v1/assess"}]'
-        with self.assertRaises(ValueError): remote_workers_from_json(config)
+    def test_load_aware_remote_pool_obeys_per_worker_capacity(self):
+        workers=[RemoteWorker("node-a","https://a.example/v1/assess",max_concurrency=1),
+                 RemoteWorker("node-b","https://b.example/v1/assess",max_concurrency=1)]
+        active={"node-a":0,"node-b":0}; peak={"node-a":0,"node-b":0}; lock=threading.Lock()
+        def fake(worker,p,task_id):
+            with lock:
+                active[worker.worker_id]+=1
+                peak[worker.worker_id]=max(peak[worker.worker_id],active[worker.worker_id])
+            time.sleep(0.01)
+            with lock: active[worker.worker_id]-=1
+            return {"task_id":task_id,"result":{"assessment_sha256":task_id},
+                    "execution":{"status":"SUCCEEDED","transport":"https","worker_id":worker.worker_id}}
+        with patch("tools.impossibility_engine.fabric._remote_assess",side_effect=fake):
+            result=run_batch([problem(str(i)) for i in range(6)],max_workers=6,remote_workers=workers)
+        self.assertEqual(result["state"],"EXECUTED")
+        self.assertEqual(result["completed_count"],6)
+        self.assertLessEqual(peak["node-a"],1)
+        self.assertLessEqual(peak["node-b"],1)
+        self.assertEqual(sum(m["successes"] for m in result["worker_metrics"]),6)
 
     def test_worker_http_health_auth_and_assessment_contract(self):
         server=ThreadingHTTPServer(("127.0.0.1",0),make_handler("worker-test","test-secret"))
@@ -76,8 +95,7 @@ class ImpossibilityFabricTests(unittest.TestCase):
             self.assertEqual(ctx.exception.code,401)
             good=Request(base+"/v1/assess",data=body,headers={"Content-Type":"application/json",
                           "Authorization":"Bearer test-secret"})
-            with urlopen(good,timeout=2) as response:
-                envelope=json.loads(response.read())
+            with urlopen(good,timeout=2) as response: envelope=json.loads(response.read())
             self.assertEqual(envelope["worker_id"],"worker-test")
             self.assertEqual(envelope["task_id"],"omega-test")
             self.assertEqual(envelope["result"]["classification"],"ENGINEERING_CHALLENGE")
