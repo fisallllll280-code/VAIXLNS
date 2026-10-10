@@ -1,0 +1,33 @@
+{
+  "registry_id": "Ω.PATTERN_FOUNDRY.001",
+  "name": "Ω-Pattern Foundry",
+  "type": "CAPABILITY",
+  "owner": "VAIXLNS",
+  "status": "PROPOSED",
+  "epistemic_state": "SPECIFIED",
+  "canonical_context": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "parent": "Ω-Pattern Forest",
+  "runtime_boundary": {
+    "generator": "PRIVATE_PROVIDER_NEUTRAL_BACKEND",
+    "sanity_checker": "REFERENCE_IMPLEMENTATION",
+    "adversarial_lab": "REFERENCE_IMPLEMENTATION",
+    "promotion_gate": "AUTHORITY_REQUIRED"
+  },
+  "security_boundary": {
+    "private_generation_know_how": "NOT_STORED_IN_PUBLIC_REPOSITORY",
+    "customer_secrets": "FORBIDDEN",
+    "self_promotion": false
+  },
+  "links": {
+    "genome_schema": "schemas/omega-pattern-genome.schema.yaml",
+    "attack_schema": "schemas/omega-pattern-attack.schema.yaml",
+    "engine": "scripts/omega_pattern_foundry.py",
+    "tests": "tests/test_omega_pattern_foundry.py",
+    "spec": "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md"
+  },
+  "promotion": {
+    "verified_requires": "reproducible executable evidence",
+    "canonical_requires": "verified evidence plus explicit authority"
+  }
+}

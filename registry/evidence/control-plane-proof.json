@@ -1,0 +1,25 @@
+{
+  "proof_id": "e6a41d0a1ed7edc92b628ba16fa2ad93a3c0d4b7fc180952876eb86be30ef2d7",
+  "claim_id": "CPL-GENOME-001",
+  "statement": "VAIXLNS Golden Source files are present and content-addressed",
+  "subject": "project.genome",
+  "epistemic_state": "VERIFIED",
+  "evidence": [
+    {
+      "kind": "file_sha256",
+      "ref": "project.genome",
+      "digest": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08"
+    },
+    {
+      "kind": "file_sha256",
+      "ref": "registry/omega/omega-000-master-index.json",
+      "digest": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+    }
+  ],
+  "verification": {
+    "method": "scripts/proof_verifier.py",
+    "result": "PASS",
+    "reproduction_command": "python scripts/proof_verifier.py registry/evidence/control-plane-proof.json"
+  },
+  "authority": "Ω0_GENESIS_CORE"
+}

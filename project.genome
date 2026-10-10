@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "system": {
+    "id": "VAIXLNS",
+    "name": "VAIXLNS Sovereign Engineering System",
+    "canonical_repository": "fisallllll280-code/VAIXLNS"
+  },
+  "genesis": {
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "genesis_record": "0001"
+  },
+  "canonical_source": {
+    "type": "project.genome",
+    "version": "1.0.0",
+    "path": "project.genome",
+    "authority": "Ω0_GENESIS_CORE",
+    "status": "CANONICAL"
+  },
+  "master_index": {
+    "id": "Ω.000",
+    "path": "registry/omega/omega-000-master-index.json",
+    "authority": "VAIXLNS"
+  },
+  "principles": [
+    "Constitution First",
+    "Genome First",
+    "Event First",
+    "Knowledge First",
+    "Governance First",
+    "Determinism First",
+    "Simulation Before Reality",
+    "Verification Before Execution",
+    "Security By Design",
+    "AI Native",
+    "Self Recovery",
+    "Controlled Evolution"
+  ],
+  "lifecycle_states": [
+    "DRAFT",
+    "ACTIVE",
+    "EVOLVING",
+    "QUARANTINED",
+    "ARCHIVED"
+  ],
+  "epistemic_states": [
+    "PROPOSAL",
+    "SPECIFIED",
+    "IMPLEMENTED",
+    "VERIFIED",
+    "PARTIAL",
+    "MISSING",
+    "CONFLICT",
+    "RECOVERED"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "json_sort_keys": true,
+    "separators": [
+      ",",
+      ":"
+    ],
+    "newline": "LF",
+    "hash": "SHA-256",
+    "self_hash_excluded": "integrity.canonical_hash"
+  },
+  "integrity": {
+    "canonical_hash": "3e9515274eb5cb963f4bf3b02c64de4c7c9fdb4b7dafa08a96392dbb0f68c9d4"
+  }
+}

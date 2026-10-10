@@ -1,0 +1,168 @@
+{
+  "policy_id": "VAIXLNS.VX_TOOL_CONTROL.DEFAULT",
+  "version": "1.0.0",
+  "status": "PROPOSED_NOT_ADMITTED",
+  "enforcement_status": "CONTRACT_ONLY_NOT_CONNECTED",
+  "owner": "VAIXLNS",
+  "description": "Fail-closed baseline for tool-action evaluation. This profile is inactive until reviewed, admitted, bound to a runtime and verified.",
+  "default_handling": {
+    "unmatched_action": "HOLD",
+    "unknown_tool": "QUARANTINE",
+    "unknown_actor": "REJECT",
+    "unknown_capability": "HOLD",
+    "missing_scope": "HOLD",
+    "expired_envelope": "REJECT",
+    "stale_or_missing_required_proof": "HOLD",
+    "missing_authority": "HOLD",
+    "conflicting_policy": "HOLD",
+    "budget_exhaustion": "ABORT_AND_RECORD",
+    "out_of_scope_target": "REJECT",
+    "failed_required_gate": "REJECT",
+    "missing_required_approval": "HOLD",
+    "revoked_identity": "REJECT",
+    "emergency_stop": "ABORT_AND_RECORD"
+  },
+  "hard_invariants": {
+    "agent_can_raise_own_authority": false,
+    "agent_can_edit_active_policy": false,
+    "agent_can_approve_own_artifact": false,
+    "automatic_canonical_promotion": false,
+    "automatic_merge_to_protected_branch": false,
+    "unrestricted_network_egress": false,
+    "unbounded_retries": false,
+    "unbounded_execution_time": false,
+    "unbounded_spend": false,
+    "plaintext_secrets_in_audit_log": false,
+    "production_write_by_default": false,
+    "financial_transaction_by_default": false,
+    "physical_actuation_by_default": false,
+    "missing_adapter_treated_as_success": false
+  },
+  "authority_tiers": [
+    {
+      "tier": "A0_OBSERVE",
+      "rank": 0,
+      "default": "ALLOW_ONLY_IF_IDENTITY_POLICY_AND_SCOPE_PASS"
+    },
+    {
+      "tier": "A1_RESEARCH",
+      "rank": 1,
+      "default": "ALLOW_ONLY_FOR_REGISTERED_READ_ADAPTERS"
+    },
+    {
+      "tier": "A2_PROPOSE",
+      "rank": 2,
+      "default": "ALLOW_ONLY_WITHOUT_EXTERNAL_SIDE_EFFECT"
+    },
+    {
+      "tier": "A3_SANDBOX_MUTATE",
+      "rank": 3,
+      "default": "REQUIRE_VERIFIED_ISOLATED_SANDBOX"
+    },
+    {
+      "tier": "A4_BRANCH_MUTATE",
+      "rank": 4,
+      "default": "REQUIRE_ALLOWLISTED_NON_PROTECTED_BRANCH"
+    },
+    {
+      "tier": "A5_RELEASE_PREPARE",
+      "rank": 5,
+      "default": "PREPARE_ONLY_NO_PUBLISH_OR_DEPLOY"
+    },
+    {
+      "tier": "A6_RELEASE_DEPLOY",
+      "rank": 6,
+      "default": "DENY_UNLESS_SEPARATELY_AUTHORIZED"
+    },
+    {
+      "tier": "A7_IRREVERSIBLE_OR_PHYSICAL",
+      "rank": 7,
+      "default": "DENY_UNLESS_SEPARATE_DOMAIN_POLICY_AND_JIT_APPROVAL_PASS"
+    }
+  ],
+  "approval_rules": {
+    "action_digest_binding_required": true,
+    "approval_expiry_required": true,
+    "approval_reusable_after_material_change": false,
+    "independent_approver_for_high_risk": true,
+    "author_cannot_be_only_approver": true,
+    "canonical_policy_change_requires_review": true,
+    "production_release_requires_separate_gate": true,
+    "high_risk_classes": [
+      "RELEASE_DEPLOY",
+      "IRREVERSIBLE_OR_PHYSICAL"
+    ],
+    "require_human_approval_from_risk_tier": "R3_HIGH"
+  },
+  "required_binding": {
+    "authenticated_actor_identity_and_ceiling": true,
+    "tool_version_and_adapter_digest": true,
+    "capability_and_contract": true,
+    "resource_scope_and_environment": true,
+    "policy_version_and_digest": true,
+    "idempotency_key": true,
+    "hard_budget": true,
+    "proof_freshness_where_applicable": true,
+    "verification_plan": true,
+    "event_and_evidence_linkage": true
+  },
+  "initial_nonproduction_budget_ceiling": {
+    "max_execution_seconds": 300,
+    "max_retries": 2,
+    "max_concurrency": 4,
+    "max_network_calls": 20,
+    "max_write_bytes": 1048576,
+    "max_tokens": 50000,
+    "max_estimated_cost_usd": 0,
+    "note": "Proposed ceilings only. A runtime must reject missing/unsupported dimensions and must never increase a requested budget silently."
+  },
+  "innovation_loop": {
+    "automatic_candidate_discovery": true,
+    "automatic_canonical_promotion": false,
+    "max_candidates_per_run": 12,
+    "max_recursion_depth": 3,
+    "max_parallel_workers": 4,
+    "max_retries_per_candidate": 2,
+    "requires_source_lineage": true,
+    "requires_duplicate_and_conflict_check": true,
+    "requires_simulation_or_sandbox_before_adoption": true,
+    "requires_independent_verification_for_adoption": true,
+    "requires_governance_decision_for_canonical_adoption": true,
+    "budget_exhaustion": "CHECKPOINT_AND_STOP",
+    "failed_candidate_action": "PRESERVE_EVIDENCE_AND_UPDATE_FAILURE_LINEAGE"
+  },
+  "audit_requirements": {
+    "record_allow_hold_quarantine_reject": true,
+    "append_only_decision_history": true,
+    "record_policy_digest": true,
+    "record_actor_tool_and_target": true,
+    "record_budget_actuals": true,
+    "record_evidence_and_verifier": true,
+    "record_cancellation_and_rollback": true,
+    "redact_secret_values": true,
+    "replay_required_for_deterministic_claims": true
+  },
+  "admission_gates": {
+    "schema_validation": "REQUIRED",
+    "identity_and_signature": "REQUIRED",
+    "policy_and_authority_intersection": "REQUIRED",
+    "positive_negative_and_adversarial_tests": "REQUIRED",
+    "budget_enforcement_tests": "REQUIRED",
+    "approval_digest_and_expiry_tests": "REQUIRED",
+    "event_and_replay_tests": "REQUIRED_WHERE_APPLICABLE",
+    "independent_review": "REQUIRED",
+    "canonical_approval": "REQUIRED",
+    "runtime_integration_evidence": "REQUIRED_BEFORE_ENFORCEMENT_CLAIM"
+  },
+  "related_contracts": [
+    "docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md",
+    "schemas/vx-tool-action-envelope.v1.schema.json",
+    "schemas/vx-tool-policy-decision.v1.schema.json",
+    "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+    "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+    "docs/architecture/VX_FEDERATION_GATE_V1.md",
+    "docs/canonical/FINALITY_GATE_V1.md"
+  ],
+  "default_max_authority": "A3_SANDBOX_MUTATE",
+  "enforcement_note": "Default ceiling is sandbox mutation or lower. A4+ requires an explicitly reviewed policy/environment profile; this policy remains inactive until separately admitted."
+}

@@ -13,7 +13,43 @@
 - `MASTER_RECOVERY_STATUS.md` — current corpus and federation coverage.
 - `ARCHIVE_SOURCE_INDEX.md` — supplied project sources, hashes, classifications.
 - `INNOVATION_MASTER_INDEX.md` — innovation catalog with canonical placement.
+- `../innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md` — recovered 97-item portfolio, implementation/evidence boundaries, and phased execution sequence; review projection only.
+- `../innovation/INNOVATION_OPERATION_INDEX.md` — generated detailed innovation descriptions, operation steps, inputs/outputs, admission gates, failure modes, source lineage, and status disagreements.
+- `../../registry/innovation-operation-index.v1.json` — machine-readable generated innovation operation index; regenerate with `python tools/build_innovation_operation_index.py`.
 - `REPOSITORY_FEDERATION_INDEX.md` — all 40 currently visible owned repositories and their role.
 - `ENGINEERING_DECISION_REGISTER.md` — concise architecture rationale; not private chain-of-thought.
 - `CANONICAL_REPOSITORY_LAYOUT.md` — target structure and ownership boundaries.
 - `REPOSITORY_PERPETUAL_ENGINE_V1.md` — continuous repository creation, development, verification and innovation loop.
+
+- `../architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md` — 2026-10-07 consolidated architecture context for index memory, VX cognitive federation, agent minds, Ω-Patterns, prediction/recovery, data/tools/developers, Ω-Arena, security, and treasury integration.
+- ../architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md — governed system memory, source lineage, Ω.000 synchronization, historical preservation, and typed engineering-language processing.
+- ../integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md — ARC-X to VX engineering task routing for mathematics, numerical computing, software and physics simulation; remains SPECIFIED until runtime evidence closes the gates.
+- ../../schemas/vaixlns-system-memory-record.schema.json — machine-readable provenance-preserving memory-record contract.
+- ../../schemas/vaixlns-language-compilation-record.schema.json — typed language compile receipt with provenance, AST/type/unit checks, EIR links, and no-authority guarantees.
+- ../testing/ENGINEERING_TEST_ACCELERATION_AND_ASSURANCE_PLAN_V1.md — staged plan for faster CI feedback, impact-aware selection, stronger adversarial/domain tests, deterministic replay, and measured assurance.
+- ../architecture/VAIXLNS_CAPABILITY_INTEGRATION_AND_ENGINEERING_ACCELERATION_ROADMAP_V1.md — provider-neutral capability adapters, tool orchestration, safe parallelism, evidence receipts, and engineering acceleration.
+- ../../schemas/arcx-vx-engineering-task.schema.json — typed task envelope for controlled engineering compute.
+- ../../schemas/arcx-vx-engineering-receipt.schema.json — signed acknowledgement contract that cannot itself establish verification or canonical admission.
+- ../../registry/omega/proposals/arcx-memory-engineering-federation.v1.json — proposal-only Ω.000 delta; not a canonical write.
+- ../../registry/tools/arc-x.yaml — ARC-X tool contract with memory, language-processing and engineering-compute operations.
+- ../../scripts/arcx_vx_bridge.py — explicit fail-closed client for a configured VX engineering endpoint; receipt acknowledgement is not proof or admission.
+- ../../tests/test_arcx_vx_bridge.py — unit tests for preflight, explicit memory coverage, signed receipt validation, and endpoint safety (test execution remains to be verified).
+
+
+- `../strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md` — Saudi-first engineering offers, founder-financed launch capital, sources-and-uses ledger, and 30-day reserve rule.
+- `../../registry/capital_lock_policy.v1.json` — machine-readable proposed capital policy; not technically enforced until separately evidenced.
+- `../../registry/saudi_innovation_launch.v1.json` — launch status, offer targets, partner-slot status, and acceptance gates.
+
+- `../tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md` — implemented archive extraction/search core, zero-loss provenance rules, exact-repeat reporting, similarity review, and JSONL export. Live adapters and full 0001–2750 recovery remain pending.
+
+- VAIXLNS_ZERO_LOSS_INDEX_V1.md — unified 28-view zero-loss index contract, atomic record rules, and build/verify commands.
+- ../../registry/indexes/zero-loss-index-taxonomy.v1.json — machine-readable definitions of all 28 index views and transition gates.
+- The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
+
+- [VAIXLNS Global Research System V1](../research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md) — provenance-first research architecture, evidence gates, source strategy, metrics and staged delivery.
+
+- ../architecture/VAIXLNS_ENGINEERING_MIND_AND_REPOSITORY_CONTINUITY_FABRIC_V1.md — integrated architecture for repository continuity, the Ω.000/XV/VCRE/VX/VV/ARC-X engineering minds, predictive model discipline, and governed self-improvement.
+- ../../vcre/predictive.py — reference RK4 predictive simulation kernel with step-doubling diagnostics, invariant checks, counterfactual scenario comparison, and explicit observation-validation states.
+- ../../tools/engineering_test_router.py — conservative change-impact test routing; unknown impact and missing Git-diff metadata fall back to the full unit-test suite and produce an execution receipt.
+- ../../tests/test_vcre_predictive.py and ../../tests/test_engineering_test_router.py — executable tests for the bounded predictive kernel and safe test-selection rules.
+- ../../.github/workflows/engineering-fast-feedback.yml — focused engineering feedback workflow that publishes a machine-readable test receipt; it does not waive other CI gates.

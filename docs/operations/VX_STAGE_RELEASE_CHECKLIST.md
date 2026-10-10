@@ -1,0 +1,22 @@
+# VX Stage Release Checklist
+
+- [ ] Approved revision captured.
+- [ ] Ω.000 linkage present.
+- [ ] VX instance identity present.
+- [ ] Capability contract present.
+- [ ] Authority envelope present.
+- [ ] Request authentication passes.
+- [ ] Heartbeat/lease reaches ACTIVE.
+- [ ] Authority-aware routing passes.
+- [ ] Controlled isolation blocks routing.
+- [ ] Recovery returns the instance to ACTIVE.
+- [ ] End-to-end evidence artifact emitted.
+- [ ] Provenance hash recorded.
+- [ ] Canonical admission gate passes.
+- [ ] Federation integrity gate passes.
+- [ ] Unit/conformance tests pass.
+- [ ] Security objectives pass.
+- [ ] Load/performance evidence attached for production promotion.
+- [ ] Rollback revision recorded.
+- [ ] No operational credentials or customer data committed.
+- [ ] Human authority decision recorded for production promotion.

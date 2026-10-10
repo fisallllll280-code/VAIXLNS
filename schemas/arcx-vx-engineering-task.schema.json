@@ -1,0 +1,761 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/arcx-vx-engineering-task.schema.json",
+  "title": "ARC-X to VX Federated Engineering Task",
+  "description": "A provenance-bearing execution request. Schema validity is not authorization or proof of correctness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "idempotency_key",
+    "created_at",
+    "source_revision",
+    "input_artifacts",
+    "eir_ref",
+    "memory_context",
+    "domain",
+    "operation",
+    "required_capabilities",
+    "assumptions",
+    "constraints",
+    "proof_obligations",
+    "verification_profile",
+    "resource_request",
+    "security",
+    "reproducibility",
+    "execution_mode",
+    "policy_version",
+    "authorization_ref",
+    "lineage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "parent_task_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deadline": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "source_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_id",
+          "sha256",
+          "media_type",
+          "trust_state"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uri": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trust_state": {
+            "enum": [
+              "UNTRUSTED",
+              "SCREENED",
+              "TRUSTED_FOR_DECLARED_USE"
+            ]
+          },
+          "source_revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "eir_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_record_refs",
+        "policy_version"
+      ],
+      "properties": {
+        "parent_record_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "previous_decision_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "policy_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "domain": {
+      "enum": [
+        "MATHEMATICS",
+        "NUMERICAL_COMPUTING",
+        "SOFTWARE_ENGINEERING",
+        "PHYSICS_SIMULATION",
+        "ENGINEERING_SIMULATION",
+        "GENERAL_ANALYSIS"
+      ]
+    },
+    "operation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "input_schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "output_schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "statement",
+          "status"
+        ],
+        "properties": {
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "DECLARED",
+              "SUPPORTED",
+              "UNVERIFIED",
+              "REJECTED"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "constraint_id",
+          "kind",
+          "expression"
+        ],
+        "properties": {
+          "constraint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "SAFETY",
+              "SECURITY",
+              "PRIVACY",
+              "LICENSING",
+              "RESOURCE",
+              "NUMERICAL",
+              "DOMAIN",
+              "DEADLINE",
+              "OTHER"
+            ]
+          },
+          "expression": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hard_gate": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "proof_obligations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "obligation_id",
+          "statement",
+          "acceptance_method",
+          "criticality"
+        ],
+        "properties": {
+          "obligation_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptance_method": {
+            "enum": [
+              "FORMAL_PROOF",
+              "PROOF_CHECKER",
+              "UNIT_TEST",
+              "INTEGRATION_TEST",
+              "BENCHMARK",
+              "NUMERICAL_RESIDUAL",
+              "INVARIANT_CHECK",
+              "INDEPENDENT_REPLICATION",
+              "HUMAN_REVIEW",
+              "OTHER"
+            ]
+          },
+          "criticality": {
+            "enum": [
+              "BLOCKING",
+              "HIGH",
+              "NORMAL",
+              "INFORMATIONAL"
+            ]
+          },
+          "tolerance": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "verification_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "independent_verification_required",
+        "fail_closed"
+      ],
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "independent_verification_required": {
+          "type": "boolean"
+        },
+        "fail_closed": {
+          "const": true
+        },
+        "minimum_verifier_diversity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowed_equivalence": {
+          "enum": [
+            "BITWISE",
+            "NUMERICAL_TOLERANCE",
+            "SEMANTIC_CONTRACT",
+            "DOMAIN_DEFINED"
+          ]
+        }
+      }
+    },
+    "resource_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cpu_cores",
+        "memory_mib",
+        "wall_time_seconds",
+        "max_attempts"
+      ],
+      "properties": {
+        "cpu_cores": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "memory_mib": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "accelerator_class": {
+          "enum": [
+            "NONE",
+            "GPU",
+            "TPU",
+            "FPGA",
+            "SPECIALIZED",
+            "ANY_ELIGIBLE"
+          ]
+        },
+        "accelerator_memory_mib": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "disk_mib": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wall_time_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "max_cost_microunits": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "parallelism": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "data_residency",
+        "network_policy",
+        "external_side_effects_allowed"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED"
+          ]
+        },
+        "data_residency": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "network_policy": {
+          "enum": [
+            "DENY",
+            "ALLOWLIST_ONLY",
+            "DECLARED_ENDPOINTS_ONLY"
+          ]
+        },
+        "external_side_effects_allowed": {
+          "const": false
+        },
+        "license_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secret_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reproducibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "environment_digest",
+        "dependency_lock_digest",
+        "seed_policy",
+        "determinism_requirement"
+      ],
+      "properties": {
+        "environment_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependency_lock_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed_policy": {
+          "enum": [
+            "FIXED",
+            "RECORDED_RANDOM",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "determinism_requirement": {
+          "enum": [
+            "BITWISE",
+            "NUMERICAL_TOLERANCE",
+            "SEMANTIC_CONTRACT",
+            "BEST_EFFORT"
+          ]
+        },
+        "solver_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "precision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unit_system": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "initial_conditions_digest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "boundary_conditions_digest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "execution_mode": {
+      "enum": [
+        "ANALYZE",
+        "SIMULATE",
+        "TEST",
+        "EXECUTE"
+      ]
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "VALIDATED",
+        "AUTHORIZED",
+        "QUEUED",
+        "DISPATCHED",
+        "RUNNING",
+        "RESULT_CAPTURED",
+        "RESULT_CAPTURED_EVIDENCE_PENDING",
+        "VERIFIED",
+        "INCONCLUSIVE",
+        "FAILED",
+        "GOVERNANCE_PENDING",
+        "ADMITTED",
+        "REJECTED",
+        "BLOCKED",
+        "QUARANTINED"
+      ]
+    },
+    "memory_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_refs",
+        "index_revision",
+        "retrieval_receipt_ref",
+        "coverage_state",
+        "query_ref",
+        "uncovered_scopes",
+        "rationale"
+      ],
+      "properties": {
+        "record_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "index_revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieval_receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "coverage_state": {
+          "enum": [
+            "COMPLETE_FOR_SCOPE",
+            "PARTIAL",
+            "NONE",
+            "CONFLICT"
+          ]
+        },
+        "query_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uncovered_scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "language_artifact_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "References to the exact grammar/parser/compiler artifacts that produced typed inputs; absence must not be represented as verified language support."
+    },
+    "index_delta_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optional proposed Ω.000 delta; a reference does not authorize canonical write."
+    },
+    "system_context_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Evidenced system IDs or contract refs that bound the cross-system task."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution_mode": {
+            "const": "EXECUTE"
+          }
+        },
+        "required": [
+          "execution_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorization_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "PHYSICS_SIMULATION"
+          }
+        },
+        "required": [
+          "domain"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution_mode": {
+            "enum": [
+              "ANALYZE",
+              "SIMULATE",
+              "TEST"
+            ]
+          },
+          "reproducibility": {
+            "required": [
+              "unit_system",
+              "solver_version"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "memory_context": {
+            "properties": {
+              "coverage_state": {
+                "const": "COMPLETE_FOR_SCOPE"
+              }
+            },
+            "required": [
+              "coverage_state"
+            ]
+          }
+        },
+        "required": [
+          "memory_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "memory_context": {
+            "properties": {
+              "record_refs": {
+                "minItems": 1
+              },
+              "index_revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "retrieval_receipt_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uncovered_scopes": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

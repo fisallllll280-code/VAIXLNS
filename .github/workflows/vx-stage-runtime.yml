@@ -1,0 +1,66 @@
+name: vx-stage-runtime
+
+on:
+  push:
+    paths:
+      - "scripts/vx_stage_runtime.py"
+      - "tests/test_vx_stage_runtime.py"
+      - "schemas/vx-stage-evidence.schema.json"
+      - "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md"
+      - "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md"
+      - "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
+      - ".github/workflows/vx-stage-runtime.yml"
+  pull_request:
+    paths:
+      - "scripts/vx_stage_runtime.py"
+      - "tests/test_vx_stage_runtime.py"
+      - "schemas/vx-stage-evidence.schema.json"
+      - "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md"
+      - "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md"
+      - "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
+      - ".github/workflows/vx-stage-runtime.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate stage evidence schema
+        run: python -m json.tool schemas/vx-stage-evidence.schema.json >/dev/null
+
+      - name: Compile stage runtime
+        run: python -m py_compile scripts/vx_stage_runtime.py tests/test_vx_stage_runtime.py
+
+      - name: Run stage conformance tests
+        run: python -m unittest discover -s tests -p "test_vx_stage_runtime.py" -v
+
+      - name: Run Stage golden scenario
+        run: python scripts/vx_stage_runtime.py stage-run --output stage-evidence.json
+
+      - name: Run canonical admission gate
+        run: python scripts/admission_gate.py
+
+      - name: Run federation integrity gate
+        run: python scripts/federation_integrity_gate.py
+
+      - name: Upload Stage evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-stage-runtime-evidence
+          path: |
+            stage-evidence.json
+            federation-integrity-evidence.txt

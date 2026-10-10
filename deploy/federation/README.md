@@ -20,3 +20,11 @@ Ingress -> VAIXLNS Control -> System Router
 ```
 
 A deployment is not VERIFIED from this manifest alone. Verification requires dependency resolution, startup, health, tests, evidence capture and reproducible verification.
+
+## Server discovery and runtime bootstrap
+
+- [Server discovery runbook](../../docs/operations/SERVER_DISCOVERY_BOOTSTRAP_V1.md)
+- [Server discovery registry](../../registry/infrastructure/SERVER_DISCOVERY_REGISTRY_V1.json)
+- [Bounded probe implementation](../../tools/server_discovery_probe.py)
+
+These artifacts discover explicit endpoints only. They are not a declaration that the infrastructure dependencies above have been deployed or verified.

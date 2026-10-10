@@ -95,3 +95,12 @@ CLOUD/AGENT
 \`\`\`
 
 No blind copy-and-rename operation is permitted.
+
+
+## VX specialist-agent coordination proposal — 2026-10-09
+
+| Repository | Role | Disposition |
+|---|---|---|
+| vx-agents-fabric | Versioned VX research, financial-analysis and engineering specialist orchestration; Ω Parent Multi-Mind review adapters | PROPOSED INTEGRATION — PR OPEN; NOT CANONICALLY ADMITTED |
+
+The repository is maintained as a distinct implementation surface. It must enter through the universal integration gate, preserve its own versions and lineage, and may not mutate canonical VAIXLNS state. A green unit-test workflow is implementation evidence only; it is not proof of production readiness or runtime connectivity.

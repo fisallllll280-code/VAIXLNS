@@ -1,0 +1,38 @@
+{
+  "policy_id": "Ω.INTEGRATION.001",
+  "version": "1.0.0",
+  "default": "DENY",
+  "authority": "VAIXLNS",
+  "classes": [
+    "MODEL",
+    "API",
+    "SERVER",
+    "TOOL",
+    "CONNECTOR",
+    "REPOSITORY",
+    "DATA_SOURCE"
+  ],
+  "mandatory_gates": [
+    "IDENTITY",
+    "CONTRACT",
+    "SANDBOX",
+    "FUNCTIONAL_TEST",
+    "FAILURE_RECOVERY",
+    "REPLAY",
+    "INDEPENDENT_VERIFICATION",
+    "PROOF_FRESHNESS",
+    "CAUSAL_IMPACT_BUDGET",
+    "EXPLICIT_AUTHORITY"
+  ],
+  "runtime_rule": "ADMITTED + FRESH_PROOF + MATCHED_IDENTITY + ALLOWED_CAPABILITY",
+  "canonical_rule": "EXPLICIT_CANONICAL_AUTHORITY_AFTER_ADMISSIBLE",
+  "drift_invalidators": [
+    "endpoint",
+    "capabilities",
+    "contract_version",
+    "dependency_fingerprint",
+    "environment_fingerprint",
+    "model_version",
+    "owner"
+  ]
+}
