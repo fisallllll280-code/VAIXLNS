@@ -62,5 +62,10 @@ class BoundedAdaptiveEvolutionTests(unittest.TestCase):
             plan = plan_evolution(self.system, [self.proposal(benefit_score=score)])
             self.assertEqual(plan["proposals"][0]["state"], "BLOCKED")
 
+    def test_malformed_change_class_fails_closed(self):
+        plan = plan_evolution(self.system, [self.proposal(change_class=["LOCAL_CACHE"])])
+        self.assertEqual(plan["proposals"][0]["state"], "BLOCKED")
+        self.assertIn("UNKNOWN_OR_NONLOCAL_CHANGE_CLASS", plan["proposals"][0]["blockers"])
+
 if __name__ == "__main__":
     unittest.main()
