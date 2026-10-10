@@ -255,8 +255,10 @@ class ExecutionAndAdmissionTests(unittest.TestCase):
             reproduction_command="python -m unittest tests.test_omega_memory_task_kernel -v",
             independent_check_passed=True,
         )
-        self.assertEqual(result["decision"], "ACCEPT")
-        self.assertEqual(result["epistemic_state"], "VERIFIED")
+        self.assertEqual(result["decision"], "ELIGIBLE_FOR_GOVERNANCE_REVIEW")
+        self.assertEqual(result["epistemic_state"], "IMPLEMENTED")
+        self.assertEqual(result["requested_epistemic_state"], "VERIFIED")
+        self.assertEqual(result["canonical_promotion"], "NOT_PERFORMED")
         self.assertEqual(result["promotion_authority"], "SEPARATE_CANONICAL_GOVERNANCE_REQUIRED")
 
 
