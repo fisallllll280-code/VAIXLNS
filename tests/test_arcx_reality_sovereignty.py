@@ -10,6 +10,7 @@ from scripts.arcx_reality_sovereignty import (
     assess_reality_object,
     build_audit_chain,
     build_provenance_graph,
+    reconcile_transition_outcome,
     evaluate_proof_of_ignorance,
     evaluate_transition_candidate,
     find_contradictions,
@@ -244,6 +245,58 @@ class RealitySovereigntyTests(unittest.TestCase):
         item = universe()
         item["universe_digest"] = "sha256:" + "f" * 64
         self.assertEqual(evaluate_proof_of_ignorance(item)["state"], "INCOMPLETE")
+
+    def test_execution_report_without_observation_is_not_reconciled(self):
+        item = {
+            "schema_version": TRANSITION_SCHEMA,
+            "transition_id": "transition-001",
+            "observation_scope": "repo@commit-1",
+            "temporal_scope": {
+                "start_utc": "2026-10-10T10:00:00Z",
+                "end_utc": "2026-10-10T11:00:00Z",
+            },
+            "expected_postcondition_digest": "sha256:" + "7" * 64,
+            "execution_receipt_digest": "sha256:" + "8" * 64,
+        }
+        result = reconcile_transition_outcome(item)
+        self.assertEqual(result["state"], "EXECUTION_REPORTED_OUTCOME_UNKNOWN")
+        self.assertFalse(result["reconciled"])
+        self.assertFalse(result["execution_receipt_authenticated"])
+
+    def test_postcondition_mismatch_is_not_rewritten_as_success(self):
+        item = {
+            "schema_version": TRANSITION_SCHEMA,
+            "transition_id": "transition-002",
+            "observation_scope": "repo@commit-1",
+            "temporal_scope": {
+                "start_utc": "2026-10-10T10:00:00Z",
+                "end_utc": "2026-10-10T11:00:00Z",
+            },
+            "expected_postcondition_digest": "sha256:" + "7" * 64,
+            "execution_receipt_digest": "sha256:" + "8" * 64,
+            "observed_postcondition_digest": "sha256:" + "9" * 64,
+            "observation_receipt_digest": "sha256:" + "a" * 64,
+        }
+        self.assertEqual(reconcile_transition_outcome(item)["state"], "POSTCONDITION_MISMATCH")
+
+    def test_matching_postcondition_is_only_a_candidate_until_verified(self):
+        item = {
+            "schema_version": TRANSITION_SCHEMA,
+            "transition_id": "transition-003",
+            "observation_scope": "repo@commit-1",
+            "temporal_scope": {
+                "start_utc": "2026-10-10T10:00:00Z",
+                "end_utc": "2026-10-10T11:00:00Z",
+            },
+            "expected_postcondition_digest": "sha256:" + "7" * 64,
+            "execution_receipt_digest": "sha256:" + "8" * 64,
+            "observed_postcondition_digest": "sha256:" + "7" * 64,
+            "observation_receipt_digest": "sha256:" + "a" * 64,
+        }
+        result = reconcile_transition_outcome(item)
+        self.assertEqual(result["state"], "POSTCONDITION_MATCH_CANDIDATE")
+        self.assertTrue(result["reconciled"])
+        self.assertFalse(result["observation_receipt_authenticated"])
 
     def test_transition_candidate_never_executes(self):
         result = evaluate_transition_candidate(transition())
