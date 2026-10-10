@@ -208,6 +208,7 @@ def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
         else:
             excluded: set[str] = set()
             last_error: Exception | None = None
+            last_error_worker_id: str | None = None
             # Try distinct configured nodes, at most once each, then fail or fall back.
             for _ in range(len(workers)):
                 state = pool.acquire(excluded)
@@ -221,11 +222,12 @@ def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
                     break
                 except (HTTPError, URLError, TimeoutError, OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
                     last_error = exc
+                    last_error_worker_id = state.worker.worker_id
                     pool.release(state, (time.perf_counter() - remote_start) * 1000, False)
             if row is None:
                 if allow_local_fallback:
                     row = local(i, problem, task_id, "FALLBACK_LOCAL",
-                                last_error_worker_id if False else (next(iter(excluded)) if excluded else None), last_error)
+                                last_error_worker_id, last_error)
                 else:
                     row = {"task_id": task_id, "result": None,
                            "execution": {"status": "FAILED", "transport": "https",
