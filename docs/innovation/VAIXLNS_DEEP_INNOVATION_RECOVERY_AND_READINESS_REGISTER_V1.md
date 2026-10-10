@@ -7,7 +7,7 @@
 
 ## 1. Recovery findings that govern this register
 
-The repository already contains a substantial innovation corpus. This register supplements it; it does not replace generated source catalogs or promote ideas to canonical status.
+The repository already contains a substantial innovation corpus. This register supplements it; it does not replace generated source catalogs or promote ideas to canonical status. The register is a review projection; it does not itself mutate canonical files, registries, repositories, or runtime state.
 
 | Existing source | Inventory fact observed | Interpretation |
 |---|---|---|
