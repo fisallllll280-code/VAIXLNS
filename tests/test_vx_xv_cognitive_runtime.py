@@ -51,7 +51,7 @@ def test_empty_request_rejected():
 
 
 def test_verified_claim_without_evidence_is_downgraded():
-    assessment = evaluate_claim(Claim("c1", "Claim", "VERIFIED"))
+    assessment = evaluate_claim(Claim("c1", "Claim", "VERIFIED"), evidence=())
     assert assessment.effective_state == "UNVERIFIED"
     assert assessment.admissible_as_verified is False
 
