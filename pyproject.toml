@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vaixlns-cognitive-runtime"
+version = "0.1.0"
+description = "Evidence-aware task planning and local continuity kernel for VAIXLNS VX/XV"
+readme = "docs/product/VAIXLNS_MARKET_PRODUCT_STRATEGY_V1.md"
+requires-python = ">=3.12"
+license = { text = "License to be determined before public distribution" }
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+vaixlns-plan = "vaixlns_cognitive_runtime.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
