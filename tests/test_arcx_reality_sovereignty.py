@@ -9,6 +9,7 @@ from scripts.arcx_reality_sovereignty import (
     assess_ontology_transition,
     assess_reality_object,
     build_audit_chain,
+    build_provenance_graph,
     evaluate_proof_of_ignorance,
     evaluate_transition_candidate,
     find_contradictions,
@@ -193,6 +194,26 @@ class RealitySovereigntyTests(unittest.TestCase):
         self.assertEqual(found["contradictions"][0]["resolution"], None)
         second["observation_scope"] = "different-snapshot"
         self.assertEqual(find_contradictions([first, second])["state"], "NO_SCOPED_CANDIDATES_FOUND")
+
+    def test_ignorance_rejects_unhashable_path_entries(self):
+        item = universe()
+        item["path_ids"] = [{"path": "not-a-string"}]
+        self.assertEqual(evaluate_proof_of_ignorance(item)["state"], "INCOMPLETE")
+
+    def test_contradictions_do_not_cross_reality_layers(self):
+        first = reality("claim-a", "present", [evidence("a")], "same-snapshot")
+        second = reality("claim-b", "absent", [evidence("b", "SUPPORTS", "source-b")], "same-snapshot")
+        second["layer"] = "BELIEVED_STATE"
+        self.assertEqual(find_contradictions([first, second])["state"], "NO_SCOPED_CANDIDATES_FOUND")
+
+    def test_provenance_graph_is_deterministic_and_reports_shared_dependencies(self):
+        first = reality("claim-a", "present", [evidence("a", "SUPPORTS", "shared-provider")])
+        second = reality("claim-b", "cached", [evidence("b", "CONTRADICTS", "shared-provider")])
+        graph = build_provenance_graph([first, second])
+        self.assertEqual(graph["state"], "BUILT")
+        self.assertEqual(len(graph["correlation_signals"]), 1)
+        self.assertFalse(graph["independence_proved"])
+        self.assertEqual(graph["graph_digest"], build_provenance_graph([second, first])["graph_digest"])
 
     def test_bounded_ignorance_requires_complete_declared_universe(self):
         result = evaluate_proof_of_ignorance(universe())
