@@ -10,6 +10,7 @@ Security posture:
 from __future__ import annotations
 
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from contextlib import contextmanager
 import hashlib
 import hmac
 import json
@@ -57,7 +58,7 @@ class JobStore:
     def __init__(self, path: str):
         self.path = path
         Path(path).parent.mkdir(parents=True, exist_ok=True)
-        with self.connect() as db:
+        with self.session() as db:
             db.execute("PRAGMA journal_mode=WAL")
             db.execute("PRAGMA synchronous=FULL")
             db.execute("""CREATE TABLE IF NOT EXISTS jobs (
@@ -73,11 +74,21 @@ class JobStore:
                 error_code TEXT
             )""")
             db.execute("CREATE INDEX IF NOT EXISTS jobs_state_created ON jobs(state, created_at)")
+            # Only built-in deterministic handlers exist; interrupted RUNNING jobs are safe to retry.
+            db.execute("UPDATE jobs SET state='QUEUED', updated_at=? WHERE state='RUNNING'", (time.time(),))
 
     def connect(self):
         db = sqlite3.connect(self.path, timeout=10, isolation_level=None)
         db.row_factory = sqlite3.Row
         return db
+
+    @contextmanager
+    def session(self):
+        db = self.connect()
+        try:
+            yield db
+        finally:
+            db.close()
 
     def submit(self, action: str, payload: dict[str, Any], idempotency_key: str | None = None):
         if action not in SUPPORTED_ACTIONS:
