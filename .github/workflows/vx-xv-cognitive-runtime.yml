@@ -1,0 +1,32 @@
+name: vx-xv-cognitive-runtime
+
+on:
+  pull_request:
+    paths:
+      - "src/vaixlns_cognitive_runtime/**"
+      - "tests/test_vx_xv_cognitive_runtime.py"
+      - "schemas/cognitive-claim-evidence.v1.schema.json"
+      - "registry/cognitive/vx-xv-capability-registry.v1.json"
+      - ".github/workflows/vx-xv-cognitive-runtime.yml"
+  push:
+    branches: ["feat/vx-xv-cognitive-continuity-v1"]
+    paths:
+      - "src/vaixlns_cognitive_runtime/**"
+      - "tests/test_vx_xv_cognitive_runtime.py"
+      - ".github/workflows/vx-xv-cognitive-runtime.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  cognitive-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run cognitive runtime regression suite
+        env:
+          PYTHONPATH: src
+        run: python -m pytest -q tests/test_vx_xv_cognitive_runtime.py
