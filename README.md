@@ -42,17 +42,28 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [VLA Federation Contract](docs/integration/VLA_FEDERATION_CONTRACT_V1.md)
 - [OpenVLA provider registry](registry/vla.openvla.7b.json)
 
-
 ## VX Cognitive Fabric
 
 - [VX Ω-Cognitive Fabric](docs/cognitive/VX_OMEGA_COGNITIVE_FABRIC_V1.md)
+- [VX/XV Cognitive Continuity Engine v1](docs/cognitive/VX_XV_COGNITIVE_CONTINUITY_ENGINE_V1.md)
 - [VLNS Model Activation Fabric](docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md)
 - [VX Cognitive Fabric Restoration Index](docs/cognitive/VX_COGNITIVE_FABRIC_RESTORATION_INDEX_V1.md)
 - [Capability Genome schema](schemas/vx-capability-genome.schema.yaml)
 - [Ω-Arena schema](schemas/vx-arena.schema.yaml)
+- [Epistemic claim/evidence schema](schemas/cognitive-claim-evidence.v1.schema.json)
+- [VX/XV role capability registry](registry/cognitive/vx-xv-capability-registry.v1.json)
 
 **Boundary:** VAIXLNS is canonical authority; VLNS is the governed model/semantic activation boundary; VX is the cognitive execution, experiment, verification, replay, and capability-synthesis boundary. Historical repository identities remain evidence-gated.
 
+## VX/XV CLI Alpha and Product Readiness
+
+- [CLI quickstart](docs/product/VAIXLNS_CLI_QUICKSTART_V1.md)
+- [Product acceptance gates](docs/product/VAIXLNS_PRODUCT_ACCEPTANCE_GATES_V1.md)
+- [Market product strategy](docs/product/VAIXLNS_MARKET_PRODUCT_STRATEGY_V1.md)
+- [Distribution and marketplace roadmap](docs/product/VAIXLNS_DISTRIBUTION_AND_MARKETPLACE_ROADMAP_V1.md)
+- [Recovered formulations and engineering calculus](docs/recovery/VAIXLNS_RECOVERED_FORMULATIONS_AND_ENGINEERING_CALCULUS_V1.md)
+
+The CLI currently produces a structured plan and local continuity checkpoint. It is not yet an LLM-backed universal planner, does not execute arbitrary tasks, and has no production provider connectivity. Product release remains blocked until acceptance gates are closed with evidence.
 
 ## VLNS → VX Governed Activation
 
