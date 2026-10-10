@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARC-X Bounded Compute Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "plan_id",
+    "state",
+    "workload",
+    "limits",
+    "policy_checks",
+    "authority",
+    "execution_performed"
+  ],
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "PLAN_ONLY",
+        "BLOCKED",
+        "PENDING_REVIEW",
+        "AUTHORIZED",
+        "PROVISION_REQUESTED",
+        "ACTIVE_VERIFIED",
+        "DESTROYED_VERIFIED"
+      ]
+    },
+    "workload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workload_type",
+        "cpu",
+        "memory_gib",
+        "duration_minutes"
+      ],
+      "properties": {
+        "workload_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cpu": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "memory_gib": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gpu_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storage_gib": {
+          "type": "number",
+          "minimum": 0
+        },
+        "duration_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "image_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(sha256:)?[0-9a-f]{64}$"
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_cost",
+        "max_concurrency",
+        "ttl_enforced"
+      ],
+      "properties": {
+        "max_cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ttl_enforced": {
+          "const": true
+        },
+        "public_ingress_allowed": {
+          "const": false
+        }
+      }
+    },
+    "policy_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_id",
+          "state"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "PENDING"
+            ]
+          },
+          "evidence_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_approval_required",
+        "approved"
+      ],
+      "properties": {
+        "human_approval_required": {
+          "const": true
+        },
+        "approved": {
+          "const": false
+        },
+        "approval_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "execution_performed": {
+      "const": false
+    },
+    "plan_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$comment": "Planning output only; no provider calls or infrastructure changes."
+}
