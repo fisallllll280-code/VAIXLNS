@@ -125,6 +125,24 @@ class SovereignConsoleTests(unittest.TestCase):
         self.assertEqual(len(result["data"]["trace"][1]["handoff_state_hash"]), 64)
         self.assertEqual(result["data"]["epistemic_state"], "SPECIFIED")
 
+    def test_scale_simulation_reports_obstacles_and_is_repeatable(self):
+        first = self.engine.execute("scale simulate all")
+        second = self.engine.execute("scale simulate all")
+        self.assertTrue(first["ok"], first["lines"])
+        self.assertEqual(first["data"]["trace_hash"], second["data"]["trace_hash"])
+        self.assertEqual(first["data"]["epistemic_state"], "SPECIFIED")
+        self.assertEqual(first["data"]["outcome"], "BLOCKED")
+        self.assertTrue(any(item["severity"] == "BLOCKER" for item in first["data"]["findings"]))
+        self.assertTrue(any("No repository files were changed" in line for line in first["lines"]))
+
+    def test_scale_report_summarizes_session_findings_without_canonical_promotion(self):
+        self.engine.execute("scale simulate federation")
+        report = self.engine.execute("scale report")
+        self.assertTrue(report["ok"], report["lines"])
+        self.assertEqual(report["data"]["run_count"], 1)
+        self.assertEqual(report["data"]["persistence"], "PROCESS_LOCAL")
+        self.assertTrue(any("Canonical promotion: none" in line for line in report["lines"]))
+
     def test_session_events_are_hash_linked(self):
         first = self.engine.execute("status")
         second = self.engine.execute("history")
