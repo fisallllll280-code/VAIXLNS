@@ -65,11 +65,12 @@ class InnovationServerTests(unittest.TestCase):
                 max_active = max(max_active, active)
             try:
                 time.sleep(0.12)
-                return run_builtin(action, payload)
+                return real_handler(action, payload)
             finally:
                 with guard:
                     active -= 1
 
+        real_handler = run_builtin
         pool = WorkerPool(self.store, workers=3, poll_seconds=0.005)
         with patch("services.innovation_server.server.run_builtin", side_effect=delayed_handler):
             pool.start()
