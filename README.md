@@ -19,6 +19,10 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
+- [Unified innovation delivery map](docs/recovery/VAIXLNS_UNIFIED_INNOVATION_DELIVERY_MAP_2026-10-10.md)
+- [AEPF adversarial engineering and proof fabric](docs/architecture/AEPF_ADVERSARIAL_ENGINEERING_AND_PROOF_FABRIC_V1.md)
+- [Typed federation contract edges](registry/federation/federation_contract_edges.v1.json)
+- [Federation preflight CLI](scripts/federation_preflight.py)
 - [Tools / ARC-X Ω](docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md)
 - [ARC-X Federated Integration & Link Compiler](docs/tools/ARC_X_FEDERATED_INTEGRATION_LINK_COMPILER_V1.md)
 - [ARC-X Bounded Adaptive Evolution Planner](docs/tools/ARC_X_BOUNDED_ADAPTIVE_EVOLUTION_V1.md)
@@ -80,3 +84,22 @@ Historical names and variants remain preserved through provenance and lineage. A
 - [VLNS activation contract registry](registry/vlns_activation_contract.v1.json)
 
 The contract has a reference implementation under VAIXLNS-unified with a green verification run, plus a companion fail-closed pre-activation gate in the vx-agents-fabric feature branch with green unit-test CI. Live VLNS connectivity, external service conformance, VLNS↔NAXLNS identity, and canonical admission remain unverified until evidence closes the required gates.
+
+
+## Four-System Federation Readiness
+
+Run the deterministic, read-only preflight from the repository root:
+
+```bash
+python scripts/federation_preflight.py
+```
+
+The command validates the system and typed-edge manifests and emits a digest-bound JSON readiness report. A structurally valid report does not mean that services are connected or running. Identity mappings marked UNVERIFIED remain blocked, and the preflight never grants authority, writes canonical state, executes workloads, or probes external endpoints.
+
+The federation contract regression suite can be run with:
+
+```bash
+python scripts/validate_four_system_federation.py
+python scripts/validate_federation_contract_edges.py
+python -m unittest tests.test_four_system_federation tests.test_federation_contract_edges tests.test_federation_preflight -v
+```
