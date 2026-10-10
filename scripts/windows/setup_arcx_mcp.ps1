@@ -22,7 +22,7 @@ $VenvPython = Join-Path $RepositoryRoot ".venv-arcx/Scripts/python.exe"
 if ($LASTEXITCODE -ne 0) { throw "pip upgrade failed." }
 & $VenvPython -m pip install -r (Join-Path $RepositoryRoot "requirements-arcx-mcp.txt")
 if ($LASTEXITCODE -ne 0) { throw "ARC-X dependency installation failed." }
-& $VenvPython -m unittest tests.test_arcx_mcp_server -v
+& $VenvPython -m unittest discover -s (Join-Path $RepositoryRoot "tests") -p "test_arcx_mcp_server.py" -v
 if ($LASTEXITCODE -ne 0) { throw "ARC-X MCP tests failed." }
 Write-Host "ARC-X MCP prototype environment and tests completed."
 Write-Host "Set ARCX_REPOSITORY_ROOT before starting the server."
