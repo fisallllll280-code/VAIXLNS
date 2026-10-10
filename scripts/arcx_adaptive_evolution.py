@@ -94,7 +94,9 @@ def plan_evolution(system: dict[str, Any], proposals: list[dict[str, Any]]) -> d
             blockers.append("CAPABILITY_OUTSIDE_SYSTEM_BOUNDARY")
 
         change_class = proposal.get("change_class")
-        if change_class in _FORBIDDEN_CLASSES:
+        if not isinstance(change_class, str):
+            blockers.append("UNKNOWN_OR_NONLOCAL_CHANGE_CLASS")
+        elif change_class in _FORBIDDEN_CLASSES:
             blockers.append("CHANGE_CLASS_REQUIRES_SEPARATE_GOVERNED_WORKFLOW")
         elif change_class not in _ALLOWED_LOCAL_CLASSES:
             blockers.append("UNKNOWN_OR_NONLOCAL_CHANGE_CLASS")
