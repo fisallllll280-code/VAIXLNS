@@ -71,7 +71,8 @@ class InnovationServerTests(unittest.TestCase):
         thread.start()
         base = f"http://127.0.0.1:{server.server_port}"
         try:
-            with urlopen(base + "/health", timeout=2) as response:
+            health_request = Request(base + "/health", headers={"Authorization": "Bearer " + token})
+            with urlopen(health_request, timeout=2) as response:
                 self.assertEqual(response.status, 200)
                 self.assertEqual(json.loads(response.read())["external_effects"], "DISABLED")
             request = Request(
