@@ -1,0 +1,38 @@
+name: Ω.2718 HM-1 Closure Specification
+on:
+  pull_request:
+    paths:
+      - "registry/omega/omega-2718-hm1-closure.v1.json"
+      - "schemas/omega-2718-hm1-closure.v1.schema.json"
+      - "docs/governance/OMEGA_2718_HM1_SOVEREIGN_CLOSURE_V1.md"
+      - "tools/validate_omega_2718_hm1.py"
+      - "tests/test_omega_2718_hm1.py"
+      - ".github/workflows/omega-2718-hm1-closure.yml"
+  push:
+    branches: ["feat/language-repair-fabric-v1-clean"]
+    paths:
+      - "registry/omega/omega-2718-hm1-closure.v1.json"
+      - "schemas/omega-2718-hm1-closure.v1.schema.json"
+      - "tools/validate_omega_2718_hm1.py"
+      - "tests/test_omega_2718_hm1.py"
+      - ".github/workflows/omega-2718-hm1-closure.yml"
+permissions:
+  contents: read
+jobs:
+  hm1-spec-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate JSON
+        run: |
+          python -m json.tool registry/omega/omega-2718-hm1-closure.v1.json > /dev/null
+          python -m json.tool schemas/omega-2718-hm1-closure.v1.schema.json > /dev/null
+      - name: Compile validator and tests
+        run: python -m py_compile tools/validate_omega_2718_hm1.py tests/test_omega_2718_hm1.py
+      - name: Validate fail-closed manifest
+        run: python tools/validate_omega_2718_hm1.py
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -p test_omega_2718_hm1.py -v

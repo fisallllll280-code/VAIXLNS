@@ -1,0 +1,362 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/omega-2718-hm1-closure.v1.schema.json",
+  "title": "Ω.2718 HM-1 Sovereign Closure Domain",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "domain_id",
+    "domain_name",
+    "state",
+    "closure_state",
+    "canonical_repository",
+    "canonical_source",
+    "master_index",
+    "specification_path",
+    "layers",
+    "failure_classes",
+    "drift_levels",
+    "ratification_policy",
+    "trust_roots",
+    "proof_obligations",
+    "ratification_ledger",
+    "independent_audit",
+    "acceptance_gates",
+    "decision_rule",
+    "evidence_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "domain_id": {
+      "const": "Ω.2718"
+    },
+    "domain_name": {
+      "const": "HM-1 Sovereign Closure Domain"
+    },
+    "state": {
+      "enum": [
+        "PROPOSAL",
+        "SPECIFIED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "CONFLICT",
+        "PARTIAL"
+      ]
+    },
+    "closure_state": {
+      "enum": [
+        "BLOCKED_NOT_VERIFIED",
+        "OPEN",
+        "CLOSED_VERIFIED"
+      ]
+    },
+    "canonical_repository": {
+      "const": "fisallllll280-code/VAIXLNS"
+    },
+    "canonical_source": {
+      "type": "object",
+      "required": [
+        "path",
+        "mutation"
+      ],
+      "properties": {
+        "path": {
+          "const": "project.genome"
+        },
+        "mutation": {
+          "const": "FORBIDDEN"
+        }
+      },
+      "additionalProperties": false
+    },
+    "master_index": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "mutation"
+      ],
+      "properties": {
+        "id": {
+          "const": "Ω.000"
+        },
+        "path": {
+          "const": "registry/omega/omega-000-master-index.json"
+        },
+        "mutation": {
+          "const": "FORBIDDEN"
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "layers": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "state",
+          "closure_gate"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^Ω2718-HM1-L(0[1-9]|1[01])$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "PROPOSAL",
+              "SPECIFIED",
+              "IMPLEMENTED",
+              "VERIFIED",
+              "BLOCKED",
+              "UNKNOWN"
+            ]
+          },
+          "closure_gate": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "failure_classes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "STORAGE_FAILURE",
+          "SIGNATURE_FAILURE",
+          "CLOCK_FAILURE",
+          "ACTIVATION_FAILURE",
+          "INTEGRITY_FAILURE"
+        ]
+      }
+    },
+    "drift_levels": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "NONE",
+          "LOW",
+          "MEDIUM",
+          "CRITICAL"
+        ]
+      }
+    },
+    "ratification_policy": {
+      "type": "object",
+      "required": [
+        "required_signatures",
+        "approval_threshold",
+        "effective_after_seconds",
+        "state",
+        "note"
+      ],
+      "properties": {
+        "required_signatures": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "approval_threshold": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "effective_after_seconds": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "state": {
+          "enum": [
+            "POLICY_NOT_CONFIGURED",
+            "CONFIGURED_NOT_VERIFIED",
+            "VERIFIED"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "trust_roots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "root_id",
+          "public_key_fingerprint",
+          "authority_level",
+          "issued_at",
+          "revoked",
+          "evidence_ref"
+        ],
+        "properties": {
+          "root_id": {
+            "type": "string"
+          },
+          "public_key_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "authority_level": {
+            "type": "string"
+          },
+          "issued_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "revoked": {
+            "type": "boolean"
+          },
+          "evidence_ref": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "proof_obligations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "required_proof_classes",
+          "evidence_refs",
+          "state"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "required_proof_classes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "enum": [
+              "OPEN",
+              "SATISFIED",
+              "BLOCKED",
+              "UNKNOWN"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ratification_ledger": {
+      "type": "object",
+      "required": [
+        "state",
+        "append_only_required",
+        "external_immutability_evidence"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "NOT_PROVISIONED",
+            "PROVISIONED_UNVERIFIED",
+            "VERIFIED"
+          ]
+        },
+        "append_only_required": {
+          "const": true
+        },
+        "external_immutability_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "independent_audit": {
+      "type": "object",
+      "required": [
+        "state",
+        "self_audit_forbidden"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "NOT_PROVISIONED",
+            "PENDING",
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "self_audit_forbidden": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptance_gates": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "STRUCTURAL_VALIDATION",
+          "SOURCE_PROVENANCE",
+          "CRYPTOGRAPHIC_TRUST",
+          "TEMPORAL_VALIDITY",
+          "SEMANTIC_DRIFT",
+          "CONFLICT_RESOLUTION",
+          "INDEPENDENT_AUDIT",
+          "FAULT_INJECTION_RECOVERY",
+          "REPRODUCIBILITY",
+          "AUTHORIZED_RATIFICATION"
+        ]
+      }
+    },
+    "decision_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_boundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

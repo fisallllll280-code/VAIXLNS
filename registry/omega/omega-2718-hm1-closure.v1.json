@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0.0",
+  "domain_id": "Ω.2718",
+  "domain_name": "HM-1 Sovereign Closure Domain",
+  "state": "PROPOSAL",
+  "closure_state": "BLOCKED_NOT_VERIFIED",
+  "canonical_repository": "fisallllll280-code/VAIXLNS",
+  "canonical_source": {
+    "path": "project.genome",
+    "mutation": "FORBIDDEN"
+  },
+  "master_index": {
+    "id": "Ω.000",
+    "path": "registry/omega/omega-000-master-index.json",
+    "mutation": "FORBIDDEN"
+  },
+  "specification_path": "docs/governance/OMEGA_2718_HM1_SOVEREIGN_CLOSURE_V1.md",
+  "layers": [
+    {
+      "id": "Ω2718-HM1-L01",
+      "name": "Constitutional Binding",
+      "state": "SPECIFIED",
+      "closure_gate": "structural"
+    },
+    {
+      "id": "Ω2718-HM1-L02",
+      "name": "Meta-Proof",
+      "state": "SPECIFIED",
+      "closure_gate": "proof_verifier_audit"
+    },
+    {
+      "id": "Ω2718-HM1-L03",
+      "name": "Sovereign Closure Engine",
+      "state": "SPECIFIED",
+      "closure_gate": "all_required_gates"
+    },
+    {
+      "id": "Ω2718-HM1-L04",
+      "name": "Historical Ratification Ledger",
+      "state": "SPECIFIED",
+      "closure_gate": "append_only_and_signed_receipt"
+    },
+    {
+      "id": "Ω2718-HM1-L05",
+      "name": "Failure Sovereignty Model",
+      "state": "SPECIFIED",
+      "closure_gate": "fault_injection_and_recovery"
+    },
+    {
+      "id": "Ω2718-HM1-L06",
+      "name": "Dominion Conflict Resolver",
+      "state": "SPECIFIED",
+      "closure_gate": "no_unresolved_authority_conflict"
+    },
+    {
+      "id": "Ω2718-HM1-L07",
+      "name": "Proof Obligations Registry",
+      "state": "SPECIFIED",
+      "closure_gate": "all_claims_have_valid_proofs"
+    },
+    {
+      "id": "Ω2718-HM1-L08",
+      "name": "Constitutional Evolution Control",
+      "state": "SPECIFIED",
+      "closure_gate": "authorized_amendment_signatures"
+    },
+    {
+      "id": "Ω2718-HM1-L09",
+      "name": "Trust Root Registry",
+      "state": "SPECIFIED",
+      "closure_gate": "valid_nonrevoked_trust_chain"
+    },
+    {
+      "id": "Ω2718-HM1-L10",
+      "name": "Semantic Drift Detection",
+      "state": "SPECIFIED",
+      "closure_gate": "drift_below_critical"
+    },
+    {
+      "id": "Ω2718-HM1-L11",
+      "name": "Sovereign Audit Domain",
+      "state": "SPECIFIED",
+      "closure_gate": "independent_audit_receipt"
+    }
+  ],
+  "failure_classes": [
+    "STORAGE_FAILURE",
+    "SIGNATURE_FAILURE",
+    "CLOCK_FAILURE",
+    "ACTIVATION_FAILURE",
+    "INTEGRITY_FAILURE"
+  ],
+  "drift_levels": [
+    "NONE",
+    "LOW",
+    "MEDIUM",
+    "CRITICAL"
+  ],
+  "ratification_policy": {
+    "required_signatures": [
+      "constitutional_council",
+      "dominion_authority"
+    ],
+    "approval_threshold": null,
+    "effective_after_seconds": null,
+    "state": "POLICY_NOT_CONFIGURED",
+    "note": "Threshold, authorized identities, and delay must be configured and approved; example values are not active policy."
+  },
+  "trust_roots": [],
+  "proof_obligations": [],
+  "ratification_ledger": {
+    "state": "NOT_PROVISIONED",
+    "append_only_required": true,
+    "external_immutability_evidence": null
+  },
+  "independent_audit": {
+    "state": "NOT_PROVISIONED",
+    "self_audit_forbidden": true
+  },
+  "acceptance_gates": [
+    "STRUCTURAL_VALIDATION",
+    "SOURCE_PROVENANCE",
+    "CRYPTOGRAPHIC_TRUST",
+    "TEMPORAL_VALIDITY",
+    "SEMANTIC_DRIFT",
+    "CONFLICT_RESOLUTION",
+    "INDEPENDENT_AUDIT",
+    "FAULT_INJECTION_RECOVERY",
+    "REPRODUCIBILITY",
+    "AUTHORIZED_RATIFICATION"
+  ],
+  "decision_rule": "CLOSED only if every acceptance gate has valid current evidence and every required signature validates. Otherwise BLOCKED or UNKNOWN.",
+  "evidence_boundary": "A manifest or CI pass is not proof of operational sovereignty, immutability, trust, or production closure."
+}
