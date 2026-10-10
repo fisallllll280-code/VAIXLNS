@@ -1,0 +1,28 @@
+name: Global Engineering Discovery Fabric
+
+on:
+  pull_request:
+    paths:
+      - "registry/omega/proposals/global-engineering-discovery-fabric.v1.json"
+      - "schemas/global-engineering-discovery-fabric.v1.schema.json"
+      - "scripts/validate_global_engineering_discovery_fabric.py"
+      - "tests/test_global_engineering_discovery_fabric.py"
+      - ".github/workflows/global-engineering-discovery-fabric.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proposal-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate proposal and schema invariants
+        run: python scripts/validate_global_engineering_discovery_fabric.py
+      - name: Run regression suite
+        run: python -m unittest tests.test_global_engineering_discovery_fabric -v
