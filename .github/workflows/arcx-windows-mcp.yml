@@ -1,0 +1,43 @@
+name: ARC-X Windows MCP Prototype
+
+on:
+  pull_request:
+    paths:
+      - "tools/arcx_mcp/**"
+      - "tests/test_arcx_mcp_server.py"
+      - "requirements-arcx-mcp.txt"
+      - "scripts/windows/**"
+      - "docs/windows/ARC_X_WINDOWS_MCP_QUICKSTART_V1.md"
+      - ".github/workflows/arcx-windows-mcp.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/arcx_mcp/**"
+      - "tests/test_arcx_mcp_server.py"
+      - "requirements-arcx-mcp.txt"
+      - "scripts/windows/**"
+      - "docs/windows/ARC_X_WINDOWS_MCP_QUICKSTART_V1.md"
+      - ".github/workflows/arcx-windows-mcp.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install isolated prototype dependency
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-arcx-mcp.txt
+      - name: Run ARC-X MCP unit tests
+        env:
+          ARCX_REPOSITORY_ROOT: ${{ github.workspace }}
+        run: python -m unittest tests.test_arcx_mcp_server -v
