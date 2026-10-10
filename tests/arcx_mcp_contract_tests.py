@@ -33,7 +33,7 @@ class ArcxMcpServerTests(unittest.TestCase):
 
     def test_fetch_returns_sha256_and_content(self) -> None:
         result = fetch_source("docs/sample.md")
-        raw = b"ARC-X evidence sample\n"
+        raw = (self.root / "docs" / "sample.md").read_bytes()
         self.assertEqual(result["sha256"], hashlib.sha256(raw).hexdigest())
         self.assertEqual(result["content"], raw.decode("utf-8"))
 
