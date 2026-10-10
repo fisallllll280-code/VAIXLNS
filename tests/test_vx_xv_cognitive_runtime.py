@@ -1,8 +1,12 @@
 import hashlib
 import sqlite3
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+# Repository-wide unittest runners may not install this alpha package or set PYTHONPATH.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from vaixlns_cognitive_runtime import (
     Claim,
