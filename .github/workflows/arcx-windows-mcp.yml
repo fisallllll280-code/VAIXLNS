@@ -40,4 +40,4 @@ jobs:
       - name: Run ARC-X MCP unit tests
         env:
           ARCX_REPOSITORY_ROOT: ${{ github.workspace }}
-        run: python -m unittest tests.test_arcx_mcp_server -v
+        run: python -m unittest discover -s tests -p test_arcx_mcp_server.py -v
