@@ -336,6 +336,10 @@ def find_contradictions(objects):
             rp = right["proposition"]
             if lp["subject"] != rp["subject"] or lp["predicate"] != rp["predicate"]:
                 continue
+            if left["layer"] != right["layer"]:
+                continue
+            if left["ontology_digest"] != right["ontology_digest"]:
+                continue
             if left["observation_scope"] != right["observation_scope"]:
                 continue
             if left["temporal_scope"] != right["temporal_scope"]:
@@ -380,15 +384,19 @@ def evaluate_proof_of_ignorance(universe):
     errors = []
     if not _text(scope):
         errors.append("SCOPE_REQUIRED")
-    if not isinstance(paths, list) or not paths or any(not _text(p) for p in paths):
+    paths_valid = isinstance(paths, list) and bool(paths) and all(_text(p) for p in paths)
+    if not paths_valid:
         errors.append("PATH_UNIVERSE_REQUIRED")
         paths = []
-    if len(paths) != len(set(paths)):
+    if paths and len(paths) != len(set(paths)):
         errors.append("PATH_IDS_DUPLICATED")
     if not isinstance(observations, list):
         errors.append("OBSERVATIONS_INVALID")
         observations = []
-    if universe.get("universe_digest") != verification_universe_digest(scope, paths) if _text(scope) and paths and len(paths) == len(set(paths)) else True:
+    if paths and _text(scope) and len(paths) == len(set(paths)):
+        if universe.get("universe_digest") != verification_universe_digest(scope, paths):
+            errors.append("UNIVERSE_DIGEST_MISMATCH")
+    else:
         errors.append("UNIVERSE_DIGEST_MISMATCH")
     if not _text(universe.get("closure_authority_ref")):
         errors.append("CLOSURE_AUTHORITY_REFERENCE_REQUIRED")
@@ -499,6 +507,86 @@ def evaluate_transition_candidate(transition):
             "RECEIPT_DIGESTS_ARE_REFERENCES_NOT_AUTHENTICATED_PROOFS",
             "AUTHORITY_TICKET_REFERENCE_IS_NOT_AUTHORIZATION",
             "VX_EXECUTION_REQUIRES_A_SEPARATE_ENFORCED_GATE",
+        ],
+    }
+
+
+def build_provenance_graph(objects):
+    """Build a deterministic claim-evidence-source graph and report correlation signals."""
+    if not isinstance(objects, list):
+        return {"state": "INVALID_INPUT", "nodes": [], "edges": [], "graph_digest": None}
+    nodes = {}
+    edges = set()
+    invalid_ids = []
+    identity_conflicts = []
+    group_claims = {}
+    evidence_fingerprints = {}
+
+    for item in objects:
+        check = validate_reality_object(item)
+        if not check["valid"]:
+            invalid_ids.append(item.get("object_id") if isinstance(item, dict) else None)
+            continue
+        claim_id = item["object_id"]
+        claim_node_id = "claim:" + claim_id
+        claim_node = {
+            "node_id": claim_node_id,
+            "node_type": "CLAIM",
+            "layer": item["layer"],
+            "ontology_digest": item["ontology_digest"],
+            "scope": item["observation_scope"],
+            "temporal_scope": item["temporal_scope"],
+            "proposition_digest": stable_digest(item["proposition"]),
+        }
+        nodes[claim_node_id] = claim_node
+        for envelope in item.get("evidence", []):
+            evidence_id = envelope["evidence_id"]
+            evidence_node_id = "evidence:" + evidence_id
+            source_node_id = "source:" + envelope["source_id"]
+            evidence_node = {
+                "node_id": evidence_node_id,
+                "node_type": "EVIDENCE",
+                "source_id": envelope["source_id"],
+                "source_digest": envelope["source_digest"],
+                "independence_group": envelope["independence_group"],
+            }
+            fingerprint = stable_digest(evidence_node)
+            if evidence_id in evidence_fingerprints and evidence_fingerprints[evidence_id] != fingerprint:
+                identity_conflicts.append(evidence_id)
+            evidence_fingerprints[evidence_id] = fingerprint
+            nodes.setdefault(evidence_node_id, evidence_node)
+            nodes.setdefault(source_node_id, {
+                "node_id": source_node_id,
+                "node_type": "SOURCE",
+                "source_id": envelope["source_id"],
+            })
+            edges.add((source_node_id, evidence_node_id, "PROVENANCE_OF"))
+            edges.add((evidence_node_id, claim_node_id, envelope["role"]))
+            group_claims.setdefault(envelope["independence_group"], set()).add(claim_id)
+
+    edge_rows = [
+        {"from": source, "to": target, "relation": relation}
+        for source, target, relation in sorted(edges)
+    ]
+    correlation_signals = [
+        {"independence_group": group, "claim_ids": sorted(claim_ids), "signal": "SHARED_DECLARED_DEPENDENCY"}
+        for group, claim_ids in sorted(group_claims.items())
+        if len(claim_ids) > 1
+    ]
+    node_rows = sorted(nodes.values(), key=lambda node: node["node_id"])
+    graph_payload = {"nodes": node_rows, "edges": edge_rows}
+    return {
+        "state": "PARTIAL" if invalid_ids or identity_conflicts else "BUILT",
+        "nodes": node_rows,
+        "edges": edge_rows,
+        "invalid_object_ids": invalid_ids,
+        "evidence_identity_conflicts": sorted(set(identity_conflicts)),
+        "correlation_signals": correlation_signals,
+        "independence_proved": False,
+        "graph_digest": stable_digest(graph_payload),
+        "notes": [
+            "SOURCE_AND_INDEPENDENCE_LABELS_ARE_INPUT_ASSERTIONS",
+            "CORRELATION_SIGNAL_IS_NOT_PROOF_OF_CAUSAL_DEPENDENCE",
         ],
     }
 
