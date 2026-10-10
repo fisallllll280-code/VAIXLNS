@@ -511,6 +511,88 @@ def evaluate_transition_candidate(transition):
     }
 
 
+def reconcile_transition_outcome(report):
+    """Compare an execution report with an observed postcondition without conflating them."""
+    if not isinstance(report, dict) or report.get("schema_version") != TRANSITION_SCHEMA:
+        return {
+            "state": "INVALID",
+            "errors": ["TRANSITION_SCHEMA_INVALID"],
+            "execution_receipt_authenticated": False,
+            "observation_receipt_authenticated": False,
+        }
+    required = ("transition_id", "observation_scope")
+    errors = []
+    for field in required:
+        if not _text(report.get(field)):
+            errors.append(field.upper() + "_REQUIRED")
+    if not _digest(report.get("expected_postcondition_digest")):
+        errors.append("EXPECTED_POSTCONDITION_DIGEST_INVALID")
+    if not _valid_time_scope(report.get("temporal_scope")):
+        errors.append("TEMPORAL_SCOPE_INVALID")
+
+    execution_receipt = report.get("execution_receipt_digest")
+    observed_digest = report.get("observed_postcondition_digest")
+    observation_receipt = report.get("observation_receipt_digest")
+    if execution_receipt is not None and not _digest(execution_receipt):
+        errors.append("EXECUTION_RECEIPT_DIGEST_INVALID")
+    if observed_digest is not None and not _digest(observed_digest):
+        errors.append("OBSERVED_POSTCONDITION_DIGEST_INVALID")
+    if observation_receipt is not None and not _digest(observation_receipt):
+        errors.append("OBSERVATION_RECEIPT_DIGEST_INVALID")
+    if errors:
+        return {
+            "state": "INVALID",
+            "errors": sorted(set(errors)),
+            "execution_receipt_authenticated": False,
+            "observation_receipt_authenticated": False,
+        }
+
+    base = {
+        "transition_id": report["transition_id"],
+        "scope": report["observation_scope"],
+        "temporal_scope": report["temporal_scope"],
+        "execution_receipt_present": _digest(execution_receipt),
+        "observation_receipt_present": _digest(observation_receipt),
+        "execution_receipt_authenticated": False,
+        "observation_receipt_authenticated": False,
+        "canonical_write_performed": False,
+    }
+    if execution_receipt is None:
+        base.update({
+            "state": "EXECUTION_NOT_EVIDENCED",
+            "reconciled": False,
+            "notes": ["ABSENCE_OF_A_RECEIPT_DOES_NOT_PROVE_THAT_NO_EXTERNAL_ACTION_OCCURRED"],
+        })
+        return base
+    if observed_digest is None or observation_receipt is None:
+        base.update({
+            "state": "EXECUTION_REPORTED_OUTCOME_UNKNOWN",
+            "reconciled": False,
+            "notes": ["EXECUTION_REPORT_IS_NOT_A_POSTCONDITION_OBSERVATION"],
+        })
+        return base
+    if observed_digest != report["expected_postcondition_digest"]:
+        base.update({
+            "state": "POSTCONDITION_MISMATCH",
+            "reconciled": False,
+            "expected_postcondition_digest": report["expected_postcondition_digest"],
+            "observed_postcondition_digest": observed_digest,
+            "notes": ["DO_NOT_REWRITE_EXPECTED_STATE_AS_OBSERVED_STATE"],
+        })
+        return base
+    base.update({
+        "state": "POSTCONDITION_MATCH_CANDIDATE",
+        "reconciled": True,
+        "expected_postcondition_digest": report["expected_postcondition_digest"],
+        "observed_postcondition_digest": observed_digest,
+        "notes": [
+            "MATCH_IS_CONDITIONAL_ON_RECEIPT_AUTHENTICITY_AND_SCOPE_BINDING",
+            "INDEPENDENT_RECEIPT_VERIFICATION_REQUIRED",
+        ],
+    })
+    return base
+
+
 def build_provenance_graph(objects):
     """Build a deterministic claim-evidence-source graph and report correlation signals."""
     if not isinstance(objects, list):
