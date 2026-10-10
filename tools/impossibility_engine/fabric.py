@@ -1,13 +1,39 @@
 """Bounded, load-aware coordinator for local or explicitly configured remote Ω workers."""
 from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass, field
+from collections import OrderedDict
+from dataclasses import dataclass
 import hashlib, json, os, re, threading, time
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from urllib.parse import urlsplit
-from .engine import assess
+from .engine import ENGINE_VERSION, assess
+
+_CACHE_MAX_ENTRIES = 512
+_ASSESS_CACHE: OrderedDict[str, str] = OrderedDict()
+_CACHE_LOCK = threading.Lock()
+
+def _fast_assess(problem: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    canonical = json.dumps(problem, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    key = ENGINE_VERSION + ":" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    with _CACHE_LOCK:
+        cached = _ASSESS_CACHE.get(key)
+        if cached is not None:
+            _ASSESS_CACHE.move_to_end(key)
+            return json.loads(cached), True
+    result = assess(problem)
+    serialized = json.dumps(result, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    with _CACHE_LOCK:
+        _ASSESS_CACHE[key] = serialized
+        _ASSESS_CACHE.move_to_end(key)
+        while len(_ASSESS_CACHE) > _CACHE_MAX_ENTRIES:
+            _ASSESS_CACHE.popitem(last=False)
+    return json.loads(serialized), False
+
+def clear_assessment_cache() -> None:
+    with _CACHE_LOCK:
+        _ASSESS_CACHE.clear()
 
 MAX_WORKERS = 64
 MAX_REMOTE_NODES = 64
@@ -184,9 +210,10 @@ def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
     def local(i: int, problem: dict[str, Any], task_id: str, status: str,
               remote_worker_id: str | None = None, remote_error: Exception | None = None) -> dict[str, Any]:
         try:
-            value = assess(problem)
+            value, cache_hit = _fast_assess(problem)
             execution = {"status": status, "transport": "local",
-                         "worker_id": f"local-{i % max_workers + 1}" if status == "SUCCEEDED" else "local-fallback"}
+                         "worker_id": f"local-{i % max_workers + 1}" if status == "SUCCEEDED" else "local-fallback",
+                         "cache_hit": cache_hit}
             if remote_worker_id:
                 execution.update({"remote_worker_id": remote_worker_id,
                                   "remote_error_type": type(remote_error).__name__ if remote_error else "RemoteError",
@@ -243,12 +270,14 @@ def run_batch(problems: list[dict[str, Any]], *, max_workers: int = 4,
     rows = [row for row in ordered if row is not None]
     failed = sum(row["execution"]["status"] == "FAILED" for row in rows)
     fallback = sum(row["execution"]["status"] == "FALLBACK_LOCAL" for row in rows)
+    cache_hits = sum(bool(row["execution"].get("cache_hit")) for row in rows)
     state = "FAILED" if failed == len(rows) else "PARTIAL" if failed else "DEGRADED" if fallback else "EXECUTED"
     return {"engine": "OMEGA-IMPOSSIBILITY-ENGINE", "fabric": "OMEGA-DISTRIBUTED-EXECUTION-FABRIC",
             "state": state, "task_count": len(rows), "max_concurrency": max_workers,
             "configured_remote_workers": [w.worker_id for w in workers],
             "worker_metrics": pool.metrics(), "completed_count": len(rows) - failed,
-            "failed_count": failed, "fallback_count": fallback,
+            "failed_count": failed, "fallback_count": fallback, "cache_hits": cache_hits,
+            "cache_capacity": _CACHE_MAX_ENTRIES,
             "elapsed_ms": round((time.perf_counter() - started) * 1000, 3), "results": rows,
             "limits": ["Local concurrency does not guarantee CPU speedup for this pure-Python triage workload.",
                        "Horizontal capacity requires separately deployed and configured HTTPS workers.",
