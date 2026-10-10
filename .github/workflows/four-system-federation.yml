@@ -22,6 +22,9 @@ on:
       - "scripts/validate_federation_contract_edges.py"
       - "tests/test_four_system_federation.py"
       - "tests/test_federation_contract_edges.py"
+      - "scripts/federation_preflight.py"
+      - "tests/test_federation_preflight.py"
+      - "README.md"
       - ".github/workflows/four-system-federation.yml"
   workflow_dispatch:
 
