@@ -89,21 +89,23 @@ def synthesize_forbidden_states(initial_state: str, transitions: Mapping[str, Se
     forbidden = set(forbidden_states)
     queue = deque([(initial_state, [initial_state])])
     best_depth = {initial_state: 0}
+    bound_reached = False
     while queue:
         state, path = queue.popleft()
         if state in forbidden:
             return {"result": "COUNTEREXAMPLE_FOUND", "path": path,
                     "depth": len(path) - 1, "bounded": True}
         if len(path) - 1 >= max_depth:
+            if transitions.get(state, []):
+                bound_reached = True
             continue
         for nxt in sorted(set(transitions.get(state, []))):
             depth = len(path)
             if depth < best_depth.get(nxt, max_depth + 2):
                 best_depth[nxt] = depth
                 queue.append((nxt, path + [nxt]))
-    truncated = any(len(p) >= max_depth + 1 for p in [])
     return {"result": "NO_COUNTEREXAMPLE_WITHIN_SEARCH_BOUND", "bounded": True,
-            "max_depth": max_depth, "exhaustive_over_reachable_graph": not truncated,
+            "max_depth": max_depth, "exhaustive_over_reachable_graph": not bound_reached,
             "warning": "No counterexample found is not a universal proof unless the supplied state graph is complete."}
 
 
