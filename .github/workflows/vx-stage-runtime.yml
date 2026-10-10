@@ -10,6 +10,12 @@ on:
       - "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md"
       - "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
       - ".github/workflows/vx-stage-runtime.yml"
+      - "runtime/**"
+      - "scripts/vx_bootstrap.py"
+      - "scripts/verify_vx_bootstrap_evidence.py"
+      - "tests/test_supervised_runtime.py"
+      - "docs/runtime/VX_SUPERVISED_BOOTSTRAP_V1.md"
+      - ".github/workflows/vx-supervised-bootstrap.yml"
   pull_request:
     paths:
       - "scripts/vx_stage_runtime.py"
@@ -64,3 +70,29 @@ jobs:
           path: |
             stage-evidence.json
             federation-integrity-evidence.txt
+
+  supervised-bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile runtime and tests
+        run: python -m py_compile runtime/*.py scripts/vx_bootstrap.py scripts/verify_vx_bootstrap_evidence.py tests/test_supervised_runtime.py
+      - name: Run unit and real-process integration tests
+        run: python -m unittest discover -s tests -p "test_supervised_runtime.py" -v
+      - name: Run bootstrap acceptance scenario
+        run: python scripts/vx_bootstrap.py --workdir .vx-bootstrap-run --output vx-bootstrap-evidence.json
+      - name: Independently verify evidence chain
+        run: python scripts/verify_vx_bootstrap_evidence.py vx-bootstrap-evidence.json
+      - name: Upload evidence and service logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-supervised-bootstrap-evidence
+          path: |
+            vx-bootstrap-evidence.json
+            .vx-bootstrap-run/service.log
