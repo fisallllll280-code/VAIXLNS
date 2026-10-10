@@ -56,7 +56,7 @@ def validate(text: str) -> list[str]:
         "UNKNOWN",
         "INCONCLUSIVE",
         "counterevidence",
-        "no merge or deployment is implied",
+        "does not itself mutate",
     )
     for token in required_tokens:
         if token.casefold() not in text.casefold():
