@@ -155,11 +155,15 @@ class JobStore:
 
 
 class Worker:
-    def __init__(self, store: JobStore, poll_seconds: float = 0.15):
+    def __init__(self, store: JobStore, poll_seconds: float = 0.15, worker_id: int = 1):
         self.store = store
         self.poll_seconds = poll_seconds
         self.stop_event = threading.Event()
-        self.thread = threading.Thread(target=self.run, name="vaixlns-innovation-worker", daemon=True)
+        self.thread = threading.Thread(
+            target=self.run,
+            name=f"vaixlns-innovation-worker-{worker_id}",
+            daemon=True,
+        )
 
     def start(self):
         self.thread.start()
@@ -186,6 +190,41 @@ class Worker:
             except Exception as exc:
                 code = str(exc) if isinstance(exc, ValueError) else "HANDLER_FAILURE"
                 self.store.finish(job["job_id"], "FAILED", error_code=code)
+
+
+class WorkerPool:
+    """Bounded pool for the server's deterministic, allowlisted local handlers.
+
+    SQLite's transactional claim operation ensures each queued job is claimed
+    by at most one worker. Pool size is explicit and capped to avoid accidental
+    resource exhaustion. This is single-process/single-host scaling only.
+    """
+
+    MAX_WORKERS = 32
+
+    def __init__(self, store: JobStore, workers: int = 4, poll_seconds: float = 0.15):
+        if isinstance(workers, bool) or not isinstance(workers, int):
+            raise ValueError("workers must be an integer")
+        if not 1 <= workers <= self.MAX_WORKERS:
+            raise ValueError(f"workers must be between 1 and {self.MAX_WORKERS}")
+        if poll_seconds <= 0:
+            raise ValueError("poll_seconds must be positive")
+        self.store = store
+        self.workers = [
+            Worker(store, poll_seconds=poll_seconds, worker_id=index + 1)
+            for index in range(workers)
+        ]
+
+    def start(self):
+        for worker in self.workers:
+            worker.start()
+
+    def stop(self):
+        # Signal every worker before joining any worker so shutdown is concurrent.
+        for worker in self.workers:
+            worker.stop_event.set()
+        for worker in self.workers:
+            worker.thread.join(timeout=3)
 
 
 def public_job(row: dict[str, Any]) -> dict[str, Any]:
@@ -294,11 +333,15 @@ def serve(host: str | None = None, port: int | None = None, db_path: str | None 
     if non_loopback and (not token or len(token) < 32):
         raise RuntimeError("Non-loopback binding requires VAIXLNS_SERVER_TOKEN with at least 32 characters")
     store = JobStore(db_path)
-    worker = Worker(store)
-    worker.start()
+    worker_count = int(os.getenv("VAIXLNS_SERVER_WORKERS", "4"))
+    workers = WorkerPool(store, workers=worker_count)
+    workers.start()
     server = ThreadingHTTPServer((host, port), make_handler(store, token))
     server.daemon_threads = True
-    print(f"VAIXLNS innovation server listening on {host}:{port}; external effects disabled")
+    print(
+        f"VAIXLNS innovation server listening on {host}:{port}; "
+        f"workers={worker_count}; external effects disabled"
+    )
     try:
         server.serve_forever(poll_interval=0.25)
     except KeyboardInterrupt:
@@ -306,7 +349,7 @@ def serve(host: str | None = None, port: int | None = None, db_path: str | None 
     finally:
         server.shutdown()
         server.server_close()
-        worker.stop()
+        workers.stop()
 
 
 if __name__ == "__main__":
