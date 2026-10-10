@@ -168,5 +168,26 @@ class OmegaFrontier002Tests(unittest.TestCase):
         self.assertEqual(result["invariants"][0]["reason"], "DEPENDENCIES_NOT_DECLARED")
 
 
+    def test_incomplete_model_flag_is_rejected(self):
+        result = synthesize_forbidden_states(
+            "start", {"start": []}, ["bad"], max_depth=2, model_complete="yes")
+        self.assertEqual(result["result"], "INCOMPLETE")
+        self.assertEqual(result["reason"], "INVALID_MODEL_COMPLETENESS_FLAG")
+
+    def test_unobservable_event_is_retained_in_history_inventory(self):
+        result = reconcile_histories([
+            {"source": "A", "events": [{"id": "event-1"}]}
+        ])
+        self.assertEqual(result["result"], "UNOBSERVABLE")
+        self.assertEqual(result["event_count"], 1)
+
+    def test_verified_flag_must_be_explicit_boolean(self):
+        result = minimal_proof_surface({"A"}, [
+            {"id": "e1", "verified": "true", "covers": ["A"]}
+        ])
+        self.assertEqual(result["result"], "INCOMPLETE")
+        self.assertEqual(result["reason"], "INVALID_VERIFIED_FLAG")
+
+
 if __name__ == "__main__":
     unittest.main()
