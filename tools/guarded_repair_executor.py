@@ -138,7 +138,7 @@ def prepare_repair(
 
     actual_hash = sha256_bytes(original)
     if actual_hash.casefold() != change["expected_sha256"].casefold():
-        _fail("PREIMAGE_HASH_MISMATCH", "target content no longer matches expected_sha256")
+        _fail("PREIMAGE_HASH_MISMATCH", "target content does not match expected_sha256")
 
     old_bytes = change["old_text"].encode("utf-8")
     new_bytes = change["new_text"].encode("utf-8")
