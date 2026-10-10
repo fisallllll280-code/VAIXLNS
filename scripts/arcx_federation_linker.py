@@ -37,8 +37,10 @@ def plan_links(systems: list[dict[str, Any]], candidates: list[dict[str, Any]]) 
         contract_digest = item.get("contract_sha256")
         direction = item.get("direction", "SOURCE_TO_TARGET")
         blockers = []
-        if not isinstance(src, str) or not isinstance(dst, str) or src not in ids or dst not in ids:
-            blockers.append("UNKNOWN_OR_INVALID_SYSTEM_ID")
+        if not isinstance(src, str) or not isinstance(dst, str):
+            blockers.append("INVALID_SYSTEM_ID_TYPE")
+        elif src not in ids or dst not in ids:
+            blockers.append("UNKNOWN_SYSTEM_ID")
         if isinstance(src, str) and isinstance(dst, str) and src == dst:
             blockers.append("SELF_LINK_REQUIRES_EXPLICIT_JUSTIFICATION")
         if not isinstance(kind, str) or kind not in LINK_TYPES:
