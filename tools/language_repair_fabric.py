@@ -119,7 +119,21 @@ def make_work_orders(
     if mode == "SANDBOX_PATCH":
         # v1 does not implement patching; do not silently pretend it does.
         raise ValueError("SANDBOX_PATCH_NOT_IMPLEMENTED")
-    diagnostics = parse_diagnostics(lang, output)
+    patterns_registered = lang in PATTERNS
+    if patterns_registered:
+        diagnostics = parse_diagnostics(lang, output)
+    else:
+        # Preserve the raw evidence and make the blocker explicit; never guess
+        # the syntax of a custom/system-specific language.
+        diagnostics = [Diagnostic(
+            tool="unclassified",
+            code=None,
+            message="No diagnostic adapter registered; human/adapter classification required",
+            path=None,
+            line=None,
+            column=None,
+            raw_digest=sha256_text(output),
+        )] if output.strip() else []
     orders = []
     for diag in diagnostics:
         material = {
@@ -132,7 +146,7 @@ def make_work_orders(
             "code": diag.code or "",
         }
         work_id = "LRE-" + sha256_text(canonical_json(material))[:16]
-        registered = lang in PATTERNS
+        registered = patterns_registered
         orders.append({
             "schema_version": "1.0.0",
             "work_order_id": work_id,
@@ -157,7 +171,7 @@ def make_work_orders(
                 "tests_required": ["reproduce_failure", "targeted_regression", "full_relevant_suite"],
                 "independent_review": True,
             },
-            "status": "READY_FOR_TRIAGE",
+            "status": "READY_FOR_TRIAGE" if registered else "BLOCKED_UNKNOWN_LANGUAGE",
         })
     return orders
 
