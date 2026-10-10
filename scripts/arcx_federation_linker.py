@@ -33,26 +33,34 @@ def plan_links(systems: list[dict[str, Any]], candidates: list[dict[str, Any]]) 
             continue
         src, dst = item.get("source_system"), item.get("target_system")
         kind = item.get("link_type")
+        source_revision = item.get("source_revision")
+        contract_digest = item.get("contract_sha256")
+        direction = item.get("direction", "SOURCE_TO_TARGET")
         blockers = []
-        if src not in ids or dst not in ids:
-            blockers.append("UNKNOWN_SYSTEM_ID")
-        if src == dst:
+        if not isinstance(src, str) or not isinstance(dst, str) or src not in ids or dst not in ids:
+            blockers.append("UNKNOWN_OR_INVALID_SYSTEM_ID")
+        if isinstance(src, str) and isinstance(dst, str) and src == dst:
             blockers.append("SELF_LINK_REQUIRES_EXPLICIT_JUSTIFICATION")
-        if kind not in LINK_TYPES:
+        if not isinstance(kind, str) or kind not in LINK_TYPES:
             blockers.append("UNKNOWN_LINK_TYPE")
-        if not item.get("source_revision") or not item.get("contract_sha256"):
-            blockers.append("IMMUTABLE_SOURCE_AND_CONTRACT_DIGEST_REQUIRED")
-        elif not isinstance(item.get("contract_sha256"), str) or len(item["contract_sha256"]) != 64 or any(c not in "0123456789abcdefABCDEF" for c in item["contract_sha256"]):
+        if not isinstance(source_revision, str) or len(source_revision) != 40 or any(c not in "0123456789abcdefABCDEF" for c in source_revision):
+            blockers.append("INVALID_SOURCE_REVISION")
+        if not isinstance(contract_digest, str) or len(contract_digest) != 64 or any(c not in "0123456789abcdefABCDEF" for c in contract_digest):
             blockers.append("INVALID_CONTRACT_DIGEST")
-        if frozenset((src, dst)) in UNRESOLVED_IDENTITIES:
+        if direction not in {"SOURCE_TO_TARGET", "BIDIRECTIONAL"}:
+            blockers.append("INVALID_LINK_DIRECTION")
+        if isinstance(src, str) and isinstance(dst, str) and frozenset((src, dst)) in UNRESOLVED_IDENTITIES:
             blockers.append("IDENTITY_EQUIVALENCE_UNRESOLVED")
         state = "BLOCKED" if blockers else "PENDING_VERIFICATION"
+        link_id = item.get("link_id")
+        if not isinstance(link_id, str) or not link_id.strip():
+            link_id = "link:"+digest(item)[:16]
         normalized = {
-            "link_id": item.get("link_id") or "link:"+digest(item)[:16],
+            "link_id": link_id,
             "source_system": src, "target_system": dst, "link_type": kind,
-            "source_revision": item.get("source_revision"),
-            "contract_sha256": item.get("contract_sha256"),
-            "direction": item.get("direction", "SOURCE_TO_TARGET"),
+            "source_revision": source_revision,
+            "contract_sha256": contract_digest,
+            "direction": direction,
             "state": state, "blockers": sorted(set(blockers)),
             "execution_performed": False, "authority_granted": False,
         }
