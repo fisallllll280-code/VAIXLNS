@@ -11,11 +11,11 @@ This slice converts the seven research proposals into a small executable Python 
 |---|---|---|---|
 | Assurance Singularity Detector | Assurance-to-dependency map and optional criticality | Ranked shared-dependency candidates | Shared-node impact heuristic; not a global minimum cut unless the full dependency semantics are supplied and solved |
 | Uncertainty-to-Action Compiler | Conditions, states, affected actions | Fail-closed blocked-action map | Unknown/unresolved conditions restrict only listed actions; this is not enforcement until every action adapter consumes the result |
-| Hypothesis Competition | Hypotheses with support/refutation evidence IDs and discriminating tests | Per-hypothesis counts and unresolved/leading status | Counts evidence identifiers, not evidential quality, independence, likelihood, or causality |
+| Hypothesis Competition | Hypotheses with support/refutation evidence IDs and discriminating tests | Per-hypothesis counts and unresolved/leading status | Counts evidence identifiers, not evidential quality, independence, likelihood, or causality; invalid/duplicate hypothesis identities prevent leader selection |
 | Forbidden-State Synthesizer | Initial state, finite transition adjacency, forbidden states, depth bound | Counterexample path or bounded no-counterexample result | No path is not a universal proof unless the model is complete and the search is exhaustive |
-| Multi-History Reconciliation | Named histories, event IDs, content, explicit causal edges | Conflict, unobservable findings, shared events | Does not invent total order for concurrent events; does not infer wall-clock order |
+| Multi-History Reconciliation | Named histories, event IDs, content, explicit causal edges | CONSISTENT / RECONCILABLE / CONFLICTED / UNOBSERVABLE, shared events | Explicit causal edges only; multi-source histories are marked RECONCILABLE when compatible; missing causal declarations remain UNOBSERVABLE |
 | Proof-Preserving Refactoring | Old/new declared contracts and required property names | Preserved / regression / inconclusive | Declared observations are not semantic equivalence; production needs executable contract checks or formal refinement proof |
-| Minimal Proof Surface | Required obligations and verified evidence-to-obligation coverage | Bounded minimum evidence subset | Exact set cover only over supplied eligible candidates; mandatory evidence is retained; complexity is exponential |
+| Minimal Proof Surface | Required obligations and verified evidence-to-obligation coverage | Bounded minimum evidence subset | Exact set cover only over supplied eligible candidates; duplicate IDs and unverified mandatory evidence fail closed; caller-supplied `verified` remains an assertion unless separately attested; complexity is exponential |
 | Assurance Causality Map | Invariants, dependencies, evidence states | Per-invariant eligibility state | Informational map only; never grants authority or executes work |
 
 ## Shared state vocabulary
@@ -25,12 +25,12 @@ This slice converts the seven research proposals into a small executable Python 
 - `CONFLICTED`: incompatible observations or causal constraints were detected.
 - `REJECTED`: an explicit required condition failed.
 - `ELIGIBLE_FOR_NEXT_GATE`: supplied checks passed; this is not authorization.
-- `VERIFIED`: reserved for a specific claim after reproducible verification evidence is attached. This reference slice and its architecture are not yet labeled VERIFIED.
+- `VERIFIED`: reserved for a specific claim after reproducible verification evidence is attached. This reference slice and its architecture are not yet labeled VERIFIED. The first GitHub Actions run passed 15 tests; a subsequent hardening update added 8 tests and is awaiting its own CI result.
 
 ## Core invariants
 1. Missing evidence never implies absence.
 2. A leading hypothesis is not a proven hypothesis.
-3. A bounded search that finds no counterexample is not a universal proof.
+3. A bounded search that finds no counterexample is not a universal proof; exhaustiveness is only reported when the input explicitly declares a complete model and the depth bound was not reached.
 4. Capability expansion during refactoring is a regression unless separately authorized.
 5. Unknown, stale, or contradictory evidence must not silently become a positive assurance state.
 6. No function in this module invokes external tools, grants authority, changes canonical state, or deploys code.
