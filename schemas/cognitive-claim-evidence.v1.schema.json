@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.invalid/schemas/cognitive-claim-evidence.v1.schema.json",
+  "title": "VAIXLNS Epistemic Claim and Evidence Envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claim_id", "statement", "state", "evidence_ids", "created_at"],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "statement": {"type": "string", "minLength": 1},
+    "state": {"enum": ["VERIFIED", "EVIDENCE_SUPPORTED", "INFERENCE", "HYPOTHESIS", "SPECIFICATION", "UNVERIFIED", "UNKNOWN", "CONFLICT"]},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "verification_method": {"type": ["string", "null"]},
+    "independent_review": {"type": "boolean", "default": false},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "VERIFIED"}}, "required": ["state"]},
+      "then": {
+        "properties": {
+          "evidence_ids": {"minItems": 1},
+          "verification_method": {"type": "string", "minLength": 1},
+          "independent_review": {"const": true}
+        },
+        "required": ["verification_method", "independent_review"]
+      }
+    }
+  ]
+}

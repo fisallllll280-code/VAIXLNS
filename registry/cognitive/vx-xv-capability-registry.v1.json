@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "VAIXLNS.VX_XV_CAPABILITY_REGISTRY.V1",
+  "state": "SPECIFIED",
+  "owner": "VAIXLNS",
+  "canonical_source": "project.genome",
+  "master_index": "registry/omega/omega-000-master-index.json",
+  "roles": [
+    {"id": "vx.intent_analyst", "system": "VX", "capability": "plain_language_to_task_contract", "state": "REFERENCE_IMPLEMENTATION"},
+    {"id": "vx.research_mind", "system": "VX", "capability": "source_research_and_evidence_synthesis", "state": "LOGICAL_ROLE_ONLY"},
+    {"id": "vx.systems_architect", "system": "VX", "capability": "architecture_mapping_and_gap_analysis", "state": "LOGICAL_ROLE_ONLY"},
+    {"id": "vx.builder_executor", "system": "VX", "capability": "bounded_authorized_execution", "state": "ADAPTER_REQUIRED"},
+    {"id": "vx.adversarial_reviewer", "system": "VX", "capability": "counterexample_and_failure_analysis", "state": "LOGICAL_ROLE_ONLY"},
+    {"id": "vx.verification_mind", "system": "VX", "capability": "acceptance_test_and_replay_verification", "state": "LOGICAL_ROLE_ONLY"},
+    {"id": "vx.explainer", "system": "VX", "capability": "evidence_labeled_explanation", "state": "REFERENCE_CONTRACT"},
+    {"id": "xv.memory_steward", "system": "XV", "capability": "append_only_context_and_decision_memory", "state": "REFERENCE_IMPLEMENTATION"},
+    {"id": "xv.repair_engineer", "system": "XV", "capability": "repair_proposal_and_regression_loop", "state": "REFERENCE_CONTRACT"},
+    {"id": "xv.recovery_steward", "system": "XV", "capability": "integrity_check_and_checkpoint_recovery", "state": "REFERENCE_CONTRACT"}
+  ],
+  "authority_rules": {
+    "canonical_writes_require_governance": true,
+    "external_side_effects_require_explicit_approval": true,
+    "generated_claims_are_not_evidence": true,
+    "repair_candidate_requires_tests_and_review": true,
+    "model_provider_connectivity_must_be_evidenced": true
+  },
+  "status_note": "Registry entries describe logical roles and implementation slices. They do not assert connected external minds or production readiness."
+}
