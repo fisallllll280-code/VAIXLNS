@@ -1,0 +1,65 @@
+name: VAIXLNS Autonomous Research and System Foundry
+
+on:
+  schedule:
+    - cron: "3,33 * * * *"
+  workflow_dispatch:
+    inputs:
+      public_sources:
+        description: Inventory approved public GitHub repository trees
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vaixlns-autonomous-research-foundry
+  cancel-in-progress: true
+
+jobs:
+  bounded-research-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test research processor and candidate foundry
+        run: |
+          python -m unittest discover -s tests -p "test_autonomous_research_foundry.py" -v
+          python -m unittest discover -s tests -p "test_omega_pattern_foundry.py" -v
+          python -m unittest discover -s tests -p "test_agent_fabric.py" -v
+
+      - name: Run bounded autonomous research cycle
+        env:
+          EVENT_NAME: \${{ github.event_name }}
+          PUBLIC_SOURCES: \${{ inputs.public_sources }}
+        run: |
+          mkdir -p artifacts
+          if [ "$EVENT_NAME" = "schedule" ] || [ "$PUBLIC_SOURCES" = "true" ]; then
+            python scripts/autonomous_research_foundry.py \
+              --public-sources \
+              --queue registry/research/autonomous-foundry-queue.v1.json \
+              --output artifacts/autonomous-research-cycle.json
+          else
+            python scripts/autonomous_research_foundry.py \
+              --local-only \
+              --queue registry/research/autonomous-foundry-queue.v1.json \
+              --output artifacts/autonomous-research-cycle.json
+          fi
+
+      - name: Upload cycle report and candidate proposals
+        if: always() && hashFiles('artifacts/autonomous-research-cycle.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-autonomous-research-cycle
+          path: artifacts/autonomous-research-cycle.json
+          if-no-files-found: error
+          retention-days: 14

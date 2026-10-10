@@ -17,3 +17,13 @@ ARC-X is the Epistemic Reality Compiler: the repository/evidence reconstruction 
 - Self-authority: prohibited
 
 ARC-X composes existing recovery, registry, NEXENT, VV, VX, evidence, replay, and governance surfaces without replacing their authority boundaries.
+
+
+## VA Genesis Operational Engine
+
+- [Operational Engine v1](VA_GENESIS_OPERATIONAL_ENGINE_V1.md)
+- Implementation prototype: `../../va/`
+- Registry record: `../../registry/tools/va-genesis.yaml`
+- Contract tests: `../../tests/test_va_genesis.py`
+
+Current state: IMPLEMENTED-PROTOTYPE / PARTIAL. Static structural verification does not imply runtime verification or production admission.

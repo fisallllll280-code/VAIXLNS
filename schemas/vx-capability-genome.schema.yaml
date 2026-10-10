@@ -1,0 +1,45 @@
+schema: vx.capability.genome
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - capability_id
+  - name
+  - state
+  - provenance
+  - verification
+properties:
+  capability_id: string
+  name: string
+  purpose: string
+  inputs: array
+  outputs: array
+  operations: array
+  preconditions: array
+  postconditions: array
+  constraints: array
+  dependencies: array
+  compatible_minds: array
+  required_tools: array
+  evidence: array
+  verification: array
+  known_failures: array
+  adversarial_results: array
+  security_profile: object
+  cost: object
+  latency: object
+  reproducibility: object
+  provenance: object
+  parent_capabilities: array
+  derived_capabilities: array
+  authority: object
+  version: string
+  state:
+    enum:
+      - HYPOTHESIZED
+      - SPECIFIED
+      - PROTOTYPED
+      - TESTED
+      - VERIFIED
+      - ADOPTED
+      - DEPRECATED
+      - QUARANTINED
