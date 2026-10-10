@@ -1,46 +1,89 @@
-# Ω-IMpossibility Engine V1 — Executable Prototype
+# Ω-Impossibility Engine + Execution Fabric V1
 
-**State:** IMPLEMENTED ON BRANCH; verification pending CI. Not canonical and not a general impossibility solver.
+**State:** IMPLEMENTED ON FEATURE BRANCH; verification status follows current CI. Not canonical and not a general theorem prover.
 
-## Purpose
+## What is executable
 
-Turn a vague "impossible" claim into a conservative, evidence-oriented engineering assessment. The first version is deterministic and dependency-free. It detects explicit numeric range contradictions, identifies missing specification/evidence, and emits a staged feasibility plan plus alternative routes.
+- Conservative feasibility triage and numeric range contradiction detection.
+- Bounded concurrent batch scheduler; deterministic ordering of results and explicit task IDs.
+- Worker adapter using only operator-configured HTTPS endpoints, bearer tokens from environment variables, bounded timeouts, response-size checks, and task-fingerprint correlation.
+- Minimal typed HTTP worker exposing only `GET /healthz` and `POST /v1/assess`; it does not execute code or shell commands.
+- Visible fallback to local execution, or strict remote failure via `--strict-remote`.
 
-## Run
+## Run local mode
 
 From the repository root with Python 3.11+:
 
 ```powershell
-python -m unittest tests.test_impossibility_engine -v
+python -m unittest tests.test_impossibility_engine tests.test_impossibility_fabric -v
 @'
 {
-  "title": "Low-latency design",
-  "goal": "Respond within 40 ms under the stated load",
-  "constraints": [
-    {"kind": "range", "variable": "latency_ms", "min": 0, "max": 40}
+  "problems": [
+    {
+      "title": "Latency target",
+      "goal": "Respond within 40 ms under the stated load",
+      "constraints": [{"kind": "range", "variable": "latency_ms", "min": 0, "max": 40}],
+      "evidence": [{"state": "OBSERVED", "ref": "baseline-run-001"}]
+    },
+    {
+      "title": "Conflicting requirement",
+      "goal": "Meet a configured range",
+      "constraints": [{"kind": "range", "variable": "latency_ms", "min": 50, "max": 20}],
+      "evidence": [{"state": "OBSERVED", "ref": "fixture"}]
+    }
   ],
-  "resources": ["local benchmark host"],
-  "evidence": [{"state": "OBSERVED", "ref": "baseline-run-001"}]
+  "max_workers": 4
 }
-'@ | python -m tools.impossibility_engine
+'@ | python -m tools.impossibility_engine batch --max-workers 4
 ```
 
-## Output contract
+Legacy single-problem mode remains available as `python -m tools.impossibility_engine < problem.json`.
 
-- `CONTRADICTION_DETECTED`: a supported contradiction was found in declared numeric range constraints.
-- `INSUFFICIENT_SPECIFICATION`: goal, constraints, or evidence are missing.
-- `ENGINEERING_CHALLENGE`: no contradiction was detected; feasibility remains unproven.
+## Run a worker
 
-The engine never equates "not disproven" with "possible", and never promotes a result to `VERIFIED`. It performs no network calls, model calls, shell execution, repository writes, or external side effects.
+```powershell
+python -m tools.impossibility_engine serve --host 127.0.0.1 --port 8787 --worker-id worker-local
+```
 
-## Next implementation gates
+Workers bind to loopback by default. Any non-loopback bind requires a non-empty secret in the environment variable named by `--token-env`. Put the worker behind a TLS-terminating reverse proxy before remote use. The coordinator accepts only explicitly configured HTTPS URLs ending in `/v1/assess`, reads bearer secrets from environment variables, limits timeouts and response size, and never auto-discovers arbitrary hosts.
 
-1. Add domain-specific constraint plugins with explicit assumptions and unit validation.
-2. Add proof-obligation records and evidence provenance schemas.
-3. Add a sandboxed experiment adapter only after threat modeling and independent permission checks.
-4. Compare decisions against a human-labeled adversarial benchmark; report false-positive/false-negative rates.
-5. Only then consider agent/model integrations, behind explicit adapters and budgets.
+Set `OMEGA_REMOTE_WORKERS` to JSON like:
+
+```json
+[
+  {
+    "worker_id": "compute-a",
+    "endpoint": "https://compute-a.example/v1/assess",
+    "token_env": "OMEGA_COMPUTE_A_TOKEN",
+    "timeout_seconds": 15
+  },
+  {
+    "worker_id": "compute-b",
+    "endpoint": "https://compute-b.example/v1/assess",
+    "token_env": "OMEGA_COMPUTE_B_TOKEN",
+    "timeout_seconds": 15
+  }
+]
+```
+
+Store each token in the corresponding environment variable; never place secrets in JSON, source control, or the worker URL. For a remote node, configure `OMEGA_WORKER_TOKEN` (or the chosen `--token-env`) on the worker process. Use valid HTTPS and a reverse proxy/TLS setup; the sample worker HTTP server does not provide TLS itself.
+
+Then run `python -m tools.impossibility_engine batch --max-workers 8 < batch.json`. Use `--strict-remote` to disable local fallback. The response records the selected worker, transport, elapsed time, and fallback/failure state.
+
+## Limits and honest performance boundary
+
+This implementation executes batch dispatch and local work. The local scheduler is not evidence of CPU speedup for the small pure-Python triage function; local concurrency mainly validates orchestration and can overlap I/O-bound work. Horizontal throughput requires at least one separately deployed worker endpoint plus explicit configuration. No remote endpoints are configured by default and no remote cluster has been provisioned by this PR.
+
+Task fingerprints provide correlation and accidental-mismatch detection, not proof that a remote worker is honest or that its scientific conclusion is true. The engine does not claim physical impossibility from lack of a candidate, does not auto-promote a claim to `VERIFIED`, and performs no arbitrary shell/code execution.
+
+## CI acceptance gates
+
+- Input and schema validation.
+- Stable result order under concurrent completion.
+- Bounded concurrency and explicit failure states.
+- HTTPS-only remote configuration, no inline credentials, and visible fallback.
+- Unit tests and repository conformance workflows must pass before merge.
 
 ## Canonical boundary
 
-This prototype is a proposal/implementation branch. It does not modify `project.genome`, `Ω0_GENESIS_CORE`, or `Ω.000`. Novelty and scientific completeness remain unassessed.
+This implementation is an ordinary proposed execution component. It does not modify `project.genome`, `Ω0_GENESIS_CORE`, or `Ω.000`. Scientific completeness and novelty are unassessed.
