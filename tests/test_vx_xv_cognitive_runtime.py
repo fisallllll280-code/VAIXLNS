@@ -41,7 +41,8 @@ def test_external_and_canonical_requests_require_approval():
     assert requires_human_approval("عدّل project.genome")[0]
     plan = build_task_plan("انشر التطبيق للعامة")
     assert plan.requires_approval is True
-    assert any(step.approval_required for step in plan.steps)
+    assert len(plan.approval_reasons) > 0
+    assert plan.status == "PLANNED"
 
 
 def test_empty_request_rejected():
@@ -100,20 +101,20 @@ def test_memory_events_reject_update_and_delete(tmp_path: Path):
     assert store.verify_chain()["valid"] is True
 
 
-def test_memory_integrity_detects_tampering():
-    # A direct SQL rewrite simulates database corruption or tampering.
-    import tempfile
-    with tempfile.TemporaryDirectory() as directory:
-        db_path = Path(directory) / "memory.sqlite3"
-        store = MemoryStore(db_path)
-        store.append("task", {"goal": "original"})
-        with sqlite3.connect(db_path) as db:
-            db.execute("DROP TRIGGER memory_events_no_update")
-            db.execute("UPDATE memory_events SET payload_json='{"goal":"tampered"}' WHERE seq=1")
-            db.commit()
-        result = store.verify_chain()
-        assert result["valid"] is False
-        assert result["reason"] == "event_hash_mismatch"
+def test_memory_integrity_detects_tampering(tmp_path: Path):
+    db_path = tmp_path / "memory.sqlite3"
+    store = MemoryStore(db_path)
+    store.append("task", {"goal": "original"})
+    with sqlite3.connect(db_path) as db:
+        db.execute("DROP TRIGGER memory_events_no_update")
+        db.execute(
+            "UPDATE memory_events SET payload_json=? WHERE seq=1",
+            ('{"goal":"tampered"}',),
+        )
+        db.commit()
+    result = store.verify_chain()
+    assert result["valid"] is False
+    assert result["reason"] == "event_hash_mismatch"
 
 
 def test_identical_requests_have_same_step_structure():
