@@ -12,6 +12,7 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Four-system reconciliation](docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md)
 - [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
 - [Repository runtime status](docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md)
+- [VX supervised runtime bootstrap](docs/runtime/VX_SUPERVISED_BOOTSTRAP_V1.md)
 - [Innovation separation matrix](docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md)
 - [Innovation federation JSON](docs/innovation/innovation-federation.json)
 - [Engineering decision register](docs/indexes/ENGINEERING_DECISION_REGISTER.md)
