@@ -13,7 +13,7 @@
 - `MASTER_RECOVERY_STATUS.md` — current corpus and federation coverage.
 - `ARCHIVE_SOURCE_INDEX.md` — supplied project sources, hashes, classifications.
 - `INNOVATION_MASTER_INDEX.md` — innovation catalog with canonical placement.
-- `../innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md` — recovered 97-item portfolio, existing implementation-bearing assets, evidence-based readiness boundaries, and phased execution sequence; review projection only.
+- `../innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md` — recovered 97-item portfolio, implementation/evidence boundaries, and phased execution sequence; review projection only.
 - `../innovation/INNOVATION_OPERATION_INDEX.md` — generated detailed innovation descriptions, operation steps, inputs/outputs, admission gates, failure modes, source lineage, and status disagreements.
 - `../../registry/innovation-operation-index.v1.json` — machine-readable generated innovation operation index; regenerate with `python tools/build_innovation_operation_index.py`.
 - `REPOSITORY_FEDERATION_INDEX.md` — all 40 currently visible owned repositories and their role.
