@@ -85,14 +85,14 @@ def validate_documents(manifest: Any, schema: Any) -> list[str]:
         if not isinstance(item.get("identity_state"), str) or not item["identity_state"]:
             errors.append(f"MISSING_IDENTITY_STATE:{name}")
     if "VLNS" in by_id:
-        if "NAXLNS" in by_id["VLNS"].get("repository_candidates", []):
+        if any(str(candidate).rstrip("/").split("/")[-1].casefold() == "naxlns" for candidate in by_id["VLNS"].get("repository_candidates", [])):
             errors.append("UNSUPPORTED_VLNS_NAXLNS_ALIAS")
         if "UNVERIFIED" not in by_id["VLNS"].get("identity_state", ""):
             errors.append("VLNS_MAPPING_MUST_REMAIN_UNVERIFIED")
     if "NEXNET" in by_id:
         if by_id["NEXNET"].get("repository_candidates"):
             errors.append("NEXNET_IDENTITY_CANDIDATES_REQUIRE_EVIDENCE")
-        if "UNRESOLVED" not in by_id["NEXNET"].get("identity_state", ""):
+        if not any(term in by_id["NEXNET"].get("identity_state", "") for term in ("UNRESOLVED", "NOT_RESOLVED")):
             errors.append("NEXNET_MAPPING_MUST_REMAIN_UNRESOLVED")
 
     sources = manifest.get("source_repositories")
