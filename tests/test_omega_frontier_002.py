@@ -52,13 +52,17 @@ class OmegaFrontier002Tests(unittest.TestCase):
                                              ["forbidden"], max_depth=4)
         self.assertEqual(result["result"], "NO_COUNTEREXAMPLE_WITHIN_SEARCH_BOUND")
         self.assertIn("not a universal proof", result["warning"])
+        self.assertFalse(result["exhaustive_over_reachable_graph"])
+        complete = synthesize_forbidden_states("start", {"start": ["safe"], "safe": []},
+                                               ["forbidden"], max_depth=4, model_complete=True)
+        self.assertTrue(complete["exhaustive_over_reachable_graph"])
 
     def test_history_reconciliation_preserves_concurrent_order_ambiguity(self):
         result = reconcile_histories([
             {"source": "A", "events": [{"id": "a", "caused_by": []}]},
             {"source": "B", "events": [{"id": "b", "caused_by": []}]},
         ])
-        self.assertEqual(result["result"], "CONSISTENT")
+        self.assertEqual(result["result"], "RECONCILABLE")
         self.assertEqual(result["causal_edges"], [])
 
     def test_history_reconciliation_detects_same_id_conflict(self):
@@ -111,6 +115,57 @@ class OmegaFrontier002Tests(unittest.TestCase):
         self.assertEqual(result["invariants"][1]["status"], "UNRESOLVED")
         self.assertFalse(result["authority_granted"])
         self.assertFalse(result["execution_performed"])
+
+
+    def test_unresolved_condition_without_actions_is_incomplete(self):
+        result = uncertainty_to_action([{"condition": "unknown-source", "state": "UNKNOWN",
+                                         "affected_actions": []}])
+        self.assertEqual(result["decision"], "INCOMPLETE")
+        self.assertEqual(result["findings"][0]["status"], "INVALID_INPUT")
+
+    def test_invalid_hypothesis_prevents_a_false_leader(self):
+        result = compete_hypotheses([
+            {"id": "H1", "supporting_evidence": ["e1", "e2"], "refuting_evidence": []},
+            {"id": "H1", "supporting_evidence": ["e3"], "refuting_evidence": []},
+        ])
+        self.assertEqual(result["result"], "INCOMPLETE")
+
+    def test_missing_causal_relation_is_unobservable(self):
+        result = reconcile_histories([{"source": "A", "events": [{"id": "event-1"}]}])
+        self.assertEqual(result["result"], "UNOBSERVABLE")
+
+    def test_capability_widening_precedes_missing_property_coverage(self):
+        result = compare_refactor(
+            {"properties": {}, "capabilities": ["READ"]},
+            {"properties": {}, "capabilities": ["READ", "WRITE"]},
+            ["replay"])
+        self.assertEqual(result["result"], "CONTRACT_REGRESSION")
+
+    def test_duplicate_evidence_ids_fail_minimization_closed(self):
+        result = minimal_proof_surface({"A"}, [
+            {"id": "same", "verified": True, "covers": ["A"]},
+            {"id": "same", "verified": True, "covers": ["A"]},
+        ])
+        self.assertEqual(result["result"], "INCOMPLETE")
+        self.assertEqual(result["reason"], "DUPLICATE_EVIDENCE_ID")
+
+    def test_unverified_mandatory_evidence_cannot_be_dropped(self):
+        result = minimal_proof_surface({"A"}, [
+            {"id": "mandatory", "verified": False, "mandatory": True, "covers": ["A"]},
+            {"id": "optional", "verified": True, "covers": ["A"]},
+        ])
+        self.assertEqual(result["result"], "INCOMPLETE")
+        self.assertEqual(result["reason"], "MANDATORY_EVIDENCE_NOT_VERIFIED")
+
+    def test_supported_is_not_sufficient_for_assurance_eligibility(self):
+        result = assurance_causality_map(
+            [{"id": "I1"}], {"I1": ["e1"]}, {"e1": "SUPPORTED"})
+        self.assertEqual(result["invariants"][0]["status"], "UNRESOLVED")
+
+    def test_missing_dependencies_do_not_get_vacuous_eligibility(self):
+        result = assurance_causality_map([{"id": "I1"}], {}, {})
+        self.assertEqual(result["invariants"][0]["status"], "UNRESOLVED")
+        self.assertEqual(result["invariants"][0]["reason"], "DEPENDENCIES_NOT_DECLARED")
 
 
 if __name__ == "__main__":
