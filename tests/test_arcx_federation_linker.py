@@ -43,7 +43,7 @@ class ArcxFederationLinkerTests(unittest.TestCase):
     def test_malformed_system_identifier_fails_closed(self):
         plan = plan_links(self.systems, [self.candidate(source=["VAIXLNS"])])
         self.assertEqual(plan["links"][0]["state"], "BLOCKED")
-        self.assertIn("UNKNOWN_OR_INVALID_SYSTEM_ID", plan["links"][0]["blockers"])
+        self.assertIn("INVALID_SYSTEM_ID_TYPE", plan["links"][0]["blockers"])
 
     def test_invalid_source_revision_is_blocked(self):
         plan = plan_links(self.systems, [self.candidate(source_revision="main")])
