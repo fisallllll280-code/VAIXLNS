@@ -1,11 +1,13 @@
 import tempfile, unittest
 from pathlib import Path
-from runtime.supervised_runtime import AgentManifest, EvidenceLedger, PolicyGate, State, run_bootstrap
+from runtime.supervised_runtime import AgentManifest, EvidenceLedger, MissionEngine, PolicyGate, State, run_bootstrap
 from runtime.agent_factory import AgentFactory
 from runtime.paper_trading import simulate_paper_trades
 from scripts.verify_vx_bootstrap_evidence import verify
 
 class SupervisedRuntimeTests(unittest.TestCase):
+ def test_mission_engine_rejects_unapproved_mission(self):
+  with self.assertRaises(PermissionError): MissionEngine().compile({"mission_id":"VX-BOOTSTRAP-001","approved":False,"tasks":[]})
  def test_hash_chain_detects_tampering(self):
   l=EvidenceLedger(); l.append("A","test","x",{"v":1}); self.assertTrue(l.verify()["valid"]); l.events[0]["payload"]["v"]=2; self.assertFalse(l.verify()["valid"])
  def test_policy_denies_unauthorized_and_limits_restarts(self):
