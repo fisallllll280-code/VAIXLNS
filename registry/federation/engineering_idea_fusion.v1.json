@@ -53,18 +53,19 @@
   ],
   "source_repositories": [
     {
-      "repository": "fisallllll280-code/VAIXLNS",
-      "role": "canonical source, recovery, registry and governance",
-      "source_revision": "f6adece1956b7e0ed4c9705beff2453b23bf303d",
+      "repository": "fisallllll280-code/NAXLNS",
+      "role": "adversarial design review, hidden assumption and failure-mode enumeration",
+      "source_revision": "4a5a7c0b2093515ce0a05a76a7d337b0bada11e4",
       "source_path": "README.md",
-      "source_blob_sha": "cb887e5a8162e1ed440d390f3dea03ca87db15ef",
-      "source_url": "https://github.com/fisallllll280-code/VAIXLNS/blob/f6adece1956b7e0ed4c9705beff2453b23bf303d/README.md",
-      "evidence_class": "SOURCE_OBSERVED",
+      "source_blob_sha": "2ebf576d8ce6dee3483fe2a59e5fedc9052cf3e6",
+      "source_url": "https://github.com/fisallllll280-code/NAXLNS/blob/4a5a7c0b2093515ce0a05a76a7d337b0bada11e4/README.md",
+      "evidence_class": "REVIEW_METHOD_SPECIFIED",
       "integration_candidates": [
-        "source registry",
-        "provenance ledger",
-        "canonical governance",
-        "recovery index"
+        "assumption register",
+        "counterexample generation",
+        "risk matrix",
+        "false-versus-unknown distinction",
+        "economic feasibility review"
       ]
     },
     {
@@ -84,33 +85,18 @@
       ]
     },
     {
-      "repository": "fisallllll280-code/VX-runtime",
-      "role": "runtime contract for event/policy/capability/execute/observe/verify/record/replay/evolve",
-      "source_revision": "93f3c28261e2f4133ac0c6a0c2cc99f501e27335",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "role": "canonical source, recovery, registry and governance",
+      "source_revision": "f6adece1956b7e0ed4c9705beff2453b23bf303d",
       "source_path": "README.md",
-      "source_blob_sha": "6ec8af8c3724baac04f7eb4a9aa8974c765beced",
-      "source_url": "https://github.com/fisallllll280-code/VX-runtime/blob/93f3c28261e2f4133ac0c6a0c2cc99f501e27335/README.md",
-      "evidence_class": "SPECIFIED_PER_SOURCE_README",
+      "source_blob_sha": "cb887e5a8162e1ed440d390f3dea03ca87db15ef",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS/blob/f6adece1956b7e0ed4c9705beff2453b23bf303d/README.md",
+      "evidence_class": "SOURCE_OBSERVED",
       "integration_candidates": [
-        "deterministic runtime contract",
-        "ledger-first execution",
-        "policy-before-capability",
-        "replay and controlled evolution"
-      ]
-    },
-    {
-      "repository": "fisallllll280-code/vx-agents-fabric",
-      "role": "provider-neutral specialist coordination and bounded agent orchestration",
-      "source_revision": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
-      "source_path": "README.md",
-      "source_blob_sha": "0c575fcb69534033dd65d5aac8973825e9d5d899",
-      "source_url": "https://github.com/fisallllll280-code/vx-agents-fabric/blob/f0b3374a4245a8d128afc4bf05303c27b59c23fb/README.md",
-      "evidence_class": "SCAFFOLD_CLAIM_NOT_INDEPENDENTLY_VERIFIED",
-      "integration_candidates": [
-        "specialist role/version registry",
-        "multi-mind independent review",
-        "NOT_CONFIGURED to HOLD",
-        "source-bound agent outputs"
+        "source registry",
+        "provenance ledger",
+        "canonical governance",
+        "recovery index"
       ]
     },
     {
@@ -130,6 +116,22 @@
       ]
     },
     {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "role": "intent normalization, contract, authorization, planning, execution evidence and external integration admission",
+      "source_revision": "9924f45f962e58d818be66e1d38fc9f0e5059505",
+      "source_path": "docs/INTENT_PIPELINE_V1.md",
+      "source_blob_sha": "4bcc0ae67a3613d43e918d3d066c57f24b9a69ea",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality/blob/9924f45f962e58d818be66e1d38fc9f0e5059505/docs/INTENT_PIPELINE_V1.md",
+      "evidence_class": "SPECIFIED_PIPELINE",
+      "integration_candidates": [
+        "intent-to-contract compiler",
+        "intent is not authorization",
+        "execution evidence linked verification",
+        "ARC-X EIR boundary",
+        "universal external integration admission"
+      ]
+    },
+    {
       "repository": "fisallllll280-code/vaixlns-nexent-vx",
       "role": "capability synthesis, proof package and sovereign execution gate",
       "source_revision": "b2a84ebac07430a349cf343286ae4a84a52e381c",
@@ -142,22 +144,6 @@
         "proof package",
         "execution gate",
         "epistemic state separation"
-      ]
-    },
-    {
-      "repository": "fisallllll280-code/NAXLNS",
-      "role": "adversarial design review, hidden assumption and failure-mode enumeration",
-      "source_revision": "4a5a7c0b2093515ce0a05a76a7d337b0bada11e4",
-      "source_path": "README.md",
-      "source_blob_sha": "2ebf576d8ce6dee3483fe2a59e5fedc9052cf3e6",
-      "source_url": "https://github.com/fisallllll280-code/NAXLNS/blob/4a5a7c0b2093515ce0a05a76a7d337b0bada11e4/README.md",
-      "evidence_class": "REVIEW_METHOD_SPECIFIED",
-      "integration_candidates": [
-        "assumption register",
-        "counterexample generation",
-        "risk matrix",
-        "false-versus-unknown distinction",
-        "economic feasibility review"
       ]
     },
     {
@@ -175,6 +161,50 @@
         "causal DAG",
         "health and recovery",
         "evolution proposal loop"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/vx-agents-fabric",
+      "role": "provider-neutral specialist coordination and bounded agent orchestration",
+      "source_revision": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
+      "source_path": "README.md",
+      "source_blob_sha": "0c575fcb69534033dd65d5aac8973825e9d5d899",
+      "source_url": "https://github.com/fisallllll280-code/vx-agents-fabric/blob/f0b3374a4245a8d128afc4bf05303c27b59c23fb/README.md",
+      "evidence_class": "SCAFFOLD_CLAIM_NOT_INDEPENDENTLY_VERIFIED",
+      "integration_candidates": [
+        "specialist role/version registry",
+        "multi-mind independent review",
+        "NOT_CONFIGURED to HOLD",
+        "source-bound agent outputs"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "role": "runtime contract for event/policy/capability/execute/observe/verify/record/replay/evolve",
+      "source_revision": "93f3c28261e2f4133ac0c6a0c2cc99f501e27335",
+      "source_path": "README.md",
+      "source_blob_sha": "6ec8af8c3724baac04f7eb4a9aa8974c765beced",
+      "source_url": "https://github.com/fisallllll280-code/VX-runtime/blob/93f3c28261e2f4133ac0c6a0c2cc99f501e27335/README.md",
+      "evidence_class": "SPECIFIED_PER_SOURCE_README",
+      "integration_candidates": [
+        "deterministic runtime contract",
+        "ledger-first execution",
+        "policy-before-capability",
+        "replay and controlled evolution"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "role": "preserved VX50 build lineage, implementation boundary and execution foundation",
+      "source_revision": "e59292662071b045532c121054e105fb214a4ebc",
+      "source_path": "docs/IMPLEMENTATION_FOUNDATION_V1.md",
+      "source_blob_sha": "1bac59530cc483d1978ea4e7a23793173671a752",
+      "source_url": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD/blob/e59292662071b045532c121054e105fb214a4ebc/docs/IMPLEMENTATION_FOUNDATION_V1.md",
+      "evidence_class": "SPECIFIED_WITH_EXPLICIT_INCOMPLETE_BOUNDARY",
+      "integration_candidates": [
+        "interface-router-ledger-context-policy-orchestrator-capability-execution-evidence-replay foundation",
+        "required contracts/tests/failure modes/evidence at every boundary",
+        "preserve lineage without claiming runnable runtime"
       ]
     }
   ],
@@ -198,49 +228,53 @@
   ],
   "recovered_engineering_pipelines": [
     {
-      "id": "FORMULA-VAMM-01",
-      "name": "VAMM compiler pipeline",
+      "id": "FORMULA-ARCX-BOUNDARY-01",
+      "name": "ARC-X Ω Intent/EIR boundary",
       "stages": [
-        "YAML Artifact",
-        "Parser",
-        "Semantic Analyzer",
-        "IR",
-        "Planner",
-        "Generator",
-        "Verifier",
-        "Runtime"
+        "Intent",
+        "Intent-to-Reality Decomposition",
+        "ARC-X Semantic Normalization",
+        "EIR",
+        "Plan and Proof Obligations",
+        "Governance + VX",
+        "Observed Reality",
+        "ARC-X Reconstruction"
+      ],
+      "state": "RECOVERED_FORMULATION",
+      "source_refs": [
+        "fisallllll280-code/VAIXLNS-Intent-to-Reality:docs/integration/ARC_X_BOUNDARY_V1.md"
+      ]
+    },
+    {
+      "id": "FORMULA-DIGITAL-TWIN-01",
+      "name": "Digital twin assurance",
+      "stages": [
+        "Digital Twin",
+        "Shadow Runtime",
+        "Simulation",
+        "Stress",
+        "Security",
+        "Fuzzing",
+        "Deterministic Replay",
+        "Chaos",
+        "Validation"
       ],
       "state": "RECOVERED_FORMULATION"
     },
     {
-      "id": "FORMULA-THEORY-01",
-      "name": "Theory to construction",
+      "id": "FORMULA-EVOLUTION-01",
+      "name": "Controlled evolution",
       "stages": [
-        "Theory",
-        "Theory Parser",
-        "Specification",
-        "Specification Compiler",
-        "Architecture",
-        "Contract",
-        "Runtime",
-        "Validation",
-        "Compliance"
-      ],
-      "state": "RECOVERED_FORMULATION"
-    },
-    {
-      "id": "FORMULA-SYSTEM-FORGE-01",
-      "name": "System Forge",
-      "stages": [
-        "System Genome",
-        "Blueprint",
-        "Specification",
-        "Architecture",
-        "Repository",
-        "Contracts",
-        "Tests",
-        "Proof",
-        "Runtime"
+        "Innovation Discovery",
+        "Candidate Generation",
+        "Mutation",
+        "Genome",
+        "Fitness",
+        "Simulation",
+        "Verification",
+        "Governance",
+        "Deployment",
+        "Evolution Registry"
       ],
       "state": "RECOVERED_FORMULATION"
     },
@@ -263,34 +297,58 @@
       "state": "RECOVERED_FORMULATION"
     },
     {
-      "id": "FORMULA-RECOVERY-01",
-      "name": "Deterministic recovery",
+      "id": "FORMULA-EXTERNAL-GATE-01",
+      "name": "Universal External Integration Gate",
       "stages": [
-        "Detect",
-        "Isolate",
-        "Load Last Valid Checkpoint",
-        "Read Event History",
-        "Reconstruct",
-        "Verify",
-        "Resume"
+        "Identity",
+        "Contract",
+        "Sandbox",
+        "Test",
+        "Failure/Recovery",
+        "Replay",
+        "Independent Verification",
+        "Fresh Proof",
+        "Impact Budget",
+        "Explicit Authority",
+        "Admission"
+      ],
+      "state": "RECOVERED_FORMULATION",
+      "source_refs": [
+        "fisallllll280-code/VAIXLNS-Intent-to-Reality:docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md"
+      ]
+    },
+    {
+      "id": "FORMULA-INTELLIGENCE-01",
+      "name": "Multi-mind intelligence gateway",
+      "stages": [
+        "Intent",
+        "Context",
+        "Meta-Cognitive Router",
+        "Intelligence Selection",
+        "Collective Intelligence",
+        "Consensus",
+        "Decision"
       ],
       "state": "RECOVERED_FORMULATION"
     },
     {
-      "id": "FORMULA-DIGITAL-TWIN-01",
-      "name": "Digital twin assurance",
+      "id": "FORMULA-INTENT-REALITY-01",
+      "name": "Intent to Reality",
       "stages": [
-        "Digital Twin",
-        "Shadow Runtime",
-        "Simulation",
-        "Stress",
-        "Security",
-        "Fuzzing",
-        "Deterministic Replay",
-        "Chaos",
-        "Validation"
+        "Intent",
+        "Normalize",
+        "Contract",
+        "Authorization",
+        "Plan",
+        "Execution",
+        "Evidence",
+        "Verification",
+        "Outcome"
       ],
-      "state": "RECOVERED_FORMULATION"
+      "state": "RECOVERED_FORMULATION",
+      "source_refs": [
+        "fisallllll280-code/VAIXLNS-Intent-to-Reality:docs/INTENT_PIPELINE_V1.md"
+      ]
     },
     {
       "id": "FORMULA-PATTERN-FOREST-01",
@@ -307,35 +365,85 @@
       "state": "RECOVERED_FORMULATION"
     },
     {
-      "id": "FORMULA-EVOLUTION-01",
-      "name": "Controlled evolution",
+      "id": "FORMULA-RECOVERY-01",
+      "name": "Deterministic recovery",
       "stages": [
-        "Innovation Discovery",
-        "Candidate Generation",
-        "Mutation",
-        "Genome",
-        "Fitness",
-        "Simulation",
-        "Verification",
-        "Governance",
-        "Deployment",
-        "Evolution Registry"
+        "Detect",
+        "Isolate",
+        "Load Last Valid Checkpoint",
+        "Read Event History",
+        "Reconstruct",
+        "Verify",
+        "Resume"
       ],
       "state": "RECOVERED_FORMULATION"
     },
     {
-      "id": "FORMULA-INTELLIGENCE-01",
-      "name": "Multi-mind intelligence gateway",
+      "id": "FORMULA-SYSTEM-FORGE-01",
+      "name": "System Forge",
       "stages": [
-        "Intent",
-        "Context",
-        "Meta-Cognitive Router",
-        "Intelligence Selection",
-        "Collective Intelligence",
-        "Consensus",
-        "Decision"
+        "System Genome",
+        "Blueprint",
+        "Specification",
+        "Architecture",
+        "Repository",
+        "Contracts",
+        "Tests",
+        "Proof",
+        "Runtime"
       ],
       "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-THEORY-01",
+      "name": "Theory to construction",
+      "stages": [
+        "Theory",
+        "Theory Parser",
+        "Specification",
+        "Specification Compiler",
+        "Architecture",
+        "Contract",
+        "Runtime",
+        "Validation",
+        "Compliance"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-VAMM-01",
+      "name": "VAMM compiler pipeline",
+      "stages": [
+        "YAML Artifact",
+        "Parser",
+        "Semantic Analyzer",
+        "IR",
+        "Planner",
+        "Generator",
+        "Verifier",
+        "Runtime"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-VX50-FOUNDATION-01",
+      "name": "VX50 execution foundation",
+      "stages": [
+        "Interface",
+        "Router",
+        "Ledger",
+        "Context",
+        "Policy",
+        "Orchestrator",
+        "Capability",
+        "Execution",
+        "Evidence",
+        "Replay"
+      ],
+      "state": "RECOVERED_FORMULATION",
+      "source_refs": [
+        "fisallllll280-code/VX50_COMPLETE_BUILD:docs/IMPLEMENTATION_FOUNDATION_V1.md"
+      ]
     }
   ],
   "non_mergeable_or_deferred": {
@@ -352,5 +460,39 @@
     "Candidate changes pass isolated targeted tests and the relevant repository test suite.",
     "Source revisions, actual test receipts, patch digests and independent review are preserved.",
     "Canonical registry promotion requires separate governance approval."
+  ],
+  "supporting_artifacts": [
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "source_revision": "e59292662071b045532c121054e105fb214a4ebc",
+      "source_path": "docs/OMEGA_FABRIC_CONTRACT.md",
+      "source_blob_sha": "3cb40b897b825ef771278defbb67c137c7156188",
+      "source_url": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD/blob/e59292662071b045532c121054e105fb214a4ebc/docs/OMEGA_FABRIC_CONTRACT.md",
+      "role": "preserved VX50 lineage; requires build identity, execution trace, verification, recovery and replay evidence; conformance specified"
+    },
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "source_revision": "e59292662071b045532c121054e105fb214a4ebc",
+      "source_path": "docs/VAIXLNS_REPOSITORY_BOUNDARY.md",
+      "source_blob_sha": "6a13db970e668ee480fbc887f7b8c97bbc9b647e",
+      "source_url": "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD/blob/e59292662071b045532c121054e105fb214a4ebc/docs/VAIXLNS_REPOSITORY_BOUNDARY.md",
+      "role": "explicitly records VX50 repository status as INCOMPLETE and says the default tree lacks a runnable runtime package"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "source_revision": "9924f45f962e58d818be66e1d38fc9f0e5059505",
+      "source_path": "docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+      "source_blob_sha": "057500b908c04b62f94b943e90f7b26a5c883f36",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality/blob/9924f45f962e58d818be66e1d38fc9f0e5059505/docs/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+      "role": "external integration admission stages: identity, contract, sandbox, test, failure/recovery, replay, independent verification, fresh proof, impact budget, explicit authority, admission"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "source_revision": "9924f45f962e58d818be66e1d38fc9f0e5059505",
+      "source_path": "docs/integration/ARC_X_BOUNDARY_V1.md",
+      "source_blob_sha": "d8065cc04b6ac1dd010acb91674cfbbdf7411e62",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality/blob/9924f45f962e58d818be66e1d38fc9f0e5059505/docs/integration/ARC_X_BOUNDARY_V1.md",
+      "role": "preserve intent identifier and transformation lineage through EIR, plan, proof obligations, governance, observed reality and reconstruction"
+    }
   ]
 }

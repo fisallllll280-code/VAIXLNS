@@ -21,6 +21,10 @@ REQUIRED_FORMULAS = {
     "FORMULA-PATTERN-FOREST-01",
     "FORMULA-EVOLUTION-01",
     "FORMULA-INTELLIGENCE-01",
+    "FORMULA-INTENT-REALITY-01",
+    "FORMULA-EXTERNAL-GATE-01",
+    "FORMULA-VX50-FOUNDATION-01",
+    "FORMULA-ARCX-BOUNDARY-01",
 }
 
 
@@ -96,7 +100,7 @@ def validate_documents(manifest: Any, schema: Any) -> list[str]:
             errors.append("NEXNET_MAPPING_MUST_REMAIN_UNRESOLVED")
 
     sources = manifest.get("source_repositories")
-    if not isinstance(sources, list) or len(sources) < 8:
+    if not isinstance(sources, list) or len(sources) < 10:
         errors.append("SOURCE_REPOSITORY_INVENTORY_INCOMPLETE")
         sources = sources if isinstance(sources, list) else []
     repositories: list[str] = []
@@ -135,6 +139,30 @@ def validate_documents(manifest: Any, schema: Any) -> list[str]:
         errors.append("NEXENT_SOURCE_LINEAGE_MISSING")
     if "fisallllll280-code/NAXLNS" not in repositories:
         errors.append("NAXLNS_REVIEW_SOURCE_MISSING")
+
+    support = manifest.get("supporting_artifacts")
+    if not isinstance(support, list) or len(support) < 4:
+        errors.append("SUPPORTING_ARTIFACT_INVENTORY_INCOMPLETE")
+        support = support if isinstance(support, list) else []
+    for index, artifact in enumerate(support):
+        if not isinstance(artifact, dict):
+            errors.append(f"SUPPORTING_ARTIFACT_NOT_OBJECT:{index}")
+            continue
+        repo = artifact.get("repository")
+        revision = artifact.get("source_revision")
+        blob_sha = artifact.get("source_blob_sha")
+        path = artifact.get("source_path")
+        url = artifact.get("source_url")
+        label = f"{repo}:{path}"
+        if not isinstance(revision, str) or not REVISION.fullmatch(revision):
+            errors.append(f"INVALID_SUPPORTING_REVISION:{label}")
+        if not isinstance(blob_sha, str) or not REVISION.fullmatch(blob_sha):
+            errors.append(f"INVALID_SUPPORTING_BLOB_SHA:{label}")
+        if all(isinstance(v, str) and v for v in (repo, revision, path, url)):
+            if url != f"https://github.com/{repo}/blob/{revision}/{path}":
+                errors.append(f"SUPPORTING_URL_NOT_PINNED:{label}")
+        if not isinstance(artifact.get("role"), str) or not artifact["role"]:
+            errors.append(f"SUPPORTING_ROLE_MISSING:{label}")
 
     formulas = manifest.get("recovered_engineering_pipelines")
     if not isinstance(formulas, list):
@@ -176,6 +204,14 @@ def load_and_validate(root: Path) -> list[str]:
     return validate_documents(manifest, schema)
 
 
+def manifest_sources(root: Path) -> list[Any]:
+    return json.loads((root / "registry/federation/engineering_idea_fusion.v1.json").read_text(encoding="utf-8")).get("source_repositories", [])
+
+
+def manifest_formulas(root: Path) -> list[Any]:
+    return json.loads((root / "registry/federation/engineering_idea_fusion.v1.json").read_text(encoding="utf-8")).get("recovered_engineering_pipelines", [])
+
+
 def main(argv: list[str] | None = None) -> int:
     root = Path(argv[0]).resolve() if argv else Path(__file__).resolve().parents[1]
     errors = load_and_validate(root)
@@ -185,8 +221,8 @@ def main(argv: list[str] | None = None) -> int:
     print(json.dumps({
         "valid": True,
         "state": "PROPOSAL",
-        "source_count": 8,
-        "recovered_formula_count": 9,
+        "source_count": len(manifest_sources(root)),
+        "recovered_formula_count": len(manifest_formulas(root)),
         "canonical_mutation": "DISABLED",
         "identity_aliasing": "BLOCKED_UNLESS_EVIDENCED",
     }, ensure_ascii=False, indent=2))

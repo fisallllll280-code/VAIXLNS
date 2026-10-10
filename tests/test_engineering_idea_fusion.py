@@ -19,6 +19,11 @@ class EngineeringIdeaFusionTests(unittest.TestCase):
     def test_checked_in_manifest_passes_source_pin_and_identity_checks(self):
         self.assertEqual(load_and_validate(ROOT), [])
 
+    def test_supporting_artifact_links_are_revision_pinned(self):
+        manifest = copy.deepcopy(self.manifest)
+        manifest["supporting_artifacts"][0]["source_url"] = "https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD/blob/main/docs/OMEGA_FABRIC_CONTRACT.md"
+        self.assertTrue(any(x.startswith("SUPPORTING_URL_NOT_PINNED:") for x in validate_documents(manifest, self.schema)))
+
     def test_canonical_registry_remains_read_only(self):
         manifest = copy.deepcopy(self.manifest)
         manifest["authority"]["canonical_mutation"] = "ENABLED"

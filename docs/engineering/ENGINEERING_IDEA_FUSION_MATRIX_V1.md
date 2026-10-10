@@ -19,13 +19,15 @@ This matrix consolidates engineering ideas found in pinned repository README sna
 | Source repository | Reusable engineering idea | Proposed placement | Current evidence boundary |
 |---|---|---|---|
 | VAIXLNS | canonical identity, provenance, recovery index, governance and adoption | authority / registry / evidence | README observed at pinned revision; not proof every subsystem is running |
-| NEXENT | architecture ontology and atomizer, architecture genome, capability-gap discovery, candidate synthesis, lineage-preserving evolution | discovery / architecture research | design claim only; NEXENT is not treated as NEXNET |
-| VX-runtime | ledger-first deterministic execution, policy before capability, stable execution identity, replay and controlled evolution | VX execution contract | README explicitly says this repository currently contains the runtime specification |
-| vx-agents-fabric | versioned specialist roles, multi-mind adversarial review, missing adapter => HOLD, source-bound outputs | orchestration / intelligence | scaffold claim; live provider connectivity and durable remote storage remain separate |
-| vaixlns-core | V-IR, proof obligations, capability lease, ledger, replay and explicit invariants | contract / assurance / execution | README says IMPLEMENTED + TESTED; independently verified here: no |
-| vaixlns-nexent-vx | capability synthesis, proof package, epistemic state separation and sovereign execution gate | candidate-to-execution bridge | architecture/example claim; full production behavior not independently verified |
-| NAXLNS | hidden-assumption discovery, counterexamples, failure modes, risk register, distinction between UNKNOWN and FALSE | adversarial review gate | review method specified; no automatic identity mapping to VLNS |
-| VAIXLNS-unified | intelligence router, knowledge graph, Pattern Forest, causal DAG, evolution and recovery organization | candidate knowledge / recovery integration | architecture claim; no claim of current deployment |
+| NEXENT | architecture ontology/atomizer, architecture genome, capability-gap discovery, candidate synthesis and lineage-preserving evolution | discovery / architecture research | design claim only; NEXENT is not treated as NEXNET |
+| VX-runtime | ledger-first deterministic execution, policy before capability, stable execution identity, replay and controlled evolution | VX execution contract | README says this repository currently contains the runtime specification |
+| vx-agents-fabric | versioned specialist roles, multi-mind review, missing adapter => HOLD, source-bound outputs | orchestration / intelligence | scaffold; provider connectivity and durable remote storage remain separate |
+| vaixlns-core | V-IR, proof obligations, capability lease, event/ledger/replay loop | contracts / assurance / execution | README implementation claim is not independently verified here |
+| vaixlns-nexent-vx | capability synthesis, proof package, epistemic state separation and sovereign execution gate | candidate-to-execution bridge | architecture/example claim; production behavior not independently verified |
+| NAXLNS | hidden assumptions, counterexamples, failure modes, risk matrix, UNKNOWN versus FALSE | adversarial review gate | review method specified; not an alias for VLNS |
+| VAIXLNS-unified | intelligence router, knowledge graph, Pattern Forest, causal DAG, evolution and recovery | knowledge / recovery integration | architecture claim; no current deployment claim |
+| VX50_COMPLETE_BUILD | Interface → Router → Ledger → Context → Policy → Orchestrator → Capability → Execution → Evidence → Replay | preserved VX build lineage | explicitly marked INCOMPLETE; source docs say the default tree has no runnable runtime package |
+| VAIXLNS-Intent-to-Reality | intent normalization, contracts, authorization, plans, observed execution evidence, external integration admission and ARC-X/EIR lineage | intent compiler / integration gate | architecture contracts are specified; must not be mistaken for live runtime proof |
 
 Exact commit IDs, README blob hashes and source links are held in the JSON manifest. A follow-up scan must inspect source code, tests, dependency files and action receipts at those exact revisions before promoting any row to IMPLEMENTED or VERIFIED.
 
@@ -48,6 +50,10 @@ These formulations were recovered from earlier project context and are preserved
 7. Pattern Forest: Seed → Family → Tree → Forest → Knowledge Graph → Causal DAG → Registry.
 8. Controlled evolution: Innovation Discovery → Candidate Generation → Mutation → Genome → Fitness → Simulation → Verification → Governance → Deployment → Evolution Registry.
 9. Intelligence gateway: Intent → Context → Meta-Cognitive Router → Intelligence Selection → Collective Intelligence → Consensus → Decision.
+10. Intent-to-Reality: Intent → Normalize → Contract → Authorization → Plan → Execution → Evidence → Verification → Outcome.
+11. Universal external integration gate: Identity → Contract → Sandbox → Test → Failure/Recovery → Replay → Independent Verification → Fresh Proof → Impact Budget → Explicit Authority → Admission.
+12. VX50 execution foundation: Interface → Router → Ledger → Context → Policy → Orchestrator → Capability → Execution → Evidence → Replay.
+13. ARC-X Ω boundary: Intent → Intent-to-Reality Decomposition → ARC-X Semantic Normalization → EIR → Plan/Proof Obligations → Governance + VX → Observed Reality → ARC-X Reconstruction.
 
 These are linked by C-IR / System IR, source lineage, explicit authority, proof obligations and the event/evidence ledger. They must not be flattened into one agent prompt or duplicated as disconnected services.
 
