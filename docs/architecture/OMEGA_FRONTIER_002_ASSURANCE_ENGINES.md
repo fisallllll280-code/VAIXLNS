@@ -25,7 +25,7 @@ This slice converts the seven research proposals into a small executable Python 
 - `CONFLICTED`: incompatible observations or causal constraints were detected.
 - `REJECTED`: an explicit required condition failed.
 - `ELIGIBLE_FOR_NEXT_GATE`: supplied checks passed; this is not authorization.
-- `VERIFIED`: reserved for a specific claim after reproducible verification evidence is attached. This reference slice and its architecture are not yet labeled VERIFIED. The first GitHub Actions run passed 15 tests; a subsequent hardening update added 8 tests and is awaiting its own CI result.
+- `VERIFIED`: reserved for a specific claim after reproducible verification evidence is attached. This reference slice and its architecture are not yet labeled VERIFIED. The first GitHub Actions run passed 15 tests; subsequent hardening adds 11 more tests (26 total). The latest hardening commit's CI result is not yet exposed by the available status query, so those added tests remain unverified until a new run is confirmed.
 
 ## Core invariants
 1. Missing evidence never implies absence.
@@ -111,7 +111,7 @@ Fault-tree analysis and failure-mode analysis are established ways to trace haza
 - https://www.govinfo.gov/content/pkg/GOVPUB-C13-80299f9a3796882d21b5f7f636beafe7/pdf/GOVPUB-C13-80299f9a3796882d21b5f7f636beafe7.pdf
 
 ## Next steps
-1. Run the GitHub Actions suite and fix any failures.
+1. Confirm a new GitHub Actions run for the latest hardening head and fix any failures.
 2. Add schema files and a versioned JSON interchange contract.
 3. Integrate the uncertainty restrictions with actual VX adapter enforcement.
 4. Add external signed/witnessed checkpoints and evidence independence metadata.
