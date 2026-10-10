@@ -47,6 +47,8 @@ Potential contradictions are only paired when subject and predicate match, obser
 
 The transition evaluator checks required digests, invariant result declarations, simulation/test receipt references, rollback plan reference, and authority ticket reference. It returns at most ELIGIBLE_FOR_SEPARATE_AUTHORITY_CHECK. A PASS value and receipt digest are inputs, not authenticated proofs. The function never grants authority, executes code, changes a canonical record, or claims the deployed runtime enforces these checks.
 
+Outcome reconciliation separately compares an expected postcondition digest against an observed postcondition digest. An execution receipt with no observation returns EXECUTION_REPORTED_OUTCOME_UNKNOWN; a mismatch remains POSTCONDITION_MISMATCH; a match is only POSTCONDITION_MATCH_CANDIDATE until receipts and scope binding are independently authenticated. Absence of a receipt is not proof that no side effect occurred.
+
 ## Audit continuity
 
 The audit chain uses canonical JSON and SHA-256 chaining and refuses common secret-value field names. It detects edits relative to the supplied chain but is not a digital signature, append-only store, trusted timestamp, or tamper-proof remote witness. For production, export events to an independently controlled append-only system and sign receipts under a protected key held outside this repository.
