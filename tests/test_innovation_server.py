@@ -4,12 +4,13 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 from http.server import ThreadingHTTPServer
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 from services.innovation_server.server import (
-    JobStore, Worker, make_handler, public_job, run_builtin
+    JobStore, Worker, WorkerPool, make_handler, public_job, run_builtin
 )
 
 
@@ -51,6 +52,43 @@ class InnovationServerTests(unittest.TestCase):
         self.store.submit("echo", {"x": 1}, "request-123")
         with self.assertRaisesRegex(ValueError, "IDEMPOTENCY_KEY_CONFLICT"):
             self.store.submit("echo", {"x": 2}, "request-123")
+
+    def test_worker_pool_runs_independent_jobs_concurrently(self):
+        rows = [self.store.submit("echo", {"index": index})[0] for index in range(6)]
+        active = 0
+        max_active = 0
+        guard = threading.Lock()
+
+        def delayed_handler(action, payload):
+            nonlocal active, max_active
+            with guard:
+                active += 1
+                max_active = max(max_active, active)
+            try:
+                time.sleep(0.12)
+                return real_handler(action, payload)
+            finally:
+                with guard:
+                    active -= 1
+
+        real_handler = run_builtin
+        pool = WorkerPool(self.store, workers=3, poll_seconds=0.005)
+        with patch("services.innovation_server.server.run_builtin", side_effect=delayed_handler):
+            pool.start()
+            try:
+                for row in rows:
+                    self.wait_for_state(row["job_id"], "COMPLETED", timeout=4)
+            finally:
+                pool.stop()
+
+        self.assertGreaterEqual(max_active, 2)
+        self.assertTrue(all(self.store.get(row["job_id"])["state"] == "COMPLETED" for row in rows))
+
+    def test_worker_pool_rejects_invalid_worker_counts(self):
+        for count in (0, -1, 33, True, 1.5):
+            with self.subTest(count=count):
+                with self.assertRaises(ValueError):
+                    WorkerPool(self.store, workers=count)
 
     def test_worker_persists_result_but_does_not_claim_verification(self):
         row, _ = self.store.submit("tokenize", {"text": "VX memory VX task"})
