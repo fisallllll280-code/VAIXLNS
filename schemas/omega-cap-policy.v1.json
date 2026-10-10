@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.invalid/schemas/omega-cap-policy.v1.json",
+  "title": "VAIXLNS Ω-CAP Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "mode", "base_currency", "max_single_asset_weight", "max_total_allocation", "allow_live_execution"],
+  "properties": {
+    "policy_id": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["research", "paper"]},
+    "base_currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "max_single_asset_weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "max_total_allocation": {"type": "number", "minimum": 0, "maximum": 1},
+    "max_order_notional": {"type": "number", "exclusiveMinimum": 0},
+    "max_portfolio_notional": {"type": "number", "exclusiveMinimum": 0},
+    "allow_short_positions": {"type": "boolean", "default": false},
+    "allow_live_execution": {"const": false},
+    "stale_after_seconds": {"type": "integer", "minimum": 1},
+    "transaction_cost_bps": {"type": "number", "minimum": 0},
+    "slippage_bps": {"type": "number", "minimum": 0}
+  }
+}
