@@ -62,6 +62,11 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visib
         <button class="navitem" data-cmd="federation attributes VLNS"><span class="navicon">⌕</span><span class="navlabel">Deep attribute index</span></button>
         <button class="navitem" data-cmd="federation gaps"><span class="navicon">⚑</span><span class="navlabel">Gap / release board</span></button>
       </div></div>
+      <div><div class="section-label">Ω-SCALE · evolution</div><div class="navgroup">
+        <button class="navitem" data-cmd="scale simulate all"><span class="navicon">↗</span><span class="navlabel">Simulate system growth</span></button>
+        <button class="navitem" data-cmd="scale simulate federation"><span class="navicon">⛓</span><span class="navlabel">Federation obstacles</span></button>
+        <button class="navitem" data-cmd="scale report"><span class="navicon">▤</span><span class="navlabel">Learning report</span></button>
+      </div></div>
       <div><div class="section-label">Proof & execution</div><div class="navgroup">
         <button class="navitem" data-cmd="proof verify"><span class="navicon">⛨</span><span class="navlabel">Proof gate</span></button>
         <button class="navitem" data-cmd="runtime status"><span class="navicon">▷</span><span class="navlabel">VX runtime</span></button>
@@ -171,7 +176,7 @@ Examples: index search VX · agents list · proof verify · runtime simulate "ve
   var uiHistory = [];
   var historyPointer = 0;
   var lastState = null;
-  var examples = ["help","status","map","index list","index search VX","agents list","agents inspect AG-006","agents route proof tests","genome inspect","genome verify","proof verify","runtime status","runtime simulate verify canonical identity","tests run","history"];
+  var examples = ["help","status","map","index list","index search VX","agents list","agents inspect AG-006","agents route proof tests","federation status","federation gaps","genome inspect","genome verify","proof verify","runtime status","runtime simulate verify canonical identity","scale simulate all","scale simulate federation","scale report","tests run","history"];
   function makeLine(text, cls){
     var el = document.createElement("div");
     el.className = "line " + (cls || "outputline");
