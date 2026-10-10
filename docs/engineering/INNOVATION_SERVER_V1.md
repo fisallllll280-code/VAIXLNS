@@ -22,6 +22,7 @@ Environment variables:
 - `VAIXLNS_SERVER_PORT`: port, default `8765`.
 - `VAIXLNS_SERVER_DB`: SQLite database path.
 - `VAIXLNS_SERVER_TOKEN`: bearer token. A non-loopback bind is rejected unless a token of at least 32 characters is set.
+- `VAIXLNS_SERVER_WORKERS`: worker count, default `4`, valid range `1..32`. This bounds concurrent local handlers; it does not enable distributed or multi-host execution.
 
 Generate a local token with a cryptographically secure password manager or secret generator. Never commit it to the repository or pass it in URLs. For internet-facing deployment, place the service behind a managed TLS reverse proxy/API gateway, use managed secret storage, network restrictions, rate limits, monitoring, and a reviewed threat model. This reference server itself does not terminate TLS.
 
