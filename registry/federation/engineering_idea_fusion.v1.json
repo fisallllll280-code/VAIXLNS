@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "VAIXLNS-ENGINEERING-IDEA-FUSION-001",
+  "snapshot_date": "2026-10-10",
+  "state": "PROPOSAL",
+  "purpose": "Consolidate source-observed engineering formulations into one evidence-gated integration pipeline without merging repository identities or treating README claims as independently verified runtime evidence.",
+  "authority": {
+    "repository": "fisallllll280-code/VAIXLNS",
+    "role": "canonical architecture, registry, provenance, governance and adoption boundary",
+    "project_genome": "READ_ONLY",
+    "omega_000_master_index": "READ_ONLY",
+    "canonical_mutation": "DISABLED"
+  },
+  "official_system_crosswalk": [
+    {
+      "system_id": "VAIXLNS",
+      "role": "canonical authority and project registry",
+      "identity_state": "OBSERVED_REPOSITORY",
+      "repository_candidates": [
+        "fisallllll280-code/VAIXLNS"
+      ],
+      "note": "Repository identity is observed; this does not prove every described subsystem is running."
+    },
+    {
+      "system_id": "VLNS",
+      "role": "governed model/semantic activation boundary",
+      "identity_state": "DOCUMENTED_ROLE_REPOSITORY_MAPPING_UNVERIFIED",
+      "repository_candidates": [],
+      "evidence_repository": "fisallllll280-code/VAIXLNS",
+      "evidence_path": "README.md",
+      "note": "Role is documented in VAIXLNS. Standalone repo mapping unresolved; NAXLNS is not silently treated as VLNS."
+    },
+    {
+      "system_id": "VX",
+      "role": "governed execution, replay, verification and capability boundary",
+      "identity_state": "MULTIPLE_REPOSITORY_CANDIDATES",
+      "repository_candidates": [
+        "fisallllll280-code/VX-runtime",
+        "fisallllll280-code/vaixlns-core",
+        "fisallllll280-code/VAIXLNS-unified",
+        "fisallllll280-code/vaixlns-nexent-vx",
+        "fisallllll280-code/vx-agents-fabric"
+      ],
+      "note": "Several repos describe overlapping VX roles; reconcile ownership by contracts and source evidence before copying code."
+    },
+    {
+      "system_id": "NEXNET",
+      "role": "user-designated fourth system in the federation",
+      "identity_state": "REPOSITORY_IDENTITY_NOT_RESOLVED_IN_THIS_SCAN",
+      "repository_candidates": [],
+      "note": "NEXENT is a separately observed repository, not assumed to be an alias for NEXNET."
+    }
+  ],
+  "source_repositories": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "role": "canonical source, recovery, registry and governance",
+      "source_revision": "f6adece1956b7e0ed4c9705beff2453b23bf303d",
+      "source_path": "README.md",
+      "source_blob_sha": "cb887e5a8162e1ed440d390f3dea03ca87db15ef",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS/blob/f6adece1956b7e0ed4c9705beff2453b23bf303d/README.md",
+      "evidence_class": "SOURCE_OBSERVED",
+      "integration_candidates": [
+        "source registry",
+        "provenance ledger",
+        "canonical governance",
+        "recovery index"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "role": "architecture discovery, atomization, capability gaps and candidate synthesis",
+      "source_revision": "1e8d91d70366c03d4ad75705cd5d96439fbc6514",
+      "source_path": "README.md",
+      "source_blob_sha": "9bfa3e4f5a364d06f36b301d176c8df64446d22c",
+      "source_url": "https://github.com/fisallllll280-code/NEXENT/blob/1e8d91d70366c03d4ad75705cd5d96439fbc6514/README.md",
+      "evidence_class": "README_DESIGN_CLAIM",
+      "integration_candidates": [
+        "architecture ontology",
+        "architecture atomizer",
+        "capability gap analysis",
+        "candidate generation",
+        "lineage-preserving evolution"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "role": "runtime contract for event/policy/capability/execute/observe/verify/record/replay/evolve",
+      "source_revision": "93f3c28261e2f4133ac0c6a0c2cc99f501e27335",
+      "source_path": "README.md",
+      "source_blob_sha": "6ec8af8c3724baac04f7eb4a9aa8974c765beced",
+      "source_url": "https://github.com/fisallllll280-code/VX-runtime/blob/93f3c28261e2f4133ac0c6a0c2cc99f501e27335/README.md",
+      "evidence_class": "SPECIFIED_PER_SOURCE_README",
+      "integration_candidates": [
+        "deterministic runtime contract",
+        "ledger-first execution",
+        "policy-before-capability",
+        "replay and controlled evolution"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/vx-agents-fabric",
+      "role": "provider-neutral specialist coordination and bounded agent orchestration",
+      "source_revision": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
+      "source_path": "README.md",
+      "source_blob_sha": "0c575fcb69534033dd65d5aac8973825e9d5d899",
+      "source_url": "https://github.com/fisallllll280-code/vx-agents-fabric/blob/f0b3374a4245a8d128afc4bf05303c27b59c23fb/README.md",
+      "evidence_class": "SCAFFOLD_CLAIM_NOT_INDEPENDENTLY_VERIFIED",
+      "integration_candidates": [
+        "specialist role/version registry",
+        "multi-mind independent review",
+        "NOT_CONFIGURED to HOLD",
+        "source-bound agent outputs"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "role": "V-IR, proof obligations, capability leases, event/ledger/replay loop",
+      "source_revision": "430d5579369709a0ca3d7061fce6f390d02930df",
+      "source_path": "README.md",
+      "source_blob_sha": "d5b55d551eaae9a1ee526ee4bbac580567df1496",
+      "source_url": "https://github.com/fisallllll280-code/vaixlns-core/blob/430d5579369709a0ca3d7061fce6f390d02930df/README.md",
+      "evidence_class": "README_IMPLEMENTED_TESTED_CLAIM_UNVERIFIED_HERE",
+      "integration_candidates": [
+        "intent IR",
+        "proof-carrying capability",
+        "bounded lease",
+        "runtime evidence receipt",
+        "replay closure"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "role": "capability synthesis, proof package and sovereign execution gate",
+      "source_revision": "b2a84ebac07430a349cf343286ae4a84a52e381c",
+      "source_path": "README.md",
+      "source_blob_sha": "b9c88b3bf155722f8748760aa915125e56cb40fa",
+      "source_url": "https://github.com/fisallllll280-code/vaixlns-nexent-vx/blob/b2a84ebac07430a349cf343286ae4a84a52e381c/README.md",
+      "evidence_class": "ARCHITECTURE_AND_EXAMPLE_CLAIM",
+      "integration_candidates": [
+        "capability IR",
+        "proof package",
+        "execution gate",
+        "epistemic state separation"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/NAXLNS",
+      "role": "adversarial design review, hidden assumption and failure-mode enumeration",
+      "source_revision": "4a5a7c0b2093515ce0a05a76a7d337b0bada11e4",
+      "source_path": "README.md",
+      "source_blob_sha": "2ebf576d8ce6dee3483fe2a59e5fedc9052cf3e6",
+      "source_url": "https://github.com/fisallllll280-code/NAXLNS/blob/4a5a7c0b2093515ce0a05a76a7d337b0bada11e4/README.md",
+      "evidence_class": "REVIEW_METHOD_SPECIFIED",
+      "integration_candidates": [
+        "assumption register",
+        "counterexample generation",
+        "risk matrix",
+        "false-versus-unknown distinction",
+        "economic feasibility review"
+      ]
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "role": "integrated-system design for intelligence, knowledge, pattern forest, causality, governance, recovery and evolution",
+      "source_revision": "d69f1a1c803adba14f0dcfc2ada0edebce7ad9ab",
+      "source_path": "README.md",
+      "source_blob_sha": "47d6776a71971fa8bcfa407c02cf2d47c4f3daf5",
+      "source_url": "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/d69f1a1c803adba14f0dcfc2ada0edebce7ad9ab/README.md",
+      "evidence_class": "ARCHITECTURE_CLAIM_NOT_INDEPENDENTLY_VERIFIED_HERE",
+      "integration_candidates": [
+        "intelligence router",
+        "knowledge graph",
+        "pattern forest",
+        "causal DAG",
+        "health and recovery",
+        "evolution proposal loop"
+      ]
+    }
+  ],
+  "canonical_integration_pipeline": [
+    "INTENT_CAPTURE",
+    "C_IR_COMPILATION",
+    "SOURCE_BOUND_RETRIEVAL",
+    "ARCHITECTURE_ATOMIZATION",
+    "CAPABILITY_GAP_ANALYSIS",
+    "CANDIDATE_SYNTHESIS",
+    "ADVERSARIAL_REVIEW",
+    "SIMULATION_AND_REPLAY",
+    "PROOF_OBLIGATION_CHECK",
+    "POLICY_AND_AUTHORITY_GATE",
+    "BOUNDED_VX_EXECUTION",
+    "OBSERVED_EVIDENCE",
+    "LEDGER_COMMIT",
+    "INDEPENDENT_VERIFICATION",
+    "GOVERNED_ADOPTION",
+    "EVOLUTION_MEMORY"
+  ],
+  "recovered_engineering_pipelines": [
+    {
+      "id": "FORMULA-VAMM-01",
+      "name": "VAMM compiler pipeline",
+      "stages": [
+        "YAML Artifact",
+        "Parser",
+        "Semantic Analyzer",
+        "IR",
+        "Planner",
+        "Generator",
+        "Verifier",
+        "Runtime"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-THEORY-01",
+      "name": "Theory to construction",
+      "stages": [
+        "Theory",
+        "Theory Parser",
+        "Specification",
+        "Specification Compiler",
+        "Architecture",
+        "Contract",
+        "Runtime",
+        "Validation",
+        "Compliance"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-SYSTEM-FORGE-01",
+      "name": "System Forge",
+      "stages": [
+        "System Genome",
+        "Blueprint",
+        "Specification",
+        "Architecture",
+        "Repository",
+        "Contracts",
+        "Tests",
+        "Proof",
+        "Runtime"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-EXECUTION-01",
+      "name": "Execution integrity",
+      "stages": [
+        "Intent",
+        "Execution ID",
+        "Context",
+        "Authorization",
+        "Plan",
+        "Execution",
+        "Events",
+        "State Transition",
+        "Ledger Commit",
+        "Verification",
+        "Proof"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-RECOVERY-01",
+      "name": "Deterministic recovery",
+      "stages": [
+        "Detect",
+        "Isolate",
+        "Load Last Valid Checkpoint",
+        "Read Event History",
+        "Reconstruct",
+        "Verify",
+        "Resume"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-DIGITAL-TWIN-01",
+      "name": "Digital twin assurance",
+      "stages": [
+        "Digital Twin",
+        "Shadow Runtime",
+        "Simulation",
+        "Stress",
+        "Security",
+        "Fuzzing",
+        "Deterministic Replay",
+        "Chaos",
+        "Validation"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-PATTERN-FOREST-01",
+      "name": "Pattern Forest",
+      "stages": [
+        "Seed",
+        "Family",
+        "Tree",
+        "Forest",
+        "Knowledge Graph",
+        "Causal DAG",
+        "Registry"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-EVOLUTION-01",
+      "name": "Controlled evolution",
+      "stages": [
+        "Innovation Discovery",
+        "Candidate Generation",
+        "Mutation",
+        "Genome",
+        "Fitness",
+        "Simulation",
+        "Verification",
+        "Governance",
+        "Deployment",
+        "Evolution Registry"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    },
+    {
+      "id": "FORMULA-INTELLIGENCE-01",
+      "name": "Multi-mind intelligence gateway",
+      "stages": [
+        "Intent",
+        "Context",
+        "Meta-Cognitive Router",
+        "Intelligence Selection",
+        "Collective Intelligence",
+        "Consensus",
+        "Decision"
+      ],
+      "state": "RECOVERED_FORMULATION"
+    }
+  ],
+  "non_mergeable_or_deferred": {
+    "financial_engine": "Ω-CAP remains a separate research/paper-trading component; no live trading or financial side effects are enabled by this manifest.",
+    "historical_identity": "Legacy names, formulas and source history must be retained with provenance.",
+    "provider_connectivity": "No provider/API connection is inferred from architecture or README descriptions.",
+    "run_state": "A source README is not evidence that a service is running; live state requires a health check and reproducible deployment evidence."
+  },
+  "acceptance_gates": [
+    "Every source repository is pinned to an immutable commit and README blob digest.",
+    "Each capability proposal is assigned one owning layer and an explicit dependency contract.",
+    "Conflicting or unresolved repository identities remain UNVERIFIED and are not aliased.",
+    "No existing source code is copied or overwritten until duplicate analysis and contract comparison pass.",
+    "Candidate changes pass isolated targeted tests and the relevant repository test suite.",
+    "Source revisions, actual test receipts, patch digests and independent review are preserved.",
+    "Canonical registry promotion requires separate governance approval."
+  ]
+}
