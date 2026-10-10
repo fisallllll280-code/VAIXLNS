@@ -84,12 +84,13 @@ def compete_hypotheses(hypotheses: Sequence[Mapping[str, Any]]) -> dict[str, Any
             rows.append({"id": "", "status": "INVALID_INPUT"})
             invalid = True
             continue
-        hid = h.get("id", "")
+        raw_hid = h.get("id", "")
+        hid = raw_hid.strip() if isinstance(raw_hid, str) else raw_hid
         supports = h.get("supporting_evidence", [])
         refutes = h.get("refuting_evidence", [])
         tests = h.get("discriminating_tests", [])
         valid = (
-            isinstance(hid, str) and bool(hid.strip()) and hid not in seen_ids
+            isinstance(hid, str) and bool(hid) and hid not in seen_ids
             and isinstance(supports, list)
             and all(isinstance(x, str) and x.strip() for x in supports)
             and isinstance(refutes, list)
@@ -102,7 +103,9 @@ def compete_hypotheses(hypotheses: Sequence[Mapping[str, Any]]) -> dict[str, Any
             invalid = True
             continue
         seen_ids.add(hid)
-        support_ids, refute_ids = set(supports), set(refutes)
+        support_ids = {x.strip() for x in supports}
+        refute_ids = {x.strip() for x in refutes}
+        tests = [x.strip() for x in tests]
         score = len(support_ids) - len(refute_ids)
         status = "UNRESOLVED" if score == 0 else (
             "LEADING_NOT_PROVEN" if score > 0 else "WEAKENED_NOT_DISPROVEN")
@@ -127,6 +130,8 @@ def synthesize_forbidden_states(initial_state: str, transitions: Mapping[str, Se
     """Bounded BFS over a declared graph; universal closure needs a complete model."""
     if not isinstance(max_depth, int) or isinstance(max_depth, bool) or max_depth < 0:
         return {"result": "INCOMPLETE", "reason": "INVALID_MAX_DEPTH"}
+    if not isinstance(model_complete, bool):
+        return {"result": "INCOMPLETE", "reason": "INVALID_MODEL_COMPLETENESS_FLAG"}
     if not isinstance(initial_state, str) or not initial_state:
         return {"result": "INCOMPLETE", "reason": "INVALID_INITIAL_STATE"}
     try:
@@ -191,15 +196,19 @@ def reconcile_histories(histories: Sequence[Mapping[str, Any]]) -> dict[str, Any
             if not isinstance(eid, str) or not eid:
                 unobservable.append({"source": source, "reason": "EVENT_WITHOUT_VALID_ID"})
                 continue
+            causal_relations_valid = True
             if "caused_by" not in e:
                 unobservable.append({"source": source, "event_id": eid,
                                      "reason": "CAUSAL_RELATIONS_UNSPECIFIED"})
-                continue
-            parents = e.get("caused_by")
-            if not isinstance(parents, list) or any(not isinstance(p, str) or not p for p in parents):
-                unobservable.append({"source": source, "event_id": eid,
-                                     "reason": "INVALID_CAUSAL_RELATIONS"})
-                continue
+                parents = []
+                causal_relations_valid = False
+            else:
+                parents = e.get("caused_by")
+                if not isinstance(parents, list) or any(not isinstance(p, str) or not p for p in parents):
+                    unobservable.append({"source": source, "event_id": eid,
+                                         "reason": "INVALID_CAUSAL_RELATIONS"})
+                    parents = []
+                    causal_relations_valid = False
             sources_with_events.add(source)
             fingerprint = canonical_digest({k: v for k, v in e.items() if k != "source"})
             if eid in definitions and definitions[eid] != fingerprint:
@@ -207,8 +216,9 @@ def reconcile_histories(histories: Sequence[Mapping[str, Any]]) -> dict[str, Any
             else:
                 definitions[eid] = fingerprint
             origins[eid].add(source)
-            for parent in parents:
-                edges.add((parent, eid))
+            if causal_relations_valid:
+                for parent in parents:
+                    edges.add((parent, eid))
     graph = defaultdict(list)
     indegree = {eid: 0 for eid in definitions}
     for parent, child in edges:
@@ -298,6 +308,8 @@ def minimal_proof_surface(required_obligations: Iterable[str],
         seen_ids.add(eid)
         if not isinstance(mandatory, bool):
             return {"result": "INCOMPLETE", "reason": "INVALID_MANDATORY_FLAG", "evidence_id": eid}
+        if not isinstance(verified, bool):
+            return {"result": "INCOMPLETE", "reason": "INVALID_VERIFIED_FLAG", "evidence_id": eid}
         if not isinstance(covers, (list, tuple)) or any(not isinstance(x, str) or not x for x in covers):
             return {"result": "INCOMPLETE", "reason": "INVALID_COVERAGE", "evidence_id": eid}
         if mandatory and verified is not True:
