@@ -12,7 +12,7 @@ def verify(report):
   body={k:v for k,v in e.items() if k!="event_hash"}; expected=hashlib.sha256(canonical(body)).hexdigest()
   if e.get("sequence")!=i or e.get("previous_hash")!=previous or e.get("event_hash")!=expected: return False,f"HASH_CHAIN_INVALID_AT_{i}"
   previous=expected
- required={"SERVICE_READY","TASK_EXECUTED","FAILURE_INJECTED","RECOVERY_SUCCEEDED","UNAUTHORIZED_ACTION_REJECTED","SERVICE_STOPPED"}
+ required={"SERVICE_READY","TASK_EXECUTED","FAILURE_INJECTED","PROCESS_FAILURE_DETECTED","RECOVERY_SUCCEEDED","UNAUTHORIZED_ACTION_REJECTED","SERVICE_STOPPED"}
  present={e.get("event_type") for e in events}
  if not required.issubset(present): return False,"REQUIRED_EVIDENCE_MISSING:"+",".join(sorted(required-present))
  if report.get("overall")!="PASS" or report.get("state")!="STOPPED": return False,"RUNTIME_NOT_STOPPED"
