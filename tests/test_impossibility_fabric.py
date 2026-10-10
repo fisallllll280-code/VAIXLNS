@@ -3,7 +3,7 @@ from http.server import ThreadingHTTPServer
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from unittest.mock import patch
-from tools.impossibility_engine.fabric import RemoteWorker, remote_workers_from_json, run_batch, canonical_hash, clear_assessment_cache
+from tools.impossibility_engine.fabric import RemoteWorker, remote_workers_from_json, run_batch, canonical_hash, clear_assessment_cache, clear_assessment_cache
 from tools.impossibility_engine.worker_server import make_handler
 
 def problem(title):
@@ -101,6 +101,18 @@ class ImpossibilityFabricTests(unittest.TestCase):
             self.assertEqual(envelope["result"]["classification"],"ENGINEERING_CHALLENGE")
         finally:
             server.shutdown(); server.server_close(); thread.join(timeout=2)
+
+
+    def test_repeated_local_assessment_uses_bounded_cache_without_shared_mutability(self):
+        clear_assessment_cache()
+        item = problem("cache-me")
+        first = run_batch([item], max_workers=1)
+        self.assertEqual(first["cache_hits"], 0)
+        first["results"][0]["result"]["title"] = "caller-mutated"
+        second = run_batch([item], max_workers=1)
+        self.assertEqual(second["cache_hits"], 1)
+        self.assertEqual(second["results"][0]["result"]["title"], "cache-me")
+        self.assertEqual(second["state"], "EXECUTED")
 
 
     def test_repeated_local_assessment_uses_bounded_cache_without_shared_mutability(self):
