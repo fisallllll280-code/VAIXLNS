@@ -11,13 +11,13 @@ def plan_route(request: dict[str, Any], registry: list[dict[str, Any]], policy: 
     if not isinstance(request, dict) or not isinstance(registry, list) or not isinstance(policy, dict):
         return {"state":"BLOCKED","blockers":["INVALID_INPUT_SHAPE"],"candidates":[],"execution_performed":False}
     required={"task_class","required_capabilities","data_class","tenant_id"}
-    if not required.issubset(request) or not isinstance(request.get("required_capabilities"),list):
+    if not required.issubset(request) or not isinstance(request.get("required_capabilities"),list) or any(not isinstance(x,str) or not x for x in request.get("required_capabilities",[])):
         blockers.append("INVALID_REQUEST_CONTRACT")
     allowed_providers=policy.get("allowed_providers",[])
     allowed_models=policy.get("allowed_models",[])
     allowed_data=policy.get("allowed_data_classes",[])
     allowed_tasks=policy.get("allowed_task_classes",[])
-    if not all(isinstance(x,list) for x in (allowed_providers,allowed_models,allowed_data,allowed_tasks)):
+    if not all(isinstance(x,list) and all(isinstance(v,str) and v for v in x) for x in (allowed_providers,allowed_models,allowed_data,allowed_tasks)):
         blockers.append("INVALID_POLICY_ALLOWLIST")
         allowed_providers=allowed_models=allowed_data=allowed_tasks=[]
     if request.get("data_class") not in allowed_data: blockers.append("DATA_CLASS_NOT_ALLOWED")
@@ -31,7 +31,7 @@ def plan_route(request: dict[str, Any], registry: list[dict[str, Any]], policy: 
             if entry.get("metadata_state")!="VERIFIED": continue
             if entry.get("provider_id") not in allowed_providers: continue
             if entry.get("model_id") not in allowed_models: continue
-            if not set(request["required_capabilities"]).issubset(set(entry.get("capabilities",[]))): continue
+            entry_caps=entry.get("capabilities",[])\n            if not isinstance(entry_caps,list) or any(not isinstance(v,str) for v in entry_caps): continue\n            if not set(request["required_capabilities"]).issubset(set(entry_caps)): continue
             if entry.get("data_policy_allows") is not True: continue
             if entry.get("tenant_isolation_verified") is not True: continue
             candidates.append({"provider_id":entry["provider_id"],"model_id":entry["model_id"],"revision":entry.get("revision"),"contract_sha256":entry.get("contract_sha256")})
