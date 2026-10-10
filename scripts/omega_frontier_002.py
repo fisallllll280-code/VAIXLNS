@@ -361,23 +361,3 @@ def assurance_causality_map(invariants: Sequence[Mapping[str, Any]],
         rows.append({"invariant": iid, "dependencies": states, "status": status})
     return {"invariants": rows, "digest": canonical_digest(rows),
             "authority_granted": False, "execution_performed": False}
-
-
-invariants: Sequence[Mapping[str, Any]],
-                            dependencies: Mapping[str, Sequence[str]],
-                            evidence_states: Mapping[str, str]) -> dict[str, Any]:
-    """Propagate unresolved/failed evidence to dependent invariants without collapsing states."""
-    rows = []
-    for inv in invariants:
-        iid = str(inv.get("id", ""))
-        deps = list(dependencies.get(iid, []))
-        states = {d: evidence_states.get(d, "UNKNOWN") for d in deps}
-        if any(s in {"FAILED", "REJECTED", "CONTRADICTED"} for s in states.values()):
-            status = "REJECTED"
-        elif any(s not in {"VERIFIED", "SUPPORTED"} for s in states.values()):
-            status = "UNRESOLVED"
-        else:
-            status = "ELIGIBLE_FOR_NEXT_GATE"
-        rows.append({"invariant": iid, "dependencies": states, "status": status})
-    return {"invariants": rows, "digest": canonical_digest(rows),
-            "authority_granted": False, "execution_performed": False}
