@@ -1,82 +1,108 @@
-# Ω Memory–Task–Innovation Kernel v1
+# Ω Memory–Task–Innovation Kernel (MTIK) v1
 
 **Parent:** VAIXLNS  
-**Canonical authority:** `project.genome::v1.0.0` / `Ω0_GENESIS_CORE`  
-**Index:** Ω.000 (no mutation from this branch)  
-**State:** IMPLEMENTED in a proposal branch; runtime validation pending  
-**Execution boundary:** local planning and memory primitives only; external effects disabled
+**Canonical authority references:** project.genome::v1.0.0 / Ω0_GENESIS_CORE  
+**Master index:** Ω.000 (read-only; no mutation in this change)  
+**State:** PARTIAL — reference implementation with focused CI pending  
+**Execution boundary:** deterministic local operations; no external side effects
 
-## Why this kernel exists
+## Engineering intent
 
-The engineering system must be able to recover the context of prior work, distinguish decisions from hypotheses, compile a request into dependency-aware tasks, and propose new engineering approaches that can be tested. It must not rely on untraceable chat recollection or treat generated ideas as verified facts.
+MTIK connects four steps in a single reproducible cycle:
 
-This implementation is additive. It must be reviewed against the existing Permanent Engineering Memory (#58), Ω Mind / engineering fabric (#78), and specialist orchestration work (#90) before any merge. It does not replace those systems, change the canonical genome, edit Ω.000, or delete/rename original records.
+1. Verify an ordered Permanent Engineering Memory (PEM) snapshot and recover context with explainable lexical matching.
+2. Convert explicitly supplied engineering gaps into bounded innovation hypotheses tied to any matching memory records.
+3. Compile candidate research/validation tasks into a deterministic directed acyclic graph, surfacing missing dependencies, capabilities, and memory prerequisites.
+4. Allow only a pre-registered handler to run under caller-supplied capability grants; hold completion until provenance and independent evidence obligations are satisfied.
 
-## Implemented local primitives
+This is a child subsystem under VAIXLNS, not a new canonical root and not an autonomous general-purpose agent.
 
-### 1. Append-only, hash-linked memory ledger
+## Existing engineering work: integrate, do not duplicate
 
-Each record stores:
-- stable record ID, UTC timestamp, type, content, source reference, epistemic state, tags, related IDs;
-- previous record hash and current SHA-256 digest;
-- deterministic integrity verification and a fail-closed append/retrieval path if a mismatch is found.
+- PR #58, Permanent Engineering Memory, specifies an append-only record ledger and lexical retrieval. It is still an unmerged proposal branch; this MTIK code does not assume its module is present in main and does not write to its ledger.
+- PR #78, Ω Mind / engineering fabric, specifies a larger governed planning fabric. MTIK provides a narrow memory-to-innovation-to-task cycle, not a replacement.
+- PR #90, the specialist orchestration kernel, defines more complete identity, capability, authority, quarantine, independent verification, and admission transitions. MTIK does not launch remote agents and must be adapted to that kernel before consequential execution.
+- The existing Innovation Master/Operation Index remains the catalog of record. MTIK does not overwrite those indexes or generate canonical IDs in them.
+- ARC-X remains the independent evidence/admission boundary.
 
-**Important limitation:** a hash chain detects edits and reordering when compared with a trusted head. It does not prove truth, protect against a complete rewrite by an attacker who can replace the entire ledger and trusted head, or provide multi-writer concurrency control. Those require external signatures, protected checkpoints, and locking/transaction design.
+These PRs are not merged dependencies. The reference slice is independently testable; future integration needs contract checks against exact reviewed commits.
 
-### 2. Deterministic memory retrieval
+## Executable components
 
-The initial retrieval implementation ranks records by lexical token overlap and returns the matched record, score, source, tags, and retrieval method. It is reproducible and inspectable but is not semantic search and makes no guarantee of recall. Embeddings, graph expansion, contradictory-memory detection, time-aware ranking, and relevance benchmarks are future work.
+### scripts/omega_memory_task_kernel.py
 
-### 3. Dependency-aware task planning
+- Canonical JSON and SHA-256 fingerprints.
+- Verification of a complete ordered PEM snapshot, including unique record IDs, previous-record links, and record hashes.
+- Deterministic lexical context recovery with matched terms, provenance, evidence references, score explanation, and an explicit no-match response.
+- Deterministic topological sorting of task contracts; duplicate IDs, missing dependencies, and cycles fail closed.
+- Explicit task blockers for missing capabilities and unavailable required memory IDs.
+- Dry-run-first invocation of a caller-registered handler.
+- External effects are always rejected. A sandbox mutation is held unless an explicit decision reference is supplied.
+- Completion evaluator lists proof gaps and checks producer/verifier separation. It is a decision helper, not an identity service or canonical promotion authority.
 
-The task planner validates unique IDs, required goals, known dependencies, and acyclic task graphs. It returns a deterministic topological order, exposes blocked dependencies, and carries evidence requirements and risk labels. It does not execute commands or call remote systems.
+### scripts/omega_engineering_cycle.py
 
-### 4. Evidence-gated task completion
+- Runs memory recovery first from the supplied complete snapshot.
+- Derives candidate hypotheses from explicit gap records; IDs and digests are deterministic.
+- Links candidates to retrieved memory records when lexical terms overlap.
+- Always sets novelty to UNASSESSED and originality to NOT_CLAIMED. This module does not perform prior-art research itself.
+- Generates research/validation tasks with acceptance criteria and dependency links, then creates the deterministic plan and cycle digest.
 
-A task cannot transition to `DONE` without every required evidence type. Each evidence item must contain a source reference and digest. This checks the presence of evidence pointers, not the truth or adequacy of the evidence; a separate verifier must validate artifact content and test scope.
+### schemas/omega-memory-task-innovation.v1.schema.json and registry/omega/proposals/omega-memory-task-innovation-kernel.v1.json
 
-### 5. Innovation hypothesis generation
+Define the proposal contract, allowed state vocabulary, integration points, evidence limits, and non-mutating authority boundary. The schema is parsed and the manifest is structurally validated in CI; unless an explicit JSON Schema implementation is invoked, that step must not be described as a full JSON Schema conformance test.
 
-The kernel emits four explicitly unverified, testable hypotheses:
-- evidence-linked memory retrieval;
-- dependency-aware task execution;
-- counterexample-driven engineering synthesis;
-- memory-to-recovery replay.
+## Example calling pattern
 
-Each hypothesis includes acceptance-test ideas and the memory IDs it was derived from. This is a deterministic seed catalog, not an autonomous discovery claim or proof of novelty. A literature/prior-art review and measurable baseline are required before claiming originality.
+- Supply a complete ordered memory snapshot from a trusted PEM reader. A filtered search result cannot validate a full previous-hash chain.
+- Supply an engineering goal and gap specifications with acceptance criteria.
+- Supply only capabilities actually granted to the requesting principal.
+- Inspect recovered context and the plan. A READY status means the plan prerequisites are present; it is not permission to deploy.
+- Keep dry_run true by default. A caller may invoke an explicitly registered handler only after the appropriate capability checks. External effects remain disabled in this kernel.
 
-## Safety and governance
+The caller-provided handler registry is trusted code. This Python module does not isolate a handler in an OS/container sandbox and cannot prove that code labeled READ_ONLY has no side effects. For that reason, handler implementation, revision pinning, isolation, and policy enforcement remain external proof obligations.
 
-- No shell, network, cloud, GitHub, or production effects are invoked by this kernel.
-- No credentials are read or stored.
-- No component is promoted to `VERIFIED`.
-- No canonical source or Ω.000 record is mutated.
-- Failed integrity checks stop writes and retrieval.
-- Unknown dependencies and cycles fail closed.
-- Task completion requires evidence pointers.
-- A passing unit test proves only the tested behavior in that environment.
+## Integrity and truth boundaries
 
-## Test plan
+- A hash chain is tamper-evident relative to a trusted head, not tamper-proof. An actor able to rewrite the whole ledger and trusted head can recompute hashes.
+- Lexical matching is deterministic but is not semantic understanding and does not guarantee high recall.
+- Memory provenance identifies origin; it does not prove a claim is true.
+- Scores are retrieval priorities only; they never update epistemic state.
+- Generated candidates are research hypotheses. Novelty and superiority require prior-art review, a measured baseline, source traceability, and independent reproduction.
+- Handler results are marked NOT_VERIFIED. Passing a unit test does not prove production operation.
+- No remote agent, cloud service, Microsoft provider, or cross-repository memory store is connected by this proposal.
+- project.genome and Ω.000 remain untouched. No canonical promotion is performed.
 
-Focused tests cover hash-chain integrity, tamper detection, fail-closed append, deterministic ranking, dependency ordering, cycle/missing-dependency rejection, legal task transitions, evidence-gated completion, and proposal-state boundaries. CI is configured; the workflow result must be inspected on this exact commit before reporting a pass.
+## Focused acceptance gates
 
-## Next engineering increments
+1. Tampered memory and broken hash links fail closed.
+2. Retrieval identifies source revisions, evidence references, and matched terms; no-match does not fabricate content.
+3. Missing dependencies and cyclic plans are rejected.
+4. Missing capability or memory prerequisites produce BLOCKED tasks.
+5. Identical inputs produce deterministic plans, candidate IDs, and cycle digests.
+6. Dry-run does not invoke handlers.
+7. Missing handler/capability and handler exceptions cannot be represented as success.
+8. External effects are rejected.
+9. Completion remains on HOLD when proof fields are missing or producer/verifier identities are equal.
+10. CI passes on the exact PR head before this reference behavior is called tested.
 
-1. Reconcile data model and interfaces with the Permanent Engineering Memory, Ω Mind, and specialist orchestrator branches.
-2. Add signed checkpoints, concurrency-safe append, schema versioning, and retention/recovery policy.
-3. Add hybrid retrieval and evidence graph with contradiction surfacing, exact source spans, and benchmarked Recall@k/MRR.
-4. Add task event log, idempotency keys, retry policy, checkpoint/resume, compensation, approval gates, and explicit effect receipts.
-5. Add adversarial/mutation tests and independently authored acceptance tests.
-6. Add memory compaction only as a derived view; never delete or silently overwrite original records.
-7. Connect to VX only through an explicit capability contract and sandbox. Remote or consequential actions remain disabled until separate policy, security, and test gates pass.
-8. Propose Ω.000 registration only after review, CI evidence, integration tests, and a canonical change request.
+## Next integration increments
+
+1. Align the adapter contract against reviewed/merged PEM, Ω Mind and specialist orchestration changes.
+2. Add a read-only adapter that captures a full ledger snapshot and rejects stale or partial snapshots.
+3. Persist task event receipts through the governed event/evidence store with task IDs, idempotency, failure, retry and resume semantics.
+4. Add semantic retrieval and graph expansion only behind measured lexical baselines, provenance, contradiction surfacing, and recall benchmarks.
+5. Test stale revisions, memory injection, cycles, duplicate task dispatch, interrupted execution, and handler boundary violations.
+6. Add a real isolated executor only after OS/container isolation, scoped capabilities, idempotency, rollback, and auditable authority decisions are tested.
+7. Propose canonical Ω.000 registration separately after review and source-bound CI evidence.
 
 ## Required benchmark before stronger claims
 
-- Retrieval: Recall@5/10, MRR, citation/source-link accuracy, contradiction recall, stale-record rate.
-- Recovery: replay agreement, missing-context detection, recovery time, duplicate task/effect rate.
-- Planning: valid-DAG rate, cycle detection, blocked-task correctness, determinism across repeated runs.
-- Innovation: baseline improvement, independent test pass rate, counterexample discovery, integration cost, prior-art coverage.
-- Security: tamper detection, untrusted memory injection, secret leakage, unauthorized side-effect denial.
+- Retrieval: Recall@5/10, MRR, source-link accuracy, contradiction recall, stale-record rate.
+- Recovery: missing-context detection, replay agreement, retrieval time, loss rate.
+- Planning: valid-DAG rate, cycle/missing-dependency detection, determinism.
+- Innovation: prior-art coverage, measured baseline improvement, independent test pass rate, counterexample discovery, integration cost.
+- Security: tamper detection, poisoned-memory resistance, secret leakage tests, unauthorized side-effect denial.
+- Operations: interrupted-run recovery, duplicate-task handling, resource budget enforcement, audit completeness.
 
-All numbers must be measured against a pinned dataset and environment. No benchmark result is claimed by this proposal.
+All measurements must identify a pinned dataset/environment. No benchmark result or production-readiness claim is made by this proposal.
