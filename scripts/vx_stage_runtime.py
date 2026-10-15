@@ -146,9 +146,11 @@ class StageFederationGate:
 
 
 def run_stage() -> dict[str, Any]:
-    key_source = "environment" if "VX_STAGE_SIGNING_KEY" else "test-default"
     import os
-    raw_key = os.getenv("VX_STAGE_SIGNING_KEY", DEFAULT_KEY)
+
+    configured_key = os.getenv("VX_STAGE_SIGNING_KEY")
+    key_source = "environment" if configured_key else "test-default"
+    raw_key = configured_key if configured_key else DEFAULT_KEY
     key = raw_key.encode("utf-8")
 
     gate = StageFederationGate(key)
