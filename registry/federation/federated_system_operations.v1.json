@@ -1,0 +1,520 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "VAIXLNS.FEDERATED_SYSTEM_OPERATIONS.V1",
+  "classification": "NON_CANONICAL_ENGINEERING_SNAPSHOT",
+  "snapshot": {
+    "as_of": "2026-10-15",
+    "canonical_repository": "fisallllll280-code/VAIXLNS",
+    "canonical_main_sha": "52d1795e8550cd069ddb03cca45e573028115062",
+    "project_genome_blob_sha": "7b8822cff6321d2b750aec030e29b928ed685940",
+    "project_genome_version": "1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "master_index": "Ω.000",
+    "mutation_policy": "Additive only; does not change project.genome or Ω.000",
+    "updated_at": "2026-10-15"
+  },
+  "policy": {
+    "preserve_history": true,
+    "infer_identity_from_repository_name": false,
+    "unresolved_identity_blocks_edge": true,
+    "default_cross_system_authority": "DENY",
+    "missing_evidence_behavior": "HOLD",
+    "production_authority_granted_by_this_record": false,
+    "successful_ci_alone_means_production_ready": false
+  },
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "role": "canonical control plane, registry, recovery, admission",
+      "repository_surfaces": [
+        "fisallllll280-code/VAIXLNS"
+      ],
+      "identity_state": "CANONICAL",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "canonical_genome",
+          "path": "project.genome",
+          "blob_sha": "7b8822cff6321d2b750aec030e29b928ed685940"
+        },
+        {
+          "kind": "ci",
+          "name": "VAIXLNS Repository Pulse",
+          "conclusion": "success",
+          "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38693606173"
+        },
+        {
+          "kind": "ci",
+          "name": "VAIXLNS Federation Snapshot",
+          "conclusion": "failure",
+          "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38698964074"
+        }
+      ],
+      "open_gates": [
+        "OPS-SNAPSHOT-001",
+        "OPS-EDGE-001",
+        "OPS-IDENTITY-001"
+      ]
+    },
+    {
+      "system_id": "ARC-X",
+      "role": "source/evidence reconstruction, EIR, claims, gaps and proof obligations",
+      "repository_surfaces": [
+        "fisallllll280-code/VAIXLNS:docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md"
+      ],
+      "identity_state": "CANONICAL_SUBSYSTEM",
+      "implementation_state": "SPECIFIED",
+      "observed_evidence": [
+        {
+          "kind": "specification",
+          "path": "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+          "status": "SPECIFIED"
+        }
+      ],
+      "open_gates": [
+        "OPS-ARCX-001"
+      ]
+    },
+    {
+      "system_id": "VLNS",
+      "role": "intended knowledge/model activation boundary",
+      "repository_surfaces": [
+        "fisallllll280-code/NAXLNS"
+      ],
+      "identity_state": "UNVERIFIED",
+      "unresolved_mapping": "VLNS ↔ NAXLNS",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "repository_tree",
+          "note": "Current main tree contains README, repository contract, federation-boundary docs and workflow; no application/service entrypoint observed"
+        },
+        {
+          "kind": "ci",
+          "name": "NAXLNS Conformance",
+          "conclusion": "success",
+          "sha": "4a5a7c0b2093515ce0a05a76a7d337b0bada11e4",
+          "url": "https://github.com/fisallllll280-code/NAXLNS/actions/runs/37420552127"
+        }
+      ],
+      "open_gates": [
+        "OPS-IDENTITY-001",
+        "OPS-VLNS-001"
+      ]
+    },
+    {
+      "system_id": "NEXNET",
+      "role": "intended discovery and architecture-search system",
+      "repository_surfaces": [
+        "fisallllll280-code/NEXENT"
+      ],
+      "identity_state": "UNVERIFIED",
+      "unresolved_mapping": "NEXNET ↔ NEXENT",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "source",
+          "path": "NEXENT/nexent/"
+        },
+        {
+          "kind": "ci",
+          "name": "NEXENT CI",
+          "conclusion": "success",
+          "sha": "f62cf5920174551f9a8f88deb420f9515bedc284",
+          "url": "https://github.com/fisallllll280-code/NEXENT/actions/runs/38014523296"
+        },
+        {
+          "kind": "ci",
+          "name": "NEXENT Verification",
+          "conclusion": "success",
+          "sha": "f62cf5920174551f9a8f88deb420f9515bedc284",
+          "url": "https://github.com/fisallllll280-code/NEXENT/actions/runs/38014523285"
+        }
+      ],
+      "open_gates": [
+        "OPS-IDENTITY-002",
+        "OPS-NEXENT-001"
+      ]
+    },
+    {
+      "system_id": "VX",
+      "role": "governed execution, capability policy, event evidence and replay",
+      "repository_surfaces": [
+        "fisallllll280-code/VX-runtime",
+        "fisallllll280-code/VX50_COMPLETE_BUILD"
+      ],
+      "identity_state": "CANONICAL_SYSTEM_MULTI_REPOSITORY",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "source",
+          "path": "VX-runtime/vxruntime/core.py"
+        },
+        {
+          "kind": "ci",
+          "name": "VX Runtime Conformance",
+          "conclusion": "success",
+          "sha": "c58e398b405a3acff5752a70dfd88a4f98c58259",
+          "url": "https://github.com/fisallllll280-code/VX-runtime/actions/runs/38014519471"
+        }
+      ],
+      "open_gates": [
+        "OPS-EDGE-002",
+        "OPS-VX-001",
+        "OPS-LEDGER-001"
+      ]
+    },
+    {
+      "system_id": "VAIXLNS-UNIFIED",
+      "role": "integrated reference runtime/API surface",
+      "repository_surfaces": [
+        "fisallllll280-code/VAIXLNS-unified"
+      ],
+      "identity_state": "DECLARED_IMPLEMENTATION_SURFACE",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "source",
+          "paths": [
+            "main.py",
+            "api/server.py",
+            "operations/boot_controller.py",
+            "operations/health_monitor.py",
+            "operations/recovery_engine.py",
+            "operations/telemetry.py"
+          ]
+        },
+        {
+          "kind": "ci",
+          "name": "VAIXLNS Unified Verification",
+          "conclusion": "success",
+          "sha": "de03e9140e0b84f58cf8b7166f41e5f9f4344f68",
+          "url": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/38177387107"
+        },
+        {
+          "kind": "ci",
+          "name": "VX System Readiness",
+          "conclusion": "success",
+          "sha": "de03e9140e0b84f58cf8b7166f41e5f9f4344f68",
+          "url": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/38249442250"
+        }
+      ],
+      "open_gates": [
+        "OPS-API-001",
+        "OPS-LEDGER-001",
+        "OPS-VLNS-001"
+      ]
+    },
+    {
+      "system_id": "VX-AGENTS-FABRIC",
+      "role": "supporting specialist-agent orchestration and multi-mind review",
+      "repository_surfaces": [
+        "fisallllll280-code/vx-agents-fabric"
+      ],
+      "identity_state": "SUPPORTING_IMPLEMENTATION",
+      "implementation_state": "PARTIAL",
+      "observed_evidence": [
+        {
+          "kind": "ci",
+          "name": "VX Agents Fabric Tests",
+          "conclusion": "success",
+          "sha": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
+          "url": "https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/38008973560"
+        }
+      ],
+      "open_gates": [
+        "OPS-AGENTS-001",
+        "OPS-LEDGER-001"
+      ]
+    }
+  ],
+  "auxiliary_surfaces": [
+    {
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "state": "EXPERIMENTAL",
+      "reference": "https://github.com/fisallllll280-code/vaixlns-nexent-vx/pull/1",
+      "note": "Agent-action assurance PR is open/draft; main CI success does not prove federation admission."
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "state": "CONFLICT_REVIEW_REQUIRED",
+      "reference": "https://github.com/fisallllll280-code/vaixlns-core",
+      "note": "README runtime claims exceed the implementation layout observed in the current main tree."
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "state": "SPECIALIZED_CANDIDATE",
+      "reference": "https://github.com/fisallllll280-code/vaixlns-csd-kernel",
+      "note": "Separate kernel with tests/workflow; integration into VX not evidenced."
+    },
+    {
+      "repository": "fisallllll280-code/verbose-engine",
+      "state": "AUDIT_ONLY",
+      "reference": "https://github.com/fisallllll280-code/verbose-engine/pull/7",
+      "note": "Read-only audit is tracked in open PR #7. Main-tree checkout failure is being addressed by draft PR #8 through a history-preserving path inventory and current-tree repair; tests have not yet established CSD runtime correctness."
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "state": "INCOMPLETE_DOCUMENTATION_SURFACE",
+      "reference": "https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "note": "No executable runtime established by current tree inventory."
+    }
+  ],
+  "federation_edges": [
+    {
+      "edge_id": "FED.VLNS.VAIXLNS.KNOWLEDGE.001",
+      "from": "VLNS",
+      "to": "VAIXLNS",
+      "status": "BLOCKED_IDENTITY",
+      "enabled": false
+    },
+    {
+      "edge_id": "FED.NEXNET.VAIXLNS.DISCOVERY.001",
+      "from": "NEXNET",
+      "to": "VAIXLNS",
+      "status": "BLOCKED_IDENTITY",
+      "enabled": false
+    },
+    {
+      "edge_id": "FED.VAIXLNS.VX.EXECUTION.001",
+      "from": "VAIXLNS",
+      "to": "VX",
+      "status": "SPECIFIED_NOT_CONNECTED",
+      "enabled": false
+    },
+    {
+      "edge_id": "FED.VX.VAIXLNS.EVIDENCE.001",
+      "from": "VX",
+      "to": "VAIXLNS",
+      "status": "SPECIFIED_NOT_CONNECTED",
+      "enabled": false
+    }
+  ],
+  "gates": [
+    {
+      "id": "OPS-SNAPSHOT-001",
+      "priority": "P0",
+      "state": "OPEN",
+      "problem": "Snapshot capture failed because authenticated Git clones did not authenticate correctly for multiple sources and the workflow attempted a direct push to protected main. Repair is in open PR #120; a correctly scoped read token is still needed for private source repositories.",
+      "acceptance": "PR #120 passes CI; Git clones use a non-logged Basic auth header; artifacts are uploaded even after later-step failure; manifest is proposed through a draft PR instead of direct main push; set VAIXLNS_FEDERATION_TOKEN for the private repos and verify a fresh scheduled/dispatch capture.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/120; prior failure https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38698964074"
+    },
+    {
+      "id": "OPS-IDENTITY-001",
+      "priority": "P0",
+      "state": "OPEN",
+      "problem": "VLNS ↔ NAXLNS identity is unresolved.",
+      "acceptance": "Approved identity evidence and lineage record, or edge stays disabled."
+    },
+    {
+      "id": "OPS-IDENTITY-002",
+      "priority": "P0",
+      "state": "OPEN",
+      "problem": "NEXNET ↔ NEXENT identity is unresolved.",
+      "acceptance": "Approved identity evidence and lineage record, or edge stays disabled."
+    },
+    {
+      "id": "OPS-EDGE-001",
+      "priority": "P0",
+      "state": "OPEN",
+      "problem": "Four contract edges are disabled in the current federation manifest.",
+      "acceptance": "Every enabled edge has source pins, schema tests, negative tests, live identity, durable receipt and independent replay."
+    },
+    {
+      "id": "OPS-ARCX-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "ARC-X production end-to-end compiler is not established by its SPECIFIED canonical document.",
+      "acceptance": "A pinned-source fixture yields deterministic EIR, evidence lineage, proof obligations and a machine-verifiable receipt."
+    },
+    {
+      "id": "OPS-VLNS-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "No live VLNS/NAXLNS activation server was verified; mock tests do not prove remote connectivity.",
+      "acceptance": "Authenticated live conformance and remote receipt verification, then VAIXLNS admission."
+    },
+    {
+      "id": "OPS-VX-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "VX reference core passes conformance, but current production instance, isolation and capacity are not established.",
+      "acceptance": "Fresh health/lease evidence, bounded run, negative tests, replay and rollback in isolated Stage."
+    },
+    {
+      "id": "OPS-API-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "main API defaults to authorized when VAIXLNS_API_TOKEN is absent. Fail-closed repair is in open draft PR #57; it is not canonical until reviewed and merged.",
+      "acceptance": "Review PR #57; after approved merge, test absent/blank/wrong/correct token for every mutating and probe endpoint; keep remote binding blocked until TLS/gateway/network controls pass.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57"
+    },
+    {
+      "id": "OPS-LEDGER-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "Durable local stores and process-local receipts are not yet a single admitted canonical event/evidence pipeline.",
+      "acceptance": "Idempotent ingestion, durable restart/recovery, corruption test, cross-system correlation and independent replay."
+    },
+    {
+      "id": "OPS-AGENTS-001",
+      "priority": "P2",
+      "state": "OPEN",
+      "problem": "Provider bindings are opt-in and tool/sandbox adapters are not uniformly configured; missing roles must stay HOLD.",
+      "acceptance": "Role/version pins, least-privilege dispatcher, budget/deadline limits, sandbox test, no fabricated provider evidence and durable receipts."
+    },
+    {
+      "id": "OPS-CSD-001",
+      "priority": "P2",
+      "state": "OPEN",
+      "problem": "CSD kernel and verbose-engine claim-to-source/test coverage and runtime integration remain separate.",
+      "acceptance": "Source-preserving audit, executable language-specific parsers, invariant and negative tests, passing independent CI, explicit adapter."
+    },
+    {
+      "id": "OPS-OFFICE-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "The 16-office Operational Office Fabric registry and its tool/adaptor records exist only on open PR #70. A read-only, proposal-only VX office bridge is in open draft PR #58, based on fail-closed API authentication PR #57. Neither registry admission nor live office execution is established.",
+      "acceptance": "Review/approve PR #70 and PR #58; configure a pinned registry path and VAIXLNS_API_TOKEN on the API/bridge hosts; verify authenticated inventory and deterministic route previews; retain dispatch_allowed=false until each tool has explicit identity, capability, endpoint, receipt, independent replay and separate admission evidence.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/70; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/58; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57"
+    },
+    {
+      "id": "OPS-MCP-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "VAIXLNS-unified main currently exposes read-only vx.health/status/capabilities tools. Open draft PR #58 adds authenticated office inventory and proposal-only route preview; neither a live office dispatch path nor arbitrary external-tool connectivity is established.",
+      "acceptance": "Review PR #58 and require CI green; set VAIXLNS_OFFICE_REGISTRY_PATH to a pinned approved registry and VAIXLNS_API_TOKEN on both API and bridge hosts; verify MCP initialize/list/call, authenticated office inventory, deterministic route preview, timeout/redaction/fail-closed behavior; require dispatch_allowed=false for unadmitted tools and add real dispatch only through a separate reviewed VX execution/evidence gate.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/58; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57; https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/integrations/mcp_server.py"
+    },
+    {
+      "id": "OPS-VERBOSE-001",
+      "priority": "P2",
+      "state": "OPEN",
+      "problem": "verbose-engine PR #7 cannot reach its tests because the main tree contains a deeply nested malformed imported path that makes actions/checkout fail. PR #8 preserves its source commit/subtree/path inventory and removes the malformed path from the proposed current tree; CSD runtime implementation remains unverified.",
+      "acceptance": "PR #8 checkout succeeds and all Python package plus CSD structural audit tests run; report test results separately from checkout recovery; do not promote CSD kernel implementation without executable evidence.",
+      "evidence": "https://github.com/fisallllll280-code/verbose-engine/pull/8; prior failure https://github.com/fisallllll280-code/verbose-engine/actions/runs/38702372054"
+    }
+  ],
+  "operational_phases": [
+    {
+      "phase": "G0",
+      "name": "Pin inventory",
+      "outcome": "Immutable repository refs, tree digests, manifests, contracts, entrypoints, tests and CI results."
+    },
+    {
+      "phase": "G1",
+      "name": "Resolve identity and contracts",
+      "outcome": "Two candidate identity mappings are either evidenced or remain blocked; no inferred aliases."
+    },
+    {
+      "phase": "G2",
+      "name": "Run local verification",
+      "outcome": "Repository-native tests and negative cases pass on pinned SHAs; receipts include run links and artifact digests."
+    },
+    {
+      "phase": "G3",
+      "name": "Connect isolated adapters",
+      "outcome": "Local/read-only cross-system smoke tests pass; unknown identity and bad signatures fail closed."
+    },
+    {
+      "phase": "G4",
+      "name": "Prove persistence and replay",
+      "outcome": "Durable receipt survives restart; retry is idempotent; independent replay matches original deterministic output."
+    },
+    {
+      "phase": "G5",
+      "name": "Governed admission",
+      "outcome": "Independent reviewer accepts evidence and VAIXLNS grants bounded authority for exact source/environment."
+    },
+    {
+      "phase": "G6",
+      "name": "Stage operation",
+      "outcome": "Health, lease, controlled isolation, recovery, re-route, telemetry and rollback evidence pass."
+    },
+    {
+      "phase": "G7",
+      "name": "Production decision",
+      "outcome": "Separate approval after security, auth, secrets, backup/restore, capacity, observability and load gates pass."
+    }
+  ],
+  "latest_ci_reconciliation": {
+    "observed_at": "2026-10-15",
+    "classification": "NON_CANONICAL_ENGINEERING_SNAPSHOT",
+    "source_branch": "ops/federated-systems-engineering-plan-20261015",
+    "canonical_unchanged": true,
+    "canonical_refs": {
+      "project_genome_blob_sha": "7b8822cff6321d2b750aec030e29b928ed685940",
+      "omega_000_blob_sha": "cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc"
+    },
+    "pull_requests": [
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 117,
+        "head_sha": "a8fe0244b8ec8f338974618aab5b266a9ebdd355",
+        "observed": "16 checks successful",
+        "limitation": "bootstrap CI only; not cross-repository live connectivity"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 112,
+        "head_sha": "60fe969d05a35cccb8afa15345a27a895be5bd2a",
+        "observed": "14 checks successful",
+        "limitation": "branch conformance only"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 70,
+        "head_sha": "0f94687f99a7fa5ea208dcbefbe3a7932c4efdba",
+        "observed": "9/9 checks successful",
+        "limitation": "proposed office registry; no live dispatch"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 58,
+        "head_sha": "5f6a52840870dc005426d953def617ec20652158",
+        "observed": "7 successful checks; auto-merge gate skipped",
+        "limitation": "draft; preview-only; based on auth-fix branch"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 57,
+        "head_sha": "b8c7a5d2b8e2d1a3146ff55e403236cf05d29504",
+        "observed": "4 successful checks; auto-remediation gate skipped",
+        "limitation": "draft; not canonical until review and merge"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 55,
+        "head_sha": "bf84e92c659287367ed7915f80e12cc51b87cf07",
+        "observed": "8 successful checks; auto-merge gate skipped",
+        "limitation": "read-only allowlisted GitHub source sync only"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 120,
+        "head_sha": "c5a66a4ba519c371d20f11f9ca02bb27738c2e65",
+        "observed": "9/9 checks successful",
+        "limitation": "fresh private source capture still requires owner-configured VAIXLNS_FEDERATION_TOKEN"
+      }
+    ],
+    "unresolved_identity_mappings": [
+      "VLNS ↔ NAXLNS",
+      "NEXNET ↔ NEXENT"
+    ],
+    "disabled_edges": [
+      "FED.VLNS.VAIXLNS.KNOWLEDGE.001",
+      "FED.NEXNET.VAIXLNS.DISCOVERY.001",
+      "FED.VAIXLNS.VX.EXECUTION.001",
+      "FED.VX.VAIXLNS.EVIDENCE.001"
+    ],
+    "next_gates": [
+      "review-auth-pr-57",
+      "review-office-preview-pr-58",
+      "review-office-registry-pr-70",
+      "fresh-snapshot-after-owner-secret",
+      "resolve-identity-mappings",
+      "isolated-vertical-slice-with-durable-receipt-and-independent-replay"
+    ],
+    "production_authority_granted": false
+  }
+}
