@@ -28,3 +28,20 @@ A deployment is not VERIFIED from this manifest alone. Verification requires dep
 - [Bounded probe implementation](../../tools/server_discovery_probe.py)
 
 These artifacts discover explicit endpoints only. They are not a declaration that the infrastructure dependencies above have been deployed or verified.
+
+
+## Four-system interface registry and audit
+
+The contract-first interface inventory is maintained at
+`registry/federation/four-system-interface-registry.v1.json`.
+
+It records the four system identities, known repository surfaces, six proposed interface edges, required evidence, and unresolved identity/runtime mappings. It intentionally does not invent endpoints or claim that services are connected.
+
+Run the static contract audit with:
+
+```bash
+python tools/four_system_interface_audit.py
+python -m unittest discover -s tests -p 'test_four_system_interface_audit.py' -v
+```
+
+The GitHub Actions workflow `four-system-interface-audit.yml` validates the registry and uploads a revision-bound static audit report. A `PASS` from this gate means the manifest is internally consistent; it does **not** mean the four live runtimes have been connected or verified.
