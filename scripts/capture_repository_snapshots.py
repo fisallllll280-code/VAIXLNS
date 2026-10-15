@@ -5,6 +5,7 @@ archive digests. Accessible source trees are bundled for recovery.
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import os
@@ -18,11 +19,15 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "registry" / "repository_registry.v1.json"
 
-def run(*args: str, cwd: Path | None = None) -> str:
+def run(
+    *args: str,
+    cwd: Path | None = None,
+    extra_env: dict[str, str] | None = None,
+) -> str:
     result = subprocess.run(
         list(args), cwd=cwd, text=True, stdout=subprocess.PIPE,
         stderr=subprocess.PIPE, check=False,
-        env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
+        env={**os.environ, "GIT_TERMINAL_PROMPT": "0", **(extra_env or {})},
     )
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or f"command_failed:{args[0]}")
@@ -38,11 +43,21 @@ def sha256_file(path: Path) -> str:
 def clone_repository(repository: str, destination: Path) -> None:
     token = os.getenv("VAIXLNS_FEDERATION_TOKEN") or os.getenv("GITHUB_TOKEN")
     url = f"https://github.com/{repository}.git"
-    if token:
-        run("git", "-c", f"http.extraheader=AUTHORIZATION: bearer {token}",
-            "clone", "--depth", "1", url, str(destination))
-    else:
+    if not token:
         run("git", "clone", "--depth", "1", url, str(destination))
+        return
+
+    # Use GitHub's Git-over-HTTPS Basic auth form; keep credentials in the
+    # subprocess environment rather than command-line arguments or logs.
+    encoded = base64.b64encode(f"x-access-token:{token}".encode("utf-8")).decode("ascii")
+    run(
+        "git", "clone", "--depth", "1", url, str(destination),
+        extra_env={
+            "GIT_CONFIG_COUNT": "1",
+            "GIT_CONFIG_KEY_0": "http.https://github.com/.extraheader",
+            "GIT_CONFIG_VALUE_0": f"AUTHORIZATION: basic {encoded}",
+        },
+    )
 
 def capture() -> dict:
     data = json.loads(REGISTRY.read_text(encoding="utf-8"))
