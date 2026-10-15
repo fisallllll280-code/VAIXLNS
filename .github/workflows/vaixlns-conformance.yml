@@ -35,6 +35,7 @@ jobs:
         run: |
           python -m py_compile \
             scripts/admission_gate.py \
+            scripts/agent_execution_preflight.py \
             scripts/federation_integrity_gate.py \
             scripts/proof_verifier.py \
             scripts/reconstruct_control_plane.py \
@@ -46,7 +47,8 @@ jobs:
             tools/build_innovation_operation_index.py \
             tools/validate_innovation_operation_index.py \
             tests/test_canonical_control_plane.py \
-            tests/test_innovation_operation_index.py
+            tests/test_innovation_operation_index.py \
+            tests/test_agent_execution_preflight.py
 
       - name: Run admission gate
         run: python scripts/admission_gate.py
@@ -75,6 +77,22 @@ jobs:
       - name: Run test suite
         run: python -m unittest discover -s tests -v
 
+      - name: Run deep-index agent execution preflight
+        shell: bash
+        run: |
+          set +e
+          python scripts/agent_execution_preflight.py --output agent-execution-preflight.json
+          status=$?
+          set -e
+          if [ "$status" -eq 3 ] || [ "$status" -eq 4 ]; then
+            exit "$status"
+          fi
+          if [ "$status" -eq 2 ]; then
+            echo "::notice title=Agent execution preflight::HOLD is expected until bindings, provider adapters, and admission evidence are complete."
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+
       - name: Emit conformance evidence
         if: always()
         shell: bash
@@ -95,4 +113,5 @@ jobs:
             conformance-evidence.txt
             reconstruction-evidence.json
             provenance.json
+            agent-execution-preflight.json
           if-no-files-found: error
