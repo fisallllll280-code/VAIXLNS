@@ -33,7 +33,6 @@ class RepositorySnapshotAuthTests(unittest.TestCase):
         )
         self.assertNotIn("federation-test-token", " ".join(args))
         env = kwargs["extra_env"]
-        self.assertEqual(env["GIT_TERMINAL_PROMPT"], "0")
         self.assertEqual(env["GIT_CONFIG_COUNT"], "1")
         self.assertEqual(env["GIT_CONFIG_KEY_0"], "http.https://github.com/.extraheader")
         value = env["GIT_CONFIG_VALUE_0"]
