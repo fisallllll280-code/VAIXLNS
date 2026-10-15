@@ -51,3 +51,12 @@ jobs:
           print("captured_artifacts:", report["coverage"]["captured_artifacts"])
           print("snapshot_fingerprint:", report["snapshot_fingerprint"])
           PY
+
+      - name: Upload Knowledge Genome report evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-genome-report-${{ github.sha }}
+          path: ${{ runner.temp }}/knowledge-genome.json
+          if-no-files-found: warn
+          retention-days: 14
