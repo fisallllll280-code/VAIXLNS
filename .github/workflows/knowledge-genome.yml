@@ -1,0 +1,53 @@
+name: Knowledge Genome Probe
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/knowledge_genome.py'
+      - 'tests/test_knowledge_genome.py'
+      - 'schemas/knowledge-genome.schema.json'
+      - 'docs/KNOWLEDGE_GENOME_ENGINEERING_V1.md'
+      - 'docs/IMPLEMENTATION_BOUNDARY_AND_ROADMAP.md'
+      - '.github/workflows/knowledge-genome.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/knowledge_genome.py'
+      - 'tests/test_knowledge_genome.py'
+      - 'schemas/knowledge-genome.schema.json'
+      - 'docs/KNOWLEDGE_GENOME_ENGINEERING_V1.md'
+      - 'docs/IMPLEMENTATION_BOUNDARY_AND_ROADMAP.md'
+      - '.github/workflows/knowledge-genome.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probe-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install JSON Schema validator
+        run: python -m pip install jsonschema==4.26.0
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p 'test_knowledge_genome.py' -v
+      - name: Generate deterministic probe report
+        run: |
+          python scripts/knowledge_genome.py . --repository-id "$GITHUB_REPOSITORY" --output "$RUNNER_TEMP/knowledge-genome.json"
+          python - <<'PY'
+          import json, os
+          p = os.path.join(os.environ["RUNNER_TEMP"], "knowledge-genome.json")
+          report = json.load(open(p, encoding="utf-8"))
+          assert report["epistemic_state"] == "PARTIAL"
+          assert report["snapshot_fingerprint"].startswith("sha256:")
+          assert report["policy"]["no_destructive_operations"] is True
+          import jsonschema
+          schema = json.load(open("schemas/knowledge-genome.schema.json", encoding="utf-8"))
+          jsonschema.validate(report, schema)
+          print("schema_validation: PASS")
+          print("captured_artifacts:", report["coverage"]["captured_artifacts"])
+          print("snapshot_fingerprint:", report["snapshot_fingerprint"])
+          PY
