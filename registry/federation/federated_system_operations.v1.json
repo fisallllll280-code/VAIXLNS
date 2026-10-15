@@ -10,7 +10,8 @@
     "project_genome_version": "1.0.0",
     "authority_anchor": "Ω0_GENESIS_CORE",
     "master_index": "Ω.000",
-    "mutation_policy": "Additive only; does not change project.genome or Ω.000"
+    "mutation_policy": "Additive only; does not change project.genome or Ω.000",
+    "updated_at": "2026-10-15"
   },
   "policy": {
     "preserve_history": true,
@@ -250,7 +251,7 @@
       "repository": "fisallllll280-code/verbose-engine",
       "state": "AUDIT_ONLY",
       "reference": "https://github.com/fisallllll280-code/verbose-engine/pull/7",
-      "note": "Read-only audit PR fails at checkout; tests were skipped; no kernel fix claimed."
+      "note": "Read-only audit is tracked in open PR #7. Main-tree checkout failure is being addressed by draft PR #8 through a history-preserving path inventory and current-tree repair; tests have not yet established CSD runtime correctness."
     },
     {
       "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
@@ -294,9 +295,9 @@
       "id": "OPS-SNAPSHOT-001",
       "priority": "P0",
       "state": "OPEN",
-      "problem": "Snapshot capture cannot authenticate clone access for multiple sources and then pushes directly to protected main.",
-      "acceptance": "Source status is explicit per repository; no token leakage; incomplete snapshots are marked incomplete; archive is published through artifact plus reviewed bot PR.",
-      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38698964074"
+      "problem": "Snapshot capture failed because authenticated Git clones did not authenticate correctly for multiple sources and the workflow attempted a direct push to protected main. Repair is in open PR #120; a correctly scoped read token is still needed for private source repositories.",
+      "acceptance": "PR #120 passes CI; Git clones use a non-logged Basic auth header; artifacts are uploaded even after later-step failure; manifest is proposed through a draft PR instead of direct main push; set VAIXLNS_FEDERATION_TOKEN for the private repos and verify a fresh scheduled/dispatch capture.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/120; prior failure https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38698964074"
     },
     {
       "id": "OPS-IDENTITY-001",
@@ -344,8 +345,9 @@
       "id": "OPS-API-001",
       "priority": "P1",
       "state": "OPEN",
-      "problem": "Unified API treats requests as authorized when VAIXLNS_API_TOKEN is absent.",
-      "acceptance": "Deployment guard fails closed; absent/wrong/correct token cases tested for mutating/probe endpoints; remote binding blocked until TLS/gateway/network controls pass."
+      "problem": "main API defaults to authorized when VAIXLNS_API_TOKEN is absent. Fail-closed repair is in open draft PR #57; it is not canonical until reviewed and merged.",
+      "acceptance": "Review PR #57; after approved merge, test absent/blank/wrong/correct token for every mutating and probe endpoint; keep remote binding blocked until TLS/gateway/network controls pass.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57"
     },
     {
       "id": "OPS-LEDGER-001",
@@ -367,6 +369,30 @@
       "state": "OPEN",
       "problem": "CSD kernel and verbose-engine claim-to-source/test coverage and runtime integration remain separate.",
       "acceptance": "Source-preserving audit, executable language-specific parsers, invariant and negative tests, passing independent CI, explicit adapter."
+    },
+    {
+      "id": "OPS-OFFICE-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "The 16-office Operational Office Fabric registry and its 18 tool/adaptor records exist only on open PR #70. The branch has 9 passing checks, but the registry is not yet integrated into the canonical main branch or a live VX office router.",
+      "acceptance": "Review PR #70; integrate office ownership and handoff contracts only after approval; bind office-to-tool routing through VX's policy/admission boundary; retain NOT_CONFIGURED and PROPOSE_ONLY states until each adapter has runtime evidence.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/70"
+    },
+    {
+      "id": "OPS-MCP-001",
+      "priority": "P1",
+      "state": "OPEN",
+      "problem": "VAIXLNS-unified exposes a read-only stdio MCP bridge with only vx.health, vx.status, and vx.capabilities.list. It is an integration seam to the VAIXLNS API, not a live link to all offices or arbitrary external tools. No live office-to-VX endpoint is proven.",
+      "acceptance": "Use an explicitly configured local/HTTPS VAIXLNS API with fail-closed token policy; prove MCP initialize, tool list, authenticated health/status calls, timeout/redaction and failure behavior; add one office adapter at a time with pinned identity, contract, capability allowlist, request ID, evidence receipt, and revocation test.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/integrations/mcp_server.py; https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/docs/integrations/VX_READONLY_MCP_BRIDGE.md"
+    },
+    {
+      "id": "OPS-VERBOSE-001",
+      "priority": "P2",
+      "state": "OPEN",
+      "problem": "verbose-engine PR #7 cannot reach its tests because the main tree contains a deeply nested malformed imported path that makes actions/checkout fail. PR #8 preserves its source commit/subtree/path inventory and removes the malformed path from the proposed current tree; CSD runtime implementation remains unverified.",
+      "acceptance": "PR #8 checkout succeeds and all Python package plus CSD structural audit tests run; report test results separately from checkout recovery; do not promote CSD kernel implementation without executable evidence.",
+      "evidence": "https://github.com/fisallllll280-code/verbose-engine/pull/8; prior failure https://github.com/fisallllll280-code/verbose-engine/actions/runs/38702372054"
     }
   ],
   "operational_phases": [
