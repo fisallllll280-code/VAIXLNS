@@ -79,7 +79,7 @@ jobs:
             exit 0
           fi
 
-          for pr_number in "${{eligible[@]}"; do
+          for pr_number in "${eligible[@]}"; do
             echo "Promoting human-approved PR #$pr_number"
             gh pr merge "$pr_number" \
               --repo "$GITHUB_REPOSITORY" \
