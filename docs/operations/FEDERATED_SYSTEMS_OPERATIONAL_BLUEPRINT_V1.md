@@ -329,3 +329,29 @@ This blueprint is a cross-reference, not a replacement, for the existing source 
 - `docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md`.
 
 **Completion rule:** this document itself completes only the cross-system planning/reconciliation artifact. It does not complete the missing live integrations, resolve the two identity mappings, repair snapshot automation, merge open PRs, or certify production.
+
+
+## 10. October 15 remediation and VX office integration
+
+The following PRs are non-canonical review candidates; an open PR or green CI result is not admission:
+
+- **Office Fabric:** [VAIXLNS PR #70](https://github.com/fisallllll280-code/VAIXLNS/pull/70) defines 16 logical offices, 21 system surfaces, 18 tool/adaptor records and 13 relationships. Its branch had 9 successful checks at inspection time, but the PR remains unmerged. The registry itself marks 7 integrations `NOT_CONFIGURED`, 2 `PROPOSED_NOT_ADMITTED`, and keeps VLNS/NAXLNS and NEXNET/NEXENT identity mappings unresolved. A logical office is a responsibility/routing domain, not proof of a running service.
+
+- **MCP boundary:** the current [read-only MCP bridge](https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/integrations/mcp_server.py) exposes `vx.health`, `vx.status`, and `vx.capabilities.list`. It connects to the VAIXLNS runtime API through a fixed local/HTTPS boundary; it is not a generic bridge to all third-party systems or offices. Live connectivity, endpoint identity, and office adapters remain unverified.
+
+- **Fail-closed API authentication:** [VAIXLNS-unified PR #57](https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57) has five passing or skipped check entries at its inspected head, with the four main validation workflows passing and the auto-remediation job skipped. It remains an open draft PR and is not canonical until approved and merged.
+
+- **Snapshot repair:** [VAIXLNS PR #120](https://github.com/fisallllll280-code/VAIXLNS/pull/120) changes the snapshot workflow to retain artifacts and propose manifests through a draft PR rather than push directly to protected `main`. The follow-up also corrects Git HTTP authentication and adds unit tests. Cross-repository private reads still require the owner-configured `VAIXLNS_FEDERATION_TOKEN` secret; no secret value is stored in the repository or this document.
+
+- **Source path repair:** [verbose-engine PR #8](https://github.com/fisallllll280-code/verbose-engine/pull/8) addresses a malformed nested path that blocked checkout before tests. Its preservation manifest pins the original commit/tree and affected path inventory; CSD implementation claims remain unverified until test jobs actually run and pass.
+
+### Required office-to-VX sequence
+
+1. Pin the office-registry source commit and review/approve its PR before treating the registry as canonical.
+2. Keep all external tools `NOT_CONFIGURED` until endpoint identity, authentication, contract version, capability allowlist, timeout/retry/idempotency, egress boundary and revocation are evidenced.
+3. Start with read-only health/status calls over the existing MCP bridge. Do not expose the API beyond loopback until TLS/gateway controls pass.
+4. Add one office integration at a time through the VX external-integration gate; require a request/task ID, endpoint-bound receipt, durable VAIXLNS event, and replay/independent verification.
+5. Keep all cross-system edges disabled while source identity is unresolved or an activation receipt is absent. A successful local test or green CI does not enable an external edge.
+6. Re-run the snapshot workflow after the auth fix and owner-side secret configuration. The workflow may produce a draft manifest, but incomplete repository captures must remain explicitly partial.
+
+No step in this plan authorizes merging, production deployment, direct canonical writes, or changes to `project.genome` or `Ω.000`.
