@@ -1,0 +1,39 @@
+name: R-Omega Forge Preflight
+on:
+  pull_request:
+    paths:
+      - "tools/r_omega_forge.py"
+      - "tests/test_r_omega_forge.py"
+      - "docs/architecture/R_OMEGA_FORGE_V0_1.md"
+      - "registry/federation/four-system-interface-registry.v1.json"
+  push:
+    branches: ["main", "feat/r-omega-forge-evidence-engine-20261015"]
+    paths:
+      - "tools/r_omega_forge.py"
+      - "tests/test_r_omega_forge.py"
+      - "docs/architecture/R_OMEGA_FORGE_V0_1.md"
+      - "registry/federation/four-system-interface-registry.v1.json"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile
+        run: python -m py_compile tools/r_omega_forge.py tests/test_r_omega_forge.py
+      - name: Run tests
+        run: python -m unittest discover -s tests -p 'test_r_omega_forge.py' -v
+      - name: Run read-only preflight
+        run: python tools/r_omega_forge.py --output "$RUNNER_TEMP/r-omega-forge-preflight.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r-omega-forge-preflight-${{ github.sha }}
+          path: ${{ runner.temp }}/r-omega-forge-preflight.json
+          if-no-files-found: error
+          retention-days: 30
