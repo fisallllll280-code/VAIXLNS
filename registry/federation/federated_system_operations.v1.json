@@ -436,5 +436,85 @@
       "name": "Production decision",
       "outcome": "Separate approval after security, auth, secrets, backup/restore, capacity, observability and load gates pass."
     }
-  ]
+  ],
+  "latest_ci_reconciliation": {
+    "observed_at": "2026-10-15",
+    "classification": "NON_CANONICAL_ENGINEERING_SNAPSHOT",
+    "source_branch": "ops/federated-systems-engineering-plan-20261015",
+    "canonical_unchanged": true,
+    "canonical_refs": {
+      "project_genome_blob_sha": "7b8822cff6321d2b750aec030e29b928ed685940",
+      "omega_000_blob_sha": "cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc"
+    },
+    "pull_requests": [
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 117,
+        "head_sha": "a8fe0244b8ec8f338974618aab5b266a9ebdd355",
+        "observed": "16 checks successful",
+        "limitation": "bootstrap CI only; not cross-repository live connectivity"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 112,
+        "head_sha": "60fe969d05a35cccb8afa15345a27a895be5bd2a",
+        "observed": "14 checks successful",
+        "limitation": "branch conformance only"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 70,
+        "head_sha": "0f94687f99a7fa5ea208dcbefbe3a7932c4efdba",
+        "observed": "9/9 checks successful",
+        "limitation": "proposed office registry; no live dispatch"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 58,
+        "head_sha": "5f6a52840870dc005426d953def617ec20652158",
+        "observed": "7 successful checks; auto-merge gate skipped",
+        "limitation": "draft; preview-only; based on auth-fix branch"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 57,
+        "head_sha": "b8c7a5d2b8e2d1a3146ff55e403236cf05d29504",
+        "observed": "4 successful checks; auto-remediation gate skipped",
+        "limitation": "draft; not canonical until review and merge"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS-unified",
+        "number": 55,
+        "head_sha": "bf84e92c659287367ed7915f80e12cc51b87cf07",
+        "observed": "8 successful checks; auto-merge gate skipped",
+        "limitation": "read-only allowlisted GitHub source sync only"
+      },
+      {
+        "repository": "fisallllll280-code/VAIXLNS",
+        "number": 120,
+        "head_sha": "c5a66a4ba519c371d20f11f9ca02bb27738c2e65",
+        "observed": "9/9 checks successful",
+        "limitation": "fresh private source capture still requires owner-configured VAIXLNS_FEDERATION_TOKEN"
+      }
+    ],
+    "unresolved_identity_mappings": [
+      "VLNS ↔ NAXLNS",
+      "NEXNET ↔ NEXENT"
+    ],
+    "disabled_edges": [
+      "FED.VLNS.VAIXLNS.KNOWLEDGE.001",
+      "FED.NEXNET.VAIXLNS.DISCOVERY.001",
+      "FED.VAIXLNS.VX.EXECUTION.001",
+      "FED.VX.VAIXLNS.EVIDENCE.001"
+    ],
+    "next_gates": [
+      "review-auth-pr-57",
+      "review-office-preview-pr-58",
+      "review-office-registry-pr-70",
+      "fresh-snapshot-after-owner-secret",
+      "resolve-identity-mappings",
+      "isolated-vertical-slice-with-durable-receipt-and-independent-replay"
+    ],
+    "production_authority_granted": false
+  }
 }
