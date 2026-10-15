@@ -103,3 +103,15 @@ python scripts/validate_four_system_federation.py
 python scripts/validate_federation_contract_edges.py
 python -m unittest tests.test_four_system_federation tests.test_federation_contract_edges tests.test_federation_preflight -v
 ```
+
+
+## Ω-Arena Evidence-First Audit
+
+Run the offline, read-only audit for the four-system interface registry:
+
+```bash
+python scripts/omega_arena_audit.py --output build/omega-arena/audit-receipt.json
+python -m unittest tests.test_omega_arena_audit -v
+```
+
+The audit checks all six system-pair edges, identity-state blockers, required evidence declarations, and registry invariants. Its report binds to the registry SHA-256 and local Git revision when available. It never probes endpoints, runs workloads, changes canonical data, or declares an edge live from static metadata. The expected current outcome is `PENDING_VERIFICATION` until authorized runtime evidence is independently reviewed.
