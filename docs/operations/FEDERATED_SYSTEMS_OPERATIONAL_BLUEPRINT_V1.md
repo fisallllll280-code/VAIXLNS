@@ -355,3 +355,46 @@ The following PRs are non-canonical review candidates; an open PR or green CI re
 6. Re-run the snapshot workflow after the auth fix and owner-side secret configuration. The workflow may produce a draft manifest, but incomplete repository captures must remain explicitly partial.
 
 No step in this plan authorizes merging, production deployment, direct canonical writes, or changes to `project.genome` or `Ω.000`.
+
+
+## 11. Current CI reconciliation and next executable gates
+
+**Reconciliation timestamp:** 2026-10-15 UTC. This is a non-canonical update on the engineering-plan branch, not a production readiness declaration.
+
+### 11.1 Verified repository/PR checks
+
+| Surface | Pinned ref / PR | Observed checks | What this proves | What it does not prove |
+|---|---|---|---|---|
+| VAIXLNS conformance | [Ω-Arena branch](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/38783636914), head `c28810b9df4441824d7509c6d2e353d0f96c4e01` | Success | Repository conformance on that branch commit | Live connectivity or cross-repository execution |
+| VX supervised bootstrap | [PR #117](https://github.com/fisallllll280-code/VAIXLNS/pull/117), head `a8fe0244b8ec8f338974618aab5b266a9ebdd355` | 16 check runs successful at inspection | The configured bootstrap acceptance/CI checks passed | Production sandboxing or connection to the separate VX-runtime deployment |
+| ARC-X interoperability | [PR #112](https://github.com/fisallllll280-code/VAIXLNS/pull/112), head `60fe969d05a35cccb8afa15345a27a895be5bd2a` | 14 check runs successful at inspection | The configured branch checks passed | End-to-end external adapter admission |
+| Office Fabric registry | [PR #70](https://github.com/fisallllll280-code/VAIXLNS/pull/70), head `0f94687f99a7fa5ea208dcbefbe3a7932c4efdba` | 9/9 checks successful | Registry schema/conformance and related branch gates passed | Office services running or tool dispatch authorized |
+| Office MCP preview | [PR #58](https://github.com/fisallllll280-code/VAIXLNS-unified/pull/58), head `5f6a52840870dc005426d953def617ec20652158` | 7 successful checks; auto-merge gate skipped | Read-only inventory/route-preview code passes configured checks | Actual office dispatch or external service connectivity; PR is draft and based on the auth-fix branch |
+| API fail-closed authentication | [PR #57](https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57), head `b8c7a5d2b8e2d1a3146ff55e403236cf05d29504` | 4 successful checks; auto-remediation gate skipped | Current draft branch passes its configured validation workflows | Canonical/main API is fixed; PR remains unmerged |
+| External GitHub source connector | [PR #55](https://github.com/fisallllll280-code/VAIXLNS-unified/pull/55), head `bf84e92c659287367ed7915f80e12cc51b87cf07` | 8 successful checks; auto-merge gate skipped | Read-only allowlisted source connector tests and readiness gates pass on that branch | Write access to GitHub or a general external execution channel |
+| Snapshot publication repair | [PR #120](https://github.com/fisallllll280-code/VAIXLNS/pull/120), head `c5a66a4ba519c371d20f11f9ca02bb27738c2e65` | 9/9 checks successful | Proposed workflow/authentication/test changes pass the configured checks | A fresh private-repository snapshot succeeds; owner-side `VAIXLNS_FEDERATION_TOKEN` is still required |
+| VX runtime | [VX-runtime conformance](https://github.com/fisallllll280-code/VX-runtime/actions/runs/38014519471), head `c58e398b405a3acff5752a70dfd88a4f98c58259` | Success; run dated 2026-10-10 | The pinned reference-runtime conformance suite passed | Current production instance, remote API, or VAIXLNS evidence-ledger connection |
+| NAXLNS identity candidate | [NAXLNS conformance](https://github.com/fisallllll280-code/NAXLNS/actions/runs/37420552127) | Success; run dated 2026-10-06 | Contract/conformance workflow passed on its pinned revision | That NAXLNS is the same system as VLNS or that a live activation service exists |
+| NEXENT | [NEXENT CI](https://github.com/fisallllll280-code/NEXENT/actions/runs/38014523296) and [verification](https://github.com/fisallllll280-code/NEXENT/actions/runs/38014523285) | Success; runs dated 2026-10-10 | Configured NEXENT tests passed on the recorded main revision | That NEXENT is the same system as NEXNET or that it is connected to VX |
+
+Check counts above are tied to the referenced commits/runs as observed during this reconciliation; they are not claims about future branch heads.
+
+### 11.2 Office and external integration status
+
+- Office Fabric currently has 16 logical office definitions, 21 system surfaces, 18 tool/adaptor records and 13 relationship records in its proposed registry. The registry is a routing specification; several integrations are `NOT_CONFIGURED` or `PROPOSED_NOT_ADMITTED`.
+- MCP main remains read-only (`vx.health`, `vx.status`, `vx.capabilities.list`). The office-preview branch adds inventory and deterministic route preview, not execution. No external tool dispatch is admitted by these checks.
+- GitHub source sync is explicitly allowlisted and read-only. A GitHub connector passing CI is not a generic credentialed bridge to every repository or office.
+- The current canonical federation manifest keeps all four core edges disabled: VLNS→VAIXLNS and NEXNET→VAIXLNS are `BLOCKED_IDENTITY`; VAIXLNS→VX and VX→VAIXLNS are `SPECIFIED_NOT_CONNECTED`. Do not flip `enabled` or rewrite status until all required evidence exists.
+- `project.genome` and `Ω.000` remain outside this change. Their observed blob SHAs are recorded in the snapshot section; this update changes only this non-canonical plan branch.
+
+### 11.3 Execution order
+
+1. Review PR #57 (authentication) before PR #58 (office route preview); keep both unmerged until the current head is reviewed.
+2. Review PR #70 as a proposed registry; validate its identity, endpoint, tool and authority records before admission.
+3. Complete PR #120 and perform a fresh snapshot run after the owner configures the private-repository token. Record inaccessible repositories as partial rather than silently omitting them.
+4. Resolve the two identity mappings using explicit source/owner evidence: `VLNS ↔ NAXLNS` and `NEXNET ↔ NEXENT`. Until then, both edges remain disabled.
+5. Build a local isolated vertical slice: pinned source → typed adapter → VX policy decision → bounded execution → durable receipt → VAIXLNS ledger ingestion → independent replay. Start with mocks/local fixtures; separately identify them as mocks.
+6. Prove live connectivity only in a permissioned Stage environment with endpoint identity, TLS/gateway, configured secrets, negative auth tests, timeout/retry/idempotency, and revocation checks.
+7. Require independent review and explicit human approval before merging, enabling any external edge, or deploying to production.
+
+**Current decision:** CI coverage is materially present, but the federation is not yet connected or production-ready. Keep external dispatch and all unresolved edges disabled.
