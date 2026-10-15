@@ -64,9 +64,17 @@ jobs:
             OUTCOME="All eligible repositories were captured. Review manifest digests and lineage before admission."
           fi
 
+          cat > snapshot-pr-body.md <<EOF
+          Automated federation snapshot ${CAPTURE_ID}.
+
+          Outcome: ${OUTCOME}
+
+          The recovery bundle and raw run manifest are retained as this workflow's artifact. This draft PR is non-canonical and does not authorize promotion, merge, or production deployment.
+          EOF
+
           gh pr create \
             --draft \
             --base main \
             --head "$BRANCH" \
             --title "$TITLE" \
-            --body "Automated federation snapshot ${CAPTURE_ID}.\n\nOutcome: ${OUTCOME}\n\nThe recovery bundle and raw run manifest are retained as this workflow's artifact. This draft PR is non-canonical and does not authorize promotion, merge, or production deployment."
+            --body-file snapshot-pr-body.md
