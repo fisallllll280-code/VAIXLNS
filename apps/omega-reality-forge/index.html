@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VAIXLNS Ω — Reality Forge</title>
+<style>
+:root{--bg:#070b12;--panel:#0e1521;--panel2:#111d2b;--line:#243244;--muted:#8fa2b8;--text:#eaf3ff;--cyan:#56e0d0;--blue:#7ca8ff;--amber:#f2b764;--red:#ff7788;--green:#78e0a1;--radius:16px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 72% -15%,#16333b 0,transparent 36%),radial-gradient(ellipse at 4% 20%,#182443 0,transparent 30%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}.sidebar{padding:24px 16px;border-left:1px solid var(--line);background:#080e17d9;position:sticky;top:0;height:100vh}.brand{display:flex;gap:11px;align-items:center;padding:2px 8px 24px}.sigil{width:38px;height:38px;border:1px solid #4de1d2;border-radius:12px;display:grid;place-items:center;color:var(--cyan);font-size:20px;box-shadow:0 0 22px #45e0d522}.brand strong{letter-spacing:1.6px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.navlabel{color:#5f748d;font-size:10px;letter-spacing:1.8px;padding:18px 12px 7px}.nav{display:flex;align-items:center;gap:12px;padding:11px 12px;margin:3px 0;border-radius:10px;color:#9fb2c7;cursor:pointer;border:1px solid transparent}.nav:hover,.nav.active{background:#13232f;color:#eaffff;border-color:#25424d}.nav.active{box-shadow:inset -2px 0 var(--cyan)}.nav .ico{width:20px;text-align:center;color:var(--cyan)}.sidefoot{position:absolute;bottom:20px;right:18px;left:18px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:11px}.statusdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-left:7px;box-shadow:0 0 9px #f2b76466}
+main{min-width:0;padding:24px clamp(16px,3vw,42px) 48px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}.eyebrow{font-size:10px;letter-spacing:2.2px;color:var(--cyan);text-transform:uppercase}.title{font-size:clamp(24px,3vw,38px);letter-spacing:-1.3px;margin:5px 0}.sub{color:var(--muted);max-width:700px}.topactions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #31485a;color:#dceaf8;background:#111d2b;border-radius:10px;padding:10px 13px}.btn:hover{border-color:var(--cyan)}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#061214;font-weight:700}.btn.warn{border-color:#6a5234;color:#ffd18d}.btn:disabled{opacity:.5;cursor:not-allowed}
+.banner{border:1px solid #604d2c;background:linear-gradient(100deg,#2a2114aa,#151b25);padding:13px 16px;border-radius:13px;display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}.banner b{color:#ffd18d}.banner p{margin:2px 0 0;color:#b7c4d2;font-size:12px}.grid{display:grid;gap:14px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}.card{background:linear-gradient(145deg,#111c2aee,#0c131dee);border:1px solid var(--line);border-radius:var(--radius);padding:17px;min-width:0}.metric-head{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.metric-num{font-size:29px;letter-spacing:-1px;font-weight:650;margin:8px 0 2px}.metric-foot{font-size:11px;color:var(--muted)}.accent{color:var(--cyan)}.amber{color:var(--amber)}.red{color:var(--red)}.green{color:var(--green)}.layout{grid-template-columns:minmax(0,1.6fr) minmax(300px,.9fr);align-items:stretch}.sectionhead{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}.sectionhead h2{font-size:15px;margin:0}.sectionhead span{font-size:11px;color:var(--muted)}.map{height:315px;position:relative;overflow:hidden;border-radius:13px;background:radial-gradient(ellipse at center,#102d37 0,#0a1420 57%,#0a101a 100%);border:1px solid #203748}.map svg{width:100%;height:100%;display:block}.gridline{stroke:#254052;stroke-width:.7;opacity:.45}.edge{stroke:#56e0d0;stroke-width:1.4;opacity:.6;fill:none;stroke-dasharray:5 5;animation:flow 15s linear infinite}.edge.warnline{stroke:var(--amber);opacity:.9}.node{cursor:pointer}.node circle{fill:#0d202b;stroke:#56e0d0;stroke-width:2}.node text{fill:#e6f5ff;font-size:12px;text-anchor:middle}.node .tiny{font-size:9px;fill:#8fa8bd}.node.selected circle{fill:#174b50;stroke:#b0fff3;stroke-width:3;filter:drop-shadow(0 0 8px #56e0d0)}.node.warn circle{stroke:var(--amber)}@keyframes flow{to{stroke-dashoffset:-100}}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:12px}.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:5px}.systems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.sys{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0c1520;cursor:pointer}.sys:hover,.sys.selected{border-color:#4c9f9c;background:#10242b}.sys-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.sys strong{font-size:13px}.state{font-size:10px;padding:3px 7px;border-radius:99px;background:#352b1b;color:#f5c879}.state.good{background:#163329;color:#8be4b1}.sys p{margin:7px 0 9px;color:var(--muted);font-size:11px;min-height:32px}.meter{height:4px;border-radius:9px;background:#1e2b3b;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,#5d9eff,#56e0d0);border-radius:9px}.sys-foot{display:flex;justify-content:space-between;color:#7890a7;font-size:10px;margin-top:7px}.lower{grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);margin-top:14px}.agents{display:grid;gap:8px}.agent{display:grid;grid-template-columns:35px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid #202f40;border-radius:11px;background:#0b141f}.avatar{width:34px;height:34px;display:grid;place-items:center;background:#142b37;color:var(--cyan);border-radius:10px;font-weight:700}.agent strong{font-size:12px}.agent small{display:block;color:var(--muted);font-size:10px}.pill{font-size:10px;border:1px solid #465368;padding:4px 7px;border-radius:7px;color:#b4c3d2}.pill.hold{border-color:#66512f;color:#f1c777}.pill.ready{border-color:#285844;color:#8be4b1}.agent-detail{margin-top:12px;padding:12px;background:#101c28;border:1px solid #26394a;border-radius:11px;display:none}.agent-detail.open{display:block}.detail-title{font-weight:650;margin-bottom:4px}.detail-copy{color:var(--muted);font-size:12px}.feed{display:grid;gap:0}.event{display:grid;grid-template-columns:12px minmax(0,1fr);gap:10px;padding:11px 0;border-bottom:1px solid #1d2a39}.event:last-child{border-bottom:0}.event .bullet{width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-top:6px;box-shadow:0 0 10px #56e0d044}.event.warn .bullet{background:var(--amber)}.event strong{font-size:12px;font-weight:600}.event p{margin:3px 0 0;color:var(--muted);font-size:11px}.event time{color:#637991;font-size:10px}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}.search{flex:1;min-width:150px;background:#0a121c;border:1px solid #293a4d;border-radius:9px;color:var(--text);padding:9px 11px;outline:none}.search:focus{border-color:var(--cyan)}.filter{display:flex;gap:5px;flex-wrap:wrap}.filter button{font-size:11px;background:#101a26;border:1px solid #26374a;color:#94a8bd;padding:8px 10px;border-radius:8px}.filter button.active{border-color:#4c9f9c;color:#d7fffa;background:#11272d}.footerline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#6d8298;font-size:10px;margin-top:22px;border-top:1px solid #1b2938;padding-top:13px}.toast{position:fixed;bottom:22px;left:22px;background:#11262a;border:1px solid #3e8f87;color:#dffff9;padding:12px 16px;border-radius:12px;box-shadow:0 12px 35px #0008;display:none;z-index:10;max-width:360px}.toast.show{display:block;animation:fade 3.5s forwards}@keyframes fade{0%,75%{opacity:1}100%{opacity:0;display:none}}.modalback{position:fixed;inset:0;background:#02060bd9;display:none;place-items:center;padding:20px;z-index:20}.modalback.open{display:grid}.modal{width:min(560px,100%);background:#0d1723;border:1px solid #314457;border-radius:18px;padding:22px;box-shadow:0 25px 100px #000b}.modal h2{margin:0 0 8px}.modal p{color:var(--muted);font-size:13px}.modal-actions{display:flex;justify-content:flex-start;gap:8px;margin-top:18px}
+@media(max-width:1050px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.layout,.lower{grid-template-columns:1fr}.sidebar{width:200px}.shell{grid-template-columns:200px minmax(0,1fr)}}
+@media(max-width:680px){.shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto;padding:12px;border-left:0;border-bottom:1px solid var(--line)}.brand{padding:4px 4px 12px}.navlabel,.sidefoot{display:none}.navlist{display:flex;overflow:auto;gap:5px}.nav{white-space:nowrap;padding:8px 10px;margin:0}.nav .ico{display:none}main{padding:18px 12px 32px}.top{align-items:flex-start;flex-direction:column}.topactions{width:100%}.topactions button{flex:1}.metrics{gap:8px}.card{padding:13px}.metric-num{font-size:24px}.systems{grid-template-columns:1fr}.map{height:280px}.banner{padding:12px}.title{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+ <div class="brand"><div class="sigil">Ω</div><div><strong>VAIXLNS</strong><small>REALITY FORGE / 001</small></div></div>
+ <div class="navlabel">COMMAND SURFACES</div>
+ <div class="navlist">
+ <div class="nav active" data-page="overview"><span class="ico">◈</span> غرفة القيادة</div>
+ <div class="nav" data-page="systems"><span class="ico">⌘</span> الأنظمة الأربعة</div>
+ <div class="nav" data-page="agents"><span class="ico">◎</span> شبكة الوكلاء</div>
+ <div class="nav" data-page="evidence"><span class="ico">⟡</span> الحقيقة والأدلة</div>
+ <div class="nav" data-page="simulation"><span class="ico">⧉</span> مسبك المحاكاة</div>
+ </div>
+ <div class="navlabel">GOVERNANCE</div>
+ <div class="nav" data-action="governance"><span class="ico">⛨</span> الحوكمة والصلاحيات</div>
+ <div class="nav" data-action="lineage"><span class="ico">⌁</span> أثر التغييرات</div>
+ <div class="sidefoot"><span class="statusdot"></span> وضع العرض التفاعلي<br><span style="display:block;margin-top:7px">لا يوجد اتصال حي بمزود نموذج.</span></div>
+</aside>
+<main>
+ <header class="top">
+  <div><div class="eyebrow">Ω / REALITY FORGE · COMMAND DECK</div><h1 class="title">غرفة قيادة الواقع الهندسي</h1><div class="sub">من النية إلى الفرضية، ومن الفرضية إلى دليل قابل لإعادة التحقق — دون تجاوز سلطة الفهرس أو خلط التصميم بالتنفيذ.</div></div>
+  <div class="topactions"><button class="btn" id="refreshBtn">↻ تحديث العرض</button><button class="btn warn" id="simulateBtn">▶ محاكاة مهمة</button><button class="btn primary" id="reportBtn">تقرير الحالة ↗</button></div>
+ </header>
+ <div class="banner"><div style="font-size:20px">⛨</div><div><b>حاجز الحوكمة فعّال · الحالة التشغيلية: HOLD</b><p>هذه واجهة أولية ببيانات توضيحية مستندة إلى بنية الفهرس. لا تدّعي اتصال الوكلاء أو النماذج حيًا، ولا تعدّل project.genome أو Ω.000. أي تشغيل حقيقي يتطلب ربطًا معتمدًا وأدلة مستقلة.</p></div></div>
+ <section class="grid metrics">
+  <div class="card"><div class="metric-head"><span>أنظمة ضمن نطاق القيادة</span><span>◈</span></div><div class="metric-num">04</div><div class="metric-foot">VAIXLNS · VLNS · VX · NEXNET</div></div>
+  <div class="card"><div class="metric-head"><span>ملفات مرجعية محمية</span><span>⌑</span></div><div class="metric-num accent">02</div><div class="metric-foot">project.genome + Ω.000 · قراءة فقط</div></div>
+  <div class="card"><div class="metric-head"><span>عناصر تحتاج تحققًا</span><span>△</span></div><div class="metric-num amber" id="blockerCount">04</div><div class="metric-foot">الربط · المزوّدات · السجل · الأدلة</div></div>
+  <div class="card"><div class="metric-head"><span>تشغيلات حيّة مثبتة</span><span>◎</span></div><div class="metric-num">—</div><div class="metric-foot">لم تُسجّل من هذه الواجهة</div></div>
+ </section>
+ <section class="grid layout">
+  <div class="card">
+   <div class="sectionhead"><h2>01 / خريطة الاعتماديات الحيّة</h2><span>اختر عقدة لاستكشافها</span></div>
+   <div class="map"><svg viewBox="0 0 720 330" role="img" aria-label="خريطة توضيحية للأنظمة والحوكمة">
+    <defs><pattern id="g" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" fill="none" class="gridline"/></pattern></defs><rect width="720" height="330" fill="url(#g)"/>
+    <path class="edge" d="M360 163 L360 65 L150 65 L150 118 M360 65 L570 65 L570 118 M360 163 L150 220 M360 163 L570 220 M150 118 L150 220 M570 118 L570 220 M150 220 L360 274 L570 220"/>
+    <path class="edge warnline" d="M570 118 L570 65 L630 65"/><text x="641" y="50" fill="#f2b764" font-size="10" text-anchor="middle">GATE</text>
+    <g class="node selected" data-node="core" transform="translate(360 163)"><circle r="37"/><text y="-4" style="font-size:17px">Ω</text><text y="13">النواة</text><text class="tiny" y="25">AUTHORITY</text></g>
+    <g class="node" data-node="vaixlns" transform="translate(150 118)"><circle r="29"/><text y="-1">VAIXLNS</text><text class="tiny" y="13">CANONICAL</text></g>
+    <g class="node warn" data-node="vlns" transform="translate(570 118)"><circle r="29"/><text y="-1">VLNS</text><text class="tiny" y="13">SPECIFICATION</text></g>
+    <g class="node" data-node="vx" transform="translate(150 220)"><circle r="29"/><text y="-1">VX</text><text class="tiny" y="13">EXECUTION</text></g>
+    <g class="node warn" data-node="nexnet" transform="translate(570 220)"><circle r="29"/><text y="-1">NEXNET</text><text class="tiny" y="13">NETWORK</text></g>
+    <g class="node" data-node="evidence" transform="translate(360 274)"><circle r="24"/><text y="-1">PROOF</text><text class="tiny" y="12">EVIDENCE</text></g>
+    <g class="node warn" data-node="gate" transform="translate(630 65)"><circle r="17"/><text y="4" style="font-size:10px">HOLD</text></g>
+   </svg></div>
+   <div class="legend"><span><i style="background:var(--cyan)"></i>مرجع / ارتباط موصوف</span><span><i style="background:var(--amber)"></i>يحتاج تحققًا</span><span><i style="background:var(--red)"></i>تعارض أو رفض عند إثباته</span></div>
+   <div class="agent-detail open" id="nodeDetail"><div class="detail-title" id="nodeTitle">Ω0_GENESIS_CORE · سلطة المرجع</div><div class="detail-copy" id="nodeCopy">تُحفظ النواة المرجعية للقراءة والتحقق؛ لا تملك الوكلاء صلاحية تعديلها مباشرة.</div></div>
+  </div>
+  <div class="card">
+   <div class="sectionhead"><h2>02 / الأنظمة الأربعة</h2><span>حالة الفهرس لا تعني اتصالًا حيًا</span></div>
+   <div class="systems" id="systems">
+    <div class="sys selected" data-system="VAIXLNS"><div class="sys-top"><strong>VAIXLNS</strong><span class="state good">مرجع أساسي</span></div><p>السلطة المرجعية والفهرس والتحكم بالقبول.</p><div class="meter"><span style="width:88%"></span></div><div class="sys-foot"><span>project.genome / Ω.000</span><span>مقروء</span></div></div>
+    <div class="sys" data-system="VLNS"><div class="sys-top"><strong>VLNS</strong><span class="state">يحتاج ربطًا</span></div><p>المواصفات التشغيلية واللغة وعقود التطوير.</p><div class="meter"><span style="width:54%"></span></div><div class="sys-foot"><span>العقود</span><span>غير متحقق</span></div></div>
+    <div class="sys" data-system="VX"><div class="sys-top"><strong>VX</strong><span class="state">بوابة تنفيذ</span></div><p>التوليد والتنسيق والمحاكاة والتحقق.</p><div class="meter"><span style="width:61%"></span></div><div class="sys-foot"><span>Runtime</span><span>جزئي</span></div></div>
+    <div class="sys" data-system="NEXNET"><div class="sys-top"><strong>NEXNET</strong><span class="state">تحتاج تحققًا</span></div><p>شبكة الربط وتبادل الأحداث والقدرات.</p><div class="meter"><span style="width:43%"></span></div><div class="sys-foot"><span>Network</span><span>غير متحقق</span></div></div>
+   </div>
+   <div class="agent-detail open" id="systemDetail"><div class="detail-title" id="systemTitle">VAIXLNS · المرجع الحاكم</div><div class="detail-copy" id="systemCopy">المصدر المعتمد: project.genome v1.0.0. لا يتم الترويج إلى VERIFIED دون دليل تنفيذي قابل لإعادة الإنتاج.</div></div>
+  </div>
+ </section>
+ <section class="grid lower">
+  <div class="card">
+   <div class="sectionhead"><h2>03 / شبكة الوكلاء</h2><span id="agentShown">4 أدوار معروضة</span></div>
+   <div class="toolbar"><input class="search" id="agentSearch" placeholder="ابحث باسم الوكيل أو مهمته…" aria-label="ابحث عن وكيل"><div class="filter" id="agentFilters"><button class="active" data-filter="all">الكل</button><button data-filter="specified">موصوف</button><button data-filter="hold">HOLD</button></div></div>
+   <div class="agents" id="agentList">
+    <div class="agent" data-status="hold" data-name="AG-001 منسق المهام"><div class="avatar">Ω</div><div><strong>AG-001 · منسق المهام</strong><small>توزيع العمل والتحقق من الاعتماديات</small></div><span class="pill hold">HOLD</span></div>
+    <div class="agent" data-status="specified" data-name="AG-004 مهندس النظام"><div class="avatar">VX</div><div><strong>AG-004 · مهندس النظام</strong><small>اقتراح تغييرات محدودة وتوليد خطة تنفيذ</small></div><span class="pill">موصوف</span></div>
+    <div class="agent" data-status="hold" data-name="AG-006 مدقق الواقع"><div class="avatar">≋</div><div><strong>AG-006 · مدقق الواقع</strong><small>كشف التناقضات والافتراضات غير المسندة</small></div><span class="pill hold">HOLD</span></div>
+    <div class="agent" data-status="specified" data-name="AG-008 مسبك المعمارية"><div class="avatar">◇</div><div><strong>AG-008 · مسبك المعمارية</strong><small>استكشاف بدائل التصميم قبل التنفيذ</small></div><span class="pill">موصوف</span></div>
+   </div>
+   <div class="agent-detail" id="agentDetail"><div class="detail-title" id="agentTitle"></div><div class="detail-copy" id="agentCopy"></div></div>
+  </div>
+  <div class="card">
+   <div class="sectionhead"><h2>04 / مجرى الأدلة والأحداث</h2><span>عرض توضيحي · لا أحداث حيّة</span></div>
+   <div class="feed">
+    <div class="event"><div class="bullet"></div><div><strong>مرجع النواة محمي</strong><p>project.genome v1.0.0 · بصمة مرجعية محفوظة في المستودع.</p><time>مصدر ثابت · main</time></div></div>
+    <div class="event warn"><div class="bullet"></div><div><strong>ربط أدوار الوكلاء غير معتمد</strong><p>يجب مطابقة role → profile → runtime version قبل التجربة الحية.</p><time>حاجز قبول · HOLD</time></div></div>
+    <div class="event warn"><div class="bullet"></div><div><strong>اتصال مزودي النماذج غير مثبت</strong><p>وجود متغير إعداد لا يثبت نجاح المصافحة أو صلاحية النموذج.</p><time>لم يُنفذ اتصال من هذه الواجهة</time></div></div>
+    <div class="event"><div class="bullet"></div><div><strong>بوابة الأدلة مطلوبة</strong><p>يلزم سجل قابل لإعادة التشغيل ومراجعة مستقلة قبل أي ترقية.</p><time>قاعدة قبول</time></div></div>
+   </div>
+  </div>
+ </section>
+ <div class="footerline"><span>VAIXLNS Ω REALITY FORGE · CONCEPT BUILD 0.1.0</span><span>project.genome وΩ.000: قراءة فقط · لا تنفيذ إنتاجي من المتصفح</span><span id="clock">LOCAL / —</span></div>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modalback" id="modal"><div class="modal"><div class="eyebrow">Ω / GOVERNED ACTION</div><h2 id="modalTitle">محاكاة مهمة</h2><p id="modalText">ستُشغّل محاكاة محلية داخل الواجهة فقط. لن يتم استدعاء وكيل حقيقي أو مزود نموذج أو تعديل مستودع.</p><div class="modal-actions"><button class="btn primary" id="confirmAction">ابدأ المحاكاة المحلية</button><button class="btn" id="cancelAction">إلغاء</button></div></div></div>
+<script>
+const nodeData={
+ core:["Ω0_GENESIS_CORE · سلطة المرجع","تُحفظ النواة المرجعية للقراءة والتحقق؛ لا تملك الوكلاء صلاحية تعديلها مباشرة."],
+ vaixlns:["VAIXLNS · المرجع الحاكم","المصدر المعتمد: project.genome v1.0.0 وΩ.000. يلزم دليل تنفيذي قابل لإعادة الإنتاج قبل ترقية أي حالة."],
+ vlns:["VLNS · مواصفات التشغيل","يلزم إثبات مصدر المواصفات وعقد الربط مع الوكلاء قبل اعتبار المسار متصلًا."],
+ vx:["VX · طبقة التنفيذ","تشغيل حقيقي يتطلب runtime معتمدًا، صلاحيات محدودة، سجل أحداث، وإمكانية إعادة التشغيل."],
+ nexnet:["NEXNET · طبقة الشبكة","لا تُعتبر الشبكة متصلة حتى تُختبر المصادقة، تبادل الأحداث، العزل، وفشل الاتصال."],
+ evidence:["PROOF · أدلة قابلة للتحقق","كل ادعاء يجب أن يشير إلى مصدر وبصمة ونتيجة اختبار ومراجعة مستقلة."],
+ gate:["GOVERNANCE GATE · HOLD","بوابة مغلقة افتراضيًا. لا نشر ولا تعديل مرجعي من هذه الواجهة."]
+};
+const systemData={
+ VAIXLNS:["VAIXLNS · المرجع الحاكم","المصدر المعتمد: project.genome v1.0.0. لا يتم الترويج إلى VERIFIED دون دليل تنفيذي قابل لإعادة الإنتاج."],
+ VLNS:["VLNS · مواصفات التشغيل","الدور المستهدف: مواصفات التشغيل واللغة والعقود. يلزم إثبات نسخة المواصفة وعقد الربط."],
+ VX:["VX · تنفيذ وتوليد","الدور المستهدف: التوليد والتنسيق والمحاكاة والتحقق. يلزم فحص runtime وسجل الأحداث ومحولات النماذج."],
+ NEXNET:["NEXNET · شبكة الربط","الدور المستهدف: نقل الأحداث والقدرات. يلزم اختبار مصادقة وعزل وفشل قبل التفعيل."]
+};
+const toastEl=document.getElementById("toast");
+function toast(msg){toastEl.textContent=msg;toastEl.classList.remove("show");void toastEl.offsetWidth;toastEl.classList.add("show")}
+document.querySelectorAll("[data-node]").forEach(n=>n.addEventListener("click",()=>{document.querySelectorAll("[data-node]").forEach(x=>x.classList.remove("selected"));n.classList.add("selected");const d=nodeData[n.dataset.node];document.getElementById("nodeTitle").textContent=d[0];document.getElementById("nodeCopy").textContent=d[1]}));
+document.querySelectorAll("[data-system]").forEach(n=>n.addEventListener("click",()=>{document.querySelectorAll("[data-system]").forEach(x=>x.classList.remove("selected"));n.classList.add("selected");const d=systemData[n.dataset.system];document.getElementById("systemTitle").textContent=d[0];document.getElementById("systemCopy").textContent=d[1]}));
+let activeFilter="all";
+function filterAgents(){const q=document.getElementById("agentSearch").value.toLowerCase();let count=0;document.querySelectorAll("#agentList .agent").forEach(a=>{const ok=(activeFilter==="all"||a.dataset.status===activeFilter)&&a.dataset.name.toLowerCase().includes(q);a.style.display=ok?"grid":"none";if(ok)count++});document.getElementById("agentShown").textContent=count+" أدوار معروضة"}
+document.getElementById("agentSearch").addEventListener("input",filterAgents);
+document.querySelectorAll("#agentFilters button").forEach(b=>b.addEventListener("click",()=>{activeFilter=b.dataset.filter;document.querySelectorAll("#agentFilters button").forEach(x=>x.classList.toggle("active",x===b));filterAgents()}));
+document.querySelectorAll("#agentList .agent").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll("#agentList .agent").forEach(x=>x.style.borderColor="#202f40");a.style.borderColor="#56e0d0";const d=document.getElementById("agentDetail");d.classList.add("open");document.getElementById("agentTitle").textContent=a.dataset.name;document.getElementById("agentCopy").textContent="حالة واجهة توضيحية فقط. قبل تشغيل هذا الدور، يلزم سجل تعريف معتمد، صلاحيات محدودة، نسخة runtime، مزود/أداة مثبتة، ومخرجات قابلة للتحقق. لا يوجد تنفيذ حي لهذا الوكيل هنا."}));
+const modal=document.getElementById("modal");let pending="";
+function openModal(kind){pending=kind;document.getElementById("modalTitle").textContent=kind==="simulate"?"محاكاة مهمة هندسية":"تقرير الحالة";document.getElementById("modalText").textContent=kind==="simulate"?"ستُنفّذ محاكاة محلية داخل الواجهة لتوضيح انتقالات الحالة فقط. لن يتم استدعاء وكيل حقيقي أو مزود نموذج أو تعديل المستودع.":"سيُنشأ ملخص حالة محلي من البيانات التوضيحية الظاهرة. لن تُقرأ ملفات إضافية ولن يُكتب أي تقرير إلى المستودع.";document.getElementById("confirmAction").textContent=kind==="simulate"?"ابدأ المحاكاة المحلية":"إنشاء ملخص محلي";modal.classList.add("open")}
+document.getElementById("simulateBtn").addEventListener("click",()=>openModal("simulate"));
+document.getElementById("reportBtn").addEventListener("click",()=>openModal("report"));
+document.getElementById("cancelAction").addEventListener("click",()=>modal.classList.remove("open"));
+document.getElementById("confirmAction").addEventListener("click",()=>{modal.classList.remove("open");if(pending==="simulate"){const events=document.querySelector(".feed");const e=document.createElement("div");e.className="event warn";e.innerHTML='<div class="bullet"></div><div><strong>محاكاة محلية مكتملة · DEMO ONLY</strong><p>النتيجة: HOLD — لا يوجد اعتماد لبدء التنفيذ الحي. لا بيانات خارجية ولا تغييرات مرجعية.</p><time>أُنشئ داخل المتصفح الآن</time></div>';events.prepend(e);toast("اكتملت المحاكاة المحلية: HOLD. لم يتم تشغيل وكيل حي.")}else{const text="VAIXLNS Ω Reality Forge — Local Demo Report\\nState: HOLD\\nMode: local UI simulation only\\nCanonical files: project.genome and Ω.000 read-only\\nLive agents/providers: not verified\\nProduction actions: disabled";const blob=new Blob([text],{type:"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="vaixlns-reality-forge-demo-report.txt";a.click();URL.revokeObjectURL(a.href);toast("تم إنشاء تقرير العرض المحلي فقط.")}});
+document.getElementById("refreshBtn").addEventListener("click",()=>{document.getElementById("blockerCount").textContent="04";toast("تجددت حالة العرض المحلي. لم يُجر اتصال بالمستودع أو النماذج.")});
+document.querySelectorAll("[data-page]").forEach(n=>n.addEventListener("click",()=>{document.querySelectorAll("[data-page]").forEach(x=>x.classList.remove("active"));n.classList.add("active");const p=n.dataset.page;const target=p==="systems"?document.getElementById("systems"):p==="agents"?document.getElementById("agentList"):p==="evidence"?document.querySelector(".feed"):p==="simulation"?document.getElementById("simulateBtn"):document.querySelector(".metrics");target.scrollIntoView({behavior:"smooth",block:"center"});if(p==="simulation")openModal("simulate")}));
+document.querySelectorAll("[data-action]").forEach(n=>n.addEventListener("click",()=>toast(n.dataset.action==="governance"?"الحوكمة: HOLD افتراضيًا، وصلاحيات الكتابة غير متاحة في هذه الواجهة.":"أثر التغييرات: اربط سجل أحداث معتمدًا قبل عرض بيانات حيّة.")));
+function tick(){document.getElementById("clock").textContent="LOCAL / "+new Date().toLocaleTimeString("en-GB",{hour12:false})}tick();setInterval(tick,1000);
+</script>
+</body></html>
