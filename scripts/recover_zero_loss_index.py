@@ -91,14 +91,14 @@ def main() -> int:
                 step["summary"] = parsed
             except json.JSONDecodeError:
                 step["status"] = "FAIL"
-                step["stderr"] += "\\nExpected JSON verification summary was not returned."
+                step["stderr"] += "\nExpected JSON verification summary was not returned."
         receipt["steps"].append(step)
         if step["status"] != "PASS":
             receipt["status"] = "BLOCKED"
             receipt["finished_at"] = datetime.now(timezone.utc).isoformat()
             output_dir.mkdir(parents=True, exist_ok=True)
             (output_dir / "index-recovery-receipt.v1.json").write_text(
-                json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\\n",
+                json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
                 encoding="utf-8",
             )
             print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
@@ -111,7 +111,7 @@ def main() -> int:
         receipt["finished_at"] = datetime.now(timezone.utc).isoformat()
         output_dir.mkdir(parents=True, exist_ok=True)
         (output_dir / "index-recovery-receipt.v1.json").write_text(
-            json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\\n",
+            json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
             encoding="utf-8",
         )
         print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
@@ -132,7 +132,7 @@ def main() -> int:
     ) else "PASS"
     receipt["finished_at"] = datetime.now(timezone.utc).isoformat()
     receipt_path = output_dir / "index-recovery-receipt.v1.json"
-    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\\n", encoding="utf-8")
+    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
     return 0
 
