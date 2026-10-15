@@ -374,17 +374,17 @@
       "id": "OPS-OFFICE-001",
       "priority": "P1",
       "state": "OPEN",
-      "problem": "The 16-office Operational Office Fabric registry and its 18 tool/adaptor records exist only on open PR #70. The branch has 9 passing checks, but the registry is not yet integrated into the canonical main branch or a live VX office router.",
-      "acceptance": "Review PR #70; integrate office ownership and handoff contracts only after approval; bind office-to-tool routing through VX's policy/admission boundary; retain NOT_CONFIGURED and PROPOSE_ONLY states until each adapter has runtime evidence.",
-      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/70"
+      "problem": "The 16-office Operational Office Fabric registry and its tool/adaptor records exist only on open PR #70. A read-only, proposal-only VX office bridge is in open draft PR #58, based on fail-closed API authentication PR #57. Neither registry admission nor live office execution is established.",
+      "acceptance": "Review/approve PR #70 and PR #58; configure a pinned registry path and VAIXLNS_API_TOKEN on the API/bridge hosts; verify authenticated inventory and deterministic route previews; retain dispatch_allowed=false until each tool has explicit identity, capability, endpoint, receipt, independent replay and separate admission evidence.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/pull/70; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/58; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57"
     },
     {
       "id": "OPS-MCP-001",
       "priority": "P1",
       "state": "OPEN",
-      "problem": "VAIXLNS-unified exposes a read-only stdio MCP bridge with only vx.health, vx.status, and vx.capabilities.list. It is an integration seam to the VAIXLNS API, not a live link to all offices or arbitrary external tools. No live office-to-VX endpoint is proven.",
-      "acceptance": "Use an explicitly configured local/HTTPS VAIXLNS API with fail-closed token policy; prove MCP initialize, tool list, authenticated health/status calls, timeout/redaction and failure behavior; add one office adapter at a time with pinned identity, contract, capability allowlist, request ID, evidence receipt, and revocation test.",
-      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/integrations/mcp_server.py; https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/docs/integrations/VX_READONLY_MCP_BRIDGE.md"
+      "problem": "VAIXLNS-unified main currently exposes read-only vx.health/status/capabilities tools. Open draft PR #58 adds authenticated office inventory and proposal-only route preview; neither a live office dispatch path nor arbitrary external-tool connectivity is established.",
+      "acceptance": "Review PR #58 and require CI green; set VAIXLNS_OFFICE_REGISTRY_PATH to a pinned approved registry and VAIXLNS_API_TOKEN on both API and bridge hosts; verify MCP initialize/list/call, authenticated office inventory, deterministic route preview, timeout/redaction/fail-closed behavior; require dispatch_allowed=false for unadmitted tools and add real dispatch only through a separate reviewed VX execution/evidence gate.",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/58; https://github.com/fisallllll280-code/VAIXLNS-unified/pull/57; https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/integrations/mcp_server.py"
     },
     {
       "id": "OPS-VERBOSE-001",
