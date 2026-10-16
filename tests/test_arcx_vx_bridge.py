@@ -8,7 +8,9 @@ import os
 import unittest
 from unittest.mock import patch
 
-from scripts.vx_federation_gate import FederationGate, Instance\n\nfrom scripts.arcx_vx_bridge import (
+from scripts.vx_federation_gate import FederationGate, Instance
+
+from scripts.arcx_vx_bridge import (
     BridgeError,
     build_envelope,
     canonical_json,
