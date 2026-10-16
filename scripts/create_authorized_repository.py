@@ -40,7 +40,10 @@ def validate_target(name: str, manifest: dict[str, Any]) -> dict[str, Any]:
     return spec
 
 def put_file(owner: str, name: str, path: str, content: str, token: str, api_fn: Callable=api_call) -> None:
+    current=api_fn("GET",f"/repos/{owner}/{name}/contents/{path}",token)
     payload={"message":f"chore(factory): seed {path}","content":base64.b64encode(content.encode()).decode("ascii")}
+    if current.get("_status") != 404 and isinstance(current.get("sha"),str):
+        payload["sha"]=current["sha"]
     api_fn("PUT",f"/repos/{owner}/{name}/contents/{path}",token,payload)
 
 def provision(name: str, manifest: dict[str,Any], token: str, root: Path=ROOT, api_fn: Callable=api_call) -> dict[str,Any]:
@@ -53,7 +56,7 @@ def provision(name: str, manifest: dict[str,Any], token: str, root: Path=ROOT, a
         return {"status":"EXISTS_NO_MUTATION","repository":f"{owner}/{name}","seeded":False}
     created=api_fn("POST","/user/repos",token,{
         "name":name,"private":manifest.get("policy",{}).get("default_visibility","private")=="private",
-        "auto_init":False,"description":spec.get("description","Governed VAIXLNS subsystem")})
+        "auto_init":True,"description":spec.get("description","Governed VAIXLNS subsystem")})
     contract_path=root/"registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md"
     if not contract_path.is_file():
         raise ValueError("canonical repository contract is missing; repository created but not seeded")
