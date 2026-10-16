@@ -32,7 +32,7 @@ From the repository root in PowerShell:
     py -3.11 -m venv .venv-model-mcp
     .\.venv-model-mcp\Scripts\python.exe -m pip install -r requirements-model-mcp.txt
     $env:PYTHONPATH = (Get-Location).Path
-    .\.venv-model-mcp\Scripts\python.exe -m unittest tests.test_model_mcp_gateway -v
+    .\.venv-model-mcp\Scripts\python.exe -m unittest discover -s tests -p "test_model_mcp_gateway.py" -v
 
 Set the credential and model variables in the local shell or OS secret manager; do not store real values in repository files.
 
