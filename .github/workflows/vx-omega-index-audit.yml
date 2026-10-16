@@ -1,0 +1,38 @@
+name: VX Omega Index Audit
+
+on:
+  pull_request:
+    paths:
+      - "registry/omega/omega-000-master-index.json"
+      - "project.genome"
+      - "scripts/audit_omega_index.py"
+      - "tests/test_audit_omega_index.py"
+      - ".github/workflows/vx-omega-index-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  read-only-index-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test audit behavior
+        run: python -m unittest discover -s tests -p "test_audit_omega_index.py" -v
+      - name: Audit canonical index without mutation
+        run: python scripts/audit_omega_index.py --root . --out build/omega-index-audit.json
+      - name: Upload derived audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-index-audit
+          path: build/omega-index-audit.json
+          if-no-files-found: warn
+          retention-days: 30
