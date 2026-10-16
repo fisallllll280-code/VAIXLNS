@@ -64,7 +64,7 @@ def _run_case(label: str, changed_file: str, output_path: Path) -> dict[str, Any
         "test_case_count": measurement.get("test_case_count"),
         "router_wall_time_seconds": measurement.get("wall_time_seconds"),
         "harness_wall_time_seconds": round(wall_seconds, 6),
-        "receipt_path": str(output_path.relative_to(ROOT)) if output_path.is_relative_to(ROOT) else str(output_path),
+        "receipt": receipt,
         "output_tail": result.stdout[-2000:],
     }
 
