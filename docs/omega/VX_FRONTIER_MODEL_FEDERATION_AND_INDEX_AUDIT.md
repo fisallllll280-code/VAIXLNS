@@ -47,6 +47,25 @@ Model names, aliases, access tiers, and endpoints can change. Verify exact model
 Meta's newly announced Muse family is not included as an API-ready provider here because an accessible production API/model identifier was not established in this audit.
 
 
+
+## Ω.000 decomposition
+
+`scripts/decompose_omega_index.py` creates a deterministic, read-only graph of the current master index:
+- **Nodes:** one per record, with owner, type, lifecycle, epistemic state, and evidence-reference count.
+- **Edges:** parent and evidence relationships, including external evidence URLs.
+- **Findings:** duplicate IDs, missing required fields, unsafe or unresolved local evidence paths, partial implementations, and proposed items.
+- **Source integrity:** SHA-256 of the exact source bytes and elapsed analysis time are included in the derived report.
+
+Run it with:
+
+```bash
+python scripts/decompose_omega_index.py --root . --out build/omega-index-decomposition.json
+```
+
+It reads the checked-out index and writes only to the requested output path. It does not rewrite `Ω.000` or `project.genome`. It deliberately reports the scope limitation: current file records are not proof of the historical 0001–2750 corpus.
+
+The first structural reading of the canonical file on `main` (SHA-256 source blob tracked by GitHub as `cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc`) found 11 records, 40 evidence references across 38 distinct reference strings, no duplicate IDs, and no missing required record fields. Distribution: 5 SYSTEM, 4 CAPABILITY, 1 RUNTIME_SURFACE, 1 CONTROL; epistemic states: 4 IMPLEMENTED, 6 SPECIFIED, 1 PARTIAL. These counts describe the file, not the implementation status of the entire platform.
+
 ## 4. API bridge (bounded, opt-in)
 
 `scripts/vx_model_federation.py` provides a standard-library client for the five provider API families in the registry. It reads credentials only from process environment variables, fans out to at most five providers concurrently, reports `NOT_CONFIGURED` when a credential is absent, and marks outputs as proposals only.
