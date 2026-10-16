@@ -28,12 +28,16 @@ class AuthorizedRepositoryFactoryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp); p=root/"registry/repository-orchestration"; p.mkdir(parents=True)
             (p/"VAIXLNS_REPOSITORY_CONTRACT.md").write_text("# Contract",encoding="utf-8")
-            api=Mock(side_effect=[{"_status":404},{"html_url":"https://github.com/example-owner/VAIXLNS-innovation-factory"}, {}, {}, {}, {}])
+            api=Mock(side_effect=[{"_status":404},{"html_url":"https://github.com/example-owner/VAIXLNS-innovation-factory"},
+                {"sha":"initial-readme"},{"commit":{}},
+                {"_status":404},{"commit":{}},
+                {"_status":404},{"commit":{}},
+                {"_status":404},{"commit":{}}])
             result=provision("VAIXLNS-innovation-factory",MANIFEST,"token",root,api)
             self.assertEqual(result["status"],"CREATED_AND_SEEDED")
             self.assertEqual(len(result["files_seeded"]),4)
-            self.assertEqual(api.call_count,6)
-            self.assertEqual(api.call_args_list[1].args[0],"POST")
+            self.assertEqual(api.call_count,10)
+            self.assertEqual(api.call_args_list[1].args[0],"POST")\n            self.assertTrue(api.call_args_list[1].args[3]["auto_init"])
     def test_invalid_target_is_rejected_before_api_call(self):
         api=Mock()
         with self.assertRaises(ValueError): provision("random-repo",MANIFEST,"token",Path("."),api)
