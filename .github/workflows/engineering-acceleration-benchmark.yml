@@ -29,7 +29,8 @@ jobs:
 
       - name: Validate benchmark harness
         run: |
-          python -m unittest tests.test_engineering_feedback_benchmark tests.test_engineering_test_router -v
+          python -m unittest discover -s tests -p 'test_engineering_feedback_benchmark.py' -v
+          python -m unittest discover -s tests -p 'test_engineering_test_router.py' -v
 
       - name: Measure full versus focused feedback
         env:
