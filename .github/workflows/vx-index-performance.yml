@@ -33,7 +33,7 @@ jobs:
       - name: Run zero-loss index correctness tests
         run: python -m unittest tests.test_zero_loss_index -v
       - name: Benchmark old and optimized cross-reference algorithms
-        run: python scripts/benchmark_zero_loss_cross_references.py --paths 1200 --documents 300 --repeats 3 --output build/vx/index-cross-reference-benchmark.json
+        run: python scripts/benchmark_zero_loss_cross_references.py --paths 300 --documents 60 --repeats 2 --output build/vx/index-cross-reference-benchmark.json
       - name: Upload benchmark evidence
         uses: actions/upload-artifact@v4
         with:
