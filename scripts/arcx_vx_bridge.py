@@ -19,7 +19,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -318,6 +318,54 @@ def _request_json(url: str, *, method: str, payload: dict[str, Any] | None,
     if not isinstance(value, dict):
         raise BridgeError("server response must be a JSON object")
     return value
+
+
+def prepare_local_handoff(
+    task: dict[str, Any],
+    *,
+    route_capability: Callable[[str], dict[str, Any]],
+) -> dict[str, Any]:
+    """Prepare a request-only ARC-X -> VX route using an injected VX router.
+
+    This is a local contract integration seam, not task execution, authorization,
+    verification, or canonical admission. EXECUTE tasks are deliberately blocked.
+    """
+    errors = validate_task(task)
+    if errors:
+        raise BridgeError("task preflight failed: " + "; ".join(errors))
+    if task.get("execution_mode") == "EXECUTE":
+        raise BridgeError("LOCAL_HANDOFF_EXECUTE_MODE_BLOCKED")
+
+    routes: list[dict[str, Any]] = []
+    for capability in task["required_capabilities"]:
+        try:
+            route = route_capability(capability)
+        except (LookupError, ValueError) as exc:
+            raise BridgeError("NO_ELIGIBLE_VX_WORKER:" + capability) from exc
+        if (
+            not isinstance(route, dict)
+            or route.get("capability") != capability
+            or route.get("state") not in {"ACTIVE", "DEGRADED"}
+            or not isinstance(route.get("route_target"), str)
+            or not route["route_target"].strip()
+        ):
+            raise BridgeError("INVALID_VX_ROUTE_RECEIPT:" + capability)
+        routes.append({
+            "capability": capability,
+            "route_target": route["route_target"],
+            "state": route["state"],
+            "registration_hash": route.get("registration_hash"),
+        })
+
+    return {
+        "task_id": task["task_id"],
+        "task_digest": sha256_hex(canonical_json(task)),
+        "routes": routes,
+        "status": "PENDING_VERIFICATION",
+        "execution_performed": False,
+        "authority_granted": False,
+        "canonical_write_performed": False,
+    }
 
 
 def submit_task(task: dict[str, Any], *, timeout: float = DEFAULT_TIMEOUT_SECONDS) -> dict[str, Any]:
