@@ -2,9 +2,16 @@
 from __future__ import annotations
 import json, os, urllib.error, urllib.parse, urllib.request
 from typing import Any
-from mcp.server.fastmcp import FastMCP
-
-mcp = FastMCP("VAIXLNS Model Gateway (explicit invocation only)")
+try:
+ from mcp.server.fastmcp import FastMCP
+ mcp = FastMCP("VAIXLNS Model Gateway (explicit invocation only)")
+except ModuleNotFoundError:
+ class _MCPUnavailable:
+  def tool(self):
+   return lambda function: function
+  def run(self, transport: str = "stdio") -> None:
+   raise RuntimeError("Install requirements-model-mcp.txt to run the MCP server.")
+ mcp = _MCPUnavailable()
 MAX_PROMPT_CHARS = 40000
 MAX_RESPONSE_BYTES = 2 * 1024 * 1024
 TIMEOUT_SECONDS = 60
