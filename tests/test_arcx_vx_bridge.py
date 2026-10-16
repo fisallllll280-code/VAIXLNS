@@ -8,7 +8,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from scripts.arcx_vx_bridge import (
+from scripts.vx_federation_gate import FederationGate, Instance\n\nfrom scripts.arcx_vx_bridge import (
     BridgeError,
     build_envelope,
     canonical_json,
@@ -287,6 +287,56 @@ class EndpointSafetyTests(unittest.TestCase):
         handler = _NoRedirectHandler()
         result = handler.redirect_request(None, None, 302, "Found", {}, "https://redirect.invalid/")
         self.assertIsNone(result)
+
+
+
+class LocalHandoffIntegrationTests(unittest.TestCase):
+    def setUp(self):
+        self.gate = FederationGate()
+        self.gate.register(Instance(
+            "VX-Software-Test-01",
+            "software-testing",
+            ("software.test",),
+            "ACTIVE",
+            ("observe", "verify"),
+            ("test-fixture-evidence-001",),
+        ))
+
+    def test_valid_arcx_task_routes_to_exact_vx_capability_without_execution(self):
+        result = prepare_local_handoff(
+            sample_task(),
+            route_capability=self.gate.route,
+        )
+        self.assertEqual(result["status"], "PENDING_VERIFICATION")
+        self.assertEqual(result["routes"][0]["capability"], "software.test")
+        self.assertEqual(result["routes"][0]["route_target"], "VX-Software-Test-01")
+        self.assertFalse(result["execution_performed"])
+        self.assertFalse(result["authority_granted"])
+        self.assertFalse(result["canonical_write_performed"])
+        self.assertEqual(len(result["task_digest"]), 64)
+
+    def test_missing_vx_capability_fails_closed(self):
+        empty_gate = FederationGate()
+        with self.assertRaisesRegex(BridgeError, "NO_ELIGIBLE_VX_WORKER:software.test"):
+            prepare_local_handoff(sample_task(), route_capability=empty_gate.route)
+
+    def test_invalid_arcx_task_is_rejected_before_routing(self):
+        task = sample_task()
+        task["proof_obligations"] = []
+        called = []
+        def route(capability):
+            called.append(capability)
+            raise AssertionError("routing must not occur for an invalid task")
+        with self.assertRaisesRegex(BridgeError, "PROOF_OBLIGATIONS_REQUIRED"):
+            prepare_local_handoff(task, route_capability=route)
+        self.assertEqual(called, [])
+
+    def test_execute_mode_is_blocked_by_local_handoff(self):
+        task = sample_task()
+        task["execution_mode"] = "EXECUTE"
+        task["authorization_ref"] = "authorization-reference-present"
+        with self.assertRaisesRegex(BridgeError, "LOCAL_HANDOFF_EXECUTE_MODE_BLOCKED"):
+            prepare_local_handoff(task, route_capability=self.gate.route)
 
 
 if __name__ == "__main__":
