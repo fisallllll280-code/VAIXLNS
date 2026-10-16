@@ -6,7 +6,10 @@ on:
       - "registry/omega/omega-000-master-index.json"
       - "project.genome"
       - "scripts/audit_omega_index.py"
+      - "scripts/vx_model_federation.py"
+      - "registry/models/vx-frontier-model-registry.json"
       - "tests/test_audit_omega_index.py"
+      - "tests/test_vx_model_federation.py"
       - ".github/workflows/vx-omega-index-audit.yml"
   workflow_dispatch:
 
@@ -25,7 +28,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test audit behavior
-        run: python -m unittest discover -s tests -p "test_audit_omega_index.py" -v
+        run: python -m unittest discover -s tests -p "test_*.py" -v
       - name: Audit canonical index without mutation
         run: python scripts/audit_omega_index.py --root . --out build/omega-index-audit.json
       - name: Upload derived audit report
