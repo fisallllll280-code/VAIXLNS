@@ -148,7 +148,7 @@ def validate(data: dict[str, Any], systems_data: dict[str, Any]) -> list[str]:
             )
             if not isinstance(receipt, dict) or not all(receipt.get(k) for k in required_receipt_fields):
                 errors.append(
-                    f"{eid}: ACTIVE_VERIFIED requires revision-bound evidence and independent review"
+                    f"{eid}: ACTIVE_VERIFIED requires revision-bound activation evidence and independent review"
                 )
             else:
                 revision = receipt.get("source_revision")
