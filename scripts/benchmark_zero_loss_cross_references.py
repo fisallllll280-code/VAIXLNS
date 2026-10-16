@@ -12,6 +12,10 @@ import json
 import statistics
 import time
 from pathlib import Path
+import sys
+
+# Direct script execution sets sys.path[0] to scripts/, not the repository root.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.build_zero_loss_index import _build_cross_references, _path_reference_line
 
