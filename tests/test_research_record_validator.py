@@ -1,5 +1,7 @@
 import importlib.util
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -42,14 +44,19 @@ class ResearchRecordValidatorTests(unittest.TestCase):
     def test_non_object_root_is_rejected(self):
         self.assertTrue(MODULE.validate_record([], Path("record.json")))
 
-    def test_duplicate_ids_are_detected_by_cli(self):
+    def test_duplicate_ids_are_rejected_by_cli(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "a.json").write_text(json.dumps(self.valid), encoding="utf-8")
             (root / "b.json").write_text(json.dumps(self.valid), encoding="utf-8")
-            # Exercise the same duplicate invariant in a lightweight direct scan.
-            ids = [json.loads(p.read_text(encoding="utf-8"))["record_id"] for p in root.glob("*.json")]
-            self.assertNotEqual(len(ids), len(set(ids)))
+            completed = subprocess.run(
+                [sys.executable, str(MODULE_PATH), str(root)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 1, completed.stdout + completed.stderr)
+            self.assertIn("duplicate record_id", completed.stdout)
 
 
 if __name__ == "__main__":
