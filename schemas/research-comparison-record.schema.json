@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.example/schemas/research-comparison-record.schema.json",
+  "title": "VAIXLNS Omega Research Comparison Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_id", "title", "domain", "status", "question", "sources", "method", "created_at"],
+  "properties": {
+    "record_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,127}$"},
+    "title": {"type": "string", "minLength": 5},
+    "domain": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["mathematics", "computer_science", "physics", "systems_engineering", "ai_agents", "security_governance", "index_engineering", "cross_domain"]}},
+    "status": {"enum": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED", "VERIFIED", "PARTIAL", "MISSING", "CONFLICT", "RECOVERED", "BLOCKED", "REJECTED"]},
+    "question": {"type": "string", "minLength": 10},
+    "decision_context": {"type": "string"},
+    "sources": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["source_id", "kind", "locator"], "properties": {"source_id": {"type": "string", "minLength": 1}, "kind": {"enum": ["paper", "standard", "official_docs", "repository", "dataset", "experiment", "model_output", "other"]}, "locator": {"type": "string", "minLength": 1}, "version_or_ref": {"type": "string"}, "observed_at": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}, "independence_notes": {"type": "string"}}}},
+    "claims": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["claim_id", "statement", "epistemic_type"], "properties": {"claim_id": {"type": "string"}, "statement": {"type": "string", "minLength": 5}, "epistemic_type": {"enum": ["fact", "formal_proof", "proof_sketch", "conjecture", "empirical", "simulation", "engineering_judgment", "analogy"]}, "assumptions": {"type": "array", "items": {"type": "string"}}, "falsification_condition": {"type": "string"}, "uncertainty": {"type": "string"}}}},
+    "method": {"type": "object", "additionalProperties": false, "required": ["description"], "properties": {"description": {"type": "string", "minLength": 5}, "baseline": {"type": "string"}, "metrics": {"type": "array", "items": {"type": "object", "required": ["name", "unit"], "properties": {"name": {"type": "string"}, "unit": {"type": "string"}, "procedure": {"type": "string"}}}}, "environment": {"type": "string"}, "commands": {"type": "array", "items": {"type": "string"}}, "random_seed": {"type": ["integer", "null"]}}},
+    "results": {"type": "array", "items": {"type": "object", "required": ["summary", "result_state"], "properties": {"summary": {"type": "string"}, "result_state": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_RUN"]}, "evidence_refs": {"type": "array", "items": {"type": "string"}}, "limitations": {"type": "array", "items": {"type": "string"}}}}},
+    "comparison": {"type": "object", "additionalProperties": false, "properties": {"candidate": {"type": "string"}, "baseline": {"type": "string"}, "common_conditions": {"type": "array", "items": {"type": "string"}}, "differences": {"type": "array", "items": {"type": "string"}}, "decision": {"type": "string"}}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "review": {"type": "object", "additionalProperties": false, "properties": {"reviewer": {"type": "string"}, "authority": {"type": "string"}, "reviewed_at": {"type": "string"}, "decision": {"enum": ["ACCEPT", "REJECT", "REQUEST_EVIDENCE", "DEFER"]}}},
+    "parent_record_ids": {"type": "array", "items": {"type": "string"}},
+    "created_at": {"type": "string", "minLength": 10},
+    "updated_at": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "VERIFIED"}}, "required": ["status"]},
+      "then": {"required": ["evidence_refs", "results", "review"], "properties": {"evidence_refs": {"minItems": 1}, "results": {"minItems": 1}, "review": {"required": ["reviewer", "decision"], "properties": {"decision": {"const": "ACCEPT"}}}}}
+    }
+  ]
+}
