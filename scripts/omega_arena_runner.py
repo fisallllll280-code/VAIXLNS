@@ -131,6 +131,7 @@ def main() -> int:
     args = parser.parse_args()
 
     now = datetime.now(timezone.utc)
+    return_code = 0
     if args.mode == "simulate":
         payload = build_demo(now)
     else:
