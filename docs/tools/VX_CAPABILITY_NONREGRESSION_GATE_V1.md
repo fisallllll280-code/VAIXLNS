@@ -1,6 +1,6 @@
 # VX Capability Non-Regression & Evidence Gate v1
 
-**Status:** IMPLEMENTED AS A LOCAL EVALUATOR + UNIT TESTS; not yet CI-verified on this branch and not connected to a live VX runtime.
+**Status:** IMPLEMENTED AS A LOCAL EVALUATOR AND BOUNDED MISSION RUNNER; CI execution evidence must be checked for the latest commit. No live production VX runtime connection is claimed.
 
 ## Objective
 
@@ -11,8 +11,17 @@ Absolute zero degradation cannot be guaranteed in every environment. This gate m
 ## Components
 
 - scripts/vx_nonregression_gate.py: deterministic JSON benchmark comparator.
+- scripts/vx_mission_runner.py: bounded runner for allowlisted repository verification commands; no shell execution.
 - tests/test_vx_nonregression_gate.py: regression, missing-data, metric-direction, revision, and determinism tests.
-- .github/workflows/vx-nonregression-gate.yml: run focused tests for changes to the gate.
+- tests/test_vx_mission_runner.py: successful execution, receipt creation, unsafe-command rejection, path traversal rejection, and duplicate-step checks.
+- .github/missions/vx-gate-self-check.v1.json: sample verification mission.
+- .github/workflows/vx-nonregression-gate.yml: runs the mission, runs tests, and uploads a JSON evidence receipt.
+
+## Bounded mission runner contract
+
+The runner accepts a mission ID and a non-empty ordered list of steps. At this stage, commands are restricted to Python unittest modules under tests.* and Python compileall over scripts/ or tests/ paths. Shell commands, arbitrary Python snippets, paths outside the allowlist, duplicate step IDs, and timeouts outside 1–300 seconds are blocked. A failure stops the mission; it does not silently continue to later steps.
+
+The receipt records step status, exit code, elapsed time, output digests, bounded output tails, final state, and a deterministic SHA-256 digest. A receipt proves only what its recorded commands executed in that CI environment; it does not prove that arbitrary user projects can be executed or deployed.
 
 ## Benchmark contract
 
@@ -61,11 +70,12 @@ ELIGIBLE_FOR_REVIEW is not approval. promotion_authorized and deployment_perform
 - Missing evidence is not zero, success, or proof.
 - Scores from different benchmark versions are not compared without an explicit compatibility decision.
 - Rollback is a deployment responsibility; this comparator does not perform it.
-- This feature does not make a live VX connection and does not establish autonomous learning. It provides one enforceable building block toward measured, evidence-gated improvement.
+- This feature does not make a live VX connection and does not establish autonomous learning. It is a first enforceable building block toward measured, evidence-gated improvement.
 
 ## Run
 
-    python -m unittest tests.test_vx_nonregression_gate -v
+    python scripts/vx_mission_runner.py .github/missions/vx-gate-self-check.v1.json --output build/vx/vx-gate-self-check-receipt.json
+    python -m unittest tests.test_vx_nonregression_gate tests.test_vx_mission_runner -v
     python scripts/vx_nonregression_gate.py baseline.json candidate.json --output build/vx/nonregression-report.json
 
-Exit codes: 0 for review-eligible or no-measured-improvement reports, 1 for rejected/blocked candidate reports, 2 for unreadable or invalid input files.
+Exit codes for the benchmark comparator: 0 for review-eligible or no-measured-improvement reports, 1 for rejected/blocked candidate reports, 2 for unreadable or invalid input files.
