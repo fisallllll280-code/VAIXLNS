@@ -19,6 +19,7 @@ from scripts.arcx_vx_bridge import (
     verify_receipt,
     _NoRedirectHandler,
     _configured_endpoint,
+    prepare_local_handoff,
 )
 
 
