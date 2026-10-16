@@ -4,7 +4,10 @@ on:
   pull_request:
     paths:
       - "scripts/vx_nonregression_gate.py"
+      - "scripts/vx_mission_runner.py"
       - "tests/test_vx_nonregression_gate.py"
+      - "tests/test_vx_mission_runner.py"
+      - ".github/missions/vx-gate-self-check.v1.json"
       - "docs/tools/VX_CAPABILITY_NONREGRESSION_GATE_V1.md"
       - ".github/workflows/vx-nonregression-gate.yml"
   push:
@@ -12,7 +15,10 @@ on:
       - "feat/vx-nonregression-evolution-gate"
     paths:
       - "scripts/vx_nonregression_gate.py"
+      - "scripts/vx_mission_runner.py"
       - "tests/test_vx_nonregression_gate.py"
+      - "tests/test_vx_mission_runner.py"
+      - ".github/missions/vx-gate-self-check.v1.json"
       - "docs/tools/VX_CAPABILITY_NONREGRESSION_GATE_V1.md"
       - ".github/workflows/vx-nonregression-gate.yml"
 
@@ -20,7 +26,7 @@ permissions:
   contents: read
 
 jobs:
-  unit-tests:
+  mission-execution:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -30,7 +36,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Compile gate and tests
-        run: python -m compileall -q scripts/vx_nonregression_gate.py tests/test_vx_nonregression_gate.py
-      - name: Run non-regression unit tests
-        run: python -m unittest tests.test_vx_nonregression_gate -v
+      - name: Execute bounded VX verification mission and write evidence receipt
+        run: python scripts/vx_mission_runner.py .github/missions/vx-gate-self-check.v1.json --output build/vx/vx-gate-self-check-receipt.json
+      - name: Run direct regression tests
+        run: python -m unittest tests.test_vx_nonregression_gate tests.test_vx_mission_runner -v
+      - name: Upload mission receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-gate-self-check-receipt
+          path: build/vx/vx-gate-self-check-receipt.json
+          if-no-files-found: error
