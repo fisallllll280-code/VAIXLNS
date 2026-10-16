@@ -1,6 +1,18 @@
 name: VX Omega Index Audit
 
 on:
+  push:
+    branches:
+      - "feat/vx-index-audit-frontier-model-registry"
+    paths:
+      - "registry/omega/omega-000-master-index.json"
+      - "project.genome"
+      - "scripts/audit_omega_index.py"
+      - "scripts/vx_model_federation.py"
+      - "registry/models/vx-frontier-model-registry.json"
+      - "tests/test_audit_omega_index.py"
+      - "tests/test_vx_model_federation.py"
+      - ".github/workflows/vx-omega-index-audit.yml"
   pull_request:
     paths:
       - "registry/omega/omega-000-master-index.json"
