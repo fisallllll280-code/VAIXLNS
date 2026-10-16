@@ -1,127 +1,99 @@
-# VAIXLNS — Canonical Project Hub
+"""Fail-closed capability index and read-only GitHub connector (stdlib only)."""
+from __future__ import annotations
+import argparse, base64, hashlib, json, os, tempfile, urllib.error, urllib.parse, urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Mapping
 
-This repository is the canonical architecture, registry, recovery, provenance, and documentation root for the VAIXLNS federated project.
-
-## Navigation
-
-- [Master index navigation](docs/indexes/README.md)
-- [Master recovery status](docs/indexes/MASTER_RECOVERY_STATUS.md)
-- [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
-- [Innovation master index](docs/indexes/INNOVATION_MASTER_INDEX.md)
-- [Repository federation index](docs/indexes/REPOSITORY_FEDERATION_INDEX.md)
-- [Four-system reconciliation](docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md)
-- [Repository system map](docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md)
-- [Repository runtime status](docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md)
-- [Innovation separation matrix](docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md)
-- [Innovation federation JSON](docs/innovation/innovation-federation.json)
-- [Engineering decision register](docs/indexes/ENGINEERING_DECISION_REGISTER.md)
-- [Conformance gap closure v1](docs/indexes/CONFORMANCE_GAP_CLOSURE_V1.md)
-- [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
-- [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
-- [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
-- [Unified innovation delivery map](docs/recovery/VAIXLNS_UNIFIED_INNOVATION_DELIVERY_MAP_2026-10-10.md)
-- [AEPF adversarial engineering and proof fabric](docs/architecture/AEPF_ADVERSARIAL_ENGINEERING_AND_PROOF_FABRIC_V1.md)
-- [Typed federation contract edges](registry/federation/federation_contract_edges.v1.json)
-- [Federation preflight CLI](scripts/federation_preflight.py)
-- [Tools / ARC-X Ω](docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md)
-- [ARC-X Federated Integration & Link Compiler](docs/tools/ARC_X_FEDERATED_INTEGRATION_LINK_COMPILER_V1.md)
-- [ARC-X Bounded Adaptive Evolution Planner](docs/tools/ARC_X_BOUNDED_ADAPTIVE_EVOLUTION_V1.md)
-- [ARC-X Universal Model Gateway](docs/tools/ARC_X_UNIVERSAL_MODEL_GATEWAY_V1.md)
-- [ARC-X Bounded Self-Provisioning Compute Fabric](docs/tools/ARC_X_SELF_PROVISIONING_COMPUTE_FABRIC_V1.md)
-- [VA Genesis Operational Engine v1](docs/tools/VA_GENESIS_OPERATIONAL_ENGINE_V1.md)
-
-## Canonical boundary
-
-\`\`\`text
-NEXENT
-DISCOVER → DESIGN → SEARCH → SIMULATE → PROPOSE
-                      │
-                      ▼
-VAIXLNS
-CANONICALIZE → GOVERN → VERIFY → ADOPT → OPERATE
-                      │
-        ┌─────────────┼──────────────┐
-        ▼             ▼              ▼
-  VAIXLNS-unified  vaixlns-core  CSD / INTENT / VX
-\`\`\`
-
-Historical names and variants remain preserved through provenance and lineage. A proposal is not treated as implemented merely because it appears in an architectural document.
-
-- [VLA Federation Contract](docs/integration/VLA_FEDERATION_CONTRACT_V1.md)
-- [OpenVLA provider registry](registry/vla.openvla.7b.json)
-
-
-## VX Sovereign Tool Control & Universal Agents
-
-- [Sovereign Tool Control Fabric](docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md)
-- [Universal VX Agent Runtime & Engineering Fabric](docs/architecture/VX_UNIVERSAL_AGENT_RUNTIME_AND_ENGINEERING_FABRIC_V1.md)
-- [Tool action envelope schema](schemas/vx-tool-action-envelope.v1.schema.json)
-- [Tool policy decision schema](schemas/vx-tool-policy-decision.v1.schema.json)
-- [Agent runtime profile schema](schemas/vx-agent-runtime-profile.v1.schema.json)
-- [VX runtime role binding map (proposed, not active)](registry/vx-runtime-role-binding-map.v1.json)
-- [VX agent role catalog (35 logical role templates)](registry/vx-agent-runtime-profiles.v1.json)
-- [Default tool-control policy (inactive proposal)](registry/vx-tool-control-default-policy.v1.json)
-- [Reference policy evaluator](tools/vx_tool_control_reference.py)
-- [Evaluator unit tests](tests/test_vx_tool_control_reference.py)
-
-**Boundary:** every agent profile requires the VX runtime and federation gate; direct tool invocation is disabled by contract. The catalog is a set of role templates, not evidence of deployed agents. The reference evaluator does not execute tools and does not itself establish runtime enforcement.
-
-## VX Cognitive Fabric
-
-- [VX Ω-Cognitive Fabric](docs/cognitive/VX_OMEGA_COGNITIVE_FABRIC_V1.md)
-- [VLNS Model Activation Fabric](docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md)
-- [VX Cognitive Fabric Restoration Index](docs/cognitive/VX_COGNITIVE_FABRIC_RESTORATION_INDEX_V1.md)
-- [Capability Genome schema](schemas/vx-capability-genome.schema.yaml)
-- [Ω-Arena schema](schemas/vx-arena.schema.yaml)
-
-**Boundary:** VAIXLNS is canonical authority; VLNS is the governed model/semantic activation boundary; VX is the cognitive execution, experiment, verification, replay, and capability-synthesis boundary. Historical repository identities remain evidence-gated.
-
-
-## VLNS → VX Governed Activation
-
-- [Canonical activation bridge contract](docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md)
-- [Signed activation envelope schema](schemas/vlns-activation-envelope.schema.json)
-- [VLNS activation contract registry](registry/vlns_activation_contract.v1.json)
-
-The contract has a reference implementation under VAIXLNS-unified with a green verification run, plus a companion fail-closed pre-activation gate in the vx-agents-fabric feature branch with green unit-test CI. Live VLNS connectivity, external service conformance, VLNS↔NAXLNS identity, and canonical admission remain unverified until evidence closes the required gates.
-
-
-## Four-System Federation Readiness
-
-Run the deterministic, read-only preflight from the repository root:
-
-```bash
-python scripts/federation_preflight.py
-```
-
-The command validates the system and typed-edge manifests and emits a digest-bound JSON readiness report. A structurally valid report does not mean that services are connected or running. Identity mappings marked UNVERIFIED remain blocked, and the preflight never grants authority, writes canonical state, executes workloads, or probes external endpoints.
-
-The federation contract regression suite can be run with:
-
-```bash
-python scripts/validate_four_system_federation.py
-python scripts/validate_federation_contract_edges.py
-python -m unittest tests.test_four_system_federation tests.test_federation_contract_edges tests.test_federation_preflight -v
-```
-
-
-## Ω-Arena Evidence-First Audit
-
-Run the offline, read-only audit for the four-system interface registry:
-
-```bash
-python scripts/omega_arena_audit.py --output build/omega-arena/audit-receipt.json
-python -m unittest tests.test_omega_arena_audit -v
-```
-
-The audit checks all six system-pair edges, identity-state blockers, required evidence declarations, and registry invariants. Its report binds to the registry SHA-256 and local Git revision when available. It never probes endpoints, runs workloads, changes canonical data, or declares an edge live from static metadata. The expected current outcome is `PENDING_VERIFICATION` until authorized runtime evidence is independently reviewed.
-
-
-## VX / VLNS Index Continuity
-
-The derived continuity manifest registers the source references, snapshot fields, SHA-256 requirements, and restore-test gates for VX and VLNS:
-
-- `registry/indexes/vx-vlns-continuity-manifest.v1.json`
-- `docs/index/VX_VLNS_INDEX_CONTINUITY_RUNBOOK_V1.md`
-
-This is a traceability and loss-prevention record, not a copy of either full repository. Full snapshots remain pending until each source is pinned to a commit, captured immutably, hash-verified, and restored successfully in a clean checkout. The canonical `project.genome` and `Ω.000` are not changed by this workflow.
+SCHEMA_VERSION = "1.0.0"
+class CapabilityDenied(PermissionError):
+    """Identity, scope, registration, or input validation failed."""
+def canonical_json(value: Any) -> bytes:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+def sha256_bytes(data: bytes) -> str:
+    return "sha256:" + hashlib.sha256(data).hexdigest()
+def _infer_capability(path: Path) -> str:
+    value = path.as_posix().lower()
+    if "test" in value: return "verification"
+    if any(x in value for x in ("memory", "index", "registry")): return "knowledge-index"
+    if any(x in value for x in ("mcp", "connector", "integration")): return "integration"
+    if "agent" in value: return "agent-runtime"
+    if any(x in value for x in ("govern", "policy")): return "governance"
+    return "source-artifact"
+def build_capability_index(root: str | Path, *, repo_id: str, source_ref: str) -> dict:
+    """Create deterministic file records; timestamp is excluded from the content digest."""
+    root = Path(root).resolve()
+    suffixes = {".py", ".md", ".json", ".yaml", ".yml", ".toml", ".schema"}
+    records = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts: continue
+        if path.suffix not in suffixes and path.name not in {"project.genome", "Ω.000"}: continue
+        raw = path.read_bytes()
+        records.append({"path": path.relative_to(root).as_posix(), "sha256": sha256_bytes(raw),
+            "size_bytes": len(raw), "source": {"repository": repo_id, "ref": source_ref},
+            "capability": _infer_capability(path)})
+    index = {"schema_version": SCHEMA_VERSION, "repository": repo_id, "source_ref": source_ref,
+        "generated_at": datetime.now(timezone.utc).isoformat(), "file_count": len(records), "files": records}
+    index["content_digest"] = sha256_bytes(canonical_json(records))
+    return index
+def write_index_atomic(index: Mapping[str, Any], destination: str | Path) -> None:
+    """Atomic replacement: failed writes leave the previous index intact."""
+    destination = Path(destination); destination.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix=destination.name + ".", suffix=".tmp", dir=destination.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as stream:
+            stream.write(json.dumps(index, sort_keys=True, indent=2, ensure_ascii=False) + "\n")
+            stream.flush(); os.fsync(stream.fileno())
+        os.replace(temporary, destination)
+    except BaseException:
+        try: os.unlink(temporary)
+        except FileNotFoundError: pass
+        raise
+class GitHubReadOnlyConnector:
+    """Allowlisted read-only GitHub Contents API connector. Never dispatches arbitrary tools."""
+    tool_id = "github.read_file"
+    def __init__(self, *, token: str | None = None, opener=None):
+        self.token = token if token is not None else os.environ.get("GITHUB_TOKEN")
+        self.opener = opener or urllib.request.urlopen
+    def invoke(self, *, identity: Mapping[str, Any], registered_tools: Mapping[str, Mapping[str, Any]],
+               repository: str, path: str, ref: str = "main", timeout: float = 8.0) -> dict:
+        if not identity or identity.get("authenticated") is not True or not identity.get("subject"):
+            raise CapabilityDenied("IDENTITY_REQUIRED")
+        if self.tool_id not in identity.get("scopes", []): raise CapabilityDenied("SCOPE_DENIED")
+        profile = registered_tools.get(self.tool_id)
+        if not profile or profile.get("status") != "ADMITTED" or profile.get("mode") != "read_only":
+            raise CapabilityDenied("TOOL_NOT_REGISTERED")
+        if not isinstance(repository, str) or repository.count("/") != 1 or any(x in repository for x in ("..", " ", "\\")):
+            raise CapabilityDenied("INVALID_REPOSITORY")
+        if not isinstance(path, str) or not path or path.startswith("/") or ".." in Path(path).parts:
+            raise CapabilityDenied("INVALID_PATH")
+        if not isinstance(ref, str) or not ref or any(c in ref for c in "\r\n"): raise CapabilityDenied("INVALID_REF")
+        url = "https://api.github.com/repos/" + repository + "/contents/" + urllib.parse.quote(path, safe="/") + "?ref=" + urllib.parse.quote(ref, safe="")
+        headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "VAIXLNS-capability-gateway/1"}
+        if self.token: headers["Authorization"] = "Bearer " + self.token
+        request = urllib.request.Request(url, headers=headers, method="GET")
+        try:
+            with self.opener(request, timeout=timeout) as response:
+                body = response.read(2_000_001)
+                if len(body) > 2_000_000: raise CapabilityDenied("RESPONSE_TOO_LARGE")
+                if getattr(response, "status", 200) != 200: raise CapabilityDenied("UPSTREAM_STATUS")
+        except urllib.error.HTTPError as exc: raise CapabilityDenied("UPSTREAM_STATUS") from exc
+        data = json.loads(body.decode("utf-8"))
+        if not isinstance(data, dict) or data.get("type") != "file" or not isinstance(data.get("content"), str):
+            raise CapabilityDenied("INVALID_UPSTREAM_RESPONSE")
+        raw = base64.b64decode(data["content"].replace("\n", ""))
+        return {"tool_id": self.tool_id, "identity": identity["subject"], "repository": repository,
+            "path": path, "ref": ref, "blob_sha": data.get("sha"), "content_sha256": sha256_bytes(raw),
+            "size_bytes": len(raw), "content": raw.decode("utf-8"), "read_only": True}
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description="Build a content-addressed capability index")
+    parser.add_argument("--root", default="."); parser.add_argument("--repo-id", required=True)
+    parser.add_argument("--ref", required=True, help="Commit SHA or branch name")
+    parser.add_argument("--output", default="registry/capability-index.v1.json")
+    args = parser.parse_args(argv)
+    index = build_capability_index(args.root, repo_id=args.repo_id, source_ref=args.ref)
+    write_index_atomic(index, args.output)
+    print(json.dumps({"status": "INDEX_WRITTEN", "output": args.output,
+        "file_count": index["file_count"], "content_digest": index["content_digest"]}, sort_keys=True))
+    return 0
+if __name__ == "__main__": raise SystemExit(main())
