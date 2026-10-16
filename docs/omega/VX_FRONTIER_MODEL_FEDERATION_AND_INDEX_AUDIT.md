@@ -46,7 +46,25 @@ Model names, aliases, access tiers, and endpoints can change. Verify exact model
 
 Meta's newly announced Muse family is not included as an API-ready provider here because an accessible production API/model identifier was not established in this audit.
 
-## 4. Execution design
+
+## 4. API bridge (bounded, opt-in)
+
+`scripts/vx_model_federation.py` provides a standard-library client for the five provider API families in the registry. It reads credentials only from process environment variables, fans out to at most five providers concurrently, reports `NOT_CONFIGURED` when a credential is absent, and marks outputs as proposals only.
+
+Example (this makes live, potentially billable API requests for configured providers):
+
+```bash
+export OPENAI_API_KEY=...
+export ANTHROPIC_API_KEY=...
+export GOOGLE_API_KEY=...
+export XAI_API_KEY=...
+export MISTRAL_API_KEY=...
+python scripts/vx_model_federation.py --prompt "Review this non-sensitive engineering proposal and list risks."
+```
+
+Use only keys that you have configured and authorized. Never put real secrets in the shell history, repository, issue, or CI logs. For a single provider, use `--providers openai` (or `anthropic`, `google`, `xai`, `mistral`). The client does not open pull requests, execute generated code, or modify canonical files. Unit tests mock network access; they do not prove live provider connectivity.
+
+## 5. Execution design
 
 1. **Fast path:** deterministic local checks and the lowest-latency model that passes task-specific evaluation.
 2. **Deep path:** one frontier model plans; bounded specialist workers handle independent subtasks in parallel.
@@ -56,9 +74,9 @@ Meta's newly announced Muse family is not included as an API-ready provider here
 6. **Bounds:** parallelism capped at five; no uncontrolled recursive agent spawning; no model can promote its own claim to `VERIFIED`.
 7. **Repository writes:** proposed diffs only until CI passes and a human approves; never mutate `project.genome` or `Ω.000` through the model router.
 
-## 5. What is not proven yet
+## 6. What is not proven yet
 
-- No live provider API calls were made by adding the registry.
+- No live provider API calls were made by adding the registry or client.
 - No API keys were read or created.
 - No measured speedup is claimed for the complete VX execution cycle.
 - The full historical index recovery remains unproven until the atomic source records and hashes are available and reconciled.
