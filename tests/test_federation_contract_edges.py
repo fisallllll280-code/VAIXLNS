@@ -114,5 +114,60 @@ class FederationContractEdgeTests(unittest.TestCase):
         self.assertTrue(any("failure_mode must be FAIL_CLOSED" in e for e in errors))
 
 
+
+    def test_active_edge_requires_independent_reviewer_and_bound_digests(self):
+        def mutate(data, systems):
+            edge = self.edge(data, "execution_evidence")
+            edge["status"] = "ACTIVE_VERIFIED"
+            edge["enabled"] = True
+            edge["activation_evidence"] = {
+                "source_revision": "a" * 40,
+                "evidence_uri": "evidence://receipt/1",
+                "digest": "b" * 64,
+                "observed_at": "2026-10-16T00:00:00Z",
+                "submitted_by": "author-agent",
+                "reviewer_id": "independent-reviewer",
+                "reviewed_at": "2026-10-16T00:05:00Z",
+                "verification_digest": "c" * 64,
+            }
+        self.assertEqual(self.errors_for(mutate), [])
+
+    def test_active_edge_rejects_self_review(self):
+        def mutate(data, systems):
+            edge = self.edge(data, "execution_evidence")
+            edge["status"] = "ACTIVE_VERIFIED"
+            edge["enabled"] = True
+            edge["activation_evidence"] = {
+                "source_revision": "a" * 40,
+                "evidence_uri": "evidence://receipt/1",
+                "digest": "b" * 64,
+                "observed_at": "2026-10-16T00:00:00Z",
+                "submitted_by": "same-agent",
+                "reviewer_id": "same-agent",
+                "reviewed_at": "2026-10-16T00:05:00Z",
+                "verification_digest": "c" * 64,
+            }
+        errors = self.errors_for(mutate)
+        self.assertTrue(any("cannot be self-reviewed" in error for error in errors))
+
+    def test_active_edge_rejects_non_commit_revision_and_bad_digest(self):
+        def mutate(data, systems):
+            edge = self.edge(data, "execution_evidence")
+            edge["status"] = "ACTIVE_VERIFIED"
+            edge["enabled"] = True
+            edge["activation_evidence"] = {
+                "source_revision": "main",
+                "evidence_uri": "evidence://receipt/1",
+                "digest": "not-a-digest",
+                "observed_at": "2026-10-16T00:00:00Z",
+                "submitted_by": "author-agent",
+                "reviewer_id": "independent-reviewer",
+                "reviewed_at": "2026-10-16T00:05:00Z",
+                "verification_digest": "c" * 64,
+            }
+        errors = self.errors_for(mutate)
+        self.assertTrue(any("full 40-character Git commit SHA" in error for error in errors))
+        self.assertTrue(any("digest must be a 64-character SHA-256" in error for error in errors))
+
 if __name__ == "__main__":
     unittest.main()
