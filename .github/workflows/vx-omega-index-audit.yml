@@ -8,9 +8,11 @@ on:
       - "registry/omega/omega-000-master-index.json"
       - "project.genome"
       - "scripts/audit_omega_index.py"
+      - "scripts/decompose_omega_index.py"
       - "scripts/vx_model_federation.py"
       - "registry/models/vx-frontier-model-registry.json"
       - "tests/test_audit_omega_index.py"
+      - "tests/test_decompose_omega_index.py"
       - "tests/test_vx_model_federation.py"
       - ".github/workflows/vx-omega-index-audit.yml"
   pull_request:
@@ -41,6 +43,8 @@ jobs:
           python-version: "3.12"
       - name: Test audit behavior
         run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Decompose canonical index into derived graph
+        run: python scripts/decompose_omega_index.py --root . --out build/omega-index-decomposition.json
       - name: Audit canonical index without mutation
         run: python scripts/audit_omega_index.py --root . --out build/omega-index-audit.json
       - name: Upload derived audit report
@@ -48,6 +52,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: omega-index-audit
-          path: build/omega-index-audit.json
+          path: build/omega-index-*.json
           if-no-files-found: warn
           retention-days: 30
