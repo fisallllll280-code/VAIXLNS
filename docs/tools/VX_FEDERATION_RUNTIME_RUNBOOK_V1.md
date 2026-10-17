@@ -36,6 +36,7 @@ Do not change a registry entry to `ACTIVE_VERIFIED` just to make routing succeed
 - `openai_compatible`: implemented for explicitly configured OpenAI Chat Completions-compatible endpoints.
 - `openai_compatible_local`: same wire contract, but callers must explicitly instantiate the local/no-auth adapter and use a trusted local endpoint.
 - `anthropic_messages`: implemented for the Anthropic Messages API.
-- Google, Azure, Bedrock, Vertex, MCP, GitHub, Slack, and other catalog entries are inventory placeholders only; their adapters are not implemented or active in this commit.
+- `google_generative_ai`: implemented for Gemini `generateContent`, with the API key sent in a header rather than the URL.
+- Azure, Bedrock, Vertex, MCP, GitHub, Slack, and other catalog entries remain inventory placeholders only; their adapters are not implemented or active in this commit.
 
 The registry is a roadmap and inventory, not evidence of working connections. A valid registry check proves only local structure.
