@@ -1,0 +1,29 @@
+name: VX Federation Runtime Tests
+
+on:
+  push:
+    branches:
+      - main
+      - vx-universal-model-federation-2026-10-17
+  pull_request:
+    paths:
+      - "scripts/vx_federation_runtime.py"
+      - "registry/federation/vx_model_connectors.v1.json"
+      - "tests/test_vx_federation_runtime.py"
+      - ".github/workflows/vx-federation-runtime.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate connector registry
+        run: python scripts/vx_federation_runtime.py --check
+      - name: Run federation runtime tests
+        run: python -m unittest tests.test_vx_federation_runtime -v
