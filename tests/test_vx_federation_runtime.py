@@ -1,10 +1,11 @@
 import os
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
+import json
 
 from scripts.vx_federation_runtime import (
     ACTIVE_STATE, Connector, FederationRouter, Policy, TaskRequest,
-    ConnectorError, load_registry
+    ConnectorError, GoogleGeminiAdapter, load_registry
 )
 
 
@@ -102,6 +103,29 @@ class VXFederationRuntimeTests(unittest.TestCase):
         router = FederationRouter([connector()], Policy(frozenset({"test"}), max_timeout_seconds=5), {"fake": FakeAdapter()})
         decision = router.decide(request(timeout_seconds=6))
         self.assertEqual(decision.outcome, "BLOCKED_BUDGET")
+
+    def test_gemini_adapter_keeps_key_out_of_url_and_parses_response(self):
+        item = connector(
+            provider="google",
+            model="gemini-test",
+            adapter="google_generative_ai",
+            api_key_env="VX_TEST_GEMINI_KEY",
+            base_url="https://example.invalid/v1beta",
+            max_output_tokens=128
+        )
+        response = MagicMock()
+        response.__enter__.return_value.status = 200
+        response.__enter__.return_value.read.return_value = json.dumps({
+            "responseId": "resp-1",
+            "candidates": [{"content": {"parts": [{"text": "gemini answer"}]}}]
+        }).encode()
+        with patch.dict(os.environ, {"VX_TEST_GEMINI_KEY": "not-a-real-secret"}, clear=True):
+            with patch("scripts.vx_federation_runtime.urllib.request.urlopen", return_value=response) as open_url:
+                result = GoogleGeminiAdapter().complete(item, request())
+        self.assertEqual(result["text"], "gemini answer")
+        outgoing = open_url.call_args.args[0]
+        self.assertNotIn("not-a-real-secret", outgoing.full_url)
+        self.assertEqual(outgoing.get_header("X-goog-api-key"), "not-a-real-secret")
 
     def test_missing_environment_credential_blocks_connector(self):
         item = connector(api_key_env="VX_TEST_MISSING_KEY")
