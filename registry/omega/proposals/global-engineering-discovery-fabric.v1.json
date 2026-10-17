@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "VAIXLNS.GLOBAL_ENGINEERING_DISCOVERY_FABRIC.V1",
+  "system": {
+    "id": "VAIXLNS.GEDF",
+    "name": "Global Engineering Discovery and Synthesis Fabric",
+    "short_name": "GEDF",
+    "parent": "VAIXLNS",
+    "system_boundary": "A governed subsystem under the canonical VAIXLNS control plane; not a competing root system.",
+    "state": "PROPOSAL"
+  },
+  "authority": {
+    "canonical_source": "project.genome::v1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "master_index": "Ω.000",
+    "canonical_mutation": "NOT_AUTHORIZED",
+    "state_promotion": "DISABLED"
+  },
+  "purpose": "Discover, research, classify, compare, connect, and validate engineering innovations and tools across literature, repositories, standards, software ecosystems, and cloud services while preserving source provenance and independent evidence.",
+  "design_constraints": [
+    "preserve original records, identifiers, repository history, and superseded ideas",
+    "separate system identity from repository identity",
+    "separate literature claims, vendor documentation, source assertions, implementation, test evidence, and live operational evidence",
+    "do not infer partnership, endorsement, certification, or deployment from compatibility or public documentation",
+    "keep provider adapters replaceable and capability-scoped",
+    "use reproducible builds and tests before any VERIFIED promotion",
+    "simulation and sandbox before consequential external execution",
+    "unresolved identity, license, security, or source integrity gates fail closed"
+  ],
+  "capabilities": [
+    {
+      "id": "GEDF-001",
+      "name": "Evidence-bound Discovery",
+      "state": "SPECIFIED",
+      "priority": "P0",
+      "purpose": "Collect metadata and candidate ideas from approved scholarly, standards, repository, and vendor-documentation sources.",
+      "inputs": ["search goal", "source allowlist", "source revision or retrieval timestamp"],
+      "outputs": ["source receipt", "candidate records", "retrieval errors", "content digests"],
+      "acceptance": ["every candidate has a resolvable source reference", "retrieval failures are explicit", "no unsupported claims are created"]
+    },
+    {
+      "id": "GEDF-002",
+      "name": "Innovation Identity and Lineage Graph",
+      "state": "SPECIFIED",
+      "priority": "P0",
+      "purpose": "Deduplicate by evidence without erasing native IDs; model same_as, implements, derives_from, supersedes, depends_on, conflicts_with and verified_by edges.",
+      "inputs": ["candidate records", "existing Ω.000 and innovation projections"],
+      "outputs": ["proposed graph edges", "duplicate clusters", "identity conflicts"],
+      "acceptance": ["every edge has evidence and confidence rationale", "uncertain edges remain proposed", "original records remain addressable"]
+    },
+    {
+      "id": "GEDF-003",
+      "name": "Engineering Tool Capability Registry",
+      "state": "SPECIFIED",
+      "priority": "P0",
+      "purpose": "Rank engineering tools by demonstrated capabilities, domains, interfaces, license, maintenance signals, reproducibility, security posture, and integration effort.",
+      "inputs": ["official documentation", "source repositories", "license and release metadata", "test artifacts"],
+      "outputs": ["capability matrix", "candidate toolchain", "compatibility gaps", "source-backed scorecard"],
+      "acceptance": ["score dimensions and missing data are explicit", "marketing claims are not treated as test evidence", "license and dependency risks are surfaced"]
+    },
+    {
+      "id": "GEDF-004",
+      "name": "Cross-Domain Innovation Synthesizer",
+      "state": "PROPOSAL",
+      "priority": "P1",
+      "purpose": "Generate proposed compositions across software, mathematics, physics, simulation, CAD/CAE, data, and AI, then express them as testable hypotheses.",
+      "inputs": ["approved candidate records", "system contracts", "engineering constraints"],
+      "outputs": ["design alternatives", "assumption register", "proof obligations", "test plans"],
+      "acceptance": ["every synthesis lists source contributions and novel assumptions", "alternatives and counterevidence are preserved", "no originality claim without prior-art review"]
+    },
+    {
+      "id": "GEDF-005",
+      "name": "Reproducible Validation Harness",
+      "state": "PROPOSAL",
+      "priority": "P1",
+      "purpose": "Run schema, unit, compatibility, benchmark, and sandbox checks against pinned revisions.",
+      "inputs": ["immutable source revisions", "declared environments", "test contracts"],
+      "outputs": ["test receipt", "environment fingerprint", "artifact digest", "pass/fail/inconclusive result"],
+      "acceptance": ["tests are replayable", "inconclusive is not pass", "runtime claims require environment-specific evidence"]
+    },
+    {
+      "id": "GEDF-006",
+      "name": "Research Evidence Bridge",
+      "state": "PROPOSAL",
+      "priority": "P1",
+      "purpose": "Organize scholarly discovery, paper summaries, citations, research gaps, and implementation hypotheses in the Undermind research workspace.",
+      "inputs": ["research question", "paper metadata", "available full texts"],
+      "outputs": ["ranked literature map", "evidence summaries", "candidate experiments", "citation graph"],
+      "acceptance": ["literature findings link to citeable sources", "abstract-only versus full-text findings are distinguished", "research search completion is reported honestly"]
+    },
+    {
+      "id": "GEDF-007",
+      "name": "Cloud and Partner Interoperability Boundary",
+      "state": "PROPOSAL",
+      "priority": "P1",
+      "purpose": "Define optional adapters for cloud AI agents, digital twins, engineering compute, repository workflows, and controlled enterprise integration.",
+      "inputs": ["published provider API and security documentation", "tenant-approved credentials", "contract tests"],
+      "outputs": ["adapter contracts", "deployment options", "security review", "portability report"],
+      "acceptance": ["provider-specific code stays behind an adapter", "no credentials are committed", "compatibility is not described as partnership or endorsement"]
+    },
+    {
+      "id": "GEDF-008",
+      "name": "Partnership Readiness Evidence Pack",
+      "state": "PROPOSAL",
+      "priority": "P2",
+      "purpose": "Prepare a truthful external evaluation package with architecture, reproducible demo, security boundary, support model, product value, and commercial assumptions.",
+      "inputs": ["verified product artifacts", "security assessment", "measured pilot results", "licensing review"],
+      "outputs": ["technical brief", "demo plan", "evaluation matrix", "partner-program readiness checklist"],
+      "acceptance": ["no partner relationship is implied before written agreement", "all performance numbers are sourced", "commercial and compliance unknowns are explicit"]
+    }
+  ],
+  "innovation_scoring": {
+    "total": 100,
+    "dimensions": [
+      {"id": "evidence_quality", "weight": 25},
+      {"id": "engineering_utility", "weight": 20},
+      {"id": "integration_fit", "weight": 15},
+      {"id": "reliability_and_reproducibility", "weight": 15},
+      {"id": "security_and_governance", "weight": 15},
+      {"id": "novelty_after_prior_art_review", "weight": 10}
+    ],
+    "rules": [
+      "a candidate score is a prioritization signal, not a verification state",
+      "missing evidence must be marked unknown and cannot be silently scored as zero risk",
+      "novelty is provisional until prior-art search is complete",
+      "VERIFIED requires exact revision, reproducible test evidence, and independent review"
+    ]
+  },
+  "candidate_interoperability_sources": [
+    {
+      "provider": "Microsoft",
+      "capability": "AI agent orchestration, model/tool governance, observability, identity",
+      "official_reference": "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview",
+      "integration_state": "RESEARCH_CANDIDATE",
+      "relationship_state": "NO_PARTNERSHIP_CLAIM"
+    },
+    {
+      "provider": "Microsoft",
+      "capability": "Digital twin graphs for physical environments and assets",
+      "official_reference": "https://learn.microsoft.com/en-us/azure/digital-twins/overview",
+      "integration_state": "RESEARCH_CANDIDATE",
+      "relationship_state": "NO_PARTNERSHIP_CLAIM"
+    },
+    {
+      "provider": "Microsoft",
+      "capability": "Architecture quality assessment across reliability, security, cost, operations, and performance",
+      "official_reference": "https://learn.microsoft.com/en-us/azure/architecture/framework/",
+      "integration_state": "DESIGN_REFERENCE",
+      "relationship_state": "NO_PARTNERSHIP_CLAIM"
+    },
+    {
+      "provider": "Microsoft",
+      "capability": "Engineering simulation and high-performance compute use cases for manufacturing",
+      "official_reference": "https://learn.microsoft.com/en-us/industry/manufacturing/unlock-innovation",
+      "integration_state": "RESEARCH_CANDIDATE",
+      "relationship_state": "NO_PARTNERSHIP_CLAIM"
+    },
+    {
+      "provider": "Microsoft Partner Center",
+      "capability": "Potential partner-program readiness and commercialization path",
+      "official_reference": "https://learn.microsoft.com/en-us/partner-center/announcements/2026-september",
+      "integration_state": "FUTURE_BUSINESS_TRACK",
+      "relationship_state": "NO_PARTNERSHIP_CLAIM"
+    }
+  ],
+  "lifecycle": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED", "PARTIAL", "VERIFIED", "QUARANTINED", "SUPERSEDED"],
+  "initial_delivery_plan": [
+    "Phase 0: literature and source inventory; no canonical mutation",
+    "Phase 1: evidence record and tool capability schema",
+    "Phase 2: deterministic offline validator and regression tests",
+    "Phase 3: read-only collectors for allowlisted source metadata",
+    "Phase 4: cross-system contract checks using pinned revisions",
+    "Phase 5: sandboxed demonstrations and measured evaluation",
+    "Phase 6: separate reviewed admission proposal to Ω.000"
+  ],
+  "status": "SPECIFIED",
+  "evidence_state": "NO_RUNTIME_EVIDENCE_YET"
+}

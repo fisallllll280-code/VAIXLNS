@@ -21,6 +21,10 @@ spec:
     - counterfactual and adversarial planning
     - controlled runtime reconstruction
     - architecture delta and evolution proposals
+    - fragment-aware, provenance-preserving system-memory reconstruction
+    - typed mathematics, numerical computing, software and physics task compilation for VX
+    - deterministic memory/index reconciliation without historical erasure
+    - engineering-language parse/type-check orchestration into EIR and proof obligations
   boundaries:
     mayGenerate: true
     mayInfer: true
@@ -70,6 +74,15 @@ spec:
       - reconstruct_index
       - reconstruct_genome
       - build_lineage
+      - resolve_historical_fragments
+      - rebuild_retrieval_projection
+    memory:
+      - ingest_source_record
+      - reconcile_memory_record
+      - preserve_original_and_derived_lineage
+      - propose_index_delta
+      - replay_index_projection
+      - report_missing_and_conflicting_records
     epistemic:
       - normalize_evidence
       - compile_claims
@@ -81,6 +94,17 @@ spec:
       - compile_proof_obligations
       - compile_counterfactuals
       - compile_adversarial_tests
+    languages:
+      - parse_intent_to_typed_ast
+      - typecheck_system_model_and_units
+      - compile_language_artifact_to_eir
+      - compile_eir_to_engineering_task_envelope
+      - validate_language_conformance
+    engineeringCompute:
+      - compile_task_dependency_graph
+      - prepare_vx_task_envelope
+      - verify_signed_execution_receipt
+      - reconcile_execution_with_expected_contract
     federation:
       - reconcile_systems
       - resolve_dependencies
@@ -104,6 +128,13 @@ spec:
     - verification_state
     - proof_status
     - authority_decision
+    - memory_record_id_and_lineage_refs
+    - index_delta_review_ref
+    - language_grammar_and_compiler_version_when_used
+    - engineering_task_envelope_digest_when_dispatched
+    - worker_identity_and_capability_receipt_when_dispatched
+    - signed_execution_receipt_when_returned
+    - replay_or_reproducibility_result_when_required
   implementationState:
     specification: SPECIFIED
     implementation: NOT_PROVEN

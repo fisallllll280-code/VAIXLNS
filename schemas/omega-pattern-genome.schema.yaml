@@ -1,0 +1,66 @@
+schema: vaixlns.omega.pattern_genome
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - pattern_id
+  - version
+  - status
+  - intent
+  - problem_class
+  - invariants
+  - capability_contract
+  - failure_model
+  - verification
+  - evidence_requirements
+  - provenance
+properties:
+  pattern_id: string
+  version: string
+  status:
+    enum: [PROPOSAL, EXPERIMENTAL, SIMULATED, IMPLEMENTED, PARTIAL, VERIFIED, CANONICAL, SUPERSEDED, REJECTED, QUARANTINED, ARCHIVED]
+  pattern_family: string
+  intent: string
+  problem_class: string
+  assumptions: array
+  invariants: array
+  architecture: object
+  components: array
+  interfaces: array
+  capability_contract:
+    preconditions: array
+    postconditions: array
+    side_effects: array
+  agent_roles: array
+  tool_requirements: array
+  dependencies: array
+  state_model: object
+  behavior_model: object
+  security_model: object
+  authority_model: object
+  failure_model:
+    failure_modes: array
+    anti_spec: array
+    recovery: array
+  simulation:
+    scenarios: array
+    stop_conditions: array
+  verification:
+    required_checks: array
+    reproducibility: boolean
+  evidence_requirements:
+    minimum_refs: array
+    counterevidence_required: boolean
+  evolution_rules:
+    mutation_axes: array
+    recombination_allowed: boolean
+    novelty_required: boolean
+  provenance:
+    creator: string
+    created_at: string
+    parent_patterns: array
+    source_refs: array
+    genome_hash: string
+  commercial:
+    license_class: string
+    exclusivity: string
+    customer_scope: string

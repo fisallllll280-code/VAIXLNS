@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "VAIXLNS-FOUNDER-CAPITAL-10K-30D",
+  "title": "Founder-Financed Launch Capital and 30-Day Innovation Reserve",
+  "status": "PROPOSED_NOT_ENFORCED",
+  "date": "2026-10-09",
+  "authority": "FOUNDER_DESIGNATED_AUTHORITY",
+  "currency": "USD",
+  "planned_capital_amount": 10000,
+  "planned_source": "FOUNDER_PERSONAL_PORTFOLIO_OR_WALLET",
+  "classification": "UNCONFIRMED_UNTIL_ACCOUNTING_RECORDS_CLASSIFY_AS_OWNER_CONTRIBUTION_OR_OWNER_LOAN",
+  "bank_financing_claim_allowed": false,
+  "bank_financing_claim_condition": "Only if actual bank facility and loan documents substantiate a bank loan.",
+  "actual_funds_received": false,
+  "source_evidence_required": [
+    "account_or_custodian_record",
+    "source_and_ownership",
+    "amount_and_currency",
+    "transaction_date",
+    "accounting_classification"
+  ],
+  "uses_must_reconcile": true,
+  "envelopes": [
+    {
+      "id": "OBLIGATIONS",
+      "name": "Due essential obligations",
+      "amount": "to_be_evidenced",
+      "priority": 1,
+      "proof_required": true
+    },
+    {
+      "id": "ENGINEERING_LAUNCH",
+      "name": "Documented engineering and go-to-market costs",
+      "amount": "to_be_budgeted",
+      "priority": 2,
+      "proof_required": true
+    },
+    {
+      "id": "TAX_REFUND_CONTRACT_RESERVES",
+      "name": "Taxes, refunds, disputes and contractual obligations",
+      "amount": "to_be_budgeted",
+      "priority": 3,
+      "proof_required": true
+    },
+    {
+      "id": "INNOVATION_RESERVE",
+      "name": "Residual Innovation Fund reserve for 30-day lock",
+      "amount": "actual_reconciled_residual_only",
+      "priority": 4,
+      "proof_required": true
+    }
+  ],
+  "no_double_counting_rule": "Cash allocated to paid obligations cannot simultaneously be represented as locked reserve.",
+  "lock": {
+    "duration_calendar_days": 30,
+    "trigger": "Only after all prior envelopes are reconciled and the designated residual reserve has cleared and is available.",
+    "prohibitions": [
+      "founder_distribution",
+      "personal_use",
+      "discretionary_withdrawal",
+      "discretionary_loan_or_pledge",
+      "ordinary_operating_expense"
+    ],
+    "decision_for_discretionary_outflow_during_lock": "DENY_LOCK_ACTIVE",
+    "automatic_unlock": false,
+    "unlock_requires": [
+      "30_calendar_days_elapsed",
+      "founder_approval",
+      "ledger_reconciliation",
+      "obligations_review",
+      "auditable_unlock_event"
+    ],
+    "technically_enforced": false,
+    "enforcement_evidence_required": [
+      "custodian_or_account_controls",
+      "tested_access_or_transfer_restriction",
+      "audit_log"
+    ]
+  },
+  "progress_claim": {
+    "founder_reported_percent": 10,
+    "independently_verified": false,
+    "baseline_and_milestone_evidence_required": true
+  },
+  "partner_target": {
+    "target_total": 6,
+    "target_saudi": 3,
+    "target_us": 3,
+    "status": "PROPOSED_UNFILLED",
+    "signature_required": true
+  },
+  "legacy_authority": {
+    "founder_decides_historical_classification": true,
+    "silent_delete_merge_rename_or_supersession_forbidden": true,
+    "source_hash_and_lineage_preserved": true,
+    "unrecovered_legacy_ids": "UNMAPPED_NOT_INVENTED"
+  },
+  "legal_guardrail": "Does not override applicable law, customer rights, bank/custodian terms, tax or licensing obligations."
+}

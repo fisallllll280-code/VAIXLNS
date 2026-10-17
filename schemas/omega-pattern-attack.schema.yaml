@@ -1,0 +1,29 @@
+schema: vaixlns.omega.pattern_attack
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - attack_id
+  - pattern_id
+  - attack_class
+  - result
+  - severity
+  - provenance
+properties:
+  attack_id: string
+  pattern_id: string
+  pattern_hash: string
+  attack_class:
+    enum: [ASSUMPTION, OBJECTIVE, CONTRACT, AUTHORITY, FAILURE, VERIFICATION, EVIDENCE, LINEAGE, COMPOSITION, NOVELTY, COMMERCIAL]
+  result:
+    enum: [PASS, FINDING, BLOCK]
+  severity:
+    enum: [INFO, LOW, MEDIUM, HIGH, CRITICAL]
+  finding: string
+  counterexample: string
+  recommended_mutation: string
+  evidence_refs: array
+  reproducible: boolean
+  provenance:
+    engine: string
+    engine_version: string
+    created_at: string

@@ -1,0 +1,28 @@
+schema: vaixlns.omega.security_authority_envelope
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - principal_id
+  - capability_scope
+  - permissions
+  - prohibitions
+  - escalation_policy
+properties:
+  principal_id: string
+  principal_type:
+    enum: [HUMAN, AGENT, VX, MODEL, TOOL, SERVICE]
+  capability_scope: array
+  permissions: array
+  prohibitions: array
+  data_scopes: array
+  tool_scopes: array
+  environment_scopes: array
+  transaction_limits: object
+  deployment_limits: object
+  escalation_policy:
+    human_required: array
+    verifier_required: array
+    authority_gate_required: array
+  audit_requirements: array
+  expiration: string
+  provenance: object

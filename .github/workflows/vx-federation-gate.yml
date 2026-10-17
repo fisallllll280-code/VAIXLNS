@@ -1,0 +1,35 @@
+name: vx-federation-gate
+
+on:
+  push:
+    paths:
+      - "scripts/vx_federation_gate.py"
+      - "schemas/vx-federation-instance.schema.yaml"
+      - "tests/test_vx_federation_gate.py"
+      - "docs/architecture/VX_FEDERATION_GATE_V1.md"
+      - ".github/workflows/vx-federation-gate.yml"
+  pull_request:
+    paths:
+      - "scripts/vx_federation_gate.py"
+      - "schemas/vx-federation-instance.schema.yaml"
+      - "tests/test_vx_federation_gate.py"
+      - "docs/architecture/VX_FEDERATION_GATE_V1.md"
+      - ".github/workflows/vx-federation-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m unittest discover -s tests -p "test_vx_federation_gate.py" -v
+      - run: python scripts/vx_federation_gate.py simulation > vx-federation-evidence.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vx-federation-gate-evidence
+          path: vx-federation-evidence.json

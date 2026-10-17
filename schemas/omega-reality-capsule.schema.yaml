@@ -1,0 +1,31 @@
+schema: vaixlns.omega.reality_capsule
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - capsule_id
+  - source_state
+  - execution_context
+  - events
+  - observations
+  - evidence
+properties:
+  capsule_id: string
+  canon_hash: string
+  specification_hash: string
+  code_revision: string
+  dependencies: object
+  environment: object
+  model_provider: object
+  tools: array
+  input_hash: string
+  actions: array
+  events: array
+  output_hash: string
+  observations: array
+  evidence: array
+  verification: object
+  failures: array
+  source_state: string
+  execution_context: object
+  replay_ref: string
+  provenance: object
