@@ -39,3 +39,6 @@ jobs:
           name: vx-verification-report
           path: artifacts/vx-verification-report.json
           if-no-files-found: warn
+      - name: Enforce fail-closed readiness
+        if: success()
+        run: python scripts/vx_verify.py --strict
