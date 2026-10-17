@@ -14,7 +14,8 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -34,11 +35,14 @@ def read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def http_json(url: str, timeout: float = 4.0) -> dict[str, Any] | None:
+def http_json(url: str, timeout: float = 4.0, headers: dict[str, str] | None = None) -> dict[str, Any] | None:
     """GET an operator-supplied health URL; return None on any failure."""
     if not url.startswith(("http://", "https://")):
         return None
-    request = urllib.request.Request(url, headers={"Accept": "application/json"})
+    request_headers = {"Accept": "application/json"}
+    if headers:
+        request_headers.update(headers)
+    request = urllib.request.Request(url, headers=request_headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             if response.status < 200 or response.status >= 300:
@@ -69,12 +73,35 @@ def check_service_health() -> tuple[bool, dict[str, str]]:
     return all(value == "PASS" for value in outcomes.values()), outcomes
 
 
+def timestamp_is_fresh(value: Any, max_age: timedelta = timedelta(minutes=15)) -> bool:
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            return False
+        age = datetime.now(timezone.utc) - parsed.astimezone(timezone.utc)
+        return timedelta(seconds=-60) <= age <= max_age
+    except ValueError:
+        return False
+
+
 def check_meeting_health() -> bool:
     url = os.environ.get("VX_MEETING_HEALTH_URL", "")
-    payload = http_json(url) if url else None
+    if not url:
+        return False
+    challenge = str(uuid.uuid4())
+    payload = http_json(
+        url,
+        headers={"X-VX-Probe-Challenge": challenge, "Cache-Control": "no-cache"},
+    )
     if not payload:
         return False
+    # The endpoint must bind its live observation to this fresh probe. A static
+    # JSON fixture cannot know the unpredictable challenge value.
     return all((
+        payload.get("probe_challenge") == challenge,
+        timestamp_is_fresh(payload.get("observed_at"), timedelta(seconds=60)),
         payload.get("room_live") is True,
         payload.get("audio_test_passed") is True,
         payload.get("participant_presence_verified") is True,
@@ -149,7 +176,7 @@ def check_connectors() -> tuple[bool, int, dict[str, int]]:
         and receipt.get("connector_id")
         and receipt.get("request_id")
         and receipt.get("response_digest")
-        and receipt.get("timestamp")
+        and timestamp_is_fresh(receipt.get("timestamp"))
         and receipt.get("credential_redacted") is True
         and receipt.get("connector_id") in {
             item.get("connector_id") for item in connectors
@@ -202,6 +229,7 @@ def build_report(local_tests_passed: bool | None = None) -> dict[str, Any]:
             "state_guard_coverage_receipt_required": True,
             "unified_service_health": service_results,
             "meeting_health_endpoint_requires": [
+                "echoed per-request probe_challenge", "observed_at within 60 seconds",
                 "room_live=true", "audio_test_passed=true",
                 "participant_presence_verified=true", "names_persisted=true",
                 "session_id", "participant_count>=2",
