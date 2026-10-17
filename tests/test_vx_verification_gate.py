@@ -4,6 +4,7 @@ from unittest.mock import patch
 from datetime import datetime, timedelta, timezone
 
 from scripts.vx_verify import timestamp_is_fresh
+from scripts.vx_verify import check_meeting_health
 
 from scripts.vx_verify import check_meeting_health, check_service_health
 
@@ -35,6 +36,37 @@ class VXVerificationGateTests(unittest.TestCase):
 
     def test_recent_timezone_aware_timestamp_passes(self):
         self.assertTrue(timestamp_is_fresh(datetime.now(timezone.utc).isoformat()))
+
+    def test_static_meeting_health_fixture_fails_challenge(self):
+        static_payload = {
+            "probe_challenge": "fixed",
+            "observed_at": datetime.now(timezone.utc).isoformat(),
+            "room_live": True,
+            "audio_test_passed": True,
+            "participant_presence_verified": True,
+            "names_persisted": True,
+            "session_id": "session",
+            "participant_count": 2,
+        }
+        with patch.dict(os.environ, {"VX_MEETING_HEALTH_URL": "https://example.invalid/health"}):
+            with patch("scripts.vx_verify.http_json", return_value=static_payload):
+                self.assertFalse(check_meeting_health())
+
+    def test_meeting_health_requires_fresh_challenge_echo(self):
+        def live_endpoint(url, timeout=4.0, headers=None):
+            return {
+                "probe_challenge": headers["X-VX-Probe-Challenge"],
+                "observed_at": datetime.now(timezone.utc).isoformat(),
+                "room_live": True,
+                "audio_test_passed": True,
+                "participant_presence_verified": True,
+                "names_persisted": True,
+                "session_id": "live-session",
+                "participant_count": 2,
+            }
+        with patch.dict(os.environ, {"VX_MEETING_HEALTH_URL": "https://example.invalid/health"}):
+            with patch("scripts.vx_verify.http_json", side_effect=live_endpoint):
+                self.assertTrue(check_meeting_health())
 
 
 if __name__ == "__main__":
