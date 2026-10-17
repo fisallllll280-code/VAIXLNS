@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18"><title>VAIXLNS Ω Phone Console</title>
+<style>
+body{margin:0;background:#090d18;color:#edf3ff;font:16px -apple-system,BlinkMacSystemFont,sans-serif;padding:20px;line-height:1.6}
+main{max-width:760px;margin:auto}header,section{background:#111b2b;border:1px solid #29384e;border-radius:16px;padding:16px;margin:12px 0}
+h1{margin:0;color:#63e6e2}small,.muted{color:#9aa9c0}.warn{color:#f4c96b}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{border:1px solid #29384e;border-radius:12px;padding:12px}button{background:#12303b;color:#eaffff;border:1px solid #365b67;border-radius:10px;padding:12px;font-size:15px;width:100%;margin:5px 0}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#080c14;padding:12px;border-radius:10px;font-size:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style></head>
+<body><main>
+<header><small>SOVEREIGN ENGINEERING · MOBILE</small><h1>VAIXLNS Ω</h1><div>واجهة الأنظمة والتحقق من الآيفون</div></header>
+<section><strong class="warn">الحالة: واجهة أولية غير متصلة بالخلفية</strong><p>لا تدّعي هذه النسخة تشغيل VX أو اتصال الوكلاء. يلزم ربط API آمن واختبار مهمة فعلية قبل إعلان VERIFIED.</p></section>
+<div class="grid">
+<div class="tile"><strong>VAIXLNS</strong><br><small>الجذر المعماري</small></div>
+<div class="tile"><strong>VX Runtime</strong><br><small>NOT CONNECTED</small></div>
+<div class="tile"><strong>VLNS</strong><br><small>NOT CONNECTED</small></div>
+<div class="tile"><strong>NEXNET</strong><br><small>NOT CONNECTED</small></div>
+<div class="tile"><strong>ARC-X</strong><br><small>SPECIFICATION</small></div>
+<div class="tile"><strong>Ω.000</strong><br><small>READ ONLY · not loaded</small></div>
+</div>
+<section><h2>فحوص بيئة المتصفح</h2><button onclick="runChecks()">تشغيل فحوص البيئة</button><button onclick="exportReport()">تصدير تقرير JSON</button><pre id="out">لم يبدأ الفحص.</pre></section>
+<section><h2>بوابة الأدلة</h2><p>1. فتح الصفحة على الآيفون وتصويرها.</p><p>2. فحص runtime repository وملفات lock.</p><p>3. ربط endpoint محمي والتحقق من health.</p><p>4. تنفيذ مهمة canary في VX وتسجيل request ID وcommit SHA والسجلات.</p><p>5. مراجعة مستقلة قبل VERIFIED.</p></section>
+<footer><small>Branch: feat/vaixlns-iphone-console-v1 · project.genome وΩ.000 لم يُعدّلا.</small></footer>
+</main>
+<script>
+let report;
+function runChecks(){const c=[{test:"JavaScript + DOM",pass:typeof document!=="undefined",detail:"DOM available"},{test:"Viewport",pass:innerWidth>0,detail:innerWidth+"x"+innerHeight+" CSS px"},{test:"Secure context",pass:isSecureContext,detail:isSecureContext?"secure origin":"not secure"},{test:"VX backend",pass:false,detail:"NOT CONFIGURED"},{test:"Repository runtime",pass:false,detail:"NOT CHECKED"}];report={product:"VAIXLNS Ω Phone Console",timestamp:new Date().toISOString(),userAgent:navigator.userAgent,checks:c,verified:false};document.getElementById("out").textContent=JSON.stringify(report,null,2);return report}
+function exportReport(){if(!report)runChecks();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:"application/json"}));a.download="vaixlns-phone-diagnostics.json";a.click();URL.revokeObjectURL(a.href)}
+</script></body></html>
