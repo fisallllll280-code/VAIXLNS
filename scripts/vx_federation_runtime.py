@@ -240,6 +240,58 @@ class AnthropicMessagesAdapter:
         return {"text": text, "provider_response_id": parsed.get("id"), "model": parsed.get("model", connector.model)}
 
 
+class GoogleGeminiAdapter:
+    """Google Gemini generateContent adapter using an environment-only API key."""
+
+    def complete(self, connector: Connector, request: TaskRequest) -> dict[str, Any]:
+        if not connector.base_url:
+            raise ConnectorError("CONNECTOR_MISCONFIGURED", "base_url is required")
+        key = os.environ.get(connector.api_key_env, "") if connector.api_key_env else ""
+        if not key:
+            raise ConnectorError("CREDENTIAL_MISSING", "required credential is not configured")
+        system_parts = [m["content"] for m in request.messages if m["role"] == "system"]
+        contents = []
+        for message in request.messages:
+            if message["role"] == "system":
+                continue
+            role = "model" if message["role"] == "assistant" else "user"
+            contents.append({"role": role, "parts": [{"text": message["content"]}]})
+        if not contents:
+            raise ConnectorError("INVALID_REQUEST", "at least one non-system message is required")
+        payload: dict[str, Any] = {
+            "contents": contents,
+            "generationConfig": {"maxOutputTokens": min(request.max_output_tokens, connector.max_output_tokens)},
+        }
+        if system_parts:
+            payload["systemInstruction"] = {"parts": [{"text": "\\n\\n".join(system_parts)}]}
+        url = connector.base_url.rstrip("/") + "/models/" + connector.model + ":generateContent"
+        http_request = urllib.request.Request(
+            url,
+            data=canonical_json(payload).encode("utf-8"),
+            headers={"content-type": "application/json", "x-goog-api-key": key},
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(http_request, timeout=min(request.timeout_seconds, connector.timeout_seconds)) as response:
+                body = response.read(8 * 1024 * 1024 + 1)
+                if len(body) > 8 * 1024 * 1024:
+                    raise ConnectorError("RESPONSE_TOO_LARGE", "provider response exceeded 8 MiB")
+        except urllib.error.HTTPError as exc:
+            code = "RATE_LIMITED" if exc.code == 429 else "AUTH_FAILED" if exc.code in (401, 403) else "HTTP_ERROR"
+            raise ConnectorError(code, f"provider returned HTTP {exc.code}") from None
+        except (TimeoutError, urllib.error.URLError):
+            raise ConnectorError("PROVIDER_UNAVAILABLE", "provider endpoint could not be reached or timed out") from None
+        try:
+            parsed = json.loads(body.decode("utf-8"))
+            candidate = parsed["candidates"][0]
+            text = "".join(part["text"] for part in candidate["content"]["parts"] if isinstance(part.get("text"), str))
+            if not text:
+                raise ValueError("empty text")
+        except (UnicodeDecodeError, json.JSONDecodeError, KeyError, IndexError, TypeError, ValueError):
+            raise ConnectorError("MALFORMED_RESPONSE", "provider response did not match the expected schema") from None
+        return {"text": text, "provider_response_id": parsed.get("responseId"), "model": connector.model}
+
+
 class FederationRouter:
     def __init__(self, connectors: list[Connector], policy: Policy, adapters: dict[str, Adapter]):
         ids = [item.connector_id for item in connectors]
