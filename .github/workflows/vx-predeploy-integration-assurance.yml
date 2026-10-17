@@ -1,0 +1,99 @@
+name: VX Pre-deploy Integration Assurance
+
+on:
+  push:
+    branches:
+      - feat/vx-predeploy-integration-assurance-2026-10-17
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vaixlns-integrity-and-tests:
+    name: VAIXLNS integrity and regression suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Protect canonical source and master index
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD:project.genome)" = "7b8822cff6321d2b750aec030e29b928ed685940"
+          test "$(git rev-parse HEAD:registry/omega/omega-000-master-index.json)" = "cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc"
+          python -m json.tool project.genome >/dev/null
+          python -m json.tool registry/omega/omega-000-master-index.json >/dev/null
+          echo "canonical_files=unchanged"
+      - name: Run VAIXLNS regression tests
+        run: python -m unittest discover -s tests -v
+
+  vx-runtime:
+    name: VX-runtime regression and replay checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: fisallllll280-code/VX-runtime
+          ref: 3f018339a38e324a5049b0caf6d4708290ec1255
+          path: vx-runtime
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify repository contract
+        run: test -f vx-runtime/VAIXLNS_REPOSITORY_CONTRACT.md
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Compile and run VX-runtime tests
+        working-directory: vx-runtime
+        run: |
+          python -m compileall -q vxruntime tests
+          python -m pytest -q
+      - name: Verify external integration boundary
+        working-directory: vx-runtime
+        run: python -m pytest -q tests/test_external_integration.py
+
+  nexent:
+    name: NEXENT Python and Rust regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: fisallllll280-code/NEXENT
+          ref: f62cf5920174551f9a8f88deb420f9515bedc284
+          path: nexent
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install NEXENT test dependencies
+        working-directory: nexent
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+      - name: Run NEXENT Python tests
+        working-directory: nexent
+        run: pytest -q
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run NEXENT evidence crate tests
+        working-directory: nexent
+        run: cargo test --manifest-path rust/nexent-evidence/Cargo.toml
+
+  assurance-summary:
+    name: Integration evidence summary
+    if: always()
+    needs: [vaixlns-integrity-and-tests, vx-runtime, nexent]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce all required jobs
+        env:
+          VAIXLNS_RESULT: ${{ needs.vaixlns-integrity-and-tests.result }}
+          VX_RESULT: ${{ needs.vx-runtime.result }}
+          NEXENT_RESULT: ${{ needs.nexent.result }}
+        run: |
+          printf 'vaixlns=%s\nvx_runtime=%s\nnexent=%s\n' "$VAIXLNS_RESULT" "$VX_RESULT" "$NEXENT_RESULT"
+          test "$VAIXLNS_RESULT" = success
+          test "$VX_RESULT" = success
+          test "$NEXENT_RESULT" = success
