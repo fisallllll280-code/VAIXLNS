@@ -1,0 +1,21 @@
+{
+  "candidate_id": "VAIXLNS-CONTROL-PLANE-001",
+  "provenance": {
+    "canonical_ref": "project.genome::v1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE"
+  },
+  "gates": {
+    "identity": "PASS",
+    "contract": "PASS",
+    "source": "PASS",
+    "build": "N/A",
+    "execution": "PASS",
+    "tests": "PASS",
+    "conformance": "PASS",
+    "security": "PASS",
+    "performance": "N/A",
+    "provenance": "PASS",
+    "recovery": "PASS",
+    "evidence": "PASS"
+  }
+}

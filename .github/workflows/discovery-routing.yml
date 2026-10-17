@@ -1,0 +1,38 @@
+name: Discovery Routing Conformance
+
+on:
+  push:
+    paths:
+      - "scripts/discovery_router.py"
+      - "schemas/discovery-routing-record.schema.json"
+      - "tests/test_discovery_router.py"
+      - "docs/agents/DISCOVERY_ROUTING_CONTRACT_V1.md"
+      - ".github/workflows/discovery-routing.yml"
+  pull_request:
+    paths:
+      - "scripts/discovery_router.py"
+      - "schemas/discovery-routing-record.schema.json"
+      - "tests/test_discovery_router.py"
+      - "docs/agents/DISCOVERY_ROUTING_CONTRACT_V1.md"
+      - ".github/workflows/discovery-routing.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discovery-routing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate routing schema JSON
+        run: python -m json.tool schemas/discovery-routing-record.schema.json > /dev/null
+      - name: Compile router and tests
+        run: python -m py_compile scripts/discovery_router.py tests/test_discovery_router.py
+      - name: Run deterministic routing tests
+        run: python -m unittest discover -s tests -p "test_discovery_router.py" -v

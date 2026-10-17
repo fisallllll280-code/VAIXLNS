@@ -1,0 +1,38 @@
+schema: vaixlns.omega.pattern
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - pattern_id
+  - pattern_type
+  - problem_class
+  - preconditions
+  - invariants
+  - provenance
+  - state
+properties:
+  pattern_id: string
+  name: string
+  pattern_type:
+    enum: [PRIMITIVE, COMPOSITE, COGNITIVE, ARCHITECTURE, EXECUTION, VERIFICATION, RECOVERY, SECURITY, AGENT, FEDERATION, EMERGENT]
+  problem_class: string
+  purpose: string
+  preconditions: array
+  invariants: array
+  architecture: object
+  behavior: object
+  interfaces: array
+  dependencies: array
+  agent_roles: array
+  capabilities: array
+  failure_modes: array
+  anti_spec: array
+  recovery: array
+  verification_rules: array
+  evidence_requirements: array
+  parent_patterns: array
+  derived_patterns: array
+  provenance: object
+  lineage: object
+  version: string
+  state:
+    enum: [CANDIDATE, SPECIFIED, TESTED, VERIFIED, ADOPTED, DEPRECATED, QUARANTINED]

@@ -4,6 +4,10 @@
 
 The list below is a source-derived innovation catalog from the available project corpus and the existing VAIXLNS/NEXENT catalogs. It does not imply implementation.
 
+**Operational detail:** [`docs/innovation/INNOVATION_OPERATION_INDEX.md`](../innovation/INNOVATION_OPERATION_INDEX.md) is the generated, detailed projection containing descriptions, operating mechanisms, inputs, outputs, admission gates, failure modes, source references, and status disagreements. The machine-readable projection is `registry/innovation-operation-index.v1.json`; its builder is `tools/build_innovation_operation_index.py`.
+
+**Automation and truth boundary:** the generated index is rebuilt from source catalogs and Ω.000, validated in CI, and refreshed through a draft pull request. Any family-rule description is labelled `RULE_DERIVED_DRAFT`; profile details are not evidence of implementation. Automatic canonical promotion is disabled, and source conflicts remain visible.
+
 ## Discovery / synthesis
 
 1. Architecture Self-Discovery Engine (ASDE)
@@ -90,3 +94,71 @@ Do not create a new top-level system when an innovation can be expressed as:
 `Existing canonical owner + capability + explicit contract + evidence + proof + lifecycle + lineage`.
 
 A proposal becomes implementation only after code, tests, and evidence establish that state.
+
+## 2026-10-07 context additions
+
+62. Fragment-Aware Semantic Index / Between-the-Lines Recall
+63. VX Cognitive Federation
+64. Agent Mind Genome + Authority Envelope
+65. Ω-Pattern Forest / Pattern Generation
+66. Predictive Causal Scenario + Safe-Survival Planning
+67. Ω-IMMUNE Failure-to-Law + Cross-VX Inoculation
+68. Data / Tool / Developer Fabric
+69. Ω-ARENA Competitive Capability Evaluation
+70. Transversal Security Fabric
+71. System Context Closure / Semantic Reconstruction Fabric
+72. Ω-Pattern Genome
+73. Ω-Pattern Adversarial Laboratory
+74. Ω-Pattern Foundry / Private Pattern Intelligence Boundary
+75. Pattern IP / Provenance Vault
+76. Pattern Novelty Firewall + Pattern Death / Resurrection
+77. VX Federation Gate / Live Multi-Instance Semantic Routing
+
+These entries are context-level proposals/specifications unless separately supported by implementation evidence. Existing names and lineage remain authoritative.
+
+## 2026-10-07 operational additions
+
+78. VX Stage Runtime Golden Scenario
+79. VX Stage Authority-Aware Routing
+80. VX Stage Failure Isolation + Recovery
+81. VX Stage Provenance Evidence
+82. VX Stage Release/Operational Runbook
+
+
+## 2026-10-09 research-to-engineering decision additions
+
+83. Ω Research-to-Engineering Decision Fabric (REDF)
+84. Multi-Lane Research Query Planner
+85. Source Provenance and Content Identity Gate
+86. Claim / Counterevidence / Contradiction Investigator
+87. Novelty and Legacy-Lineage Investigator
+88. Engineering Contract Completeness Agent
+89. Deterministic Research Decision Bundle and Non-Promotion Gate
+
+Implementation reference: `VAIXLNS-unified/innovation_control/research_fabric.py`. The focused conformance suite passes 9/9 tests and the complete repository verification workflow passes on the merged change. The fabric remains `EVOLVING / IMPLEMENTED`: live search adapters and item-by-item recovery of the historical `0001–2750` catalog are not claimed complete. These are capabilities under existing canonical ownership, not new top-level systems.
+
+## 2026-10-09 Saudi-first launch and capital-governance additions
+
+These are programme-level engineering proposals, not evidence of earned revenue, deployed capital controls, or signed partnerships.
+
+90. Saudi-First Startup Engineering Support Fabric
+91. Customer-Bounded Agent / Workflow Pilot Contract
+92. Founder-Financed Launch Capital and Sources-and-Uses Ledger
+93. Innovation Reserve 30-Day No-Distribution Gate
+94. Saudi–US Six-Company Innovation Federation (3 Saudi + 3 US target slots)
+95. Financial-Agent Safe-Action Boundary (research/reporting/preparation; human authorization)
+96. Founder-Controlled Legacy Classification and Zero-Loss Lineage Gate
+97. Engineering Offer-to-Acceptance Evidence Pipeline
+
+Implementation / policy references:
+- `docs/strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md`
+- `registry/capital_lock_policy.v1.json`
+
+Status notes:
+- The US$10,000 is proposed as founder-provided capital from the founder's own portfolio/wallet. It is not customer revenue and is not classified as bank lending unless bank facility documents prove that classification.
+- The sales offer ladder is an illustrative test target, not achieved or guaranteed income.
+- Funds earmarked for essential obligations cannot also count as the locked Innovation Fund reserve. The 30-day lock applies only to a reconciled, available residual reserve after due obligations and required operating envelopes are separated.
+- The founder-reported 10% progress is not independently verified until milestones and denominator are evidenced.
+- The six-company structure is a target only; all partner slots remain unfilled until due diligence and signed agreements.
+- The founder decides historic/legacy classifications. AI tools can recommend with evidence but cannot silently delete, merge, rename, or supersede entries.
+

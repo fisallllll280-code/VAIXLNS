@@ -1,0 +1,45 @@
+name: Four-System Interface Contract Audit
+
+on:
+  push:
+    paths:
+      - "registry/federation/four-system-interface-registry.v1.json"
+      - "tools/four_system_interface_audit.py"
+      - "tests/test_four_system_interface_audit.py"
+      - ".github/workflows/four-system-interface-audit.yml"
+  pull_request:
+    paths:
+      - "registry/federation/four-system-interface-registry.v1.json"
+      - "tools/four_system_interface_audit.py"
+      - "tests/test_four_system_interface_audit.py"
+      - ".github/workflows/four-system-interface-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate registry JSON
+        run: python -m json.tool registry/federation/four-system-interface-registry.v1.json >/dev/null
+      - name: Compile audit and tests
+        run: python -m py_compile tools/four_system_interface_audit.py tests/test_four_system_interface_audit.py
+      - name: Run interface contract tests
+        run: python -m unittest discover -s tests -p 'test_four_system_interface_audit.py' -v
+      - name: Emit static interface audit
+        run: python tools/four_system_interface_audit.py --output "$RUNNER_TEMP/four-system-interface-audit.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: four-system-interface-audit-${{ github.sha }}
+          path: ${{ runner.temp }}/four-system-interface-audit.json
+          if-no-files-found: error
+          retention-days: 90
