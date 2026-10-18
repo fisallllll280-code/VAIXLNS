@@ -30,3 +30,8 @@ It does not deploy services, create a meeting service, configure credentials, ac
 - `READY`: every configured readiness gate passed for the reported evidence.
 - `NOT_READY`: at least one gate failed or lacks evidence.
 - `CI_TESTS_PASSED` refers to tests in this workflow run, not a claim that all workflows or external end-to-end tests passed.
+
+
+## Cross-repository conformance
+
+The federated conformance workflow tests pinned revisions of VX-runtime, VX50_COMPLETE_BUILD, and NEXENT. NAXLNS is a private repository, so its tests run only when repository variable `NAXLNS_READ_ACCESS=enabled` and a read-only repository secret `NAXLNS_READ_TOKEN` are configured in VAIXLNS Actions settings. If not configured, that job is skipped and the VLNS identity/runtime remains unverified; do not treat a skipped job as a pass. The workflow tests repository code only and does not prove that any production service is deployed or reachable.
