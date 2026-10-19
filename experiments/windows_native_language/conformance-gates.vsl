@@ -1,0 +1,38 @@
+VSL 1.0-DRAFT
+
+CONFORMANCE_SUITE WindowsRecoveryLanguage {
+    test PARSE_DETERMINISM {
+        same_source_digest => same_parse_tree_digest;
+    }
+
+    test SEMANTIC_DETERMINISM {
+        same_typed_input => same_semantic_ir_digest;
+    }
+
+    test PROVENANCE_PRESERVATION {
+        every_ir_node => source_file_and_span_and_source_digest;
+    }
+
+    test NO_AMBIENT_EXECUTION {
+        no_declared_capability => no_host_operation;
+    }
+
+    test FORBIDDEN_EFFECT_REJECTION {
+        effect IN {DESTRUCTIVE, SECURITY_BYPASS, CANONICAL_WRITE}
+        => COMPILE_REJECTED;
+    }
+
+    test APPROVAL_SEPARATION {
+        VERIFIED != AUTHORIZED;
+        AUTHORIZED != EXECUTED;
+    }
+
+    test ROUND_TRIP_AND_REPLAY {
+        plan_receipt => deterministic_replay;
+    }
+
+    release_gate:
+        ALL_TESTS_PASS
+        AND independent_review == APPROVED
+        AND language_owner_approval == PRESENT;
+}

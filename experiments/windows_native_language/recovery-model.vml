@@ -1,0 +1,48 @@
+VML 1.0-DRAFT
+
+MODEL WindowsRecoverySafety {
+    variable evidence_valid: Boolean;
+    variable diagnosis_verified: Boolean;
+    variable human_approved: Boolean;
+    variable rollback_available: Boolean;
+    variable action_effect: EffectClass;
+    variable execution_authorized: Boolean;
+
+    invariant NO_EXECUTION_WITHOUT_AUTHORITY:
+        execution_authorized == TRUE
+        IMPLIES evidence_valid == TRUE
+            AND diagnosis_verified == TRUE
+            AND human_approved == TRUE
+            AND rollback_available == TRUE;
+
+    invariant NO_DESTRUCTIVE_PROTOTYPE_ACTION:
+        action_effect IN {DESTRUCTIVE, SECURITY_BYPASS, CANONICAL_WRITE}
+        IMPLIES execution_authorized == FALSE;
+
+    invariant EVIDENCE_IS_NOT_AUTHORITY:
+        evidence_valid == TRUE
+        DOES_NOT_IMPLY human_approved == TRUE;
+
+    invariant DIAGNOSIS_IS_NOT_CERTAINTY:
+        diagnosis_verified == FALSE
+        IMPLIES execution_authorized == FALSE;
+
+    invariant UNKNOWN_IS_NOT_VERIFIED:
+        evidence_valid == UNKNOWN
+        IMPLIES execution_authorized == FALSE;
+}
+
+PROOF_OBLIGATION P1 {
+    claim: "All prototype outputs are plans only";
+    required_evidence: "Conformance trace shows zero host-effect operations";
+}
+
+PROOF_OBLIGATION P2 {
+    claim: "Equivalent normalized input yields identical semantic plan";
+    required_evidence: "Repeated compilation produces identical Semantic IR digest";
+}
+
+PROOF_OBLIGATION P3 {
+    claim: "Forbidden effects cannot be expressed or lowered";
+    required_evidence: "Negative tests for destructive, security-bypass, and canonical-write operations";
+}
