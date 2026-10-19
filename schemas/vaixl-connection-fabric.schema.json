@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://vaixlns.local/schemas/vaixl-connection-fabric.schema.json",
+  "title":"VAIXLNS Semantic Connection Fabric Evidence",
+  "type":"object",
+  "required":["fabric_id","schema_version","channels","events","evidence_hash"],
+  "properties":{
+    "fabric_id":{"const":"VAIXLNS-CONNECTION-FABRIC-001"},
+    "schema_version":{"const":"vaixlns.connection_fabric.v1"},
+    "channels":{"type":"object"},
+    "events":{"type":"array","items":{"type":"object"}},
+    "evidence_hash":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  },
+  "additionalProperties":false
+}
