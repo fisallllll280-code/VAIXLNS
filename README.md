@@ -19,6 +19,8 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [Conformance gap closure v1](docs/indexes/CONFORMANCE_GAP_CLOSURE_V1.md)
 - [Canonical repository layout](docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md)
 - [Canonical V6 architecture](docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md)
+- [VX universal adapter fabric](docs/integration/VX_UNIVERSAL_ADAPTER_FABRIC_V1.md)
+- [VX universal adapter registry](registry/integration/VX_UNIVERSAL_ADAPTER_REGISTRY_V1.json)
 - [Recovery audit](docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md)
 - [Unified innovation delivery map](docs/recovery/VAIXLNS_UNIFIED_INNOVATION_DELIVERY_MAP_2026-10-10.md)
 - [AEPF adversarial engineering and proof fabric](docs/architecture/AEPF_ADVERSARIAL_ENGINEERING_AND_PROOF_FABRIC_V1.md)
