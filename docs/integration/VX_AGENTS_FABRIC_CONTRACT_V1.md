@@ -73,3 +73,10 @@ The implementation repository's main branch now includes opt-in fsync-backed JSO
 The event and artifact stores verify hash/digest integrity when loaded and refuse silent corruption or identity replacement. Failure memory provides prior incident patterns to subsequent tasks; it does not train model weights. Paths are local stores, not yet an adapter to the canonical VAIXLNS Event/Ledger authority.
 
 The integration is still \`PROPOSED_NOT_ADMITTED\`: canonical ledger federation, automatic crash-resume/checkpoint controller, real web/repository/sandbox tool bindings, cross-repository replay, independent fresh proof and production admission remain outstanding.
+
+
+## CLI automation status — 2026-10-09
+
+The implementation repository now provides \`python -m vx_agents_fabric.cli\` to load optional model bindings, apply explicit role-version pins, run the staged engineering workflow and emit a full JSON report. Missing models, adapters or evidence continue to yield HOLD; REJECT and HOLD are exposed through process exit codes. Candidate readiness remains separate from production approval.
+
+The CLI does not imply that browsing, repository mutation, sandbox code execution or the central VAIXLNS Event/Ledger is connected. Those are separate integration adapters and admission obligations. Local persistent stores are available as opt-in JSONL files; canonical production persistence and crash-resume remain not admitted.
