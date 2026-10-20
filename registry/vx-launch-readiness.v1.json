@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PRE_RELEASE_HOLD",
+  "product": "VX Engineering Forge",
+  "authority": "project.genome::v1.0.0 → Ω.000",
+  "source_indexes": [
+    "docs/indexes/INNOVATION_MASTER_INDEX.md",
+    "docs/indexes/V_AGENT_ORCHESTRATION_KERNEL_V1.md",
+    "docs/indexes/V_MULTIDOMAIN_SYSTEM_SYNTHESIS_ENGINE_V1.md",
+    "docs/indexes/V_COMPUTATIONAL_REALITY_ENGINE_V1.md",
+    "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md",
+    "docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md",
+    "registry/innovation-operation-index.v1.json"
+  ],
+  "historical_recovery": "PARTIAL_NOT_ALL_2750_VERIFIED",
+  "release_policy": {
+    "max_external_spend_sar": 0,
+    "each_release_requires_explicit_approval": true,
+    "main_merge_allowed": false,
+    "auto_publish_allowed": false,
+    "protected_files": [
+      "project.genome",
+      "registry/omega/omega-000-master-index.json"
+    ]
+  },
+  "models": [
+    {
+      "provider": "OpenAI",
+      "connection": "UNVERIFIED",
+      "cost": "UNKNOWN",
+      "admission": "HOLD"
+    },
+    {
+      "provider": "Anthropic",
+      "connection": "UNVERIFIED",
+      "cost": "UNKNOWN",
+      "admission": "HOLD"
+    },
+    {
+      "provider": "Google Gemini",
+      "connection": "UNVERIFIED",
+      "cost": "UNKNOWN",
+      "admission": "HOLD"
+    },
+    {
+      "provider": "xAI",
+      "connection": "UNVERIFIED",
+      "cost": "UNKNOWN",
+      "admission": "HOLD"
+    },
+    {
+      "provider": "Mistral",
+      "connection": "UNVERIFIED",
+      "cost": "UNKNOWN",
+      "admission": "HOLD"
+    }
+  ],
+  "markets": [
+    {
+      "id": "owned-web",
+      "status": "HOLD",
+      "approval_revision": null,
+      "release_artifact": null
+    },
+    {
+      "id": "v-exchange",
+      "status": "HOLD",
+      "approval_revision": null,
+      "release_artifact": null
+    },
+    {
+      "id": "github-marketplace",
+      "status": "HOLD",
+      "approval_revision": null,
+      "release_artifact": null
+    },
+    {
+      "id": "google-play",
+      "status": "HOLD",
+      "approval_revision": null,
+      "release_artifact": null
+    },
+    {
+      "id": "apple-app-store",
+      "status": "HOLD",
+      "approval_revision": null,
+      "release_artifact": null
+    }
+  ],
+  "gates": {
+    "runtime_end_to_end": false,
+    "agent_authority": false,
+    "index_restore": false,
+    "provider_live_connection": false,
+    "zero_spend_enforcement": false,
+    "independent_verification": false,
+    "privacy_security": false,
+    "rollback": false,
+    "store_assets": false,
+    "human_approval": false
+  },
+  "note": "Inventory only. No production deployment, verified model connection, release or revenue."
+}
