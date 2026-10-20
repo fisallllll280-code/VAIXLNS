@@ -1,0 +1,64 @@
+name: VX Runtime Verification Gate
+
+on:
+  push:
+    branches: [main, vx-runtime-proof-gate]
+  pull_request:
+    paths:
+      - "scripts/vx_verify.py"
+      - "tests/test_vx_verification_gate.py"
+      - "RUNBOOK_VERIFICATION.md"
+      - ".github/workflows/vx-runtime-verification.yml"
+      - "scripts/vx_federation_runtime.py"
+      - "scripts/pcs001_validator.py"
+      - "registry/federation/vx_model_connectors.v1.json"
+      - "tests/test_vx_federation_runtime.py"
+      - "tests/test_pcs001_validator.py"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run repository tests
+        run: python -m unittest discover -s tests -v
+      - name: Prepare evidence directory
+        run: mkdir -p artifacts
+      - name: Run isolated VX stage lifecycle
+        run: python scripts/vx_stage_runtime.py stage-run --output artifacts/vx-stage-evidence.json
+      - name: Validate stage evidence invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          evidence = json.loads(Path("artifacts/vx-stage-evidence.json").read_text())
+          assert evidence.get("overall") == "PASS"
+          assert evidence.get("routing", {}).get("blocked_after_isolation") is True
+          assert evidence.get("failure_injection", {}).get("isolation_enforced") is True
+          assert evidence.get("failure_injection", {}).get("recovery_successful") is True
+          assert evidence.get("slo", {}).get("authority_bypass_observed") is False
+          assert evidence.get("slo", {}).get("isolation_bypass_observed") is False
+          print("VX_STAGE_REFERENCE_HARNESS=PASS")
+          PY
+      - name: Mark tests passed for this workflow run
+        run: echo "VX_TESTS_PASSED=true" >> "$GITHUB_ENV"
+      - name: Generate fail-closed readiness report
+        run: python scripts/vx_verify.py --json-out artifacts/vx-verification-report.json
+      - name: Upload readiness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-verification-report
+          path: |
+            artifacts/vx-verification-report.json
+            artifacts/vx-stage-evidence.json
+          if-no-files-found: warn
+      - name: Enforce fail-closed readiness
+        if: success()
+        run: python scripts/vx_verify.py --strict

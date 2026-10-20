@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "VAIXLNS.FEDERATION.FOUR_SYSTEM_UNIFICATION.V1",
+  "authority": {
+    "canonical_source": "project.genome",
+    "canonical_source_version": "1.0.0",
+    "master_index": "Ω.000",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "mutation_policy": "additive-only; canonical genome and master index are not modified by this proposal"
+  },
+  "policy": {
+    "preserve_repository_history": true,
+    "preserve_original_ideas": true,
+    "allow_destructive_merge": false,
+    "allow_identity_inference_from_repository_name": false,
+    "verified_requires_reproducible_evidence": true,
+    "unresolved_identity_blocks_canonical_admission": true
+  },
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "role": "sovereign control plane, canonical registry, governance and recovery",
+      "repository_surfaces": ["fisallllll280-code/VAIXLNS"],
+      "identity_state": "CANONICAL",
+      "implementation_state": "PARTIAL",
+      "evidence": [
+        {
+          "kind": "canonical_genome",
+          "path": "project.genome",
+          "blob_sha": "7b8822cff6321d2b750aec030e29b928ed685940",
+          "claim": "declares VAIXLNS as canonical repository and Ω.000 as master index"
+        }
+      ]
+    },
+    {
+      "system_id": "VLNS",
+      "role": "independent knowledge and discovery system",
+      "repository_surfaces": ["fisallllll280-code/NAXLNS"],
+      "identity_state": "UNVERIFIED",
+      "implementation_state": "PARTIAL",
+      "unresolved_mapping": "VLNS ↔ NAXLNS",
+      "evidence": [
+        {
+          "kind": "reconciliation_record",
+          "path": "docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+          "claim": "explicitly leaves VLNS and NAXLNS identity mapping unresolved"
+        }
+      ]
+    },
+    {
+      "system_id": "VX",
+      "role": "governed execution and runtime boundary",
+      "repository_surfaces": [
+        "fisallllll280-code/VX-runtime",
+        "fisallllll280-code/VX50_COMPLETE_BUILD"
+      ],
+      "identity_state": "CANONICAL_SYSTEM_MULTI_REPOSITORY",
+      "implementation_state": "PARTIAL",
+      "evidence": [
+        {
+          "kind": "reconciliation_record",
+          "path": "docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+          "claim": "retains VX as one system with multiple repository surfaces and distinguishes runtime specification from verified implementation"
+        }
+      ]
+    },
+    {
+      "system_id": "NEXNET",
+      "role": "independent discovery, network and architecture-search system",
+      "repository_surfaces": ["fisallllll280-code/NEXENT"],
+      "identity_state": "UNVERIFIED",
+      "implementation_state": "PARTIAL",
+      "unresolved_mapping": "NEXNET ↔ NEXENT",
+      "evidence": [
+        {
+          "kind": "reconciliation_record",
+          "path": "docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+          "claim": "explicitly leaves NEXNET and NEXENT identity mapping unresolved"
+        }
+      ]
+    }
+  ],
+  "required_edges": [
+    "same_as",
+    "implements",
+    "derived_from",
+    "supersedes",
+    "depends_on",
+    "verified_by"
+  ],
+  "admission_gates": [
+    "repository identity and system identity are recorded separately",
+    "source revision is immutable and recorded",
+    "contract and schema compatibility are checked",
+    "dependencies and entrypoints are inventoried",
+    "tests and CI results are linked to exact revisions",
+    "unresolved identity mappings remain HOLD",
+    "no source or historical record is deleted by federation automation"
+  ],
+  "status": "SPECIFIED"
+}

@@ -1,0 +1,69 @@
+name: VAIXLNS Innovation Index Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/indexes/INNOVATION_MASTER_INDEX.md'
+      - 'docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md'
+      - 'docs/innovation/VAIXLNS_INNOVATION_CATALOG.md'
+      - 'docs/innovation/innovation-federation.json'
+      - 'docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md'
+      - 'docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md'
+      - 'registry/omega/omega-000-master-index.json'
+      - 'registry/innovation_measurement.v1.json'
+      - 'registry/innovation-operation-profiles.v1.json'
+      - 'tools/build_innovation_operation_index.py'
+      - 'tools/validate_innovation_operation_index.py'
+      - 'schemas/innovation-operation-index.schema.json'
+  schedule:
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: innovation-index-sync
+  cancel-in-progress: false
+
+jobs:
+  generate-and-propose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Build deterministic innovation profiles
+        run: python tools/build_innovation_operation_index.py
+
+      - name: Validate generated index and source provenance
+        run: python tools/validate_innovation_operation_index.py
+
+      - name: Verify deterministic regeneration
+        run: python tools/build_innovation_operation_index.py --check
+
+      - name: Run focused tests
+        run: python -m unittest discover -s tests -p 'test_innovation_operation_index.py' -v
+
+      - name: Propose generated index changes
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/innovation-operation-index
+          delete-branch: false
+          add-paths: |
+            registry/innovation-operation-index.v1.json
+            docs/innovation/INNOVATION_OPERATION_INDEX.md
+          commit-message: 'chore(index): refresh generated innovation operation index'
+          title: 'chore(index): refresh innovation descriptions and operating mechanisms'
+          body: |
+            Deterministic projection of the canonical VAIXLNS innovation sources.
+
+            This pull request updates the machine-readable innovation operation index and its Markdown view. Source states and disagreements are preserved; rule-derived explanations are drafts; canonical promotion is disabled. Review generated changes and CI evidence before merge.
+          draft: true

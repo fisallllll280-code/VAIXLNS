@@ -1,0 +1,51 @@
+name: VAIXLNS Fast Engineering Feedback
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fast-feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout full history for conservative change-impact analysis
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run impact-routed tests and emit receipt
+        env:
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          EVENT_HEAD_SHA: ${{ github.sha }}
+        run: |
+          python tools/engineering_test_router.py \
+            --base "$EVENT_BASE_SHA" \
+            --head "$EVENT_HEAD_SHA" \
+            --output engineering-test-receipt.json
+
+      - name: Prove known VCRE changes use the focused route
+        run: |
+          python tools/engineering_test_router.py \
+            --changed-file vcre/predictive.py \
+            --output focused-vcre-test-receipt.json
+
+      - name: Upload test plans and runtime receipts
+        if: always() && hashFiles('engineering-test-receipt.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-engineering-test-receipts
+          path: |
+            engineering-test-receipt.json
+            focused-vcre-test-receipt.json
+          if-no-files-found: error

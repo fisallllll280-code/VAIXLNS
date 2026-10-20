@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schema/omega-memory-task-innovation.v1.schema.json",
+  "title": "VAIXLNS Omega Memory Task Innovation Kernel",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "kernel_id",
+    "parent",
+    "purpose",
+    "authority",
+    "capabilities",
+    "policies",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "kernel_id": {"const": "VAIXLNS.OMEGA.MEMORY_TASK_INNOVATION.001"},
+    "parent": {"const": "VAIXLNS"},
+    "purpose": {"type": "string", "minLength": 30},
+    "authority": {
+      "type": "object",
+      "required": ["canonical_source", "authority_anchor", "master_index", "canonical_writes", "self_promotion"],
+      "properties": {
+        "canonical_source": {"const": "project.genome::v1.0.0"},
+        "authority_anchor": {"const": "Ω0_GENESIS_CORE"},
+        "master_index": {"const": "Ω.000"},
+        "canonical_writes": {"const": "DISABLED"},
+        "self_promotion": {"const": "FORBIDDEN"}
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "state", "inputs", "outputs", "acceptance"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^MTIK-[0-9]{3}$"},
+          "name": {"type": "string", "minLength": 3},
+          "state": {"enum": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED_PENDING_CI", "PARTIAL", "VERIFIED"]},
+          "inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "outputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "acceptance": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "policies": {
+      "type": "object",
+      "required": [
+        "memory_is_read_only",
+        "task_planning_is_not_execution",
+        "external_effects_enabled",
+        "independent_verification_required",
+        "history_preserved"
+      ],
+      "properties": {
+        "memory_is_read_only": {"const": true},
+        "task_planning_is_not_execution": {"const": true},
+        "external_effects_enabled": {"const": false},
+        "independent_verification_required": {"const": true},
+        "history_preserved": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "integration_points": {"type": "array", "items": {"type": "string"}},
+    "known_limits": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "status": {"enum": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED_PENDING_CI", "PARTIAL", "VERIFIED"]}
+  },
+  "additionalProperties": false
+}

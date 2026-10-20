@@ -1,0 +1,24 @@
+tool_id: VA-GENESIS-001
+name: VA Genesis Operational Engine
+version: 0.1.0
+owner: VAIXLNS
+system: VA
+implementation_path: va/
+specification_path: docs/tools/VA_GENESIS_OPERATIONAL_ENGINE_V1.md
+test_path: tests/test_va_genesis.py
+workflow_path: .github/workflows/va-genesis.yml
+status: PARTIAL
+maturity: IMPLEMENTED-PROTOTYPE
+production_readiness: NOT_VERIFIED
+execution_authorization: false
+production_admission: BLOCKED_UNTIL_EVIDENCE_AND_APPROVAL
+capabilities:
+  - one-message system scaffold generation
+  - deterministic source and copy hashes
+  - four isolated operational copies
+  - structural verification without executing generated code
+  - loopback-only generation API
+limitations:
+  - no external model provider
+  - generated application is a generic service scaffold
+  - runtime and container execution evidence not yet established

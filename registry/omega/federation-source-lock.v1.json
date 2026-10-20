@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-10-06",
+  "canonical_repository": "fisallllll280-code/VAIXLNS",
+  "role": "FEDERATION_SOURCE_LOCK",
+  "refresh_rule": "Refresh on governed integration, repository-pulse reconciliation, or source-head change.",
+  "sources": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "branch": "main",
+      "head_sha": "a89716d1f59be88552fb218382a9aa7474fed8a2",
+      "role": "EXECUTION",
+      "integration_state": "SELECTIVE_CONSOLIDATION"
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "branch": "main",
+      "head_sha": "88dee23a376af3f395b2fd1758009e8f6da4ad0f",
+      "role": "DISCOVERY_RESEARCH",
+      "integration_state": "SPECIALIZED"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "branch": "main",
+      "head_sha": "087e2daea47029227f194d3c43e532bcb32bcdc7",
+      "role": "CORE_CONTRACTS",
+      "integration_state": "RECONCILE_BEFORE_IMPORT"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "branch": "main",
+      "head_sha": "12e09d00e6bc71bc5fc3126046c46715e39946af",
+      "role": "SPECIALIZED_KERNEL",
+      "integration_state": "KEEP_SPECIALIZED"
+    },
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "branch": "main",
+      "head_sha": "abf6e029ae7d498ec19662776903638d519e9d47",
+      "role": "VX50_BUILD_SURFACE",
+      "integration_state": "QUARANTINED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "branch": "main",
+      "head_sha": "f844de25171ba49eb4fd466533ebab159889f51a",
+      "role": "INTENT_PIPELINE",
+      "integration_state": "DOC_SELECTIVE_INTEGRATION"
+    }
+  ]
+}
