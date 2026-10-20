@@ -55,3 +55,10 @@
 - ../../tools/engineering_test_router.py — conservative change-impact test routing; unknown impact and missing Git-diff metadata fall back to the full unit-test suite and produce an execution receipt.
 - ../../tests/test_vcre_predictive.py and ../../tests/test_engineering_test_router.py — executable tests for the bounded predictive kernel and safe test-selection rules.
 - ../../.github/workflows/engineering-fast-feedback.yml — focused engineering feedback workflow that publishes a machine-readable test receipt; it does not waive other CI gates.
+
+## VX integration execution plan — registered 2026-10-21
+
+- [VX Integration Execution Index v1](VX_INTEGRATION_EXECUTION_INDEX_V1.md) — document `VX-INT-EXEC-001`, all 15 test IDs, evidence requirements and execution state `NOT_RUN`.
+- [Final VX Integration Execution Plan v1](../testing/VX_INTEGRATION_EXECUTION_PLAN_V1.md) — execute `T01–T05`, then `T06–T10`, then `T15`, then `T11–T14`; prerequisites, G0–G5, failure/recovery, independent review, safe branch, no merge to `main`, and protection of `project.genome` / `Ω.000`.
+
+This is document registration, not test execution or canonical promotion. T15 exercises release/rollback in isolation; the real release decision remains HOLD until T11–T14 and final evidence review are complete. The snapshot date above describes the historical index; this dated registration is an additive navigation update.

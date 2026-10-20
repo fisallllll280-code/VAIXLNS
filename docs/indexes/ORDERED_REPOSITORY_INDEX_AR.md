@@ -691,3 +691,17 @@ Status notes:
 - The six-company structure is a target only; all partner slots remain unfilled until due diligence and signed agreements.
 - The founder decides historic/legacy classifications. AI tools can recommend with evidence but cannot silently delete, merge, rename, or supersede entries.
 
+## 9. تثبيت خطة اختبارات تكامل VX — 2026-10-21
+
+| المرجع | الوثيقة | حالة التسجيل والتنفيذ |
+|---|---|---|
+| `VX-INT-EXEC-001 / v1.0` | [وثيقة التنفيذ والمراجعة](../testing/VX_INTEGRATION_EXECUTION_PLAN_V1.md) | وثيقة مكتملة؛ التشغيل بعد G0؛ الاختبارات `NOT_RUN` |
+| فهرس الاختبارات والأدلة | [فهرس التنفيذ المرتب](VX_INTEGRATION_EXECUTION_INDEX_V1.md) | 15 معرفًا ثابتًا، مع ترتيب التنفيذ ومتطلبات الأدلة والبوابات |
+
+الترتيب المعتمد: **T01–T05 ثم T06–T10 ثم T15 ثم T11–T14**.
+
+الإحالات إلى المناظر الأصلية: 17 الملفات والمخرجات، 18 الاختبارات، 19 الأدلة، 21 التشغيل، 22 الفشل والاستعادة، 23 الأمن، و27 الإحالات المتقاطعة. لا يعاد ترقيم البنود التاريخية ولا تُنشأ هوية Ω جديدة.
+
+يتحقق T15 من البوابة والتراجع في بيئة معزولة؛ يبقى قرار الإصدار الحقيقي HOLD حتى اكتمال أدلة T11–T14 ومراجعة G5. التثبيت لا يثبت نجاح الاختبارات، ولا يغير `project.genome` أو `Ω.000`، ولا يمنح إذن دمج إلى `main` أو نشر.
+
+هذا ملحق ملاحي جديد إلى الجرد المثبت أعلاه؛ لا يبدل شجرة المصدر التاريخية أو أرقام عرضها أو بصماتها.
