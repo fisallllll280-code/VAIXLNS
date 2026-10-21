@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS source-grounded capability record",
+  "type": "object",
+  "required": [
+    "source_record_id",
+    "repository",
+    "path",
+    "revision_sha",
+    "record_type",
+    "original_name",
+    "state",
+    "originating_system"
+  ],
+  "properties": {
+    "source_record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repository": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "revision_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "content_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "original_name": {
+      "type": "string"
+    },
+    "originating_system": {
+      "type": "string"
+    },
+    "record_type": {
+      "enum": [
+        "INDEX_VIEW",
+        "TOOL",
+        "AGENT",
+        "INNOVATION",
+        "ALGORITHM",
+        "MODEL",
+        "LIBRARY",
+        "API",
+        "INTERFACE",
+        "TEST",
+        "SPEC"
+      ]
+    },
+    "family": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "canonical_candidate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "state": {
+      "enum": [
+        "RECOVERED",
+        "CANONICAL",
+        "PROPOSED",
+        "IMPLEMENTED",
+        "VERIFIED"
+      ]
+    },
+    "evidence_status": {
+      "enum": [
+        "UNKNOWN",
+        "MISSING",
+        "REPORTED",
+        "REPRODUCED"
+      ]
+    },
+    "evidence_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "test_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "replay_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflict_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
