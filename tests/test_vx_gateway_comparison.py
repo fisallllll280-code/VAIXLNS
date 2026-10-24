@@ -57,6 +57,39 @@ class GatewayComparisonTests(unittest.TestCase):
         result = compare_gateways(route(), bad, policy())
         self.assertEqual([x["gateway_id"] for x in result["gateways"]], ["omniroute"])
 
+    def test_malformed_allowlist_fails_closed_with_receipt(self):
+        for value in ([{}], [[]], [None], [123], ["litellm", {}]):
+            with self.subTest(value=value):
+                p = policy()
+                p["allowed_gateways"] = value
+                result = compare_gateways(route(), gateways(), p)
+                self.assertEqual(result["status"], "BLOCKED")
+                self.assertIn("INVALID_GATEWAY_ALLOWLIST", result["blockers"])
+                self.assertEqual(result["gateways"], [])
+                self.assertEqual(len(result["receipt_sha256"]), 64)
+                self.assertFalse(result["execution_performed"])
+                self.assertFalse(result["live_provider_called"])
+
+    def test_malformed_gateway_id_skipped_without_exception(self):
+        for value in ({}, [], None, 42):
+            with self.subTest(value=value):
+                bad = gateways()
+                bad[0]["gateway_id"] = value
+                result = compare_gateways(route(), bad, policy())
+                self.assertEqual(result["status"], "OFFLINE_COMPARISON_READY")
+                self.assertEqual([x["gateway_id"] for x in result["gateways"]], ["omniroute"])
+                self.assertFalse(result["execution_performed"])
+
+    def test_only_invalid_gateway_ids_fail_closed(self):
+        bad = gateways()
+        bad[0]["gateway_id"] = {}
+        bad[1]["gateway_id"] = []
+        result = compare_gateways(route(), bad, policy())
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("NO_VERIFIED_OFFLINE_GATEWAY", result["blockers"])
+        self.assertEqual(result["gateways"], [])
+        self.assertEqual(len(result["receipt_sha256"]), 64)
+
     def test_missing_secret_boundary_rejected(self):
         bad = gateways()
         for item in bad:
