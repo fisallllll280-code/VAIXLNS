@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VAIXLNS | Social Command Center</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#0b1220;color:#e9f2fc}
+*{box-sizing:border-box}body{margin:0;padding:20px;max-width:1200px;margin-inline:auto}
+h1{font-size:clamp(1.6rem,4vw,2.6rem)}h2{font-size:1.2rem}p,small{color:#aebed0}
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:15px}
+.brand{color:#6fe4dc;letter-spacing:.08em;font-weight:900}.pill{background:#26344b;border:1px solid #45607c;border-radius:24px;padding:9px 15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:15px;margin:20px 0}
+.card{border:1px solid #35435a;background:#151f30;border-radius:16px;padding:18px}
+.card strong{font-size:1.12rem}.tag{color:#f8d486}button{border:0;border-radius:10px;padding:12px 18px;background:#5deddc;color:#091421;font-weight:700;cursor:pointer}
+button:disabled{background:#627080;color:#d2d9e2;cursor:not-allowed}button.secondary{background:#31435c;color:#fff}
+input,textarea,select{width:100%;border-radius:9px;border:1px solid #43536d;background:#101a2b;color:#fff;padding:11px;margin:7px 0 15px}
+textarea{min-height:125px;resize:vertical}label{display:block;margin-top:12px}
+footer{color:#8ca3b9;margin:35px 0} .status{color:#fbd48b} .hint{font-size:.85rem}
+</style></head>
+<body>
+<header><div><div class="brand">VAIXLNS Ω</div><h1>غرفة قيادة البرامج والنشر</h1><p>Social Command Center · نسخة عرض محلية بلا اتصال بالحسابات</p></div><span class="pill">النشر الخارجي: معطّل افتراضياً</span></header>
+<h2>البرامج</h2>
+<div class="grid" id="programs"></div>
+<h2>حسابات التواصل</h2><div class="grid" id="channels"></div>
+<section class="card"><h2>تحضير منشور موحد</h2><p>يمكن إنشاء مسودة ونسخها، لكن لا يتم إرسالها لأي شبكة.</p>
+<label for="program">البرنامج</label><select id="program"></select>
+<label for="message">النص</label><textarea id="message" maxlength="2000" placeholder="اكتب إعلان البرنامج أو تحديثه..."></textarea>
+<label for="network">قالب القناة</label><select id="network"></select>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button id="copy">نسخ المسودة</button><button disabled title="يلزم اعتماد وتكامل OAuth رسمي">نشر الآن — غير متاح</button></div>
+<p id="feedback" role="status" aria-live="polite"></p></section>
+<footer>لا توجد بيانات اعتماد محفوظة أو مصادقة OAuth أو طلبات شبكة في هذه النسخة. أسماء المنتجات مجرد عناصر تنظيمية وليست دليل تشغيل.</footer>
+<script>
+"use strict";
+const programs=["VAIXLNS","VX Runtime","VV OS","Ω Reality Forge","VAIXLNS Marketplace"];
+const channels=["X","LinkedIn","YouTube","TikTok","Instagram","Facebook"];
+const programEl=document.getElementById("program"),networkEl=document.getElementById("network");
+for(const name of programs){const card=document.createElement("div");card.className="card";const title=document.createElement("strong");title.textContent=name;const info=document.createElement("p");info.textContent="حالة التشغيل: غير متحققة من هذه الشاشة";card.append(title,info);document.getElementById("programs").append(card);
+const opt=document.createElement("option");opt.value=name;opt.textContent=name;programEl.append(opt)}
+for(const name of channels){const card=document.createElement("div");card.className="card";const title=document.createElement("strong");title.textContent=name;const status=document.createElement("p");status.className="status";status.textContent="غير مرتبط — OAuth غير مفعّل";card.append(title,status);document.getElementById("channels").append(card);
+const opt=document.createElement("option");opt.value=name;opt.textContent=name;networkEl.append(opt)}
+document.getElementById("copy").addEventListener("click",async()=>{const msg=document.getElementById("message").value.trim();const feedback=document.getElementById("feedback");if(!msg){feedback.textContent="اكتب نص المنشور أولاً";return}const out=`[${programEl.value}] • ${networkEl.value}\n\n${msg}`;try{await navigator.clipboard.writeText(out);feedback.textContent="تم نسخ المسودة، ولم يتم النشر"}catch{feedback.textContent="تعذر النسخ التلقائي؛ انسخ النص من الحقل يدوياً"}});
+</script></body></html>
