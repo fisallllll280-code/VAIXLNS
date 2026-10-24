@@ -53,10 +53,18 @@ def main() -> int:
         print("INDEX_RECOVERY_BLOCKED: repository root or deterministic builder is missing", file=sys.stderr)
         return 2
 
+    revision_check = run(["git", "rev-parse", "--verify", "HEAD"], root)
+    source_revision = revision_check.stdout.strip() if revision_check.returncode == 0 else None
+    if source_revision is None or len(source_revision) != 40 or any(c not in "0123456789abcdef" for c in source_revision):
+        print("INDEX_RECOVERY_BLOCKED: pinned Git source revision cannot be established", file=sys.stderr)
+        return 2
+
     receipt: dict[str, Any] = {
         "schema": "VAIXLNS.IndexRecoveryReceipt.v1",
         "started_at": datetime.now(timezone.utc).isoformat(),
         "source_root": str(root),
+        "source_revision": source_revision,
+        "tests_skipped": bool(args.skip_tests),
         "output_dir": str(output_dir),
         "authority": "VAIXLNS",
         "canonical_source": "project.genome::v1.0.0",
