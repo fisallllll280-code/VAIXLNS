@@ -35,7 +35,7 @@ def compare_gateways(
     if policy.get("max_external_spend_sar") != 0:
         blockers.append("ZERO_SPEND_POLICY_REQUIRED")
     allowed = policy.get("allowed_gateways")
-    if not isinstance(allowed, list) or not allowed or any(x not in GATEWAYS for x in allowed):
+    if not isinstance(allowed, list) or not allowed or any(not isinstance(x, str) or x not in GATEWAYS for x in allowed):
         blockers.append("INVALID_GATEWAY_ALLOWLIST")
         allowed = []
     candidates = []
@@ -43,7 +43,7 @@ def compare_gateways(
         if not isinstance(entry, dict):
             continue
         name = entry.get("gateway_id")
-        if name not in allowed or name not in GATEWAYS:
+        if not isinstance(name, str) or name not in allowed or name not in GATEWAYS:
             continue
         if entry.get("contract_verified") is not True or entry.get("tenant_isolation_verified") is not True:
             continue
