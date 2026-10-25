@@ -24,7 +24,9 @@ PROTECTED = (
     "schemas/",
 )
 ALLOWED_STATES = {"REVIEW", "QUARANTINE_CANDIDATE", "RETIRED_APPROVED"}
+TARGET_TYPES = {"registry_identity", "external_repository", "repository_file", "index", "model", "tool", "defect", "workflow", "design", "innovation", "agent", "service", "dependency", "other"}
 SHA_RE = re.compile(r"^[a-f0-9]{40}$")
+SHA256_RE = re.compile(r"^[a-f0-9]{64}$")
 
 
 def git_blob_sha(data: bytes) -> str:
@@ -83,9 +85,17 @@ def validate(root: Path) -> dict:
         if not isinstance(target, str) or not target:
             errors.append("TARGET_REQUIRED:" + str(rid))
             target = ""
-        if record.get("target_type") not in {"registry_identity", "external_repository", "repository_file"}:
+        if record.get("target_type") not in TARGET_TYPES:
             errors.append("UNKNOWN_TARGET_TYPE:" + str(rid))
-        for evidence in record.get("evidence", []):
+        if not isinstance(record.get("evidence"), list) or not record["evidence"]:
+            errors.append("EVIDENCE_REQUIRED:" + str(rid))
+            evidence_rows = []
+        else:
+            evidence_rows = record["evidence"]
+        for evidence in evidence_rows:
+            if not isinstance(evidence, dict):
+                errors.append("EVIDENCE_RECORD_NOT_OBJECT:" + str(rid))
+                continue
             relative = evidence.get("path", "")
             sha = evidence.get("blob_sha", "")
             if (not isinstance(relative, str) or relative.startswith("/") or
@@ -110,7 +120,8 @@ def validate(root: Path) -> dict:
                 and all(approval.get(k) for k in ("reviewer", "approval_ref", "date"))
                 and isinstance(snapshot, dict)
                 and bool(snapshot.get("source_ref"))
-                and bool(snapshot.get("sha256"))
+                and isinstance(snapshot.get("sha256"), str)
+                and bool(SHA256_RE.fullmatch(snapshot["sha256"]))
                 and bool(record.get("evidence"))
             )
             if not complete:
