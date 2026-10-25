@@ -1,0 +1,56 @@
+name: VAIXLNS Integration Register Validation
+
+on:
+  push:
+    paths:
+      - "registry/integration/**"
+      - "docs/indexes/INTEGRATION_CATALOG_AND_EXECUTION_REGISTER_V1.md"
+      - ".github/workflows/integration-register-validation.yml"
+  pull_request:
+    paths:
+      - "registry/integration/**"
+      - "docs/indexes/INTEGRATION_CATALOG_AND_EXECUTION_REGISTER_V1.md"
+      - ".github/workflows/integration-register-validation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  catalog-and-connectors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install isolated MCP test dependency
+        run: python -m pip install --disable-pip-version-check -r requirements-arcx-mcp.txt
+      - name: Validate catalog coverage and protected-path policy
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          catalog = json.loads(Path("registry/integration/vaixlns-integration-catalog.v1.json").read_text(encoding="utf-8"))
+          assert catalog["status"] == "AUDIT_BASELINE_NOT_CANONICAL"
+          assert catalog["scope"]["accessible_repository_count"] == len(catalog["repositories"]) == 53
+          assert catalog["scope"]["protected_paths"] == ["project.genome", "Ω.000"]
+          assert [item["group"] for item in catalog["execution_plan"][:4]] == ["T01-T05", "T06-T10", "T15", "T11-T14"]
+          assert len({item["full_name"] for item in catalog["repositories"]}) == 53
+          assert all(item["discovery_state"] in {"RELATED_SURFACE_DISCOVERED", "UNASSESSED"} for item in catalog["repositories"])
+          print("INTEGRATION_CATALOG_VALID=PASS")
+          PY
+      - name: Run ARC-X MCP contract tests
+        run: python -m unittest discover -s tests -p "arcx_mcp_contract_tests.py" -v
+      - name: Run model gateway tests
+        run: python -m unittest discover -s tests -p "test_model_mcp_gateway.py" -v
+      - name: Run federation contract tests
+        run: |
+          python -m unittest discover -s tests -p "test_federation_contract_edges.py" -v
+          python -m unittest discover -s tests -p "test_four_system_federation.py" -v
+      - name: Run VX federation and Stage tests
+        run: |
+          python -m unittest discover -s tests -p "test_vx_federation_gate.py" -v
+          python -m unittest discover -s tests -p "test_vx_federation_runtime.py" -v
+          python -m unittest discover -s tests -p "test_vx_stage_runtime.py" -v

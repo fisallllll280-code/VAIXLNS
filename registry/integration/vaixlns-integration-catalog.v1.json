@@ -295,8 +295,36 @@
       "group": "full-repository-ci",
       "sequence": 5,
       "gate": "CI",
-      "state": "TRIGGER_ON_BRANCH_COMMIT",
-      "required": "GitHub Actions result tied to exact branch SHA"
+      "state": "PASS_ON_RECORDED_SHA",
+      "required": "GitHub Actions result tied to exact branch SHA",
+      "evidence": {
+        "exact_sha": "4ef59a0acb6f8a87767ace50832717d85505956c",
+        "observed_at": "2026-10-25T00:35Z",
+        "runs": [
+          {
+            "name": "VAIXLNS Conformance",
+            "run_number": 2141,
+            "run_id": 40146569372,
+            "result": "PASS",
+            "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40146569372"
+          },
+          {
+            "name": "VAIXLNS Zero-Loss Index",
+            "run_number": 115,
+            "run_id": 40146569381,
+            "result": "PASS",
+            "checks": [
+              "zero-loss index regression tests",
+              "pinned snapshot safety and restore tests",
+              "all 28 index views",
+              "source digest and cross-reference integrity",
+              "integrated recovery orchestrator",
+              "artifact upload"
+            ],
+            "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40146569381"
+          }
+        ]
+      }
     }
   ],
   "repositories": [
@@ -883,5 +911,33 @@
         "push": true
       }
     }
-  ]
+  ],
+  "last_run_receipts": {
+    "exact_sha": "4ef59a0acb6f8a87767ace50832717d85505956c",
+    "observed_at": "2026-10-25T00:35Z",
+    "runs": [
+      {
+        "name": "VAIXLNS Conformance",
+        "run_number": 2141,
+        "run_id": 40146569372,
+        "result": "PASS",
+        "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40146569372"
+      },
+      {
+        "name": "VAIXLNS Zero-Loss Index",
+        "run_number": 115,
+        "run_id": 40146569381,
+        "result": "PASS",
+        "checks": [
+          "zero-loss index regression tests",
+          "pinned snapshot safety and restore tests",
+          "all 28 index views",
+          "source digest and cross-reference integrity",
+          "integrated recovery orchestrator",
+          "artifact upload"
+        ],
+        "url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40146569381"
+      }
+    ]
+  }
 }
