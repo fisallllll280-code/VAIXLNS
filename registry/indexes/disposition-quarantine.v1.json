@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "index_id": "VAIXLNS.DISPOSITION_QUARANTINE",
+  "authority": "VAIXLNS",
+  "status": "IMPLEMENTED_REGISTER_ONLY_NOT_EXECUTED",
+  "baseline_ref": "433969a43b604563e22b70b8cb88223aff539fad",
+  "source_of_truth": "docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md",
+  "guardrails": [
+    "NO_AUTOMATIC_DELETION",
+    "NO_CLAIMED_VERIFICATION_FROM_INDEX_ENTRY",
+    "PRESERVE_ORIGINAL_AND_LINEAGE",
+    "REQUIRE_INDEPENDENT_EVIDENCE",
+    "NO_MERGE_OR_PUBLICATION",
+    "PROTECT_OMEGA_000_AND_PROJECT_GENOME"
+  ],
+  "records": [
+    {
+      "id": "Ω.DISPOSITION.0001",
+      "target_type": "registry_identity",
+      "target_locator": "Ω.REPO.010 / Ω.REPO.039",
+      "label": "VAIXLNS-Intent-to-Reality repeated label",
+      "state": "REVIEW",
+      "proposed_action": "RECONCILE",
+      "reason": "Two register rows have the same repository display name; this does not establish two distinct GitHub repositories or permission to delete either source.",
+      "evidence": [
+        {
+          "path": "docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md",
+          "blob_sha": "b9aab0c51da06aeae510e7609e426eb495c72e08",
+          "observation": "Register explicitly notes collision between Ω.REPO.010 and Ω.REPO.039."
+        }
+      ],
+      "dependency_audit": "NOT_RUN",
+      "unique_knowledge_recovered": false,
+      "rollback_snapshot": null,
+      "reviewed_decision": null,
+      "active_projection_excluded": false,
+      "source_deleted": false
+    },
+    {
+      "id": "Ω.DISPOSITION.0002",
+      "target_type": "external_repository",
+      "target_locator": "tools-vaixlns-meta-core-v0.3.ts",
+      "label": "Possibly empty legacy tooling repository",
+      "state": "QUARANTINE_CANDIDATE",
+      "proposed_action": "ARCHIVE_2_REVIEW",
+      "reason": "Repository decision register marks it R0 and archive candidate, but content, identity and dependents have not been independently inspected.",
+      "evidence": [
+        {
+          "path": "docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md",
+          "blob_sha": "b9aab0c51da06aeae510e7609e426eb495c72e08",
+          "observation": "Ω.REPO.018 is described as an unfinished tooling surface."
+        }
+      ],
+      "dependency_audit": "NOT_RUN",
+      "unique_knowledge_recovered": false,
+      "rollback_snapshot": null,
+      "reviewed_decision": null,
+      "active_projection_excluded": false,
+      "source_deleted": false
+    },
+    {
+      "id": "Ω.DISPOSITION.0003",
+      "target_type": "external_repository",
+      "target_locator": "friendly-engine",
+      "label": "VV Arena experimental candidate",
+      "state": "QUARANTINE_CANDIDATE",
+      "proposed_action": "ARCHIVE_2_REVIEW",
+      "reason": "Decision register calls this near-duplicate experimental repository; contents and dependencies not yet proved redundant.",
+      "evidence": [
+        {
+          "path": "docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md",
+          "blob_sha": "b9aab0c51da06aeae510e7609e426eb495c72e08",
+          "observation": "Ω.REPO.034 is a near-duplicate candidate, not verified redundant."
+        }
+      ],
+      "dependency_audit": "NOT_RUN",
+      "unique_knowledge_recovered": false,
+      "rollback_snapshot": null,
+      "reviewed_decision": null,
+      "active_projection_excluded": false,
+      "source_deleted": false
+    }
+  ]
+}
