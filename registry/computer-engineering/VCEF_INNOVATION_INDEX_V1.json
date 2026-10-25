@@ -1,0 +1,211 @@
+{
+  "schema": "vaixlns.vcef.innovation-index.v1",
+  "snapshot": "2026-10-25",
+  "status": "RESEARCH_CANDIDATES_NOT_CANONICALLY_ADMITTED",
+  "authority": "fisallllll280-code/VAIXLNS",
+  "policy": {
+    "source_provenance_required": true,
+    "licensing_review_required": true,
+    "no_external_code_copy": true,
+    "no_automatic_hardware_fabrication": true,
+    "no_production_deployment": true
+  },
+  "tracks": [
+    {
+      "id": "CE-01",
+      "name": "processor architecture"
+    },
+    {
+      "id": "CE-02",
+      "name": "RTL and FPGA"
+    },
+    {
+      "id": "CE-03",
+      "name": "ASIC and chiplets"
+    },
+    {
+      "id": "CE-04",
+      "name": "PCB and electronics"
+    },
+    {
+      "id": "CE-05",
+      "name": "firmware and RTOS"
+    },
+    {
+      "id": "CE-06",
+      "name": "system emulation"
+    },
+    {
+      "id": "CE-07",
+      "name": "hardware security"
+    },
+    {
+      "id": "CE-08",
+      "name": "performance and emerging computing"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Verilator",
+      "role": "RTL simulation",
+      "gate": "sandbox"
+    },
+    {
+      "name": "cocotb",
+      "role": "RTL Python testbench",
+      "gate": "sandbox"
+    },
+    {
+      "name": "Yosys",
+      "role": "logic synthesis",
+      "gate": "sandbox"
+    },
+    {
+      "name": "QEMU",
+      "role": "system emulation",
+      "gate": "sandbox"
+    },
+    {
+      "name": "Renode",
+      "role": "embedded simulation",
+      "gate": "sandbox"
+    },
+    {
+      "name": "gem5",
+      "role": "architecture performance",
+      "gate": "benchmark"
+    },
+    {
+      "name": "OpenROAD",
+      "role": "physical ASIC design",
+      "gate": "license_and_pdk_review"
+    },
+    {
+      "name": "KiCad",
+      "role": "PCB design",
+      "gate": "sandbox"
+    },
+    {
+      "name": "OpenOCD",
+      "role": "on-chip debug",
+      "gate": "authorized_hardware_only"
+    }
+  ],
+  "innovations": [
+    {
+      "id": "CEI-001",
+      "name": "RISC-V domain-specific acceleration",
+      "track": "CE-01",
+      "maturity": "RESEARCH_TO_PROTOTYPE",
+      "priority": "P0",
+      "hypothesis": "Measure a small RV32I core and accelerator against a software-only reference",
+      "sources": [
+        "https://doi.org/10.1109/ACCESS.2026.3704965"
+      ],
+      "toolchain": [
+        "Verilator",
+        "Yosys",
+        "cocotb"
+      ]
+    },
+    {
+      "id": "CEI-002",
+      "name": "Open-source chiplet systems",
+      "track": "CE-03",
+      "maturity": "RESEARCH",
+      "priority": "P1",
+      "hypothesis": "Model interconnect latency and energy before considering physical integration",
+      "sources": [
+        "https://www.research-collection.ethz.ch/entities/publication/25ab968e-3a3a-41ee-9652-b593e1c778f1"
+      ],
+      "toolchain": [
+        "gem5"
+      ]
+    },
+    {
+      "id": "CEI-003",
+      "name": "Photonic in-memory computing",
+      "track": "CE-08",
+      "maturity": "EXPERIMENTAL_RESEARCH",
+      "priority": "P2",
+      "hypothesis": "Benchmark published energy and latency claims against a digital baseline with matched workloads",
+      "sources": [
+        "https://www.nature.com/articles/s44460-026-00123-2"
+      ],
+      "toolchain": [
+        "Python simulation"
+      ]
+    },
+    {
+      "id": "CEI-004",
+      "name": "Secure RISC-V root of trust",
+      "track": "CE-07",
+      "maturity": "VALIDATED_EXTERNAL_PROTOTYPE",
+      "priority": "P1",
+      "hypothesis": "Evaluate secure-boot attestation contracts in emulation without claiming silicon equivalence",
+      "sources": [
+        "https://www.iis.fraunhofer.de/en/pr/2026/press-release-risc-v-secure-element-licensable.html"
+      ],
+      "toolchain": [
+        "QEMU"
+      ]
+    },
+    {
+      "id": "CEI-005",
+      "name": "Chiplet memory access isolation",
+      "track": "CE-07",
+      "maturity": "RESEARCH",
+      "priority": "P1",
+      "hypothesis": "Model access-control boundaries and deny unauthorized cross-chiplet memory transactions",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S1383762126002924"
+      ],
+      "toolchain": [
+        "Python simulation"
+      ]
+    },
+    {
+      "id": "CEI-006",
+      "name": "Reconfigurable RISC-V instructions",
+      "track": "CE-02",
+      "maturity": "RESEARCH_PROTOTYPE",
+      "priority": "P1",
+      "hypothesis": "Compare reconfiguration overhead and fallback correctness under failure injection",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S0141933126000384"
+      ],
+      "toolchain": [
+        "Verilator",
+        "cocotb"
+      ]
+    },
+    {
+      "id": "CEI-007",
+      "name": "Open soft-GPU with RISC-V and HBM",
+      "track": "CE-08",
+      "maturity": "RESEARCH_PROTOTYPE",
+      "priority": "P2",
+      "hypothesis": "Evaluate portability and memory throughput of a software model before FPGA hardware",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S1383762126000548"
+      ],
+      "toolchain": [
+        "gem5"
+      ]
+    },
+    {
+      "id": "CEI-008",
+      "name": "Heterogeneous AI chiplets",
+      "track": "CE-03",
+      "maturity": "PUBLISHED_SILICON_RESEARCH",
+      "priority": "P2",
+      "hypothesis": "Compare dense/sparse accelerator workload mix and energy under normalized workloads",
+      "sources": [
+        "https://ieeexplore.ieee.org/abstract/document/11577229"
+      ],
+      "toolchain": [
+        "gem5"
+      ]
+    }
+  ]
+}
