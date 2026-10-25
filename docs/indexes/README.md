@@ -16,7 +16,7 @@
 - ../innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md — recovered 97-item portfolio, implementation/evidence boundaries, and phased execution sequence; review projection only.
 - ../innovation/INNOVATION_OPERATION_INDEX.md — generated detailed innovation descriptions, operation steps, inputs/outputs, admission gates, failure modes, source lineage, and status disagreements.
 - ../../registry/innovation-operation-index.v1.json — machine-readable generated innovation operation index; regenerate with python tools/build_innovation_operation_index.py.
-- REPOSITORY_FEDERATION_INDEX.md — all 40 currently visible owned repositories and their role.
+- REPOSITORY_FEDERATION_INDEX.md — federation role map from the 2026-10-03 snapshot; current 53-repository inventory is in INTEGRATION_CATALOG_AND_EXECUTION_REGISTER_V1.md and the machine-readable registry.
 - INTEGRATION_CATALOG_AND_EXECUTION_REGISTER_V1.md — observed integrations, all 53 account-visible repositories, evidence boundaries, and the ordered VX-INT-EXEC-001 execution register.
 - ../../registry/integration/vaixlns-integration-catalog.v1.json — machine-readable repository and integration catalog; uninspected repositories remain UNASSESSED.
 - ENGINEERING_DECISION_REGISTER.md — concise architecture rationale; not private chain-of-thought.
