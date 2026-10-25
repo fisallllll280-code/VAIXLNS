@@ -4,6 +4,8 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 
 ## Navigation
 
+- [Evidence closure execution plan (155 records, simulation + proof gates)](docs/operations/VAIXLNS_EVIDENCE_CLOSURE_EXECUTION_PLAN_2026-10-25.md)
+
 - [Master index navigation](docs/indexes/README.md)
 - [Master recovery status](docs/indexes/MASTER_RECOVERY_STATUS.md)
 - [Archive source index](docs/indexes/ARCHIVE_SOURCE_INDEX.md)
