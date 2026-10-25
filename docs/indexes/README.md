@@ -17,6 +17,8 @@
 - ../innovation/INNOVATION_OPERATION_INDEX.md — generated detailed innovation descriptions, operation steps, inputs/outputs, admission gates, failure modes, source lineage, and status disagreements.
 - ../../registry/innovation-operation-index.v1.json — machine-readable generated innovation operation index; regenerate with python tools/build_innovation_operation_index.py.
 - REPOSITORY_FEDERATION_INDEX.md — all 40 currently visible owned repositories and their role.
+- INTEGRATION_CATALOG_AND_EXECUTION_REGISTER_V1.md — observed integrations, all 53 account-visible repositories, evidence boundaries, and the ordered VX-INT-EXEC-001 execution register.
+- ../../registry/integration/vaixlns-integration-catalog.v1.json — machine-readable repository and integration catalog; uninspected repositories remain UNASSESSED.
 - ENGINEERING_DECISION_REGISTER.md — concise architecture rationale; not private chain-of-thought.
 - CANONICAL_REPOSITORY_LAYOUT.md — target structure and ownership boundaries.
 - REPOSITORY_PERPETUAL_ENGINE_V1.md — continuous repository creation, development, verification and innovation loop.
