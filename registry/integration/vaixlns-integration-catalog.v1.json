@@ -1,0 +1,887 @@
+{
+  "schema_version": "1.0.0",
+  "status": "AUDIT_BASELINE_NOT_CANONICAL",
+  "observed_at": "2026-10-25",
+  "source": {
+    "repository": "fisallllll280-code/VAIXLNS",
+    "ref": "main",
+    "commit": "1794d46217e50dfa581dcadec60f3705e77747a8",
+    "inventory": "GitHub connected account repository listing"
+  },
+  "scope": {
+    "accessible_repository_count": 53,
+    "content_audit_complete": false,
+    "execution_claims_require_run_receipts": true,
+    "protected_paths": [
+      "project.genome",
+      "Ω.000"
+    ]
+  },
+  "policy": {
+    "canonical_authority": "VAIXLNS",
+    "execution_mediator": "VX",
+    "direct_system_to_system_calls": "FORBIDDEN_UNLESS_CONTRACTED",
+    "no_proof_no_commit": true,
+    "merge_to_main": false,
+    "publish": false,
+    "external_spend_sar": 0
+  },
+  "system_identity": {
+    "VAIXLNS": "CANONICAL_AUTHORITY",
+    "VLNS": "IDENTITY_UNVERIFIED_NAXLNS_CANDIDATE",
+    "VX": "RUNTIME_SURFACE_VX-runtime_AND_VX50_COMPLETE_BUILD",
+    "NEXNET": "IDENTITY_UNVERIFIED_NEXENT_CANDIDATE"
+  },
+  "integrations": [
+    {
+      "id": "INT-MCP-ARCX-001",
+      "name": "ARC-X MCP server",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "source_paths": [
+        "tools/arcx_mcp/server.py",
+        "requirements-arcx-mcp.txt",
+        "tests/arcx_mcp_contract_tests.py",
+        ".github/workflows/arcx-windows-mcp.yml"
+      ],
+      "observed_state": "SOURCE_AND_TEST_SURFACE_PRESENT",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "dependency-install",
+        "stdio-or-http-transport",
+        "path-confinement",
+        "sensitive-file-denial",
+        "malformed-input",
+        "deterministic-hash",
+        "host-compatibility"
+      ],
+      "next_action": "run pinned contract tests in isolated CI and capture receipt"
+    },
+    {
+      "id": "INT-MCP-MODEL-001",
+      "name": "Model MCP gateway",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "source_paths": [
+        "tools/model_mcp/server.py",
+        "requirements-model-mcp.txt",
+        "tests/test_model_mcp_gateway.py"
+      ],
+      "observed_state": "SOURCE_AND_TEST_SURFACE_PRESENT",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "provider-configuration",
+        "secret-free-logs",
+        "timeout-and-retry",
+        "schema-validation",
+        "default-deny"
+      ],
+      "next_action": "run gateway tests with no provider credentials; live endpoint remains separate"
+    },
+    {
+      "id": "INT-FED-VX-001",
+      "name": "VX federation and runtime gates",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "source_paths": [
+        "registry/federation/federation_contract_edges.v1.json",
+        "registry/federation/four-system-interface-registry.v1.json",
+        "registry/federation/vx_model_connectors.v1.json",
+        "scripts/vx_federation_gate.py",
+        "scripts/vx_federation_runtime.py",
+        "tests/test_vx_federation_gate.py",
+        "tests/test_vx_federation_runtime.py"
+      ],
+      "observed_state": "CONTRACTS_AND_TESTS_PRESENT",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "identity-resolution",
+        "contract-validation",
+        "fail-closed",
+        "replay",
+        "evidence-sink",
+        "no-bypass"
+      ],
+      "next_action": "validate contract edges then execute isolated simulation/runtime tests"
+    },
+    {
+      "id": "INT-STAGE-VX-001",
+      "name": "VX Stage reference runtime",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "source_paths": [
+        "scripts/vx_stage_runtime.py",
+        "tests/test_vx_stage_runtime.py",
+        ".github/workflows/vx-stage-runtime.yml"
+      ],
+      "observed_state": "REFERENCE_IMPLEMENTATION_PRESENT",
+      "runtime_state": "PRODUCTION_NOT_VERIFIED",
+      "gates": [
+        "authority-routing",
+        "fault-isolation",
+        "recovery",
+        "replay",
+        "sustained-runtime"
+      ],
+      "next_action": "run stage reference tests; production remains blocked pending deployed evidence"
+    },
+    {
+      "id": "INT-REPO-UNIFIED-001",
+      "name": "VAIXLNS-unified integration surface",
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "revision-pin",
+        "dependency-map",
+        "contract-tests",
+        "cross-repo-conformance"
+      ],
+      "next_action": "inventory exact commit, manifests, tests, workflows, and contracts"
+    },
+    {
+      "id": "INT-VX-RUNTIME-001",
+      "name": "VX-runtime",
+      "repository": "fisallllll280-code/VX-runtime",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "revision-pin",
+        "runtime-contract",
+        "unit",
+        "integration",
+        "replay"
+      ],
+      "next_action": "inventory current head and compare against federation pin before running tests"
+    },
+    {
+      "id": "INT-NEXENT-001",
+      "name": "NEXENT discovery/research surface",
+      "repository": "fisallllll280-code/NEXENT",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_IDENTITY_UNVERIFIED",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "identity-reconciliation",
+        "revision-pin",
+        "test-suite",
+        "provenance"
+      ],
+      "next_action": "inventory and execute pinned tests; NEXNET equivalence remains unverified"
+    },
+    {
+      "id": "INT-NAXLNS-001",
+      "name": "NAXLNS / VLNS candidate",
+      "repository": "fisallllll280-code/NAXLNS",
+      "source_paths": [],
+      "observed_state": "PRIVATE_REPOSITORY_DISCOVERED_IDENTITY_UNVERIFIED",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "authorized-read-access",
+        "identity-proof",
+        "revision-pin",
+        "test-suite"
+      ],
+      "next_action": "verify CI token/variable gates and identity evidence"
+    },
+    {
+      "id": "INT-AGENT-FABRIC-001",
+      "name": "VX agent fabric",
+      "repository": "fisallllll280-code/vx-agents-fabric",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_ADMISSION_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "adapter-contract",
+        "sandbox",
+        "failure-recovery",
+        "replay",
+        "independent-verification"
+      ],
+      "next_action": "audit branch and test receipts before admission"
+    },
+    {
+      "id": "INT-AGENT-SYSTEM-001",
+      "name": "VX agents system",
+      "repository": "fisallllll280-code/vx-agents-system",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "identity",
+        "scope",
+        "tool-contract",
+        "security",
+        "tests"
+      ],
+      "next_action": "inventory and compare with existing agent fabric to prevent duplication"
+    },
+    {
+      "id": "INT-FIN-001",
+      "name": "VX financial kernel",
+      "repository": "fisallllll280-code/vx-financial-kernel",
+      "source_paths": [],
+      "observed_state": "PRIVATE_REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "license",
+        "risk-controls",
+        "simulation-only",
+        "no-payment-authority",
+        "tests"
+      ],
+      "next_action": "inspect privately accessible source and preserve economic layer as deferred until core pass"
+    },
+    {
+      "id": "INT-BRIDGE-001",
+      "name": "VAIXLNS–NEXENT–VX package",
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "package-metadata",
+        "compatibility",
+        "lineage",
+        "tests"
+      ],
+      "next_action": "inspect package definition and verify it is not a duplicate connector"
+    },
+    {
+      "id": "INT-TUNNEL-001",
+      "name": "Tunnel client",
+      "repository": "fisallllll280-code/tunnel-client",
+      "source_paths": [],
+      "observed_state": "REPOSITORY_DISCOVERED_CONTENT_AUDIT_PENDING",
+      "runtime_state": "NOT_VERIFIED",
+      "gates": [
+        "network-boundary",
+        "authentication",
+        "scope",
+        "security",
+        "tests"
+      ],
+      "next_action": "inspect before any network use"
+    }
+  ],
+  "execution_plan": [
+    {
+      "group": "T01-T05",
+      "sequence": 1,
+      "gate": "G0→G1",
+      "state": "BLOCKED_PENDING_FRESH_G0",
+      "required": "exact pinned revisions; immutable protected-file hashes; isolated environment; per-test receipts"
+    },
+    {
+      "group": "T06-T10",
+      "sequence": 2,
+      "gate": "G2",
+      "state": "BLOCKED_UNTIL_T01_T05_PASS",
+      "required": "same run ID, prerequisites, sequential execution"
+    },
+    {
+      "group": "T15",
+      "sequence": 3,
+      "gate": "G3",
+      "state": "BLOCKED_UNTIL_T06_T10_PASS",
+      "required": "independent review and evidence validation"
+    },
+    {
+      "group": "T11-T14",
+      "sequence": 4,
+      "gate": "G4→G5",
+      "state": "BLOCKED_UNTIL_T15_PASS",
+      "required": "ordered execution; replay; recovery; final ledger"
+    },
+    {
+      "group": "full-repository-ci",
+      "sequence": 5,
+      "gate": "CI",
+      "state": "TRIGGER_ON_BRANCH_COMMIT",
+      "required": "GitHub Actions result tied to exact branch SHA"
+    }
+  ],
+  "repositories": [
+    {
+      "full_name": "fisallllll280-code/-",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/--",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/-VAIXLNS",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/copilot-sdk",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/datasets",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/desktop",
+      "default_branch": "development",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/explore",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/fictional-octo-spoon",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/fisallll280-gmail.com",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/fluffy-chainsaw",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/friendly-engine",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/fuzzy-octo-winner",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/glowing-doodle",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/joke-generator",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/learn",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/legendary-octo-fiesta",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/NATIONAL-",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/NAXLNS",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/New-Action",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/NEXENT",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/Pumpkin",
+      "default_branch": "master",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/pylance-release",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/quickstart-resources",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/react-native-website",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/redesigned-invention",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/reimagined-garbanzo",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/Repository-name",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/src-main.rs",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/starter-workflows",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/stunning-chainsaw",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/TRMDL-PRECISION-MAX-TRMDL-NO-LATENCY-TRMDL-NO-PROMPTS-TRMDL-AUTO-EXECUTE",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/tunnel-client",
+      "default_branch": "master",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "default_branch": "VAIXLNS",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS-",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vaixlns-core",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vaixlns-csd-kernel",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vaixlns-nexent-vx",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VAIXLNS-unified",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/verbose-engine",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vscode-docs",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vx-agents-fabric",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vx-agents-system",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/vx-financial-kernel",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VX-runtime",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "default_branch": "main",
+      "visibility": "private",
+      "archived": false,
+      "discovery_state": "RELATED_SURFACE_DISCOVERED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/weather-dashboard",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/whisper",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    },
+    {
+      "full_name": "fisallllll280-code/y",
+      "default_branch": "main",
+      "visibility": "public",
+      "archived": false,
+      "discovery_state": "UNASSESSED",
+      "permissions_observed": {
+        "pull": true,
+        "push": true
+      }
+    }
+  ]
+}
