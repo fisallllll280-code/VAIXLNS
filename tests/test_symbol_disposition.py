@@ -88,6 +88,32 @@ class SymbolDispositionGateTests(unittest.TestCase):
         self.assertTrue(any("UNSAFE_VERIFIED_SYMBOL" in e
                             for e in validate(self.root)["errors"]))
 
+    def test_missing_evidence_blocks_all_candidate_types(self):
+        self.manifest["records"][1]["evidence"] = []
+        self.save()
+        self.assertTrue(any("EVIDENCE_REQUIRED" in e
+                            for e in validate(self.root)["errors"]))
+
+    def test_model_tool_and_defect_are_valid_disposition_types(self):
+        for record, kind in zip(self.manifest["records"], ("model", "tool", "defect")):
+            record["target_type"] = kind
+        self.save()
+        self.assertEqual(validate(self.root)["audit_status"], "PASS")
+
+    def test_invalid_snapshot_hash_does_not_admit_exclusion(self):
+        r = self.manifest["records"][1]
+        r.update({
+            "state": "RETIRED_APPROVED",
+            "active_projection_excluded": True,
+            "dependency_audit": "PASS",
+            "unique_knowledge_recovered": True,
+            "reviewed_decision": {"reviewer": "example", "approval_ref": "EXAMPLE-ONLY", "date": "2026-10-25"},
+            "rollback_snapshot": {"source_ref": "EXAMPLE-ONLY", "sha256": "not-a-hash"},
+        })
+        self.save()
+        self.assertTrue(any("EXCLUSION_WITHOUT_PROOF_GATES" in e
+                            for e in validate(self.root)["errors"]))
+
     def test_duplicate_symbol_id_is_rejected(self):
         self.symbols["entries"].append(copy.deepcopy(self.symbols["entries"][0]))
         self.save()
