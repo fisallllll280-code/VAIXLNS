@@ -1,0 +1,42 @@
+name: VX Index Performance Evidence
+
+on:
+  pull_request:
+    paths:
+      - "scripts/build_zero_loss_index.py"
+      - "scripts/benchmark_zero_loss_cross_references.py"
+      - "tests/test_zero_loss_index.py"
+      - ".github/workflows/vx-index-performance.yml"
+  push:
+    branches:
+      - "feat/vx-cognitive-mesh-index-preservation"
+    paths:
+      - "scripts/build_zero_loss_index.py"
+      - "scripts/benchmark_zero_loss_cross_references.py"
+      - "tests/test_zero_loss_index.py"
+      - ".github/workflows/vx-index-performance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  index-correctness-and-performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run zero-loss index correctness tests
+        run: python -m unittest tests.test_zero_loss_index -v
+      - name: Benchmark old and optimized cross-reference algorithms
+        run: python scripts/benchmark_zero_loss_cross_references.py --paths 300 --documents 60 --repeats 2 --output build/vx/index-cross-reference-benchmark.json
+      - name: Upload benchmark evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-index-cross-reference-benchmark
+          path: build/vx/index-cross-reference-benchmark.json
+          if-no-files-found: error

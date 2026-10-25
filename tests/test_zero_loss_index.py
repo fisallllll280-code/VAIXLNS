@@ -148,5 +148,30 @@ class ZeroLossIndexTests(unittest.TestCase):
         self.assertEqual(first, second)
 
 
+    def test_cross_reference_candidate_index_preserves_exact_path_edges(self):
+        from scripts.build_zero_loss_index import _build_cross_references
+
+        sources = [
+            {"path": "docs/design.md", "source_id": "SRC-DOC"},
+            {"path": "scripts/vx_runtime.py", "source_id": "SRC-RUNTIME"},
+            {"path": "project.genome", "source_id": "SRC-GENOME"},
+            {"path": "docs/unmentioned.md", "source_id": "SRC-OTHER"},
+        ]
+        text_by_path = {
+            "docs/design.md": (
+                "Runtime entrypoint: scripts/vx_runtime.py\\n"
+                "Canonical authority: project.genome\\n"
+                "Do not resolve this invented path: scripts/not-real.py\\n"
+            ),
+        }
+        refs = _build_cross_references(sources, text_by_path)
+        pairs = {(item["from_path"], item["to_path"]) for item in refs}
+        self.assertIn(("docs/design.md", "scripts/vx_runtime.py"), pairs)
+        self.assertIn(("docs/design.md", "project.genome"), pairs)
+        self.assertNotIn(("docs/design.md", "scripts/not-real.py"), pairs)
+        self.assertNotIn(("docs/design.md", "docs/unmentioned.md"), pairs)
+        self.assertTrue(all(item["classification_status"] == "DIRECT_TEXT_REFERENCE_NOT_DEPENDENCY" for item in refs))
+
+
 if __name__ == "__main__":
     unittest.main()
