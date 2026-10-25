@@ -70,6 +70,21 @@ A `HOLD` result is the expected safe outcome when adapters or required evidence 
 
 ## 3. Admission boundary
 
+### Runtime-service declaration contract
+
+The preflight reads `operational_status` first, falling back to `model_binding`
+only when a service key is absent. Required keys are `model_providers`,
+`durable_vaixlns_event_ledger`, `internet_search_adapter`,
+`repository_tool_adapter`, `code_sandbox_adapter`, and `crash_resume_controller`.
+Only the exact states `CONNECTED`, `ACTIVE`, and `ADMITTED` (case-insensitive)
+satisfy the declaration check. Missing, pending, unknown, malformed, failed, or
+other values produce HOLD. The historical misspelling
+`durable_vaixl_event_ledger` cannot satisfy the canonical ledger binding.
+
+A PASS for this check means only that the manifest declares availability.
+It does not establish connectivity, independent verification, or admission.
+Do not change manifest states merely to pass this check.
+
 The current canonical binding map is `PROPOSED_NOT_ACTIVE`, runtime templates are not deployed, provider connectivity is not asserted, and the canonical durable VAIXLNS event-ledger link is not admitted. Do not change these statuses merely to make the preflight pass. The next gate requires a reviewed exact role/version mapping, adapter tests, failure/replay evidence, independent verification, fresh proof and an explicit VAIXLNS governance decision.
 
 Production publication, canonical registry mutation and deployment remain outside agent authority.
