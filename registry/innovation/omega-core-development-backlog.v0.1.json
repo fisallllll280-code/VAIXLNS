@@ -1,0 +1,126 @@
+{
+  "schema": "omega-innovation-backlog/v0.1",
+  "status": "PROPOSED_NOT_VERIFIED",
+  "canonical_index": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+  "rule": "Extensions of existing owners, no new top-level systems",
+  "controls": {
+    "protected": [
+      "project.genome",
+      "Ω.000",
+      "registry/omega/omega-000-master-index.json"
+    ],
+    "merge": false,
+    "publish": false,
+    "spend_sar": 0
+  },
+  "workstreams": [
+    {
+      "id": "omega-100",
+      "title": "Index Genome Recovery",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "source paths, hashes, original/derived history",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-200",
+      "title": "Architecture Mutation Laboratory",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "formal contracts and regression comparisons",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-300",
+      "title": "Evidence Dependency Fusion",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "provenance graph and cross-root deduplication",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-400",
+      "title": "Knowledge Contradiction Resolver",
+      "proposed_owner": "VLNS",
+      "acceptance_basis": "source attribution and conflict preservation",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-500",
+      "title": "Reality Forge Simulation",
+      "proposed_owner": "VX",
+      "acceptance_basis": "scenario isolation and simulation receipts",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-600",
+      "title": "Multi-Mind Routing",
+      "proposed_owner": "VX",
+      "acceptance_basis": "authority envelopes and comparative benchmark",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-700",
+      "title": "Repair Tribunal",
+      "proposed_owner": "VX",
+      "acceptance_basis": "patch sandbox and adversarial tests",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-800",
+      "title": "Immune Recovery",
+      "proposed_owner": "VX",
+      "acceptance_basis": "rollback and recovery certificates",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-900",
+      "title": "Discovery Compiler",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "research-to-spec traceability",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-1000",
+      "title": "VV Control Room",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "read-only proofs and state panels",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-1100",
+      "title": "Marketplace",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "settlement policy and Saudi compliance",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    },
+    {
+      "id": "omega-1200",
+      "title": "Evolution Law Verifier",
+      "proposed_owner": "VAIXLNS",
+      "acceptance_basis": "invariants and policy-change verification",
+      "state": "PROPOSED",
+      "evidence": [],
+      "tests": "NOT_RUN"
+    }
+  ]
+}
