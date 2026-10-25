@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schema/language-repair-work-order.v1.schema.json",
+  "title": "VAIXLNS Language Repair Work Order",
+  "type": "object",
+  "required": ["schema_version", "work_order_id", "language", "source", "diagnostic", "repair_policy", "status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "work_order_id": {"type": "string", "pattern": "^LRE-[0-9a-f]{16}$"},
+    "language": {
+      "type": "object",
+      "required": ["id", "adapter_state"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "adapter_state": {"enum": ["REGISTERED", "UNKNOWN", "CUSTOM_LANGUAGE_PENDING_ADAPTER"]}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["repository", "revision", "path"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 7},
+        "path": {"type": "string"},
+        "source_digest": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["tool", "code", "message", "line", "column", "raw_digest"],
+      "properties": {
+        "tool": {"type": "string"},
+        "code": {"type": ["string", "null"]},
+        "message": {"type": "string", "minLength": 1},
+        "line": {"type": ["integer", "null"], "minimum": 1},
+        "column": {"type": ["integer", "null"], "minimum": 1},
+        "raw_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "repair_policy": {
+      "type": "object",
+      "required": ["mode", "automatic_patch", "tests_required", "independent_review"],
+      "properties": {
+        "mode": {"enum": ["DIAGNOSE_ONLY", "PATCH_PROPOSAL", "SANDBOX_PATCH"]},
+        "automatic_patch": {"const": false},
+        "tests_required": {"type": "array", "items": {"type": "string"}},
+        "independent_review": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "status": {"enum": ["PROPOSAL", "READY_FOR_TRIAGE", "BLOCKED_UNKNOWN_LANGUAGE", "PATCH_PROPOSED", "TESTED", "VERIFIED"]}
+  },
+  "additionalProperties": false
+}
