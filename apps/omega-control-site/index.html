@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#071324"><title>VAIXLNS Ω∞ — Reality Forge</title>
+<style>
+:root{color-scheme:dark;--bg:#070f1d;--surface:#101e31;--surface2:#152840;--stroke:#26394f;--ink:#e8f1fb;--muted:#8fa7bd;--mint:#53e5c1;--gold:#ffd58c;--red:#ff8996;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 65% 0%,#122c45,transparent 36%),var(--bg);color:var(--ink)}a{color:inherit}button,input{font:inherit}button{cursor:pointer}
+.layout{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}.sidebar{padding:26px 15px;border-left:1px solid var(--stroke);background:#0b192a}.brand{font-weight:800;font-size:22px;letter-spacing:1px;margin:4px 8px 3px}.subtitle{color:var(--muted);font-size:12px;margin:0 8px 32px}.nav{display:grid;gap:7px}.nav button{border:1px solid transparent;color:var(--muted);background:none;text-align:right;padding:14px;border-radius:12px}.nav button.active,.nav button:hover{background:#152b40;color:var(--ink);border-color:#2b5063}.sidefoot{color:var(--muted);font-size:12px;line-height:1.8;margin:35px 10px}
+main{padding:26px clamp(16px,3vw,46px);min-width:0;max-width:1700px;width:100%;margin:auto}header{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}h1{font-size:clamp(23px,3vw,35px);margin:10px 0 4px}h2{font-size:19px;margin:0 0 16px}p{line-height:1.65}.muted,small{color:var(--muted)}.eyebrow{color:var(--mint);font-size:12px;font-weight:700;letter-spacing:2px}
+button.action{background:var(--mint);color:#071324;border:0;padding:10px 16px;border-radius:11px;font-weight:700}button.action:focus-visible,.nav button:focus-visible{outline:3px solid var(--gold)}.notice{border:1px solid #49677b;border-radius:13px;background:#122a3b;padding:12px 15px;margin:24px 0;color:#bfdaea}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:23px 0}.card,.panel{border:1px solid var(--stroke);background:linear-gradient(140deg,#122338,#0e1d30);border-radius:17px;padding:20px;min-width:0}.metric{font-size:clamp(24px,3vw,35px);font-weight:750;margin:10px 0;color:#e6faf6}.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:16px;margin:17px 0}.stack{display:grid;gap:16px}.badge{display:inline-block;border:1px solid #526379;border-radius:50px;padding:4px 9px;font-size:11px;color:#c9d9e7}.success{color:var(--mint)}.warn{color:var(--gold)}.error{color:var(--red)}table{width:100%;border-collapse:collapse;text-align:right;font-size:13px}th,td{border-bottom:1px solid var(--stroke);padding:13px 10px;word-break:break-word}th{color:var(--muted);font-size:12px}tr:last-child td{border:0}.rows{overflow-x:auto}.module{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--stroke)}.module:last-child{border-bottom:0}.dot{display:inline-block;width:9px;height:9px;background:var(--gold);border-radius:50%;margin-left:8px}.section{display:none}.section.active{display:block}.tag{border:1px solid var(--stroke);background:#16283d;border-radius:10px;padding:7px 10px;display:inline-block;margin:4px 0;font-size:12px}.diagram{display:grid;gap:10px;text-align:center}.diagram div{background:#192f45;border:1px solid #41617a;border-radius:12px;padding:14px}.diagram b{color:var(--mint)}input{border:1px solid var(--stroke);background:#0e1e30;color:var(--ink);border-radius:10px;padding:11px;width:100%}.split{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.footer{margin-top:32px;color:var(--muted);font-size:12px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}}@media(max-width:720px){.layout{display:block}.sidebar{padding:16px;border-left:0;border-bottom:1px solid var(--stroke)}.brand{font-size:19px}.subtitle{margin-bottom:12px}.nav{display:flex;overflow:auto;gap:4px}.nav button{white-space:nowrap;font-size:12px;padding:10px}.sidefoot{display:none}main{padding:20px 14px}.cards{gap:9px}.card,.panel{padding:15px}.metric{font-size:26px}}
+</style></head><body>
+<div class="layout"><aside class="sidebar"><div class="brand">VAIXLNS <span class="success">Ω∞</span></div><div class="subtitle">SOVEREIGN INTELLIGENCE FABRIC</div>
+<nav class="nav" aria-label="التنقل الرئيسي">
+<button class="active" data-view="overview">◈ غرفة القيادة</button>
+<button data-view="agents">◎ عقول VX</button>
+<button data-view="memory">◇ الذاكرة والمعرفة</button>
+<button data-view="repository">⌘ المستودعات</button>
+<button data-view="evidence">▣ الاختبارات والأدلة</button>
+<button data-view="architecture">✧ المعمارية السيادية</button></nav>
+<div class="sidefoot">قراءة فقط • لا دمج أو نشر تلقائي<br>الحالات مستمدة من GitHub أو موصوفة بأنها غير متصلة.</div></aside>
+<main><header><div><div class="eyebrow">Ω REALITY FORGE / CONTROL PLANE</div><h1 id="heading">غرفة قيادة VAIXLNS</h1><p class="muted" id="subheading">شاشة موحدة للمستودعات والوكلاء والأدلة</p></div>
+<div class="split"><span class="badge" id="connection" role="status">جارٍ الاتصال بـ GitHub…</span><button class="action" id="refresh">تحديث البيانات ↻</button></div></header>
+<div class="notice" id="disclaimer">هذه واجهة قراءة فعلية من GitHub API العام. نجاح CI لا يعني تشغيل وكلاء ذكاء اصطناعي حقيقيين أو اعتماد إنتاجي. لا يوجد اتصال خادم خاص أو وصول للأسرار.</div>
+<section id="overview" class="section active"><div class="cards">
+<div class="card"><small>المستودعات المستجيبة</small><div class="metric" id="repoCount">—</div><small>من أصل مستودعين</small></div>
+<div class="card"><small>طلبات الدمج المفتوحة</small><div class="metric" id="prCount">—</div><small>حسب GitHub</small></div>
+<div class="card"><small>آخر نتائج Actions</small><div class="metric" id="ciCount">—</div><small>نجاح من آخر التشغيلات المقروءة</small></div>
+<div class="card"><small>وكلاء الإنتاج المتصلون</small><div class="metric warn">غير مثبت</div><small>لا توجد واجهة Runtime موصولة</small></div></div>
+<div class="grid"><div class="panel"><h2>حالة الأنظمة</h2><div id="systemRows" aria-live="polite">جارٍ التحميل…</div></div><div class="panel"><h2>بوابة القرار</h2><div class="diagram"><div>المصادر والواجهات</div><b>↓</b><div>VX — التنفيذ المقيد</div><b>↓</b><div>Ω Evidence — الأدلة</div><b>↓</b><div>VN — اعتماد بشري مستقل</div></div></div></div></section>
+<section id="agents" class="section"><div class="panel"><h2>عقول VX المتخصصة</h2><p class="muted">هذه تعريفات الوكلاء الموجودة في فرع التطوير؛ لا يتم ادعاء تشغيل نماذج خارجية.</p><div id="agentRows"></div></div></section>
+<section id="memory" class="section"><div class="grid"><div class="panel"><h2>Second Brain</h2><p>ذاكرة لكل أداة، الرسم المعرفي، بصمات المصدر، كشف التكرار، وسجلات الأدلة.</p><p><span class="tag">SQLite / local feature branch</span> <span class="tag">PROPOSED / IMPLEMENTED ≠ VERIFIED</span></p><p class="muted">البيانات الخاصة بالذاكرة لا تُقرأ مباشرة من المتصفح. يلزم API آمن للتحكم في الصلاحيات قبل عرضها حيًا.</p></div><div class="panel"><h2>تدفق المعرفة</h2><div class="diagram"><div>استرجع قبل التنفيذ</div><b>↓</b><div>افحص الهوية والمصدر</div><b>↓</b><div>استنتج وسجّل الدليل</div><b>↓</b><div>احفظ مع إمكانية الاستعادة</div></div></div></div></section>
+<section id="repository" class="section"><div class="panel"><h2>المستودعات الحالية</h2><div class="rows"><table><thead><tr><th>المستودع</th><th>الفرع الرئيسي</th><th>آخر تحديث</th><th>رابط</th></tr></thead><tbody id="repoRows"><tr><td colspan="4">جارٍ التحميل…</td></tr></tbody></table></div></div></section>
+<section id="evidence" class="section"><div class="panel"><h2>أحدث تشغيلات CI</h2><div class="rows"><table><thead><tr><th>المستودع</th><th>الفرع</th><th>التشغيل</th><th>النتيجة</th><th>الدليل</th></tr></thead><tbody id="ciRows"><tr><td colspan="5">جارٍ التحميل…</td></tr></tbody></table></div></div></section>
+<section id="architecture" class="section"><div class="panel"><h2>حدود السيادة</h2><p>VAIXLNS هو مرجع السياسة والسجلات المعتمدة؛ VX منفذ مهام محدود الصلاحيات؛ Ω مرجع الأدلة؛ وVV واجهة الاطلاع والتحكم.</p><p>سياسة التشغيل: لا تعديل لـ <code>project.genome</code> أو <code>Ω.000</code>، ولا ترقية إلى VERIFIED بدون إثبات، ولا دمج أو نشر بدون موافقة.</p><p class="muted">هذه النسخة موقع حقيقي ثابت قابل للاستضافة، لكنها لا تنفذ عمليات كتابة GitHub أو إدارة أسرار أو أوامر مالية.</p></div></section>
+<div class="footer">VAIXLNS Ω∞ · Prototype with real public GitHub data · No production claims · <span id="lastUpdate">—</span></div></main></div>
+<script>
+"use strict";
+const OWNER="fisallllll280-code",REPOS=["VAIXLNS","VX-runtime"];
+const agents=[["Graph Architect","graphify"],["Code Analyst","understand-anything"],["Knowledge Curator","claude-obsidian"],["Memory Guardian","obsidian-second-brain"],["Knowledge Gateway","mcp-obsidian"],["Vault Designer","claudesidian"],["Wiki Evolution","second-brain"],["PR Evidence Auditor","pr-auditor"]];
+const text=(value)=>document.createTextNode(String(value??"—"));
+function elem(name,value){const e=document.createElement(name);e.append(text(value));return e}
+function anchor(url,label){const a=elem("a",label);a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a}
+function set(id,value){document.getElementById(id).textContent=String(value)}
+function row(target,values){const tr=document.createElement("tr");for(const v of values){let td=document.createElement("td");td.append(v instanceof Node?v:text(v));tr.append(td)}target.append(tr)}
+const names={overview:["غرفة قيادة VAIXLNS","شاشة موحدة للمستودعات والوكلاء والأدلة"],agents:["عقول VX","سجل الأدوار وحالة الربط"],memory:["الذاكرة والمعرفة","VX Second Brain Intelligence Fabric"],repository:["المستودعات","مصادر GitHub الحالية"],evidence:["الاختبارات والأدلة","نتائج GitHub Actions مرتبطة بالفرع والتشغيل"],architecture:["المعمارية السيادية","السياسة تفصل القرار عن التنفيذ"]};
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===b.dataset.view));set("heading",names[b.dataset.view][0]);set("subheading",names[b.dataset.view][1])}));
+for(const [role,id] of agents){const e=document.createElement("div");e.className="module";const label=document.createElement("span");label.append(elem("strong",role),elem("small"," · "+id));e.append(label,elem("span","تعريف / غير متصل"));document.getElementById("agentRows").append(e)}
+async function api(path){const r=await fetch("https://api.github.com"+path,{headers:{"Accept":"application/vnd.github+json"}});if(!r.ok)throw new Error("GitHub HTTP "+r.status);return r.json()}
+async function refresh(){set("connection","جارٍ تحديث GitHub…");const [repos,prs,runs]=await Promise.all([
+Promise.allSettled(REPOS.map(r=>api("/repos/"+OWNER+"/"+r))),
+Promise.allSettled(REPOS.map(r=>api("/repos/"+OWNER+"/"+r+"/pulls?state=open&per_page=100"))),
+Promise.allSettled(REPOS.map(r=>api("/repos/"+OWNER+"/"+r+"/actions/runs?per_page=5")))]);
+let ok=0,prTotal=0,success=0,totalRuns=0;
+for(const id of ["repoRows","ciRows","systemRows"])document.getElementById(id).replaceChildren();
+REPOS.forEach((repo,i)=>{const rr=repos[i],pp=prs[i],aa=runs[i];const active=rr.status==="fulfilled";
+if(active){ok++;const data=rr.value;row(document.getElementById("repoRows"),[repo,data.default_branch,data.pushed_at?new Date(data.pushed_at).toLocaleDateString("ar-SA"):"—",anchor(data.html_url,"GitHub ↗")])}
+else row(document.getElementById("repoRows"),[repo,"غير متاح","—","—"]);
+if(pp.status==="fulfilled")prTotal+=pp.value.length;
+if(aa.status==="fulfilled"){for(const w of aa.value.workflow_runs||[]){totalRuns++;if(w.conclusion==="success")success++;row(document.getElementById("ciRows"),[repo,w.head_branch,w.name,w.conclusion||w.status,anchor(w.html_url,"الدليل ↗")])}}
+const div=document.createElement("div");div.className="module";div.append(elem("span",repo),elem("span",active?"GitHub متصل":"بيانات غير متاحة"));document.getElementById("systemRows").append(div);
+});
+if(!totalRuns)row(document.getElementById("ciRows"),["لم تتوفر تشغيلات","—","—","—","—"]);
+set("repoCount",ok+"/"+REPOS.length);set("prCount",prs.some(x=>x.status==="rejected")?"جزئي: "+prTotal:prTotal);set("ciCount",totalRuns?success+"/"+totalRuns:"غير متاح");
+set("connection",ok===REPOS.length?"GitHub العام متصل":ok?"اتصال جزئي":"GitHub غير متاح");
+set("lastUpdate",new Date().toLocaleString("ar-SA")); }
+document.getElementById("refresh").addEventListener("click",()=>refresh().catch(e=>{set("connection","فشل التحديث");console.error(e)}));
+refresh().catch(e=>{set("connection","GitHub غير متاح");console.error(e)});
+</script></body></html>
