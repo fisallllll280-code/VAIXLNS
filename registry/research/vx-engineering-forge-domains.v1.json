@@ -1,0 +1,65 @@
+{
+  "schema": "VX.EngineeringForge.Domains.v1",
+  "status": "PROPOSED",
+  "activation": "DISABLED",
+  "domains": [
+    {
+      "id": "MATH",
+      "name": "mathematics",
+      "methods": [
+        "symbolic_proof",
+        "numerical_validation"
+      ]
+    },
+    {
+      "id": "CMATH",
+      "name": "computational_mathematics",
+      "methods": [
+        "error_bounds",
+        "convergence_study"
+      ]
+    },
+    {
+      "id": "PHYS",
+      "name": "physics",
+      "methods": [
+        "conservation_check",
+        "dimensional_analysis"
+      ]
+    },
+    {
+      "id": "COMP",
+      "name": "computer_engineering",
+      "methods": [
+        "simulation",
+        "formal_checks"
+      ]
+    },
+    {
+      "id": "PERF",
+      "name": "vx_performance",
+      "methods": [
+        "paired_benchmark",
+        "correctness_check"
+      ]
+    }
+  ],
+  "policies": {
+    "external_spend_sar": 0,
+    "auto_merge": false,
+    "auto_publish": false,
+    "protected_files": [
+      "project.genome",
+      "Ω.000"
+    ],
+    "no_proof_no_commit": true
+  },
+  "evidence_required": [
+    "source_sha",
+    "tool_version",
+    "input_digest",
+    "output_digest",
+    "test_receipt",
+    "independent_review"
+  ]
+}
