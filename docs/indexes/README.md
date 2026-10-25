@@ -10,6 +10,8 @@
 
 ## Index set
 
+- [VAIXLNS MASTER INDEX Ω∞ v1](VAIXLNS_MASTER_INDEX_OMEGA_INFINITY_V1.md) — source-bound repository, tree, branch and PR observations, immutable snapshot verification, and integration with the existing 28 Zero-Loss views; partial coverage and no automatic adoption.
+
 - MASTER_RECOVERY_STATUS.md — current corpus and federation coverage.
 - ARCHIVE_SOURCE_INDEX.md — supplied project sources, hashes, classifications.
 - INNOVATION_MASTER_INDEX.md — innovation catalog with canonical placement.
@@ -55,3 +57,4 @@
 - ../../tools/engineering_test_router.py — conservative change-impact test routing; unknown impact and missing Git-diff metadata fall back to the full unit-test suite and produce an execution receipt.
 - ../../tests/test_vcre_predictive.py and ../../tests/test_engineering_test_router.py — executable tests for the bounded predictive kernel and safe test-selection rules.
 - ../../.github/workflows/engineering-fast-feedback.yml — focused engineering feedback workflow that publishes a machine-readable test receipt; it does not waive other CI gates.
+

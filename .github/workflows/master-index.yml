@@ -1,0 +1,50 @@
+name: VAIXLNS Master Index
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_master_index.py'
+      - 'scripts/build_zero_loss_index.py'
+      - 'registry/indexes/**'
+      - 'tests/test_master_index.py'
+      - 'docs/indexes/VAIXLNS_MASTER_INDEX_OMEGA_INFINITY_V1.md'
+      - '.github/workflows/master-index.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_master_index.py'
+      - 'scripts/build_zero_loss_index.py'
+      - 'registry/indexes/**'
+      - 'tests/test_master_index.py'
+      - '.github/workflows/master-index.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run master-index and existing Zero-Loss regressions
+        run: |
+          python -m unittest discover -s tests -p test_master_index.py -v
+          python -m unittest discover -s tests -p test_zero_loss_index.py -v
+      - name: Build and independently verify immutable index bundle
+        run: |
+          python scripts/build_master_index.py --capture registry/indexes/master-index-capture.2026-10-25.v1.json --root . --output-dir "$RUNNER_TEMP/master-index"
+          python - "$RUNNER_TEMP/master-index" <<'PY'
+          import json, sys
+          from pathlib import Path
+          from scripts.build_master_index import verify_snapshot
+          for folder in sorted(Path(sys.argv[1]).iterdir()):
+              print(json.dumps(verify_snapshot(folder), sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-master-index-${{ github.sha }}
+          path: ${{ runner.temp }}/master-index/
+          if-no-files-found: error
+          retention-days: 90
