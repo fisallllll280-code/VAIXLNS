@@ -80,5 +80,22 @@
       "active_projection_excluded": false,
       "source_deleted": false
     }
-  ]
+  ],
+  "supported_target_types": [
+    "registry_identity",
+    "external_repository",
+    "repository_file",
+    "index",
+    "model",
+    "tool",
+    "defect",
+    "workflow",
+    "design",
+    "innovation",
+    "agent",
+    "service",
+    "dependency",
+    "other"
+  ],
+  "policy_note": "Any asset category is eligible for evidence-first triage; disposition decisions are non-destructive and do not prove uselessness."
 }
