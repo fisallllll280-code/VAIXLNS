@@ -1,0 +1,350 @@
+{
+  "schema": "VAIXLNS.FederatedRecoveryEvidence.v0.1",
+  "captured_on": "2026-10-25",
+  "purpose": "Non-destructive source-first discovery; tracking IDs never override original IDs",
+  "authority": "PROVISIONAL_AUDIT_NOT_CANONICAL",
+  "source_repositories": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "ref": "main",
+      "commit_sha": "1794d46217e50dfa581dcadec60f3705e77747a8",
+      "tree_entries": 487,
+      "recursive_tree_truncated": false
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "ref": "main",
+      "commit_sha": "4b36bd19c4efea80d5cc22ba0e900ddf7d1d2258",
+      "tree_entries": 319,
+      "recursive_tree_truncated": false
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "ref": "main",
+      "commit_sha": "97fc6574f637984818841248ebe6b10dc36f6308",
+      "tree_entries": 37,
+      "recursive_tree_truncated": false
+    }
+  ],
+  "source_file_integrity": "Git blob SHA-1 object identifiers recorded; per-file raw byte SHA-256 has NOT been computed",
+  "indexes": [
+    {
+      "tracking_id": "IDX-MASTER-001",
+      "label": "Master Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "registry/omega/omega-000-master-index.json",
+      "git_blob_sha": "cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc",
+      "original_id": "Ω.000",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Ω.000 (original document ID; IDX-MASTER-001 is tracking alias)"
+    },
+    {
+      "tracking_id": "IDX-ARCHIVE-001",
+      "label": "Archive Source Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/ARCHIVE_SOURCE_INDEX.md",
+      "git_blob_sha": "a1ae434c812997e461973df11e87c8da49a85ac8",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "historical archive scans differ (30 project sources vs later 62 unique candidates)"
+    },
+    {
+      "tracking_id": "IDX-REPO-001",
+      "label": "Repository Federation Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+      "git_blob_sha": "ef274294601085d6acc0caefc0960cf2a6f55023",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "historical snapshot dated 2026-10-03: 43 accessible owned repositories"
+    },
+    {
+      "tracking_id": "IDX-SYSTEM-001",
+      "label": "Four-System Reconciliation",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+      "git_blob_sha": "7551469787002a9aa8861e1873d6054ae42d905f",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "VLNS≠NAXLNS and NEXNET≠NEXENT until identity proof"
+    },
+    {
+      "tracking_id": "IDX-MAP-001",
+      "label": "Repository System Map",
+      "source_repository": null,
+      "source_path": null,
+      "git_blob_sha": null,
+      "original_id": null,
+      "discovery": "UNKNOWN",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "no uniquely authenticated original file path yet"
+    },
+    {
+      "tracking_id": "IDX-RECOVERY-001",
+      "label": "Recovery Audit",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md",
+      "git_blob_sha": "f99477341c9b5a388531578b48a05aed44c9e8c2",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "historical partial audit; no claim of full Git history"
+    },
+    {
+      "tracking_id": "IDX-INNOVATION-001",
+      "label": "Unified Innovation Delivery Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/recovery/VAIXLNS_UNIFIED_INNOVATION_DELIVERY_MAP_2026-10-10.md",
+      "git_blob_sha": "96d13d2ecdfcf1e326c9755993319e24b34aeb0b",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "file exists in tree; contents not yet independently inspected"
+    },
+    {
+      "tracking_id": "IDX-EVIDENCE-001",
+      "label": "Evidence Registry",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "registry/evidence/control-plane-proof.json",
+      "git_blob_sha": "001ace9fcf6f58f315414555c961198322ffcd56",
+      "original_id": null,
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "candidate evidence file only; original registry identity not established"
+    }
+  ],
+  "innovations": [
+    {
+      "tracking_id": "INNOV-MASTER",
+      "label": "Innovation Master Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+      "git_blob_sha": "0a317bdab544bdcc93d55e6a94f670d261532114",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "INNOV-GENERATED-OPS",
+      "label": "Generated Innovation Operation Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "registry/innovation-operation-index.v1.json",
+      "git_blob_sha": "b02f6fd0bd827273b67948a566946eab3160fd6d",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "INNOV-SEPARATION",
+      "label": "Innovation Separation Matrix",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+      "git_blob_sha": "2fe36ff2fb812c89fb2b7b197c5c94e1e03464ea",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "INNOV-MEASUREMENT",
+      "label": "Innovation Measurement Registry",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "registry/innovation_measurement.v1.json",
+      "git_blob_sha": "91649c6b012053b4585caaf9f23c52bd7e6344fd",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "ZERO-LOSS",
+      "label": "Zero-Loss Index",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md",
+      "git_blob_sha": "6afa26ec35d140af6125c27534d1e3d2b286dc2c",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "LEGACY-RESEARCH",
+      "label": "Legacy Archive Research Toolchain",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md",
+      "git_blob_sha": "d11b40a5e687f09ddc903d45064c3e1d24fa9c54",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "SYSTEM-MEMORY-LNS",
+      "label": "System Memory and Language Fabric",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md",
+      "git_blob_sha": "33206bfa1651106166d071ebe303e7fc274970ea",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "SYSTEM-CLOSURE",
+      "label": "System Context Closure",
+      "source_repository": null,
+      "source_path": null,
+      "git_blob_sha": null,
+      "discovery": "UNKNOWN",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "VCRE",
+      "label": "VCRE",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/V_COMPUTATIONAL_REALITY_ENGINE_V1.md",
+      "git_blob_sha": "3012979b529802731fde5c4454b7a1ee9e27714b",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "PM-PRIMITIVES",
+      "label": "Physical-Mathematical Computation Primitives",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/V_PHYSICAL_MATHEMATICAL_COMPUTATION_PRIMITIVES_V2.md",
+      "git_blob_sha": "327ecfd9f9f44fe71e9f31b6a2ddf541993c0c58",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "VCRE-SYNTHESIS",
+      "label": "VCRE Synthesis Implementation",
+      "source_repository": null,
+      "source_path": null,
+      "git_blob_sha": null,
+      "discovery": "UNKNOWN",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "VX-INVENTION",
+      "label": "VX Invention Engine",
+      "source_repository": null,
+      "source_path": null,
+      "git_blob_sha": null,
+      "discovery": "UNKNOWN",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "ARCH-LAB",
+      "label": "Architecture Laboratory",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+      "git_blob_sha": "0a317bdab544bdcc93d55e6a94f670d261532114",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    },
+    {
+      "tracking_id": "RESEARCH-FABRIC",
+      "label": "Research Fabric",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_path": "docs/research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md",
+      "git_blob_sha": "78a437638ead797262034e2a5f385f3d6eabc331",
+      "discovery": "PATH_OBSERVED",
+      "implementation_state": "UNKNOWN",
+      "runtime_state": "UNKNOWN",
+      "verification_state": "UNKNOWN",
+      "notes": "Tracking identifier is provisional. Source path match is not proof of capability implementation or exact historical innovation identity."
+    }
+  ],
+  "additional_source_paths": [
+    "docs/innovation/INNOVATION_OPERATION_INDEX.md",
+    "registry/innovation-operation-index.v1.json",
+    "docs/innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md",
+    "registry/indexes/vx-vlns-continuity-manifest.v1.json",
+    "registry/omega/omega-000-master-index.json"
+  ],
+  "historical_claims_unverified": [
+    {
+      "claim": "408 original indexes and 28 indexes 00–27",
+      "status": "NOT_RECONCILED_WITH_SOURCE_FILES"
+    },
+    {
+      "claim": "Master index records 0001–2750",
+      "status": "ROW_BY_ROW_RECOVERY_INCOMPLETE"
+    }
+  ],
+  "identity_conflicts": [
+    {
+      "left": "VLNS",
+      "right": "NAXLNS",
+      "state": "UNVERIFIED"
+    },
+    {
+      "left": "NEXNET",
+      "right": "NEXENT",
+      "state": "UNVERIFIED"
+    }
+  ],
+  "limits": [
+    "This first capture inspected the three pinned default-branch repository trees; it is not a full all-branch or all-repository extraction.",
+    "Only selected source documents were content-read.",
+    "Tree presence is not executable verification.",
+    "Some tracking entries point to related files, not confirmed exact-name originals.",
+    "Source bytes are not preserved inside this manifest; use immutable Git commit+path and future content-addressed archive."
+  ],
+  "next_gates": [
+    "Enumerate every relevant owned repository and branches/tags",
+    "Snapshot every source byte with SHA-256",
+    "Resolve original IDs and file-level dependencies",
+    "Extract whole generated innovation operations index without truncation",
+    "Run test/CI evidence before implementation or verified classifications",
+    "Perform restoration test and historical 408/28/2750 reconciliation"
+  ]
+}
