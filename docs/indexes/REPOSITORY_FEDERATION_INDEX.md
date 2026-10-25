@@ -87,6 +87,22 @@ These artifacts bind system identities to repository surfaces and define the req
 
 Reference implementation review: https://github.com/fisallllll280-code/vx-agents-fabric/pull/1
 
+### Runtime-service preflight contract repair — 2026-10-25
+
+| Scope | Implementation | Local validation | Runtime/admission |
+|---|---|---|---|
+| Required service declarations and durable ledger key | IMPLEMENTED on `feat/vx-preflight-service-contract-20261025` | 9 unittest methods PASS, including pending/unknown/malformed declarations for each required service | HOLD; live providers NOT_RUN; no admission granted |
+
+The previous negative-marker filter accepted `PENDING` as available, and the
+ledger lookup used `durable_vaixl_event_ledger` instead of the manifest's
+`durable_vaixlns_event_ledger`. The preflight now requires explicit recognized
+availability declarations. A declaration is not connectivity or verification.
+
+- [Preflight contract and operating boundary](../operations/DEEP_INDEX_AGENT_EXECUTION_PREFLIGHT_V1.md)
+- [Local command output, source hashes, and isolated-environment preflight evidence](../audits/evidence/vx-preflight-service-contract-20261025.json)
+
+This entry records a bounded local correction, not completion of G0 or T01–T15.
+
 ## Agent Skills, Prompt, Subscription & Innovation Delivery Fabric — 2026-10-09
 
 - [Agent/Skill/Prompt/Environment/Innovation Fabric V1](../integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md)
