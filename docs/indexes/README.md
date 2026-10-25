@@ -55,3 +55,12 @@
 - ../../tools/engineering_test_router.py — conservative change-impact test routing; unknown impact and missing Git-diff metadata fall back to the full unit-test suite and produce an execution receipt.
 - ../../tests/test_vcre_predictive.py and ../../tests/test_engineering_test_router.py — executable tests for the bounded predictive kernel and safe test-selection rules.
 - ../../.github/workflows/engineering-fast-feedback.yml — focused engineering feedback workflow that publishes a machine-readable test receipt; it does not waive other CI gates.
+
+## Omega semantic symbols and governed disposition (2026-10-25)
+
+- [OMEGA_SYMBOL_DISPOSITION_ENGINEERING_V1.md](OMEGA_SYMBOL_DISPOSITION_ENGINEERING_V1.md) — engineering contract connecting symbolic UI to ZERO-LOSS and proof-gated retirement review.
+- [../../registry/indexes/symbol-semantic-index.v1.json](../../registry/indexes/symbol-semantic-index.v1.json) — proposal-level, source-aware symbolic labels; no executable authority or imported Unicode dataset claimed.
+- [../../registry/indexes/disposition-quarantine.v1.json](../../registry/indexes/disposition-quarantine.v1.json) — independent disposition/redundancy review ledger with immutable evidence references. Items remain in their original sources.
+- [../../scripts/validate_symbol_disposition.py](../../scripts/validate_symbol_disposition.py) — read-only and fail-closed validation; [tests](../../tests/test_symbol_disposition.py) cover protected paths and evidence checks.
+
+**No source deletion, merge, canonical promotion or runtime verification is implied by this register.**
