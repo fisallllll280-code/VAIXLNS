@@ -22,7 +22,7 @@ def simulate(s: Scenario) -> dict:
         raise ValueError("invalid attempt, acceptance or availability assumption")
     if s.startup_sar < 0 or s.weekly_sar < 0 or s.paid_interruption_weeks < 0 or s.contingency < 0:
         raise ValueError("cost and interruption parameters must be nonnegative")
-    accessible = floor(BASE_UNLINKED * s.source_availability + 0.5)
+    accessible = floor(BASE_UNLINKED * s.source_availability)
     accepted_week = floor(s.attempts_weekly * s.first_pass_acceptance)
     if accessible > 0 and accepted_week < 1:
         return {"status":"BLOCKED_NO_ACCEPTANCE", "accessible": accessible, "blocked_sources": BASE_UNLINKED-accessible}
