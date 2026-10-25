@@ -1,0 +1,4815 @@
+{
+  "schema": "VAIXLNS.MasterIndexCapture.v1",
+  "observed_at": "2026-10-25T11:27:37Z",
+  "collector": "connected-github-adapter",
+  "repositories": [
+    {
+      "repository": "fisallllll280-code/y",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/--",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/verbose-engine",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/copilot-sdk",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/whisper",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/datasets",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/desktop",
+      "default_branch": "development",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/react-native-website",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/starter-workflows",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/pylance-release",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/-",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/friendly-engine",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/Pumpkin",
+      "default_branch": "master",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/tunnel-client",
+      "default_branch": "master",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/learn",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vscode-docs",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/weather-dashboard",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vx-agents-system",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/vx-agents-fabric",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/quickstart-resources",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "fisallllll280-code/explore",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "VAIXLNS/VAIXLNS",
+      "default_branch": "vaixlns-architecture",
+      "visibility": "public"
+    },
+    {
+      "repository": "VAIXLNS/docs",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "VAIXLNS/supreme-doodle",
+      "default_branch": "main",
+      "visibility": "public"
+    },
+    {
+      "repository": "VAIXLNS/improved-barnacle",
+      "default_branch": "main",
+      "visibility": "public"
+    }
+  ],
+  "coverage": {
+    "repositories": {
+      "state": "PARTIAL",
+      "observed_accessible": 65,
+      "public_included": 32,
+      "restricted_metadata_omitted": 33,
+      "reason": "Public metadata projection; visibility is not ownership or federation membership."
+    },
+    "trees": {
+      "state": "PARTIAL",
+      "reason": "Only canonical default-branch tree captured; other repositories and historical commits not enumerated."
+    },
+    "branches": {
+      "state": "PARTIAL",
+      "reason": "All current canonical branches enumerated; other repository branches and deleted refs not captured."
+    },
+    "pull_requests": {
+      "state": "PARTIAL",
+      "reason": "Current open canonical PRs only; closed PRs and file diffs not captured."
+    }
+  },
+  "trees": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "commit": "433969a43b604563e22b70b8cb88223aff539fad",
+      "tree_sha": "91b073d91fa1d4627ba8cb2bd69973d156ba57b1",
+      "truncated": false,
+      "entries": [
+        {
+          "path": ".github",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "8186c069a3ebad0a759ed80ab7dba57f2ad7d311"
+        },
+        {
+          "path": ".github/CODEOWNERS",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ed0d70c320dd6f80f7905ee0fdd43d0537d11f4b"
+        },
+        {
+          "path": ".github/workflows",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "d8fcd5c59bdb2a23ab2bdadeb91cedf8776e6a88"
+        },
+        {
+          "path": ".github/workflows/admission-evaluator.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4d5126ca27bd360d611d518926228df00ff09d01"
+        },
+        {
+          "path": ".github/workflows/arcx-windows-mcp.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0efe224d44c89df9724ef7f93e6c25af1f3602ee"
+        },
+        {
+          "path": ".github/workflows/assembly-federation-preflight.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6578145eed54e296fe3ae876935399cfe4b69f81"
+        },
+        {
+          "path": ".github/workflows/computational-reality.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c723f5a8d2ff03e800863ab143bef75417e6022f"
+        },
+        {
+          "path": ".github/workflows/continuous-promotion.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "75457cf4a08c2ef3357f9a25a99888f0eedbeb78"
+        },
+        {
+          "path": ".github/workflows/discovery-routing.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ecda28eaed4c084dd22cf7fc307b93219561e943"
+        },
+        {
+          "path": ".github/workflows/engineering-fast-feedback.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5dbb028f09d8d8c247f431c4d5710ef1fc2f7b80"
+        },
+        {
+          "path": ".github/workflows/external-integration-policy.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1942cad7ffa7b44677139769ba0e3c7e7964ee8d"
+        },
+        {
+          "path": ".github/workflows/federated-engineering-deployment.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "42f7a1bdb2e71f24f10a55e48c2d1bcfb2ad3cc4"
+        },
+        {
+          "path": ".github/workflows/federated-surface-conformance.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e34c3b9e1d9b98b3713d5626f0a7a59aa9cfc758"
+        },
+        {
+          "path": ".github/workflows/federation-integrity.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "716791468a7686c48e8c370172d0eaa737fcdf68"
+        },
+        {
+          "path": ".github/workflows/federation-snapshot.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "59c99a884d8c923c2ccdfb6d86853cb0364f0688"
+        },
+        {
+          "path": ".github/workflows/four-system-federation.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "baab8077db9299f1a9661051f1825a6db5461308"
+        },
+        {
+          "path": ".github/workflows/four-system-interface-audit.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d4fcbd3da49a4ad316fdc2c022aff86a466c9c25"
+        },
+        {
+          "path": ".github/workflows/global-engineering-discovery-fabric.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a2114e9a45870cdca8eb4b15aad4da7b805bd6f3"
+        },
+        {
+          "path": ".github/workflows/innovation-index-sync.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2934b1344bc66230471b9179d3fd65499a9e733e"
+        },
+        {
+          "path": ".github/workflows/innovation-measurement.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9f85782c9e82d03925c04a6d994a633c6ef3cc86"
+        },
+        {
+          "path": ".github/workflows/innovation-registry.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2a8aec68c662e44d2b3cd8f57a11f1ecb00e6e11"
+        },
+        {
+          "path": ".github/workflows/innovation-server.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bb2ace9d7ecc9cb85f37b28b37798d038ec9ac71"
+        },
+        {
+          "path": ".github/workflows/master-workflow-orchestrator.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "62a4d5bcb7a8723f668f3b5a1411731e380e95aa"
+        },
+        {
+          "path": ".github/workflows/omega-memory-task-innovation.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "263808898ce1a857b468c9abf206257d2c8bffb3"
+        },
+        {
+          "path": ".github/workflows/omega-pattern-foundry.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7078660954143cb0471c968b6bd850fca430a6e9"
+        },
+        {
+          "path": ".github/workflows/omega-rac.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "692c3b3abdc72353358a3c6591a63e6c0eb0743b"
+        },
+        {
+          "path": ".github/workflows/pcs001-proof-state.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f2b234563f7b878b30a873e0d7c7a8c51c238cdd"
+        },
+        {
+          "path": ".github/workflows/revenue-evidence-gate.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "98566b9b44ce3aacf09336e319b600935d9edcf3"
+        },
+        {
+          "path": ".github/workflows/va-genesis.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d914a0eeee9d89c1e28f4a15ac49185919810ff7"
+        },
+        {
+          "path": ".github/workflows/vaixlns-conformance.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8e325da4c4b0afec321616b8728f7c5a2d12b4a0"
+        },
+        {
+          "path": ".github/workflows/vaixlns-repository-pulse.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bbbab814e5fe55b9f86fceb28564966387a9dbb7"
+        },
+        {
+          "path": ".github/workflows/vcef-innovation-preflight.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "73bef29babd53b1326796ee78f757a97330f5964"
+        },
+        {
+          "path": ".github/workflows/vx-federation-gate.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8ae5931bc34bc5fb61549b21a08f2fb4355f822c"
+        },
+        {
+          "path": ".github/workflows/vx-federation-runtime.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f2abd366133963b373fba89342503562d55860e3"
+        },
+        {
+          "path": ".github/workflows/vx-omega-index-audit.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2b97dc53d775ee2871152dfc2f88aaf4e286591a"
+        },
+        {
+          "path": ".github/workflows/vx-runtime-verification.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "de88379d36d906d5991c11f328e2bbd925a48606"
+        },
+        {
+          "path": ".github/workflows/vx-stage-runtime.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2424adc9c064e588ce316c8c40c02d1ced569ee1"
+        },
+        {
+          "path": ".github/workflows/vx-tool-control.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5b89b86a4de0e1ffbb5e4f685bc04e39c285de3c"
+        },
+        {
+          "path": ".github/workflows/zero-loss-index.yml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9352626b1155a19318eeff88202c967bbe3572c2"
+        },
+        {
+          "path": ".gitignore",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "529fe7632257e5d536c98e1cfe8a0141177fdee1"
+        },
+        {
+          "path": "README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d709242021459d963d4b374528156798b83cb8d4"
+        },
+        {
+          "path": "README_MASTER_RECOVERY_PACK.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e3e16895de4cc6633b71c13c5e84e9d98f6fa72f"
+        },
+        {
+          "path": "RUNBOOK_VERIFICATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f239f841fbc79614f69224db2bbb8a0624aeca74"
+        },
+        {
+          "path": "SECURITY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a3403a0d5999f779fd624bff03f22018eec7431f"
+        },
+        {
+          "path": "agents",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "7602f1b5aa245e52b64005a86b03b98a2506c8fa"
+        },
+        {
+          "path": "agents/agent_fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a8186e74409f4e2c8022c2675afd32120039179f"
+        },
+        {
+          "path": "agents/mind_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3c42088b5e3711636fc9d81a45b80e6170cb692c"
+        },
+        {
+          "path": "apps",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "548a1e5f3fb29c2ad533a25457b73e9555c9c21b"
+        },
+        {
+          "path": "apps/legal-ai",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "a21ec5abb2aec014c90cc01cb1b08e99f145d7d7"
+        },
+        {
+          "path": "apps/legal-ai/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "aa9ac85c5b59b4259f351051d5681f833126a37e"
+        },
+        {
+          "path": "apps/legal-ai/index.html",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "85355a529d0487cc7ac50da5364f55b51da99638"
+        },
+        {
+          "path": "archive",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "5c9508800169c5b6a99df22ab8510abf27f7924a"
+        },
+        {
+          "path": "archive/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fecf2f79621909d7d31bc23b75bb3d55db5e799a"
+        },
+        {
+          "path": "archive/captures",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "41e761da5be579c42c97d9f42d7b21f031c3a799"
+        },
+        {
+          "path": "archive/captures/ARCHIVE-20261007T084135Z.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8cf665ff47475cb8c52d939d82ef1d3bea818da3"
+        },
+        {
+          "path": "archive/captures/ARCHIVE-20261008T090001Z.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "899e920b7dbe8aeb58935e9f3c66f9fb72da0eb4"
+        },
+        {
+          "path": "archive/captures/ARCHIVE-20261009T090659Z.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "96f88413fe96c287aeab0a6eec82964753d398d5"
+        },
+        {
+          "path": "archive/repository_snapshots.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "50dbd6e5e270a7fdb3b29d19d3bbda1c3d3f3ee0"
+        },
+        {
+          "path": "deploy",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "0e7a96b5c12e130049a3309b9e8910e5fed2a2cd"
+        },
+        {
+          "path": "deploy/federation",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "d7b316398a7f9e8949ac8e09c6f1eebad6ba5886"
+        },
+        {
+          "path": "deploy/federation/INDEX_RECOVERY_RUNTIME_PROTOCOL.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "981e4b6439c2a98dbdf94d9c72353477facc9a04"
+        },
+        {
+          "path": "deploy/federation/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9a6a31601f874e46b02c7cdb36092d6d618adf35"
+        },
+        {
+          "path": "deploy/federation/engineering-deployment-targets.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "921b619a03b149f33bb8528e0c7784b529087f96"
+        },
+        {
+          "path": "deploy/federation/federation.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a795eafa6ee7c8ea275f23b1fb94f38944cf997b"
+        },
+        {
+          "path": "deploy/federation/index-recovery-record.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "77b893e1b234778cc771af80de3e93c73ecfdf04"
+        },
+        {
+          "path": "docs",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "092373b76dd7c8a5a80f79d91dff9c11f045d5b2"
+        },
+        {
+          "path": "docs/AUTOMOTIVE_ADAPTER_FABRIC.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9c32b4e914238d22a09ecf4aeef8b4d4e857124b"
+        },
+        {
+          "path": "docs/CLOUD_TO_VX_MIGRATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c412655a965021a046ab080c3d631fbcf8eeb426"
+        },
+        {
+          "path": "docs/FABLE5_DERIVED_INTEGRATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "99689d8ad7e3accfd8d1fa9ca9be0e117a36fdf0"
+        },
+        {
+          "path": "docs/FABLE5_INTEGRATION_REGISTRY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ce9d2f4be76c58fbab05f0b942fc494168172095"
+        },
+        {
+          "path": "docs/GITHUB_ORGANIZATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b3e9a740fd57fc692841c095284970a1502816f8"
+        },
+        {
+          "path": "docs/INTERFACE_ARCHITECTURE.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2ee77739074b3d077412e076b3a4a78fdd361b71"
+        },
+        {
+          "path": "docs/OMEGA_RAC_EXECUTABLE_V1_1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f2850098db1a7a4285a490623a142f788c3a0b75"
+        },
+        {
+          "path": "docs/OPERATIONAL_COMPLETENESS_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e15c3efca046a362f693ef624fd7fef243a8b1c0"
+        },
+        {
+          "path": "docs/REPOSITORY_MAP.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fc1077be4df08aed69d8c05de2fb87e69aad3bc4"
+        },
+        {
+          "path": "docs/UNIVERSAL_VX_INTEROPERABILITY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "42741e604e44231cbaad41aebf24fbf0b4b970d6"
+        },
+        {
+          "path": "docs/VAIXLNS_REPOSITORY_FEDERATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f8ca24c16299da1fb3f5c36658d2387f108184e8"
+        },
+        {
+          "path": "docs/agents",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "48f5e769369567f3dad51d62f681487f4979a770"
+        },
+        {
+          "path": "docs/agents/AGENT_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "741ec5ddd62a92dccd5882a0e9d12c11cb0aa85b"
+        },
+        {
+          "path": "docs/agents/DISCOVERY_ROUTING_CONTRACT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5a02ae49613914966a13294526c332f063de157f"
+        },
+        {
+          "path": "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b9e5c3d0fd1b807d5e07fa5697d955bb5745c395"
+        },
+        {
+          "path": "docs/architecture",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "ac969fd4ee662d3775f2414a40389667db0ae137"
+        },
+        {
+          "path": "docs/architecture/AEPF_ADVERSARIAL_ENGINEERING_AND_PROOF_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a8401a24adc806cc1924289abfa00e714d153058"
+        },
+        {
+          "path": "docs/architecture/GLOBAL_ENGINEERING_DISCOVERY_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a78f3508e03c4b4a71f3ca9865957b79d7220cd4"
+        },
+        {
+          "path": "docs/architecture/MASTER_WORKFLOW_ORCHESTRATOR_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3c05d980de8a19c4a4f3a2ad0a948f0a38a9095e"
+        },
+        {
+          "path": "docs/architecture/OMEGA_INTEGRATED_ARCHITECTURE_SPEC.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "382a93cd2fc850ca11da416d0001af0bf1b7bed7"
+        },
+        {
+          "path": "docs/architecture/OMEGA_MEMORY_TASK_INNOVATION_KERNEL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "913984b5a65a7f607fa257f15930275806b819d5"
+        },
+        {
+          "path": "docs/architecture/REPOSITORY_UNIFICATION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2543c6cbe2d7448782d375bb807ab34e6d1b99f2"
+        },
+        {
+          "path": "docs/architecture/VAIXLNS_AGENT_AI_SERVER_INTEGRATION_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7a81f4611e03d76c1aa044cf8b9558964f1befe4"
+        },
+        {
+          "path": "docs/architecture/VAIXLNS_CAPABILITY_INTEGRATION_AND_ENGINEERING_ACCELERATION_ROADMAP_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5a267ed8b2676aaf333fade67b1c2ce328600b6a"
+        },
+        {
+          "path": "docs/architecture/VAIXLNS_ENGINEERING_MIND_AND_REPOSITORY_CONTINUITY_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c688f8e2ed6943d37695f981e77c50b22786cb7d"
+        },
+        {
+          "path": "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c24ff606be77776b34a2fb58461e26e4e4bf552c"
+        },
+        {
+          "path": "docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "33206bfa1651106166d071ebe303e7fc274970ea"
+        },
+        {
+          "path": "docs/architecture/VX_FEDERATION_GATE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c563fe4e8ca32e7d0fc1b4e11f10aca5ed7a95b9"
+        },
+        {
+          "path": "docs/architecture/VX_OMEGA_GENESIS_SOVEREIGN_EVOLUTION_PLAN_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0c5ecd485ee1dde5b3f88fa5216f46944b5873a6"
+        },
+        {
+          "path": "docs/architecture/VX_UNIVERSAL_AGENT_RUNTIME_AND_ENGINEERING_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0b0d9473f8d9667b800bcd6c09d7d871c5597d3d"
+        },
+        {
+          "path": "docs/archive",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "daab9d60ea62ce9444fb02b4dbe840788115c07f"
+        },
+        {
+          "path": "docs/archive/ARCHIVE_OPERATING_MODEL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f226c126e2991c3d82d60652c8fe4080cadbac17"
+        },
+        {
+          "path": "docs/audits",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "34fba06a8f80d300e6260ee61a281e551ecafd12"
+        },
+        {
+          "path": "docs/audits/OMEGA_ARENA_EVIDENCE_FIRST_INTEGRATION_RUNBOOK_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d2213424a36e7fc2803498e2f3b41ded93592db0"
+        },
+        {
+          "path": "docs/audits/OMEGA_ARENA_FOUR_SYSTEM_BASELINE_AUDIT_2026-10-15.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f25b5bc1bbff65770fd716950d07ac21087b7b59"
+        },
+        {
+          "path": "docs/audits/VAIXLNS_DEEP_AGENT_AND_INNOVATION_AUDIT_2026-10-10.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1bafc4580a2d457d7b3a5d4175886d4a28e9941d"
+        },
+        {
+          "path": "docs/canonical",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "f5b3c0ecb04a3f376a5fa310bb5f7173d896d144"
+        },
+        {
+          "path": "docs/canonical/CANONICAL_CONTROL_PLANE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6de72744327c954a3e22d15d0adeb0d77537155c"
+        },
+        {
+          "path": "docs/canonical/CANONICAL_MASTER_ARCHITECTURE_V6.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "43394c428ba789074c7efad35f6905dd59ffc4d9"
+        },
+        {
+          "path": "docs/canonical/FINALITY_GATE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "11b0210631cd8f50fab282de31ef0ab655c05a71"
+        },
+        {
+          "path": "docs/canonical/MASTER_REGISTRY_SCHEMA.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3e72c4872a7a8183713f2415ccd2d0016932dc43"
+        },
+        {
+          "path": "docs/canonical/MULTI_MIND_GITHUB_FEDERATION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "63233163f8da9fa09f55adbede5922b36ace1ec2"
+        },
+        {
+          "path": "docs/canonical/PCS-001-VX-CGF.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9dc63b003d63df63008ac99fca56bd812d22096f"
+        },
+        {
+          "path": "docs/canonical/REPOSITORY_SYSTEM_MAP_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dc56be53e4bc70e54a224e326f99bbe91cd00353"
+        },
+        {
+          "path": "docs/cognitive",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "b3c4c3077e4e5835d45db08f10b958d971ed709f"
+        },
+        {
+          "path": "docs/cognitive/VLNS_MODEL_ACTIVATION_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "79c31b4567d2f88f7e5be854d5fdd4ee4244020e"
+        },
+        {
+          "path": "docs/cognitive/VX_COGNITIVE_FABRIC_RESTORATION_INDEX_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2de511e156b599d712bd6160495dda351a9c6585"
+        },
+        {
+          "path": "docs/cognitive/VX_OMEGA_COGNITIVE_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "beb569e3b761031654b756ceefd0bb977fd55ce6"
+        },
+        {
+          "path": "docs/engineering",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "e4da5258271697c9ed2d2a1884978fe2bda5ab19"
+        },
+        {
+          "path": "docs/engineering/INNOVATION_SERVER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5240868d8226e17454934283e66980d41d9cf992"
+        },
+        {
+          "path": "docs/engineering/OMEGA_IMPOSSIBILITY_ENGINE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1c6de5a50fd922cf360bf6cab9bc0810c2cb8a19"
+        },
+        {
+          "path": "docs/engineering/OMEGA_INNOVATION_LOOP_STAGE0.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "393f6e59fb1afeb6b9f19bbf5bf497d5cccda7e9"
+        },
+        {
+          "path": "docs/federation",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "a56b68327051ee906dfb1d7659f7f3f810871cfb"
+        },
+        {
+          "path": "docs/federation/FOUR_SYSTEM_UNIFICATION_EXECUTION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "de9e2840e80a623f779d08d5d00c897ea67abcc1"
+        },
+        {
+          "path": "docs/federation/VX_REPOSITORY_LINK_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ea61274bbb26f87a954b53e88ea46fe62d28d06b"
+        },
+        {
+          "path": "docs/index",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "7da7d5321bf2ec4f8613a6a2d987d5509c2c1bf3"
+        },
+        {
+          "path": "docs/index/VX_VLNS_INDEX_CONTINUITY_RUNBOOK_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b1e66442efbc1182c846bfaacd73b0504b4221ba"
+        },
+        {
+          "path": "docs/index/VX_VLNS_PINNED_SNAPSHOT_CAPTURE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dd8ff9bfe4044a210875be15ab87dd5116a2feee"
+        },
+        {
+          "path": "docs/indexes",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "94bb6f55281dc2a83cd967563787307ad01f4a33"
+        },
+        {
+          "path": "docs/indexes/ARCHIVE_SOURCE_INDEX.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a1ae434c812997e461973df11e87c8da49a85ac8"
+        },
+        {
+          "path": "docs/indexes/CANONICAL_REPOSITORY_LAYOUT.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f738e9a37db4d0bd090349527e313db2e251d2ae"
+        },
+        {
+          "path": "docs/indexes/CONFORMANCE_GAP_CLOSURE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ecd3bed59c82416bca8ce5ba9ac963cdaed36e57"
+        },
+        {
+          "path": "docs/indexes/ENGINEERING_DECISION_REGISTER.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "11b5d9c41ce795ff1fb0d5eb79e2c29d06ff32ee"
+        },
+        {
+          "path": "docs/indexes/FOUR_SYSTEM_RECONCILIATION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7551469787002a9aa8861e1873d6054ae42d905f"
+        },
+        {
+          "path": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0a317bdab544bdcc93d55e6a94f670d261532114"
+        },
+        {
+          "path": "docs/indexes/MASTER_RECOVERY_STATUS.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f5deba7d049cea02139fbc47f12fc37e798a8581"
+        },
+        {
+          "path": "docs/indexes/ORDERED_REPOSITORY_INDEX_AR.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "de2c84df22fcc69ebaba9e2ef6450c639e432608"
+        },
+        {
+          "path": "docs/indexes/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bca4ac2169fa62f9fcc7950e02e61d6b147f060a"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b9aab0c51da06aeae510e7609e426eb495c72e08"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_FEDERATION_INDEX.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ef274294601085d6acc0caefc0960cf2a6f55023"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_MERGE_MATRIX_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ef5e7f683de8b03c8c54306e8ac3b8b46d88778d"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_MERGE_POLICY_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "972e6e400dc84df8e329c462b35b854d300ac84e"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_PERPETUAL_ENGINE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d3c1b1c3bf4da1c2d83c0774caf6dcf8970fe122"
+        },
+        {
+          "path": "docs/indexes/REPOSITORY_RUNTIME_STATUS_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "cf04b4919727e128ac4e33623a28ab79752133bf"
+        },
+        {
+          "path": "docs/indexes/TERM_PRESERVATION_PROTOCOL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "209b7b341a5120ae4b60571ade7b1c1a2ecbbb8b"
+        },
+        {
+          "path": "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6afa26ec35d140af6125c27534d1e3d2b286dc2c"
+        },
+        {
+          "path": "docs/indexes/VCEF_COMPUTER_ENGINEERING_INNOVATIONS_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5f0f2003a25ddda98a0e0c0a22015ac4e5a53824"
+        },
+        {
+          "path": "docs/indexes/V_AGENT_ORCHESTRATION_KERNEL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ea5aba0f4b50099def1cbd210205c1a691a49c15"
+        },
+        {
+          "path": "docs/indexes/V_COMPUTATIONAL_REALITY_ENGINE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3012979b529802731fde5c4454b7a1ee9e27714b"
+        },
+        {
+          "path": "docs/indexes/V_MULTIDOMAIN_SYSTEM_SYNTHESIS_ENGINE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "57f614090cd4ee59e917d7ad5583a3d1287e5c85"
+        },
+        {
+          "path": "docs/indexes/V_PHYSICAL_MATHEMATICAL_COMPUTATION_PRIMITIVES_V2.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "327ecfd9f9f44fe71e9f31b6a2ddf541993c0c58"
+        },
+        {
+          "path": "docs/innovation",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "f0fb471af3ce245f708566d71b28b2353f2a740b"
+        },
+        {
+          "path": "docs/innovation/INNOVATION_OPERATION_INDEX.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6798f099fd81be196890aa30d49df0593ea39792"
+        },
+        {
+          "path": "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2fe36ff2fb812c89fb2b7b197c5c94e1e03464ea"
+        },
+        {
+          "path": "docs/innovation/VAIXLNS_DEEP_INNOVATION_RECOVERY_AND_READINESS_REGISTER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "90c09d22b528b039385151379d407924e5e1a107"
+        },
+        {
+          "path": "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2e75630d9821553aba7c6638c6bc1c6092f9de23"
+        },
+        {
+          "path": "docs/innovation/innovation-federation.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "73946af51b7893b34230855d9f979ba0a27dbf7b"
+        },
+        {
+          "path": "docs/integration",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "1eb1442c540ced091392fde245ffc063d7e347cd"
+        },
+        {
+          "path": "docs/integration/ARC_X_CHATGPT_ENGINEERING_PLUGIN_DESIGN_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5b9c93d35a96973f6884642740661a0fd7a8b616"
+        },
+        {
+          "path": "docs/integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b0373b2d7fa4f0e94d830f2dc274fe3e9d2bae04"
+        },
+        {
+          "path": "docs/integration/CLAUDE_CODE_MODEL_GATEWAY_SETUP_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "404adabbc552ec5ce70ccd945e9eb6c63c196f8b"
+        },
+        {
+          "path": "docs/integration/NEXENT_BOUNDARY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c1f18b5cc69601453fc680d29ce308e182807018"
+        },
+        {
+          "path": "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "089dc5c48c94d509990c7bea4b9fd0bd7d6f4c6f"
+        },
+        {
+          "path": "docs/integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5d037d276a31cf43aab849ad2eec866e0b82ecb5"
+        },
+        {
+          "path": "docs/integration/VLA_FEDERATION_CONTRACT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5732a696c574583d2dc929ead8a5a8e297c5e352"
+        },
+        {
+          "path": "docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dab9117bbedb01a457f84105b88397d95df31232"
+        },
+        {
+          "path": "docs/integration/VXTL_SYSTEM_LINKING_LAYER_PROPOSAL_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dedf0ce5ddff6750888378625aaeff805e829383"
+        },
+        {
+          "path": "docs/integration/VX_AGENTS_FABRIC_CONTRACT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b73d4d0fafa747ae4f29d9ea8923b7e71ddd46d7"
+        },
+        {
+          "path": "docs/integrations",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "8a22cfb73ddb24443a7e2312bd7130f6ac05500a"
+        },
+        {
+          "path": "docs/integrations/SOCIAL_COMMAND_CENTER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c241e29482d1dbb888dec860a3f1b96f42b976f7"
+        },
+        {
+          "path": "docs/migration",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "5faf7c3983453898285f3e1d2f497d2760d0bd9d"
+        },
+        {
+          "path": "docs/migration/MIGRATION_EXECUTION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c1191c79dab005a5d627499d9fa6ff293809da0d"
+        },
+        {
+          "path": "docs/omega",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "f5e30c318ec18738860beb1b932cce9ac21a5828"
+        },
+        {
+          "path": "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5b1bd47fe234ef0ac71bd690d6482c8d97f9e106"
+        },
+        {
+          "path": "docs/omega/VAIXLNS_GLOBAL_FABRIC.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "cb6b8e6d386c1fa85f16e8cf12932101b3f97fca"
+        },
+        {
+          "path": "docs/omega/VAIXLNS_INTELLIGENCE_FEDERATION.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3402d5244839ea47e92d8b6916a2a9d72c1547be"
+        },
+        {
+          "path": "docs/omega/VAIXLNS_OMEGA_INFINITY_PRESERVATION_LEDGER.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "51f8a274bde0bbea82ce8a69365679af2d7dd16c"
+        },
+        {
+          "path": "docs/omega/VAIXLNS_SOURCE_INTEGRATION_CONTRACT.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0ce45b7d62429c722a6a50d9c14b03eefc2f0f61"
+        },
+        {
+          "path": "docs/omega/VAIXLNS_WORLD_ENGINEERING_INTEROPERABILITY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2597b09250023d99ca8d1455da06c79e3d22dc1b"
+        },
+        {
+          "path": "docs/omega/VX_FRONTIER_MODEL_FEDERATION_AND_INDEX_AUDIT.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0184b0771326527837a8aa23564aa4e529ead7db"
+        },
+        {
+          "path": "docs/operations",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "723e0c0c7a2d4e991d72b1e15e8cdb350de7d282"
+        },
+        {
+          "path": "docs/operations/ASSEMBLY_FEDERATION_EXECUTION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3755357e57f06ff34922fc14c6da8aea32b7a802"
+        },
+        {
+          "path": "docs/operations/CONTINUOUS_PROMOTION_GATE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1e844178f1ab4b9de31d08ddc21da2e11bbde178"
+        },
+        {
+          "path": "docs/operations/DEEP_INDEX_AGENT_EXECUTION_PREFLIGHT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9afe56f0dc388ab009f7895360c180ef488f88d2"
+        },
+        {
+          "path": "docs/operations/FEDERATED_ENGINEERING_DEPLOYMENT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a8fae15aa27ef09de5608f0c45164327a140b9b0"
+        },
+        {
+          "path": "docs/operations/FEDERATED_RUNTIME_BOOTSTRAP_AND_CAPACITY_PLAN_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e8cc02769cd30e1064a743716b9763d439725c19"
+        },
+        {
+          "path": "docs/operations/MODEL_GATEWAY_LIVE_VERIFICATION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ceba6fcb94133bbd0b016c3d6c91cc85d5038346"
+        },
+        {
+          "path": "docs/operations/SERVER_DISCOVERY_BOOTSTRAP_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ca4ebf054fc143b0119dac42bd3d0991c668d4f9"
+        },
+        {
+          "path": "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dbb7de8f2b430c1143437c74925429858994220f"
+        },
+        {
+          "path": "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1da964c4018dae7ab179b21088b4471eb73c1b43"
+        },
+        {
+          "path": "docs/performance",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "e3e8578967f0d951850838f559200e5a04dc1445"
+        },
+        {
+          "path": "docs/performance/BOUNDED_PARALLEL_EXECUTION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "eb15e4070cfe2e82a00467c8a520aadb7634d928"
+        },
+        {
+          "path": "docs/recovery",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "1dadf4ac3fbdcb89d3f5dc5941d5763e338c54ec"
+        },
+        {
+          "path": "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a2ad1cbb48e2b43154ad5359a95c395bdb80c506"
+        },
+        {
+          "path": "docs/recovery/VAIXLNS_GAP_REGISTER_2026-10-06.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "062807c7ce66482dc12c0807da2576d905a1cde4"
+        },
+        {
+          "path": "docs/recovery/VAIXLNS_MASTER_RECOVERY_AUDIT.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f99477341c9b5a388531578b48a05aed44c9e8c2"
+        },
+        {
+          "path": "docs/recovery/VAIXLNS_UNIFIED_INNOVATION_DELIVERY_MAP_2026-10-10.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "96d13d2ecdfcf1e326c9755993319e24b34aeb0b"
+        },
+        {
+          "path": "docs/research",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "745cf8f49df909d6b1c05058752481847a6dd4f1"
+        },
+        {
+          "path": "docs/research/VAIXLNS_GLOBAL_RESEARCH_SYSTEM_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "78a437638ead797262034e2a5f385f3d6eabc331"
+        },
+        {
+          "path": "docs/security",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "705a52e875220dce6b4fdbc286168452fb0a2cc6"
+        },
+        {
+          "path": "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "71681a77552abf4fff9686bcb31b5f564f9c280a"
+        },
+        {
+          "path": "docs/strategy",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "4d8bbe0129a8f67cf47d693f959b3f23c30f83f1"
+        },
+        {
+          "path": "docs/strategy/REVENUE_INTELLIGENCE_CELL_72H_SPRINT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e63d33815a8cb91e8f6d098da086c70bf6295530"
+        },
+        {
+          "path": "docs/strategy/REVENUE_OPPORTUNITY_REGISTER_001.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "594e8e35e6324fea889f36030ca0ea6de5396927"
+        },
+        {
+          "path": "docs/strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "475e0a09a35f5092430c5bf9834974f7b1590928"
+        },
+        {
+          "path": "docs/testing",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "bbef36e18d05901124df62630ed707b29fb44a16"
+        },
+        {
+          "path": "docs/testing/ENGINEERING_TEST_ACCELERATION_AND_ASSURANCE_PLAN_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a3ce820c2bf4dd05c66ddc0ac2247357220dc34f"
+        },
+        {
+          "path": "docs/tools",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "77ffd8f69f857f20f392bb89c77fcf73f3f6c9c9"
+        },
+        {
+          "path": "docs/tools/ARC_X_BOUNDED_ADAPTIVE_EVOLUTION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "354a438bb22381d65bf4796c622144d976da2a10"
+        },
+        {
+          "path": "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5eb53878280b7f826e7712e38f22b4010c302e33"
+        },
+        {
+          "path": "docs/tools/ARC_X_FEDERATED_INTEGRATION_LINK_COMPILER_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "21c3c160c99f50edeb7b2e54cbb753171b04a161"
+        },
+        {
+          "path": "docs/tools/ARC_X_SELF_PROVISIONING_COMPUTE_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a0630b03488adf764f824bc93b765bc19e5eda0d"
+        },
+        {
+          "path": "docs/tools/ARC_X_UNIVERSAL_MODEL_GATEWAY_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "402ba3afdbef159609eb4c71dccd8f3ad3deed34"
+        },
+        {
+          "path": "docs/tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d11b40a5e687f09ddc903d45064c3e1d24fa9c54"
+        },
+        {
+          "path": "docs/tools/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6a589402b151e92d229b38766d061cf66c5ba1f4"
+        },
+        {
+          "path": "docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0c7f9f5d17f2454692d829c21bb2d228bd634da9"
+        },
+        {
+          "path": "docs/tools/VA_GENESIS_OPERATIONAL_ENGINE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9e8fc59fb5649c1197355adf37001e2bca4ca792"
+        },
+        {
+          "path": "docs/tools/VX_FEDERATION_RUNTIME_RUNBOOK_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4c03fa2d963b714c1c61ae2f9f211de09571deb2"
+        },
+        {
+          "path": "docs/tools/VX_UNIVERSAL_MODEL_FEDERATION_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "454635649d00a0805db6fd2cf8fe66ea7509b6e3"
+        },
+        {
+          "path": "docs/versioning",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "6dfefd19d3a7b711a2a1bdf9fcba269af497be5a"
+        },
+        {
+          "path": "docs/versioning/VERSION_REGISTRY_SPEC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "40e883ab3a9a010db19145658650229a37f7e82f"
+        },
+        {
+          "path": "docs/windows",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "30d5609e39fa88242e4a085307c005864b3d8b44"
+        },
+        {
+          "path": "docs/windows/ARC_X_WINDOWS_MCP_QUICKSTART_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ea74a4df25e38276dea31a6b4364ef9aa16192d5"
+        },
+        {
+          "path": "intelligence_federation",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "b5e7c97882c65b1c64058d80a0f181443c15c24c"
+        },
+        {
+          "path": "intelligence_federation/router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e72d68f7fb23e8f729218052e965d41e69e5c204"
+        },
+        {
+          "path": "omega_rac",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "a31d93de329f07ee2c36bc4d00c0c72669af5f39"
+        },
+        {
+          "path": "omega_rac/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a98597565f615c83d29cfbc525a30ff59dc8cd5c"
+        },
+        {
+          "path": "omega_rac/core.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2ea309dd4be6d3d958c598b24ac6d986f7c189a2"
+        },
+        {
+          "path": "project.genome",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7b8822cff6321d2b750aec030e29b928ed685940"
+        },
+        {
+          "path": "recovery",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "a47d6558ccad0c8dd7d5b5ca6fab3ae7df6e1d89"
+        },
+        {
+          "path": "recovery/README.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1425a96eec81f35abb52748e1401f943a5fe5341"
+        },
+        {
+          "path": "recovery/recovery_registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c538756a72ba3d78e1166d8bd99678282a951c0d"
+        },
+        {
+          "path": "registry",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "37685b547165b0c06cebf77604ddc8ebf4a472d3"
+        },
+        {
+          "path": "registry/REPOSITORY_INVENTORY.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "04248c3cfd5b82083ba6e1b05713912b35b51433"
+        },
+        {
+          "path": "registry/admission",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "e8e4a27a216356c5f109b16bf5717db1cd0baf1a"
+        },
+        {
+          "path": "registry/admission/golden-candidate.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "33f337d619b94ac49b0e952bee326ddfa6bb4f06"
+        },
+        {
+          "path": "registry/agent_registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8d6fe9a4fde4a7c5f88c982eb02f8cf1ef454dfc"
+        },
+        {
+          "path": "registry/assemblies",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "e90824596d81ea4e83b9f819d7e43a539a1baeb0"
+        },
+        {
+          "path": "registry/assemblies/assembly-federation.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "44ed499059339ba641a82093151c719e7819abee"
+        },
+        {
+          "path": "registry/capital_lock_policy.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "28a6b7609792ce3892cbf46ceeed762eeaf27c1f"
+        },
+        {
+          "path": "registry/computer-engineering",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "c496da25ea437c494e08b00aa0d5ca94b20e8395"
+        },
+        {
+          "path": "registry/computer-engineering/VCEF_INNOVATION_INDEX_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "68279582bfe46f77c08670c3b131bf33836637b0"
+        },
+        {
+          "path": "registry/evidence",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "3371c9673a5862359482aad3ccb5827d2f81cd05"
+        },
+        {
+          "path": "registry/evidence/control-plane-proof.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "001ace9fcf6f58f315414555c961198322ffcd56"
+        },
+        {
+          "path": "registry/federation",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "839e517d8b670692e21da0db602552b95d4d730f"
+        },
+        {
+          "path": "registry/federation/FEDERATION_CONSOLIDATION_RECORD_2026-10-06.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3720da7de2d9f3a11c9ca2309a652b7a57060897"
+        },
+        {
+          "path": "registry/federation/connected-repository-snapshot.2026-10-09.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "211d21dc1f25af673a65d4520b22e11ad03dc630"
+        },
+        {
+          "path": "registry/federation/federation_contract_edges.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c109c1ac0c9e98619d9f4813ce5bb25c641634a3"
+        },
+        {
+          "path": "registry/federation/four-system-interface-registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7279c37afc5659c18f9081574551fa4571d3ce91"
+        },
+        {
+          "path": "registry/federation/four_system_federation.v1.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "94eb4b83ebf1a6bf1a6da44725f07d378716d2a3"
+        },
+        {
+          "path": "registry/federation/four_system_unification.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3e93d0efa443ca137f2367a8504e97850e9b0a00"
+        },
+        {
+          "path": "registry/federation/vx_model_connectors.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1e758327c3e4c8de4bf967d41924c151c4839aff"
+        },
+        {
+          "path": "registry/federation_backend_registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "28c4c591f29f7ff49ae701b5fb7fe04c66f47a83"
+        },
+        {
+          "path": "registry/indexes",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "bcf4ccef5ebe69478d25d23487017b761801af80"
+        },
+        {
+          "path": "registry/indexes/vx-vlns-continuity-manifest.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3df5fbd4359cb6ddb681b9495b22c3adae1bd8be"
+        },
+        {
+          "path": "registry/indexes/zero-loss-index-taxonomy.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "61868edade33147072d15a85b65bf3511e8515e5"
+        },
+        {
+          "path": "registry/infrastructure",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "7f1e426683ae2397af8deeb2b5556e1e74132471"
+        },
+        {
+          "path": "registry/infrastructure/SERVER_DISCOVERY_REGISTRY_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a6c7af6c74993d4a1c3bb6895691abf6c5063d4c"
+        },
+        {
+          "path": "registry/innovation-operation-index.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b02f6fd0bd827273b67948a566946eab3160fd6d"
+        },
+        {
+          "path": "registry/innovation-operation-profiles.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "689396983dc759b386fba189134624ac44382ab4"
+        },
+        {
+          "path": "registry/innovation_measurement.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "91649c6b012053b4585caaf9f23c52bd7e6344fd"
+        },
+        {
+          "path": "registry/integration-control",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "f20c629a003087d42e287b3912f2fc04badb09e6"
+        },
+        {
+          "path": "registry/integration-control/external-integrations-policy-v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9f2915e74076da4667f2f68963546f9f4576bb5b"
+        },
+        {
+          "path": "registry/models",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "de8b0c2d7c504f91e1f1a92ea408dee7a751e4ca"
+        },
+        {
+          "path": "registry/models/vx-frontier-model-registry.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "df734a747344b69ad04273f14ea24d0dcc96c476"
+        },
+        {
+          "path": "registry/omega",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "d5347e939814185f8f26b132425bfd8aa28edb95"
+        },
+        {
+          "path": "registry/omega/VAIXLNS_GLOBAL_FABRIC.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9cfbbc3e16f87b9b1f39978153c5c5f8ed1347a8"
+        },
+        {
+          "path": "registry/omega/VAIXLNS_INTELLIGENCE_PROVIDER_REGISTRY.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ef73c1301f1c5dd2e289fb534d3f05b417b830c4"
+        },
+        {
+          "path": "registry/omega/VAIXLNS_WORLD_ADAPTER_CATALOG.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "53614eda8296648f22aeaad93ac033208a03859e"
+        },
+        {
+          "path": "registry/omega/federation-source-lock.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5a0e36fe78b63b81d2607aa1eedf14876e20f2e6"
+        },
+        {
+          "path": "registry/omega/omega-000-master-index.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "cbd3b32f7a9bf74650fdae02a8ebb0831dca84dc"
+        },
+        {
+          "path": "registry/omega/proposals",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "26aa905138b471fda518f3185ee5f3e970717c6d"
+        },
+        {
+          "path": "registry/omega/proposals/arcx-memory-engineering-federation.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d85221fc10efbacfe6387cd1724a3d29afb67803"
+        },
+        {
+          "path": "registry/omega/proposals/global-engineering-discovery-fabric.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2fface373196655f0a46ea6c7d8d76b59b9b77b1"
+        },
+        {
+          "path": "registry/omega/proposals/omega-memory-task-innovation-kernel.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ca8668f4a772432ffe3f5eb2f522cd0dcc0c04e5"
+        },
+        {
+          "path": "registry/patterns",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "6f3979772cda47f8e5576091f5d9d54407e32b5a"
+        },
+        {
+          "path": "registry/patterns/omega-pattern-foundry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8eca5a4113270928443be83dda3f946718910ed3"
+        },
+        {
+          "path": "registry/repository-orchestration",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "f163a47f56b50e8f23ad567ef576434aff3253c0"
+        },
+        {
+          "path": "registry/repository-orchestration/REPOSITORY_FACTORY_MANIFEST_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "def254b70871f7327e7ad193055d7ed2aacdb5a4"
+        },
+        {
+          "path": "registry/repository-orchestration/UNIVERSAL_ADMISSION_GATE_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9ceadbc3089f87c57554fc7c1585cf453491679f"
+        },
+        {
+          "path": "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c65cbda033ae6f8276561a015c9bd210d0fa9f88"
+        },
+        {
+          "path": "registry/repository_registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c684f98b83ac42b41d02a99fc20fda4d0b3b3351"
+        },
+        {
+          "path": "registry/research",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "298de92b9d463bb1793e9d332f957b25e3b5b2ea"
+        },
+        {
+          "path": "registry/research/global-research-system.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0c017c5115e0853a82b9162e502d2628214d120f"
+        },
+        {
+          "path": "registry/saudi_innovation_launch.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6ed7159a82138ae614167bd2240faa19bb082a20"
+        },
+        {
+          "path": "registry/tools",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "4b1101074927abd420647d354e71e23853ee4c35"
+        },
+        {
+          "path": "registry/tools/arc-x.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b0a9fce5fabcb4e33ef373ea40ef9e2d0b468576"
+        },
+        {
+          "path": "registry/tools/va-genesis.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "76c02e053dee6e7052c13dbfd933f0daf6c52067"
+        },
+        {
+          "path": "registry/treasury",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "c5443e1e7ca185ce903e6d4eddc60c863f839ec3"
+        },
+        {
+          "path": "registry/treasury/FINANCIAL_EVIDENCE_RECORD_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "88001ccbde4ac73aaa1327ecca08587787ef749c"
+        },
+        {
+          "path": "registry/treasury/TREASURY_ADMISSION_CONTRACT_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f51830d807c5114f355186d75ee66ba526eb9e2f"
+        },
+        {
+          "path": "registry/treasury/TREASURY_SYSTEM_MANIFEST_V1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7f31e491dc6e5630392333948edcfc628d230c80"
+        },
+        {
+          "path": "registry/treasury/VAIXLNS_AUTONOMOUS_TREASURY_FABRIC_V1.md",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "40aad7e91e7b1a9b5f8ff5850b8f178688f598f6"
+        },
+        {
+          "path": "registry/version_registry.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7aab9baa28b79f24a93e9d118e9623d3b3cfca79"
+        },
+        {
+          "path": "registry/vla.openvla.7b.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "78c7ea3ed8114536ea7e03f602b15a3845299127"
+        },
+        {
+          "path": "registry/vlns_activation_contract.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "df03bc02b0e30ac752b9a926cfb70649cb78d538"
+        },
+        {
+          "path": "registry/vlns_connection_status.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "31e72c4b4c1e0f69f48ba59b9d74efb5e11e2938"
+        },
+        {
+          "path": "registry/vx-agent-runtime-profiles.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0e961fc67546e1d6d36a304b9fee04f4e6b298ab"
+        },
+        {
+          "path": "registry/vx-agents-fabric.integration.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "99a1b0ff94102624c992ec4442db4c23fc3145ee"
+        },
+        {
+          "path": "registry/vx-runtime-role-binding-map.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "aedde9d7829023197de1ae233f82d295dd4b8374"
+        },
+        {
+          "path": "registry/vx-tool-control-default-policy.v1.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "27c85819630146768592adf18f1aab26fd514ac0"
+        },
+        {
+          "path": "requirements-arcx-mcp.txt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "14a0a1df18f34a76d0e26f5697e024288cbe8ff2"
+        },
+        {
+          "path": "requirements-model-mcp.txt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9d2d316e638b5d49b567d2c8e2faf999733a0364"
+        },
+        {
+          "path": "schemas",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "58670598f3d7d90ffa786814373085a9142cd512"
+        },
+        {
+          "path": "schemas/agent-task-envelope.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e8c04704cb96a3cdf17d746174fe6ad0d128cb89"
+        },
+        {
+          "path": "schemas/arcx-compute-plan.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "238a01b039fef81422c2562b362b97b7e2d372d0"
+        },
+        {
+          "path": "schemas/arcx-model-gateway-registry.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e16136933ec717a0e19d58b9427db7403058e882"
+        },
+        {
+          "path": "schemas/arcx-vx-engineering-receipt.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "64aa47f23cd5db1f6f1d4a4136bf782261dbc6c7"
+        },
+        {
+          "path": "schemas/arcx-vx-engineering-task.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "79dc059f025100a44d344c1f6417728fb99730f8"
+        },
+        {
+          "path": "schemas/atomic-system-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1fb95b65fab5cf7529a98fa5a1d145d1468b68a2"
+        },
+        {
+          "path": "schemas/discovery-routing-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "433a30d07497ae545b7a16bd027530322d0e6ad9"
+        },
+        {
+          "path": "schemas/engineering-system-candidate.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1800c477a18867940cbe603928d852a86fc508d2"
+        },
+        {
+          "path": "schemas/evidence-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "92368dcc6b33b39c7c7bde589b5e793c641ed1dd"
+        },
+        {
+          "path": "schemas/finality-certificate.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4757750a0984153ac9f37d54c6b708260b4d969f"
+        },
+        {
+          "path": "schemas/global-engineering-discovery-fabric.v1.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4dfca3214e11008ddf96ded7b648f9b2e5f85668"
+        },
+        {
+          "path": "schemas/innovation-federation.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "da4f221f8745d63f2fd0d0e57e060d5f588cdb79"
+        },
+        {
+          "path": "schemas/innovation-operation-index.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f09dfec9b033b7ae23010697a738deefa6f782f6"
+        },
+        {
+          "path": "schemas/omega-failure-genome.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "44d4cc77d855d0676f0f78673ef9d1fe7bb0760f"
+        },
+        {
+          "path": "schemas/omega-index-fragment-record.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "740ea82dff5b3160ffb30683f8844e5a1d991a94"
+        },
+        {
+          "path": "schemas/omega-memory-task-innovation.v1.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "aea9fa468517be1081c0a5ff00045715e177803b"
+        },
+        {
+          "path": "schemas/omega-pattern-attack.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a4ab4dc542bd00cffb285fad65e9018fdbe3b7ef"
+        },
+        {
+          "path": "schemas/omega-pattern-genome.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bb87866b18074b12c98f82e35b029b41c072dbf2"
+        },
+        {
+          "path": "schemas/omega-pattern.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "94c17da2ee18598547eb393b28ce19d81a88387c"
+        },
+        {
+          "path": "schemas/omega-rac-assurance-report.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "75f3fb4d28cd1b827caac6ac6bcba3cdbdb11e71"
+        },
+        {
+          "path": "schemas/omega-reality-capsule.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f5fe8e621ca7bd5839c55b1c73cefd6f2e0cc00a"
+        },
+        {
+          "path": "schemas/omega-security-authority-envelope.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e6531e52d5e482346060102cf9e7657a447c83bf"
+        },
+        {
+          "path": "schemas/omega-world-adapter.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d3dfcaf8c52e373e8f21ce945d2567c5772725b5"
+        },
+        {
+          "path": "schemas/proof-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e02de444dc67d2093df49007fd8da689dae13218"
+        },
+        {
+          "path": "schemas/provenance-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0f7d684d12ff5c140d8fb4f1ad5ba9df2f3673e5"
+        },
+        {
+          "path": "schemas/vaixlns-language-compilation-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8e7de90846649c8ba535a663863151639b6a3316"
+        },
+        {
+          "path": "schemas/vaixlns-system-memory-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "149a35ffe4e373ae4301a43bc9c134f58bf95980"
+        },
+        {
+          "path": "schemas/vlns-activation-envelope.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1cc75d45a02d306db4c8a6d8682e2dd205c149dd"
+        },
+        {
+          "path": "schemas/vx-agent-mind-genome.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bad51c96128e9e6f0942c09837d99650dc4cd2a3"
+        },
+        {
+          "path": "schemas/vx-agent-runtime-profile.v1.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ac49d9dc850ea505b17553255fb3236ceb778de2"
+        },
+        {
+          "path": "schemas/vx-arena.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9f5ece44c7d10f906574d3633a860d819f6be219"
+        },
+        {
+          "path": "schemas/vx-capability-genome.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "391a74908bb17aa99037efcc9df0f170080b467d"
+        },
+        {
+          "path": "schemas/vx-federation-instance.schema.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "38f17e6f34aa67fe28525a178ab3ada86e5f66c1"
+        },
+        {
+          "path": "schemas/vx-stage-evidence.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0afeb834b778fac7b7fade7c8f4c06150462f92f"
+        },
+        {
+          "path": "schemas/vx-tool-action-envelope.v1.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "50ecabf6e60d3bc7241df4c59e25c0e15aaedded"
+        },
+        {
+          "path": "schemas/vx-tool-policy-decision.v1.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1e2922054202d4f8bcc9aa34d2007e92f09bce49"
+        },
+        {
+          "path": "schemas/zero-loss-atomic-record.schema.json",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8e470c46e804443e1a1aa99f125aeb320c7f7e34"
+        },
+        {
+          "path": "scripts",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "e29a211c57ba1cd969d77069f70a2c59ef9bf23d"
+        },
+        {
+          "path": "scripts/admission_evaluator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0ace687d59553ac4f021312fad3978b1c62cda5a"
+        },
+        {
+          "path": "scripts/admission_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1b3203bb3786733fbada7e2e84482d9bac497ecc"
+        },
+        {
+          "path": "scripts/agent_execution_preflight.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c399833eaaef2d95fa1696947e308829027b9082"
+        },
+        {
+          "path": "scripts/arcx_adaptive_evolution.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0d18074aececf4db9491f5b303a9decd392f9952"
+        },
+        {
+          "path": "scripts/arcx_compute_planner.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e7ea8ce34f137e1ad53248210d062be38bcedb82"
+        },
+        {
+          "path": "scripts/arcx_federation_linker.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9910e1758d93ce726bc1415d780c8b8fd2bbd965"
+        },
+        {
+          "path": "scripts/arcx_model_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3249ffca4d8a8c0a168d5fabc2ab75c0692b4f40"
+        },
+        {
+          "path": "scripts/arcx_reconstruct.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0259d7bba20ee36a9083532f51a76ef037c752a9"
+        },
+        {
+          "path": "scripts/arcx_vx_bridge.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2eff2a9fe43b20e4cfd201595b063dd67554d233"
+        },
+        {
+          "path": "scripts/audit_omega_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8aabbcf68d80d7b0869c6fecb0cd68072426189a"
+        },
+        {
+          "path": "scripts/build_zero_loss_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0231372b6f938ac27d0d8d42565ab72c01af5ff0"
+        },
+        {
+          "path": "scripts/capture_pinned_repo_snapshots.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f977a18a8a73c68657874101dfb7ae93c14d5178"
+        },
+        {
+          "path": "scripts/capture_repository_snapshots.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "af0b4073da8321a07f79dda4fa352a978109aa8d"
+        },
+        {
+          "path": "scripts/continuous_promotion_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b424ccb0aa1e1c7ef76eace809edca0070aa1e6c"
+        },
+        {
+          "path": "scripts/decompose_omega_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2dc2c6dbca5419d8743841f2609729aff3f255c4"
+        },
+        {
+          "path": "scripts/discovery_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "7bb52d615a9aaf32d3dc3d2149c57f164b7eeb59"
+        },
+        {
+          "path": "scripts/emit_provenance.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6ad4319d564fd82f6c2ccd835a340367d043689e"
+        },
+        {
+          "path": "scripts/federated_engineering_deployment.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1b8e9abf56386cb4a6573fcbce2d4a453a08c58f"
+        },
+        {
+          "path": "scripts/federation_integrity_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fb95e43fbe33713ce80281be680317388b2e0016"
+        },
+        {
+          "path": "scripts/federation_preflight.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e9fd1cefb2a89e7804a050d91905e776ec8b168e"
+        },
+        {
+          "path": "scripts/master_workflow_orchestrator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2760b52738f779bdd015f9d18a51c0cbf868890c"
+        },
+        {
+          "path": "scripts/measure_innovations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f708e25dc44a26a6cbe8b92a7fa91e3352b0e84f"
+        },
+        {
+          "path": "scripts/omega_arena_audit.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8491cd2a5cf18209f122a08aef0b1e4de61f2f83"
+        },
+        {
+          "path": "scripts/omega_engineering_cycle.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "610e0baa5e832e0e7057a1b16714373f5710f9fc"
+        },
+        {
+          "path": "scripts/omega_innovation_loop.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "82753b7bd4b1269f194048258ab64739c370d539"
+        },
+        {
+          "path": "scripts/omega_memory_task_kernel.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0956b9909425d0d3706edfd105703ce32f1ee31a"
+        },
+        {
+          "path": "scripts/omega_pattern_foundry.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9ba87c32fed04ced5534ed2faff8782eab86ffb0"
+        },
+        {
+          "path": "scripts/pcs001_validator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4d1669b36e745838f999109352ec2454dc75f77a"
+        },
+        {
+          "path": "scripts/proof_verifier.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "27ead8c0828e0254bd3dbcbf1df72b4427fe0344"
+        },
+        {
+          "path": "scripts/reconstruct_control_plane.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "beae81d71a37f57bead9bd979e66bff821d4cd23"
+        },
+        {
+          "path": "scripts/recover_zero_loss_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "413a4cd20e88f64b9095feb0fca14a835baf02b5"
+        },
+        {
+          "path": "scripts/repository_pulse.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "854944411ea4b122fe52ce1f7b4c9c585983837a"
+        },
+        {
+          "path": "scripts/restore_repository_snapshot.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "18ac7ac7c51a0619203e3b4f934682993005062d"
+        },
+        {
+          "path": "scripts/revenue_opportunity_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1e079e61dd7c8783de99a88f3c65b9ed498c379a"
+        },
+        {
+          "path": "scripts/social_publication_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b58307bafee700e71ea7f8c977d39489852b4161"
+        },
+        {
+          "path": "scripts/treasury_admission_probe.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c29ce655b5a68a690a13936558640dbc46f7f98a"
+        },
+        {
+          "path": "scripts/validate_agent_and_innovation_registry.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5a92664ea4c9113d4c563f138b5d8e66d94b86ee"
+        },
+        {
+          "path": "scripts/validate_assembly_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "28e7fb3dd820d56a2155d488e47a0a18c9354f94"
+        },
+        {
+          "path": "scripts/validate_federation_contract_edges.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "931b5ebb4242ede005c7912873477862a3e53b97"
+        },
+        {
+          "path": "scripts/validate_four_system_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "051429bf48688ecd1f4e9ad5dd7b8ec3dac72f5a"
+        },
+        {
+          "path": "scripts/validate_global_engineering_discovery_fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1602a8f2cb1e1e48704ff48a2d0a847addc20ba6"
+        },
+        {
+          "path": "scripts/validate_omega_memory_task_kernel.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "93a8bcda1bccd27b274029835f138b42cf664d7c"
+        },
+        {
+          "path": "scripts/validate_vcef_innovation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1f9b087aca8245eedf733f83f0e9d700028e777b"
+        },
+        {
+          "path": "scripts/vcre_probe.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4c7c1ed1e787fc928ba1e99cd473175452d0ce7c"
+        },
+        {
+          "path": "scripts/verify_external_integrations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "545be7ae3328666fbdf56a310820fc27349638ca"
+        },
+        {
+          "path": "scripts/vx_federation_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "039127fb66825916354842bd7ee23f98e0f9bb97"
+        },
+        {
+          "path": "scripts/vx_federation_runtime.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c32fddc438ec694fbe9c36c46a382355fe22986e"
+        },
+        {
+          "path": "scripts/vx_model_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ca08acb37380f4380b2aa7ee3ee1b69a028cdbe5"
+        },
+        {
+          "path": "scripts/vx_stage_runtime.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e578dd0b9ca09bb41fff2237d64e0591b53629d3"
+        },
+        {
+          "path": "scripts/vx_verify.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "208792d3cb42bf397fc57b9d14082271cc89c2ec"
+        },
+        {
+          "path": "scripts/windows",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "8fe38ef6708b388ef261a0d227d1279a99ddc84e"
+        },
+        {
+          "path": "scripts/windows/run_arcx_mcp.ps1",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0c88c2494b9c1c6d0ae67a00e6f5a63f68f8cc95"
+        },
+        {
+          "path": "scripts/windows/run_model_mcp.ps1",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "497af510130eeaecc89e8966b6900db370a1e96d"
+        },
+        {
+          "path": "scripts/windows/setup_arcx_mcp.ps1",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bc582796ee770e88c81c55dfe32c24f7c6444af5"
+        },
+        {
+          "path": "services",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "478f387353a7acfb46406e2fc2d55a015ccde0ea"
+        },
+        {
+          "path": "services/innovation_server",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "1324b39db8d4c41b4336828e6c41ea16df8a9f33"
+        },
+        {
+          "path": "services/innovation_server/server.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1eef22bfbf1b4674d4c80e170455fda2d32c2330"
+        },
+        {
+          "path": "templates",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "7e4beff3775a03565e20f6ae23aff1ca79683235"
+        },
+        {
+          "path": "templates/change-event.template.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "251035e7ce854a7f83f587957378e826a6aa9082"
+        },
+        {
+          "path": "templates/innovation-record.template.yaml",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dbfcab320376a5d16e55b707c6891ea7dc74382a"
+        },
+        {
+          "path": "tests",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "6788af728ca29e2a809bf67e8b385b0255273754"
+        },
+        {
+          "path": "tests/arcx_mcp_contract_tests.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "69ad8919a07162d89b0c39caf5dd153cd8334d6b"
+        },
+        {
+          "path": "tests/test_admission_evaluator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4e467a50a7c9ecc548bbedcb341a7bc059407aef"
+        },
+        {
+          "path": "tests/test_agent_execution_preflight.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "85b93c3656d9a68a06191fdeeeaf00e2a7bed2de"
+        },
+        {
+          "path": "tests/test_agent_fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a80eff69cea3ab7e08c507d000fc64ff3a89c4c2"
+        },
+        {
+          "path": "tests/test_agent_orchestration.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "39e93b884db6d1be55aeb3ff6fcf0fbfb1f8c901"
+        },
+        {
+          "path": "tests/test_arcx_adaptive_evolution.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "dfc449c19d1a4f74f27664617ea52a36b9f7a363"
+        },
+        {
+          "path": "tests/test_arcx_compute_planner.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "97e9a780b5ce76711177c39eeb82bb8a51eb75a8"
+        },
+        {
+          "path": "tests/test_arcx_federation_linker.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e90fc2e3a6bf3bc930569624251b88e963f035d3"
+        },
+        {
+          "path": "tests/test_arcx_model_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ee47f065632ad458d7e7cb9b05126d36a53537b2"
+        },
+        {
+          "path": "tests/test_arcx_reconstruct.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e405cbde7952ff3a55c5f4005206b10df6b64842"
+        },
+        {
+          "path": "tests/test_arcx_vx_bridge.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "55d39b19952f1b213ba0ab3f1bb2436aa3a8f06c"
+        },
+        {
+          "path": "tests/test_assembly_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "76e15d45eba358513b3abbdce03b1bad72d1a522"
+        },
+        {
+          "path": "tests/test_audit_omega_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "70f9076b9d129f3551e008fc659a5db71ca7933e"
+        },
+        {
+          "path": "tests/test_canonical_control_plane.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "a44e92310f2ac8907e6a82a9486460093a01cb2e"
+        },
+        {
+          "path": "tests/test_continuous_promotion_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "684576ae0a33e05e22e2c33e12cb1d5546a04429"
+        },
+        {
+          "path": "tests/test_decompose_omega_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "10a147501bcdf7ba6b890ff1094a6b37d74bc2dd"
+        },
+        {
+          "path": "tests/test_deep_innovation_register.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "79284e0c13420ebf9a45f6c53e44f0d15d22f97d"
+        },
+        {
+          "path": "tests/test_discovery_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ac2a55a100de3ccab407626cc8092c97c3627bd1"
+        },
+        {
+          "path": "tests/test_engineering_test_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "336ab739b71d594bf5fcb1bd85af435c985a284a"
+        },
+        {
+          "path": "tests/test_federated_engineering_deployment.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "11fec0d98b9681d0a67124b57be1ad20c87e3dd1"
+        },
+        {
+          "path": "tests/test_federation_contract_edges.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8b8580c8329cc22e537c366129c97b1a10b10b39"
+        },
+        {
+          "path": "tests/test_federation_preflight.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "91fb8bc3468bdc041a3f7ef790faa43a704a8b41"
+        },
+        {
+          "path": "tests/test_four_system_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c71627211107b9046adf3f6eec2903cd229412e2"
+        },
+        {
+          "path": "tests/test_four_system_interface_audit.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b21dca6d61abffed46d6174935d8d3334936729a"
+        },
+        {
+          "path": "tests/test_global_engineering_discovery_fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8ff1fe977ecb7faad3946012b66d67310d36bdd1"
+        },
+        {
+          "path": "tests/test_impossibility_engine.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "391c633a234f57c8f79ef7ec76c2c1d9f0963123"
+        },
+        {
+          "path": "tests/test_impossibility_fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "85407716e60ce918af6088238dddd7a7a75bbb4d"
+        },
+        {
+          "path": "tests/test_innovation_measurement.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8b0df363bd21e060d5aa9c3308957b2c948e2fdb"
+        },
+        {
+          "path": "tests/test_innovation_operation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "19f6edc455bf77b9dbae4dd869e978ff820381a5"
+        },
+        {
+          "path": "tests/test_innovation_server.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "99f523c2ea45a9203aa71fa5c19e2ebde48b69b7"
+        },
+        {
+          "path": "tests/test_intelligence_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e508b7bfa0f25ecff673d9ccb4fa4c38e70a8fc2"
+        },
+        {
+          "path": "tests/test_master_workflow_orchestrator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ef849105e6524eebe30481ce3d5fab45771785c3"
+        },
+        {
+          "path": "tests/test_memory_task_innovation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b86c2bb682ece8e692db36222dc40c6810c29954"
+        },
+        {
+          "path": "tests/test_mind_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3353244294c3165612cf895f3dcbaee3964c74a5"
+        },
+        {
+          "path": "tests/test_model_mcp_gateway.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6109009304808d5a95e1954f1b754622c9e757ec"
+        },
+        {
+          "path": "tests/test_omega_arena_audit.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "544016b0258f2025f25b1775904df76f2c2bfa8b"
+        },
+        {
+          "path": "tests/test_omega_engineering_cycle.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e679cb3bfe03c7805a7c6e2aa062ca48c8c351a4"
+        },
+        {
+          "path": "tests/test_omega_innovation_loop.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "613ce66735e56df7d5410e2d48d47872d14079ef"
+        },
+        {
+          "path": "tests/test_omega_memory_task_kernel.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d336f5e9cbd835cf5b5654b225a54e2c88f26dc4"
+        },
+        {
+          "path": "tests/test_omega_pattern_foundry.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fa26e8de7c713328d5f5f9ac3a6860e5e51d25f7"
+        },
+        {
+          "path": "tests/test_omega_rac_core.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "45d5065b987a18dca07a439da440e561e466babf"
+        },
+        {
+          "path": "tests/test_paper_treasury.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "73a96512761a95df5815fe7b576fba6f890c671b"
+        },
+        {
+          "path": "tests/test_pcs001_validator.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "457e990216af23fe8e6a4b2507e634e9706329d3"
+        },
+        {
+          "path": "tests/test_pinned_repo_snapshots.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8661f1262591980ae0fa3e791696e92e53aba778"
+        },
+        {
+          "path": "tests/test_repository_snapshot_auth.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6da480a7bf2bde63279066e12a9450fd95415b62"
+        },
+        {
+          "path": "tests/test_revenue_opportunity_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ee73462c236ddc2510d4e81599b04b526dd9da32"
+        },
+        {
+          "path": "tests/test_server_discovery_probe.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "2da678fb1e3e9e30756bef4da572e0acd50f6fd5"
+        },
+        {
+          "path": "tests/test_social_publication_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "801921ca2314b86b787436c603c0c5f0fe3fc399"
+        },
+        {
+          "path": "tests/test_va_genesis.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f12fa42d2b92e6e66fc8a8b5faa360cd04ad64ed"
+        },
+        {
+          "path": "tests/test_vcef_innovation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "34593aa342e5ff9473c6c33104c67b61ce8d7423"
+        },
+        {
+          "path": "tests/test_vcre_predictive.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "131a6b25fe377b3e669a70b112e6402de7a55608"
+        },
+        {
+          "path": "tests/test_vcre_runtime.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bb35c51a768e76b40aefa27407797bc78544837d"
+        },
+        {
+          "path": "tests/test_vcre_synthesis.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5d982badd8ecf17429252ff3f2bd5301a053fc8f"
+        },
+        {
+          "path": "tests/test_vx_federation_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d43e77e049b1a1c71bc3b8d1483cac2bd7a2a463"
+        },
+        {
+          "path": "tests/test_vx_federation_runtime.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ce2fbac03b158b30812a672919ceeab26df1a1ca"
+        },
+        {
+          "path": "tests/test_vx_model_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bf461f0eca21397e9ee742e523852fe98f61b658"
+        },
+        {
+          "path": "tests/test_vx_stage_runtime.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "704068463b43c25133163ba138498c20864ff009"
+        },
+        {
+          "path": "tests/test_vx_tool_control_reference.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bfc49e0e967376f1d4b91d7f308505d80efa8feb"
+        },
+        {
+          "path": "tests/test_vx_verification_gate.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "9a9413b921c1e4f425d66c867eb81b45d52fb182"
+        },
+        {
+          "path": "tests/test_world_adapter_contract.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ced9c05b137f8cd58a9bc57a477872ac3aa97a13"
+        },
+        {
+          "path": "tests/test_zero_loss_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "020b64b57441f0e472f9257135a5f2c3bce292a1"
+        },
+        {
+          "path": "tools",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "54d8f56a864edcf709234fdc45f3e3551114d8d1"
+        },
+        {
+          "path": "tools/arcx_mcp",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "58b3864ebd64d75e280e000ff744ab498ee16b4e"
+        },
+        {
+          "path": "tools/arcx_mcp/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "277efa0f5726192498c2dd07d3c5926445bb56c2"
+        },
+        {
+          "path": "tools/arcx_mcp/server.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bc0f5a3005bb7555728c4f33e9369fb6a841294f"
+        },
+        {
+          "path": "tools/build_innovation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b9b6c922efa564a870d187ae1d679a48232b9c77"
+        },
+        {
+          "path": "tools/build_innovation_operation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c227b0c429c47f6f78dfbe1d22e25a1df2ce02d2"
+        },
+        {
+          "path": "tools/engineering_test_router.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3d05caa3580c465d42baf6519401c1a70dd2c881"
+        },
+        {
+          "path": "tools/four_system_interface_audit.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b4dc1bea4b1454709a15fb5a3396e18bee9908d0"
+        },
+        {
+          "path": "tools/impossibility_engine",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "cb6f6b7f4d390b03abc16c81f16b8734414285ff"
+        },
+        {
+          "path": "tools/impossibility_engine/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "bc73f05766393dc1caeb769bf2d846d4865acfd7"
+        },
+        {
+          "path": "tools/impossibility_engine/__main__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8d999c553ec0b967f8e57c9823254b09a792fc41"
+        },
+        {
+          "path": "tools/impossibility_engine/engine.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "71713e580edf3a732890c1ca94ac5c57fe9ee491"
+        },
+        {
+          "path": "tools/impossibility_engine/fabric.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "17180ede2784349280217fc5be87ac8bf69fe136"
+        },
+        {
+          "path": "tools/impossibility_engine/worker_server.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "0ce17ff72952da20a3bfe25e7b5a33a77f7bb349"
+        },
+        {
+          "path": "tools/model_mcp",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "7325f4a7fb499c19bcf3776ba36f723bf7baf93b"
+        },
+        {
+          "path": "tools/model_mcp/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5214f88bf1330cd58ab3076bab67d6d271b87f66"
+        },
+        {
+          "path": "tools/model_mcp/server.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "77decaef43f0cd8ee2ced0fbf727ee15715d0702"
+        },
+        {
+          "path": "tools/omega",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "468a0fd69f5c9ab8aac9712f87c9d35a17f97e94"
+        },
+        {
+          "path": "tools/omega/run_benchmark.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3d46aa9bb29e0c821e670fb227c59ab6fca08a30"
+        },
+        {
+          "path": "tools/omega/validate_federation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "98ebe0f296edfa28d1591c2cc5acdcd1e0551a84"
+        },
+        {
+          "path": "tools/server_discovery_probe.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "4b66e8d949ef6ce0ace02175ec4a98f6288cbb56"
+        },
+        {
+          "path": "tools/validate_deep_innovation_register.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "35a506058e93ccc646650e17d6517a596aad639f"
+        },
+        {
+          "path": "tools/validate_innovation_operation_index.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b90ffca5cd1c70481e8b5325b1927d0e73be5c40"
+        },
+        {
+          "path": "tools/validate_innovation_registry.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "ca5e0a7b913ec26b0d7573236eea80c0c64a11db"
+        },
+        {
+          "path": "tools/vx_tool_control_reference.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "aaa98f6441eb61fb17c625ae3f906a4335b7b927"
+        },
+        {
+          "path": "treasury",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "851f7489b2bf2581b2939d455d402597d8ecc807"
+        },
+        {
+          "path": "treasury/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b7f45fe20c9423f1f6db59dfa6d0846977a739c4"
+        },
+        {
+          "path": "treasury/__main__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "e0355c8e53ae948907de2e71a3c5d94f9db55615"
+        },
+        {
+          "path": "treasury/paper_treasury.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "22db371bb0e750075398fbb8821affef942e87b4"
+        },
+        {
+          "path": "va",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "926dde60fefe9c10fc78a0fcca9dcb1a0a733557"
+        },
+        {
+          "path": "va/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "b8383c10033c7a2c73556df646311dba22f82a72"
+        },
+        {
+          "path": "va/genesis.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8e0ac7a783ea93ff8bc7d00e318095fad7559773"
+        },
+        {
+          "path": "vaixlns_engineering",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "be7837e99225f3097a6fc8fbfe0eab55d6db1361"
+        },
+        {
+          "path": "vaixlns_engineering/memory_task_innovation.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "3873622ee31bc0913c854a6bc36ec4e0cf58d20d"
+        },
+        {
+          "path": "vcre",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "606debd00944c15a4e5b46ee38968e27443e42f0"
+        },
+        {
+          "path": "vcre/__init__.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "d09fb4732e7eee7a0e5f28227b7c0fcd45239ed7"
+        },
+        {
+          "path": "vcre/agent_orchestration.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5d047215344c3ec9c53a9496bfb82bc290f8662b"
+        },
+        {
+          "path": "vcre/engine.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "535b23ba93d9051220d82676470a223c98a7ad98"
+        },
+        {
+          "path": "vcre/predictive.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "34ed943fb1a7f2f78abc0c4d9490b91f01b3fad5"
+        },
+        {
+          "path": "vcre/synthesis.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "6a2d9005192a3c805fdb3c8e37bbc357646b5ec4"
+        },
+        {
+          "path": "web",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "77c3e1f361ae9fa5710560ac9681f67299544451"
+        },
+        {
+          "path": "web/social-command-center",
+          "type": "tree",
+          "mode": "040000",
+          "sha": "0b99993578a593d196402b83af4a4a56a82ef8f9"
+        },
+        {
+          "path": "web/social-command-center/index.html",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "5e6b3255171856369b24f4c2b63fa994e6150f7a"
+        }
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "agent-depth-v1",
+      "commit": "11a6cb556fcd79e8f17675ed68cadfe7d4406202"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "architecture/unified-archive-recovery-v1",
+      "commit": "367751fd641c64a8b9b543d3942751f9b838f8f7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "archive/deterministic-capture-v1",
+      "commit": "bdaeb959fc3d992bd11b78cbb040f51b9bbc32aa"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "arcx-integration-v1",
+      "commit": "3f4da2987282764a4e648925965b7be887de0eef"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "arena/omega-arena-v1",
+      "commit": "eebeb012273e93b2ad040e0f64d9b0340f7ef44e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "audit/federated-index-innovation-extraction-20261025",
+      "commit": "b0ed996f85a14d4592b74ecc167751f553d5eb73"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "audit/sirap-index-gaps-20261021",
+      "commit": "f9b4f8c7cf1614b1d6cc3c8446afde0276ac8e35"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "audit/unified-execution-register-20261024",
+      "commit": "6b035ba1832291833027e8cb85c2a759e6b368bf"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "audit/vx-index-evidence-20261025",
+      "commit": "aeda4a26970a81fa8e1b443f0bf5ca25c7a868cd"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261016T071155Z",
+      "commit": "7f88bd6db68f7abc808b3826840f48a6544b9d17"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261016T080011Z",
+      "commit": "450b700d9c37f8c25ed90f756bdc91785236673a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T012411Z",
+      "commit": "4b32500f636d3165ab3832970b753d2a28775125"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T065842Z",
+      "commit": "5db52b31b182f79a14b7ddccc53d142450ef9dbd"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T070036Z",
+      "commit": "ac0b2191521e035def02faffe684ae0bff1eab68"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T071158Z",
+      "commit": "c4084898fa5f7e95d8e71a98cb482637b47c59a9"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T071252Z",
+      "commit": "541b6b6c2c0fd0513d17e067a02e9cb4d3ebe9e1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T071351Z",
+      "commit": "c886f29198c8895083baeac74a66fdba579a320f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T071438Z",
+      "commit": "c25694cd65dcb1633f7fc3e4bb21a9b41ab09ec1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261017T071835Z",
+      "commit": "146f6cd17ef046c17fcccccfe97b282f4fbd83b5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261018T071430Z",
+      "commit": "f835a99ae0978fe23abb18f757b2adfce487c3df"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261019T074849Z",
+      "commit": "390edfa15ce43a6baae213e2f14ea3a1bd356f29"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261020T073635Z",
+      "commit": "af49e8397bb8a33a5b53032cdb2f47071d1842c2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261021T074104Z",
+      "commit": "35c290944eadc534498739f5d854de2df56e6808"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261022T073702Z",
+      "commit": "25b72b230137f8f35108b89418449da5060d1d72"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261023T073407Z",
+      "commit": "36c2ad8174e7cc8b61b800978facc3b6362ae441"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261024T071845Z",
+      "commit": "1b43f39e28af0ee00fd811e1256c058be8af3f58"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/federation-snapshot-ARCHIVE-20261025T073629Z",
+      "commit": "62f2076967098e29ab8dc657ac6029dcd2ecdcc5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "automation/innovation-operation-index",
+      "commit": "6bd55a9b44696cc2c7746bc66e2d39f0f274a81f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "chore/repository-organization-x-corrections-2026-10-16",
+      "commit": "28ac96880f4ffa56df3701cb654e2f1a23b92cb5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "codespace-potential-parakeet-pjv9w7q79x65h6rqw",
+      "commit": "4a160bacda890949c29108032284b57c10aaece1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "codex/federation-enforcement-001",
+      "commit": "d1cb4cdd367978287a7b072e481005ded5e9718d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/agent-ai-server-integration-fabric-v1",
+      "commit": "8147841092c47c3619046b63b9f488bd22338d21"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/deep-agent-innovation-audit-2026-10-10",
+      "commit": "1b9cb6d92938b2f15d52f24ae033b5c5b4d51349"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/fix-agent-innovation-markdown-v1",
+      "commit": "608086718fbb0c4b6abe0e85333786aee7a4cf59"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/integration-catalog-execution-register-20261025",
+      "commit": "1f194d99a96fb1e59b42aeb1beb7b40a174882d4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/ordered-repository-indexes-20261021",
+      "commit": "cff02e0ed59ff899abddf8a35370306bbf8fd9e6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/register-vx-engineering-cli",
+      "commit": "a6ccf6e9237b6f27b2de73e82edd4ba021184538"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/repository-inventory-refresh-2026-10-09",
+      "commit": "55f707a2a672e96b4eaed56c5d039f600d7a7811"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/system-evolution-status-20261021",
+      "commit": "f5892344c5dee18847ba2834fd6e8689f4b108b3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/update-vx-agent-provider-status",
+      "commit": "8f5d0a1e7a260d59ea79bf485e44dded6d9e83fc"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/update-vx-durable-operations",
+      "commit": "b1db49ae52ec348763a73d7240f7a82ed4ec3b75"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "docs/vx-integration-plan-index-20261021",
+      "commit": "5273675738c21dbe6c63b93fcd39cbd4cf74ffb8"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "experiment/microsoft-agent-framework-coordination-v1",
+      "commit": "cf685ccd6a4982002b1c8ab8139c2ab9a681af1d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "experiment/windows-boot-recovery-fabric-v1",
+      "commit": "a47e4a7cf19bbed642fb6822ca4289ed3686bc49"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "experiment/windows-vaixl-native-language-v1",
+      "commit": "ade95c857c06bdaf7e70a0122d205fc1c2b55569"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fable5-derived-integration",
+      "commit": "37ea11715a96b26bb11f9adc85956340497cb698"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/agent-action-control-assurance-v1",
+      "commit": "0313eaa78badb904ee6d37a4f30d48bf708caec3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/agent-runtime-supervisor-20261016",
+      "commit": "10a71eb3395740ecbb1993e6e79358fb59f4fee4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/agent-skill-subscription-fabric-v1-20261009",
+      "commit": "6be0d7efc8d510994291b49248887141ad4284ef"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/agentic-engineering-fabric-v1",
+      "commit": "c632165852ca797cb24dc8f556b7ca0f6d9dee95"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/ai-server-agent-federation-v1",
+      "commit": "d804371265dccbc7c0229ea856f68b392caaadb3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arc-x-canonical-tool-spec-v1",
+      "commit": "8428b5490566c7577d8eff76393a8b6cac71905d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arc-x-interoperability-fabric-v1",
+      "commit": "60fe969d05a35cccb8afa15345a27a895be5bd2a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arc-x-reality-reconstruction-v1",
+      "commit": "466f11f8470c0a012689d0cc304a35c2124af870"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arc-x-runtime-bootstrap-v1",
+      "commit": "bccface39bd3c5dc2c4a79c696cb74f40448bed6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arc-x-windows-mcp-prototype-v1",
+      "commit": "033ade12ef1ce26d36195c5466dfa69469203767"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arcx-federated-engineering-bridge-v1",
+      "commit": "d77989f23e38ed0e46f4bcd831def797c190b172"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arcx-governance-continuity-v1",
+      "commit": "a0caf47cb072d58ea67c2511a4a3b67552c95c6d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arcx-reality-sovereignty-kernel-v1",
+      "commit": "06a880df9c560dd6b71a9ab9f3bc39e1757b4300"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arcx-security-evidence-core-v1",
+      "commit": "a02c48da8943d6554c609eb47321a9df445c7dde"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/arcx-vx-local-handoff-001",
+      "commit": "c6a21634d82529a518c7242b890e6eecb8412c63"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/assembly-federation-gates-20261025",
+      "commit": "60c168af176d3294cec3a5293438c4e4e42a222c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/automatic-index-path-depth-v1",
+      "commit": "b5bcd55876ac5a733dc1de1a6f48bfbb12b2f280"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/autonomous-research-foundry-processor-v1",
+      "commit": "4c6e1b9921cb369a1504a1e30ce5c0abb84701b4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/canonical-decomposition-four-domain-room",
+      "commit": "a6ac9d97254e995078d532a00b25fbfadfc7416d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/closed-engineering-workspaces-v1",
+      "commit": "37821784ba731b2e9a4deca8609a993ccfe19708"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/continuous-promotion-gate-20261016",
+      "commit": "dfbb46aa5f09323a9441d5a3b16e6098552b4343"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/dedicated-system-interfaces-20261017",
+      "commit": "c3f70a0d083d444b2629b94a8d8efcbb62a1f736"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/deep-agent-innovation-orchestrator-v1",
+      "commit": "b059d5ee851f0669d27813076bd320947518a0bb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/deep-index-agent-runtime-preflight-20261015",
+      "commit": "36ead5e7dafb7b376304d201785a152850d5039f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/deep-innovation-recovery-register-v1",
+      "commit": "f3d03786967b2f3bcf1d6b9bb69260c15cabb3ec"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/ecc-claude-code-safe-integration-20261025",
+      "commit": "837614b6cf503896ef6c1f3c5c282dcc474fdf66"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/engineering-acceleration-benchmark-v1",
+      "commit": "d115f5bdc0076c17ff13ab5ce43e6ad871d9c4d3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/engineering-continuity-mission-kernel-v1",
+      "commit": "f6adece1956b7e0ed4c9705beff2453b23bf303d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/engineering-drawing-automation-fabric-v1",
+      "commit": "90d25bcfd7f0dfcd3c7dafbba2a37d88a6e9e243"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/engineering-innovation-discovery-20261009",
+      "commit": "453ffb9462af1c7c20952cc8c0aa2a4da65cf2c2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/engineering-innovation-fabric-v1",
+      "commit": "e1446b1bdbe0d49adf14ba8fb1f80dd96da641eb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/federation-lossless-merge-guard",
+      "commit": "4e84606fc2eb20899b09b300ddf8ab59a85cbb8f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/federation-operational-preflight-2026-10-10",
+      "commit": "be036dacd827bf539aceb8bc03227ddd23c5164d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/financial-revenue-sprint-001",
+      "commit": "f8acbc18a5fa396d1f4b6fcf2781d282a4111a6f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/four-system-unification-evidence-v1",
+      "commit": "d27e69c6da886111ea8b6e38d6d998a2f7816f40"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/global-engineering-discovery-fabric-v1",
+      "commit": "fdf41581d6b92a36d3b6f17185c0c1d8ff003bac"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/global-research-system-v1",
+      "commit": "0ced506b908f1ee0a5c3215cb8e7fcdd2c251c65"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/index-driven-workflow-v1",
+      "commit": "610b1f8e95f92f7e93a6e75c8d60a3975a75c21a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/index-measurement-agent-orchestration",
+      "commit": "592ecf39909998310ce5da9dfc50ff676a3980aa"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/innovation-operation-index-auto",
+      "commit": "5d77d5a9405658a3e38778f4cceafe21641c26ca"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/knowledge-genome-engineering-v1-20261015",
+      "commit": "b1a10aa2ddb4268fb58ca15e029d56ea065726f6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/language-repair-engineering-fabric-v1",
+      "commit": "35795eb5ed25a73e32e46dd3182a8bfc719747e5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/language-repair-fabric-v1-clean",
+      "commit": "a6f669df5f304eb9e7745d0384df34eb70a8acfd"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/legal-ai-interface-mvp-20261025",
+      "commit": "3a76a2f135ab2be6eaa57f3c4dacd3863f3f50ac"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/master-workflow-orchestrator-v1",
+      "commit": "1595754cc33cfe5cccc14245993841643dcb1556"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/office-fabric-integration-v1-20261009",
+      "commit": "0f94687f99a7fa5ea208dcbefbe3a7932c4efdba"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/official-website-v1-20261024",
+      "commit": "9c66dbf5fc38e384016abd25b1562c2b6586349e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-arena-evidence-first-integration-20261015",
+      "commit": "894b6631addab1f87d095b093cfbe1011d893b46"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-arena-four-system-audit-20261015",
+      "commit": "dfec77fe18453587be688734dffaa7e0031927d4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-cap-financial-engine-v1",
+      "commit": "f2866e39bc6d9985e41e407ed30d971d47dd92fa"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-command-room-library-audit-20261025",
+      "commit": "e8ac576d36443430d9d3240033d0db9d747bdd89"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-core-innovation-gates-20261025",
+      "commit": "a54c2ee98ee0bd2b2ed89874b452a8b8a666b502"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-economic-kernel-v1",
+      "commit": "bf3073a31fa818e978405c367093a9116e6a1d6a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-frontier-002-assurance-engines-v1",
+      "commit": "6654788a496bbcb1d00a8470321b8d10cd5d95ae"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-impossibility-engine-v1",
+      "commit": "23870fe9be7c439fe8a6985a3b5570f1dc07db03"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-innovation-loop-20261025",
+      "commit": "675661f76083dff186e6def7bcbfa993612f0abf"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-memory-task-innovation-kernel-v1",
+      "commit": "e74fbdbbb234f34fdad9c4702f3060d340112b3e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-pattern-foundry-v1",
+      "commit": "652118907da18bc6801926b794ddf21fcb11dc77"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-reality-forge-command-center-20261016",
+      "commit": "043bba17611c246cee9d10c72bc52fdc9e2f53ff"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-reality-forge-command-center-v1",
+      "commit": "f01d3e54cbca848addb7c703ec9f514827795925"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-reality-forge-mobile-v1",
+      "commit": "137a8299d7b36e6ec840bed5d4b8cd0ea2585b81"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-reality-forge-proof-carrying-mesh-v1",
+      "commit": "510a8eb99cac387ee9f5a42195b7539bb6b633f2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-reality-forge-ui-prototype",
+      "commit": "6377a841a847215b41752bf49f8eb31f4a6e1821"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-research-comparison-fabric-v1",
+      "commit": "53be4b1e9167307d2d6322841ee3f05028221760"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-symbol-disposition-gated-v1-20261025",
+      "commit": "66a2bf0743c854af1a0bdff92804aacada6dd871"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/omega-unified-capability-inventory-20261021",
+      "commit": "998c135995cf876454e86ecdd02a995233536901"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/one-agent-per-tool-financial-intelligence-2026-10-17",
+      "commit": "fda6e927d57ca5f09aa4cc7c6819c47841885e69"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/operational-control-plane",
+      "commit": "965bf78d79f6a67af5fdc35f12ac491e3f9a5851"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/permanent-engineering-memory-v1",
+      "commit": "e6811e058f00bed65fa46ae85d2c637278daa9b9"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/r-omega-forge-evidence-engine-20261015",
+      "commit": "ab7bb9463e87e19074b82d1cd9fa44044f4a6a55"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/register-agent-action-assurance-v1",
+      "commit": "c73d2666ab3b6a03476468db0ebe26e54b74303d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/register-research-decision-fabric-v1",
+      "commit": "f9c79680fadb4eac04a2a83ad7e3c0e210a078e8"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/register-vx-agents-fabric",
+      "commit": "911ae7822f8d52eccf5e1cf21efbdfe16215a339"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/repository-federation-v2",
+      "commit": "5c90e7bb9a080445c102f8236b91594b0acb4708"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/saudi-first-innovation-program-20261009",
+      "commit": "766872fb7adc9ddd256695770d0937a6966528af"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/self-evolution-growth-governance-v1",
+      "commit": "75a055dd1e1cd97708ec6d1eac34ed1ccc8e29d7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/server-discovery-bootstrap-20261009",
+      "commit": "892e66f6fe4bcca68dcf5b2240b00151d03b586a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/server-first-discovery-20261009",
+      "commit": "bbdbd1f49f56947465cbe3edf88b817d4f84fa34"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/server-innovation-fabric",
+      "commit": "58c0fd4214e45e88835dfbae2b3afcaff5d4693f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/social-command-center-v1",
+      "commit": "e0af6823173cc7543be9e0c446993f59a986cb65"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/sovereign-command-console-v1",
+      "commit": "ee2bd6579fbdbb129b8a3c303bfc59f20adf452e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/sovereign-meta-kernel-v1",
+      "commit": "c761c2f7eb47e69cd67373b8e8b70edf3b5c9e86"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/sovereign-tool-control-fabric-v1",
+      "commit": "ae63c9f76b10260c9b764c666cb39c43287c394a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/test-observability-phase-a",
+      "commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/v-computational-engineering-factory-v1",
+      "commit": "4a2149804111ebbea389c7070a31e3d7e2a9682c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/va-genesis-operational-engine-v1",
+      "commit": "dd895797b5431652b45a65d88636547ff108ecd1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixl-language-guardian-v1",
+      "commit": "f11a6971e0436b5a3c44b6f560cb07b08f16592a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixl-pattern-factory-v1",
+      "commit": "f03d808e003f936bc4ff33bf64fac865bd2ef9eb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixl-pattern-real-v1",
+      "commit": "b2356f493e0c1b6018f7bf95ad9d754844e4be33"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixl-worker-orchestrator-v1-20261016",
+      "commit": "eea2b9dda04cc5ebfbc220605bec7a8719d6dd1c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixlns-iphone-console-v1",
+      "commit": "e9ffdd75c5d0779f4f0dda54d28f8ea567b715cc"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vaixlns-zero-loss-index-v1",
+      "commit": "de8852c1d73e37fd6c0189e40ce1c60f575eae34"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vcef-computer-innovation-index-20261025",
+      "commit": "b6f855230319bd59f92e559c693e7bcd0d142b6c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vcre-cross-domain-synthesis-v1",
+      "commit": "4386fb5b4468d22a4070326edfd3b810127ac80e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vcre-predictive-simulation-kernel-v1",
+      "commit": "f1fb4d6fe10b14ccdfab6ab3dd8ed883c657656e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vlns-activation-contract-20261009",
+      "commit": "29e4aac9925389cef4ab9a4ab10efefe1ae5538d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-adaptive-cognitive-routing-20261021",
+      "commit": "80cd9fdf966985be9572b84014e0f74f6121973a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-capability-index-connector-v1-clean",
+      "commit": "e75366911582665a4e5ecbac7feda8cb83b64f0b"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-capability-index-connector-v1",
+      "commit": "f543d77aa85d511a39b20142d5501a3996640eb0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-cognitive-mesh-index-preservation",
+      "commit": "a3280d61a9a8f6f5f1146dcd998faf1ab68aaefb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-design-omega-studio",
+      "commit": "f9f656615f5a52b6af1f61e3ced5346e2f519235"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-engineering-forge-research-v1",
+      "commit": "5f15374bfef4fd3ad559babab1b528c230865b4b"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-federation-links-20261021",
+      "commit": "a6bdb982795cbd13a2553eebbf32611df9bc1398"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-financial-intelligence-foundation-2026-10-17",
+      "commit": "85bf3d6b5c1d0b79bd09de52574128dfb812411a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-four-system-federation-binding-2026-10-17",
+      "commit": "77c8255794f4e313c128da11e05fc7b356183adb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-gateway-comparison-v1",
+      "commit": "69b58d597c52bdbdab7797d5af05e7b4c3a068c5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-global-capability-fabric-2026-10-17",
+      "commit": "f0f7fcc654fa4221e78e3b6c348bdae7509cfea7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-index-audit-frontier-model-registry",
+      "commit": "652a4164cb212369252ddd31dab991e8ae3d2740"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-master-engineering-index-20261021",
+      "commit": "77a1f9a46e86c87debf14a62dedd9922a38060f1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-nonregression-evolution-gate",
+      "commit": "7233aaf75f381c84bc1b98c4565fed2f79047e16"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-omega-genesis-plan-20261025",
+      "commit": "350b487bb4bc273cc616bdb58886a6489197809c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-predeploy-integration-assurance-2026-10-17",
+      "commit": "4f31c3db51395348a31870e2490243a7e540b68f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-stage-runtime-v1",
+      "commit": "d9b364b376b6a9bfe9f45f4303cb8b069028b80d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-supervised-runtime-bootstrap-v1",
+      "commit": "a8fe0244b8ec8f338974618aab5b266a9ebdd355"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-universal-federation",
+      "commit": "e2c585a7bc8dc757d2dab06c6574b91edfdcdca3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/vx-xv-cognitive-continuity-v1",
+      "commit": "2898587628e5c62220d9f91d9ddbe2492b12362c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/windows-engineering-fabric-v1",
+      "commit": "448d9402d840733ce0859cb536a2b4678f2b52a1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/zero-loss-index-clean-2026-10-09",
+      "commit": "3f6f19ce63a3827c9fe213192bb75aeee999ff10"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feat/zero-loss-index-innovation-extraction-2026-10-10",
+      "commit": "3a6cef7f6d711c476cccdf6ed599e1a34d83093a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "feature/finality-rirf-v1",
+      "commit": "24a4cb285faabed5f92abb0bad7f379d305b17b0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/admission-gate-canonical-contract",
+      "commit": "7ab401ec59751423b69ab5ddd815866dab030ba7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/admission-path-resolution-v1",
+      "commit": "38f8d099564967c0370f2e2d1dbae8151d82b612"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/control-plane-proof-id-after-digest-refresh",
+      "commit": "f8fe149db1f550b8b392d138b4068810624fec32"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/federation-snapshot-pr-flow-20261015",
+      "commit": "c5a66a4ba519c371d20f11f9ca02bb27738c2e65"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/innovation-index-profile-enrichment-status",
+      "commit": "24648a37134b44fcca3e4f54df48c82e9267ea5b"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/omega-rac-rebased-main",
+      "commit": "42abd013b95b57f3ab998acc28d0d50512f941c2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/pinned-snapshot-sha-validation-v1",
+      "commit": "1d7bc8d33edc9ff083e3edfef2cf89475d030da7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/update-control-plane-proof-after-omega-index",
+      "commit": "1382c5f0bcb144a74fc54bbc8d9be15ba0bb424b"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/vx-gateway-comparison-v1-p2",
+      "commit": "e8b231028a05aa84dd6b57a760a1b7e6b20fe368"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "fix/vx-stage-signing-key-source-2026-10",
+      "commit": "f3c2459d20a51e0950201a5843feb879344b655f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "integrate/four-system-federation",
+      "commit": "c091fa8c6546e141b0a82d86bce3b2d0b5fa7f24"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "integration/deep-agent-planner-clean-2026-10-09",
+      "commit": "c7e6ec937f16980ffa32f4aa30f86365c63bb779"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "integration/sovereign-gap-closure-2026-10-06",
+      "commit": "f36b8f5df754016b1fbb6a520011abc3bb53c92a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "main",
+      "commit": "433969a43b604563e22b70b8cb88223aff539fad"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "omega-architecture-challenge",
+      "commit": "b66d26456e8e2ba88526767027c2d1fccacb6041"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "ops/canonical-reorganization-2026-09-25",
+      "commit": "be3143ec862fb470dcc823c4d19c938ccb4133dc"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "ops/federated-systems-engineering-plan-20261015",
+      "commit": "7599bf55424d2f5b69cf7a384ba806795136d6de"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "ops/four-system-reconciliation-2026-10-03",
+      "commit": "a5f190291336e64398deae0266b9f7d780aac7f0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "perf/bounded-parallel-innovation-workers-v1",
+      "commit": "8b7a51caf8455ef2499817cecac8d4d1fdfeffbd"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "policy/vx-autonomy-zero-spend-approval-20261020",
+      "commit": "3e1a779f8833dc00f0918f4462a1d8318b081604"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "reconciliation/2026-10-06-execution-package",
+      "commit": "a203b37257fae6d62dd5fc8321e703d72ec1831e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "recovery/unified-innovation-delivery-map-2026-10-10",
+      "commit": "41be02ad28db68ff5f6a376c90d29c1685439e2e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "registry/federation-snapshot-hardening-v1",
+      "commit": "8ae582f3121f165108a9575cf7002eae12a759cb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "registry/release-1.1.1-finalization",
+      "commit": "c38ad056e54c15930be380fda987a23e3138d973"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "registry/release-evidence-1.1.0",
+      "commit": "bfe7cbaf59572bf410f775b01cefd35591c37ee1"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "research/cross-repo-innovation-extraction-500",
+      "commit": "7771007b42c0ed7056af06306b6bb3c84e9b404e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "research/engineering-math-index-fabric-v1",
+      "commit": "6c08998ffced6df6092e69b51f57b8ea7b602bf5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "security/malware-guard-v1",
+      "commit": "e1dee67e94d6d7724a39e47bbd89beca585ef6e4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "spec/arc-x-chatgpt-engineering-plugin-v1",
+      "commit": "22490bdff4007ef7c867b3fa855078a8d3e59742"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "vx-cgf-pcs001-proof-carrying-state",
+      "commit": "2e92176a633ea84f78d18fb130ba2659d321465e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "vx-master-plan-runner",
+      "commit": "a3ca248406766f23682228c59c26d65ff8b58412"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "vx-runtime-proof-gate",
+      "commit": "822bc175b89cdfaf49b24b49ec1d73eb24bb3763"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "name": "vx-universal-model-federation-2026-10-17",
+      "commit": "4d6f371502928c84f58919f444c5c962d62fe689"
+    }
+  ],
+  "pull_requests": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 178,
+      "title": "[Draft] Ω-SYMBOL + zero-loss disposition register and evidence gate",
+      "state": "open",
+      "head_commit": "66a2bf0743c854af1a0bdff92804aacada6dd871",
+      "base_commit": "433969a43b604563e22b70b8cb88223aff539fad"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 173,
+      "title": "audit: provisional VAIXLNS × VX × VLNS index and innovation recovery evidence",
+      "state": "open",
+      "head_commit": "b0ed996f85a14d4592b74ecc167751f553d5eb73",
+      "base_commit": "1794d46217e50dfa581dcadec60f3705e77747a8"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 170,
+      "title": "fix(vx): reject malformed gateway allowlist and IDs (P2)",
+      "state": "open",
+      "head_commit": "e8b231028a05aa84dd6b57a760a1b7e6b20fe368",
+      "base_commit": "69b58d597c52bdbdab7797d5af05e7b4c3a068c5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 166,
+      "title": "VX: evidence-gated adaptive model routing and multi-agent consultation",
+      "state": "open",
+      "head_commit": "80cd9fdf966985be9572b84014e0f74f6121973a",
+      "base_commit": "11aa2aa0c30d96ef1dcd73ffb273684d6c160cea"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 165,
+      "title": "docs(vx): add evidence-gated master engineering index M0-M25",
+      "state": "open",
+      "head_commit": "77a1f9a46e86c87debf14a62dedd9922a38060f1",
+      "base_commit": "11aa2aa0c30d96ef1dcd73ffb273684d6c160cea"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 164,
+      "title": "docs(vx): تثبيت خطة اختبارات التكامل وفهرس التنفيذ المرتب",
+      "state": "open",
+      "head_commit": "5273675738c21dbe6c63b93fcd39cbd4cf74ffb8",
+      "base_commit": "11aa2aa0c30d96ef1dcd73ffb273684d6c160cea"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 161,
+      "title": "[DRAFT] VX zero-spend autonomy, evidence-bound launch triage and model catalog gate",
+      "state": "open",
+      "head_commit": "3e1a779f8833dc00f0918f4462a1d8318b081604",
+      "base_commit": "6bd55a9b44696cc2c7746bc66e2d39f0f274a81f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 159,
+      "title": "Add consolidated VX master-plan script",
+      "state": "open",
+      "head_commit": "a3ca248406766f23682228c59c26d65ff8b58412",
+      "base_commit": "367751fd641c64a8b9b543d3942751f9b838f8f7"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 157,
+      "title": "Define one-agent-per-tool financial intelligence mesh",
+      "state": "open",
+      "head_commit": "fda6e927d57ca5f09aa4cc7c6819c47841885e69",
+      "base_commit": "cb06784f64432b06106902ba6140d6278b6c3e0c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 156,
+      "title": "Define VX Financial Intelligence foundation",
+      "state": "open",
+      "head_commit": "85bf3d6b5c1d0b79bd09de52574128dfb812411a",
+      "base_commit": "cb06784f64432b06106902ba6140d6278b6c3e0c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 155,
+      "title": "Specify VX Global Capability Fabric and catalog discovery seed",
+      "state": "open",
+      "head_commit": "f0f7fcc654fa4221e78e3b6c348bdae7509cfea7",
+      "base_commit": "cb06784f64432b06106902ba6140d6278b6c3e0c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 154,
+      "title": "Bind VX into the four-system federation with evidence gates",
+      "state": "open",
+      "head_commit": "77c8255794f4e313c128da11e05fc7b356183adb",
+      "base_commit": "cb06784f64432b06106902ba6140d6278b6c3e0c"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 150,
+      "title": "perf(vx): accelerate zero-loss index cross-reference resolution",
+      "state": "open",
+      "head_commit": "a3280d61a9a8f6f5f1146dcd998faf1ab68aaefb",
+      "base_commit": "94bd2218f48c6451ff83b981230c575857060e80"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 149,
+      "title": "VX capability non-regression gate and evidence-driven evolution loop",
+      "state": "open",
+      "head_commit": "7233aaf75f381c84bc1b98c4565fed2f79047e16",
+      "base_commit": "94bd2218f48c6451ff83b981230c575857060e80"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 148,
+      "title": "VX DESIGN Ω — interactive design studio prototype",
+      "state": "open",
+      "head_commit": "f9f656615f5a52b6af1f61e3ced5346e2f519235",
+      "base_commit": "94bd2218f48c6451ff83b981230c575857060e80"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 145,
+      "title": "feat(perf): add reproducible engineering feedback benchmark",
+      "state": "open",
+      "head_commit": "d115f5bdc0076c17ff13ab5ce43e6ad871d9c4d3",
+      "base_commit": "8b0b81c43e5c5ef4a86f1b9571d3c5d5fff73dee"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 144,
+      "title": "docs: establish non-destructive repository organization and X correction register",
+      "state": "open",
+      "head_commit": "28ac96880f4ffa56df3701cb654e2f1a23b92cb5",
+      "base_commit": "8b0b81c43e5c5ef4a86f1b9571d3c5d5fff73dee"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 140,
+      "title": "Feat/omega research comparison fabric v1",
+      "state": "open",
+      "head_commit": "53be4b1e9167307d2d6322841ee3f05028221760",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 139,
+      "title": "Enforce independent federation evidence and restore Ω-Arena simulation",
+      "state": "open",
+      "head_commit": "d1cb4cdd367978287a7b072e481005ded5e9718d",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 138,
+      "title": "Add content-addressed capability index and fail-closed GitHub connector",
+      "state": "open",
+      "head_commit": "e75366911582665a4e5ecbac7feda8cb83b64f0b",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 134,
+      "title": "feat(dashboard): add evidence-first mobile Ω Reality Forge",
+      "state": "open",
+      "head_commit": "137a8299d7b36e6ec840bed5d4b8cd0ea2585b81",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 132,
+      "title": "feat(gedf): bridge research capsules to multidomain verification plans",
+      "state": "open",
+      "head_commit": "4a2149804111ebbea389c7070a31e3d7e2a9682c",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 131,
+      "title": "feat(omega): introduce Reality Forge proof-carrying agent mesh",
+      "state": "open",
+      "head_commit": "510a8eb99cac387ee9f5a42195b7539bb6b633f2",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 130,
+      "title": "fix(recovery): enforce exact pinned Git commit SHA length",
+      "state": "open",
+      "head_commit": "1d7bc8d33edc9ff083e3edfef2cf89475d030da7",
+      "base_commit": "bb3d96caa7905aabe1adbbbc569c7e6a0a78f4d0"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 127,
+      "title": "feat(ui): add Ω Reality Forge interactive command center",
+      "state": "open",
+      "head_commit": "043bba17611c246cee9d10c72bc52fdc9e2f53ff",
+      "base_commit": "beda91602a2166df0df32de178ef5bb4fc012d03"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 126,
+      "title": "feat(runtime): add governed AI worker supervisor",
+      "state": "open",
+      "head_commit": "eea2b9dda04cc5ebfbc220605bec7a8719d6dd1c",
+      "base_commit": "faeeec645cb9a6400a9de7e212c77ea4bdde5a9e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 125,
+      "title": "feat: add fail-closed VX agent runtime supervisor",
+      "state": "open",
+      "head_commit": "10a71eb3395740ecbb1993e6e79358fb59f4fee4",
+      "base_commit": "faeeec645cb9a6400a9de7e212c77ea4bdde5a9e"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 121,
+      "title": "feat(knowledge): add verified non-destructive Knowledge Genome probe",
+      "state": "open",
+      "head_commit": "b1a10aa2ddb4268fb58ca15e029d56ea065726f6",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 119,
+      "title": "fix(vx-stage): correct signing-key provenance and cover both paths",
+      "state": "open",
+      "head_commit": "f3c2459d20a51e0950201a5843feb879344b655f",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 118,
+      "title": "docs(operations): map federated systems and close readiness gaps",
+      "state": "open",
+      "head_commit": "7599bf55424d2f5b69cf7a384ba806795136d6de",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 117,
+      "title": "feat(runtime): implement supervised VX bootstrap acceptance slice",
+      "state": "open",
+      "head_commit": "a8fe0244b8ec8f338974618aab5b266a9ebdd355",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 116,
+      "title": "feat(economics): add Ω Economic Kernel v1 reference model",
+      "state": "open",
+      "head_commit": "bf3073a31fa818e978405c367093a9116e6a1d6a",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 115,
+      "title": "feat(omega): add Ω-FRONTIER-002 bounded assurance engines",
+      "state": "open",
+      "head_commit": "6654788a496bbcb1d00a8470321b8d10cd5d95ae",
+      "base_commit": "52d1795e8550cd069ddb03cca45e573028115062"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 113,
+      "title": "ARC-X Security Evidence Core v1",
+      "state": "open",
+      "head_commit": "a02c48da8943d6554c609eb47321a9df445c7dde",
+      "base_commit": "60fe969d05a35cccb8afa15345a27a895be5bd2a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 109,
+      "title": "docs(agents): define deeper evidence-driven cognitive fabric",
+      "state": "open",
+      "head_commit": "11a6cb556fcd79e8f17675ed68cadfe7d4406202",
+      "base_commit": "e2fbab63cebdf7016e4aa98c0413e4493d0417a6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 102,
+      "title": "feat: establish evidence-gated self-evolution and growth workflow",
+      "state": "open",
+      "head_commit": "75a055dd1e1cd97708ec6d1eac34ed1ccc8e29d7",
+      "base_commit": "b3e9a5ad97d128ab3c52186c38b66469c1d0c4e9"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 99,
+      "title": "feat(cognitive): add VX multi-mind planning and XV continuity kernel",
+      "state": "open",
+      "head_commit": "2898587628e5c62220d9f91d9ddbe2492b12362c",
+      "base_commit": "f6adece1956b7e0ed4c9705beff2453b23bf303d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 98,
+      "title": "feat(engineering): add guarded repair and source-pinned idea fusion",
+      "state": "open",
+      "head_commit": "a6f669df5f304eb9e7745d0384df34eb70a8acfd",
+      "base_commit": "f6adece1956b7e0ed4c9705beff2453b23bf303d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 91,
+      "title": "Feat/autonomous research foundry processor v1",
+      "state": "open",
+      "head_commit": "4c6e1b9921cb369a1504a1e30ce5c0abb84701b4",
+      "base_commit": "e1dee67e94d6d7724a39e47bbd89beca585ef6e4"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 88,
+      "title": "docs: publish source-bound index and deep-innovation extraction",
+      "state": "open",
+      "head_commit": "3a6cef7f6d711c476cccdf6ed599e1a34d83093a",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 86,
+      "title": "experiment: specify Windows recovery in VAIXLNS native language layers",
+      "state": "open",
+      "head_commit": "ade95c857c06bdaf7e70a0122d205fc1c2b55569",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 85,
+      "title": "experiment: Windows boot, recovery, and device profile fabric",
+      "state": "open",
+      "head_commit": "a47e4a7cf19bbed642fb6822ca4289ed3686bc49",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 84,
+      "title": "experiment: isolated Microsoft agent coordination prototype",
+      "state": "open",
+      "head_commit": "cf685ccd6a4982002b1c8ab8139c2ab9a681af1d",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 83,
+      "title": "Add evidence-gated server innovation review and measured test receipts",
+      "state": "open",
+      "head_commit": "58c0fd4214e45e88835dfbae2b3afcaff5d4693f",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 82,
+      "title": "feat(engineering): add governed engineering innovation fabric",
+      "state": "open",
+      "head_commit": "e1446b1bdbe0d49adf14ba8fb1f80dd96da641eb",
+      "base_commit": "c3a04e5f6d072d7986cde8abb41460bb302f0078"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 78,
+      "title": "feat: add governed Ω Mind control plane and engineering fabric",
+      "state": "open",
+      "head_commit": "c632165852ca797cb24dc8f556b7ca0f6d9dee95",
+      "base_commit": "1419ffbff003540271cfdbb129b023074a0695c2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 70,
+      "title": "Add governed Operational Office Fabric and tool integration registry",
+      "state": "open",
+      "head_commit": "0f94687f99a7fa5ea208dcbefbe3a7932c4efdba",
+      "base_commit": "9be001eacc81ffe05139843d5b573375df7543b8"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 69,
+      "title": "Specify engineering, mathematics, and innovation research fabric",
+      "state": "open",
+      "head_commit": "6c08998ffced6df6092e69b51f57b8ea7b602bf5",
+      "base_commit": "9be001eacc81ffe05139843d5b573375df7543b8"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 68,
+      "title": "research: establish evidence-bound extraction of 500+ innovations across repositories",
+      "state": "open",
+      "head_commit": "7771007b42c0ed7056af06306b6bb3c84e9b404e",
+      "base_commit": "4e93102d4ac34461dfb5f0c76d84f1c995a21de6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 67,
+      "title": "feat: Sovereign Meta-Kernel transition gate v1",
+      "state": "open",
+      "head_commit": "c761c2f7eb47e69cd67373b8e8b70edf3b5c9e86",
+      "base_commit": "221909c6366f880d0f0013e482b99d27ae0faa24"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 60,
+      "title": "Record current repository federation inventory",
+      "state": "open",
+      "head_commit": "55f707a2a672e96b4eaed56c5d039f600d7a7811",
+      "base_commit": "4e93102d4ac34461dfb5f0c76d84f1c995a21de6"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 58,
+      "title": "feat(memory): establish Permanent Engineering Memory v1",
+      "state": "open",
+      "head_commit": "e6811e058f00bed65fa46ae85d2c637278daa9b9",
+      "base_commit": "e76ead0fdf550992228e660c15b6777141c66ff5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 57,
+      "title": "Add automated deep engineering innovation discovery",
+      "state": "open",
+      "head_commit": "453ffb9462af1c7c20952cc8c0aa2a4da65cf2c2",
+      "base_commit": "e76ead0fdf550992228e660c15b6777141c66ff5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 55,
+      "title": "registry: add partial Agent Action-Control Assurance capability",
+      "state": "open",
+      "head_commit": "c73d2666ab3b6a03476468db0ebe26e54b74303d",
+      "base_commit": "e76ead0fdf550992228e660c15b6777141c66ff5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 54,
+      "title": "feat(ARC-X): implement evidence-preserving reconstruction slice",
+      "state": "open",
+      "head_commit": "466f11f8470c0a012689d0cc304a35c2124af870",
+      "base_commit": "e76ead0fdf550992228e660c15b6777141c66ff5"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 53,
+      "title": "Prioritize the local-first VAIXLNS runtime in server discovery",
+      "state": "open",
+      "head_commit": "bbdbd1f49f56947465cbe3edf88b817d4f84fa34",
+      "base_commit": "0313eaa78badb904ee6d37a4f30d48bf708caec3"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 48,
+      "title": "docs(integration): register VX engineering CLI",
+      "state": "open",
+      "head_commit": "a6ccf6e9237b6f27b2de73e82edd4ba021184538",
+      "base_commit": "f9d81c0393dd6a62769f1766e83fa2554d48b187"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 46,
+      "title": "feat(windows): add governed intent-to-execution runner",
+      "state": "open",
+      "head_commit": "448d9402d840733ce0859cb536a2b4678f2b52a1",
+      "base_commit": "9426bb4b2d98f97d454f98d2761ba9bbe3fd5a47"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 44,
+      "title": "Add index-driven VAIXLNS workflow planner and agent routing",
+      "state": "open",
+      "head_commit": "610b1f8e95f92f7e93a6e75c8d60a3975a75c21a",
+      "base_commit": "aa42618f8eb511e2db3610b5530b8c18c643c069"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 40,
+      "title": "feat: add VLNS federation and engineering dashboard",
+      "state": "open",
+      "head_commit": "ee2bd6579fbdbb129b8a3c303bfc59f20adf452e",
+      "base_commit": "06ec9904952f780e05eaa8942dd67c4ab4d102e2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 39,
+      "title": "feat(engineering): add evidence-gated drawing job contract",
+      "state": "open",
+      "head_commit": "90d25bcfd7f0dfcd3c7dafbba2a37d88a6e9e243",
+      "base_commit": "06ec9904952f780e05eaa8942dd67c4ab4d102e2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 38,
+      "title": "feat(index): derive automatic reference-based path depth",
+      "state": "open",
+      "head_commit": "b5bcd55876ac5a733dc1de1a6f48bfbb12b2f280",
+      "base_commit": "06ec9904952f780e05eaa8942dd67c4ab4d102e2"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 36,
+      "title": "feat(pattern): real Pattern v1 — four directions and guarded factory",
+      "state": "open",
+      "head_commit": "b2356f493e0c1b6018f7bf95ad9d754844e4be33",
+      "base_commit": "3c9b17286edd6b27335d5d24d922382c0a52a957"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 35,
+      "title": "feat(pattern): automate deterministic pattern development fabric",
+      "state": "open",
+      "head_commit": "f03d808e003f936bc4ff33bf64fac865bd2ef9eb",
+      "base_commit": "3c9b17286edd6b27335d5d24d922382c0a52a957"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 34,
+      "title": "feat: establish VAIXLNS semantic connection fabric",
+      "state": "open",
+      "head_commit": "f11a6971e0436b5a3c44b6f560cb07b08f16592a",
+      "base_commit": "3c9b17286edd6b27335d5d24d922382c0a52a957"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 27,
+      "title": "spec: introduce Ω-Arena v1 provider adapter and promotion contracts",
+      "state": "open",
+      "head_commit": "eebeb012273e93b2ad040e0f64d9b0340f7ef44e",
+      "base_commit": "a3c4466599a57c8e0bb5b254c303380948d138bb"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 26,
+      "title": "fix: resolve canonical admission paths",
+      "state": "open",
+      "head_commit": "38f8d099564967c0370f2e2d1dbae8151d82b612",
+      "base_commit": "05816227db7659fae745e55ded216ba45aa5f00a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 25,
+      "title": "security: add deterministic malware and malicious-code guard",
+      "state": "open",
+      "head_commit": "e1dee67e94d6d7724a39e47bbd89beca585ef6e4",
+      "base_commit": "05816227db7659fae745e55ded216ba45aa5f00a"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 24,
+      "title": "recovery: reconcile VAIXLNS execution package 2026-10-06",
+      "state": "open",
+      "head_commit": "a203b37257fae6d62dd5fc8321e703d72ec1831e",
+      "base_commit": "3874aa6e7e7112bcd3aba98d00294189db3a4068"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 19,
+      "title": "Merge pull request #18 from fisallllll280-code/feat/arc-x-canonical-t…",
+      "state": "open",
+      "head_commit": "433969a43b604563e22b70b8cb88223aff539fad",
+      "base_commit": "8428b5490566c7577d8eff76393a8b6cac71905d"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 9,
+      "title": "Ω∞ Challenge: establish integrated architecture benchmark",
+      "state": "open",
+      "head_commit": "b66d26456e8e2ba88526767027c2d1fccacb6041",
+      "base_commit": "5ec6094cda9041535011c0792fd4be1d1971f991"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 7,
+      "title": "feat: VX universal adapter federation and automotive boundary",
+      "state": "open",
+      "head_commit": "e2c585a7bc8dc757d2dab06c6574b91edfdcdca3",
+      "base_commit": "a1c33d147edb5495992b1ad10c1df4f8b5973087"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 6,
+      "title": "feat(operations): connect all project designs to integrated operating sources",
+      "state": "open",
+      "head_commit": "965bf78d79f6a67af5fdc35f12ac491e3f9a5851",
+      "base_commit": "a1c33d147edb5495992b1ad10c1df4f8b5973087"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 3,
+      "title": "Federation v2 + Claude Fable 5 control surface",
+      "state": "open",
+      "head_commit": "5c90e7bb9a080445c102f8236b91594b0acb4708",
+      "base_commit": "4bd87ed852b60904895b2c3e0269abc9d293e52f"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "number": 1,
+      "title": "Canonical decomposition: four-domain engineering room and federated integration rules",
+      "state": "open",
+      "head_commit": "a6ac9d97254e995078d532a00b25fbfadfc7416d",
+      "base_commit": "50e4c4dc6e43684b9fe174cfab16b33e4273b582"
+    }
+  ]
+}
