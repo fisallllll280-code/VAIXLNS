@@ -1,0 +1,180 @@
+{
+  "schema": "omega-arena-plan-selection/v0.1",
+  "status": "SIMULATED_DECISION_NOT_TOOL_BENCHMARK",
+  "source": "Engineering assumptions; no live model executions",
+  "iterations_per_candidate": 5000,
+  "weights": {
+    "impact": 0.27,
+    "risk_reduction": 0.26,
+    "readiness": 0.22,
+    "dependency_fit": 0.15,
+    "inverse_cost": 0.1
+  },
+  "method": "Five-point subjective inputs; independent uniform perturbations [-0.5,+0.5] clipped [1,5]; seed 25; 90% illustrative quantile interval",
+  "scenarios": [
+    {
+      "id": "omega-100",
+      "name": "Index Genome",
+      "inputs": [
+        5,
+        5,
+        4,
+        5,
+        2
+      ],
+      "mean": 4.597,
+      "interval90": [
+        4.43,
+        4.75
+      ]
+    },
+    {
+      "id": "omega-300",
+      "name": "Evidence Fusion",
+      "inputs": [
+        5,
+        5,
+        4,
+        5,
+        3
+      ],
+      "mean": 4.496,
+      "interval90": [
+        4.33,
+        4.65
+      ]
+    },
+    {
+      "id": "firewall",
+      "name": "Agent Decision Firewall",
+      "inputs": [
+        5,
+        5,
+        4,
+        5,
+        3
+      ],
+      "mean": 4.496,
+      "interval90": [
+        4.33,
+        4.65
+      ]
+    },
+    {
+      "id": "spec-proof",
+      "name": "Spec-to-Proof",
+      "inputs": [
+        5,
+        4,
+        4,
+        4,
+        3
+      ],
+      "mean": 4.137,
+      "interval90": [
+        3.94,
+        4.33
+      ]
+    },
+    {
+      "id": "omega-600",
+      "name": "Multi-Mind Router",
+      "inputs": [
+        4,
+        3,
+        2,
+        3,
+        5
+      ],
+      "mean": 2.861,
+      "interval90": [
+        2.64,
+        3.08
+      ]
+    },
+    {
+      "id": "omega-500",
+      "name": "Reality Forge",
+      "inputs": [
+        4,
+        3,
+        2,
+        4,
+        5
+      ],
+      "mean": 3.011,
+      "interval90": [
+        2.79,
+        3.23
+      ]
+    },
+    {
+      "id": "omega-1000",
+      "name": "VV Control Room",
+      "inputs": [
+        3,
+        4,
+        4,
+        3,
+        3
+      ],
+      "mean": 3.478,
+      "interval90": [
+        3.25,
+        3.7
+      ]
+    },
+    {
+      "id": "omega-1100",
+      "name": "Marketplace",
+      "inputs": [
+        4,
+        2,
+        2,
+        2,
+        5
+      ],
+      "mean": 2.451,
+      "interval90": [
+        2.23,
+        2.67
+      ]
+    }
+  ],
+  "selected_execution_order": [
+    "omega-100",
+    "omega-300",
+    "firewall",
+    "spec-proof",
+    "omega-1000",
+    "omega-500",
+    "omega-600",
+    "omega-1100"
+  ],
+  "tool_comparison": {
+    "status": "NOT_RUN",
+    "candidates": [
+      "VX-native",
+      "Claude Code",
+      "OpenAI",
+      "Gemini",
+      "Grok",
+      "Mistral"
+    ],
+    "evaluation": [
+      "correctness",
+      "repeatability",
+      "latency",
+      "cost",
+      "proof",
+      "security"
+    ],
+    "rule": "No provider selection until identical sandbox tasks and verifiable receipts"
+  },
+  "release_controls": {
+    "g0": "HOLD_UNTIL_EVIDENCE",
+    "merge": false,
+    "publish": false,
+    "external_spend_sar": 0
+  }
+}
