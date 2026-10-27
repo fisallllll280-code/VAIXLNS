@@ -111,8 +111,15 @@ def check_service_health_detailed() -> tuple[bool, dict[str, str], dict[str, str
 
 
 def check_service_health() -> tuple[bool, dict[str, str]]:
-    """Backward-compatible PASS/FAIL service gate; diagnostics are reported separately."""
-    ok, outcomes, _ = check_service_health_detailed()
+    """Preserve the prior outcome vocabulary for callers using the two-value result."""
+    ok, outcomes, diagnostics = check_service_health_detailed()
+    if diagnostics and all(
+        value in {"INVALID_HEALTH_URLS_JSON", "INVALID_HEALTH_URLS_SHAPE"}
+        for value in diagnostics.values()
+    ):
+        # Existing callers/tests use this established error code for both malformed
+        # JSON and an invalid top-level shape. The detailed report distinguishes them.
+        return False, {name: "INVALID_HEALTH_URLS_JSON" for name in REQUIRED_SERVICES}
     return ok, outcomes
 
 
