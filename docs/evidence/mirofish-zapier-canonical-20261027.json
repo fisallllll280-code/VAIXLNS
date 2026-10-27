@@ -1,0 +1,29 @@
+{
+  "at_utc": "2026-10-27T19:15:20.582907+00:00",
+  "base_sha": "f9b25e08a35d2cc4dcd0ee71b622a6de66ba7319",
+  "scope": "canonical registry and documentation only; executable compilers tested in vx-agents-fabric",
+  "command": "python3 -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "test_count": 442,
+  "output_sha256": "077ee0421294d6fa5c6fafd18a3f874da6f708c781703f5d4ddb62152d0fd08b",
+  "summary": [
+    "Ran 442 tests in 7.459s",
+    "OK"
+  ],
+  "source_sha256": {
+    "registry/vx-mirofish-zapier.integration.v1.json": "051f987183d8ca724b527c9971327187629cb7a5bdb8a785ccd089c263427c5d",
+    "docs/integration/VX_MIROFISH_ZAPIER_INTEGRATION_V1.md": "eb54554c3e4e44d6db84422125cbb0911b8523cb03c667fec3eadf4c24e06851",
+    "docs/indexes/REPOSITORY_FEDERATION_INDEX.md": "ab379186e50a64fb4f5647f5263a064ff7417bede9a219295c8df6074e30330b"
+  },
+  "protected_before": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "protected_after": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "live_mirofish": "NOT_RUN",
+  "live_zapier": "NOT_RUN",
+  "production_gate": "HOLD"
+}
