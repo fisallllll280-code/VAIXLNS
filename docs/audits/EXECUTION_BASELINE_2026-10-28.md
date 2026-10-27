@@ -97,6 +97,26 @@ The existing revenue sprint proposes a bounded software-reliability diagnostic/r
 5. `NOT_OBSERVED` or inaccessible does not mean `MISSING` without a bounded inventory.
 6. Keep this record non-canonical; it does not modify the master index or promote any claim.
 
-## 8. Decision
+## 8. Candidate-branch verification evidence
+
+Candidate branch: `audit/execution-baseline-20261028`  
+Code commit under test: `207e1601a5793128e8bbe34172202a2fcd365a86`  
+Draft PR: [#199](https://github.com/fisallllll280-code/VAIXLNS/pull/199)
+
+Observed checks on the candidate change:
+- [Conformance push run](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40604506283): **PASS**.
+- [Fast Engineering Feedback](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40604506357): **PASS**.
+- [Strict VX Runtime Verification Gate](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40604506285): **FAIL / NOT_READY**, intentionally fail-closed because required operational evidence is not configured.
+
+The strict run log reports **447 tests, OK** before the readiness gate. Its runtime readiness output then reports:
+- all four service diagnostics as `NOT_CONFIGURED` (`VX`, `VLNS`, `LNS`, `NEXENT`);
+- 12 model/MCP connector entries `NOT_CONFIGURED`, with zero active verified connectors;
+- no accepted state-guard coverage receipt;
+- no verified live meeting-room endpoint/response;
+- overall `NOT_READY`.
+
+The updated verifier adds `unified_service_health_diagnostics` while preserving the existing PASS/FAIL outcomes and strict return code. This improves diagnosis; it does **not** start services, create missing endpoint URLs, provision credentials, or promote readiness. Production HOLD remains correct until real environment inputs and commit-bound evidence are supplied.
+
+## 9. Decision
 
 **Current decision: HOLD / NOT READY for live federation or production activation.** Continue with P1 diagnosis and evidence collection in isolated work. Do not treat green component tests as proof that the multi-system runtime is connected, authenticated, or operational.
