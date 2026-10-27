@@ -1,0 +1,7 @@
+claim_id,claim,source_repository,source_commit,implementation_path,test_id,evidence_uri,independent_reviewer,status,blocker
+CLM-001,Canonical registry and provenance,VAIXLNS,UNKNOWN,docs/indexes/INNOVATION_MASTER_INDEX.md,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,PROPOSED,Pinned source and extraction coverage
+CLM-002,Four-system federation configuration preflight,VAIXLNS,UNKNOWN,scripts/federation_preflight.py,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,IMPLEMENTED,Execution receipt and independent verification required
+CLM-003,VX tool-policy reference evaluator,VAIXLNS,UNKNOWN,tools/vx_tool_control_reference.py,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,IMPLEMENTED,Reference code is not proof of live enforcement
+CLM-004,VX live tool invocation,VX-runtime,UNKNOWN,UNKNOWN,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,PROPOSED,Runtime endpoint and run receipt missing
+CLM-005,VV to VX end-to-end demo,UNKNOWN,UNKNOWN,UNKNOWN,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,PROPOSED,Live full path not evidenced
+CLM-006,10x VX speed improvement,UNKNOWN,UNKNOWN,UNKNOWN,NOT_MAPPED,UNAVAILABLE,UNASSIGNED,PROPOSED,Pinned comparative benchmarks missing
