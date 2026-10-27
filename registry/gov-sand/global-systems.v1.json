@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-10-27",
+  "government_endorsement": false,
+  "systems": [
+    {
+      "id": "VAIXLNS",
+      "role": "canonical registry and governance",
+      "repo": "fisallllll280-code/VAIXLNS",
+      "status": "DOCUMENTED",
+      "verified_runtime": false
+    },
+    {
+      "id": "NEXENT",
+      "role": "discovery and research",
+      "repo": "fisallllll280-code/NEXENT",
+      "status": "DOCUMENTED",
+      "verified_runtime": false
+    },
+    {
+      "id": "VAIXLNS-unified",
+      "role": "execution candidate",
+      "repo": "fisallllll280-code/VAIXLNS-unified",
+      "status": "PROPOSED_LINK",
+      "verified_runtime": false
+    },
+    {
+      "id": "GOV-CONNECT",
+      "role": "public service workflow integration concept",
+      "repo": "fisallllll280-code/VAIXLNS",
+      "status": "DESIGNED",
+      "verified_runtime": false
+    },
+    {
+      "id": "SAND",
+      "role": "voluntary financial pressure simulation",
+      "repo": "fisallllll280-code/VAIXLNS",
+      "status": "TESTED_LIMITED",
+      "verified_runtime": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SAND-TEST",
+      "capability": "Synthetic scenario triage",
+      "status": "TESTED_LIMITED",
+      "source": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40441542948",
+      "scope": "unit tests only"
+    }
+  ]
+}
