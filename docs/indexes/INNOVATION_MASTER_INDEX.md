@@ -6,6 +6,8 @@ The list below is a source-derived innovation catalog from the available project
 
 **Operational detail:** [`docs/innovation/INNOVATION_OPERATION_INDEX.md`](../innovation/INNOVATION_OPERATION_INDEX.md) is the generated, detailed projection containing descriptions, operating mechanisms, inputs, outputs, admission gates, failure modes, source references, and status disagreements. The machine-readable projection is `registry/innovation-operation-index.v1.json`; its builder is `tools/build_innovation_operation_index.py`.
 
+**SCCK implementation reference (2026-10-27):** [VX durable scoped admission](../../registry/vx-scck-runtime.integration.v1.json) links the existing Trust Boundary / Contract-Centered Runtime capabilities to VX-runtime PR #32, exact source revisions, acceptance tests and CI evidence. Status: `IMPLEMENTED_LOCAL_REFERENCE`; production admission `HOLD`. No new sovereign innovation number or independent evidence source is created by this cross-reference.
+
 **Automation and truth boundary:** the generated index is rebuilt from source catalogs and Ω.000, validated in CI, and refreshed through a draft pull request. Any family-rule description is labelled `RULE_DERIVED_DRAFT`; profile details are not evidence of implementation. Automatic canonical promotion is disabled, and source conflicts remain visible.
 
 ## Discovery / synthesis
