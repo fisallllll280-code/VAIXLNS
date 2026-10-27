@@ -1,4 +1,4 @@
-name: VAIXLNS Auto Intake - Read Only
+name: VAIXLNS Auto Intake - Governed Review
 
 on:
   push:
@@ -9,7 +9,9 @@ on:
     paths:
       - 'intake/inbox/**'
       - 'tools/auto_intake.py'
+      - 'tools/stage_intake_review.py'
       - 'tests/test_auto_intake.py'
+      - 'tests/test_stage_intake_review.py'
       - '.github/workflows/auto-intake.yml'
   workflow_dispatch:
   schedule:
@@ -22,18 +24,18 @@ jobs:
   route-and-index:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout untrusted file bytes as data, not programs
+      - name: Checkout source
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Verify source router
-        run: python -m unittest discover -s tests -p 'test_auto_intake.py' -v
-      - name: Generate review-only routing evidence
+      - name: Verify router and review stager
+        run: python -m unittest discover -s tests -p 'test_*intake*.py' -v
+      - name: Produce routing and library evidence
         run: python tools/auto_intake.py --root . --inbox intake/inbox --out build/auto-intake
-      - name: Existing Zero-Loss Index projection
+      - name: Project Zero-Loss Index projection
         if: hashFiles('scripts/build_zero_loss_index.py') != ''
         run: python scripts/build_zero_loss_index.py --root . --output-dir build/zero-loss-index
-      - name: Save evidence artifact (no raw intake payloads)
+      - name: Save metadata only (no raw uploaded payloads)
         uses: actions/upload-artifact@v4
         with:
           name: vaixlns-intake-report
@@ -42,3 +44,36 @@ jobs:
             build/auto-intake/library-index.v1.jsonl
             build/zero-loss-index/**
           retention-days: 30
+
+  create-library-review:
+    needs: route-and-index
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout trusted main, never a PR head
+        uses: actions/checkout@v4
+      - name: Stage safe text and library metadata
+        run: python tools/stage_intake_review.py --root . --inbox intake/inbox
+      - name: Create isolated draft review PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A -- library docs registry archive
+          if git diff --cached --quiet; then
+            echo "Nothing new to route"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          review_branch="auto-intake/review-$GITHUB_RUN_ID"
+          git switch -c "$review_branch"
+          git commit -m 'intake: stage library objects and routing proposals for review'
+          git push origin "$review_branch"
+          gh pr create --base main --head "$review_branch" --draft \
+            --title "intake: review received project files (run $GITHUB_RUN_ID)" \
+            --body "Generated from trusted main by VAIXLNS Auto Intake. Inspect library/intake and proposed paths. No canonical admission or cross-repository merge. Binary material remains held. Human approval required."
