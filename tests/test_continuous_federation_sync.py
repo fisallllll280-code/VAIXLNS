@@ -113,6 +113,18 @@ class ContinuousFederationSyncTests(unittest.TestCase):
         result = build(source_config(), FixtureReadOnly(responses), captured_at="TEST")
         self.assertEqual(result["decision"], "PARTIAL_BLOCKED")
 
+
+    def test_300_file_compare_limit_is_explicit_blocker(self):
+        responses = fixture().responses
+        responses[f"/repos/{REPO}/compare/{A}...{B}"]["files"] = [
+            {"filename": f"docs/innovation/candidate-{i:03d}.md", "status": "added", "sha": D}
+            for i in range(300)
+        ]
+        responses[f"/repos/{REPO}/compare/{A}...{B}"]["files_changed"] = 300
+        result = build(source_config(), FixtureReadOnly(responses), captured_at="TEST")
+        self.assertEqual(result["decision"], "PARTIAL_BLOCKED")
+        self.assertIn("COMPARE_FILE_LIMIT_REACHED", result["failures"][0]["reason_code"])
+
     def test_rejects_directory_traversal_from_remote(self):
         responses = fixture().responses
         responses[f"/repos/{REPO}/compare/{A}...{B}"]["files"][0]["filename"] = "../evil.md"
