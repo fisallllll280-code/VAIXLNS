@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.build_zero_loss_index import ARTIFACT_NAMES, IndexBuildError, build_index, build_payloads, validate_transition, verify_artifacts
+from scripts.recover_zero_loss_index import summarize_coverage
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY_PATH = REPO_ROOT / "registry/indexes/zero-loss-index-taxonomy.v1.json"
@@ -65,6 +66,13 @@ class ZeroLossIndexTests(unittest.TestCase):
         self.assertEqual(coverage["legacy_id_coverage"]["fabricated_missing_records"], 0)
         self.assertEqual(coverage["canonical_promotions_performed"], 0)
         self.assertGreater(coverage["atomic_records_created"], 0)
+        summary = summarize_coverage(coverage)
+        self.assertEqual(summary["source_count"], len(source_index["sources"]))
+        self.assertEqual(summary["opaque_sources_pending_extraction"], 1)
+
+    def test_receipt_rejects_missing_coverage_fields(self):
+        with self.assertRaises(KeyError):
+            summarize_coverage({"source_files_discovered": 1})
 
     def test_unobserved_legacy_ids_are_gap_ranges_not_fake_records(self):
         self.write_fixture_sources()

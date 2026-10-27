@@ -39,6 +39,22 @@ def run(command: list[str], root: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
 
 
+def summarize_coverage(coverage: dict[str, Any]) -> dict[str, Any]:
+    """Read the builder's coverage fields without hiding unknown extraction gaps."""
+    source_count = coverage["source_files_discovered"]
+    opaque = coverage["opaque_or_non_text_sources"]
+    legacy = coverage["legacy_id_coverage"]
+    if type(source_count) is not int or source_count < 0 or not isinstance(opaque, list) or not isinstance(legacy, dict) or not isinstance(legacy.get("unresolved_candidate_gap_ranges"), list):
+        raise ValueError("invalid coverage fields")
+    return {
+        "source_count": source_count,
+        "atomic_records_created": coverage["atomic_records_created"],
+        "opaque_sources_pending_extraction": len(opaque),
+        "canonical_promotions_performed": coverage["canonical_promotions_performed"],
+        "legacy_id_coverage": legacy,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="repository checkout to index")
@@ -119,13 +135,17 @@ def main() -> int:
 
     receipt["artifact_hashes"] = {name: sha256(output_dir / name) for name in ARTIFACTS}
     coverage = json.loads((output_dir / "zero-loss-coverage.v1.json").read_text(encoding="utf-8"))
-    receipt["coverage_summary"] = {
-        "source_count": coverage.get("source_count"),
-        "atomic_records_created": coverage.get("atomic_records_created"),
-        "opaque_sources_pending_extraction": len(coverage.get("opaque_sources", [])),
-        "canonical_promotions_performed": coverage.get("canonical_promotions_performed", 0),
-        "legacy_id_coverage": coverage.get("legacy_id_coverage", {}),
-    }
+    try:
+        receipt["coverage_summary"] = summarize_coverage(coverage)
+    except (KeyError, TypeError, ValueError) as error:
+        receipt["status"] = "BLOCKED"
+        receipt["coverage_error"] = str(error)
+        receipt["finished_at"] = datetime.now(timezone.utc).isoformat()
+        (output_dir / "index-recovery-receipt.v1.json").write_text(
+            json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+        )
+        print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
+        return 2
     receipt["status"] = "PASS_WITH_DECLARED_GAPS" if (
         receipt["coverage_summary"]["opaque_sources_pending_extraction"]
         or receipt["coverage_summary"]["legacy_id_coverage"].get("unresolved_candidate_gap_ranges")
