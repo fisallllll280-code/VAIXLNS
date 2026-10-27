@@ -1,0 +1,44 @@
+name: VAIXLNS Auto Intake - Read Only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'intake/inbox/**'
+  pull_request:
+    paths:
+      - 'intake/inbox/**'
+      - 'tools/auto_intake.py'
+      - 'tests/test_auto_intake.py'
+      - '.github/workflows/auto-intake.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  route-and-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout untrusted file bytes as data, not programs
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify source router
+        run: python -m unittest discover -s tests -p 'test_auto_intake.py' -v
+      - name: Generate review-only routing evidence
+        run: python tools/auto_intake.py --root . --inbox intake/inbox --out build/auto-intake
+      - name: Existing Zero-Loss Index projection
+        if: hashFiles('scripts/build_zero_loss_index.py') != ''
+        run: python scripts/build_zero_loss_index.py --root . --output-dir build/zero-loss-index
+      - name: Save evidence artifact (no raw intake payloads)
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-intake-report
+          path: |
+            build/auto-intake/routing-manifest.v1.json
+            build/auto-intake/library-index.v1.jsonl
+            build/zero-loss-index/**
+          retention-days: 30
