@@ -164,3 +164,15 @@ Status notes:
 - The six-company structure is a target only; all partner slots remain unfilled until due diligence and signed agreements.
 - The founder decides historic/legacy classifications. AI tools can recommend with evidence but cannot silently delete, merge, rename, or supersede entries.
 
+## Systems, tools and interfaces
+
+- [Systems, Tools & Interfaces — Operating Mechanism Index v1](SYSTEMS_TOOLS_INTERFACES_OPERATION_INDEX_V1.md) — system-by-system mechanisms, tool families, interface contracts, evidence requirements, and live-status boundaries.
+
+## External systems and tooling intake
+
+- [External Systems & Tooling Candidate Registry v1](../architecture/EXTERNAL_SYSTEMS_AND_TOOLING_CANDIDATE_REGISTRY_V1.md) — provider-neutral intake register for agent frameworks, workflows, web discovery, observability, security/provenance, data/search, model runtimes, interoperability, infrastructure, testing, and business automation. All entries begin `UNASSESSED`; registry inclusion does not imply installation or integration.
+
+
+## Ω Meta-Kernel
+
+- [Ω Meta-Kernel — Constitutional Change Control Specification v1](../architecture/OMEGA_META_KERNEL_CONSTITUTIONAL_CHANGE_CONTROL_V1.md) — governs proposed amendments to governance rules, authority boundaries, federation contracts, and proof requirements; runtime enforcement is not implied.
