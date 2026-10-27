@@ -331,3 +331,10 @@ Do not infer implementation from prose, status labels, a catalog row, a reposito
 **Constitutional change control:** [Ω Meta-Kernel — Constitutional Change Control Specification v1](../architecture/OMEGA_META_KERNEL_CONSTITUTIONAL_CHANGE_CONTROL_V1.md)
 
 This specification defines the proposed contracts for changing governance rules themselves: amendment classes C0–C5, non-amendable safety floor, independent review, federation message contracts, trust/knowledge sovereignty, append-only decision evidence, recovery, conformance levels M0–M6, and acceptance tests. It is an architecture specification; runtime enforcement remains unverified until implementation artifacts and tests demonstrate it.
+
+
+## 4. Machine-readable contract draft
+
+[Proposed JSON Schema: Meta-Kernel core contracts v1](../../schemas/meta-kernel/meta-kernel-contracts-v1.schema.json)
+
+The draft defines four record families: federation messages, constitutional decision records, evidence records, and capability records. Its schema identifier currently uses a placeholder domain and must be replaced before treating it as a published stable contract. JSON syntax validation: passed; this does not yet prove semantic correctness or runtime enforcement.
