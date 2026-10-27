@@ -1,0 +1,67 @@
+{
+  "schema": "VAIXLNS.FederationSyncSources.v1",
+  "purpose": "Authoritative allowlist for public GitHub metadata observation. Not an authorization to publish, move files or merge repos.",
+  "authority": "VAIXLNS / Ω.000 (reference only)",
+  "review_policy": "SOURCE_METADATA_ONLY; NO_CANONICAL_WRITE; NO_PRIVATE_REPOSITORIES; NO_AUTOMATIC_MERGE",
+  "repositories": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "branch": "main",
+      "baseline_commit": "71a8487d636ac6c6f5d8de22f6b49344103d348b",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "VAIXLNS"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "branch": "main",
+      "baseline_commit": "0522a6a4f5630d572f6f58d5778192592aaeab4c",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "VAIXLNS_EXECUTION_PROJECTION"
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "branch": "main",
+      "baseline_commit": "45d034892cc765665613dd85d98710b67b4e47f9",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "VX"
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "branch": "main",
+      "baseline_commit": "f62cf5920174551f9a8f88deb420f9515bedc284",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "NEXENT_NOT_AUTOMATICALLY_NEXNET"
+    },
+    {
+      "repository": "fisallllll280-code/NAXLNS",
+      "branch": "main",
+      "baseline_commit": "226d80a03a46855894a1d148fe92ce8630096e03",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "NAXLNS_NOT_AUTOMATICALLY_VLNS"
+    },
+    {
+      "repository": "fisallllll280-code/vx-agents-fabric",
+      "branch": "main",
+      "baseline_commit": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
+      "scope": "PUBLIC_METADATA_ONLY",
+      "system_hint": "VX_AGENTS"
+    }
+  ],
+  "external_connectors": [
+    {
+      "provider": "Zapier",
+      "state": "NOT_CONNECTED",
+      "role": "EVENT_TRANSPORT_ONLY"
+    },
+    {
+      "provider": "ChatGPT File Library",
+      "state": "NO_AUTOMATIC_EXPORT_INTERFACE",
+      "role": "USER_CONTROLLED_IMPORT"
+    },
+    {
+      "provider": "Google Drive",
+      "state": "CONNECTION_NOT_TESTED_FOR_THIS_PIPELINE",
+      "role": "FUTURE_ALLOWED_SOURCE"
+    }
+  ]
+}
