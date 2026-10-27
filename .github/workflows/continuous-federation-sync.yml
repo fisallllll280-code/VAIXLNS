@@ -20,6 +20,8 @@ on:
   schedule:
     - cron: '31 4 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [vaixlns_sync_requested]
 
 permissions:
   contents: read
