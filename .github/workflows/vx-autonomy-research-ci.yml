@@ -1,0 +1,24 @@
+name: VX autonomy research checks
+on:
+  pull_request:
+    paths:
+      - 'scripts/vx_launch_candidates.py'
+      - 'scripts/vx_model_catalog_gate.py'
+      - 'scripts/vx_autonomy_preflight.py'
+      - 'tests/test_vx_launch_candidates.py'
+      - 'tests/test_vx_autonomy_preflight.py'
+      - '.github/workflows/vx-autonomy-research-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate autonomy and model discovery
+        run: python -m unittest tests.test_vx_autonomy_preflight tests.test_vx_launch_candidates -v
