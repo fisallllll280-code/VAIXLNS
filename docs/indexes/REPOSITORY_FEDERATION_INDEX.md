@@ -108,3 +108,16 @@ This specification defines logical agent roles, versioned skill/prompt contracts
 - [Machine-readable integration](../../registry/vx-mirofish-zapier.integration.v1.json).
 - Existing vx-agents-fabric extension, not a new sovereign system or ChatGPT plugin.
 - IMPLEMENTED_ON_FEATURE_BRANCH: offline planners; roles DESIGN_ONLY, live connections NOT_CONFIGURED, production HOLD.
+
+## VX municipal sandbox readiness runner — 2026-10-27
+
+- Implementation: [VX-runtime #29](https://github.com/fisallllll280-code/VX-runtime/pull/29),
+  merged as `7fc4fcebb7fccdb70e379df7a52fa7826b4bb2c9`.
+- [Machine-readable integration and exact source/evidence links](../../registry/vx-municipal-runtime.integration.v1.json).
+- Existing VXRuntime extended by a fixed local role, presence-only input checks,
+  scoped host grants and durable, time-bounded SQLite receipts.
+- IMPLEMENTED_LOCAL_REFERENCE; 71 local and GitHub CI tests PASS on the feature
+  source `c959d11957d981415bc02e2a712c88237694e3d9`. Synthetic local CLI E2E PASS.
+- No government transport, official eligibility decision, application submission,
+  authenticated production host or complete PDPL certification. Canonical admission
+  NOT_GRANTED; government E2E and T01–T15 NOT_RUN; production HOLD, spend 0 SAR.
