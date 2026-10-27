@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "integration_id": "VX-SCCK-DURABLE-ADMISSION-REFERENCE-1",
+  "canonical_owner": "VAIXLNS",
+  "execution_boundary": "VX",
+  "implementation": {
+    "repository": "fisallllll280-code/VX-runtime",
+    "sha": "45d034892cc765665613dd85d98710b67b4e47f9",
+    "tested_feature_sha": "5c97e8eb8c59495aff899527bfbb0fe0e49bd67f",
+    "pull_request": "https://github.com/fisallllll280-code/VX-runtime/pull/32",
+    "status": "IMPLEMENTED_LOCAL_REFERENCE",
+    "admission": "NOT_GRANTED",
+    "core": "vxruntime/core.py",
+    "verifier": "vxruntime/scck.py",
+    "capability": "scck.inspect.v1",
+    "worker": "FIXED_INERT_BYTE_INSPECTION_ONLY",
+    "identity": "AUTHENTICATED_TRUSTED_HOST_REQUIRED",
+    "agent_binding": "NOT_ADMITTED"
+  },
+  "lineage": {
+    "source": "docs/design/scck-source-ar.txt in VX-runtime",
+    "relationship": "DERIVED_USER_DESIGN",
+    "source_base_sha": "7fc4fcebb7fccdb70e379df7a52fa7826b4bb2c9",
+    "reviewed_date": "2026-10-27",
+    "new_sovereign_identifier_allocated": false
+  },
+  "evidence": {
+    "root_repository": "fisallllll280-code/VX-runtime",
+    "local_receipt": "https://github.com/fisallllll280-code/VX-runtime/blob/5c97e8eb8c59495aff899527bfbb0fe0e49bd67f/docs/evidence/scck-local-20261027/validation.json",
+    "ci_run": "https://github.com/fisallllll280-code/VX-runtime/actions/runs/40572784876",
+    "ci_head_sha": "5c97e8eb8c59495aff899527bfbb0fe0e49bd67f",
+    "ci_result": "SUCCESS",
+    "local_full_suite_passed": 106,
+    "local_scck_tests_passed": 35,
+    "local_subtests_passed": 3,
+    "independent_governance_verification": "NOT_PERFORMED",
+    "canonical_registry_is_independent_runtime_evidence": false
+  },
+  "policy": {
+    "production_gate": "HOLD",
+    "external_spend_sar": 0,
+    "automatic_asset_installation": false,
+    "public_execution_endpoint": false,
+    "rust_no_std": "NOT_IMPLEMENTED",
+    "iphone_execution": "NOT_TESTED",
+    "live_external_e2e": "NOT_RUN",
+    "T01_T15": "NOT_RUN",
+    "allow_self_authorization": false,
+    "crash_execution_recovery": "HOLD_FOR_REVIEW_NO_AUTOMATIC_RETRY",
+    "storage_and_clock_rollback_resistance": "NOT_ESTABLISHED"
+  }
+}
