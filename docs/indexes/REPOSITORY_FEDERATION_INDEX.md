@@ -1,5 +1,7 @@
 # GitHub Repository Federation Index
 
+See also: [Systems, Tools & Interfaces — Operating Mechanism Index v1](SYSTEMS_TOOLS_INTERFACES_OPERATION_INDEX_V1.md) for operating mechanisms, tool families, and interface contracts.
+
 **Snapshot:** 2026-10-03  
 **Accessible owned repositories observed:** 43
 
