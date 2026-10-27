@@ -171,8 +171,10 @@ def observe_repository(item: dict[str, Any], api: Any) -> tuple[dict, list[dict]
         if comparison.get("status") not in ("ahead", "identical", "diverged"):
             raise SyncError("COMPARE_STATUS_UNVERIFIED")
         comparison_status = "COMPARED_WITH_PINNED_BASELINE"
-        if len(diff) > 300:
-            raise SyncError("COMPARE_TOO_MANY_FILES")
+        # GitHub Compare API exposes at most 300 changed files for a comparison.
+        # Exactly 300 may be truncated; fail closed rather than claim full coverage.
+        if len(diff) >= 300:
+            raise SyncError("COMPARE_FILE_LIMIT_REACHED_COMPLETENESS_UNKNOWN")
         for file in diff:
             path = safe_path(file.get("filename"))
             action = file.get("status")
