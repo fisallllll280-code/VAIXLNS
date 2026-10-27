@@ -10,6 +10,9 @@
 
 ## Index set
 
+- SYSTEMS_TOOLS_INTERFACES_OPERATION_INDEX_V1.md — standalone index explaining system mechanisms, tool families, interface contracts, lifecycle gates, and evidence/status rules.
+
+
 - MASTER_RECOVERY_STATUS.md — current corpus and federation coverage.
 - ARCHIVE_SOURCE_INDEX.md — supplied project sources, hashes, classifications.
 - INNOVATION_MASTER_INDEX.md — innovation catalog with canonical placement.
