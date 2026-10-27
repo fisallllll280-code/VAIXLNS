@@ -53,24 +53,67 @@ def http_json(url: str, timeout: float = 4.0, headers: dict[str, str] | None = N
         return None
 
 
-def check_service_health() -> tuple[bool, dict[str, str]]:
+def check_service_health_detailed() -> tuple[bool, dict[str, str], dict[str, str]]:
+    """Return the unchanged PASS/FAIL gate plus actionable, non-secret diagnostics.
+
+    Diagnostics never relax readiness. Missing configuration, invalid input,
+    unreachable endpoints, malformed responses, and unhealthy responses remain
+    failing states; the function does not start services or mutate configuration.
+    """
     raw = os.environ.get("VX_SERVICE_HEALTH_URLS", "")
+    if not raw.strip():
+        return (
+            False,
+            {name: "FAIL" for name in REQUIRED_SERVICES},
+            {name: "NOT_CONFIGURED" for name in REQUIRED_SERVICES},
+        )
     try:
-        urls = json.loads(raw) if raw else {}
+        urls = json.loads(raw)
     except json.JSONDecodeError:
-        return False, {name: "INVALID_HEALTH_URLS_JSON" for name in REQUIRED_SERVICES}
+        return (
+            False,
+            {name: "FAIL" for name in REQUIRED_SERVICES},
+            {name: "INVALID_HEALTH_URLS_JSON" for name in REQUIRED_SERVICES},
+        )
     if not isinstance(urls, dict):
-        return False, {name: "INVALID_HEALTH_URLS_JSON" for name in REQUIRED_SERVICES}
+        return (
+            False,
+            {name: "FAIL" for name in REQUIRED_SERVICES},
+            {name: "INVALID_HEALTH_URLS_SHAPE" for name in REQUIRED_SERVICES},
+        )
+
     outcomes: dict[str, str] = {}
+    diagnostics: dict[str, str] = {}
     for name in REQUIRED_SERVICES:
         url = urls.get(name)
-        payload = http_json(url) if isinstance(url, str) else None
-        healthy = bool(payload) and (
+        if not isinstance(url, str) or not url.strip():
+            outcomes[name] = "FAIL"
+            diagnostics[name] = "URL_NOT_CONFIGURED"
+            continue
+        if not url.startswith(("http://", "https://")):
+            outcomes[name] = "FAIL"
+            diagnostics[name] = "INVALID_URL_SCHEME"
+            continue
+
+        payload = http_json(url)
+        if payload is None:
+            outcomes[name] = "FAIL"
+            diagnostics[name] = "ENDPOINT_UNAVAILABLE_OR_INVALID_RESPONSE"
+            continue
+        healthy = (
             str(payload.get("status", "")).lower() in {"ok", "healthy"}
             or payload.get("ok") is True
         )
         outcomes[name] = "PASS" if healthy else "FAIL"
-    return all(value == "PASS" for value in outcomes.values()), outcomes
+        diagnostics[name] = "HEALTHY" if healthy else "UNHEALTHY_RESPONSE"
+
+    return all(value == "PASS" for value in outcomes.values()), outcomes, diagnostics
+
+
+def check_service_health() -> tuple[bool, dict[str, str]]:
+    """Backward-compatible PASS/FAIL service gate; diagnostics are reported separately."""
+    ok, outcomes, _ = check_service_health_detailed()
+    return ok, outcomes
 
 
 def timestamp_is_fresh(value: Any, max_age: timedelta = timedelta(minutes=15)) -> bool:
@@ -200,7 +243,7 @@ def build_report(local_tests_passed: bool | None = None) -> dict[str, Any]:
     artifacts_ok = all(artifact_results.values())
     connectors_ok, active_count, connector_statuses = check_connectors()
     state_ok = check_state_guard_coverage()
-    runtime_ok, service_results = check_service_health()
+    runtime_ok, service_results, service_diagnostics = check_service_health_detailed()
     meeting_ok = check_meeting_health()
     ci_tests_ok = (
         os.environ.get("GITHUB_ACTIONS") == "true"
@@ -228,6 +271,7 @@ def build_report(local_tests_passed: bool | None = None) -> dict[str, Any]:
             "connector_smoke_evidence_required": True,
             "state_guard_coverage_receipt_required": True,
             "unified_service_health": service_results,
+            "unified_service_health_diagnostics": service_diagnostics,
             "meeting_health_endpoint_requires": [
                 "echoed per-request probe_challenge", "observed_at within 60 seconds",
                 "room_live=true", "audio_test_passed=true",
