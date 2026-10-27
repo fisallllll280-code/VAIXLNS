@@ -4,6 +4,17 @@ from tools.engineering_test_router import _parse_test_summary, plan_tests
 
 
 class EngineeringTestRouterTests(unittest.TestCase):
+    def test_orchestration_and_synthesis_changes_include_their_actual_tests(self):
+        self.assertEqual(plan_tests(["vcre/agent_orchestration.py"])["test_files"], ["test_agent_orchestration.py"])
+        self.assertIn("test_vcre_synthesis.py", plan_tests(["vcre/synthesis.py"])["test_files"])
+
+    def test_package_and_engine_changes_cover_all_current_vcre_modules(self):
+        for path in ("vcre/engine.py", "vcre/__init__.py"):
+            self.assertEqual(plan_tests([path])["test_files"], ["test_agent_orchestration.py", "test_vcre_predictive.py", "test_vcre_runtime.py", "test_vcre_synthesis.py"])
+
+    def test_future_unknown_vcre_module_requires_complete_suite(self):
+        self.assertEqual(plan_tests(["vcre/future_module.py"])["selection_mode"], "FULL_SUITE")
+
     def test_vcre_change_routes_to_predictive_and_legacy_vcre_tests(self):
         plan = plan_tests(["vcre/predictive.py"])
         self.assertEqual(plan["selection_mode"], "FOCUSED")
