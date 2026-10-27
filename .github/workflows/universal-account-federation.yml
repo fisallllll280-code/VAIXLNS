@@ -1,0 +1,52 @@
+name: VAIXLNS Universal Federation - Offline Conformance
+
+on:
+  pull_request:
+    paths:
+      - 'registry/federation/universal-account-system-source-classes.v1.json'
+      - 'tools/plan_universal_federation.py'
+      - 'tests/test_universal_federation.py'
+      - 'examples/universal-accounts.example.json'
+      - 'docs/operations/UNIVERSAL_ACCOUNTS_SYSTEMS_WORKFLOWS_V1.md'
+      - '.github/workflows/universal-account-federation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'registry/federation/universal-account-system-source-classes.v1.json'
+      - 'tools/plan_universal_federation.py'
+      - 'tests/test_universal_federation.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with no persisted credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run deny-by-default federation unit tests
+        run: python -m unittest discover -s tests -p 'test_universal_federation.py' -v
+      - name: Prove fictional account example remains offline
+        run: |
+          mkdir -p build
+          cp examples/universal-accounts.example.json build/example.private.json
+          python tools/plan_universal_federation.py --root . --manifest build/example.private.json --out build/universal-federation-plan.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path("build/universal-federation-plan.json").read_text())
+          assert p["source_system_count"] == 4
+          assert p["admitted"] == 0
+          assert p["connected_and_live_verified"] == 0
+          assert all(s["execution"] == "NOT_RUN" and s["admission"] == "BLOCKED" for s in p["systems"])
+          PY
+      - name: Store sanitized example plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-offline-federation-example
+          path: build/universal-federation-plan.json
+          retention-days: 14
