@@ -92,3 +92,12 @@ Reference implementation review: https://github.com/fisallllll280-code/vx-agents
 - [Agent/Skill/Prompt/Environment/Innovation Fabric V1](../integration/VAIXLNS_AGENT_SKILL_SUBSCRIPTION_FABRIC_V1.md)
 
 This specification defines logical agent roles, versioned skill/prompt contracts, environment/subscription status, innovation lineage, build-source provenance, and gated delivery. It is a proposal pending review and admission; it does not assert that agents are deployed, subscriptions purchased, external accounts connected, or production systems changed. Provider/environment integration requires direct evidence, explicit authorization and the existing VX admission gates.
+
+## Gr8r → VX intake bridge — 2026-10-27
+
+- Implementation: [local intake and authorization bridge](../../tools/gr8r_adapter/README.md).
+- Registry: [GR8R-VX-INTAKE](../../registry/gr8r-vx-intake.integration.v1.json).
+- Evidence: [local acceptance receipt](../evidence/gr8r-vx-intake-20261027.json).
+- State: IMPLEMENTED, LOCAL_CONTRACT_ONLY; production gate HOLD.
+- Specialized role VX-GR8R-INTAKE maps to VCRE INTEGRATION_ENGINEER with proposal-review capability only. No deployed agent instance is asserted.
+- Source ZIP lineage, execution authority, tests and runtime connection remain distinct.

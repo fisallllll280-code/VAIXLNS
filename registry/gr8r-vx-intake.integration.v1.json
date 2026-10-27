@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "integration_id": "GR8R-VX-INTAKE",
+  "canonical_owner": "VAIXLNS",
+  "source": {
+    "library_file": "vaixlns-gr8r-adapter-v0.1.zip",
+    "sha256": "1460383c0ddf2bcb37c2fbe10317577a706eb2c42cb4a58bc20f5cbf4bc41cb8",
+    "relation": "Derived",
+    "upstream_gr8r_revision": "NOT_OBSERVED"
+  },
+  "agent": {
+    "agent_id": "VX-GR8R-INTAKE",
+    "role": "INTEGRATION_ENGINEER",
+    "capabilities": [
+      "gr8r:review-proposal"
+    ],
+    "runtime_instance": "NOT_CONNECTED",
+    "may_execute": false,
+    "may_promote": false
+  },
+  "implementation": "tools/gr8r_adapter/adapter.py",
+  "authorization_contract": "vcre/agent_orchestration.py",
+  "state": "IMPLEMENTED",
+  "connection": "LOCAL_CONTRACT_ONLY",
+  "production_gate": "HOLD",
+  "security": {
+    "explicit_authority_required": true,
+    "authority_source": "trusted backend only; never HTTP request",
+    "external_spend_sar": 0,
+    "public_listener_allowed": false,
+    "http_execution_endpoint": false,
+    "worker_execution": false
+  },
+  "tests": [
+    "tests/test_gr8r_adapter.py",
+    "tests/test_gr8r_vx_bridge.py"
+  ],
+  "evidence": "docs/evidence/gr8r-vx-intake-20261027.json",
+  "remaining": [
+    "Authenticate real Gr8r backend and bind project/tenant/user identity",
+    "Pin actual VX runtime identity and transport",
+    "Use authenticated grant/registry lookup at trusted backend boundary",
+    "Independent verification and explicit production admission"
+  ]
+}
