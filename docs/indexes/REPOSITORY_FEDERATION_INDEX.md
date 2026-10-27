@@ -101,3 +101,10 @@ This specification defines logical agent roles, versioned skill/prompt contracts
 - State: IMPLEMENTED, LOCAL_CONTRACT_ONLY; production gate HOLD.
 - Specialized role VX-GR8R-INTAKE maps to VCRE INTEGRATION_ENGINEER with proposal-review capability only. No deployed agent instance is asserted.
 - Source ZIP lineage, execution authority, tests and runtime connection remain distinct.
+
+## Repository-agent scenario and automation lane — 2026-10-27
+
+- [MiroFish ideas + Zapier under VX](../integration/VX_MIROFISH_ZAPIER_INTEGRATION_V1.md).
+- [Machine-readable integration](../../registry/vx-mirofish-zapier.integration.v1.json).
+- Existing vx-agents-fabric extension, not a new sovereign system or ChatGPT plugin.
+- IMPLEMENTED_ON_FEATURE_BRANCH: offline planners; roles DESIGN_ONLY, live connections NOT_CONFIGURED, production HOLD.
