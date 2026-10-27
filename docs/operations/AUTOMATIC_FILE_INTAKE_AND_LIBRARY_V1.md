@@ -1,61 +1,53 @@
-# VAIXLNS Automatic File Intake & Library v1
+# VAIXLNS Automatic File Intake and Library v1
 
-**State:** Implementation proposal / read-only evidence automation. **Not canonical admission.**
+**Status:** staged implementation on draft PR; automatic operation needs merge, GitHub Actions authorization and successful workflow evidence.
 
-## Purpose
-Automatically inventory files submitted to `intake/inbox/`, preserve their source names and SHA-256, classify likely destination, and produce reviewable content-addressed library metadata without automatically rewriting the canonical project or any other repository.
+## Lifecycle
+New nonconfidential file → `intake/inbox/` → source SHA-256 and original filename → candidate category/repository/path → `library/intake` evidence → draft PR for eligible same-repository text → human review → optional promotion. Cross-repository targets are **recommendations**, not writes.
 
-## Source routing
-- Indexes → VAIXLNS / docs/indexes/intake
-- Innovations → VAIXLNS / docs/innovation/intake
-- Model registries → VAIXLNS / registry/models/intake
-- Agents/minds → VAIXLNS / docs/agents/intake
-- NEXENT research → NEXENT / docs/research/intake
-- VX kernel/runtime → VX-runtime / docs/intake
-- Proof and evidence → VAIXLNS / registry/evidence/intake
-- Archive → VAIXLNS / archive/source/intake
-- Unknown → UNCLASSIFIED / review; no destination
+## Routing
+- Indexes: `VAIXLNS/docs/indexes/intake/`
+- Innovations: `VAIXLNS/docs/innovation/intake/`
+- Models: `VAIXLNS/registry/models/intake/` (registries/metadata only, not weights)
+- Agents: `VAIXLNS/docs/agents/intake/`
+- Research: `NEXENT/docs/research/intake/` (separate PR needed)
+- VX execution: `VX-runtime/docs/intake/` (separate PR needed)
+- Evidence: `VAIXLNS/registry/evidence/intake/`
+- Archives: `VAIXLNS/archive/source/intake/`
+- Unclassified: no target; requires review.
 
-An identified destination is a **proposal**, not an actual cross-repository write or promotion.
+## Automatic workflows
+After merging to main:
+1. `push` touching `intake/inbox/**` triggers deterministic routing, tests, Zero-Loss Index projection and evidence artifacts.
+2. `pull_request` updates run tests under a read-only token, with no publication.
+3. Six-hour schedule and manual dispatch regenerate evidence without writes.
+4. On a trusted `push` to main, a second job stages **only nonsecret text** to content-addressed `library/objects/<prefix>/<sha256>`, writes `library/intake/auto-intake.v1.jsonl`, and opens a **draft PR** with proposed same-repository intake destinations.
+5. Binary and unknown files are metadata-only or blocked; cross-repository targets are metadata-only pending an independently authorized target-repo PR.
+6. The draft PR is never automatically merged or canonically admitted.
 
-## Workflows
-After merging this change, a push to main touching `intake/inbox/**` triggers `.github/workflows/auto-intake.yml`. PRs modifying the intake or its implementation also trigger tests. A periodic six-hour check and manual dispatch are supported. The workflow has `contents: read` only and stores routing manifests as GitHub Actions artifacts. It may run the existing `scripts/build_zero_loss_index.py` generator read-only.
+**Required GitHub setting:** under repository Settings → Actions → General → Workflow permissions, allow GitHub Actions to create pull requests; the job also needs the explicitly scoped `contents:write` and `pull-requests:write` permissions. If repository settings disallow PR creation, the reporting workflow still generates inspectable evidence but the publication job can fail; do not call the process fully active until this is verified.
 
-Generated artifacts include:
-- `build/auto-intake/routing-manifest.v1.json`: original path, SHA-256, proposed repository/path, disposition, safety flags.
-- `build/auto-intake/library-index.v1.jsonl`: source-by-source intake records.
-- existing `build/zero-loss-index/**` outputs if the builder is present.
-
-For exact-byte **local staging** after explicit review:
+## Local commands
 ```bash
+python -m unittest discover -s tests -p "test_*intake*.py" -v
+python tools/auto_intake.py --root . --inbox intake/inbox --out build/auto-intake
 python tools/auto_intake.py --root . --inbox intake/inbox --out build/auto-intake --include-payloads
+python tools/stage_intake_review.py --root . --inbox intake/inbox
 ```
-This creates `build/auto-intake/library/objects/<digest-prefix>/<sha256>` and `build/auto-intake/proposals/<repo>/<suggested-path>`. The workflow deliberately does **not** upload these raw payloads or commit them to canonical paths.
 
-## Invariants
-1. Original uploaded file is never rewritten or deleted by classifier.
-2. Identical byte hashes share one object but source identities remain separate.
-3. Source material is never executed.
-4. No automated `IMPLEMENTED`, `VERIFIED` or `ADMITTED` status.
-5. Secret-like files, shortcuts and binaries are blocked or held; binary documents require human inspection.
-6. No cross-repository writes without a separate authorized app/token and a reviewed PR.
-7. Repository presence and artifact production are not live model runtime evidence.
+First command runs safe intake tests. Second produces read-only evidence; third builds a local review object library. Fourth writes safe text into a checked-out worktree and should be used only on a separate review branch.
 
-## Security boundary
-VAIXLNS is a public GitHub repository. Do not submit credentials or confidential files to public `intake/inbox`. The secret scanner is heuristic; it is not DLP and cannot detect private content embedded in PDF/ZIP/DOCX. Use a private intake service with identity, antivirus, content policy, encryption and audit for confidential sources.
+## Invariants and security
+- **Never upload confidential files to a public inbox.** Secrets cannot be reliably detected by the heuristic scanner, particularly inside archives and PDFs.
+- Never execute inbound files. Executables, keys, links and oversized items are blocked or held.
+- Original source bytes and original paths are kept; identical bytes share objects, not source identities.
+- Unknown/duplicate names do not override an existing unrelated object; digest names avoid collisions.
+- Automatic classification is not authorization, correctness proof, capability verification, model connectivity, or system admission.
+- For private data use private staging, antivirus, DLP and scoped authenticated connectors.
+- GitHub Actions artifacts expire; the retained Git source and approved content-addressed library records are the durable references.
 
-## File Library integration boundary
-This mechanism creates a **VAIXLNS library index**, not a write integration into ChatGPT File Library. Chat uploads are not automatically mirrored to GitHub. Desktop folders, Drive and chat uploads require separately authorized connectors or forwarders.
+## ChatGPT File Library boundary
+`library/` is the **VAIXLNS repository source library**, not ChatGPT's personal File Library. Chat uploads, desktop folders and Drive folders do not automatically emit GitHub push events; a separately authorized forwarder is needed to submit them.
 
 ## Source of truth
-- `registry/omega/omega-000-master-index.json`
-- `registry/indexes/zero-loss-index-taxonomy.v1.json`
-- `scripts/build_zero_loss_index.py`
-- `registry/repository-orchestration/UNIVERSAL_ADMISSION_GATE_V1.md`
-
-## Local verification
-```bash
-python -m unittest discover -s tests -p 'test_auto_intake.py' -v
-python tools/auto_intake.py --root . --inbox intake/inbox --out build/auto-intake
-```
-The actual GitHub workflow and its result must be inspected independently after approval/merge. No tests are marked PASS without execution evidence.
+Respect `registry/omega/omega-000-master-index.json`, `registry/indexes/zero-loss-index-taxonomy.v1.json`, `scripts/build_zero_loss_index.py`, and `registry/repository-orchestration/UNIVERSAL_ADMISSION_GATE_V1.md`. Do not mutate the canonical index without independent verification and approval.
