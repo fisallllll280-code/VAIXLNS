@@ -38,6 +38,18 @@ The strict verifier reported:
 
 This is a real fail-closed readiness result, not a test-suite assertion that should be bypassed. The workflow says it does not deploy/start services, provision secrets, or activate connectors.
 
+
+### Gate-input diagnosis from the verifier source
+
+The live verifier at [scripts/vx_verify.py](https://github.com/fisallllll280-code/VAIXLNS/blob/main/scripts/vx_verify.py) (blob `208792d3cb42bf397fc57b9d14082271cc89c2ec`) fails closed on four separate evidence paths. Diagnose each without weakening its conditions:
+
+1. **Service health:** `VX_SERVICE_HEALTH_URLS` must be valid JSON mapping each of `VX`, `VLNS`, `LNS`, and `NEXENT` to an operator-approved health endpoint returning a JSON health payload. All four returned `FAIL`; the log does not establish whether endpoints are absent, unreachable, unauthenticated, or unhealthy. Record the actual cause per service.
+2. **Meeting-room health:** `VX_MEETING_HEALTH_URL` must answer a fresh unpredictable challenge and prove current room/audio/participant state. Static fixtures are intentionally insufficient. Do not fabricate participant evidence.
+3. **State-guard coverage:** `VX_PCS001_COVERAGE_RECEIPT` must point to a receipt whose status is `VERIFIED`, whose commit matches `GITHUB_SHA`, and whose writer-path entries identify a real source file, guard call, and passing bypass test. The current run reports coverage false; produce the underlying coverage and negative-test evidence before changing that state.
+4. **Model/MCP connectors:** `VX_CONNECTOR_SMOKE_EVIDENCE` must point to recent, commit-appropriate smoke evidence. The current registry declares 12 connectors as `NOT_CONFIGURED`; there are zero active verified connectors. Configuration is not connectivity, and connectivity alone is not authorization.
+
+The verifier's own source explicitly states it does not activate connectors or start services. These gaps therefore require authorized environment configuration and genuine runtime evidence; changing the script to force `PASS` would invalidate the readiness gate.
+
 The continuous promotion job failed because `VAIXLNS_REPO_ADMIN_TOKEN` was empty. The log explicitly says no PR will be merged. Do not create or copy a privileged token to bypass this control.
 
 Two private-repository test jobs were skipped in the inspected check-run response. Skipped private-repository checks are not evidence that those repositories passed.
