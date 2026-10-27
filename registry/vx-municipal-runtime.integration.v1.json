@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "integration_id": "VX-MUNICIPAL-SANDBOX-READINESS",
+  "canonical_owner": "VAIXLNS",
+  "execution_boundary": "VX",
+  "implementation": {
+    "repository": "fisallllll280-code/VX-runtime",
+    "sha": "7fc4fcebb7fccdb70e379df7a52fa7826b4bb2c9",
+    "tested_feature_sha": "c959d11957d981415bc02e2a712c88237694e3d9",
+    "pull_request": "https://github.com/fisallllll280-code/VX-runtime/pull/29",
+    "status": "IMPLEMENTED_LOCAL_REFERENCE",
+    "admission": "NOT_GRANTED",
+    "core": "vxruntime/core.py",
+    "runner": "vxruntime/agent_runner.py",
+    "profile": "vxruntime/municipal.py"
+  },
+  "agent": {
+    "role_id": "VX-MUNICIPAL-VALIDATOR",
+    "tool_id": "municipal.sandbox.check_readiness.v1",
+    "scope": "LOCAL_PRESENCE_FACTS_ONLY",
+    "identity": "SYNTHETIC_HOST_GRANT_IN_TESTS",
+    "production_admission": "NOT_GRANTED"
+  },
+  "lineage": {
+    "source": "https://momah.gov.sa/ar/form/sandbox-application-form",
+    "relationship": "DERIVED_LOCAL_SUBSET",
+    "official_mandatory_field_validator": false,
+    "official_api_or_submission": false,
+    "reviewed_date": "2026-10-27"
+  },
+  "evidence": {
+    "root_repository": "fisallllll280-code/VX-runtime",
+    "local_receipt": "https://github.com/fisallllll280-code/VX-runtime/blob/c959d11957d981415bc02e2a712c88237694e3d9/docs/evidence/municipal-local-20261027/validation.json",
+    "ci_run": "https://github.com/fisallllll280-code/VX-runtime/actions/runs/40569743231",
+    "ci_head_sha": "c959d11957d981415bc02e2a712c88237694e3d9",
+    "ci_result": "SUCCESS",
+    "test_count": 71,
+    "local_cli_scenarios": 6,
+    "local_cli_runs": 2,
+    "benchmark_scope": "1000 synthetic pure checker iterations per run; no human or network baseline",
+    "canonical_registry_is_independent_runtime_evidence": false
+  },
+  "policy": {
+    "production_gate": "HOLD",
+    "external_spend_sar": 0,
+    "live_government_e2e": "NOT_RUN",
+    "T01_T15": "NOT_RUN",
+    "pdpl_scope": "PARTIAL_ENGINEERING_CONTROLS_NOT_CERTIFICATION",
+    "retention_and_deduplication_max_seconds": 86400,
+    "automatic_external_actions": false,
+    "allow_self_authorization": false
+  }
+}
