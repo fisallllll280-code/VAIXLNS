@@ -1,0 +1,37 @@
+{
+  "base_sha": "d74042c9eec8eb890c97ef68557a7d46b8f70b9e",
+  "at_utc": "2026-10-27T19:04:44.418326+00:00",
+  "change": "Reject blank and whitespace financial inputs before numeric conversion; preserve explicit zero.",
+  "targeted_command": "python3 -m unittest discover -s tests -p 'test_gov_sand_ui_contract.py' -v",
+  "before": {
+    "exit_code": 1,
+    "output_sha256": "55477fa4e0d8ac32ab0a4b652f3abdda15455eb27848c699df04c680c0eac971",
+    "summary": "Ran 9 tests in 1.256s; FAILED (failures=7)"
+  },
+  "after": {
+    "exit_code": 0,
+    "output_sha256": "08689f1b8b7f20066c20282d2a56622e8cb07d6704aa53905c14177cefb03eb0",
+    "summary": "Ran 9 tests in 1.240s; OK"
+  },
+  "full_suite": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "output_sha256": "5d50bab0497167fc931af6b95868c73e79f38992f92177d64e0e4c6ab42f0141",
+    "summary": "Ran 458 tests in 6.628s; OK"
+  },
+  "source_sha256": {
+    "web/gov-sand-control-center/index.html": "a3412fba77fdcbce2f44b1e6aa7db4f1b14cc180c61de73a0b81b9b3dd5e6590",
+    "tests/test_gov_sand_ui_contract.py": "7836489fa7ee8cba23ec95bc97d96b9e49a66500193fae48d4806f79ab5198ee",
+    ".github/workflows/gov-sand-ui-contract.yml": "180c52dea0696e6ef580834256a6993f6e6df4f4bb74322d16fdb4b9607b52d6"
+  },
+  "protected_before": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "protected_after": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "test_environment": "Node VM executing actual HTML script with minimal DOM; not browser rendering",
+  "deployment": "NOT_RUN"
+}
