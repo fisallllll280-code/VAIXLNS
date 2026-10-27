@@ -1,0 +1,69 @@
+name: VAIXLNS Continuous Federation Sync and Innovation Review
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/continuous_federation_sync.py'
+      - 'tests/test_continuous_federation_sync.py'
+      - 'registry/federation/continuous-sync-sources.v1.json'
+      - 'registry/innovation/federation-sync-candidate.v1.json'
+      - 'docs/innovation/CONTINUOUS_FEDERATION_SYNC_V1.md'
+      - '.github/workflows/continuous-federation-sync.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/continuous_federation_sync.py'
+      - 'tests/test_continuous_federation_sync.py'
+      - 'registry/federation/continuous-sync-sources.v1.json'
+  schedule:
+    - cron: '31 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: federation-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Read-only checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate sync engine and private-source boundaries
+        run: python -m unittest discover -s tests -p 'test_continuous_federation_sync.py' -v
+      - name: Recheck existing innovation operation index
+        run: |
+          python tools/validate_innovation_operation_index.py
+          python tools/build_innovation_operation_index.py --check
+      - name: Check existing Zero-Loss Index engine
+        run: python -m unittest discover -s tests -p 'test_zero_loss_index.py' -v
+      - name: Confirm unchanged canonical anchors
+        run: python scripts/federation_integrity_gate.py
+
+  live-public-metadata:
+    needs: offline-regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Observe only allowlisted public GitHub source metadata
+        run: |
+          python scripts/continuous_federation_sync.py \
+            --config registry/federation/continuous-sync-sources.v1.json \
+            --out "$RUNNER_TEMP/continuous-federation-sync" --strict
+      - name: Archive source/innovation review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-federation-innovation-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/continuous-federation-sync/
+          if-no-files-found: warn
+          retention-days: 30
