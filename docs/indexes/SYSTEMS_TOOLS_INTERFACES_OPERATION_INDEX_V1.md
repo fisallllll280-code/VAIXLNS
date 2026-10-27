@@ -324,3 +324,10 @@ Do not infer implementation from prose, status labels, a catalog row, a reposito
 - [Sovereign Tool Control Fabric](../tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md)
 - [VLNS→VX Activation Bridge](../integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md)
 - [External Systems & Tooling Candidate Registry](../architecture/EXTERNAL_SYSTEMS_AND_TOOLING_CANDIDATE_REGISTRY_V1.md)
+
+
+## 3. Ω Meta-Kernel
+
+**Constitutional change control:** [Ω Meta-Kernel — Constitutional Change Control Specification v1](../architecture/OMEGA_META_KERNEL_CONSTITUTIONAL_CHANGE_CONTROL_V1.md)
+
+This specification defines the proposed contracts for changing governance rules themselves: amendment classes C0–C5, non-amendable safety floor, independent review, federation message contracts, trust/knowledge sovereignty, append-only decision evidence, recovery, conformance levels M0–M6, and acceptance tests. It is an architecture specification; runtime enforcement remains unverified until implementation artifacts and tests demonstrate it.
