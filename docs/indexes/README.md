@@ -10,6 +10,8 @@
 
 ## Index set
 
+- [2026-10-25 Evidence Closure Execution Plan](../operations/VAIXLNS_EVIDENCE_CLOSURE_EXECUTION_PLAN_2026-10-25.md) — linked plan for recovering 155 missing evidence references in 177 innovation records, four-week 40/week simulation, scenario cost/risk/proof gates; PROPOSED/SIMULATED, not executed. Calculator: ../../tools/evidence_closure_scenario.py; unit tests: ../../tests/test_evidence_closure_scenario.py.
+
 - MASTER_RECOVERY_STATUS.md — current corpus and federation coverage.
 - ARCHIVE_SOURCE_INDEX.md — supplied project sources, hashes, classifications.
 - INNOVATION_MASTER_INDEX.md — innovation catalog with canonical placement.

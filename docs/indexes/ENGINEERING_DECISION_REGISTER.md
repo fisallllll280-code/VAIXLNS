@@ -15,3 +15,4 @@ This is a concise design rationale record, not private chain-of-thought.
 | Truth | Observation ≠ Evidence ≠ Proof ≠ Authority | Prevents readiness signals becoming legitimacy claims. |
 | Boundary | NEXENT proposes; VAIXLNS governs/adopts | Keeps research separate from execution authority. |
 | Coverage | Do not claim all 2750 rows are recovered | The corpus confirms the span, not every item-by-item record. |
+| Evidence-closure scheduling (2026-10-25) | Index the [155-record recovery execution plan](../operations/VAIXLNS_EVIDENCE_CLOSURE_EXECUTION_PLAN_2026-10-25.md) as PROPOSED/SIMULATED, at 40 accepted records/week under 100% source availability; retain independent verification and governance gates. | 177 operations, 22 linked and 155 unlinked in the source-generated innovation index; generated projections must not be manually changed. |

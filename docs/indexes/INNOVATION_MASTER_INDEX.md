@@ -10,6 +10,8 @@ The list below is a source-derived innovation catalog from the available project
 
 **Automation and truth boundary:** the generated index is rebuilt from source catalogs and Ω.000, validated in CI, and refreshed through a draft pull request. Any family-rule description is labelled `RULE_DERIVED_DRAFT`; profile details are not evidence of implementation. Automatic canonical promotion is disabled, and source conflicts remain visible.
 
+**Evidence linkage recovery plan (2026-10-25):** [155-record closure roadmap](../operations/VAIXLNS_EVIDENCE_CLOSURE_EXECUTION_PLAN_2026-10-25.md) and [scenario simulator](../../tools/evidence_closure_scenario.py). This is an indexed PROPOSED/SIMULATED operating plan to address 155 empty `evidence_refs` in the 177-record generated operation projection (2026-10-25 snapshot), not 155 completed evidence repairs, new innovations, or VERIFIED implementations.
+
 ## Discovery / synthesis
 
 1. Architecture Self-Discovery Engine (ASDE)
