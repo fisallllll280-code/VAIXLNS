@@ -164,3 +164,6 @@ Status notes:
 - The six-company structure is a target only; all partner slots remain unfilled until due diligence and signed agreements.
 - The founder decides historic/legacy classifications. AI tools can recommend with evidence but cannot silently delete, merge, rename, or supersede entries.
 
+## External systems and tooling intake
+
+- [External Systems & Tooling Candidate Registry v1](../architecture/EXTERNAL_SYSTEMS_AND_TOOLING_CANDIDATE_REGISTRY_V1.md) — provider-neutral intake register for agent frameworks, workflows, web discovery, observability, security/provenance, data/search, model runtimes, interoperability, infrastructure, testing, and business automation. All entries begin `UNASSESSED`; registry inclusion does not imply installation or integration.
