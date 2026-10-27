@@ -33,13 +33,6 @@
       "system_hint": "NEXENT_NOT_AUTOMATICALLY_NEXNET"
     },
     {
-      "repository": "fisallllll280-code/NAXLNS",
-      "branch": "main",
-      "baseline_commit": "226d80a03a46855894a1d148fe92ce8630096e03",
-      "scope": "PUBLIC_METADATA_ONLY",
-      "system_hint": "NAXLNS_NOT_AUTOMATICALLY_VLNS"
-    },
-    {
       "repository": "fisallllll280-code/vx-agents-fabric",
       "branch": "main",
       "baseline_commit": "f0b3374a4245a8d128afc4bf05303c27b59c23fb",
@@ -62,6 +55,14 @@
       "provider": "Google Drive",
       "state": "CONNECTION_NOT_TESTED_FOR_THIS_PIPELINE",
       "role": "FUTURE_ALLOWED_SOURCE"
+    }
+  ],
+  "excluded_sources": [
+    {
+      "repository": "fisallllll280-code/NAXLNS",
+      "visibility": "PRIVATE",
+      "reason": "EXCLUDED_FROM_PUBLIC_METADATA_SYNC_REQUIRES_EXPLICIT_PRIVATE_SCOPE",
+      "identity_note": "VLNS equivalence remains unverified"
     }
   ]
 }
