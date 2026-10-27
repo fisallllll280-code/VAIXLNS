@@ -1,0 +1,54 @@
+{
+  "schema": "VAIXLNS.InnovationReviewCandidate.v1",
+  "tracking_id": "INNOV-FEDERATION-CONTINUOUS-SYNC-001",
+  "canonical_id": null,
+  "name": "Continuous Federation Sync and Evidence-to-Innovation Routing",
+  "classification": "DERIVED_CAPABILITY_OF_EXISTING_FEDERATION_AND_ZERO_LOSS_ENGINES",
+  "state": "IMPLEMENTED_CANDIDATE_PENDING_CI_AND_REVIEW",
+  "canonical_admission": "NOT_ADMITTED",
+  "source_repository": "fisallllll280-code/VAIXLNS",
+  "source_paths": [
+    "scripts/continuous_federation_sync.py",
+    "registry/federation/continuous-sync-sources.v1.json",
+    ".github/workflows/continuous-federation-sync.yml"
+  ],
+  "test_paths": [
+    "tests/test_continuous_federation_sync.py"
+  ],
+  "interfaces": {
+    "input": "public GitHub repository metadata on allowlisted branches + pinned baseline SHA",
+    "output": [
+      "federation-sync.v1.json",
+      "innovation-intake-queue.v1.json",
+      "all-changes.v1.jsonl",
+      "sync-receipt.v1.json"
+    ]
+  },
+  "integration_anchors": [
+    "registry/omega/omega-000-master-index.json",
+    "scripts/build_zero_loss_index.py",
+    "tools/build_innovation_operation_index.py",
+    "scripts/capture_pinned_repo_snapshots.py"
+  ],
+  "publication": "CI_ARTIFACT_ONLY_UNTIL_HUMAN_REVIEW",
+  "authorizations": {
+    "read_public_repositories": true,
+    "read_private_repositories": false,
+    "mutate_external_accounts": false,
+    "merge_or_push_to_other_repos": false,
+    "activate_models": false,
+    "write_canonical_registry": false
+  },
+  "tests": {
+    "offline": "PENDING_EXECUTION",
+    "live_sync": "PENDING_EXECUTION",
+    "historical_legacy_full_coverage": "NOT_ESTABLISHED"
+  },
+  "security_limits": [
+    "Source Git blob SHA records are not byte SHA256; SHA256 is computed only for produced manifests.",
+    "Private sources excluded.",
+    "No GitHub or Zapier tokens in repository files.",
+    "GitHub API availability, rate limits and compare truncation are explicit block conditions.",
+    "Comparative data is a review proposal and not a verified innovation."
+  ]
+}
