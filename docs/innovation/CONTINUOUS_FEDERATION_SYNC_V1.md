@@ -40,7 +40,7 @@ Live public metadata observation:
 
     python scripts/continuous_federation_sync.py --strict --config registry/federation/continuous-sync-sources.v1.json --out build/federation-sync
 
-The GitHub workflow also checks the Innovation Operation Index, existing Zero-Loss tests and federation integrity, then uploads a source-bound evidence artifact. After merge, the scheduled workflow runs daily at 04:31 UTC, and workflow_dispatch is available. A PR uses read-only permissions and runs no trusted-source checkout of third-party pull-request code.
+The GitHub workflow also checks the Innovation Operation Index, existing Zero-Loss tests and federation integrity, then uploads a source-bound evidence artifact. On trusted main only, successful evidence can be revalidated and proposed as a draft PR in docs/evidence and registry/innovation/review; approval remains manual. Authenticated repository_dispatch type vaixlns_sync_requested may request an on-demand refresh, but its payload does not grant permissions or override the source allowlist. GitHub compare API caps displayed changed files at 300, so a result at that limit is treated as INCOMPLETE/BLOCKED. After merge, the scheduled workflow runs daily at 04:31 UTC, and workflow_dispatch is available. A PR uses read-only permissions and runs no trusted-source checkout of third-party pull-request code.
 
 ## Trust and evidence
 
