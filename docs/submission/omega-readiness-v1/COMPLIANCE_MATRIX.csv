@@ -1,0 +1,8 @@
+control_id,domain,applicability,requirement_source,control_evidence,owner,state,gap,next_action
+CMP-001,Personal data protection,NEEDS_ASSESSMENT,Saudi PDPL and implementing regulations,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,Data inventory unknown,Document data categories and processing basis
+CMP-002,Cybersecurity baseline,NEEDS_ASSESSMENT,NCA ECC applicability assessment,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,Applicability unknown,Scope legal entity and sector
+CMP-003,Cloud security,NEEDS_ASSESSMENT,NCA CCC applicability assessment,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,Cloud provider and processing boundary unknown,Map deployment model
+CMP-004,Agent governance,APPLICABLE_INTERNAL,VAIXLNS sovereign gate policy,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,Live enforcement unverified,Trace execution authorization
+CMP-005,Dependency licenses,APPLICABLE_INTERNAL,OSS license obligations,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,SBOM and attribution missing,Produce SBOM and license report
+CMP-006,Provenance and integrity,APPLICABLE_INTERNAL,VAIXLNS evidence-first policy,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,Receipts not attached,Hash and independently review source artifacts
+CMP-007,Operational recovery,NEEDS_ASSESSMENT,Product recovery objectives,UNAVAILABLE,UNASSIGNED,NOT_ASSESSED,RTO/RPO undefined,Define and exercise restore test
