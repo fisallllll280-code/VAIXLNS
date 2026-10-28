@@ -1,7 +1,8 @@
 import unittest
 from datetime import datetime, timedelta, timezone
 
-from scripts.omega_readiness_bridge import DEFAULT_HARD_GATES, evaluate_readiness
+from scripts.omega_readiness_bridge import (DEFAULT_HARD_GATES, evaluate_readiness, evaluate_vx_stage_instance)
+from scripts.vx_stage_runtime import StageVX
 
 NOW = datetime(2026, 10, 28, 9, 0, tzinfo=timezone.utc)
 STAMP = "2026-10-28T09:00:00Z"
@@ -90,6 +91,44 @@ class OmegaReadinessBridgeTests(unittest.TestCase):
         data["checks"]["optional_diagnostics"] = "UNKNOWN"
         result = evaluate_readiness(data, now=NOW)
         self.assertEqual(result["status"], "DEGRADED")
+
+
+    def test_vx_stage_adapter_requires_independent_gates(self):
+        vx = StageVX(
+            "VX-Code-Stage-01", "software-engineering",
+            {"simulation", "verification"}, {"simulate", "verify"},
+        )
+        vx.heartbeat(STAMP)
+        result = evaluate_vx_stage_instance(
+            vx,
+            required_capability="simulation",
+            required_authority="simulate",
+            evidence=packet()["evidence"],
+            dependencies=[],
+            dependencies_declared=True,
+            integrity_verified=True,
+            capacity_available=True,
+            recovery_verified=True,
+            governance_approved=True,
+            now=NOW,
+        )
+        self.assertEqual(result["status"], "READY")
+
+    def test_vx_stage_active_state_alone_is_not_ready(self):
+        vx = StageVX(
+            "VX-Code-Stage-01", "software-engineering",
+            {"simulation"}, {"simulate"},
+        )
+        vx.heartbeat(STAMP)
+        result = evaluate_vx_stage_instance(
+            vx,
+            required_capability="simulation",
+            required_authority="simulate",
+            evidence=packet()["evidence"],
+            now=NOW,
+        )
+        self.assertEqual(result["status"], "NOT_READY")
+        self.assertIn("HARD_GATE_UNKNOWN:integrity", result["blockers"])
 
     def test_invalid_input_never_passes(self):
         result = evaluate_readiness(None, now=NOW)
