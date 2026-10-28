@@ -4,6 +4,13 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # Periodic health check; scheduled workflows run from the default branch after merge.
+  schedule:
+    - cron: '43 */6 * * *'
+
+concurrency:
+  group: vaixlns-conformance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -12,10 +19,11 @@ jobs:
   conformance:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (single revision; no history-dependent steps)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # Conformance scripts read repository files and GITHUB_SHA; none inspect Git history.
+          fetch-depth: 1
 
       - name: Validate JSON control surfaces
         run: |
