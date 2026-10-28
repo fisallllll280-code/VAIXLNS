@@ -14,10 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout full history for conservative change-impact analysis
+      - name: Checkout minimal history for base/head impact analysis
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # PR merge refs include the base parent; pushes need the previous commit.
+          # The router fails closed to the full suite if the required diff is unavailable.
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
