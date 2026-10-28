@@ -15,6 +15,7 @@ def packet():
         "observed_at": STAMP,
         "max_age_seconds": 300,
         "checks": {gate: "PASS" for gate in DEFAULT_HARD_GATES},
+        "dependencies_declared": True,
         "dependencies": [
             {"id": "vx-node-sim-01", "status": "PASS", "observed_at": STAMP}
         ],
@@ -40,6 +41,13 @@ class OmegaReadinessBridgeTests(unittest.TestCase):
         result = evaluate_readiness(data, now=NOW)
         self.assertEqual(result["status"], "NOT_READY")
         self.assertIn("HARD_GATE_UNKNOWN:integrity", result["blockers"])
+
+    def test_missing_dependency_closure_attestation_fails_closed(self):
+        data = packet()
+        data.pop("dependencies_declared")
+        result = evaluate_readiness(data, now=NOW)
+        self.assertEqual(result["status"], "NOT_READY")
+        self.assertIn("DEPENDENCY_CLOSURE_NOT_ATTESTED", result["blockers"])
 
     def test_failed_dependency_fails_closed(self):
         data = packet()
