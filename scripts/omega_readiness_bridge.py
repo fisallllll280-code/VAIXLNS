@@ -99,6 +99,11 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
         if gate in hard_gates and value != "PASS":
             blockers.append(f"HARD_GATE_{value}:{gate}")
 
+    dependencies_declared = payload.get("dependencies_declared") is True
+    if not dependencies_declared:
+        blockers.append("DEPENDENCY_CLOSURE_NOT_ATTESTED")
+    if "dependencies" not in payload:
+        blockers.append("DEPENDENCIES_NOT_DECLARED")
     dependencies = payload.get("dependencies", [])
     if not isinstance(dependencies, list):
         dependencies = []
@@ -237,6 +242,7 @@ def evaluate_vx_stage_instance(
             "evidence_quality": "PASS" if isinstance(evidence, list) and evidence else "UNKNOWN",
         },
         "dependencies": deps,
+        "dependencies_declared": dependencies_declared,
         "evidence": evidence if isinstance(evidence, list) else [],
     }
     return evaluate_readiness(packet, now=now)
