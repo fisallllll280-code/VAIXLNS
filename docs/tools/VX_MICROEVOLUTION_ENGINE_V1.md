@@ -60,3 +60,15 @@ Run periodically and retain immutable reports keyed by commit SHA. Pass a prior 
 - **TESTED:** the dedicated unit suite passes in an identified environment.
 - **RUNTIME VERIFIED:** reserved for evidence of actual command execution, not static code review.
 - **PRODUCTION:** not claimed by this reference tool.
+
+ 
+## Deep idea portfolio extension
+
+The companion [Deep Innovation Portfolio](VX_MICROEVOLUTION_DEEP_IDEAS_V1.md) adds 18 testable hypotheses and a deterministic portfolio evaluator. It complements this scanner and does not replace ARC-X's bounded-evolution gate. Run:
+
+```bash
+python scripts/vx_microevolution_ideas.py --catalog registry/vx-microevolution-ideas.v1.json --output build/microevolution/idea-evaluation.json
+python -m unittest tests.test_vx_microevolution_ideas -v
+```
+
+Portfolio scores are triage signals only; novelty remains unassessed and no proposal is automatically adopted.
