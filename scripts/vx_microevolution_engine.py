@@ -84,7 +84,7 @@ def classify_file(path: Path, root: Path, data: bytes) -> dict[str, Any]:
     }
 
 
-def build_report(root: str | Path, horizon_years: int = 5) -> dict[str, Any]:
+def build_report(root: str | Path, horizon_years: int = 5, baseline_report: dict[str, Any] | None = None) -> dict[str, Any]:
     base = Path(root).expanduser().resolve()
     if not base.is_dir():
         raise ValueError(f"root is not a directory: {base}")
@@ -155,6 +155,32 @@ def build_report(root: str | Path, horizon_years: int = 5) -> dict[str, Any]:
             horizon_years, "Inventory public schemas and API contracts, then add backward-compatibility fixtures for one critical interface.")
 
     findings.sort(key=lambda item: (-item["priority_score_1_to_5"], item["effort_1_to_5"], item["id"]))
+    current_by_path = {item["path"]: item["sha256"] for item in inventory}
+    if baseline_report is None:
+        longitudinal = {
+            "status": "BASELINE_NOT_PROVIDED",
+            "added_paths": [],
+            "removed_paths": [],
+            "changed_paths": [],
+        }
+    else:
+        previous_inventory = baseline_report.get("inventory")
+        if not isinstance(previous_inventory, list) or any(
+            not isinstance(item, dict) or not isinstance(item.get("path"), str) or not isinstance(item.get("sha256"), str)
+            for item in previous_inventory
+        ):
+            raise ValueError("baseline report has an invalid inventory contract")
+        previous_by_path = {item["path"]: item["sha256"] for item in previous_inventory}
+        longitudinal = {
+            "status": "COMPARED",
+            "added_paths": sorted(set(current_by_path) - set(previous_by_path)),
+            "removed_paths": sorted(set(previous_by_path) - set(current_by_path)),
+            "changed_paths": sorted(
+                path for path in set(current_by_path) & set(previous_by_path)
+                if current_by_path[path] != previous_by_path[path]
+            ),
+            "baseline_git_revision": baseline_report.get("git_revision"),
+        }
     return {
         "schema_version": "vx.microevolution.report.v1",
         "engine_version": VERSION,
@@ -183,6 +209,7 @@ def build_report(root: str | Path, horizon_years: int = 5) -> dict[str, Any]:
         },
         "inventory": inventory,
         "candidates": findings,
+        "longitudinal_comparison": longitudinal,
         "decision_rule": "Candidates are hypotheses, not verified defects. No patch is applied and no candidate is promoted automatically.",
     }
 
@@ -191,10 +218,16 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".", help="repository root to inspect (default: current directory)")
     parser.add_argument("--horizon-years", type=int, choices=(1, 3, 5), default=5)
+    parser.add_argument("--baseline", help="previous JSON report for longitudinal file-hash comparison")
     parser.add_argument("--output", help="write JSON report to this path; stdout if omitted")
     args = parser.parse_args(argv)
     try:
-        report = build_report(args.root, args.horizon_years)
+        baseline = None
+        if args.baseline:
+            baseline = json.loads(Path(args.baseline).expanduser().read_text(encoding="utf-8"))
+            if not isinstance(baseline, dict):
+                raise ValueError("baseline report root must be a JSON object")
+        report = build_report(args.root, args.horizon_years, baseline_report=baseline)
     except (OSError, ValueError) as exc:
         parser.error(str(exc))
     rendered = json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
