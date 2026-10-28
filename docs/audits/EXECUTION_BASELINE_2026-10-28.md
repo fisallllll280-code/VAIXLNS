@@ -120,3 +120,19 @@ The updated verifier adds `unified_service_health_diagnostics` while preserving 
 ## 9. Decision
 
 **Current decision: HOLD / NOT READY for live federation or production activation.** Continue with P1 diagnosis and evidence collection in isolated work. Do not treat green component tests as proof that the multi-system runtime is connected, authenticated, or operational.
+
+
+## 10. Repository refresh — 2026-10-28T06:00Z
+
+This refresh supersedes the older main-head observation in Section 1 for current navigation purposes; the original baseline remains preserved as a historical observation.
+
+- Current `VAIXLNS/main` head: `27b1eb7e1e0c8f7c57c35dbe3cc674751e08d1c8`.
+- [PR #200](https://github.com/fisallllll280-code/VAIXLNS/pull/200) is merged. It added `docs/indexes/INTEGRATED_PROJECT_ORDER_V1.md` only; its description explicitly says runtime tests were not run by that documentation-only change.
+- On the current main head, the following observed workflow runs completed successfully: [Fast Engineering Feedback](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40639729440), [Conformance](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40639729606), [VX Federation Runtime Tests](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40639729399), and [PCS-001 Proof-Carrying State Tests](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40639729430). These are workflow-level results for that commit; they do not establish live service connectivity.
+- The most recent inspected [Continuous Promotion Gate](https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40617013317) failed at `Require the repository promotion token`. No token was created, copied, or bypassed.
+- PR #199 remains open and draft at head `9b45f7c8ae46b846fda212930181a04f746d36d5`. GitHub compare against current main reports `diverged` with 6 commits ahead and 1 behind. It must be rebased or safely ported onto the current main before its change can be considered for review; no merge is authorized here.
+- Current observed default-branch heads: `VAIXLNS-unified` `eb3517a98d1f3c649561d88e8a5e591b25ff19d7`; `NEXENT` `f62cf5920174551f9a8f88deb420f9515bedc284`; `VX-runtime` `45d034892cc765665613dd85d98710b67b4e47f9`; `VX50_COMPLETE_BUILD` `e59292662071b045532c121054e105fb214a4ebc`. These are commit pins, not claims of operational health.
+
+### Refresh decision
+
+Keep production on HOLD. Preserve PR #199 as draft pending safe base reconciliation and exact-head checks. The integrated project order is now present on main as a plan, while its inventory, recovery, runtime, and evidence acceptance gates remain work to execute—not completed merely because the plan merged.
