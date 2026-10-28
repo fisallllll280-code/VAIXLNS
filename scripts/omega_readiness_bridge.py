@@ -188,6 +188,60 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
     return report
 
 
+
+def evaluate_vx_stage_instance(
+    instance: Any,
+    *,
+    required_capability: str,
+    required_authority: str,
+    evidence: list[dict[str, Any]],
+    dependencies: list[dict[str, Any]] | None = None,
+    dependencies_declared: bool = False,
+    integrity_verified: bool = False,
+    capacity_available: bool = False,
+    recovery_verified: bool = False,
+    governance_approved: bool = False,
+    max_age_seconds: int = 300,
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    """Adapt an in-process VX Stage instance into the readiness contract.
+
+    The caller must supply independent integrity/recovery/governance/capacity
+    assertions and evidence. Merely being ACTIVE never satisfies those gates.
+    """
+    state = getattr(instance, "state", None)
+    last_seen = getattr(instance, "last_seen", None)
+    capabilities = getattr(instance, "capabilities", ())
+    authority_scope = getattr(instance, "authority_scope", ())
+    active = state == "ACTIVE"
+    has_capability = required_capability in capabilities
+    has_authority = required_authority in authority_scope
+    deps = dependencies if isinstance(dependencies, list) else []
+    dependency_state = (
+        "PASS" if dependencies_declared and all(
+            isinstance(dep, dict) and dep.get("status") == "PASS" for dep in deps
+        ) else "UNKNOWN"
+    )
+    packet = {
+        "capability_id": f"{getattr(instance, 'instance_id', 'unknown')}:{required_capability}",
+        "observed_at": last_seen,
+        "max_age_seconds": max_age_seconds,
+        "checks": {
+            "availability": "PASS" if active else "FAIL",
+            "integrity": "PASS" if integrity_verified is True else "UNKNOWN",
+            "dependencies": dependency_state,
+            "capacity": "PASS" if capacity_available is True else "UNKNOWN",
+            "security": "PASS" if has_capability and has_authority else "FAIL",
+            "recovery": "PASS" if recovery_verified is True else "UNKNOWN",
+            "governance": "PASS" if governance_approved is True else "UNKNOWN",
+            "evidence_quality": "PASS" if isinstance(evidence, list) and evidence else "UNKNOWN",
+        },
+        "dependencies": deps,
+        "evidence": evidence if isinstance(evidence, list) else [],
+    }
+    return evaluate_readiness(packet, now=now)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", help="JSON input packet; use - for stdin")
