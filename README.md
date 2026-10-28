@@ -34,6 +34,10 @@ This repository is the canonical architecture, registry, recovery, provenance, a
 - [VX MicroEvolution Engine Ω v1](docs/tools/VX_MICROEVOLUTION_ENGINE_V1.md)
 - [VX MicroEvolution scanner](scripts/vx_microevolution_engine.py)
 - [VX MicroEvolution unit tests](tests/test_vx_microevolution_engine.py)
+- [VX MicroEvolution deep idea portfolio](docs/tools/VX_MICROEVOLUTION_DEEP_IDEAS_V1.md)
+- [Deep idea catalog (18 hypotheses)](registry/vx-microevolution-ideas.v1.json)
+- [Idea portfolio evaluator](scripts/vx_microevolution_ideas.py)
+- [Idea evaluator tests](tests/test_vx_microevolution_ideas.py)
 
 ## Canonical boundary
 
