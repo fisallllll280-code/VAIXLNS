@@ -1,4 +1,6 @@
+import json
 import unittest
+from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
 from scripts.omega_readiness_bridge import (DEFAULT_HARD_GATES, evaluate_readiness, evaluate_vx_stage_instance)
@@ -27,6 +29,14 @@ def packet():
 
 
 class OmegaReadinessBridgeTests(unittest.TestCase):
+    def test_checked_in_synthetic_fixture_matches_contract(self):
+        fixture_path = Path(__file__).parent.parent / "fixtures" / "omega-readiness" / "synthetic-ready.json"
+        fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
+        result = evaluate_readiness(fixture, now=NOW)
+        self.assertEqual(result["status"], "READY")
+        self.assertIn("SYNTHETIC ONLY", fixture["fixture_notice"])
+        self.assertFalse(result["execution_performed"])
+
     def test_complete_fresh_packet_is_ready_but_not_execution(self):
         result = evaluate_readiness(packet(), now=NOW)
         self.assertEqual(result["status"], "READY")

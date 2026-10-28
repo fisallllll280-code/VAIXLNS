@@ -1,6 +1,6 @@
 # Omega Readiness Bridge — executable slice v1
 
-Status: **implemented locally in repository source; CI evidence pending**.
+Status: **implemented local evaluator; focused CI passed; live runtime integration not verified**.
 This module evaluates a supplied JSON observation packet. It does not probe machines,
 call cloud APIs, dispatch workloads, authorize people, or establish production readiness.
 
@@ -25,7 +25,10 @@ passed this evaluator's contract; it is not evidence that a real node or service
 Missing/invalid/stale/future observations, failed dependencies, missing hard gates,
 and missing valid evidence fail closed. Reports include blockers, a deterministic
 SHA-256 digest over the report before the digest field is added, and explicit
-`execution_performed=false` / `external_calls_performed=false` fields.
+`execution_performed=false` / `external_calls_performed=false` fields. Dependency
+closure must be explicitly declared. Evidence digests are format-checked and the
+`verified` flag is caller-attested; this evaluator does not fetch evidence bytes or
+independently recompute their hashes.
 
 ## Boundary and next integration
 
