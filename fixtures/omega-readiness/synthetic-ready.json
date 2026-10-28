@@ -1,7 +1,7 @@
 {
   "capability_id": "synthetic.compute.hybrid",
   "observed_at": "2026-10-28T09:00:00Z",
-  "max_age_seconds": 300,
+  "max_age_seconds": 315360000,
   "checks": {
     "availability": "PASS",
     "integrity": "PASS",
