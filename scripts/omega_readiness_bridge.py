@@ -99,6 +99,11 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
         if gate in hard_gates and value != "PASS":
             blockers.append(f"HARD_GATE_{value}:{gate}")
 
+    dependencies_declared = payload.get("dependencies_declared") is True
+    if not dependencies_declared:
+        blockers.append("DEPENDENCY_CLOSURE_NOT_ATTESTED")
+    if "dependencies" not in payload:
+        blockers.append("DEPENDENCIES_NOT_DECLARED")
     dependencies = payload.get("dependencies", [])
     if not isinstance(dependencies, list):
         dependencies = []
@@ -178,11 +183,16 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
         "checks": normalized_checks,
         "dependency_count": len(dependencies),
         "valid_evidence_count": valid_evidence,
+        "evidence_verification_mode": "caller_attested_only_digest_format_checked_not_recomputed",
         "blockers": blockers,
         "execution_performed": False,
         "external_calls_performed": False,
         "human_approval_required": True,
-        "scope_note": "Evaluation of supplied evidence only; not proof of live runtime or deployment.",
+        "scope_note": (
+            "Evaluation of supplied evidence only; digest format is checked but artifact bytes "
+            "are not fetched or re-hashed here; the verified flag is caller-attested. "
+            "This is not proof of live runtime or deployment."
+        ),
     }
     report["report_sha256"] = _canonical_hash(report)
     return report
@@ -237,6 +247,7 @@ def evaluate_vx_stage_instance(
             "evidence_quality": "PASS" if isinstance(evidence, list) and evidence else "UNKNOWN",
         },
         "dependencies": deps,
+        "dependencies_declared": dependencies_declared,
         "evidence": evidence if isinstance(evidence, list) else [],
     }
     return evaluate_readiness(packet, now=now)
