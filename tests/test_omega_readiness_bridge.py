@@ -33,6 +33,10 @@ class OmegaReadinessBridgeTests(unittest.TestCase):
         self.assertFalse(result["execution_performed"])
         self.assertFalse(result["external_calls_performed"])
         self.assertTrue(result["human_approval_required"])
+        self.assertEqual(
+            result["evidence_verification_mode"],
+            "caller_attested_only_digest_format_checked_not_recomputed",
+        )
         self.assertEqual(len(result["report_sha256"]), 64)
 
     def test_missing_hard_gate_fails_closed(self):
