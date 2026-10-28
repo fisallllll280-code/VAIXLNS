@@ -146,10 +146,22 @@ class FederationGate:
         if capability is None:
             capability = next(
                 (mapped for token, mapped in ERROR_CAPABILITIES.items() if token in error_type),
-                "diagnosis",
+                None,
             )
         severity = signal.severity.strip().upper()
         critical = severity in {"CRITICAL", "SEV0", "SEV1"}
+        if capability is None:
+            return {
+                "system_id": "VX",
+                "error_id": signal.error_id,
+                "source_system": signal.source_system,
+                "capability": "diagnosis",
+                "route_target": None,
+                "routing_status": "UNASSIGNED",
+                "deployment_blocked": True,
+                "isolation_recommended": critical,
+                "evidence_refs": list(signal.evidence_refs),
+            }
         try:
             route = self.route(capability, "diagnose")
         except LookupError:
