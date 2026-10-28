@@ -163,7 +163,8 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
     blockers = sorted(set(blockers))
     if blockers:
         overall = "NOT_READY"
-    elif "DEGRADED" in normalized_checks.values():
+    elif any(value in {"DEGRADED", "FAIL", "UNKNOWN", "STALE"}
+             for value in normalized_checks.values()):
         overall = "DEGRADED"
     else:
         overall = "READY"
