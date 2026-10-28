@@ -32,6 +32,21 @@ class MicroEvolutionEngineTests(unittest.TestCase):
         build_report(self.root, 3)
         self.assertEqual(target.read_bytes(), before)
 
+    def test_longitudinal_comparison_detects_changes(self):
+        baseline = build_report(self.root, 5)
+        (self.root / "src" / "module.py").write_text("def add(a, b):\\n    return a + b + 1\\n", encoding="utf-8")
+        (self.root / "src" / "new_module.py").write_text("VALUE = 1\\n", encoding="utf-8")
+        current = build_report(self.root, 5, baseline_report=baseline)
+        comparison = current["longitudinal_comparison"]
+        self.assertEqual(comparison["status"], "COMPARED")
+        self.assertIn("src/module.py", comparison["changed_paths"])
+        self.assertIn("src/new_module.py", comparison["added_paths"])
+        self.assertEqual(comparison["removed_paths"], [])
+
+    def test_invalid_baseline_fails_closed(self):
+        with self.assertRaises(ValueError):
+            build_report(self.root, 5, baseline_report={"inventory": "invalid"})
+
     def test_horizon_validation(self):
         with self.assertRaises(ValueError):
             build_report(self.root, 7)
