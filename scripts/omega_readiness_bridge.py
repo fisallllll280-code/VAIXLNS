@@ -85,10 +85,14 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
         hard_gates = list(DEFAULT_HARD_GATES)
         blockers.append("HARD_GATES_INVALID")
 
+    safe_check_keys = [key for key in checks if isinstance(key, str) and key]
+    if len(safe_check_keys) != len(checks):
+        blockers.append("CHECK_KEYS_INVALID")
     normalized_checks: dict[str, str] = {}
-    for gate in sorted(set(DEFAULT_HARD_GATES) | set(hard_gates) | set(checks)):
+    all_gates = set(DEFAULT_HARD_GATES) | set(hard_gates) | set(safe_check_keys)
+    for gate in sorted(all_gates):
         value = checks.get(gate, "UNKNOWN")
-        if value not in STATUSES:
+        if not isinstance(value, str) or value not in STATUSES:
             value = "UNKNOWN"
             blockers.append(f"INVALID_STATUS:{gate}")
         normalized_checks[gate] = value
@@ -109,7 +113,7 @@ def evaluate_readiness(payload: Any, *, now: datetime | None = None) -> dict[str
             blockers.append(f"DUPLICATE_DEPENDENCY:{dep_id}")
         dependency_ids.add(dep_id)
         dep_status = item.get("status", "UNKNOWN")
-        if dep_status not in STATUSES:
+        if not isinstance(dep_status, str) or dep_status not in STATUSES:
             dep_status = "UNKNOWN"
         if dep_status != "PASS":
             blockers.append(f"DEPENDENCY_{dep_status}:{dep_id}")
