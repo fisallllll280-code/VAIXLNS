@@ -18,6 +18,8 @@ From the repository root:
 
 ```bash
 python scripts/vx_microevolution_engine.py --root . --horizon-years 5 --output build/microevolution/report.json
+# On the next run, compare against a previously saved report:
+python scripts/vx_microevolution_engine.py --root . --horizon-years 5 --baseline build/microevolution/previous-report.json --output build/microevolution/current-report.json
 python -m unittest tests.test_vx_microevolution_engine -v
 ```
 
@@ -26,6 +28,7 @@ The scanner uses only the Python standard library. The report contains:
 - SHA-256 for each scanned file and the Git revision when available;
 - counts for source, tests, documentation and manifests;
 - bounded, explainable candidate records with evidence pointers, effort, impact, confidence and planning horizon;
+- optional longitudinal comparison of added, removed and hash-changed paths against a prior report;
 - explicit safety limits and the distinction between heuristic proposal and verified finding.
 
 ## Candidate heuristics
@@ -49,7 +52,7 @@ These are prompts for investigation, not assertions that a defect exists. The sc
 
 ## Five-year operating model
 
-Run periodically and retain immutable reports keyed by commit SHA. Compare reports over time to detect drift, dependency policy gaps, untested interfaces and repeated unfinished-work patterns. Any proposed patch must be isolated, tested against a baseline, reviewed for compatibility and security, and explicitly approved before merge.
+Run periodically and retain immutable reports keyed by commit SHA. Pass a prior report with `--baseline` to detect added, removed and hash-changed files. Compare reports over time to detect drift, dependency policy gaps, untested interfaces and repeated unfinished-work patterns. The included CI artifact is retained for 90 days; a five-year record requires an explicitly managed archive or repository artifact policy. Any proposed patch must be isolated, tested against a baseline, reviewed for compatibility and security, and explicitly approved before merge.
 
 ## Status vocabulary
 
