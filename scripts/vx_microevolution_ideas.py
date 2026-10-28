@@ -134,7 +134,7 @@ def main() -> int:
     args = parser.parse_args()
     catalog = json.loads(Path(args.catalog).read_text(encoding="utf-8"))
     report = evaluate_catalog(catalog)
-    rendered = json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\\n"
+    rendered = json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if args.output == "-":
         print(rendered, end="")
     else:
