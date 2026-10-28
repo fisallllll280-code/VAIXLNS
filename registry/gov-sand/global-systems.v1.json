@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "government_endorsement": false,
   "systems": [
     {
@@ -37,6 +37,17 @@
       "repo": "fisallllll280-code/VAIXLNS",
       "status": "TESTED_LIMITED",
       "verified_runtime": false
+    },
+    {
+      "id": "OMEGA-COMPUTE-LEADERSHIP-READINESS",
+      "role": "architecture bridge for hybrid compute capability and evidence-backed leadership readiness decision support",
+      "repo": "fisallllll280-code/VAIXLNS",
+      "status": "TESTED_LIMITED",
+      "verified_runtime": false,
+      "architecture": "docs/architecture/OMEGA_COMPUTE_LEADERSHIP_READINESS_BRIDGE_V1.md",
+      "implementation": "scripts/omega_readiness_bridge.py",
+      "tests": "tests/test_omega_readiness_bridge.py",
+      "execution_notes": "Pure evaluator only; synthetic input; no live telemetry adapter, deployment, or external integration verified."
     }
   ],
   "evidence": [
@@ -46,6 +57,20 @@
       "status": "TESTED_LIMITED",
       "source": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40441542948",
       "scope": "unit tests only"
+    },
+    {
+      "id": "OMEGA-BRIDGE-DESIGN",
+      "capability": "Hybrid compute and leadership readiness architecture contract",
+      "status": "DESIGNED",
+      "source": "https://github.com/fisallllll280-code/VAIXLNS/blob/feat/omega-compute-leadership-readiness-bridge-20261028/docs/architecture/OMEGA_COMPUTE_LEADERSHIP_READINESS_BRIDGE_V1.md",
+      "scope": "Architecture contract only; no runtime integration verified."
+    },
+    {
+      "id": "OMEGA-BRIDGE-TESTS",
+      "capability": "Isolated evidence-gated readiness evaluator and regression suite",
+      "status": "TESTED_LIMITED",
+      "source": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40664456270",
+      "scope": "Focused unit tests, including VX Stage adapter contract, passed on synthetic fixtures; no live telemetry or deployment proof."
     }
   ]
 }
