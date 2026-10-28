@@ -1,0 +1,7 @@
+route_id,sector,initial_channel,proposed_capability,status,permission_gate
+MIL-REF,Defence/Eatizaz,https://eatizaz.mod.gov.sa/homepage,voluntary case support,PENDING_PARTNERSHIP,Written authorization and data agreement
+MIL-SUP,Defence supplier,https://supplier.mod.gov.sa/,supplier onboarding,PENDING_ELIGIBILITY,Legal entity documents
+GOV-GSB,Government interoperability,https://sdaia.gov.sa/ar/Services/Pages/GSB.aspx,authorized inter-agency API,PENDING_PERMISSION,Authorized agency agreement
+FIN-WORKOUT,Banking,Official lender channels,debt restructuring request preparation,MANUAL_ONLY,Financial regulation and consent
+JUS-REF,Justice,Official justice portals,court procedure information,INFORMATION_ONLY,Human legal review
+IP-SAIP,IP protection,https://www.saip.gov.sa/ar/services/copyrights/copyr1,software rights documentation,READY_TO_REVIEW,Ownership and source provenance
