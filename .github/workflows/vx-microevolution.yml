@@ -1,0 +1,45 @@
+name: VX MicroEvolution Engine
+on:
+  pull_request:
+    paths:
+      - "scripts/vx_microevolution_engine.py"
+      - "tests/test_vx_microevolution_engine.py"
+      - ".github/workflows/vx-microevolution.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/vx_microevolution_engine.py"
+      - "tests/test_vx_microevolution_engine.py"
+      - ".github/workflows/vx-microevolution.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile scanner
+        run: python -m py_compile scripts/vx_microevolution_engine.py
+      - name: Run unit tests
+        run: python -m unittest tests.test_vx_microevolution_engine -v
+      - name: Run read-only smoke scan
+        run: python scripts/vx_microevolution_engine.py --root . --horizon-years 5 --output build/microevolution/report.json
+      - name: Validate report contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/microevolution/report.json").read_text(encoding="utf-8"))
+          assert report["schema_version"] == "vx.microevolution.report.v1"
+          assert report["mode"] == "READ_ONLY_INVENTORY_AND_HEURISTIC_PROPOSALS"
+          assert report["limits"]["source_modified"] is False
+          assert report["limits"]["automatic_approval"] is False
+          assert report["summary"]["files_scanned"] > 0
+          print("MicroEvolution report contract: PASS")
+          PY
