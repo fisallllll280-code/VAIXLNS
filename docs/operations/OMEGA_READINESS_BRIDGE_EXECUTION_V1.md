@@ -29,7 +29,5 @@ SHA-256 digest over the report before the digest field is added, and explicit
 
 ## Boundary and next integration
 
-This is a pure evaluator seam, not a VX telemetry adapter or a leadership UI. The next
-step is to bind trusted VX/VV observations through a versioned adapter and test the
-adapter contract; until that exists, use synthetic fixtures only. Human review remains
+The evaluator now includes an in-process adapter for the existing VX Stage instance contract. The adapter reads stage state/capability/authority scope, while requiring independent explicit inputs for integrity, capacity, recovery, governance, dependencies and evidence. Contract tests cover both a fully evidenced synthetic Stage instance and an ACTIVE instance with missing gates. This is not a live telemetry adapter or a leadership UI; only synthetic fixtures are used. Human review remains
 mandatory and the module is not intended to rank or determine the fitness of individuals.
