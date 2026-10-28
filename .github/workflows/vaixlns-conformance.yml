@@ -4,6 +4,13 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # Periodic health check; scheduled workflows run from the default branch after merge.
+  schedule:
+    - cron: '43 */6 * * *'
+
+concurrency:
+  group: vaixlns-conformance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
