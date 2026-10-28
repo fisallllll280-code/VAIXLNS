@@ -69,8 +69,8 @@
       "id": "OMEGA-BRIDGE-TESTS",
       "capability": "Isolated evidence-gated readiness evaluator and regression suite",
       "status": "TESTED_LIMITED",
-      "source": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40664241235",
-      "scope": "Focused unit tests passed on synthetic fixtures; not proof of live compute, telemetry integration, or deployment."
+      "source": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40664456270",
+      "scope": "Focused unit tests, including VX Stage adapter contract, passed on synthetic fixtures; no live telemetry or deployment proof."
     }
   ]
 }
