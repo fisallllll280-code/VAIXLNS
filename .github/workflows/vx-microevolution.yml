@@ -43,3 +43,11 @@ jobs:
           assert report["summary"]["files_scanned"] > 0
           print("MicroEvolution report contract: PASS")
           PY
+
+      - name: Preserve report as CI evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vx-microevolution-report-${{ github.sha }}
+          path: build/microevolution/report.json
+          if-no-files-found: error
+          retention-days: 90
