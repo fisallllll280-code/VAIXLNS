@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - "scripts/vx_microevolution_engine.py"
+      - "scripts/vx_microevolution_ideas.py"
+      - "registry/vx-microevolution-ideas.v1.json"
+      - "tests/test_vx_microevolution_ideas.py"
       - "tests/test_vx_microevolution_engine.py"
       - ".github/workflows/vx-microevolution.yml"
   push:
@@ -27,7 +30,7 @@ jobs:
       - name: Compile scanner
         run: python -m py_compile scripts/vx_microevolution_engine.py
       - name: Run unit tests
-        run: python -m unittest tests.test_vx_microevolution_engine -v
+        run: python -m unittest tests.test_vx_microevolution_engine tests.test_vx_microevolution_ideas -v
       - name: Run read-only smoke scan
         run: python scripts/vx_microevolution_engine.py --root . --horizon-years 5 --output build/microevolution/report.json
       - name: Validate report contract
@@ -44,10 +47,25 @@ jobs:
           print("MicroEvolution report contract: PASS")
           PY
 
+      - name: Evaluate deep idea portfolio
+        run: python scripts/vx_microevolution_ideas.py --catalog registry/vx-microevolution-ideas.v1.json --output build/microevolution/idea-evaluation.json
+      - name: Validate idea portfolio contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/microevolution/idea-evaluation.json").read_text(encoding="utf-8"))
+          assert report["schema_version"] == "vx.microevolution.idea-evaluation.v1"
+          assert report["idea_count"] >= 15
+          assert report["limits"]["authority_granted"] is False
+          assert report["limits"]["automatic_promotion"] is False
+          assert report["limits"]["novelty_research_performed"] is False
+          print("MicroEvolution idea portfolio contract: PASS")
+          PY
       - name: Preserve report as CI evidence
         uses: actions/upload-artifact@v4
         with:
           name: vx-microevolution-report-${{ github.sha }}
-          path: build/microevolution/report.json
+          path: build/microevolution/*.json
           if-no-files-found: error
           retention-days: 90
