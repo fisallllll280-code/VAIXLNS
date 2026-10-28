@@ -76,6 +76,21 @@ class OmegaReadinessBridgeTests(unittest.TestCase):
         result = evaluate_readiness(data, now=NOW)
         self.assertEqual(result["status"], "DEGRADED")
 
+    def test_malformed_status_types_do_not_crash(self):
+        data = packet()
+        data["checks"]["availability"] = []
+        data["dependencies"][0]["status"] = {}
+        result = evaluate_readiness(data, now=NOW)
+        self.assertEqual(result["status"], "NOT_READY")
+        self.assertIn("INVALID_STATUS:availability", result["blockers"])
+        self.assertIn("DEPENDENCY_UNKNOWN:vx-node-sim-01", result["blockers"])
+
+    def test_unknown_optional_check_is_not_reported_ready(self):
+        data = packet()
+        data["checks"]["optional_diagnostics"] = "UNKNOWN"
+        result = evaluate_readiness(data, now=NOW)
+        self.assertEqual(result["status"], "DEGRADED")
+
     def test_invalid_input_never_passes(self):
         result = evaluate_readiness(None, now=NOW)
         self.assertEqual(result["status"], "NOT_READY")
