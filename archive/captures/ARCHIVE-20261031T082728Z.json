@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "capture_id": "ARCHIVE-20261031T082728Z",
+  "captured_at": "2026-10-31T08:27:35.319276+00:00",
+  "policy": "zero-loss",
+  "records": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "ref": "main",
+      "commit": "acab48ca1e40b330183e92a0116d1f23f67a61a3",
+      "tree": "32d534c70446cd4ae5450aeeefe5c82a8d78976d",
+      "archive_digest": "sha256:8c755c2ff61bc410e8b108068db2a261b7c0ee8b6fdb6dcebb00328970e14c9e",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-unified",
+      "ref": "main",
+      "commit": "eb3517a98d1f3c649561d88e8a5e591b25ff19d7",
+      "tree": "c73e5227768f2fe0e26c31f5256fa448e1ef53f0",
+      "archive_digest": "sha256:3bd830dc018bb5b366d772c9121b6a34da0a728e5eae0111aeebb29575fee0e5",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/NEXENT",
+      "ref": "main",
+      "commit": "eecef6f92ae8aecf7f49d260e07349212bf37495",
+      "tree": "17923c576157e69d007e4936b7f6a7211c8bfa07",
+      "archive_digest": "sha256:39a5472f787ccbd5c39c0e74b911747c5685c07498c162ed22b9ace255f44c7f",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-nexent-vx",
+      "ref": "main",
+      "commit": "b2a84ebac07430a349cf343286ae4a84a52e381c",
+      "tree": "6ced6a61a73d5b110e6531766c479cadc66714fb",
+      "archive_digest": "sha256:c914e3b7b4fe2c420c977b077aa53b78847b2e4ff6e48a8d78d86f7977e38867",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VX50_COMPLETE_BUILD'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VX50_COMPLETE_BUILD.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-ARCHIVE",
+      "status": "SKIPPED_PLANNED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-RECOVERY",
+      "status": "SKIPPED_PLANNED"
+    },
+    {
+      "repository": "fisallllll280-code/VX-runtime",
+      "ref": "main",
+      "commit": "45d034892cc765665613dd85d98710b67b4e47f9",
+      "tree": "18c20fda1460f4e8757a463330665fec0785b265",
+      "archive_digest": "sha256:2aa1cb4c51b1b1a56e44a2595da7f868362e7933d28f531102113dacef7f075a",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-core",
+      "ref": "main",
+      "commit": "430d5579369709a0ca3d7061fce6f390d02930df",
+      "tree": "04c3c6e0a9e0afc518f3f92e8833cbb379660186",
+      "archive_digest": "sha256:152b925ff9a1eea2576753a972fa4babbe2f6b2f63d52722744c17ef459680ee",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/vaixlns-csd-kernel",
+      "ref": "main",
+      "commit": "4945a75300e62d93ce58f520972976d32b4019bd",
+      "tree": "e33d65eb715c574831da9d33766567de21517a79",
+      "archive_digest": "sha256:90f617ca45679c98bfbabe398a182d351c41662b781510e4ae83e6f8c69c0660",
+      "status": "CAPTURED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Intent-to-Reality",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VAIXLNS-Intent-to-Reality'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VAIXLNS-Intent-to-Reality.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VAIXLNS-Naming-Constitution-v1.0'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS-",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VAIXLNS-'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VAIXLNS-.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VAIXLNS_OPERATIONAL_ASSURANCE.md'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/tools-vaixlns-meta-core-v0.3.ts'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/tools-vaixlns-meta-core-v0.3.ts.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/-VAIXLNS",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/-VAIXLNS'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/-VAIXLNS.git/' not found"
+    },
+    {
+      "repository": "fisallllll280-code/NAXLNS",
+      "status": "CAPTURE_FAILED",
+      "error": "Cloning into '/tmp/vaixlns-snapshot-a83j7uwo/sources/NAXLNS'...\nremote: Repository not found.\nfatal: repository 'https://github.com/fisallllll280-code/NAXLNS.git/' not found"
+    }
+  ]
+}
