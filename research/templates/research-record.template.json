@@ -1,0 +1,30 @@
+{
+  "record_id": "RESEARCH.EXAMPLE.001",
+  "title": "Replace with a specific research question",
+  "domain": ["index_engineering"],
+  "status": "PROPOSAL",
+  "question": "What precise question will this research resolve?",
+  "decision_context": "Which engineering decision depends on the result?",
+  "sources": [],
+  "claims": [],
+  "method": {
+    "description": "Describe the method, assumptions, and reproduction steps.",
+    "baseline": "Name and version the baseline.",
+    "metrics": [],
+    "environment": "Record software, hardware, versions, and relevant conditions.",
+    "commands": [],
+    "random_seed": null
+  },
+  "results": [],
+  "comparison": {
+    "candidate": "Candidate approach",
+    "baseline": "Baseline approach",
+    "common_conditions": [],
+    "differences": [],
+    "decision": ""
+  },
+  "evidence_refs": [],
+  "parent_record_ids": [],
+  "created_at": "2026-10-16",
+  "limitations": ["Template only; no experiment or verification has been performed."]
+}

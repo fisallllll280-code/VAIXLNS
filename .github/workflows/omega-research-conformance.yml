@@ -1,0 +1,37 @@
+name: Ω Research Record Conformance
+
+on:
+  pull_request:
+    paths:
+      - "research/**"
+      - "schemas/research-comparison-record.schema.json"
+      - "scripts/validate_research_records.py"
+      - "tests/test_research_record_validator.py"
+      - ".github/workflows/omega-research-conformance.yml"
+  push:
+    branches: [main]
+    paths:
+      - "research/**"
+      - "schemas/research-comparison-record.schema.json"
+      - "scripts/validate_research_records.py"
+      - "tests/test_research_record_validator.py"
+      - ".github/workflows/omega-research-conformance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate research record structure and evidence gates
+        run: python scripts/validate_research_records.py research/records research/templates
+      - name: Run validator tests
+        run: python -m unittest discover -s tests -p "test_research_record_validator.py" -v
