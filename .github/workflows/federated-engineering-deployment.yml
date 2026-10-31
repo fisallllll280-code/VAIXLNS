@@ -1,0 +1,58 @@
+name: Federated Engineering Deployment Plan
+
+on:
+  push:
+    paths:
+      - "deploy/federation/engineering-deployment-targets.v1.json"
+      - "scripts/federated_engineering_deployment.py"
+      - "tests/test_federated_engineering_deployment.py"
+      - "docs/operations/FEDERATED_ENGINEERING_DEPLOYMENT_V1.md"
+      - ".github/workflows/federated-engineering-deployment.yml"
+  pull_request:
+    paths:
+      - "deploy/federation/engineering-deployment-targets.v1.json"
+      - "scripts/federated_engineering_deployment.py"
+      - "tests/test_federated_engineering_deployment.py"
+      - "docs/operations/FEDERATED_ENGINEERING_DEPLOYMENT_V1.md"
+      - ".github/workflows/federated-engineering-deployment.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plan-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate deployment manifest
+        run: python -m json.tool deploy/federation/engineering-deployment-targets.v1.json > /dev/null
+      - name: Compile planner and tests
+        run: python -m py_compile scripts/federated_engineering_deployment.py tests/test_federated_engineering_deployment.py
+      - name: Run deployment-planner regression tests
+        run: python -m unittest discover -s tests -p "test_federated_engineering_deployment.py" -v
+      - name: Build sandbox-only review plan
+        run: |
+          python scripts/federated_engineering_deployment.py \
+            --manifest deploy/federation/engineering-deployment-targets.v1.json \
+            --environment sandbox \
+            --output federated-engineering-deployment-plan.json
+      - name: Verify production remains blocked
+        run: |
+          python scripts/federated_engineering_deployment.py \
+            --manifest deploy/federation/engineering-deployment-targets.v1.json \
+            --environment production \
+            --output production-hold-plan.json
+          python -c "import json; p=json.load(open('production-hold-plan.json', encoding='utf-8')); assert p['held_count'] == p['target_system_count']; assert p['plan_ready_count'] == 0"
+      - name: Upload reviewable plan evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: federated-engineering-deployment-plan
+          path: |
+            federated-engineering-deployment-plan.json
+            production-hold-plan.json

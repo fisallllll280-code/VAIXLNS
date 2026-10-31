@@ -1,0 +1,728 @@
+{
+  "schema_version": "1.0.0",
+  "binding_map_id": "VAIXLNS.VX_RUNTIME_ROLE_BINDINGS",
+  "status": "PROPOSED_NOT_ACTIVE",
+  "canonical_owner": "VAIXLNS",
+  "source_runtime_repository": "fisallllll280-code/vx-agents-fabric",
+  "source_runtime_registry_path": "src/vx_agents_fabric/registry.py",
+  "source_registry_observed_status": "DESIGN_ONLY_BY_DEFAULT",
+  "runtime_role_identity_count": 31,
+  "logical_role_id_count": 26,
+  "reviewer_mind_count": 5,
+  "invariants": {
+    "all_agent_execution_orchestration_through_vx": true,
+    "direct_agent_tool_calls_allowed": false,
+    "any_tool_call_requires": "BoundEngineeringToolDispatcher + VX_FEDERATION_GATE",
+    "tool_access_requires_registry_admission": true,
+    "unknown_or_unconfigured_adapter": "NOT_CONFIGURED_HOLD",
+    "self_approval_allowed": false,
+    "child_scope_may_exceed_parent": false,
+    "automatic_canonical_promotion": false,
+    "mapping_is_admission": false
+  },
+  "lifecycle": {
+    "mapping_state": "PROPOSED",
+    "binding_state": "NOT_ACTIVE",
+    "source_role_admission": "DESIGN_ONLY unless runtime registry provides explicit admitted evidence",
+    "promotion_gates": [
+      "review candidate mapping",
+      "admit exact role/version",
+      "bind admitted tool profiles",
+      "run negative/bypass tests",
+      "persist receipt into VAIXLNS Event/Ledger",
+      "independent verification",
+      "canonical governance decision"
+    ]
+  },
+  "role_bindings": [
+    {
+      "runtime_role_id": "VX-RES-COORD",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-COORD@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ORCHESTRATOR"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ORCHESTRATOR"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-SOURCE",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-SOURCE@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-LITERATURE",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-LITERATURE@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER",
+            "AG-RESEARCH-INNOVATION"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER",
+        "AG-RESEARCH-INNOVATION"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-REPO",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-REPO@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER",
+            "AG-INDEX-REGISTRY"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER",
+        "AG-INDEX-REGISTRY"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-REPRO",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-REPRO@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-QA-TEST",
+            "AG-INDEPENDENT-VERIFIER"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-QA-TEST",
+        "AG-INDEPENDENT-VERIFIER"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-CONTRA",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-CONTRA@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER",
+            "AG-INDEPENDENT-VERIFIER"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER",
+        "AG-INDEPENDENT-VERIFIER"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-RES-SYNTH",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-RES-SYNTH@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER",
+            "AG-RESEARCH-INNOVATION"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "source_identity": "VX-RES-SYNTH@1.1.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCHER",
+            "AG-RESEARCH-INNOVATION"
+          ]
+        }
+      ],
+      "family": "research",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER",
+        "AG-RESEARCH-INNOVATION"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-COORD",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-COORD@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ORCHESTRATOR",
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ORCHESTRATOR",
+        "AG-FINANCIAL-INTELLIGENCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-MARKET",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-MARKET@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-UNIT",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-UNIT@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-COST",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-COST@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE",
+            "AG-COST-RESOURCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE",
+        "AG-COST-RESOURCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-PRICE",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-PRICE@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-RISK",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-RISK@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "source_identity": "VX-FIN-RISK@1.1.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-COMP",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-COMP@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE",
+            "AG-SECURITY"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE",
+        "AG-SECURITY"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-FIN-PORT",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-FIN-PORT@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-FINANCIAL-INTELLIGENCE",
+            "AG-COST-RESOURCE"
+          ]
+        }
+      ],
+      "family": "finance",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE",
+        "AG-COST-RESOURCE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-COORD",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-COORD@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ORCHESTRATOR"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ORCHESTRATOR"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-REQ",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-REQ@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ARCHITECT"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ARCHITECT"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-ARCH",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-ARCH@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ARCHITECT"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "source_identity": "VX-ENG-ARCH@1.1.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ARCHITECT"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ARCHITECT"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-INNOV",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-INNOV@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RESEARCH-INNOVATION"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RESEARCH-INNOVATION"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-BUILD",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-BUILD@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-IMPLEMENTER",
+            "AG-ENGINEERING-CODE"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-IMPLEMENTER",
+        "AG-ENGINEERING-CODE"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-TEST",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-TEST@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-QA-TEST"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "source_identity": "VX-ENG-TEST@1.1.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-QA-TEST"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-QA-TEST"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-RED",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-RED@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-RED-TEAM",
+            "AG-SECURITY"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-RED-TEAM",
+        "AG-SECURITY"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-PROOF",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-PROOF@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-INDEPENDENT-VERIFIER"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "source_identity": "VX-ENG-PROOF@1.1.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-INDEPENDENT-VERIFIER"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-INDEPENDENT-VERIFIER"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-OPS",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-OPS@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-OPS-RECOVERY"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-OPS-RECOVERY"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-ENG-LEARN",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-ENG-LEARN@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-INDEX-REGISTRY",
+            "AG-RESEARCH-INNOVATION"
+          ]
+        }
+      ],
+      "family": "engineering",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-INDEX-REGISTRY",
+        "AG-RESEARCH-INNOVATION"
+      ]
+    },
+    {
+      "runtime_role_id": "VX-PARENT-COORD",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "source_identity": "VX-PARENT-COORD@1.0.0",
+          "admission_status": "DESIGN_ONLY",
+          "tool_binding_status": "NOT_ACTIVE_UNTIL_ROLE_ADMISSION",
+          "direct_tool_calls_allowed": false,
+          "tool_dispatch_boundary": "VX_FEDERATION_GATE",
+          "candidate_profile_ids": [
+            "AG-ORCHESTRATOR",
+            "AG-INDEPENDENT-VERIFIER"
+          ]
+        }
+      ],
+      "family": "governance-review",
+      "mapping_status": "CANDIDATE_MAPPING_NOT_APPROVED",
+      "candidate_profile_ids": [
+        "AG-ORCHESTRATOR",
+        "AG-INDEPENDENT-VERIFIER"
+      ]
+    }
+  ],
+  "reviewer_minds": [
+    {
+      "mind_id": "MIND-SYS-ARCH",
+      "status": "DECLARED_NOT_CONNECTED_UNLESS_RUNTIME_EVIDENCE_SAYS_OTHERWISE",
+      "candidate_profile_ids": [
+        "AG-ARCHITECT"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "direct_tool_calls_allowed": false,
+      "tools_enabled_by_default": false,
+      "responsibility": "Architecture review only; cannot approve its own produced implementation."
+    },
+    {
+      "mind_id": "MIND-RESEARCH",
+      "status": "DECLARED_NOT_CONNECTED_UNLESS_RUNTIME_EVIDENCE_SAYS_OTHERWISE",
+      "candidate_profile_ids": [
+        "AG-RESEARCHER",
+        "AG-INDEPENDENT-VERIFIER"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "direct_tool_calls_allowed": false,
+      "tools_enabled_by_default": false,
+      "responsibility": "Evidence, provenance and uncertainty review only."
+    },
+    {
+      "mind_id": "MIND-FINANCE",
+      "status": "DECLARED_NOT_CONNECTED_UNLESS_RUNTIME_EVIDENCE_SAYS_OTHERWISE",
+      "candidate_profile_ids": [
+        "AG-FINANCIAL-INTELLIGENCE",
+        "AG-COST-RESOURCE"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "direct_tool_calls_allowed": false,
+      "tools_enabled_by_default": false,
+      "responsibility": "Scenario/cost review only; no transaction authority."
+    },
+    {
+      "mind_id": "MIND-SECURITY",
+      "status": "DECLARED_NOT_CONNECTED_UNLESS_RUNTIME_EVIDENCE_SAYS_OTHERWISE",
+      "candidate_profile_ids": [
+        "AG-SECURITY",
+        "AG-RED-TEAM"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "direct_tool_calls_allowed": false,
+      "tools_enabled_by_default": false,
+      "responsibility": "Adversarial and security review; no self-approval."
+    },
+    {
+      "mind_id": "MIND-PROOF",
+      "status": "DECLARED_NOT_CONNECTED_UNLESS_RUNTIME_EVIDENCE_SAYS_OTHERWISE",
+      "candidate_profile_ids": [
+        "AG-INDEPENDENT-VERIFIER",
+        "AG-QA-TEST"
+      ],
+      "authority_ceiling": "A2_PROPOSE",
+      "direct_tool_calls_allowed": false,
+      "tools_enabled_by_default": false,
+      "responsibility": "Proof/test validity review; independent gate must actually run."
+    }
+  ]
+}

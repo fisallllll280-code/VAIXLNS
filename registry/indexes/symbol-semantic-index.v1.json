@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "index_id": "VAIXLNS.SYMBOL_SEMANTIC",
+  "status": "PROPOSED",
+  "authority": "VAIXLNS",
+  "canonical_authority": "registry/omega/omega-000-master-index.json",
+  "unicode_source": {
+    "standard": "Unicode Emoji",
+    "version": "18.0",
+    "data_import_state": "NOT_RUN",
+    "pinned_source_sha256": null
+  },
+  "cldr_source": {
+    "standard": "CLDR",
+    "version": "49",
+    "data_import_state": "NOT_RUN",
+    "pinned_source_sha256": null
+  },
+  "rules": [
+    "SYMBOLS_ARE_PRESENTATION_NOT_AUTHORITY",
+    "NO_ACTION_AUTHORIZED_BY_GLYPH",
+    "TEXT_LABEL_REQUIRED",
+    "NO_VERIFIED_WITHOUT_INDEPENDENT_PROOF",
+    "NO_LOSSY_REPLACEMENT_OF_HISTORICAL_TERMS"
+  ],
+  "entries": [
+    {
+      "id": "omega.symbol.research",
+      "unicode": "🔬",
+      "role": "research",
+      "ar": "الأبحاث",
+      "en": "Research",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "omega.symbol.engineering",
+      "unicode": "⚙️",
+      "role": "engineering",
+      "ar": "الهندسة",
+      "en": "Engineering",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "omega.symbol.index",
+      "unicode": "📚",
+      "role": "indexing",
+      "ar": "الفهارس",
+      "en": "Indexes",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "omega.symbol.agent",
+      "unicode": "🤖",
+      "role": "agents",
+      "ar": "الوكلاء",
+      "en": "Agents",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "omega.symbol.evidence.verified",
+      "unicode": "✅",
+      "role": "evidence.verified",
+      "ar": "تم التحقق",
+      "en": "Verified",
+      "action_authority": "VX_ASSURANCE_GATE_ONLY",
+      "state": "PROPOSED",
+      "requires_evidence": true
+    },
+    {
+      "id": "omega.symbol.security",
+      "unicode": "🛡️",
+      "role": "governance",
+      "ar": "الحوكمة",
+      "en": "Governance",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "omega.symbol.failure",
+      "unicode": "⚠️",
+      "role": "failure",
+      "ar": "تحذير أو عطل",
+      "en": "Warning",
+      "action_authority": "NONE",
+      "state": "PROPOSED"
+    }
+  ]
+}

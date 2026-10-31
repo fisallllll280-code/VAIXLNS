@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "policy": "nothing-deleted-is-lost",
+  "states": [
+    "ACTIVE",
+    "RETIRED",
+    "ARCHIVED",
+    "RECOVERABLE",
+    "RESTORED"
+  ],
+  "records": [],
+  "required_fields": [
+    "recovery_id",
+    "source_repository",
+    "source_ref",
+    "source_commit",
+    "archive_snapshot",
+    "content_digest",
+    "reason",
+    "requested_at",
+    "restored_to",
+    "restoration_commit"
+  ],
+  "rule": "A record may be restored only by creating a new recovery revision; historical records are immutable."
+}

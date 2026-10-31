@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/arcx-vx-engineering-receipt.schema.json",
+  "title": "ARC-X to VX Engineering Task Receipt",
+  "description": "Signed receipt of task intake/status. A valid receipt is not semantic proof, execution verification, or canonical admission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "task_id",
+    "task_digest",
+    "status",
+    "issued_at",
+    "response_signature"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_digest": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "status": {
+      "enum": [
+        "RECEIVED",
+        "QUEUED",
+        "PENDING_VERIFICATION",
+        "BLOCKED",
+        "REJECTED"
+      ]
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "response_signature": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    }
+  }
+}

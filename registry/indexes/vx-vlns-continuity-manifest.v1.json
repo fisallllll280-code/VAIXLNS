@@ -1,0 +1,127 @@
+{
+  "schema": "VAIXLNS.VXVLNSContinuityManifest.v1",
+  "manifest_id": "Ω.INDEX.CONTINUITY.VX_VLNS.001",
+  "status": "PENDING_SOURCE_SNAPSHOT",
+  "authority": "VAIXLNS",
+  "canonical_source": "project.genome::v1.0.0",
+  "master_index": "Ω.000",
+  "mode": "DERIVED_REFERENCE_ONLY",
+  "created_for": "continuity_tracking_and_loss_prevention",
+  "policy": {
+    "canonical_index_mutation": "PROHIBITED_BY_THIS_MANIFEST",
+    "source_files_overwrite": "PROHIBITED",
+    "source_deletion": "PROHIBITED",
+    "promotion_without_verified_evidence": "PROHIBITED",
+    "missing_or_unavailable_sources": "RECORD_AS_PENDING_NOT_AS_EMPTY_OR_COMPLETE",
+    "preserve_original_bytes": true,
+    "sha256_required_for_each_captured_artifact": true,
+    "capture_repository_and_commit_for_each_snapshot": true,
+    "store_snapshots_as_immutable_derived_artifacts": true,
+    "never_claim_live_runtime_from_repository_presence": true
+  },
+  "index_links": [
+    {
+      "index_id": "Ω.000",
+      "path": "registry/omega/omega-000-master-index.json",
+      "relationship": "canonical_parent_reference",
+      "write_access": "none"
+    },
+    {
+      "index_id": "project.genome::v1.0.0",
+      "path": "project.genome",
+      "relationship": "canonical_source_reference",
+      "write_access": "none"
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "VX",
+      "role": "governed_execution_runtime_state_replay_verification",
+      "identity_status": "SOURCE_OBSERVED",
+      "source_repositories": [
+        {
+          "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+          "evidence": ["README.md"],
+          "source_status": "SOURCE_OBSERVED",
+          "runtime_status": "NOT_VERIFIED"
+        },
+        {
+          "repository": "fisallllll280-code/VX-runtime",
+          "evidence": ["deploy/federation/federation.yaml"],
+          "source_status": "CONTRACT_PENDING",
+          "runtime_status": "NOT_VERIFIED"
+        }
+      ],
+      "required_snapshot_fields": [
+        "repository_url",
+        "commit_sha",
+        "captured_at_utc",
+        "file_inventory",
+        "per_file_sha256",
+        "capture_tool_version",
+        "capture_exit_code",
+        "snapshot_artifact_digest"
+      ],
+      "continuity_status": "REFERENCE_REGISTERED_SNAPSHOT_NOT_YET_CAPTURED"
+    },
+    {
+      "system_id": "VLNS",
+      "role": "cross_system_operating_and_development_fabric",
+      "identity_status": "IDENTITY_UNVERIFIED",
+      "source_repositories": [
+        {
+          "repository": "fisallllll280-code/NAXLNS",
+          "evidence": ["README.md"],
+          "source_status": "IDENTITY_UNVERIFIED",
+          "runtime_status": "NOT_VERIFIED"
+        },
+        {
+          "repository": "fisallllll280-code/NEXENT",
+          "evidence": ["docs/VLNS_OPERATING_DEVELOPMENT_SPEC.md"],
+          "source_status": "SOURCE_OBSERVED",
+          "note": "Specification evidence only; not proof of a standalone VLNS runtime.",
+          "runtime_status": "NOT_VERIFIED"
+        }
+      ],
+      "required_snapshot_fields": [
+        "repository_url",
+        "commit_sha",
+        "captured_at_utc",
+        "file_inventory",
+        "per_file_sha256",
+        "capture_tool_version",
+        "capture_exit_code",
+        "snapshot_artifact_digest"
+      ],
+      "continuity_status": "REFERENCE_REGISTERED_SNAPSHOT_NOT_YET_CAPTURED"
+    }
+  ],
+  "checkpoint_record_schema": {
+    "checkpoint_id": "required_unique_id",
+    "system_id": "VX_or_VLNS",
+    "repository": "owner/name",
+    "commit_sha": "full_immutable_commit_sha",
+    "captured_at_utc": "ISO-8601",
+    "source_paths": ["relative/path"],
+    "artifact_sha256": "64_hex_characters",
+    "snapshot_location": "repository-relative immutable artifact path",
+    "verification": "PENDING | PASS | FAIL",
+    "notes": "explicit gaps; never silently omit missing content"
+  },
+  "required_gates_before_complete": [
+    "repository_identity_and_access_confirmed",
+    "commit_sha_pinned_for_each_source",
+    "full_file_inventory_captured",
+    "source_artifacts_captured_without_mutation",
+    "sha256_verified_for_every_captured_file",
+    "missing_files_and_submodules_recorded",
+    "snapshot_receipt_written_and_independently_checked",
+    "restore_test_passed_from_snapshot"
+  ],
+  "current_limitations": [
+    "This manifest registers source references and preservation requirements; it does not contain copies of the full VX or VLNS repositories.",
+    "No repository snapshot has been claimed captured by this manifest.",
+    "VLNS identity mapping remains unverified in the current federation registry.",
+    "No live endpoint, runtime health, or production integration is asserted."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://vaixlns.org/schemas/omega-rac-assurance-report.schema.json",
+  "title":"Omega RAC Assurance Report",
+  "type":"object",
+  "required":["claim_id","status","boundary_zone","unknown_vector","obligations","satisfied_obligations","dependency_closure","revalidation_frontier","cycles","canonical_input_hash","engine_version","policy_version","environment_fingerprint"],
+  "properties":{
+    "claim_id":{"type":"string"},
+    "status":{"type":"string"},
+    "boundary_zone":{"enum":["OBSERVED","INFERRED","VERIFIED","PROVEN","VALID","STALE","UNKNOWN","UNOBSERVABLE"]},
+    "unknown_vector":{"type":"object","additionalProperties":{"type":"number","minimum":0}},
+    "obligations":{"type":"array","items":{"type":"string"}},
+    "satisfied_obligations":{"type":"array","items":{"type":"string"}},
+    "dependency_closure":{"type":"array","items":{"type":"string"}},
+    "revalidation_frontier":{"type":"array","items":{"type":"string"}},
+    "cycles":{"type":"array","items":{"type":"array","items":{"type":"string"}}},
+    "canonical_input_hash":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "engine_version":{"type":"string"},
+    "policy_version":{"type":"string"},
+    "environment_fingerprint":{"type":"string"}
+  },
+  "additionalProperties":false
+}

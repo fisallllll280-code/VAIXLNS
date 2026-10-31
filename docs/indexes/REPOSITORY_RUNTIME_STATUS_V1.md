@@ -33,3 +33,16 @@ A runnable claim requires:
 entrypoint + dependency resolution + execution + test + reproducible evidence
 
 No repository is VERIFIED from README language alone.
+
+## 2026-10-07 Stage runtime addition
+
+The canonical VAIXLNS repository now contains a Stage reference runtime boundary for one VX instance:
+
+- `VX-STAGE-001` golden scenario;
+- signed request conformance;
+- authority-aware routing;
+- controlled failure isolation;
+- recovery and re-routing;
+- machine-readable Stage evidence.
+
+This is an IMPLEMENTED reference/conformance surface, not proof of production deployment. Production status still requires deployment infrastructure and sustained operational evidence.

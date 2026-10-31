@@ -1,0 +1,87 @@
+name: Federated System Surface Conformance
+
+on:
+  push:
+    branches: [main, vx-runtime-proof-gate]
+  pull_request:
+    paths:
+      - ".github/workflows/federated-surface-conformance.yml"
+      - "deploy/federation/engineering-deployment-targets.v1.json"
+      - "registry/infrastructure/SERVER_DISCOVERY_REGISTRY_V1.json"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: VX-runtime
+            repository: fisallllll280-code/VX-runtime
+            revision: 3f018339a38e324a5049b0caf6d4708290ec1255
+            path: surfaces/vx-runtime
+          - system: NEXENT
+            repository: fisallllll280-code/NEXENT
+            revision: f62cf5920174551f9a8f88deb420f9515bedc284
+            path: surfaces/nexent
+    name: test ${{ matrix.system }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.revision }}
+          path: ${{ matrix.path }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Run pinned repository test suite
+        working-directory: ${{ matrix.path }}
+        run: python -m pytest -q
+
+  test-vlns-candidate:
+    name: test VLNS candidate NAXLNS (private repository)
+    if: ${{ vars.NAXLNS_READ_ACCESS == 'enabled' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: fisallllll280-code/NAXLNS
+          ref: 226d80a03a46855894a1d148fe92ce8630096e03
+          path: surfaces/naxlns
+          token: ${{ secrets.NAXLNS_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Run pinned NAXLNS test suite
+        working-directory: surfaces/naxlns
+        run: python -m pytest -q
+
+  test-vx50:
+    name: test VX50_COMPLETE_BUILD (private repository)
+    if: ${{ vars.VX50_READ_ACCESS == 'enabled' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: fisallllll280-code/VX50_COMPLETE_BUILD
+          ref: e59292662071b045532c121054e105fb214a4ebc
+          path: surfaces/vx50
+          token: ${{ secrets.VX50_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Run pinned VX50 test suite
+        working-directory: surfaces/vx50
+        run: python -m pytest -q

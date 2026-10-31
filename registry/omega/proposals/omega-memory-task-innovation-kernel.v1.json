@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "kernel_id": "VAIXLNS.OMEGA.MEMORY_TASK_INNOVATION.001",
+  "parent": "VAIXLNS",
+  "purpose": "Recover prior engineering context from integrity-checked memory, create deterministic dependency-aware task plans, invoke only registered handlers inside scoped authority, and hold task completion until independent evidence is present.",
+  "authority": {
+    "canonical_source": "project.genome::v1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "master_index": "Ω.000",
+    "canonical_writes": "DISABLED",
+    "self_promotion": "FORBIDDEN"
+  },
+  "capabilities": [
+    {
+      "id": "MTIK-001",
+      "name": "Integrity-checked engineering memory recovery",
+      "state": "IMPLEMENTED_PENDING_CI",
+      "inputs": ["complete ordered PEM JSONL snapshot", "user engineering goal", "result limit"],
+      "outputs": ["integrity verdict", "ranked lexical matches", "provenance and evidence references", "explicit no-match result"],
+      "acceptance": ["broken hash links and tampering fail closed", "ranked memories retain source revision and record hash", "empty retrieval does not fabricate facts"]
+    },
+    {
+      "id": "MTIK-002",
+      "name": "Dependency-aware task planner",
+      "state": "IMPLEMENTED_PENDING_CI",
+      "inputs": ["goal", "task contracts", "capability grants", "recovered memory IDs"],
+      "outputs": ["deterministic topological task order", "blockers", "plan digest", "explicit plan-only and blocked states"],
+      "acceptance": ["missing dependencies and cycles are rejected", "missing capabilities or memory references block tasks", "repeated inputs produce the same plan digest"]
+    },
+    {
+      "id": "MTIK-003",
+      "name": "Registered-handler task runner",
+      "state": "IMPLEMENTED_PENDING_CI",
+      "inputs": ["validated task", "pre-registered handlers", "scoped capability set", "dry-run decision"],
+      "outputs": ["plan-only receipt or bounded handler result", "input/output digest", "explicit failure or hold"],
+      "acceptance": ["dry-run invokes no handler", "unknown handlers and missing capabilities are held", "arbitrary shell/network execution is not provided", "external effects are always rejected"]
+    },
+    {
+      "id": "MTIK-004",
+      "name": "Independent completion and evidence gate",
+      "state": "IMPLEMENTED_PENDING_CI",
+      "inputs": ["task result", "immutable revision", "evidence digest", "reproduction command", "producer and verifier identities"],
+      "outputs": ["ACCEPT or HOLD decision", "missing proof obligations", "explicit canonical governance requirement"],
+      "acceptance": ["producer cannot independently verify own result", "missing provenance/evidence blocks acceptance", "kernel cannot write Ω.000 or self-promote"]
+    }
+  ],
+  "policies": {
+    "memory_is_read_only": true,
+    "task_planning_is_not_execution": true,
+    "external_effects_enabled": false,
+    "independent_verification_required": true,
+    "history_preserved": true
+  },
+  "integration_points": [
+    "project.genome / Ω0_GENESIS_CORE / Ω.000: read-only authority references",
+    "Permanent Engineering Memory (PR #58): append-only PEM schema/ledger adapter boundary",
+    "Omega Mind engineering fabric (PR #78): task plan and evidence capsule adapter boundary",
+    "Governed specialist orchestration kernel (PR #90): capability/authority/evidence admission boundary",
+    "Innovation Operation Index: proposed innovations and evidence-gap input",
+    "ARC-X: independent evidence evaluation and separate admission proposal",
+    "VCRE: future simulation task adapter after its interface is pinned and tested"
+  ],
+  "known_limits": [
+    "This module is an in-process deterministic reference implementation, not a distributed task broker.",
+    "Memory retrieval is lexical, not semantic/vector retrieval; the full ordered ledger snapshot must be available to verify the chain.",
+    "The kernel does not launch remote agents or call Microsoft/cloud providers.",
+    "The caller supplies handler implementations; their outputs are not automatically trusted or verified.",
+    "External side effects are disabled; sandbox mutation would need an explicit runtime authorization adapter.",
+    "The canonical genome and Ω.000 are not modified by this proposal."
+  ],
+  "status": "IMPLEMENTED_PENDING_CI"
+}

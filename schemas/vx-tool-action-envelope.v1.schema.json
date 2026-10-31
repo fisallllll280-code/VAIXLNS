@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/vx-tool-action-envelope.v1.schema.json",
+  "title": "VX Tool Action Envelope v1",
+  "description": "Request envelope for a scoped tool action. It is a request for policy evaluation, not authorization to execute.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "action_id",
+    "task_id",
+    "correlation_id",
+    "requested_at",
+    "expires_at",
+    "idempotency_key",
+    "actor",
+    "tool",
+    "operation",
+    "scope",
+    "policy_binding",
+    "budget",
+    "risk",
+    "verification",
+    "approval_requirement"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "action_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9._:/-]+$"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity_id",
+        "kind",
+        "role",
+        "authority_ceiling"
+      ],
+      "properties": {
+        "identity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "HUMAN",
+            "AGENT",
+            "SERVICE",
+            "WORKFLOW"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_ceiling": {
+          "enum": [
+            "A0_OBSERVE",
+            "A1_RESEARCH",
+            "A2_PROPOSE",
+            "A3_SANDBOX_MUTATE",
+            "A4_BRANCH_MUTATE",
+            "A5_RELEASE_PREPARE",
+            "A6_RELEASE_DEPLOY",
+            "A7_IRREVERSIBLE_OR_PHYSICAL"
+          ]
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tool_id",
+        "version",
+        "adapter_id",
+        "adapter_digest",
+        "capability_id"
+      ],
+      "properties": {
+        "tool_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapter_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapter_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        },
+        "capability_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "class",
+        "summary",
+        "input_digest"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "class": {
+          "enum": [
+            "OBSERVE",
+            "RESEARCH",
+            "PROPOSE",
+            "SANDBOX_MUTATE",
+            "BRANCH_MUTATE",
+            "RELEASE_PREPARE",
+            "RELEASE_DEPLOY",
+            "IRREVERSIBLE_OR_PHYSICAL"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "input_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        },
+        "input_artifact_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected_effect": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_ids",
+        "data_classes",
+        "environment"
+      ],
+      "properties": {
+        "resource_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "path_allowlist": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "network_allowlist": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "data_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "PUBLIC",
+              "INTERNAL",
+              "CONFIDENTIAL",
+              "RESTRICTED",
+              "SECRET_REFERENCE_ONLY"
+            ]
+          }
+        },
+        "environment": {
+          "enum": [
+            "LOCAL_READ_ONLY",
+            "LOCAL_SANDBOX",
+            "CI_SANDBOX",
+            "BRANCH_WORKSPACE",
+            "RELEASE_STAGING",
+            "PRODUCTION",
+            "EXTERNAL",
+            "PHYSICAL"
+          ]
+        },
+        "region_or_tenant": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "policy_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "version",
+        "digest"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_execution_seconds",
+        "max_retries",
+        "max_concurrency",
+        "max_tokens",
+        "max_network_calls",
+        "max_write_bytes",
+        "max_estimated_cost_usd"
+      ],
+      "properties": {
+        "max_execution_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_network_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_write_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tier",
+        "impact_summary",
+        "reversibility"
+      ],
+      "properties": {
+        "tier": {
+          "enum": [
+            "R0_INFORMATIONAL",
+            "R1_LOW",
+            "R2_MODERATE",
+            "R3_HIGH",
+            "R4_CRITICAL"
+          ]
+        },
+        "impact_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "reversibility": {
+          "enum": [
+            "REVERSIBLE",
+            "COMPENSATABLE",
+            "PARTIALLY_REVERSIBLE",
+            "IRREVERSIBLE",
+            "UNKNOWN"
+          ]
+        },
+        "blast_radius_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_checks",
+        "proof_refs"
+      ],
+      "properties": {
+        "required_checks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "proof_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "proof_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        },
+        "proof_valid_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "replay_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "approval_requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_approval_required",
+        "independent_approver_required"
+      ],
+      "properties": {
+        "human_approval_required": {
+          "type": "boolean"
+        },
+        "independent_approver_required": {
+          "type": "boolean"
+        },
+        "approval_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "approval_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "rollback_plan_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_context": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "target": "vlns-control",
+  "connection_contract": "environment-configured HTTPS/HTTP endpoint",
+  "last_probe": "2026-10-06",
+  "status": "UNREACHABLE_FROM_CURRENT_EXECUTION_ENVIRONMENT",
+  "authenticated_connection": false,
+  "credential_source": "environment-only",
+  "source_of_endpoint_reference": "project archive network-link analysis",
+  "action": "keep endpoint external; retry from the VLNS-hosted network with explicit runtime credentials"
+}
