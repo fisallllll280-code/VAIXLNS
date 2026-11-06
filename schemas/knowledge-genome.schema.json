@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/knowledge-genome.schema.json",
+  "title": "VAIXLNS File-Level Knowledge Genome",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "genome_type",
+    "repository",
+    "epistemic_state",
+    "scope",
+    "limitations",
+    "policy",
+    "coverage",
+    "artifacts",
+    "relations",
+    "unresolved_references",
+    "snapshot_fingerprint",
+    "missing_from_current_snapshot"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "genome_type": {
+      "const": "FILE_LEVEL_KNOWLEDGE_GENOME"
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "repository_id",
+        "revision",
+        "working_tree_state"
+      ],
+      "properties": {
+        "repository_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "working_tree_state": {
+          "enum": [
+            "CLEAN",
+            "DIRTY_OR_UNKNOWN",
+            "NOT_A_GIT_CHECKOUT"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "epistemic_state": {
+      "const": "PARTIAL"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "no_destructive_operations",
+        "missing_items_are_preserved",
+        "sensitive_files_excluded",
+        "oversize_files_are_skipped_and_counted",
+        "classification_hints_are_non_authoritative"
+      ],
+      "properties": {
+        "no_destructive_operations": {
+          "const": true
+        },
+        "missing_items_are_preserved": {
+          "const": true
+        },
+        "sensitive_files_excluded": {
+          "const": true
+        },
+        "oversize_files_are_skipped_and_counted": {
+          "const": true
+        },
+        "classification_hints_are_non_authoritative": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "captured_artifacts",
+        "reference_relations",
+        "missing_from_current_snapshot",
+        "oversize_files_skipped",
+        "sensitive_files_excluded",
+        "symlinks_skipped",
+        "excluded_directories_skipped",
+        "exact_byte_duplicate_relations",
+        "unresolved_local_references",
+        "control_files_excluded"
+      ],
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "record_type",
+          "file_kind",
+          "classification_hints",
+          "semantic_status",
+          "change_state",
+          "source"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^KG\\.FILE\\.[A-F0-9]{20}$"
+          },
+          "record_type": {
+            "const": "SOURCE_FILE_OBSERVATION"
+          },
+          "file_kind": {
+            "type": "string"
+          },
+          "classification_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "semantic_status": {
+            "const": "NOT_EXTRACTED"
+          },
+          "change_state": {
+            "enum": [
+              "SNAPSHOT",
+              "NEW",
+              "CHANGED",
+              "UNCHANGED"
+            ]
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "repository_id",
+              "revision",
+              "working_tree_state",
+              "path",
+              "size_bytes",
+              "content_sha256"
+            ],
+            "properties": {
+              "repository_id": {
+                "type": "string"
+              },
+              "revision": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "working_tree_state": {
+                "enum": [
+                  "CLEAN",
+                  "DIRTY_OR_UNKNOWN",
+                  "NOT_A_GIT_CHECKOUT"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from_artifact_id",
+          "relation",
+          "to_artifact_id"
+        ],
+        "properties": {
+          "from_artifact_id": {
+            "type": "string"
+          },
+          "relation": {
+            "enum": [
+              "REFERENCES",
+              "EXACT_BYTE_DUPLICATE_OF"
+            ]
+          },
+          "to_artifact_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "missing_from_current_snapshot": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path",
+          "status",
+          "previous_content_sha256",
+          "action"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "const": "MISSING_FROM_CURRENT_SNAPSHOT"
+          },
+          "previous_content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "action": {
+            "const": "PRESERVE_RECORD_NO_DELETE_OR_ARCHIVE_AUTHORIZED"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "snapshot_fingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "unresolved_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from_artifact_id",
+          "target_path",
+          "status"
+        ],
+        "properties": {
+          "from_artifact_id": {
+            "type": "string"
+          },
+          "target_path": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "LINK_ESCAPES_REPOSITORY",
+              "EXCLUDED_SENSITIVE_TARGET",
+              "UNRESOLVED_LOCAL_TARGET"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
