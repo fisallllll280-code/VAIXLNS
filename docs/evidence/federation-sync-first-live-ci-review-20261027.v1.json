@@ -1,0 +1,57 @@
+{
+  "schema": "VAIXLNS.FederationSyncCIObservation.v1",
+  "record_id": "FSYNC-REALRUN-20261027-40574967153",
+  "record_type": "DERIVED_AUDIT_NON_CANONICAL",
+  "as_of_utc": "2026-10-27T20:06:06Z",
+  "repository": "fisallllll280-code/VAIXLNS",
+  "branch": "feat/continuous-federation-innovation-sync-20261027",
+  "tested_commit_sha": "fc703a0fa322e1f2b792c9073718097d0bd0e5b3",
+  "github_workflow_run_id": 40574967153,
+  "github_workflow_run_url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40574967153",
+  "report_artifact_id": 12767745389,
+  "report_artifact_url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40574967153/artifacts/12767745389",
+  "observed_manifest_sha256_from_log": "7177d339540a0339a0dbc3045c768333e26cad1508d2b58c3c73d1142b7fe42c",
+  "offline_tests": {
+    "continuous_federation": 13,
+    "receipt_publication": 6,
+    "existing_zero_loss": 9,
+    "result": "PASS_AT_TESTED_COMMIT"
+  },
+  "innovation_index_validator": "PASS_AT_TESTED_COMMIT",
+  "federation_integrity": "PASS_AT_TESTED_COMMIT",
+  "public_metadata_sync": {
+    "status": "REVIEW_READY",
+    "repositories_observed": 5,
+    "repositories_unavailable": 0,
+    "changed_file_count": 2,
+    "innovation_review_candidates": 2
+  },
+  "observed_changed_sources": [
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "baseline_commit_sha": "71a8487d636ac6c6f5d8de22f6b49344103d348b",
+      "head_commit_sha": "66c51d87f39458f3d6f92ca06d84d3c080dc6662",
+      "path": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+      "action": "modified",
+      "git_blob_sha": "7c1031491b82c41f117816d950699c75bf7e1c8a",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
+      "repository": "fisallllll280-code/VAIXLNS",
+      "baseline_commit_sha": "71a8487d636ac6c6f5d8de22f6b49344103d348b",
+      "head_commit_sha": "66c51d87f39458f3d6f92ca06d84d3c080dc6662",
+      "path": "registry/vx-scck-runtime.integration.v1.json",
+      "action": "added",
+      "git_blob_sha": "ceb75876b499cdfe6f91face452ce72de5a63a60",
+      "status": "REVIEW_REQUIRED"
+    }
+  ],
+  "evidence_provenance": "Observed GitHub CI logs + public GitHub compare metadata; this JSON is a review summary, not the downloaded full original CI artifact.",
+  "source_bytes_sha256": "NOT_CAPTURED",
+  "private_repositories_synced": false,
+  "automated_review_branch_created": false,
+  "canonical_promotions": 0,
+  "production_deployments": 0,
+  "models_executed": 0,
+  "notice": "Results reflect TESTED COMMIT not later commits; tests of subsequent commits must be read separately."
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "VAIXLNS.InnovationSourceChangeReview.v1",
+  "record_id": "INNOV-REVIEW-FSYNC-20261027-001",
+  "purpose": "Review two source changes observed during public federation metadata sync; never create new historical IDs or infer uniqueness.",
+  "source_ci_run_url": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40574967153",
+  "source_manifest_sha256_from_ci_log": "7177d339540a0339a0dbc3045c768333e26cad1508d2b58c3c73d1142b7fe42c",
+  "review_state": "PENDING_HUMAN_REVIEW",
+  "canonical_admission": "NOT_GRANTED",
+  "candidates": [
+    {
+      "tracking_id": "FSYNC-SOURCE-20261027-001",
+      "original_innovation_id": null,
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_commit_sha": "66c51d87f39458f3d6f92ca06d84d3c080dc6662",
+      "source_path": "docs/indexes/INNOVATION_MASTER_INDEX.md",
+      "git_blob_sha": "7c1031491b82c41f117816d950699c75bf7e1c8a",
+      "source_change": "modified",
+      "classification": "EXISTING_INDEX_CHANGE",
+      "innovation_identity": "UNKNOWN",
+      "implemented": "UNKNOWN",
+      "running": "UNKNOWN",
+      "verified": "UNKNOWN",
+      "action": "REVIEW_INDEX_DIFF_KEEP_HISTORICAL_IDENTITIES"
+    },
+    {
+      "tracking_id": "FSYNC-SOURCE-20261027-002",
+      "original_innovation_id": "VX-SCCK-DURABLE-ADMISSION-REFERENCE-1",
+      "source_repository": "fisallllll280-code/VAIXLNS",
+      "source_commit_sha": "66c51d87f39458f3d6f92ca06d84d3c080dc6662",
+      "source_path": "registry/vx-scck-runtime.integration.v1.json",
+      "git_blob_sha": "ceb75876b499cdfe6f91face452ce72de5a63a60",
+      "source_change": "added",
+      "classification": "VX_SCCK_INTEGRATION_EVIDENCE",
+      "claim_from_source": "IMPLEMENTED_LOCAL_REFERENCE; admission=NOT_GRANTED; production=HOLD",
+      "independent_implementation_verification": "NOT_PERFORMED_IN_THIS_REVIEW",
+      "running": "UNKNOWN",
+      "verified": "UNKNOWN",
+      "action": "LINK_TO_VX_RUNTIME_SOURCE_AND_VERIFY_EVIDENCE_INDEPENDENTLY"
+    }
+  ],
+  "constraints": [
+    "Do not promote or rename historical innovation identities.",
+    "Original file bytes and SHA256 are not preserved in this review; pinned snapshot capture is separately needed.",
+    "CI tests for federation sync do not establish SCCK runtime production readiness.",
+    "No NAXLNS/private account data in this public record."
+  ]
+}
