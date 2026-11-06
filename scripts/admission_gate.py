@@ -6,9 +6,11 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(os.getenv("VAIXLNS_REPOSITORY_ROOT", Path(__file__).resolve().parents[1]))
+SECURITY_GUARD = ROOT / "scripts/security_guard.py"
 BAD_PATH_CHARS = re.compile(r"[├└│╔╗╚╝║═]")
 REQUIRED_FILES = {
     "identity": ["README.md"],
@@ -139,6 +141,21 @@ def main() -> int:
     verify_genome(errors)
     verify_master_index(errors)
 
+    if SECURITY_GUARD.is_file():
+        security_run = subprocess.run(
+            ["python", str(SECURITY_GUARD)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        result["security"] = "PASS" if security_run.returncode == 0 else "FAIL"
+        if security_run.returncode != 0:
+            errors.append("SECURITY_GUARD_BLOCKED")
+    else:
+        result["security"] = "FAIL"
+        errors.append("MISSING_REQUIRED:security_guard")
+
     contract = find_first(REQUIRED_FILES["contract"])
     if contract:
         content = contract.read_text(encoding="utf-8")
@@ -164,7 +181,6 @@ def main() -> int:
         else "FAIL"
     )
     result["execution"] = "PENDING_RUNTIME_EVIDENCE"
-    result["security"] = "PENDING_EVIDENCE"
     result["performance"] = "PENDING_EVIDENCE"
     result["recovery"] = "PENDING_EVIDENCE"
     result["evidence"] = "CONTROL_SURFACE_PRESENT"
@@ -179,6 +195,7 @@ def main() -> int:
         "evidence_schema",
         "provenance_schema",
         "contract_content",
+        "security",
     ]
     result["admission"] = (
         "ADMITTED"
