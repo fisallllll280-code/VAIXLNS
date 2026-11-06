@@ -1,0 +1,40 @@
+name: Guarded Repair Executor
+
+on:
+  pull_request:
+    paths:
+      - "tools/guarded_repair_executor.py"
+      - "tests/test_guarded_repair_executor.py"
+      - "schemas/guarded-repair-plan.v1.schema.json"
+      - "docs/engineering/GUARDED_REPAIR_EXECUTOR_V1.md"
+      - ".github/workflows/guarded-repair-executor.yml"
+  push:
+    branches: ["feat/language-repair-fabric-v1-clean"]
+    paths:
+      - "tools/guarded_repair_executor.py"
+      - "tests/test_guarded_repair_executor.py"
+      - "schemas/guarded-repair-plan.v1.schema.json"
+      - ".github/workflows/guarded-repair-executor.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  guarded-repair:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.12"]
+    runs-on: \${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: \${{ matrix.python-version }}
+      - name: Validate repair-plan schema JSON
+        run: python -m json.tool schemas/guarded-repair-plan.v1.schema.json
+      - name: Compile guarded executor
+        run: python -m py_compile tools/guarded_repair_executor.py
+      - name: Run guarded executor regression tests
+        run: python -m unittest discover -s tests -p test_guarded_repair_executor.py -v
