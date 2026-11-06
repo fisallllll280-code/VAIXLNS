@@ -1,0 +1,36 @@
+name: GEDF Research Pipeline
+on:
+  push:
+    paths:
+      - 'scripts/gedf_research_pipeline.py'
+      - 'tests/test_gedf_research_pipeline.py'
+      - 'schemas/gedf-research-capsule.v1.schema.json'
+      - 'docs/architecture/GEDF_RESEARCH_TO_ENGINEERING_RUNTIME_V1.md'
+      - 'vcre/**'
+      - '.github/workflows/gedf-research-pipeline.yml'
+  pull_request:
+    paths:
+      - 'scripts/gedf_research_pipeline.py'
+      - 'tests/test_gedf_research_pipeline.py'
+      - 'schemas/gedf-research-capsule.v1.schema.json'
+      - 'docs/architecture/GEDF_RESEARCH_TO_ENGINEERING_RUNTIME_V1.md'
+      - 'vcre/**'
+      - '.github/workflows/gedf-research-pipeline.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate GEDF proposal boundaries
+        run: python scripts/validate_global_engineering_discovery_fabric.py
+      - name: Test research pipeline
+        run: python -m unittest tests.test_gedf_research_pipeline -v
+      - name: Regression test VCRE synthesis
+        run: python -m unittest tests.test_vcre_synthesis -v
