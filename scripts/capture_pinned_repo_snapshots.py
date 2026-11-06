@@ -33,7 +33,7 @@ REQUIRED_REPOSITORIES = (
     "fisallllll280-code/NAXLNS",
     "fisallllll280-code/NEXENT",
 )
-COMMIT_RE = re.compile(r"^[0-9a-fA-F]{40}(?:[0-9a-fA-F]{24})?$")
+COMMIT_RE = re.compile(r"^[0-9a-fA-F]{40}$")
 LFS_POINTER_RE = re.compile(rb"(?m)^oid sha256:([0-9a-f]{64})\r?\nsize ([0-9]+)\s*$")
 
 
