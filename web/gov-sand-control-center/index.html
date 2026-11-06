@@ -9,7 +9,7 @@ body{background:#0a1424;color:#eef4ff;font:16px Tahoma,Arial;margin:0}header,mai
 <script>
 document.querySelectorAll("button[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("button[data-tab]").forEach(x=>x.setAttribute("aria-selected",String(x===b)));["control","finance","indexes","sand","proof"].forEach(id=>document.getElementById(id).classList.toggle("hidden",b.dataset.tab!==id))}));
 const stages=[["النموذج والاختبارات",45000],["الأمن والامتثال",55000],["الواجهات",70000],["التجربة",60000],["التدقيق",30000],["الاحتياطي",40000]];
-function num(id){let v=Number(document.getElementById(id).value);return Number.isFinite(v)&&v>=0?v:null}
+function num(id){const raw=document.getElementById(id).value.trim();if(raw.length===0)return null;const v=Number(raw);return Number.isFinite(v)&&v>=0?v:null}
 function allocate(){const amount=num("amount"),node=document.getElementById("alloc");if(amount===null){node.textContent="أدخل مبلغًا صالحًا";return}node.replaceChildren(...stages.map(([name,weight])=>{const p=document.createElement("div");p.className="box";p.textContent=name+": "+Math.round(amount*weight/300000).toLocaleString("ar-SA")+" ريال";return p}))}
 document.getElementById("amount").addEventListener("input",allocate);allocate();
 document.getElementById("calculate").addEventListener("click",()=>{const r=document.getElementById("result");if(!document.getElementById("consent").checked){r.textContent="لا تحليل دون اختيار طوعي.";return}const vals=["income","needs","debts"].map(num);if(vals.some(v=>v===null)){r.textContent="قيم غير صالحة";return}const remain=vals[0]-vals[1]-vals[2];r.textContent="الفائض/العجز الافتراضي: "+remain.toLocaleString("ar-SA")+" ريال. هذا حساب إرشادي لا يمثل تصنيفًا ائتمانيًا أو قرارًا حكوميًا."});
