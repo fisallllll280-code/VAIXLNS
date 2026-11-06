@@ -1,0 +1,39 @@
+{
+  "base_sha": "5833e9b888bd4514b243088778d65c9350e9a633",
+  "at_utc": "2026-10-27T19:04:30.668276+00:00",
+  "change": "Explicit VCRE impact routes include orchestration and synthesis; unknown modules fail closed to full suite. Owner task board added.",
+  "command": "python3 -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "test_count": 445,
+  "source_sha256": {
+    "tools/engineering_test_router.py": "70131cf034a773c2c25fbfe43bfb761159776a47bc4ba75d6d08e0147e4ae2a9",
+    "tests/test_engineering_test_router.py": "9570fe149a26aca654131edfbcdf3f83c5f9a09248c33c3c28a6a8ef1223c15f",
+    "docs/operations/EXECUTION_TASK_BOARD_AR.md": "4d55e8d28c5d09f969e72324c0aa111b85e76580dc8dfa1198bab4218f6841cd"
+  },
+  "protected_before": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "protected_after": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "external_runtime": "NOT_CONNECTED",
+  "production_gate": "HOLD",
+  "ci_observation": {
+    "sha": "5833e9b888bd4514b243088778d65c9350e9a633",
+    "observed_success_runs": [
+      40565062098,
+      40565062095,
+      40565062036,
+      40565062096,
+      40565062128,
+      40565062094,
+      40565062131,
+      40565062151
+    ],
+    "scope": "prior PR190 commit; not a result for this update"
+  },
+  "test_output_sha256": "fba05ae628288d426ffdb374703c5b2a3adc890e4a16cefe414383c5fd973bba",
+  "test_output_summary": "Ran 445 tests in 7.251s; OK; exit 0"
+}
