@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "canonical_owner": "VAIXLNS",
+  "execution_owner": "VX",
+  "policy_owner": "VV",
+  "discovery_owner": "NEXENT",
+  "semantic_layers": [
+    "V-IR",
+    "COVESA-VSS"
+  ],
+  "adapter_classes": [
+    "os_runtime",
+    "compute",
+    "cloud_api",
+    "repository",
+    "ai_model",
+    "data",
+    "industrial_iot",
+    "robotics",
+    "automotive",
+    "human_interface"
+  ],
+  "external_references": [
+    {
+      "name": "A3S-Lab/claude-fable-5",
+      "role": "external_prompt_reference",
+      "authority": "none"
+    },
+    {
+      "name": "COVESA/vehicle_signal_specification",
+      "role": "vehicle_semantic_model",
+      "authority": "external_standard"
+    },
+    {
+      "name": "COVESA/vehicle-information-service-specification",
+      "role": "vehicle_api_standard",
+      "authority": "external_standard"
+    },
+    {
+      "name": "eclipse-kuksa/kuksa-can-provider",
+      "role": "CAN_DBC_VSS_bridge_reference",
+      "authority": "external_reference"
+    },
+    {
+      "name": "commaai/opendbc",
+      "role": "vehicle_CAN_database_and_API_reference",
+      "authority": "external_reference"
+    }
+  ],
+  "vehicle_capability_levels": [
+    "OBSERVE",
+    "DIAGNOSE",
+    "SIMULATE",
+    "COMMAND",
+    "ACTUATE"
+  ],
+  "actuation_policy": "explicit_vehicle_specific_authorization_required",
+  "universal_compatibility_policy": "adapter_or_standard_required"
+}
