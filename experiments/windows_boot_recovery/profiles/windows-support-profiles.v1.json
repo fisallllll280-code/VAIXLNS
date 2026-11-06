@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "state": "SPECIFIED",
+  "mode": "definitions_only",
+  "profiles": [
+    {
+      "profile_id": "WIN-BOOT-UEFI-001",
+      "kind": "boot_readiness",
+      "scope": ["uefi", "boot_path", "recovery_availability"],
+      "mutations_allowed": false,
+      "approval_required_for_remediation": true
+    },
+    {
+      "profile_id": "WIN-RECOVERY-BASE-001",
+      "kind": "recovery_triage",
+      "scope": ["startup_failure", "system_integrity", "update_failure", "storage_warning"],
+      "mutations_allowed": false,
+      "approval_required_for_remediation": true
+    },
+    {
+      "profile_id": "WIN-DEVICE-DRIVER-001",
+      "kind": "device_driver_profile",
+      "scope": ["device_id", "vendor_provenance", "version", "signature_status", "compatibility"],
+      "unsigned_driver_installation_allowed": false,
+      "driver_binary_storage": "not_in_this_repository"
+    }
+  ],
+  "widgets": [
+    {
+      "widget_id": "WDG-BOOT-READINESS",
+      "purpose": "Display boot mode, startup evidence, and recovery readiness",
+      "data_access": "read_only",
+      "actions": ["inspect", "export_redacted_report"]
+    },
+    {
+      "widget_id": "WDG-RECOVERY-TRIAGE",
+      "purpose": "Rank possible causes from supplied symptoms and show evidence gaps",
+      "data_access": "user_supplied_facts_only",
+      "actions": ["rank_hypotheses", "show_safe_proposals"]
+    },
+    {
+      "widget_id": "WDG-DRIVER-PROFILE",
+      "purpose": "Display device identity, source, version, and signature evidence",
+      "data_access": "read_only",
+      "actions": ["inspect_profile", "verify_provenance"]
+    },
+    {
+      "widget_id": "WDG-PARTNER-APPROVAL",
+      "purpose": "Track proposed partner integration and approval state",
+      "data_access": "metadata_only",
+      "actions": ["review_terms", "record_approval_reference"]
+    }
+  ],
+  "partner_connectors": [
+    {
+      "partner_id": "MICROSOFT_OFFICIAL_DOCUMENTATION",
+      "type": "documentation_reference",
+      "state": "REFERENCE_ONLY",
+      "external_execution": false,
+      "approval_required": true
+    },
+    {
+      "partner_id": "OEM_DEVICE_VENDOR",
+      "type": "future_driver_provenance_adapter",
+      "state": "PROPOSED",
+      "external_execution": false,
+      "approval_required": true
+    },
+    {
+      "partner_id": "MANAGED_IT_SERVICE_PROVIDER",
+      "type": "future_recovery_workflow_adapter",
+      "state": "PROPOSED",
+      "external_execution": false,
+      "approval_required": true
+    }
+  ],
+  "governance": {
+    "automatic_repairs": false,
+    "canonical_writes": false,
+    "boot_security_bypass": false,
+    "destructive_operations": false,
+    "external_calls": false
+  }
+}
