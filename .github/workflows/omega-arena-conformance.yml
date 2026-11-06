@@ -1,0 +1,60 @@
+name: Ω-Arena and Federation Conformance
+
+on:
+  push:
+    branches: ["main", "codex/federation-enforcement-001"]
+    paths:
+      - "intelligence_federation/**"
+      - "scripts/omega_arena_runner.py"
+      - "scripts/validate_federation_contract_edges.py"
+      - "scripts/federation_preflight.py"
+      - "tests/test_omega_arena.py"
+      - "tests/test_federation_contract_edges.py"
+      - "tests/test_federation_preflight.py"
+      - "docs/testing/FEDERATION_CONTRACT_TEST_MATRIX_V1.md"
+      - ".github/workflows/omega-arena-conformance.yml"
+  pull_request:
+    paths:
+      - "intelligence_federation/**"
+      - "scripts/omega_arena_runner.py"
+      - "scripts/validate_federation_contract_edges.py"
+      - "scripts/federation_preflight.py"
+      - "tests/test_omega_arena.py"
+      - "tests/test_federation_contract_edges.py"
+      - "tests/test_federation_preflight.py"
+      - "docs/testing/FEDERATION_CONTRACT_TEST_MATRIX_V1.md"
+      - ".github/workflows/omega-arena-conformance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Python sources
+        run: python -m compileall -q intelligence_federation scripts tests
+      - name: Federation contract and preflight tests
+        run: python -m unittest tests.test_federation_contract_edges tests.test_federation_preflight -v
+      - name: Ω-Arena unit tests
+        run: python -m unittest tests.test_omega_arena -v
+      - name: Validate federation declarations
+        run: python scripts/validate_federation_contract_edges.py
+      - name: Run deterministic Arena simulation
+        run: python scripts/omega_arena_runner.py --mode simulate --output arena-simulation.json
+      - name: Verify simulation output is labeled synthetic
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("arena-simulation.json").read_text(encoding="utf-8"))
+          assert data["arena_id"] == "Ω-ARENA-DEMO-001"
+          assert data["status"] in {"PROVISIONAL", "TOURNAMENT_CHAMPION", "NO_ELIGIBLE_CANDIDATE"}
+          assert all(ref.startswith("demo:") for candidate in data["attribution"].values() for ref in candidate.get("evidence_refs", [])) if data["attribution"] else True
+          print("PASS: deterministic simulation output parsed; this is demo data, not live provider evidence")
+          PY

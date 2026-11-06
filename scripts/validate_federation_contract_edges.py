@@ -142,10 +142,28 @@ def validate(data: dict[str, Any], systems_data: dict[str, Any]) -> list[str]:
             receipt = edge.get("activation_evidence")
             if enabled is not True:
                 errors.append(f"{eid}: ACTIVE_VERIFIED requires enabled=true")
-            if not isinstance(receipt, dict) or not all(
-                receipt.get(k) for k in ("source_revision", "evidence_uri", "digest", "observed_at")
-            ):
-                errors.append(f"{eid}: ACTIVE_VERIFIED requires revision-bound activation evidence")
+            required_receipt_fields = (
+                "source_revision", "evidence_uri", "digest", "observed_at",
+                "submitted_by", "reviewer_id", "reviewed_at", "verification_digest",
+            )
+            if not isinstance(receipt, dict) or not all(receipt.get(k) for k in required_receipt_fields):
+                errors.append(
+                    f"{eid}: ACTIVE_VERIFIED requires revision-bound activation evidence and independent review"
+                )
+            else:
+                revision = receipt.get("source_revision")
+                if not isinstance(revision, str) or len(revision) != 40 or any(
+                    char not in "0123456789abcdefABCDEF" for char in revision
+                ):
+                    errors.append(f"{eid}: activation source_revision must be a full 40-character Git commit SHA")
+                if receipt.get("submitted_by") == receipt.get("reviewer_id"):
+                    errors.append(f"{eid}: activation evidence cannot be self-reviewed")
+                for digest_field in ("digest", "verification_digest"):
+                    digest = receipt.get(digest_field)
+                    if not isinstance(digest, str) or len(digest) != 64 or any(
+                        char not in "0123456789abcdefABCDEF" for char in digest
+                    ):
+                        errors.append(f"{eid}: {digest_field} must be a 64-character SHA-256 hex digest")
         elif edge.get("activation_evidence") not in (None, {}):
             errors.append(f"{eid}: activation evidence cannot promote a non-active edge implicitly")
 
