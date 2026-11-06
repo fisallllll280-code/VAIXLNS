@@ -1,0 +1,72 @@
+{
+  "schema": "VAIXLNS.ExecutionPackageReconciliation.v1",
+  "record_id": "EXEC-PKG-RECON-2026-10-06-001",
+  "status": "RECONCILIATION_NON_CANONICAL",
+  "input": {
+    "name": "VAIXLNS_EXECUTION_2026-10-06.zip",
+    "sha256": "2d50db0029c9956f2ebbd23742a536f4c78517aca7d53375a9fa051bce41a820",
+    "total_files": 292,
+    "engineering_payload": 225,
+    "unique_hashes": 248,
+    "duplicate_groups": 18
+  },
+  "canonical": {
+    "repository": "fisallllll280-code/VAIXLNS",
+    "golden_source": "project.genome::v1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "master_index": "Ω.000"
+  },
+  "decisions": [
+    [
+      "VAIXLNS_USCC_V1",
+      "SELECTIVE_REFERENCE",
+      "PROPOSED"
+    ],
+    [
+      "AGENTOS_INDEX",
+      "DERIVE_UNIQUE_CONTRACTS",
+      "PROPOSED"
+    ],
+    [
+      "VAIXLNS_LANGUAGE_FABRIC",
+      "SELECTIVE_REFERENCE",
+      "PROPOSED"
+    ],
+    [
+      "VX_EXECUTION_TIMELINE",
+      "HOLD_REPAIR",
+      "BLOCKED"
+    ],
+    [
+      "V_SYSTEM",
+      "SPECIALIZED_KEEP",
+      "PARTIAL/BLOCKED"
+    ],
+    [
+      "VX_SURVIVAL_V2",
+      "RESEARCH_KEEP",
+      "TESTED"
+    ],
+    [
+      "VX_SURVIVAL_V3_CAPITAL_DISCOVERY",
+      "EXTENSION_OF_V2",
+      "TESTED"
+    ],
+    [
+      "NEXUS_DOCS",
+      "GENERATED_VIEW_KEEP",
+      "TESTED"
+    ],
+    [
+      "ROLLCALL_PUBLISH",
+      "PRESENTATION_KEEP",
+      "REFERENCE"
+    ],
+    [
+      "MASTER_ARCHIVE_PACKAGE",
+      "TEMPLATE_KEEP",
+      "REFERENCE"
+    ]
+  ],
+  "promotion_rule": "ARCHIVE SNAPSHOT -> HASH -> CLASSIFY -> CANONICAL ID MAP -> DUPLICATE/CONFLICT CHECK -> SELECTIVE IMPORT -> TEST -> EVIDENCE -> GOVERNANCE -> PROMOTION"
+}\n
