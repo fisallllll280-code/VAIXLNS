@@ -1,0 +1,28 @@
+name: Omega Frontier 002
+on:
+  pull_request:
+    paths:
+      - "scripts/omega_frontier_002.py"
+      - "tests/test_omega_frontier_002.py"
+      - "docs/architecture/OMEGA_FRONTIER_002_ASSURANCE_ENGINES.md"
+      - ".github/workflows/omega-frontier-002.yml"
+  push:
+    branches: ["feat/omega-frontier-002-assurance-engines-v1"]
+    paths:
+      - "scripts/omega_frontier_002.py"
+      - "tests/test_omega_frontier_002.py"
+      - "docs/architecture/OMEGA_FRONTIER_002_ASSURANCE_ENGINES.md"
+      - ".github/workflows/omega-frontier-002.yml"
+permissions:
+  contents: read
+jobs:
+  bounded-assurance-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Ω-FRONTIER-002 tests
+        run: python -m unittest discover -s tests -p 'test_omega_frontier_002.py' -v
