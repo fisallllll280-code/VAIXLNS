@@ -1,0 +1,164 @@
+{
+  "base_sha": "9a2074ffa87ccd44716e2237a9b4f6c41e986839",
+  "branch": "feat/vx-preflight-service-contract-20261025",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_agent_execution_preflight.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "output": "test_broken_authority_boundary_is_rejected (test_agent_execution_preflight.AgentExecutionPreflightTests.test_broken_authority_boundary_is_rejected) ... ok\ntest_canonical_ledger_key_resolves_without_granting_execution (test_agent_execution_preflight.AgentExecutionPreflightTests.test_canonical_ledger_key_resolves_without_granting_execution) ... ok\ntest_canonical_output_target_is_protected (test_agent_execution_preflight.AgentExecutionPreflightTests.test_canonical_output_target_is_protected) ... ok\ntest_current_canonical_state_holds_without_admitted_runtime (test_agent_execution_preflight.AgentExecutionPreflightTests.test_current_canonical_state_holds_without_admitted_runtime) ... ok\ntest_misspelled_ledger_key_cannot_satisfy_canonical_binding (test_agent_execution_preflight.AgentExecutionPreflightTests.test_misspelled_ledger_key_cannot_satisfy_canonical_binding) ... ok\ntest_pending_unknown_or_malformed_service_declaration_holds (test_agent_execution_preflight.AgentExecutionPreflightTests.test_pending_unknown_or_malformed_service_declaration_holds) ... ok\ntest_preflight_only_reports_presence_not_live_connectivity (test_agent_execution_preflight.AgentExecutionPreflightTests.test_preflight_only_reports_presence_not_live_connectivity) ... ok\ntest_report_identity_is_stable_for_same_inputs (test_agent_execution_preflight.AgentExecutionPreflightTests.test_report_identity_is_stable_for_same_inputs) ... ok\ntest_secret_values_are_never_written_to_report (test_agent_execution_preflight.AgentExecutionPreflightTests.test_secret_values_are_never_written_to_report) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.213s\n\nOK\n",
+  "preflight": {
+    "agent_execution_performed": false,
+    "agent_surfaces": {
+      "indexed_agent_record_count": 13,
+      "runtime_logical_role_count": 26,
+      "runtime_role_version_count": 31,
+      "typed_handoff_role_count": 13,
+      "vx_profile_count": 35
+    },
+    "artifact_sha256": {
+      "agents/agent_fabric.py": "412bf8a490f3bfb33839b93d432188ec13b2dd523f04403268e8f6ed1b84d615",
+      "docs/audits/VAIXLNS_DEEP_AGENT_AND_INNOVATION_AUDIT_2026-10-10.md": "e25ab48fe37f258418d90de7074a6b4b22b08cd3deae39a02a1bdacb40fdadee",
+      "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+      "registry/agent_registry.v1.json": "6971f3e8b44dba4ad249b4831c45b406d46516ec8039168d64d6bf1bb2b56b7d",
+      "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6",
+      "registry/vx-agent-runtime-profiles.v1.json": "a48b15ea69098ff099173fff56b05518828f948f2909e21fb24fc4f8a40f9195",
+      "registry/vx-agents-fabric.integration.v1.json": "41d23173ca3b91af970489502ada263fd07f69ebcaf83e444c3f5285f23c8ac8",
+      "registry/vx-runtime-role-binding-map.v1.json": "718ac45c3b7c5ed68d24ea64d8d5db5f19d4db10e9f106d49ae4d5054b2065e6"
+    },
+    "blockers": [
+      "EXTERNAL_INTEGRATION_GATE_NOT_ADMITTED",
+      "MODEL_PROVIDER_CONFIGURATION_INCOMPLETE",
+      "REQUIRED_RUNTIME_SERVICES_UNAVAILABLE:code_sandbox_adapter,crash_resume_controller,durable_vaixlns_event_ledger,internet_search_adapter,model_providers,repository_tool_adapter",
+      "RUNTIME_ROLE_BINDINGS_NOT_ADMITTED",
+      "VX_RUNTIME_PROFILES_NOT_ADMITTED"
+    ],
+    "canonical_mutation_performed": false,
+    "checks": [
+      {
+        "check": "canonical_index",
+        "detail": "Ω.000 authority and golden-source fields validated.",
+        "status": "PASS"
+      },
+      {
+        "check": "typed_handoff_chain",
+        "detail": "13 unique canonical handoff roles found.",
+        "status": "PASS"
+      },
+      {
+        "check": "canonical_agent_registry",
+        "detail": "13 indexed agent records have unique IDs and required fields.",
+        "status": "PASS"
+      },
+      {
+        "check": "vx_profile_guardrails",
+        "detail": "VX profile count and no-direct-tool-call invariants validated.",
+        "status": "PASS"
+      },
+      {
+        "check": "runtime_binding_map_shape",
+        "detail": "Role/version counts and deny-by-default binding invariants validated.",
+        "status": "PASS"
+      },
+      {
+        "check": "candidate_profile_references",
+        "detail": "All candidate profile references resolve.",
+        "status": "PASS"
+      },
+      {
+        "check": "provider_configuration",
+        "detail": "Provider setup is incomplete: base_url_present=false, specialist_models_missing=26, reviewer_minds_missing=5.",
+        "status": "HOLD"
+      },
+      {
+        "check": "binding_admission",
+        "detail": "Runtime role/version mapping remains proposed or design-only.",
+        "status": "HOLD"
+      },
+      {
+        "check": "runtime_profile_admission",
+        "detail": "VX role profiles remain design templates, not deployed agents.",
+        "status": "HOLD"
+      },
+      {
+        "check": "external_integration_gate",
+        "detail": "External integration gate is not yet completed/admitted.",
+        "status": "HOLD"
+      },
+      {
+        "check": "required_runtime_services",
+        "detail": "Unavailable or unverified runtime services: code_sandbox_adapter, crash_resume_controller, durable_vaixlns_event_ledger, internet_search_adapter, model_providers, repository_tool_adapter",
+        "status": "HOLD"
+      }
+    ],
+    "environment_summary": {
+      "configured_reviewer_minds": [],
+      "configured_specialist_model_variable_count": 0,
+      "missing_reviewer_minds": [
+        "MIND-FINANCE",
+        "MIND-PROOF",
+        "MIND-RESEARCH",
+        "MIND-SECURITY",
+        "MIND-SYS-ARCH"
+      ],
+      "missing_specialist_model_role_ids": [
+        "VX-ENG-ARCH",
+        "VX-ENG-BUILD",
+        "VX-ENG-COORD",
+        "VX-ENG-INNOV",
+        "VX-ENG-LEARN",
+        "VX-ENG-OPS",
+        "VX-ENG-PROOF",
+        "VX-ENG-RED",
+        "VX-ENG-REQ",
+        "VX-ENG-TEST",
+        "VX-FIN-COMP",
+        "VX-FIN-COORD",
+        "VX-FIN-COST",
+        "VX-FIN-MARKET",
+        "VX-FIN-PORT",
+        "VX-FIN-PRICE",
+        "VX-FIN-RISK",
+        "VX-FIN-UNIT",
+        "VX-PARENT-COORD",
+        "VX-RES-CONTRA",
+        "VX-RES-COORD",
+        "VX-RES-LITERATURE",
+        "VX-RES-REPO",
+        "VX-RES-REPRO",
+        "VX-RES-SOURCE",
+        "VX-RES-SYNTH"
+      ],
+      "openai_compatible_api_key_present": false,
+      "openai_compatible_base_url_present": false
+    },
+    "generated_at": "2026-10-25T19:18:04.571709+00:00",
+    "hard_errors": [],
+    "index_authority": {
+      "authority_anchor": "Ω0_GENESIS_CORE",
+      "golden_source": "project.genome::v1.0.0",
+      "index_id": "Ω.000",
+      "index_record_count": 11
+    },
+    "live_provider_handshake": "NOT_RUN",
+    "production_authorized": false,
+    "report_id": "41905713df489e918090f08e40f9123e7c4cad288d4e5ae8d4656687c1fc7264",
+    "report_type": "VAIXLNS_DEEP_INDEX_AGENT_EXECUTION_PREFLIGHT",
+    "schema_version": "1.0.0",
+    "status": "HOLD"
+  },
+  "scope": "Local static preflight tests only; no provider invocation, G0 claim, deployment or admission.",
+  "source_sha256": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6",
+    "scripts/agent_execution_preflight.py": "3b9f20aa3a55772c5e9c1ee1da8321ba604f2634c964fe845a165538c58b282f",
+    "tests/test_agent_execution_preflight.py": "0e59c9b1b3453ec0d292053a01d0f7396d161d48ff4077318aceb1700206f35b"
+  }
+}
