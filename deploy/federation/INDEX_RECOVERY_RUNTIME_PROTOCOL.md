@@ -155,3 +155,23 @@ ARC-X is the semantic compilation and reconstruction layer above these operation
 ## Current Status
 
 This document is a **SPECIFICATION**. It defines the deterministic recovery and admission contract. It does not by itself prove that a production server has executed the protocol.
+
+
+## ZERO-LOSS INDEX Builder / Auditor Integration
+
+The deterministic repository indexer is orchestrated by
+`scripts/recover_zero_loss_index.py`. From a pinned checkout, it:
+
+1. Runs `tests/test_zero_loss_index.py` unless explicitly skipped.
+2. Calls `scripts/build_zero_loss_index.py` to generate the 28 index views and source-bound records.
+3. Calls the same builder in `--verify-only` mode to verify artifact integrity.
+4. Writes `build/zero-loss-index/index-recovery-receipt.v1.json` with step results and SHA-256 digests.
+5. Preserves unresolved historical IDs and opaque sources as explicit gaps; it never fabricates missing records or promotes claims to canonical/verified state.
+
+Command:
+
+```bash
+python scripts/recover_zero_loss_index.py --root . --output-dir build/zero-loss-index
+```
+
+The result is scoped to the checkout and its source revision. It does not prove recovery of every historical item, other repositories, conversation history, unmaterialized files, or diagram semantics. A result with unresolved gaps is reported as `PASS_WITH_DECLARED_GAPS`; it must not be presented as complete historical recovery. The wrapper is new and requires CI execution before its own implementation status can be marked VERIFIED.

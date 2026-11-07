@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS VX Stage Evidence",
+  "type": "object",
+  "required": ["schema_version", "stage_id", "run_id", "instance", "events", "routing", "failure_injection", "provenance", "slo"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "stage_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "instance": {"type": "object"},
+    "events": {"type": "array"},
+    "routing": {"type": "object"},
+    "failure_injection": {"type": "object"},
+    "provenance": {"type": "object"},
+    "slo": {"type": "object"}
+  }
+}

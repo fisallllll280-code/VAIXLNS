@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.example/schemas/meta-kernel-contracts-v1.json",
+  "title": "VAIXLNS Ω Meta-Kernel Core Contracts v1",
+  "description": "Proposed machine-readable contracts. The example domain is a placeholder and must be replaced by the repository's canonical schema hosting location before publication as a stable external contract.",
+  "oneOf": [
+    { "$ref": "#/$defs/federationMessage" },
+    { "$ref": "#/$defs/decisionRecord" },
+    { "$ref": "#/$defs/evidenceRecord" },
+    { "$ref": "#/$defs/capabilityRecord" }
+  ],
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "identifier": { "type": "string", "minLength": 3, "maxLength": 256, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "referenceList": { "type": "array", "items": { "$ref": "#/$defs/identifier" }, "uniqueItems": true },
+    "federationMessage": {
+      "title": "FederationMessage",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "message_id", "protocol_version", "sender", "recipient", "intent", "scope", "risk_class", "expected_response", "created_at", "expires_at"],
+      "properties": {
+        "record_type": { "const": "federation_message" },
+        "message_id": { "$ref": "#/$defs/identifier" },
+        "protocol_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "sender": { "$ref": "#/$defs/identifier" },
+        "recipient": { "$ref": "#/$defs/identifier" },
+        "sender_identity_proof": { "$ref": "#/$defs/identifier" },
+        "intent": { "$ref": "#/$defs/nonEmptyString" },
+        "context": { "type": "object" },
+        "capability_requested": { "$ref": "#/$defs/identifier" },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["actions", "boundaries"],
+          "properties": {
+            "resources": { "type": "array", "items": { "type": "string" } },
+            "actions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" }, "minItems": 1, "uniqueItems": true },
+            "boundaries": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" }, "minItems": 1, "uniqueItems": true }
+          }
+        },
+        "authority": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["delegation_ref", "expires_at"],
+          "properties": {
+            "delegation_ref": { "$ref": "#/$defs/identifier" },
+            "expires_at": { "$ref": "#/$defs/timestamp" }
+          }
+        },
+        "evidence": { "$ref": "#/$defs/referenceList" },
+        "risk_class": { "enum": ["C0", "C1", "C2", "C3", "C4", "C5"] },
+        "expected_response": { "enum": ["accept", "reject", "defer", "counter_propose", "acknowledge"] },
+        "replay_protection": { "$ref": "#/$defs/identifier" },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "expires_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "decisionRecord": {
+      "title": "DecisionRecord",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "decision_id", "change_class", "subject_and_scope", "proposer", "baseline", "proposal", "rationale", "evidence", "constitution_check", "authorization", "disposition", "created_at"],
+      "properties": {
+        "record_type": { "const": "decision_record" },
+        "decision_id": { "$ref": "#/$defs/identifier" },
+        "change_class": { "enum": ["C0", "C1", "C2", "C3", "C4", "C5"] },
+        "subject_and_scope": { "$ref": "#/$defs/nonEmptyString" },
+        "proposer": { "$ref": "#/$defs/identifier" },
+        "executor": { "$ref": "#/$defs/identifier" },
+        "reviewers": { "$ref": "#/$defs/referenceList" },
+        "baseline": { "$ref": "#/$defs/nonEmptyString" },
+        "proposal": { "$ref": "#/$defs/nonEmptyString" },
+        "rationale": { "$ref": "#/$defs/nonEmptyString" },
+        "alternatives": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "$ref": "#/$defs/referenceList" },
+        "assumptions": { "type": "array", "items": { "type": "string" } },
+        "risk_and_impact": { "type": "object" },
+        "constitution_check": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["result", "reasons"],
+          "properties": {
+            "result": { "enum": ["pass", "fail", "incomplete"] },
+            "reasons": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        },
+        "simulation_and_tests": { "type": "array", "items": { "type": "object" } },
+        "dissent": { "type": "array", "items": { "type": "string" } },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["authority_ref", "scope", "expires_at"],
+          "properties": {
+            "authority_ref": { "$ref": "#/$defs/identifier" },
+            "scope": { "$ref": "#/$defs/nonEmptyString" },
+            "quorum": { "type": "integer", "minimum": 1 },
+            "expires_at": { "$ref": "#/$defs/timestamp" }
+          }
+        },
+        "rollout_and_recovery": { "type": "object" },
+        "verification": { "type": "object" },
+        "disposition": { "enum": ["accept", "reject", "defer", "rollback", "quarantine"] },
+        "review_trigger": { "type": "string" },
+        "history_links": { "$ref": "#/$defs/referenceList" },
+        "created_at": { "$ref": "#/$defs/timestamp" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "change_class": { "enum": ["C4", "C5"] } }, "required": ["change_class"] },
+          "then": { "required": ["reviewers", "dissent", "verification"] }
+        }
+      ]
+    },
+    "evidenceRecord": {
+      "title": "EvidenceRecord",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "evidence_id", "subject", "source", "method", "observed_at", "limitations", "integrity_ref"],
+      "properties": {
+        "record_type": { "const": "evidence_record" },
+        "evidence_id": { "$ref": "#/$defs/identifier" },
+        "subject": { "$ref": "#/$defs/identifier" },
+        "source": { "$ref": "#/$defs/nonEmptyString" },
+        "method": { "$ref": "#/$defs/nonEmptyString" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "integrity_ref": { "$ref": "#/$defs/nonEmptyString" },
+        "verifier": { "$ref": "#/$defs/identifier" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "capabilityRecord": {
+      "title": "CapabilityRecord",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "capability_id", "version", "origin", "owner", "purpose", "constraints", "dependencies", "verification_refs", "lifecycle_state"],
+      "properties": {
+        "record_type": { "const": "capability_record" },
+        "capability_id": { "$ref": "#/$defs/identifier" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "origin": { "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "$ref": "#/$defs/identifier" },
+        "purpose": { "$ref": "#/$defs/nonEmptyString" },
+        "constraints": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "dependencies": { "$ref": "#/$defs/referenceList" },
+        "verification_refs": { "$ref": "#/$defs/referenceList" },
+        "lifecycle_state": { "enum": ["created", "quarantined", "verified", "activated", "monitored", "improved", "retired"] },
+        "expires_at": { "$ref": "#/$defs/timestamp" }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+schema: vaixlns.vx.federation_instance
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - instance_id
+  - system_id
+  - specialization
+  - capabilities
+  - state
+  - authority_envelope
+  - provenance
+properties:
+  instance_id: string
+  system_id:
+    enum: [VX]
+  specialization: string
+  capabilities: array
+  model_portfolio: array
+  tool_bindings: array
+  memory_scope:
+    enum: [LOCAL, FEDERATED, MIXED]
+  state:
+    enum: [REGISTERED, ACTIVE, DEGRADED, ISOLATED, RECOVERING, RETIRED]
+  heartbeat:
+    lease_seconds: integer
+    last_seen: string
+  authority_envelope: object
+  evidence_refs: array
+  failure_refs: array
+  federation_links: array
+  provenance:
+    source: string
+    created_at: string
+    revision: string
+    registration_hash: string

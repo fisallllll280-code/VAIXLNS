@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "register_id": "VAIXLNS-SAUDI-FIRST-LAUNCH",
+  "status": "PROPOSED_NOT_LAUNCHED",
+  "snapshot_date": "2026-10-09",
+  "owner_authority": "FOUNDER_DESIGNATED_AUTHORITY",
+  "first_market": "Saudi Arabia",
+  "mission": [
+    "support startups",
+    "improve software and digital infrastructure",
+    "offer bounded and evidenced engineering services",
+    "develop safe, governed agent workflows"
+  ],
+  "funding_plan": {
+    "planned_founder_financing_usd": 10000,
+    "proposed_source": "founder personal portfolio/wallet",
+    "cash_received": false,
+    "category": "to be classified as owner contribution or owner loan by records/accounting",
+    "bank_financing_status": "not claimed without bank facility documents",
+    "founder_reported_innovation_fund_progress_percent": 10,
+    "progress_independently_verified": false,
+    "sources_and_uses_document": "docs/strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md",
+    "capital_policy": "registry/capital_lock_policy.v1.json"
+  },
+  "sales_validation": {
+    "proposed_customer_cash_target_usd": 10000,
+    "status": "TARGET_NOT_ACHIEVED",
+    "proposed_offers": [
+      {
+        "id": "OFFER-001",
+        "name": "Engineering baseline and repository review",
+        "price_usd": 1000,
+        "target_contracts": 2,
+        "target_sales_usd": 2000
+      },
+      {
+        "id": "OFFER-002",
+        "name": "Startup agent/workflow pilot",
+        "price_usd": 2000,
+        "target_contracts": 2,
+        "target_sales_usd": 4000
+      },
+      {
+        "id": "OFFER-003",
+        "name": "Verified engineering integration sprint",
+        "price_usd": 2000,
+        "target_contracts": 2,
+        "target_sales_usd": 4000
+      }
+    ],
+    "rule": "Do not combine or double count founder-provided financing and customer receipts."
+  },
+  "no_withdrawal_period": {
+    "duration_calendar_days": 30,
+    "status": "PROPOSED_NOT_ENFORCED",
+    "applies_to": "reconciled residual Innovation Fund reserve after required obligations, operating costs, and liabilities are separately budgeted",
+    "automatic_unlock": false,
+    "technical_enforcement_verified": false
+  },
+  "partnership": {
+    "target_total_companies": 6,
+    "target_saudi_companies": 3,
+    "target_us_companies": 3,
+    "status": "TARGET_SLOTS_UNFILLED",
+    "signed_partner_count": 0,
+    "requirement": "due diligence and signed agreement per partner"
+  },
+  "founder_legacy_authority": {
+    "founder_decides_legacy_classification": true,
+    "automated_recommendations_allowed": true,
+    "automated_silent_deletion_merge_rename_or_supersession_allowed": false,
+    "legacy_ids_not_yet_mapped": "UNMAPPED"
+  },
+  "launch_gates": [
+    "offers_and_contract_terms_reviewed",
+    "founder_capital_source_and_ownership_documented",
+    "sources_and_uses_ledger_reconciled",
+    "customer_access_and_ip_boundaries_defined",
+    "first_pilot_acceptance_evidence_available",
+    "fund_reserve_control_tested_before_claiming_enforcement",
+    "six_partner_slots_remain_proposed_until_signed",
+    "regulated_financial_functions_deferred_until_authorized"
+  ],
+  "evidence_refs": [
+    "docs/strategy/SAUDI_FIRST_INNOVATION_PROGRAM_V1.md",
+    "registry/capital_lock_policy.v1.json",
+    "docs/indexes/INNOVATION_MASTER_INDEX.md"
+  ]
+}

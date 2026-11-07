@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "VAIXLNS.VLNS.ACTIVATION.V1",
+  "canonical_owner": "fisallllll280-code/VAIXLNS",
+  "model_activation_boundary": "VLNS",
+  "execution_and_evidence_boundary": "VX",
+  "contract_document": "docs/integration/VLNS_VX_ACTIVATION_BRIDGE_V1.md",
+  "schema": "schemas/vlns-activation-envelope.schema.json",
+  "implementation": {
+    "repository": "fisallllll280-code/VAIXLNS-unified",
+    "module": "vlns/activation.py",
+    "client": "infra/vlns_server_client.py",
+    "entrypoint": "scripts/vlns_activation_bridge.py",
+    "tests": "tests/test_vlns_activation_bridge.py",
+    "status": "MERGED_CI_GREEN",
+    "pull_request": "https://github.com/fisallllll280-code/VAIXLNS-unified/pull/23",
+    "ci_run": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37914866720",
+    "merge_commit": "https://github.com/fisallllll280-code/VAIXLNS-unified/commit/b4fd3c441bc1a78152588af446f4c56fc4974444",
+    "pre_merge_ci": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37915949357",
+    "post_merge_ci": {
+      "unified_verification": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916369023",
+      "vx_invention_engine": "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37916369399",
+      "canonical_conformance": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/37916370435"
+    }
+  },
+  "identity": {
+    "vlns_to_naxlns": "UNVERIFIED",
+    "rule": "Repository name or architectural mention alone does not establish system identity."
+  },
+  "connection": {
+    "status": "NOT_CONNECTED_UNVERIFIED",
+    "authenticated": false,
+    "endpoint_source": "trusted deployment configuration only",
+    "credentials": "environment or secret manager only",
+    "required_receipt_fields": [
+      "status",
+      "activation_id",
+      "envelope_hash"
+    ],
+    "event_ack_required": true,
+    "last_recorded_probe": "2026-10-06"
+  },
+  "default_authority": {
+    "role_permissions": [
+      "read",
+      "propose"
+    ],
+    "non_delegable": [
+      "canonical_write",
+      "governance_override",
+      "unrestricted_network",
+      "external_action"
+    ],
+    "fail_closed": true
+  },
+  "required_gates": [
+    "provider_capability_tool_allowlists",
+    "signed_deterministic_envelope",
+    "remote_receipt_identity_and_digest_match",
+    "evidence_event_acknowledgement",
+    "automated_tests_and_ci",
+    "failure_recovery_and_replay",
+    "independent_verification",
+    "proof_freshness",
+    "explicit_authority",
+    "live_endpoint_conformance"
+  ],
+  "epistemic_state": "IMPLEMENTATION_MERGED_CI_GREEN_LIVE_ENDPOINT_UNVERIFIED",
+  "canonical_admission": "NOT_ADMITTED",
+  "updated_on": "2026-10-09",
+  "agent_fabric_gate": {
+    "repository": "fisallllll280-code/vx-agents-fabric",
+    "branch": "feat/vlns-provider-adapter-20261009",
+    "module": "src/vx_agents_fabric/vlns_activation.py",
+    "factory": "src/vx_agents_fabric/providers/factory.py",
+    "tests": "tests/test_vlns_activation.py",
+    "status": "FEATURE_BRANCH_CI_GREEN_NOT_MERGED",
+    "latest_ci": "https://github.com/fisallllll280-code/vx-agents-fabric/actions/runs/37915954800",
+    "enforcement": "VX_VLNS_ACTIVATION_REQUIRED=true",
+    "limitation": "separate journal not yet federated; live endpoint unverified; no pull request created"
+  }
+}

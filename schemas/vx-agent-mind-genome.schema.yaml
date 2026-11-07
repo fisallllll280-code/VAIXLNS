@@ -1,0 +1,39 @@
+schema: vx.agent.mind_genome
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - agent_id
+  - role
+  - capabilities
+  - authority_envelope
+  - memory_partitions
+  - provenance
+properties:
+  agent_id: string
+  role: string
+  family: string
+  capabilities: array
+  model_portfolio: array
+  tools: array
+  cognitive_state: object
+  memory_partitions:
+    working: array
+    episodic: array
+    semantic: array
+    procedural: array
+    failure: array
+    evidence: array
+  epistemic_profile: object
+  authority_envelope:
+    scope: array
+    permissions: array
+    deny: array
+    escalation_required: array
+  policies: array
+  failure_history: array
+  evidence_history: array
+  performance_history: array
+  provenance: object
+  lineage: object
+  state:
+    enum: [PROPOSED, SPECIFIED, IMPLEMENTED, VERIFIED, QUARANTINED, ARCHIVED]

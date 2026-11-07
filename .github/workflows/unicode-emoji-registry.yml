@@ -1,0 +1,24 @@
+name: Unicode Emoji 18 Registry
+on:
+  push:
+    branches:
+      - feat/unicode-emoji-registry-v18
+  pull_request:
+    paths:
+      - 'tools/unicode_emoji_registry.py'
+      - 'tests/test_unicode_emoji_registry.py'
+      - '.github/workflows/unicode-emoji-registry.yml'
+jobs:
+  importer-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m py_compile tools/unicode_emoji_registry.py
+      - name: Offline fixture tests
+        run: python -m unittest discover -s tests -p 'test_unicode_emoji_registry.py' -v

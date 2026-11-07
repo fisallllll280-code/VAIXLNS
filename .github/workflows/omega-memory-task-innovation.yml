@@ -1,0 +1,48 @@
+name: Ω Memory Task Innovation Kernel
+
+on:
+  pull_request:
+    paths:
+      - "vaixlns_engineering/memory_task_innovation.py"
+      - "scripts/omega_memory_task_kernel.py"
+      - "scripts/omega_engineering_cycle.py"
+      - "scripts/validate_omega_memory_task_kernel.py"
+      - "schemas/omega-memory-task-innovation.v1.schema.json"
+      - "registry/omega/proposals/omega-memory-task-innovation-kernel.v1.json"
+      - "tests/test_memory_task_innovation.py"
+      - "tests/test_omega_memory_task_kernel.py"
+      - "tests/test_omega_engineering_cycle.py"
+      - "docs/architecture/OMEGA_MEMORY_TASK_INNOVATION_KERNEL_V1.md"
+      - ".github/workflows/omega-memory-task-innovation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  local-kernel-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate MTIK proposal and governance boundaries
+        run: python scripts/validate_omega_memory_task_kernel.py
+      - name: Compile every MTIK implementation and test
+        run: |
+          python -m py_compile \
+            vaixlns_engineering/memory_task_innovation.py \
+            scripts/omega_memory_task_kernel.py \
+            scripts/omega_engineering_cycle.py \
+            scripts/validate_omega_memory_task_kernel.py \
+            tests/test_memory_task_innovation.py \
+            tests/test_omega_memory_task_kernel.py \
+            tests/test_omega_engineering_cycle.py
+      - name: Run all memory, task, and innovation regression suites
+        run: |
+          python -m unittest \
+            tests.test_memory_task_innovation \
+            tests.test_omega_memory_task_kernel \
+            tests.test_omega_engineering_cycle -v

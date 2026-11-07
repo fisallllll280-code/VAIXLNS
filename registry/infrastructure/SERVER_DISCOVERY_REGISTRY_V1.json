@@ -1,0 +1,179 @@
+{
+  "schema_id": "VAIXLNS.SERVER_DISCOVERY_REGISTRY",
+  "schema_version": "1.0.0",
+  "authority": "VAIXLNS",
+  "snapshot_date": "2026-10-09",
+  "purpose": "Record discoverable runtime endpoints and separate declared infrastructure from verified live services.",
+  "epistemic_rules": {
+    "repository_exists_does_not_mean_runtime_deployed": true,
+    "documented_endpoint_does_not_mean_endpoint_reachable": true,
+    "http_success_does_not_mean_semantic_or_security_correctness": true,
+    "only_explicit_targets_may_be_probed": true,
+    "no_subnet_scanning": true,
+    "no_state_changing_http_methods": true,
+    "secrets_and_private_endpoint_literals_must_not_be_committed": true
+  },
+  "targets": [
+    {
+      "id": "LAN-HTTP-001",
+      "role": "previously documented private-network HTTP service",
+      "endpoint_source": {
+        "kind": "environment_variable",
+        "name": "VAIXLNS_DISCOVERY_TARGET"
+      },
+      "source_evidence": {
+        "kind": "project_archive",
+        "reference": "تشريح الرابط الشبكي.txt",
+        "claim": "A private-network HTTP endpoint was described in the archive.",
+        "exact_endpoint_published": false
+      },
+      "status": "ARCHIVE_OBSERVED_NOT_PROBED",
+      "probe": {
+        "enabled": false,
+        "requires_opt_in_flag": "--allow-configured-lan-target",
+        "method": "GET",
+        "scope": "literal private IP address only",
+        "max_timeout_seconds": 5,
+        "follows_redirects": false
+      },
+      "notes": [
+        "The literal private address is deliberately omitted from this public registry.",
+        "Run the probe from a device connected to the same authorized network.",
+        "An HTTP response is only reachability evidence, not a security or semantic proof."
+      ]
+    },
+    {
+      "id": "OLLAMA-LOCAL-001",
+      "role": "candidate local inference API",
+      "endpoint": "http://127.0.0.1:11434/api/version",
+      "source_evidence": {
+        "kind": "official_documentation",
+        "url": "https://docs.ollama.com/faq",
+        "claim": "Ollama binds to 127.0.0.1:11434 by default."
+      },
+      "status": "CANDIDATE_NOT_DISCOVERED",
+      "probe": {
+        "enabled": true,
+        "method": "GET",
+        "scope": "loopback only",
+        "max_timeout_seconds": 5,
+        "follows_redirects": false
+      },
+      "notes": [
+        "Installation and runtime status are unknown until probed on the target machine.",
+        "Keep the service on loopback by default; do not expose it to a network without authentication and access controls."
+      ]
+    },
+    {
+      "id": "VAIXLNS-CORE-API-001",
+      "role": "candidate core API health endpoint",
+      "endpoint": "http://127.0.0.1:8000/health",
+      "source_evidence": {
+        "kind": "repository_readme_claim",
+        "url": "https://github.com/fisallllll280-code/vaixlns-core",
+        "conflicting_evidence": "The canonical runtime-status snapshot says executable source was not established in the inspected tree."
+      },
+      "status": "SOURCE_CONFLICT_NOT_PROBED",
+      "probe": {
+        "enabled": false,
+        "reason": "Resolve the repository source/runtime discrepancy before treating this as a running server.",
+        "method": "GET",
+        "scope": "loopback only",
+        "max_timeout_seconds": 5,
+        "follows_redirects": false
+      },
+      "notes": [
+        "A README quick-start command is not proof that the endpoint exists or is running."
+      ]
+    },
+    {
+      "id": "N8N-AUTOMATION-001",
+      "role": "automation integration candidate",
+      "endpoint_source": {
+        "kind": "environment_variable",
+        "name": "VAIXLNS_N8N_BASE_URL"
+      },
+      "source_evidence": {
+        "kind": "project_archive",
+        "reference": "فحص مستودع n8n.txt",
+        "claim": "A workflow catalog was reviewed as a candidate source; an authenticated, running n8n instance was not demonstrated."
+      },
+      "status": "CATALOG_CANDIDATE_NOT_CONNECTED",
+      "probe": {
+        "enabled": false,
+        "reason": "No instance URL or authoritative health route is registered.",
+        "method": "GET",
+        "scope": "explicitly configured endpoint only",
+        "max_timeout_seconds": 5,
+        "follows_redirects": false
+      }
+    },
+    {
+      "id": "NEXENT-DISCOVERY-001",
+      "role": "architecture discovery and research repository",
+      "repository": "https://github.com/fisallllll280-code/NEXENT",
+      "status": "REPOSITORY_OBSERVED_RUNTIME_ENDPOINT_UNKNOWN",
+      "probe": {
+        "enabled": false,
+        "reason": "No deployed service URL is registered."
+      }
+    },
+    {
+      "id": "GITHUB-ACTIONS-CI-001",
+      "role": "remote CI verification plane, not persistent application server",
+      "repository": "https://github.com/fisallllll280-code/VAIXLNS",
+      "status": "CI_SURFACE_OBSERVED_RUNTIME_NOT_IMPLIED",
+      "probe": {
+        "enabled": false,
+        "reason": "Workflow success does not establish that a production service is deployed."
+      }
+    }
+  ],
+  "declared_infrastructure": [
+    {
+      "id": "INGRESS",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "API_GATEWAY",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "EVENT_BUS",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "POSTGRES",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "SECRET_MANAGER",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "METRICS",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "LOGS",
+      "requirement": "required",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "TRACES",
+      "requirement": "recommended",
+      "binding_status": "UNBOUND"
+    },
+    {
+      "id": "REDIS",
+      "requirement": "optional",
+      "binding_status": "UNBOUND"
+    }
+  ]
+}

@@ -21,6 +21,8 @@ VAIXLNS is the canonical federation/control-plane root. The four system identiti
 
 - VAIXLNS — primary public root, documentation, schemas, templates, registries, recovery, and tools.
 - Default branch: main.
+- Finality Gate specification: `docs/canonical/FINALITY_GATE_V1.md`.
+- Finality Certificate schema: `schemas/finality-certificate.schema.json`.
 
 ## 3. Knowledge / discovery
 
@@ -53,6 +55,13 @@ VAIXLNS is the canonical federation/control-plane root. The four system identiti
 - VX_EXECUTION_BUILD_CONTRACT_V0_1.yaml — execution/build contract artifact.
 - VAIXLNS_OPERATIONAL_ASSURANCE.md — operational assurance reference.
 
+## 9. Repository Mutation & Repair ownership
+
+- Canonical RIRF policy and ownership: VAIXLNS.
+- Discovery, Repository Genome, anomaly classification, and Semantic Impact Cone: NEXENT.
+- Mutation integration, verification/evidence plumbing, and governed closure: VAIXLNS-unified.
+- Execution-boundary enforcement: VX-runtime.
+
 ## Repository discipline
 1. VAIXLNS is the public documentation and canonical-index root.
 2. Runtime code belongs in implementation/runtime repositories, not in the root documentation repository.
@@ -62,6 +71,7 @@ VAIXLNS is the canonical federation/control-plane root. The four system identiti
 6. Avoid duplicating the same canonical specification across repositories; link to the authoritative copy instead.
 7. Preserve unresolved identity mappings as explicit evidence gaps.
 8. Preserve historical repositories and their history; organize through roles and lineage rather than destructive renames.
+9. Repository mutations must remain isolated until verification and governance requirements pass.
 
 ## Current relationship
 

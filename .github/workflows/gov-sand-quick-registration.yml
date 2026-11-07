@@ -1,0 +1,15 @@
+name: GOV quick registration validation
+on:
+  push:
+    paths: ['web/gov-sand-quick-registration/**','tests/test_gov_sand_quick_registration.py','.github/workflows/gov-sand-quick-registration.yml']
+  pull_request:
+    paths: ['web/gov-sand-quick-registration/**','tests/test_gov_sand_quick_registration.py','.github/workflows/gov-sand-quick-registration.yml']
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m unittest discover -s tests -p test_gov_sand_quick_registration.py -v

@@ -1,0 +1,104 @@
+{
+  "schema": "vaixlns.assembly-federation.v1",
+  "as_of": "2026-10-25",
+  "authority": "fisallllll280-code/VAIXLNS",
+  "mode": "read_only_preflight",
+  "policy": {
+    "preserve_history": true,
+    "destructive_merge": false,
+    "auto_publish": false,
+    "identity_conflicts_block_admission": true,
+    "proof_required": true,
+    "source_snapshots_required": true
+  },
+  "groups": [
+    {
+      "id": "G01",
+      "name": "sovereignty",
+      "repositories": [
+        "fisallllll280-code/VAIXLNS",
+        "fisallllll280-code/VAIXLNS-Naming-Constitution-v1.0"
+      ],
+      "state": "INVENTORIED"
+    },
+    {
+      "id": "G02",
+      "name": "discovery",
+      "repositories": [
+        "fisallllll280-code/NEXENT",
+        "fisallllll280-code/NAXLNS"
+      ],
+      "state": "IDENTITY_HOLD",
+      "unresolved": [
+        "NEXNET ↔ NEXENT",
+        "VLNS ↔ NAXLNS"
+      ]
+    },
+    {
+      "id": "G03",
+      "name": "execution",
+      "repositories": [
+        "fisallllll280-code/VX-runtime",
+        "fisallllll280-code/VX50_COMPLETE_BUILD",
+        "fisallllll280-code/vaixlns-core"
+      ],
+      "state": "SPECIFICATION_OR_PARTIAL"
+    },
+    {
+      "id": "G04",
+      "name": "agents",
+      "repositories": [
+        "fisallllll280-code/vx-agents-fabric",
+        "fisallllll280-code/vx-agents-system"
+      ],
+      "state": "PROPOSED"
+    },
+    {
+      "id": "G05",
+      "name": "integration",
+      "repositories": [
+        "fisallllll280-code/VAIXLNS-unified",
+        "fisallllll280-code/vaixlns-nexent-vx"
+      ],
+      "state": "PARTIAL"
+    },
+    {
+      "id": "G06",
+      "name": "assurance",
+      "repositories": [
+        "fisallllll280-code/vaixlns-csd-kernel",
+        "fisallllll280-code/VAIXLNS_OPERATIONAL_ASSURANCE.md"
+      ],
+      "state": "SPECIFIED"
+    },
+    {
+      "id": "G07",
+      "name": "interfaces",
+      "repositories": [
+        "fisallllll280-code/desktop",
+        "fisallllll280-code/react-native-website",
+        "fisallllll280-code/tunnel-client"
+      ],
+      "state": "ADAPTER_CANDIDATE"
+    },
+    {
+      "id": "G08",
+      "name": "archive",
+      "repositories": [
+        "fisallllll280-code/VAIXLNS-",
+        "fisallllll280-code/-VAIXLNS"
+      ],
+      "state": "QUARANTINED"
+    }
+  ],
+  "omega_infinity": {
+    "claim_source": "user_supplied_report",
+    "reported_files": 74,
+    "reported_line_references": 2897,
+    "reported_candidates": 20,
+    "reported_sections": 41,
+    "verification_state": "NOT_REPRODUCED",
+    "archive_bundle": "NOT_ATTACHED",
+    "missing_atomic_recovery": "OPEN"
+  }
+}

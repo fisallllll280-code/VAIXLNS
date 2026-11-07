@@ -1,0 +1,24 @@
+{
+  "at_utc": "2026-10-27T19:31:48.071649+00:00",
+  "source_parent_sha": "0c5a7197dc81ff3f50f3c66e4d748e982920432f",
+  "scope": "registry reference update; runtime tests belong to VX-runtime evidence root",
+  "command": "python3 -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "test_count": 442,
+  "result": "PASS_LOCAL",
+  "log_sha256": "ff4e8553618c8c88569975da041eec1ec71dbd3f40c6c72681f6b9d361148e2e",
+  "source_sha256": {
+    "docs/indexes/REPOSITORY_FEDERATION_INDEX.md": "b633c578811bf469d52cd458d213e125c6c709c92b286cf6afbe07fe7201abb8",
+    "registry/vx-municipal-runtime.integration.v1.json": "27ef16789e39a2e729ebd0b7dcd62d0c937c1fb8e422e0aad7a6b31ccace3734"
+  },
+  "protected_before": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "protected_after": {
+    "project.genome": "97c55c360037e78dfc2194b90ec9cf5cd7d775d967e5b1d4230adff8dd7cfe08",
+    "registry/omega/omega-000-master-index.json": "72029a4900ce188394575a1d85333c525fedb07e025e22cc7df62662f24e7bd6"
+  },
+  "production_gate": "HOLD",
+  "live_government_e2e": "NOT_RUN"
+}

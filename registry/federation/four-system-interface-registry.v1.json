@@ -1,0 +1,280 @@
+{
+  "schema_id": "VAIXLNS.FOUR_SYSTEM_INTERFACE_REGISTRY",
+  "schema_version": "1.0.0",
+  "authority": "VAIXLNS",
+  "canonical_source": "project.genome::v1.0.0",
+  "master_index": "Ω.000",
+  "mode": "CONTRACT_FIRST_READ_ONLY",
+  "generated_at_policy": "runtime_receipts_supply_timestamps",
+  "invariants": {
+    "system_identity_is_not_repository_identity": true,
+    "no_endpoint_inference_from_repository_presence": true,
+    "no_automatic_canonical_promotion": true,
+    "preserve_original_artifacts_and_lineage": true,
+    "unresolved_identity_mapping_blocks_live_activation": true,
+    "production_writes_require_separate_authorized_gate": true
+  },
+  "status_vocabulary": [
+    "SOURCE_OBSERVED",
+    "SPECIFIED_NOT_CONNECTED",
+    "IDENTITY_UNVERIFIED",
+    "CONTRACT_PENDING",
+    "TEST_PENDING",
+    "LIVE_VERIFIED",
+    "BLOCKED",
+    "CONFLICT"
+  ],
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "role": "canonical_control_plane_registry_governance_recovery",
+      "identity_status": "SOURCE_OBSERVED",
+      "repository_surfaces": [
+        {
+          "repository": "fisallllll280-code/VAIXLNS",
+          "status": "SOURCE_OBSERVED",
+          "evidence": [
+            "project.genome",
+            "registry/omega/omega-000-master-index.json",
+            "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md"
+          ]
+        }
+      ],
+      "contract_surfaces": [
+        "project.genome",
+        "registry/omega/omega-000-master-index.json",
+        "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md",
+        "deploy/federation/federation.yaml",
+        "registry/indexes/zero-loss-index-taxonomy.v1.json"
+      ],
+      "runtime": {
+        "status": "SPECIFIED_NOT_CONNECTED",
+        "endpoint": null,
+        "health_route": null,
+        "proof_required": [
+          "explicit_endpoint_source",
+          "authorized_probe",
+          "revision_bound_receipt",
+          "semantic_contract_test"
+        ]
+      }
+    },
+    {
+      "system_id": "VLNS",
+      "role": "cross_system_operating_and_development_fabric",
+      "identity_status": "IDENTITY_UNVERIFIED",
+      "repository_surfaces": [
+        {
+          "repository": "fisallllll280-code/NAXLNS",
+          "status": "IDENTITY_UNVERIFIED",
+          "evidence": [
+            "README.md"
+          ]
+        },
+        {
+          "repository": "fisallllll280-code/NEXENT",
+          "status": "SOURCE_OBSERVED",
+          "evidence": [
+            "docs/VLNS_OPERATING_DEVELOPMENT_SPEC.md"
+          ],
+          "note": "Architectural specification only; not a standalone VLNS runtime."
+        }
+      ],
+      "contract_surfaces": [
+        "docs/VLNS_OPERATING_DEVELOPMENT_SPEC.md"
+      ],
+      "runtime": {
+        "status": "SPECIFIED_NOT_CONNECTED",
+        "endpoint": null,
+        "health_route": null,
+        "proof_required": [
+          "identity_admission",
+          "versioned_interface_contract",
+          "authorized_endpoint_source",
+          "health_and_behavior_receipt"
+        ]
+      }
+    },
+    {
+      "system_id": "VX",
+      "role": "governed_execution_runtime_state_replay_verification",
+      "identity_status": "SOURCE_OBSERVED",
+      "repository_surfaces": [
+        {
+          "repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+          "status": "SOURCE_OBSERVED",
+          "evidence": [
+            "README.md"
+          ],
+          "note": "Repository presence is not runtime or executable-entrypoint proof."
+        },
+        {
+          "repository": "fisallllll280-code/VX-runtime",
+          "status": "CONTRACT_PENDING",
+          "evidence": [
+            "deploy/federation/federation.yaml"
+          ],
+          "note": "Listed by the federation manifest; independent repository/interface evidence must be collected."
+        }
+      ],
+      "contract_surfaces": [
+        "deploy/federation/federation.yaml",
+        "docs/integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md"
+      ],
+      "runtime": {
+        "status": "SPECIFIED_NOT_CONNECTED",
+        "endpoint": null,
+        "health_route": null,
+        "proof_required": [
+          "repository_revision",
+          "dependency_resolution",
+          "entrypoint",
+          "startup_receipt",
+          "health_receipt",
+          "replay_and_execution_tests"
+        ]
+      }
+    },
+    {
+      "system_id": "NEXNET",
+      "role": "discovery_research_synthesis_federation",
+      "identity_status": "IDENTITY_UNVERIFIED",
+      "repository_surfaces": [
+        {
+          "repository": "fisallllll280-code/NEXENT",
+          "status": "IDENTITY_UNVERIFIED",
+          "evidence": [
+            "README.md"
+          ],
+          "note": "NEXNET-to-NEXENT mapping remains unverified."
+        }
+      ],
+      "contract_surfaces": [
+        "deploy/federation/federation.yaml",
+        "docs/tools/ARC_X_FEDERATED_INTEGRATION_LINK_COMPILER_V1.md"
+      ],
+      "runtime": {
+        "status": "SPECIFIED_NOT_CONNECTED",
+        "endpoint": null,
+        "health_route": null,
+        "proof_required": [
+          "identity_admission",
+          "versioned_discovery_contract",
+          "authorized_endpoint_source",
+          "schema_and_behavior_tests"
+        ]
+      }
+    }
+  ],
+  "interface_edges": [
+    {
+      "edge_id": "VAIXLNS-VLNS-01",
+      "source": "VAIXLNS",
+      "target": "VLNS",
+      "interface_type": "REGISTRY_AND_CONTRACT_EXCHANGE",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "bidirectional_read_only",
+      "required_evidence": [
+        "identity_resolution",
+        "schema_digest",
+        "compatibility_report",
+        "contract_test_receipt"
+      ]
+    },
+    {
+      "edge_id": "VAIXLNS-VX-01",
+      "source": "VAIXLNS",
+      "target": "VX",
+      "interface_type": "GOVERNED_EXECUTION_REQUEST_AND_RECEIPT",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "request_and_receipt",
+      "required_evidence": [
+        "task_schema",
+        "policy_decision",
+        "worker_identity",
+        "execution_receipt",
+        "independent_verification"
+      ]
+    },
+    {
+      "edge_id": "VAIXLNS-NEXNET-01",
+      "source": "VAIXLNS",
+      "target": "NEXNET",
+      "interface_type": "DISCOVERY_CANDIDATE_AND_EVIDENCE",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "candidate_in_evidence_out",
+      "required_evidence": [
+        "identity_resolution",
+        "source_provenance",
+        "schema_validation",
+        "candidate_admission_receipt"
+      ]
+    },
+    {
+      "edge_id": "VLNS-VX-01",
+      "source": "VLNS",
+      "target": "VX",
+      "interface_type": "WORKFLOW_ORCHESTRATION",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "workflow_request_and_status",
+      "required_evidence": [
+        "identity_resolution",
+        "workflow_schema",
+        "capability_authorization",
+        "state_transition_tests"
+      ]
+    },
+    {
+      "edge_id": "VLNS-NEXNET-01",
+      "source": "VLNS",
+      "target": "NEXNET",
+      "interface_type": "DISCOVERY_AND_DEVELOPMENT_HANDOFF",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "request_and_candidate",
+      "required_evidence": [
+        "identity_resolution",
+        "input_output_schema",
+        "lineage",
+        "negative_tests"
+      ]
+    },
+    {
+      "edge_id": "VX-NEXNET-01",
+      "source": "VX",
+      "target": "NEXNET",
+      "interface_type": "BOUNDED_TASK_AND_RESULT_HANDOFF",
+      "transport": "NOT_CONFIGURED",
+      "status": "CONTRACT_PENDING",
+      "direction": "authorized_task_and_result",
+      "required_evidence": [
+        "task_contract",
+        "sandbox_policy",
+        "execution_receipt",
+        "result_validation"
+      ]
+    }
+  ],
+  "live_activation_gate": {
+    "required_for_each_edge": [
+      "identity_status_resolved",
+      "versioned_input_schema",
+      "versioned_output_schema",
+      "authn_authz_contract",
+      "timeout_retry_idempotency_policy",
+      "negative_tests",
+      "revision_bound_evidence",
+      "independent_review"
+    ],
+    "forbidden_until_gate_passes": [
+      "production_write",
+      "canonical_promotion",
+      "unbounded_network_probe",
+      "self_attested_verified_state"
+    ]
+  }
+}

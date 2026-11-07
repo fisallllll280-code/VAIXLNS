@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/vaixlns-language-compilation-record.schema.json",
+  "title": "VAIXLNS Typed Engineering Language Compilation Record",
+  "description": "Provenance-bearing parse/type-check/compile result. A language artifact cannot authorize execution or canonical writes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "compile_id",
+    "language_family",
+    "grammar_version",
+    "compiler_id",
+    "compiler_version",
+    "source_artifact_refs",
+    "source_digest",
+    "parse_status",
+    "typecheck_status",
+    "unit_analysis_status",
+    "eir_ref",
+    "proof_obligation_refs",
+    "policy_version",
+    "execution_authority",
+    "canonical_write_allowed"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "compile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language_family": {
+      "enum": [
+        "VSL",
+        "VML",
+        "VDL",
+        "VPL",
+        "VQL",
+        "MAL",
+        "NEX-DSL",
+        "NEO",
+        "OTHER"
+      ]
+    },
+    "grammar_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compiler_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compiler_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_artifact_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "parse_status": {
+      "enum": [
+        "PARSED",
+        "PARSE_ERROR",
+        "AMBIGUOUS",
+        "UNSUPPORTED_SYNTAX",
+        "PENDING"
+      ]
+    },
+    "ast_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "typecheck_status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "PENDING",
+        "NOT_RUN"
+      ]
+    },
+    "unit_analysis_status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "INCONCLUSIVE",
+        "PENDING",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "diagnostic_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "typed_model_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eir_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "proof_obligation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compiled_task_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "execution_authority": {
+      "type": "string",
+      "const": "NONE"
+    },
+    "canonical_write_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "external_side_effects_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_refs",
+        "created_at"
+      ],
+      "properties": {
+        "parent_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "previous_compile_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "extensions": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "parse_status": {
+            "const": "PARSED"
+          }
+        },
+        "required": [
+          "parse_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "ast_digest": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "typecheck_status": {
+            "const": "PASS"
+          }
+        },
+        "required": [
+          "typecheck_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "ast_digest": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "eir_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "unit_analysis_status": {
+            "const": "FAIL"
+          }
+        },
+        "required": [
+          "unit_analysis_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "typecheck_status": {
+            "enum": [
+              "FAIL",
+              "PENDING"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

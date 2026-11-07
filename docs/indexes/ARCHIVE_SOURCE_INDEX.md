@@ -45,3 +45,12 @@
 ## Preservation
 
 The source corpus was hashed during recovery. The authoritative hashes remain in the local recovery bundle generated with this change.
+
+
+## 2026-10-10 current-workspace source snapshot (reconciliation required)
+
+A fresh local inventory found **69 text files, 65 unique exact-byte SHA-256 contents, and four duplicate copies across two exact-duplicate groups**. Six files are short export/tool traces (two unique contents); one unrelated event-tracking file was excluded, leaving 62 project-source candidates / unique contents under the mechanical filename/size classification. One PNG was also present but is not part of the text index.
+
+This current snapshot exceeds the prior 36-file / 30-project-source scan recorded above. Treat the older table as a historical scan, not current exhaustive coverage. Full reconciliation should preserve every source hash and lineage, and still requires acquiring the original row-by-row 0001–2750 index.
+
+See [Deep Agent and Innovation Audit 2026-10-10](../audits/VAIXLNS_DEEP_AGENT_AND_INNOVATION_AUDIT_2026-10-10.md) for agent code/CI status and remaining live-runtime gaps.

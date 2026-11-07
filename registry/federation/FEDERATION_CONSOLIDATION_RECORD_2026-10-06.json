@@ -1,0 +1,45 @@
+{
+  "schema": "VAIXLNS.FederationConsolidationRecord.v1",
+  "record_id": "FED-CONSOLIDATION-2026-10-06-001",
+  "date": "2026-10-06",
+  "authority": "VAIXLNS",
+  "canonical_root": "VAIXLNS",
+  "golden_source": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "mode": "SELECTIVE_CONSOLIDATION",
+  "actions": [
+    {
+      "source": "fisallllll280-code/VX-runtime",
+      "target": "fisallllll280-code/VAIXLNS-unified",
+      "status": "SOURCE_PRESERVED",
+      "reason": "runtime contracts/specification require executable implementation before VERIFIED"
+    },
+    {
+      "source": "fisallllll280-code/vaixlns-core",
+      "target": "fisallllll280-code/VAIXLNS-unified",
+      "status": "SOURCE_PRESERVED",
+      "reason": "core architecture retained for reconciliation"
+    },
+    {
+      "source": "fisallllll280-code/vaixlns-csd-kernel",
+      "target": "fisallllll280-code/VAIXLNS-unified",
+      "status": "SOURCE_PRESERVED",
+      "reason": "specialized kernel retained as distinct lineage"
+    },
+    {
+      "source": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "target": "fisallllll280-code/VAIXLNS-unified",
+      "status": "QUARANTINED",
+      "reason": "incomplete build surface"
+    }
+  ],
+  "invariants": [
+    "no_silent_deletion",
+    "source_lineage_preserved",
+    "no_blind_merge",
+    "no_verified_without_reproducible_evidence",
+    "canonical_contracts_remain_in_VAIXLNS"
+  ],
+  "result": "CONSOLIDATION_EXECUTED_AS_FEDERATED_SOURCE_PRESERVATION",
+  "verification_status": "NOT_YET_VERIFIED"
+}

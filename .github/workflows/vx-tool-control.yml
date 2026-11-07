@@ -1,0 +1,61 @@
+name: VX Tool Control Contract
+
+on:
+  push:
+    branches: ["main", "feat/sovereign-tool-control-fabric-v1"]
+    paths:
+      - "schemas/vx-tool-action-envelope.v1.schema.json"
+      - "schemas/vx-tool-policy-decision.v1.schema.json"
+      - "schemas/vx-agent-runtime-profile.v1.schema.json"
+      - "registry/vx-tool-control-default-policy.v1.json"
+      - "registry/vx-agent-runtime-profiles.v1.json"
+      - "tools/vx_tool_control_reference.py"
+      - "tests/test_vx_tool_control_reference.py"
+      - "docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md"
+      - "docs/architecture/VX_UNIVERSAL_AGENT_RUNTIME_AND_ENGINEERING_FABRIC_V1.md"
+      - ".github/workflows/vx-tool-control.yml"
+  pull_request:
+    paths:
+      - "schemas/vx-tool-action-envelope.v1.schema.json"
+      - "schemas/vx-tool-policy-decision.v1.schema.json"
+      - "schemas/vx-agent-runtime-profile.v1.schema.json"
+      - "registry/vx-tool-control-default-policy.v1.json"
+      - "registry/vx-agent-runtime-profiles.v1.json"
+      - "tools/vx_tool_control_reference.py"
+      - "tests/test_vx_tool_control_reference.py"
+      - "docs/tools/VAIXLNS_SOVEREIGN_TOOL_CONTROL_FABRIC_V1.md"
+      - "docs/architecture/VX_UNIVERSAL_AGENT_RUNTIME_AND_ENGINEERING_FABRIC_V1.md"
+      - ".github/workflows/vx-tool-control.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vx-tool-control:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate machine-readable JSON
+        run: |
+          set -euo pipefail
+          python -m json.tool schemas/vx-tool-action-envelope.v1.schema.json >/dev/null
+          python -m json.tool schemas/vx-tool-policy-decision.v1.schema.json >/dev/null
+          python -m json.tool schemas/vx-agent-runtime-profile.v1.schema.json >/dev/null
+          python -m json.tool registry/vx-tool-control-default-policy.v1.json >/dev/null
+          python -m json.tool registry/vx-agent-runtime-profiles.v1.json >/dev/null
+
+      - name: Compile evaluator and tests
+        run: |
+          python -m py_compile tools/vx_tool_control_reference.py tests/test_vx_tool_control_reference.py
+
+      - name: Run fail-closed evaluator tests
+        run: |
+          python -m unittest discover -s tests -p "test_vx_tool_control_reference.py" -v

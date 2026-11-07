@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fisallllll280-code/VAIXLNS/blob/main/schemas/vx-tool-policy-decision.v1.schema.json",
+  "title": "VX Tool Policy Decision v1",
+  "description": "Auditable policy evaluation result. ALLOW authorizes only the exact bound action scope until expiry; it does not certify successful execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "action_id",
+    "evaluated_at",
+    "expires_at",
+    "policy_binding",
+    "decision",
+    "reason_codes",
+    "effective_authority",
+    "gate_results",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "decision_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "action_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "version",
+        "digest"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "HOLD",
+        "QUARANTINE",
+        "REJECT"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "POLICY_ACCEPTED",
+          "MISSING_IDENTITY",
+          "UNKNOWN_TOOL",
+          "UNKNOWN_CAPABILITY",
+          "INVALID_CONTRACT",
+          "EXPIRED_ENVELOPE",
+          "STALE_PROOF",
+          "MISSING_AUTHORITY",
+          "SCOPE_MISMATCH",
+          "POLICY_CONFLICT",
+          "BUDGET_EXCEEDED",
+          "APPROVAL_REQUIRED",
+          "APPROVAL_INVALID",
+          "APPROVAL_EXPIRED",
+          "SELF_APPROVAL",
+          "UNVERIFIABLE_IMPACT",
+          "UNSAFE_ENVIRONMENT",
+          "SIGNATURE_INVALID",
+          "TOOL_QUARANTINED",
+          "CAPABILITY_NOT_ADMITTED",
+          "POLICY_NOT_ADMITTED",
+          "MISSING_EVIDENCE",
+          "RESOURCE_UNAVAILABLE",
+          "IDEMPOTENCY_CONFLICT",
+          "POLICY_VERSION_MISMATCH",
+          "EMERGENCY_STOP"
+        ]
+      }
+    },
+    "effective_authority": {
+      "enum": [
+        "NONE",
+        "A0_OBSERVE",
+        "A1_RESEARCH",
+        "A2_PROPOSE",
+        "A3_SANDBOX_MUTATE",
+        "A4_BRANCH_MUTATE",
+        "A5_RELEASE_PREPARE",
+        "A6_RELEASE_DEPLOY",
+        "A7_IRREVERSIBLE_OR_PHYSICAL"
+      ]
+    },
+    "gate_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gate_id",
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "gate_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "HOLD",
+              "FAIL",
+              "NOT_REQUIRED"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "granted_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_execution_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_network_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_write_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution_permit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_action": {
+      "enum": [
+        "EXECUTE_EXACT_ACTION",
+        "REQUEST_APPROVAL",
+        "REPAIR_ENVELOPE",
+        "REVERIFY",
+        "QUARANTINE_TOOL",
+        "ABORT",
+        "NO_ACTION"
+      ]
+    },
+    "decision_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

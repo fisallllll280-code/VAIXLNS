@@ -1,0 +1,29 @@
+name: VCEF Computer Engineering Innovation Preflight
+on:
+  pull_request:
+    paths:
+      - "registry/computer-engineering/**"
+      - "scripts/validate_vcef_innovation_index.py"
+      - "tests/test_vcef_innovation_index.py"
+      - ".github/workflows/vcef-innovation-preflight.yml"
+  push:
+    branches: [main]
+    paths:
+      - "registry/computer-engineering/**"
+      - "scripts/validate_vcef_innovation_index.py"
+      - "tests/test_vcef_innovation_index.py"
+      - ".github/workflows/vcef-innovation-preflight.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  index-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/validate_vcef_innovation_index.py
+      - run: python -m unittest discover -s tests -p 'test_vcef_innovation_index.py' -v

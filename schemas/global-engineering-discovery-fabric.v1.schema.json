@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schema/global-engineering-discovery-fabric-v1.json",
+  "title": "VAIXLNS Global Engineering Discovery and Synthesis Fabric",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_id",
+    "system",
+    "authority",
+    "purpose",
+    "design_constraints",
+    "capabilities",
+    "innovation_scoring",
+    "candidate_interoperability_sources",
+    "lifecycle",
+    "initial_delivery_plan",
+    "status",
+    "evidence_state"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "record_id": {"const": "VAIXLNS.GLOBAL_ENGINEERING_DISCOVERY_FABRIC.V1"},
+    "system": {
+      "type": "object",
+      "required": ["id", "name", "short_name", "parent", "system_boundary", "state"],
+      "properties": {
+        "id": {"const": "VAIXLNS.GEDF"},
+        "name": {"type": "string", "minLength": 8},
+        "short_name": {"const": "GEDF"},
+        "parent": {"const": "VAIXLNS"},
+        "system_boundary": {"type": "string", "minLength": 20},
+        "state": {"enum": ["PROPOSAL", "SPECIFIED", "PARTIAL"]}
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["canonical_source", "authority_anchor", "master_index", "canonical_mutation", "state_promotion"],
+      "properties": {
+        "canonical_source": {"const": "project.genome::v1.0.0"},
+        "authority_anchor": {"const": "Ω0_GENESIS_CORE"},
+        "master_index": {"const": "Ω.000"},
+        "canonical_mutation": {"const": "NOT_AUTHORIZED"},
+        "state_promotion": {"const": "DISABLED"}
+      },
+      "additionalProperties": false
+    },
+    "purpose": {"type": "string", "minLength": 40},
+    "design_constraints": {"type": "array", "minItems": 5, "items": {"type": "string"}},
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "state", "priority", "purpose", "inputs", "outputs", "acceptance"],
+        "properties": {
+          "id": {"pattern": "^GEDF-[0-9]{3}$"},
+          "name": {"type": "string", "minLength": 3},
+          "state": {"enum": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED", "PARTIAL", "VERIFIED", "QUARANTINED", "SUPERSEDED"]},
+          "priority": {"enum": ["P0", "P1", "P2"]},
+          "purpose": {"type": "string", "minLength": 10},
+          "inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "outputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "acceptance": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "innovation_scoring": {
+      "type": "object",
+      "required": ["total", "dimensions", "rules"],
+      "properties": {
+        "total": {"const": 100},
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "weight"],
+            "properties": {"id": {"type": "string"}, "weight": {"type": "integer", "minimum": 0, "maximum": 100}},
+            "additionalProperties": false
+          }
+        },
+        "rules": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "candidate_interoperability_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["provider", "capability", "official_reference", "integration_state", "relationship_state"],
+        "properties": {
+          "provider": {"type": "string"},
+          "capability": {"type": "string"},
+          "official_reference": {"type": "string", "format": "uri"},
+          "integration_state": {"type": "string"},
+          "relationship_state": {"const": "NO_PARTNERSHIP_CLAIM"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "lifecycle": {"type": "array", "items": {"enum": ["PROPOSAL", "SPECIFIED", "IMPLEMENTED", "PARTIAL", "VERIFIED", "QUARANTINED", "SUPERSEDED"]}},
+    "initial_delivery_plan": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "status": {"enum": ["PROPOSAL", "SPECIFIED", "PARTIAL"]},
+    "evidence_state": {"enum": ["NO_RUNTIME_EVIDENCE_YET", "PARTIAL_EVIDENCE", "REPRODUCIBLE_EVIDENCE"]}
+  },
+  "additionalProperties": false
+}

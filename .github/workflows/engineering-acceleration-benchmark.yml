@@ -1,0 +1,49 @@
+name: VAIXLNS Engineering Acceleration Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      repeats:
+        description: Number of full-suite and focused-route runs per case (1-10)
+        required: true
+        default: "3"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout pinned workflow revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate benchmark harness
+        run: |
+          python -m unittest discover -s tests -p 'test_engineering_feedback_benchmark.py' -v
+          python -m unittest discover -s tests -p 'test_engineering_test_router.py' -v
+
+      - name: Measure full versus focused feedback
+        env:
+          REPEATS: ${{ inputs.repeats }}
+        run: |
+          python tools/benchmark_engineering_feedback.py \
+            --repeats "$REPEATS" \
+            --output engineering-acceleration-benchmark.json
+
+      - name: Upload raw measurements and report
+        if: always() && hashFiles('engineering-acceleration-benchmark.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-engineering-acceleration-benchmark
+          path: engineering-acceleration-benchmark.json
+          if-no-files-found: error

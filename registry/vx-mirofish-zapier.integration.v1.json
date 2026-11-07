@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "integration_id": "VX-MIROFISH-ZAPIER",
+  "canonical_owner": "VAIXLNS",
+  "execution_boundary": "VX",
+  "implementation": {
+    "repository": "fisallllll280-code/vx-agents-fabric",
+    "branch": "feat/mirofish-scenario-planning-20261027",
+    "sha": "c23f4454045b8766e3b7aeece2bb9809205f2f02",
+    "pull_request": "https://github.com/fisallllll280-code/vx-agents-fabric/pull/11",
+    "status": "IMPLEMENTED_ON_FEATURE_BRANCH",
+    "admission": "NOT_GRANTED"
+  },
+  "upstream": {
+    "repository": "666ghj/MiroFish",
+    "sha": "7657031ac01184afe2cb220f5ee3545573b5e843",
+    "license_observed": "AGPL-3.0",
+    "relationship": "WORKFLOW_IDEAS_ONLY",
+    "source_code_vendored": false,
+    "runtime_connected": false
+  },
+  "agents": [
+    {
+      "role_id": "VX-SIM-PLAN",
+      "version": "1.0.0",
+      "tool_id": "simulation.plan_scenarios",
+      "capability": "scenario_planning",
+      "scope": "planning",
+      "admission": "DESIGN_ONLY"
+    },
+    {
+      "role_id": "VX-AUTO-ZAPIER",
+      "version": "1.0.0",
+      "tool_id": "automation.plan_zapier",
+      "capability": "automation_planning",
+      "scope": "planning",
+      "admission": "DESIGN_ONLY"
+    }
+  ],
+  "implemented": [
+    "offline_source_linked_actor_and_intervention_plan",
+    "baseline_and_counterfactual_variant_contract",
+    "deterministic_plan_fingerprint",
+    "shared_source_root_grouping",
+    "digest_bound_zapier_action_intent",
+    "existing_VX_tool_gate_and_receipts"
+  ],
+  "not_implemented_or_not_connected": [
+    "mirofish_runtime_execution",
+    "live_zapier_account_or_MCP_session",
+    "automatic_external_action_delivery",
+    "independent_prediction_validation",
+    "production_admission"
+  ],
+  "tests": {
+    "scope": "local compilers and existing fabric controls",
+    "count": 78,
+    "result": "PASS_LOCAL",
+    "receipt": "https://github.com/fisallllll280-code/vx-agents-fabric/blob/c23f4454045b8766e3b7aeece2bb9809205f2f02/docs/evidence/mirofish-zapier-local-20261027.json",
+    "live_tests": "NOT_RUN",
+    "admission_fixture": "SYNTHETIC_ONLY"
+  },
+  "zapier": {
+    "official_distribution": "https://github.com/zapier/zapier-mcp",
+    "documented_mcp_endpoint": "https://mcp.zapier.com/api/v1/connect",
+    "state": "DISCOVERED_NOT_AUTHENTICATED",
+    "available_connector_search": "NO_MATCH_IN_RETURNED_RESULTS",
+    "execute_actions": false,
+    "runtime_credentials": "NOT_OBSERVED"
+  },
+  "policy": {
+    "production_gate": "HOLD",
+    "external_spend_sar": 0,
+    "allow_self_authorization": false,
+    "allow_unreviewed_payload_transfer": false,
+    "simulation_is_real_world_evidence": false,
+    "reports_from_same_root_are_independent": false
+  },
+  "references": {
+    "contract": "docs/integration/VX_MIROFISH_ZAPIER_INTEGRATION_V1.md",
+    "existing_fabric": "registry/vx-agents-fabric.integration.v1.json"
+  }
+}

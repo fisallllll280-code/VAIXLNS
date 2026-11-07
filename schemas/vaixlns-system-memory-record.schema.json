@@ -1,0 +1,471 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/vaixlns-system-memory-record.schema.json",
+  "title": "VAIXLNS System Memory Record",
+  "description": "Typed provenance-bearing memory record. Validation does not imply trust, proof, or canonical admission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "record_type",
+    "version",
+    "title",
+    "epistemic_state",
+    "trust_state",
+    "source_refs",
+    "lineage",
+    "preservation_state",
+    "privacy_class",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_type": {
+      "enum": [
+        "SOURCE_OBJECT",
+        "OBSERVATION",
+        "CLAIM",
+        "EVIDENCE",
+        "ASSUMPTION",
+        "PROOF",
+        "DECISION",
+        "SPECIFICATION",
+        "IMPLEMENTATION",
+        "EXECUTION_RECEIPT",
+        "FAILURE",
+        "INNOVATION_CANDIDATE",
+        "LANGUAGE_ARTIFACT",
+        "METRIC"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "family_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "domain": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "system_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repository_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "source_kind",
+          "uri",
+          "revision",
+          "content_sha256"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_kind": {
+            "enum": [
+              "REPOSITORY",
+              "FILE",
+              "WEB",
+              "PAPER",
+              "DATASET",
+              "RUNTIME",
+              "CONVERSATION",
+              "ARCHIVE",
+              "OTHER"
+            ]
+          },
+          "uri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "path_or_location": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "retrieved_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "license_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trust_notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "epistemic_state": {
+      "enum": [
+        "DISCOVERED",
+        "INGESTED",
+        "OBSERVED",
+        "INFERRED",
+        "SUPPORTED",
+        "REPLICATED",
+        "SPECIFIED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "CANONICAL",
+        "PARTIAL",
+        "MISSING",
+        "CONFLICT",
+        "UNRESOLVED",
+        "STALE",
+        "PROPOSAL",
+        "SUPERSEDED",
+        "REJECTED_WITH_REASON"
+      ]
+    },
+    "trust_state": {
+      "enum": [
+        "UNTRUSTED",
+        "SCREENED",
+        "TRUSTED_FOR_DECLARED_USE",
+        "QUARANTINED",
+        "REVOKED"
+      ]
+    },
+    "privacy_class": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ]
+    },
+    "licence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumption_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation_type",
+          "target_id",
+          "status"
+        ],
+        "properties": {
+          "relation_type": {
+            "enum": [
+              "DEPENDS_ON",
+              "DERIVED_FROM",
+              "DUPLICATE_OF",
+              "NEAR_DUPLICATE_OF",
+              "TRANSLATION_OF",
+              "FORK_OF",
+              "CONTRADICTS",
+              "SUPPORTS",
+              "SUPERSEDES",
+              "RELATED_TO",
+              "SAME_IDENTITY_AS"
+            ]
+          },
+          "target_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PROPOSED",
+              "VERIFIED",
+              "REJECTED",
+              "UNRESOLVED"
+            ]
+          },
+          "rationale": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_refs",
+        "root_source_refs"
+      ],
+      "properties": {
+        "parent_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "root_source_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "supersedes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "previous_version_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "preservation_state": {
+      "enum": [
+        "ORIGINAL",
+        "DERIVED",
+        "ACTIVE",
+        "SUPERSEDED",
+        "ARCHIVED",
+        "TOMBSTONED_REDACTED"
+      ]
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NONE_DECLARED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "UNKNOWN",
+            "INCONCLUSIVE"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "confidence_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_owner",
+        "decision_ref",
+        "policy_version"
+      ],
+      "properties": {
+        "canonical_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "policy_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_write_allowed": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valid_from": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valid_until": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "extraction_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "normalization_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "index_build_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conflict_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "object"
+    }
+  }
+}

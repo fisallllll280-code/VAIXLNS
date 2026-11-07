@@ -1,0 +1,98 @@
+name: VAIXLNS Continuous Promotion Gate
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+  pull-requests: read
+  checks: read
+  statuses: read
+
+concurrency:
+  group: vaixlns-continuous-promotion
+  cancel-in-progress: false
+
+jobs:
+  plan-and-promote:
+    if: github.repository == 'fisallllll280-code/VAIXLNS'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: read
+      statuses: read
+    steps:
+      - name: Check out trusted default-branch policy code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Require the repository promotion token
+        env:
+          PROMOTION_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$PROMOTION_TOKEN" ]; then
+            echo "::error::VAIXLNS_REPO_ADMIN_TOKEN is missing. No PR will be merged."
+            exit 1
+          fi
+
+      - name: Load open pull requests and observed check results
+        env:
+          GH_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
+        run: |
+          gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --state open \
+            --base main \
+            --limit 100 \
+            --json number,title,url,isDraft,reviewDecision,mergeable,baseRefName,headRefOid,statusCheckRollup \
+            > continuous-promotion-input.json
+
+      - name: Run deterministic fail-closed promotion gate
+        run: |
+          python scripts/continuous_promotion_gate.py \
+            --input continuous-promotion-input.json \
+            --output continuous-promotion-plan.json
+          cat continuous-promotion-plan.json
+
+      - name: Merge only approved, fully green, mergeable pull requests
+        env:
+          GH_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
+        run: |
+          mapfile -t eligible < <(
+            python -c 'import json; print("\n".join(str(n) for n in json.load(open("continuous-promotion-plan.json", encoding="utf-8"))["eligible_pr_numbers"]))'
+          )
+          if [ "${#eligible[@]}" -eq 0 ]; then
+            echo "No pull requests satisfy every promotion gate. No merge performed."
+            exit 0
+          fi
+
+          for pr_number in "${eligible[@]}"; do
+            echo "Promoting human-approved PR #$pr_number"
+            gh pr merge "$pr_number" \
+              --repo "$GITHUB_REPOSITORY" \
+              --squash \
+              --delete-branch
+          done
+
+      - name: Preserve promotion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-continuous-promotion-evidence
+          path: |
+            continuous-promotion-input.json
+            continuous-promotion-plan.json
+          if-no-files-found: warn

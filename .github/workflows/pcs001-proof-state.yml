@@ -1,0 +1,22 @@
+name: PCS-001 Proof-Carrying State Tests
+on:
+  push:
+    branches: [main, vx-cgf-pcs001-proof-carrying-state]
+  pull_request:
+    paths:
+      - "scripts/pcs001_validator.py"
+      - "tests/test_pcs001_validator.py"
+      - "docs/canonical/PCS-001-VX-CGF.md"
+      - ".github/workflows/pcs001-proof-state.yml"
+permissions:
+  contents: read
+jobs:
+  pcs001:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test canonical state admission invariant
+        run: python -m unittest discover -s tests -p 'test_pcs001_validator.py' -v

@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "as_of": "2026-10-27",
+  "policy": "preserve-lineage/no-silent-merges",
+  "initiatives": [
+    {
+      "id": "P01",
+      "priority": 1,
+      "name": "Founder debt resolution",
+      "domain": "PERSONAL",
+      "owner": "Individual + licensed legal/bank channels",
+      "status": "ACTION_REQUIRED",
+      "evidence": "User reports an enforcement case; no confidential case documents",
+      "next": "Review Najiz deadlines and request written debt settlement",
+      "requires": [
+        "Personal review"
+      ],
+      "finance": "Separate from project funds"
+    },
+    {
+      "id": "P02",
+      "priority": 2,
+      "name": "SAND demonstrator",
+      "domain": "MIL",
+      "owner": "VAIXLNS GOV",
+      "status": "TESTED_LIMITED",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40441542948",
+      "next": "Functional demo acceptance and accessibility verification",
+      "requires": [
+        "Consent",
+        "No real data"
+      ]
+    },
+    {
+      "id": "P03",
+      "priority": 3,
+      "name": "Eatizaz partnership",
+      "domain": "GOV",
+      "owner": "Partnerships",
+      "status": "DRAFT",
+      "evidence": "docs/gov-sand/MINISTRY_LETTER_DRAFT.md",
+      "next": "Validate legal identity, then submit non-secret inquiry to official channel",
+      "requires": [
+        "Legal entity",
+        "Signatory",
+        "Non-confidential demo"
+      ]
+    },
+    {
+      "id": "P04",
+      "priority": 4,
+      "name": "Rights and provenance protection",
+      "domain": "GOV",
+      "owner": "Founder/legal",
+      "status": "DOCUMENTED",
+      "evidence": "docs/gov-sand/RIGHTS_AND_IP_PLAN.md",
+      "next": "Review historical source ownership, OSS license and contributor agreements",
+      "requires": [
+        "Legal review"
+      ]
+    },
+    {
+      "id": "P05",
+      "priority": 5,
+      "name": "Global verified index",
+      "domain": "CORE",
+      "owner": "VAIXLNS",
+      "status": "TESTED_LIMITED",
+      "evidence": "https://github.com/fisallllll280-code/VAIXLNS/actions/runs/40442954515",
+      "next": "Generate live read-only evidence projection from CI events",
+      "requires": [
+        "Signed evidence",
+        "Strict statuses"
+      ]
+    },
+    {
+      "id": "P06",
+      "priority": 6,
+      "name": "Unified interface",
+      "domain": "UX",
+      "owner": "GOV SAND",
+      "status": "TESTED_LIMITED",
+      "evidence": "web/gov-sand-control-center/index.html",
+      "next": "Visual/mobile accessibility tests, then versioned API schema",
+      "requires": [
+        "No unauthorized integrations"
+      ]
+    },
+    {
+      "id": "P07",
+      "priority": 7,
+      "name": "Multi-repository contracts",
+      "domain": "ARCH",
+      "owner": "VAIXLNS + NEXENT + VAIXLNS-unified",
+      "status": "DESIGNED",
+      "evidence": "docs/gov-sand/INDEX_REVIEW_AND_MERGE_MATRIX_V1.md",
+      "next": "Inventory each repository, define data contracts and integration tests",
+      "requires": [
+        "Preserve canonical ownership"
+      ]
+    },
+    {
+      "id": "P08",
+      "priority": 8,
+      "name": "Finance-to-delivery gates",
+      "domain": "FIN",
+      "owner": "Finance/governance",
+      "status": "DESIGNED",
+      "evidence": "docs/gov-sand/FUNDING_TO_INDEX_EXECUTION_V1.md",
+      "next": "Cost milestones, business eligibility and verified funding applications",
+      "requires": [
+        "No disbursement automation",
+        "Legal entity"
+      ]
+    },
+    {
+      "id": "P09",
+      "priority": 9,
+      "name": "Government/bank adapters",
+      "domain": "GOV",
+      "owner": "Partner authority",
+      "status": "BLOCKED",
+      "evidence": "docs/gov-sand/GOV_CONNECT_ARCHITECTURE.md",
+      "next": "Wait for signed agreements and regulatory authorization",
+      "requires": [
+        "Security",
+        "Privacy",
+        "Permissions"
+      ]
+    },
+    {
+      "id": "P10",
+      "priority": 10,
+      "name": "Military benefits portfolio",
+      "domain": "MIL",
+      "owner": "VAIXLNS research",
+      "status": "PROPOSED",
+      "evidence": "docs/gov-sand/EATIZAZ_INNOVATION_PORTFOLIO_V1.md",
+      "next": "Rank benefits via demand research and synthetic usability testing",
+      "requires": [
+        "Official rules verified"
+      ]
+    }
+  ]
+}

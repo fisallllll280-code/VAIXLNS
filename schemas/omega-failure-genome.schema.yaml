@@ -1,0 +1,34 @@
+schema: vaixlns.omega.failure_genome
+version: "1.0.0"
+status: SPECIFIED
+required:
+  - failure_id
+  - origin
+  - observation
+  - root_cause
+  - provenance
+  - disposition
+properties:
+  failure_id: string
+  origin:
+    agent_id: string
+    repository: string
+    revision: string
+    intent_ref: string
+    specification_ref: string
+  environment: object
+  inputs: array
+  actions: array
+  observations: array
+  failure: object
+  root_cause: object
+  affected_contracts: array
+  affected_systems: array
+  anti_spec: array
+  repair: object
+  verification: array
+  replay_ref: string
+  cross_project_targets: array
+  provenance: object
+  disposition:
+    enum: [OPEN, QUARANTINED, REPAIRED, VERIFIED, INVALID, ARCHIVED]

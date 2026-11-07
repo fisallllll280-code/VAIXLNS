@@ -1,0 +1,595 @@
+{
+  "schema_version": "1.0.0",
+  "status": "BASELINE_REGISTERED",
+  "canonical_owner": "VAIXLNS",
+  "agents": [
+    {
+      "agent_id": "AG-001",
+      "canonical_name": "Index Archaeologist",
+      "family": "recovery",
+      "capabilities": [
+        "archive",
+        "index",
+        "repository"
+      ],
+      "allowed_tools": [
+        "fetch_file",
+        "search"
+      ],
+      "authority_scope": "read-only",
+      "primary_output": "atomic index records",
+      "hard_rule": "source pin + hash + provenance",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-002",
+      "canonical_name": "Identity & Lineage Resolver",
+      "family": "identity",
+      "capabilities": [
+        "identity",
+        "lineage",
+        "alias",
+        "supersession"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "read-only",
+      "primary_output": "identity/lineage proposals",
+      "hard_rule": "never silent-merge conflicts",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-003",
+      "canonical_name": "Capability Analyst",
+      "family": "capability",
+      "capabilities": [
+        "capability",
+        "gap",
+        "genome"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "analysis",
+      "primary_output": "capability graph + gaps",
+      "hard_rule": "requires source evidence",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-004",
+      "canonical_name": "Architecture Analyst",
+      "family": "architecture",
+      "capabilities": [
+        "architecture genome",
+        "topology",
+        "impact"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "analysis",
+      "primary_output": "architecture genome + deltas",
+      "hard_rule": "no direct production mutation",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-005",
+      "canonical_name": "Research / Evidence Agent",
+      "family": "evidence",
+      "capabilities": [
+        "research",
+        "provenance",
+        "source quality"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "research",
+      "primary_output": "evidence records + claims",
+      "hard_rule": "claims retain uncertainty",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-006",
+      "canonical_name": "Contradiction & Reality Auditor",
+      "family": "audit",
+      "capabilities": [
+        "contradiction",
+        "reality divergence"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "analysis",
+      "primary_output": "conflict/divergence reports",
+      "hard_rule": "conflicts remain explicit",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-007",
+      "canonical_name": "Innovation Synthesizer",
+      "family": "innovation",
+      "capabilities": [
+        "hypothesis",
+        "novelty",
+        "innovation"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "proposal",
+      "primary_output": "innovation candidates",
+      "hard_rule": "output remains PROPOSED",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-008",
+      "canonical_name": "Architecture Search / Forge Agent",
+      "family": "forge",
+      "capabilities": [
+        "architecture search",
+        "composition",
+        "generation"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "proposal",
+      "primary_output": "candidate architecture + IR",
+      "hard_rule": "no direct production mutation",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-009",
+      "canonical_name": "Adversarial / Security Agent",
+      "family": "security",
+      "capabilities": [
+        "threats",
+        "mutation",
+        "fault injection"
+      ],
+      "allowed_tools": [
+        "search",
+        "fetch_file"
+      ],
+      "authority_scope": "analysis",
+      "primary_output": "attack scenarios + security obligations",
+      "hard_rule": "external inputs treated as untrusted data",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-010",
+      "canonical_name": "Verification & Proof Agent",
+      "family": "verification",
+      "capabilities": [
+        "tests",
+        "proof",
+        "conformance",
+        "replay"
+      ],
+      "allowed_tools": [
+        "fetch_file",
+        "search"
+      ],
+      "authority_scope": "verification",
+      "primary_output": "verification/proof package",
+      "hard_rule": "agreement is not proof",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-011",
+      "canonical_name": "Runtime / Integration Agent",
+      "family": "runtime",
+      "capabilities": [
+        "execution",
+        "integration",
+        "contracts"
+      ],
+      "allowed_tools": [
+        "fetch_file",
+        "search"
+      ],
+      "authority_scope": "execution",
+      "primary_output": "events,state,execution evidence",
+      "hard_rule": "must pass admission/authority gates",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-012",
+      "canonical_name": "Operations / Recovery Agent",
+      "family": "operations",
+      "capabilities": [
+        "readiness",
+        "failure",
+        "recovery",
+        "replay"
+      ],
+      "allowed_tools": [
+        "fetch_file",
+        "search"
+      ],
+      "authority_scope": "execution",
+      "primary_output": "incident/recovery evidence",
+      "hard_rule": "no ungoverned self-modification",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    },
+    {
+      "agent_id": "AG-013",
+      "canonical_name": "Meta-Evolution Judge",
+      "family": "governance",
+      "capabilities": [
+        "admission",
+        "evolution",
+        "authority",
+        "policy"
+      ],
+      "allowed_tools": [
+        "fetch_file",
+        "search"
+      ],
+      "authority_scope": "governance",
+      "primary_output": "ADMIT/REJECT/HOLD/RETURN_FOR_RESEARCH",
+      "hard_rule": "cannot redefine Constitution",
+      "lifecycle": [
+        "INTENT",
+        "CONTEXT",
+        "DECOMPOSE",
+        "PLAN",
+        "ROUTE",
+        "EVIDENCE",
+        "EXECUTE",
+        "OBSERVE",
+        "VERIFY",
+        "RECONCILE",
+        "RECORD",
+        "GOVERN",
+        "COMMIT_OR_HOLD"
+      ],
+      "handoff_format": [
+        "task_id",
+        "source_agent",
+        "target_agent",
+        "reason",
+        "required_capabilities",
+        "input_artifact_ids",
+        "evidence_refs",
+        "constraints",
+        "expected_output",
+        "authority_scope",
+        "expiry"
+      ]
+    }
+  ]
+}

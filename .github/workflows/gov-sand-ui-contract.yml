@@ -1,0 +1,15 @@
+name: GOV SAND UI contracts
+on:
+  pull_request:
+    paths: ['web/gov-sand-control-center/**', 'tests/test_gov_sand_ui_contract.py', '.github/workflows/gov-sand-ui-contract.yml']
+  push:
+    paths: ['web/gov-sand-control-center/**', 'tests/test_gov_sand_ui_contract.py', '.github/workflows/gov-sand-ui-contract.yml']
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m unittest discover -s tests -p 'test_gov_sand_ui_contract.py' -v

@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0.0",
+  "index_id": "Ω.000",
+  "name": "VAIXLNS Master Index",
+  "status": "CANONICAL",
+  "authority": "VAIXLNS",
+  "golden_source": "project.genome::v1.0.0",
+  "authority_anchor": "Ω0_GENESIS_CORE",
+  "records": [
+    {
+      "id": "VAIXLNS",
+      "type": "SYSTEM",
+      "role": "CANONICAL_CONTROL_PLANE",
+      "lifecycle_state": "ACTIVE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md",
+        "scripts/admission_gate.py",
+        "scripts/federation_integrity_gate.py"
+      ]
+    },
+    {
+      "id": "VV",
+      "type": "SYSTEM",
+      "role": "KNOWLEDGE_DISCOVERY_FABRIC",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_GLOBAL_FABRIC.md"
+      ]
+    },
+    {
+      "id": "VX",
+      "type": "SYSTEM",
+      "role": "EXECUTION_AND_GENERATION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "PARTIAL",
+      "canonical_owner": "VAIXLNS-unified",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_GLOBAL_FABRIC.md",
+        "docs/indexes/REPOSITORY_MERGE_MATRIX_V1.md",
+        "docs/architecture/VX_FEDERATION_GATE_V1.md"
+      ]
+    },
+    {
+      "id": "XV",
+      "type": "SYSTEM",
+      "role": "INTELLIGENCE_PLANNING_EVOLUTION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/omega/VAIXLNS_INTELLIGENCE_FEDERATION.md"
+      ]
+    },
+    {
+      "id": "NEXENT",
+      "type": "SYSTEM",
+      "role": "DISCOVERY_RESEARCH_SYNTHESIS",
+      "lifecycle_state": "ACTIVE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "NEXENT",
+      "evidence_refs": [
+        "docs/indexes/REPOSITORY_FEDERATION_INDEX.md"
+      ]
+    },
+    {
+      "id": "Ω.PATTERN_FOUNDRY.001",
+      "type": "CAPABILITY",
+      "role": "PRIVATE_PATTERN_INVENTION_AND_ADVERSARIAL_EVALUATION",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "Ω-Pattern Forest",
+      "evidence_refs": [
+        "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md",
+        "schemas/omega-pattern-genome.schema.yaml",
+        "schemas/omega-pattern-attack.schema.yaml",
+        "scripts/omega_pattern_foundry.py",
+        "tests/test_omega_pattern_foundry.py"
+      ]
+    },
+    {
+      "id": "VX.FEDERATION.GATE.001",
+      "type": "CAPABILITY",
+      "role": "MULTI_INSTANCE_IDENTITY_CAPABILITY_ROUTING_AND_FAILURE_ISOLATION",
+      "lifecycle_state": "PROPOSED",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VX Cognitive Federation",
+      "evidence_refs": [
+        "docs/architecture/VX_FEDERATION_GATE_V1.md",
+        "schemas/vx-federation-instance.schema.yaml",
+        "scripts/vx_federation_gate.py",
+        "tests/test_vx_federation_gate.py"
+      ]
+    },
+    {
+      "id": "VX-STAGE-001",
+      "type": "RUNTIME_SURFACE",
+      "role": "SINGLE_INSTANCE_STAGE_CONFORMANCE",
+      "lifecycle_state": "STAGE",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VX.FEDERATION.GATE.001",
+      "evidence_refs": [
+        "scripts/vx_stage_runtime.py",
+        "tests/test_vx_stage_runtime.py",
+        "schemas/vx-stage-evidence.schema.json",
+        "docs/operations/VX_STAGE_RUNTIME_RUNBOOK_V1.md"
+      ]
+    },
+    {
+      "id": "VX-STAGE-SECURITY-001",
+      "type": "CONTROL",
+      "role": "STAGE_AUTHORITY_AND_ISOLATION_PROFILE",
+      "lifecycle_state": "STAGE",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "evidence_refs": [
+        "docs/security/VX_STAGE_SECURITY_PROFILE_V1.md",
+        "docs/operations/VX_STAGE_RELEASE_CHECKLIST.md"
+      ]
+    },
+    {
+      "id": "VAIXLNS.RESEARCH.DECISION.FABRIC.001",
+      "type": "CAPABILITY",
+      "role": "EVIDENCE_FIRST_RESEARCH_AND_ENGINEERING_DECISION",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "IMPLEMENTED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VAIXLNS",
+      "framework": "Ω.120 Innovation Framework",
+      "execution_repository": "fisallllll280-code/VAIXLNS-unified",
+      "integration_status": "PROVIDER_NEUTRAL_BOUNDARY; LIVE_PROVIDER_ADAPTERS_PENDING",
+      "evidence_refs": [
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/innovation_control/research_fabric.py",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/tests/test_research_fabric.py",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/config/research-decision-bundle.schema.json",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/blob/main/docs/INNOVATION_RESEARCH_DECISION_FABRIC_V1.md",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690691",
+        "https://github.com/fisallllll280-code/VAIXLNS-unified/actions/runs/37908690717",
+        "agents/agent_fabric.py",
+        "tests/test_agent_fabric.py",
+        "tests/test_mind_federation.py",
+        "docs/agents/AGENT_FABRIC_V1.md"
+      ],
+      "capabilities": [
+        "multi_lane_research_query_planning",
+        "source_provenance_and_content_hashing",
+        "novelty_and_lineage_screening",
+        "claim_support_and_counterevidence_analysis",
+        "engineering_specification_completeness",
+        "deterministic_research_decision_bundle"
+      ],
+      "promotion_rule": "Research output cannot self-promote; downstream innovation proof gates and explicit authority remain mandatory."
+    },
+    {
+      "id": "VAIXLNS.INNOVATION.OPERATION.INDEX.001",
+      "type": "CAPABILITY",
+      "role": "DETERMINISTIC_INNOVATION_CATALOG_AND_OPERATION_MECHANISM_GENERATOR",
+      "lifecycle_state": "EVOLVING",
+      "epistemic_state": "SPECIFIED",
+      "canonical_owner": "VAIXLNS",
+      "parent": "VAIXLNS",
+      "capabilities": [
+        "multi-source-innovation-indexing",
+        "descriptive-and-operational-mechanism-enrichment",
+        "source-provenance-and-status-reconciliation",
+        "deterministic-json-and-markdown-projections",
+        "fail-closed-index-validation",
+        "automated-draft-pull-request-refresh"
+      ],
+      "evidence_refs": [
+        "registry/innovation-operation-profiles.v1.json",
+        "schemas/innovation-operation-index.schema.json",
+        "tools/build_innovation_operation_index.py",
+        "tools/validate_innovation_operation_index.py",
+        "tests/test_innovation_operation_index.py",
+        ".github/workflows/innovation-index-sync.yml"
+      ],
+      "promotion_rule": "This capability cannot promote innovation state or canonical authority. Implementation/readiness status may change only through a separately evidenced review after successful CI and operational verification."
+    }
+  ],
+  "promotion_rules": {
+    "VERIFIED_requires": "executable evidence with reproducible result",
+    "CANONICAL_requires": "VERIFIED evidence plus explicit authority",
+    "relocation_is_not_proof": true,
+    "failure_preserves_previous_canonical_state": true
+  }
+}

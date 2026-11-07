@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/proof-record.schema.json",
+  "title": "VAIXLNS Proof Record",
+  "type": "object",
+  "required": [
+    "proof_id",
+    "claim_id",
+    "statement",
+    "subject",
+    "epistemic_state",
+    "evidence",
+    "verification"
+  ],
+  "properties": {
+    "proof_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "claim_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "epistemic_state": {
+      "enum": [
+        "SPECIFIED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "CANONICAL",
+        "PARTIAL",
+        "MISSING",
+        "CONFLICT",
+        "PROPOSAL",
+        "RECOVERED"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "ref",
+          "digest"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "method",
+        "result"
+      ],
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "PARTIAL"
+          ]
+        },
+        "reproduction_command": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "authority": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

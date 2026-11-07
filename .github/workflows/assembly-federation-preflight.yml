@@ -1,0 +1,33 @@
+name: Assembly Federation Preflight
+on:
+  pull_request:
+    paths:
+      - "registry/assemblies/**"
+      - "scripts/validate_assembly_federation.py"
+      - "tests/test_assembly_federation.py"
+      - ".github/workflows/assembly-federation-preflight.yml"
+  push:
+    branches: [main]
+    paths:
+      - "registry/assemblies/**"
+      - "scripts/validate_assembly_federation.py"
+      - "tests/test_assembly_federation.py"
+      - ".github/workflows/assembly-federation-preflight.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate assembly manifest
+        run: python scripts/validate_assembly_federation.py
+      - name: Adversarial regression tests
+        run: python -m unittest discover -s tests -p 'test_assembly_federation.py' -v

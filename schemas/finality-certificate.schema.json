@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VAIXLNS Finality Certificate V1",
+  "type": "object",
+  "required": [
+    "entity_uid",
+    "canonical_version",
+    "finality_scope",
+    "checks",
+    "evidence",
+    "proof",
+    "governance",
+    "finality"
+  ],
+  "properties": {
+    "entity_uid": {
+      "type": "string"
+    },
+    "canonical_version": {
+      "type": "string"
+    },
+    "specification_version": {
+      "type": "string"
+    },
+    "implementation_version": {
+      "type": "string"
+    },
+    "source_hash": {
+      "type": "string"
+    },
+    "specification_hash": {
+      "type": "string"
+    },
+    "implementation_hash": {
+      "type": "string"
+    },
+    "finality_scope": {
+      "type": "object",
+      "required": [
+        "environment",
+        "authority_domain",
+        "capability_scope",
+        "dependency_set",
+        "policy_set"
+      ],
+      "properties": {
+        "environment": {
+          "type": "string"
+        },
+        "authority_domain": {
+          "type": "string"
+        },
+        "capability_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependency_set": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy_set": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validity_interval": {
+          "type": "object",
+          "properties": {
+            "not_before": {
+              "type": "string"
+            },
+            "not_after": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "evidence_root"
+      ],
+      "properties": {
+        "evidence_root": {
+          "type": "string"
+        },
+        "evidence_manifest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "replay_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "proof": {
+      "type": "object",
+      "required": [
+        "proof_root",
+        "verifier",
+        "verification_version"
+      ],
+      "properties": {
+        "proof_root": {
+          "type": "string"
+        },
+        "verifier": {
+          "type": "string"
+        },
+        "verification_version": {
+          "type": "string"
+        },
+        "proof_objects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "authority_decision",
+        "policy_version"
+      ],
+      "properties": {
+        "authority_decision": {
+          "type": "string"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "commit_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "finality": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "OPERATIONALLY_FINAL",
+            "REVALIDATION_REQUIRED",
+            "INVALIDATED",
+            "SUPERSEDED"
+          ]
+        }
+      }
+    }
+  }
+}

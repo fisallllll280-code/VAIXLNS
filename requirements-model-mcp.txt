@@ -1,0 +1,2 @@
+# Separate environment for explicit model API calls.
+mcp>=1.9.0,<2.0.0

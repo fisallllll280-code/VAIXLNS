@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "VX.MODEL.FEDERATION",
+  "status": "SPECIFIED_NOT_CONNECTED",
+  "as_of": "2026-10-17",
+  "policy": {
+    "selection": "task_capability_latency_cost_and_live_eval",
+    "parallelism_default": 2,
+    "parallelism_max": 5,
+    "require_human_approval_for_repository_writes": true,
+    "require_independent_verification_for_claims": true,
+    "secrets_source": "environment_or_github_actions_secrets",
+    "never_store_credentials": true,
+    "no_recursive_unbounded_agent_spawning": true
+  },
+  "providers": [
+    {
+      "provider": "openai",
+      "api_family": "responses",
+      "model_id": "gpt-6-astra",
+      "tier": "frontier_reasoning_coding",
+      "preferred_tasks": ["architecture", "complex_reasoning", "coding", "independent_review"],
+      "endpoint": "https://api.openai.com/v1/responses",
+      "credential_env": "OPENAI_API_KEY",
+      "source": "https://developers.openai.com/api/docs/models",
+      "connection_status": "NOT_TESTED"
+    },
+    {
+      "provider": "anthropic",
+      "api_family": "messages",
+      "model_id": "claude-opus-5",
+      "tier": "frontier_long_horizon",
+      "preferred_tasks": ["long_horizon_coding", "architecture_review", "synthesis"],
+      "endpoint": "https://api.anthropic.com/v1/messages",
+      "credential_env": "ANTHROPIC_API_KEY",
+      "source": "https://platform.claude.com/docs/en/models/overview",
+      "connection_status": "NOT_TESTED"
+    },
+    {
+      "provider": "google",
+      "api_family": "generate_content",
+      "model_id": "gemini-4-argon",
+      "tier": "frontier_multistep_multimodal",
+      "preferred_tasks": ["large_context_analysis", "multimodal_review", "long_horizon_tasks"],
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/models",
+      "credential_env": "GOOGLE_API_KEY",
+      "source": "https://ai.google.dev/gemini-api/docs/models",
+      "connection_status": "NOT_TESTED"
+    },
+    {
+      "provider": "xai",
+      "api_family": "responses_compatible",
+      "model_id": "grok-4.7",
+      "tier": "frontier_reasoning",
+      "preferred_tasks": ["alternative_analysis", "current_information_with_search_tools", "coding"],
+      "endpoint": "https://api.x.ai/v1/responses",
+      "credential_env": "XAI_API_KEY",
+      "source": "https://docs.x.ai/developers/models",
+      "connection_status": "NOT_TESTED"
+    },
+    {
+      "provider": "mistral",
+      "api_family": "chat_completions",
+      "model_id": "mistral-large-4",
+      "tier": "frontier_open_weight_generalist",
+      "preferred_tasks": ["independent_comparison", "open_weight_deployment_evaluation", "coding"],
+      "endpoint": "https://api.mistral.ai/v1/chat/completions",
+      "credential_env": "MISTRAL_API_KEY",
+      "source": "https://docs.mistral.ai/models",
+      "connection_status": "NOT_TESTED"
+    }
+  ],
+  "routing_rules": [
+    {"task": "index_integrity_or_evidence_admission", "primary_role": "deterministic_tools", "model_role": "independent_verifier"},
+    {"task": "architecture_or_complex_planning", "primary_role": "frontier_reasoner", "review_role": "different_provider"},
+    {"task": "code_generation", "primary_role": "coding_model", "review_role": "tests_then_independent_model"},
+    {"task": "simple_extraction_or_classification", "primary_role": "lowest_latency_model_passing_eval"},
+    {"task": "unknown_or_high_risk", "primary_role": "two_provider_consensus", "required_gate": "human_approval"}
+  ]
+}

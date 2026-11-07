@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARC-X Model Gateway Registry Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider_id",
+    "model_id",
+    "state",
+    "capabilities",
+    "metadata_state",
+    "authority"
+  ],
+  "properties": {
+    "provider_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state": {
+      "enum": [
+        "DISCOVERED",
+        "METADATA_CAPTURED",
+        "POLICY_REVIEWED",
+        "CONTRACT_TESTED",
+        "EVALUATED",
+        "AUTHORIZED",
+        "ACTIVE",
+        "BLOCKED"
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "modalities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "text",
+          "image",
+          "audio",
+          "video",
+          "embeddings",
+          "tool_calling",
+          "structured_output"
+        ]
+      }
+    },
+    "metadata_state": {
+      "enum": [
+        "VERIFIED",
+        "PARTIAL",
+        "PENDING_VERIFICATION",
+        "CONFLICT",
+        "MISSING"
+      ]
+    },
+    "contract_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "observed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_policy_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "context_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "max_output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "timeout_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "max_cost_per_request": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorized",
+        "execution_allowed"
+      ],
+      "properties": {
+        "authorized": {
+          "const": false
+        },
+        "execution_allowed": {
+          "const": false
+        },
+        "authorization_evidence_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "$comment": "Registry entries are descriptive only. This schema intentionally does not authorize execution."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "VAIXLNS.FEDERATION.CONTRACT_EDGES.V1",
+  "authority": {
+    "canonical_source": "project.genome",
+    "master_index": "Ω.000",
+    "federation_owner": "VAIXLNS",
+    "execution_owner": "VX"
+  },
+  "boundary_rules": {
+    "direct_cross_repository_imports_allowed": false,
+    "cross_system_calls_require_declared_adapter": true,
+    "identity_mismatch_behavior": "BLOCK",
+    "unknown_contract_behavior": "BLOCK",
+    "incomplete_evidence_behavior": "HOLD",
+    "execution_requires_explicit_authority_grant": true,
+    "runtime_claim_requires_current_observation": true,
+    "proposal_can_mutate_canonical_state": false,
+    "failure_mode": "FAIL_CLOSED"
+  },
+  "edges": [
+    {
+      "edge_id": "FED.VLNS.VAIXLNS.KNOWLEDGE.001",
+      "from_system": "VLNS",
+      "to_system": "VAIXLNS",
+      "kind": "knowledge_observation",
+      "adapter": "vlns-knowledge-adapter",
+      "contract_ref": "VLNS_KNOWLEDGE_OBSERVATION_V1",
+      "status": "BLOCKED_IDENTITY",
+      "enabled": false,
+      "requires_authority_grant": false,
+      "allowed_effects": ["submit_observation", "attach_provenance"],
+      "forbidden_effects": ["canonical_write", "production_execution", "authority_grant"],
+      "required_evidence": ["source_revision", "content_digest", "provenance", "observed_at"],
+      "failure_mode": "FAIL_CLOSED",
+      "activation_evidence": null
+    },
+    {
+      "edge_id": "FED.NEXNET.VAIXLNS.DISCOVERY.001",
+      "from_system": "NEXNET",
+      "to_system": "VAIXLNS",
+      "kind": "discovery_proposal",
+      "adapter": "nexnet-proposal-adapter",
+      "contract_ref": "NEXNET_DISCOVERY_PROPOSAL_V1",
+      "status": "BLOCKED_IDENTITY",
+      "enabled": false,
+      "requires_authority_grant": false,
+      "allowed_effects": ["submit_candidate", "attach_evidence", "request_review"],
+      "forbidden_effects": ["canonical_write", "production_execution", "authority_grant"],
+      "required_evidence": ["source_revision", "candidate_digest", "provenance", "proof_obligations"],
+      "failure_mode": "FAIL_CLOSED",
+      "activation_evidence": null
+    },
+    {
+      "edge_id": "FED.VAIXLNS.VX.EXECUTION.001",
+      "from_system": "VAIXLNS",
+      "to_system": "VX",
+      "kind": "execution_request",
+      "adapter": "vx-execution-adapter",
+      "contract_ref": "VX_GOVERNED_EXECUTION_REQUEST_V1",
+      "status": "SPECIFIED_NOT_CONNECTED",
+      "enabled": false,
+      "requires_authority_grant": true,
+      "allowed_effects": ["submit_scoped_execution_request"],
+      "forbidden_effects": ["unscoped_execution", "direct_canonical_write", "self_authorization"],
+      "required_evidence": ["decision_id", "authority_grant", "capability_scope", "input_digest", "policy_revision"],
+      "failure_mode": "FAIL_CLOSED",
+      "activation_evidence": null
+    },
+    {
+      "edge_id": "FED.VX.VAIXLNS.EVIDENCE.001",
+      "from_system": "VX",
+      "to_system": "VAIXLNS",
+      "kind": "execution_evidence",
+      "adapter": "vx-evidence-adapter",
+      "contract_ref": "VX_EXECUTION_EVIDENCE_RECEIPT_V1",
+      "status": "SPECIFIED_NOT_CONNECTED",
+      "enabled": false,
+      "requires_authority_grant": false,
+      "allowed_effects": ["submit_execution_receipt", "submit_observed_state", "submit_replay_digest"],
+      "forbidden_effects": ["canonical_write", "authority_grant", "claim_verified_without_proof"],
+      "required_evidence": ["execution_id", "source_revision", "input_digest", "output_digest", "test_receipt", "observed_at"],
+      "failure_mode": "FAIL_CLOSED",
+      "activation_evidence": null
+    }
+  ],
+  "status": "SPECIFIED"
+}

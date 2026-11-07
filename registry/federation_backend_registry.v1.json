@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-10-06",
+  "backends": [
+    {
+      "id": "B-001",
+      "name": "SQLite WAL",
+      "concern": "local durability and snapshots",
+      "state": "IMPLEMENTED + TESTED",
+      "package": "stdlib"
+    },
+    {
+      "id": "B-002",
+      "name": "NATS JetStream",
+      "concern": "replicated event stream and application lease",
+      "state": "ADAPTER IMPLEMENTED / SERVER OPTIONAL",
+      "package": "nats-py"
+    },
+    {
+      "id": "B-003",
+      "name": "Open Policy Agent",
+      "concern": "remote policy decision point",
+      "state": "ADAPTER IMPLEMENTED / SERVER OPTIONAL",
+      "package": "HTTP API"
+    },
+    {
+      "id": "B-004",
+      "name": "OpenTelemetry",
+      "concern": "traces metrics logs",
+      "state": "ADAPTER READY / COLLECTOR OPTIONAL",
+      "package": "opentelemetry-sdk"
+    },
+    {
+      "id": "B-005",
+      "name": "SPIFFE/SPIRE",
+      "concern": "workload identity",
+      "state": "INTEGRATION TARGET",
+      "package": "external deployment"
+    },
+    {
+      "id": "B-006",
+      "name": "etcd/raft",
+      "concern": "alternate embedded Raft core",
+      "state": "RESEARCHED / NOT EMBEDDED",
+      "package": "external library"
+    }
+  ],
+  "rules": [
+    "Use mature open-source infrastructure instead of reimplementing distributed consensus when a backend already owns that responsibility.",
+    "A backend adapter is not deployment evidence.",
+    "Secrets and private endpoints stay outside source control.",
+    "Core local operation must not depend on optional remote infrastructure."
+  ]
+}

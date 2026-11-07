@@ -1,0 +1,755 @@
+{
+  "schema_version": "1.0.0",
+  "index_id": "VAIXLNS.ZERO_LOSS_INDEX",
+  "name": "VAIXLNS ZERO-LOSS INDEX",
+  "status": "SPECIFIED",
+  "authority": "VAIXLNS",
+  "canonical_source": "project.genome::v1.0.0",
+  "master_index": "registry/omega/omega-000-master-index.json",
+  "purpose": "One deterministic, source-backed index fabric. Indexing preserves source identity and lineage; it does not establish semantic truth, canonical authority, implementation, or proof.",
+  "legacy_range": {
+    "start": 1,
+    "end": 2750,
+    "format": "zero-padded-to-at-least-4-digits",
+    "approximate": true,
+    "status": "EXPECTED_RANGE_NOT_ITEM_LEVEL_PROOF",
+    "source_claim_refs": [
+      "docs/indexes/README.md",
+      "docs/indexes/TERM_PRESERVATION_PROTOCOL_V1.md",
+      "docs/indexes/MASTER_RECOVERY_STATUS.md"
+    ],
+    "rule": "Unobserved IDs are reported only as candidate gap ranges. No atomic record is fabricated for an absent ID."
+  },
+  "pipeline": [
+    "SOURCE",
+    "ATOMIC",
+    "CANONICAL",
+    "IMPLEMENTED",
+    "VERIFIED"
+  ],
+  "unresolved_state": "UNRESOLVED",
+  "indexes": [
+    {
+      "ordinal": "00",
+      "index_id": "00",
+      "key": "source_index",
+      "name": "Source Index",
+      "scope": "Index every repository file by path, byte count, media type, source revision and SHA-256.",
+      "match_mode": "all_source_files",
+      "path_tokens": [],
+      "record_types": [],
+      "explicit_fields": [],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "01",
+      "index_id": "01",
+      "key": "legacy_master_index",
+      "name": "Legacy Master Index",
+      "scope": "Preserve only explicit legacy identifiers; expose possible gaps as ranges, never fabricated historical records.",
+      "match_mode": "legacy_id",
+      "path_tokens": [],
+      "record_types": [],
+      "explicit_fields": [
+        "legacy_id",
+        "legacyId"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "02",
+      "index_id": "02",
+      "key": "entity_index",
+      "name": "Entity Index",
+      "scope": "Systems, subsystems, engines, modules, components and primitives found in source evidence.",
+      "match_mode": "entity",
+      "path_tokens": [],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION",
+        "SOURCE_LIST_ITEM"
+      ],
+      "explicit_fields": [
+        "canonical_id",
+        "name",
+        "type",
+        "parent",
+        "children"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "03",
+      "index_id": "03",
+      "key": "terminology_index",
+      "name": "Terminology Index",
+      "scope": "Names and acronym candidates with source locations; meanings are attached only when explicit in source.",
+      "match_mode": "terminology",
+      "path_tokens": [],
+      "record_types": [
+        "TERMINOLOGY_CANDIDATE"
+      ],
+      "explicit_fields": [
+        "aliases",
+        "name"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "04",
+      "index_id": "04",
+      "key": "innovation_index",
+      "name": "Innovation Index",
+      "scope": "Ideas, inventions, proposals and mechanisms discovered in innovation-related sources.",
+      "match_mode": "innovation",
+      "path_tokens": [
+        "innovation",
+        "invention",
+        "novelty",
+        "pattern_foundry"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION",
+        "SOURCE_LIST_ITEM"
+      ],
+      "explicit_fields": [
+        "capabilities",
+        "meaning"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "05",
+      "index_id": "05",
+      "key": "architecture_index",
+      "name": "Architecture Index",
+      "scope": "Architecture-family names including VAIXLNS, VX, XV, VV, LNS, NEXENT, AURX and other source-evidenced variants.",
+      "match_mode": "architecture",
+      "path_tokens": [
+        "architecture",
+        "system_context",
+        "federation"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION",
+        "SOURCE_LIST_ITEM"
+      ],
+      "explicit_fields": [
+        "parent",
+        "children",
+        "dependencies"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "06",
+      "index_id": "06",
+      "key": "capability_index",
+      "name": "Capability Index",
+      "scope": "Explicit capability declarations and capability-oriented source artifacts.",
+      "match_mode": "capability",
+      "path_tokens": [
+        "capability",
+        "capabilities"
+      ],
+      "record_types": [
+        "JSON_ENTITY"
+      ],
+      "explicit_fields": [
+        "capabilities"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "07",
+      "index_id": "07",
+      "key": "contract_index",
+      "name": "Contract Index",
+      "scope": "Schemas, interface contracts, invariants and handoff agreements.",
+      "match_mode": "contract",
+      "path_tokens": [
+        "contract",
+        "schema",
+        "interface",
+        "invariant",
+        "handoff"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "contracts",
+        "inputs",
+        "outputs"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "08",
+      "index_id": "08",
+      "key": "authority_index",
+      "name": "Authority Index",
+      "scope": "Authority boundaries, governance decisions, permissions and non-promotion rules.",
+      "match_mode": "authority",
+      "path_tokens": [
+        "authority",
+        "governance",
+        "admission",
+        "permission",
+        "policy"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "authority"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "09",
+      "index_id": "09",
+      "key": "event_index",
+      "name": "Event Index",
+      "scope": "Event records and event-driven source artifacts.",
+      "match_mode": "event",
+      "path_tokens": [
+        "event",
+        "event_fabric",
+        "event_log"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "events"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "10",
+      "index_id": "10",
+      "key": "state_index",
+      "name": "State Index",
+      "scope": "Explicit status, state models, lifecycle declarations and epistemic state vocabulary.",
+      "match_mode": "state",
+      "path_tokens": [
+        "state",
+        "lifecycle",
+        "epistemic"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "state",
+        "status",
+        "lifecycle"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "11",
+      "index_id": "11",
+      "key": "dependency_index",
+      "name": "Dependency Index",
+      "scope": "Declared dependencies, inputs, outputs and prerequisite links.",
+      "match_mode": "dependency",
+      "path_tokens": [
+        "dependency",
+        "dependencies",
+        "requirements"
+      ],
+      "record_types": [
+        "JSON_ENTITY"
+      ],
+      "explicit_fields": [
+        "dependencies",
+        "inputs",
+        "outputs"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "12",
+      "index_id": "12",
+      "key": "relation_index",
+      "name": "Relation Index",
+      "scope": "Explicit parent-child and typed relationship declarations; mentions are not automatically semantic relations.",
+      "match_mode": "relation",
+      "path_tokens": [
+        "relationship",
+        "relation",
+        "graph"
+      ],
+      "record_types": [
+        "JSON_ENTITY"
+      ],
+      "explicit_fields": [
+        "parent",
+        "children"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "13",
+      "index_id": "13",
+      "key": "lineage_index",
+      "name": "Lineage Index",
+      "scope": "Legacy lineage, aliases, variants, revisions, supersession and merge candidates from explicit evidence.",
+      "match_mode": "lineage",
+      "path_tokens": [
+        "lineage",
+        "supersed",
+        "alias",
+        "variant",
+        "revision",
+        "merge"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "lineage",
+        "supersedes",
+        "aliases"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "14",
+      "index_id": "14",
+      "key": "canonical_index",
+      "name": "Canonical Index",
+      "scope": "Existing canonical identifiers and canonical records, without promoting newly extracted candidates.",
+      "match_mode": "canonical",
+      "path_tokens": [
+        "canonical",
+        "project.genome",
+        "omega-000-master-index"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "canonical_id"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "15",
+      "index_id": "15",
+      "key": "implementation_index",
+      "name": "Implementation Index",
+      "scope": "Code, implementation references and implementation claims separated from test evidence.",
+      "match_mode": "implementation",
+      "path_tokens": [
+        "implementation",
+        "implemented",
+        "src",
+        "runtime",
+        "tools"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY"
+      ],
+      "explicit_fields": [
+        "implementation"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "16",
+      "index_id": "16",
+      "key": "repository_index",
+      "name": "Repository Index",
+      "scope": "The current repository, tracked repository references and federation evidence present in source files.",
+      "match_mode": "repository",
+      "path_tokens": [
+        "repository",
+        "repositories",
+        "repo",
+        "federation"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "repository"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "17",
+      "index_id": "17",
+      "key": "artifact_index",
+      "name": "File / Artifact Index",
+      "scope": "All file artifacts, including opaque binary files indexed by exact digest even when content parsing is unavailable.",
+      "match_mode": "artifact",
+      "path_tokens": [],
+      "record_types": [
+        "SOURCE_FILE"
+      ],
+      "explicit_fields": [],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "18",
+      "index_id": "18",
+      "key": "test_index",
+      "name": "Test Index",
+      "scope": "Test sources and explicit references to tests, assertions and test evidence.",
+      "match_mode": "test",
+      "path_tokens": [
+        "test",
+        "tests",
+        "pytest",
+        "unittest",
+        "regression"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "tests"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "19",
+      "index_id": "19",
+      "key": "evidence_index",
+      "name": "Evidence Index",
+      "scope": "Source, runtime and provenance evidence references with verification boundaries kept explicit.",
+      "match_mode": "evidence",
+      "path_tokens": [
+        "evidence",
+        "provenance",
+        "receipt",
+        "artifact"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "evidence"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "20",
+      "index_id": "20",
+      "key": "proof_index",
+      "name": "Proof Index",
+      "scope": "Proof obligations, verifiers, certificates and proof-related evidence.",
+      "match_mode": "proof",
+      "path_tokens": [
+        "proof",
+        "proof_verifier",
+        "certificate",
+        "verification"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "proof"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "21",
+      "index_id": "21",
+      "key": "operation_index",
+      "name": "Operation Index",
+      "scope": "Scripts, workflows, runtime commands, deployment and operational runbooks.",
+      "match_mode": "operation",
+      "path_tokens": [
+        "scripts/",
+        "workflows/",
+        "operations",
+        "deploy/",
+        "runtime",
+        "runbook"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "execution"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "22",
+      "index_id": "22",
+      "key": "failure_recovery_index",
+      "name": "Failure / Recovery Index",
+      "scope": "Failure modes, recovery paths, incident handling and restore procedures.",
+      "match_mode": "failure_recovery",
+      "path_tokens": [
+        "failure",
+        "recovery",
+        "restore",
+        "rollback",
+        "resilien",
+        "immune"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "failure",
+        "recovery"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "23",
+      "index_id": "23",
+      "key": "security_index",
+      "name": "Security Index",
+      "scope": "Security, privacy, attack surfaces, isolated workspaces and authority boundaries.",
+      "match_mode": "security",
+      "path_tokens": [
+        "security",
+        "privacy",
+        "threat",
+        "attack",
+        "isolation",
+        "secret"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "authority"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "24",
+      "index_id": "24",
+      "key": "observability_index",
+      "name": "Observability Index",
+      "scope": "Metrics, logs, traces, health checks, evidence telemetry and monitoring.",
+      "match_mode": "observability",
+      "path_tokens": [
+        "observability",
+        "metrics",
+        "logging",
+        "logs",
+        "traces",
+        "telemetry",
+        "health",
+        "pulse"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "events",
+        "evidence"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "25",
+      "index_id": "25",
+      "key": "simulation_index",
+      "name": "Simulation Index",
+      "scope": "Simulation, counterfactual execution, scenarios and deterministic replay sources.",
+      "match_mode": "simulation",
+      "path_tokens": [
+        "simulation",
+        "counterfactual",
+        "scenario",
+        "replay",
+        "arena"
+      ],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "state",
+        "execution"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "26",
+      "index_id": "26",
+      "key": "evolution_index",
+      "name": "Evolution Index",
+      "scope": "Versioning, lifecycle change, successor links, controlled evolution and migration records.",
+      "match_mode": "evolution",
+      "path_tokens": [
+        "evolution",
+        "lifecycle",
+        "version",
+        "migration",
+        "supersed"
+      ],
+      "record_types": [
+        "JSON_ENTITY",
+        "SOURCE_SECTION"
+      ],
+      "explicit_fields": [
+        "evolution",
+        "version",
+        "lifecycle"
+      ],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    },
+    {
+      "ordinal": "27",
+      "index_id": "27",
+      "key": "cross_reference_index",
+      "name": "Cross-Reference Index",
+      "scope": "Direct source-path mentions linked to files that exist in this repository; not promoted to dependency or lineage claims.",
+      "match_mode": "cross_reference",
+      "path_tokens": [],
+      "record_types": [
+        "SOURCE_FILE",
+        "JSON_ENTITY",
+        "SOURCE_SECTION",
+        "SOURCE_LIST_ITEM",
+        "TERMINOLOGY_CANDIDATE"
+      ],
+      "explicit_fields": [],
+      "authority": "VAIXLNS",
+      "promotion": "NONE_DURING_AUTOMATIC_INDEXING"
+    }
+  ],
+  "source_adapters": [
+    {
+      "id": "repo_checkout",
+      "state": "IMPLEMENTED_BY_BUILD_SCRIPT",
+      "scope": "Files visible within the repository checkout; every regular file is SHA-256 cataloged."
+    },
+    {
+      "id": "repository_history",
+      "state": "PARTIAL",
+      "scope": "Current checkout and its Git revision when available; full remote branch/tag/commit histories require a separate read-only adapter."
+    },
+    {
+      "id": "uploaded_files",
+      "state": "NOT_CONNECTED_TO_THIS_BUILD",
+      "scope": "Conversation attachments and user file-library items are not visible to a repository-only scanner unless materialized into the checkout."
+    },
+    {
+      "id": "conversations",
+      "state": "NOT_CONNECTED_TO_THIS_BUILD",
+      "scope": "Conversation sources require an approved export/connector adapter; no conversation content is fabricated."
+    },
+    {
+      "id": "pdf_content",
+      "state": "HASHED_CONTENT_EXTRACTION_PENDING",
+      "scope": "Repository PDFs are inventoried and hashed; PDF text/page extraction is a separate adapter."
+    },
+    {
+      "id": "diagram_semantics",
+      "state": "HASHED_CONTENT_EXTRACTION_PENDING",
+      "scope": "Image diagrams are inventoried and hashed; semantic interpretation is not claimed by this scanner."
+    },
+    {
+      "id": "external_repositories",
+      "state": "NOT_CONNECTED_TO_THIS_BUILD",
+      "scope": "Only repository references found in source are cross-referenced; remote repositories are not cloned or inferred."
+    }
+  ],
+  "invariants": [
+    "Every indexed repository file has a stable source_id, exact SHA-256 and repository-relative path.",
+    "Every atomic record links to an existing source_id and source location, and carries source lineage.",
+    "Original sources are never deleted, overwritten, renamed or merged by the indexing program.",
+    "Repeated content is reported as a digest relationship, never silently deleted.",
+    "Similarity, name matches and path mentions are candidate relationships only.",
+    "Unobserved legacy IDs remain compressed UNRESOLVED candidate gaps and never become fabricated historical records.",
+    "Automatic indexing may create SOURCE and ATOMIC records only; it may not promote records to CANONICAL, IMPLEMENTED or VERIFIED.",
+    "Opaque files remain indexed by byte digest with content extraction marked pending.",
+    "A source claim of IMPLEMENTED or VERIFIED is preserved as source_claimed_status and is not independently certified by indexing."
+  ],
+  "transition_gates": {
+    "SOURCE->ATOMIC": [
+      "source_id exists",
+      "source_sha256 is valid",
+      "source_location is traceable",
+      "lineage includes source_id"
+    ],
+    "ATOMIC->CANONICAL": [
+      "explicit canonical_id grounded in source",
+      "authority evidence reference",
+      "independent canonical admission"
+    ],
+    "CANONICAL->IMPLEMENTED": [
+      "implementation artifact reference",
+      "contract/test evidence",
+      "authorized state transition"
+    ],
+    "IMPLEMENTED->VERIFIED": [
+      "reproducible test result",
+      "proof/evidence reference tied to source revision",
+      "verification record"
+    ],
+    "UNCLASSIFIABLE": "remain UNRESOLVED; do not delete or guess"
+  },
+  "output_contract": {
+    "zero-loss-index.v1.json": "Consolidated 28-view index and integrity manifest.",
+    "zero-loss-source-index.v1.json": "Every source file with path, size, revision, media type and SHA-256.",
+    "zero-loss-atomic-records.v1.jsonl": "Source and atomic records in deterministic JSON Lines format.",
+    "zero-loss-coverage.v1.json": "Coverage, extraction limitations, legacy ID observations and unresolved candidate gaps.",
+    "zero-loss-cross-reference.v1.json": "Direct source-path references with locations; no inferred semantic merge."
+  }
+}

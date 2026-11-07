@@ -1,0 +1,41 @@
+name: VAIXLNS Revenue Evidence Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+  pull_request:
+    paths:
+      - "docs/strategy/REVENUE_OPPORTUNITY_REGISTER_001.md"
+      - "scripts/revenue_opportunity_gate.py"
+      - "tests/test_revenue_opportunity_gate.py"
+      - ".github/workflows/revenue-evidence-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: revenue-evidence-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run unit tests
+        run: python -m unittest tests/test_revenue_opportunity_gate.py -v
+      - name: Run evidence gate and write report
+        run: python scripts/revenue_opportunity_gate.py --report /tmp/revenue-opportunity-gate.json
+      - name: Publish run report as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: revenue-opportunity-gate-${{ github.run_id }}
+          path: /tmp/revenue-opportunity-gate.json
+          if-no-files-found: ignore
+          retention-days: 30

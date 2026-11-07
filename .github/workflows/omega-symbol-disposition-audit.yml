@@ -1,0 +1,39 @@
+name: Omega Symbol and Disposition Audit
+
+on:
+  pull_request:
+    paths:
+      - 'registry/indexes/disposition-quarantine.v1.json'
+      - 'registry/indexes/symbol-semantic-index.v1.json'
+      - 'scripts/validate_symbol_disposition.py'
+      - 'tests/test_symbol_disposition.py'
+      - 'docs/indexes/REPOSITORY_DECISION_REGISTER_V1.md'
+      - '.github/workflows/omega-symbol-disposition-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit proposed symbol and disposition indexes
+        run: python scripts/validate_symbol_disposition.py --root . --report build/disposition/audit.json
+      - name: Run fail-closed tests
+        run: python -m unittest discover -s tests -p 'test_symbol_disposition.py' -v
+      - name: Upload audit evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-symbol-disposition-audit
+          path: build/disposition/audit.json
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,15 @@
+name: GOV priority index validation
+on:
+  push:
+    paths: ['registry/gov-sand/priority-roadmap.v1.json','tests/test_gov_priority_roadmap.py','.github/workflows/gov-priority-roadmap.yml']
+  pull_request:
+    paths: ['registry/gov-sand/priority-roadmap.v1.json','tests/test_gov_priority_roadmap.py','.github/workflows/gov-priority-roadmap.yml']
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m unittest discover -s tests -p test_gov_priority_roadmap.py -v

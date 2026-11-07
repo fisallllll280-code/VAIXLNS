@@ -1,0 +1,993 @@
+{
+  "schema": "VAIXLNS.InnovationOperationProfiles.v1",
+  "authority": "project.genome::v1.0.0 / Ω0_GENESIS_CORE / Ω.000",
+  "rule": "Profiles enrich descriptions and proposed operating mechanisms; they never promote implementation or verification state.",
+  "profiles": [
+    {
+      "canonical_name": "Ω Research-to-Engineering Decision Fabric (REDF)",
+      "aliases": [
+        "Research-to-Engineering Decision Fabric",
+        "REDF",
+        "Ω Research-to-Engineering Decision Fabric",
+        "VAIXLNS.RESEARCH.DECISION.FABRIC.001",
+        "VAIXLNS Research Decision Fabric"
+      ],
+      "family": "Research / evidence / engineering admission",
+      "canonical_owner": "VAIXLNS",
+      "description": "Provider-neutral decision boundary that turns research results into a source-bound, contradiction-aware engineering decision bundle. It identifies uncovered research lanes, tracks novelty and lineage, preserves supporting and refuting evidence, and exposes gaps in contracts, invariants, tests, verification, and rollback before downstream admission.",
+      "mechanism": [
+        "Decompose the research question into required search lanes and explicit acceptance criteria.",
+        "Collect candidate sources with URI, revision or timestamp, content digest, and source-quality metadata.",
+        "Compare candidate claims against supporting evidence, counterevidence, contradictions, and existing innovation lineage.",
+        "Build an engineering-completeness checklist covering contracts, invariants, failure handling, tests, verification, security, and rollback.",
+        "Emit a deterministic decision bundle with unresolved gaps and a conservative readiness state; do not self-promote the candidate."
+      ],
+      "inputs": [
+        "research question",
+        "required search lanes",
+        "source records",
+        "existing innovation index",
+        "engineering constraints"
+      ],
+      "outputs": [
+        "decision bundle",
+        "source-provenance records",
+        "claim/counterevidence links",
+        "engineering gap list",
+        "promotion disposition"
+      ],
+      "gates": [
+        "source provenance",
+        "contradiction review",
+        "novelty/lineage screen",
+        "engineering completeness",
+        "downstream authority gate"
+      ],
+      "failure_modes": [
+        "mandatory search lane missing",
+        "source digest or revision conflict",
+        "unresolved contradictory claims",
+        "incomplete engineering contract"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/indexes/INNOVATION_MASTER_INDEX.md",
+        "registry/omega/omega-000-master-index.json"
+      ],
+      "basis": "REPOSITORY_SPECIFICATION",
+      "mechanism_state": "SPECIFICATION_BACKED"
+    },
+    {
+      "canonical_name": "Ω-Pattern Foundry / Private Pattern Intelligence Boundary",
+      "aliases": [
+        "Ω Pattern Foundry",
+        "Pattern Foundry",
+        "Private Pattern Intelligence Boundary",
+        "Ω-Pattern Foundry",
+        "Ω.PATTERN_FOUNDRY.001"
+      ],
+      "family": "Pattern generation / adversarial evaluation / protected IP",
+      "canonical_owner": "VAIXLNS",
+      "description": "Governed capability for producing candidate engineering patterns, challenging them adversarially, preserving provenance and lineage, and exposing only a controlled customer-facing contract. Generation internals, evidence, authority, and licensing boundaries remain distinct.",
+      "mechanism": [
+        "Receive a structured problem, objective, constraints, environment, capability requirements, evidence references, and failure history.",
+        "Generate a candidate pattern genome with assumptions, invariants, interfaces, dependencies, risks, and proof obligations.",
+        "Run sanity checks and adversarial attacks against assumptions, authority scope, failure handling, composition risk, lineage, novelty, and provenance.",
+        "Mutate or recombine only within declared constraints, then repeat the attack and verification gates.",
+        "Package only accepted outputs with an evidence summary, verification state, scope, and usage rights; keep proprietary generation heuristics outside the public contract."
+      ],
+      "inputs": [
+        "problem statement",
+        "objective",
+        "constraints",
+        "environment",
+        "capabilities",
+        "evidence references",
+        "failure history"
+      ],
+      "outputs": [
+        "candidate pattern genome",
+        "attack report",
+        "verification bundle",
+        "customer-facing pattern contract",
+        "provenance/license metadata"
+      ],
+      "gates": [
+        "assumption completeness",
+        "authority boundary",
+        "failure handling",
+        "evidence and proof obligations",
+        "lineage integrity",
+        "novelty review",
+        "commercial provenance"
+      ],
+      "failure_modes": [
+        "critical adversarial finding",
+        "missing proof obligation",
+        "lineage conflict",
+        "unverified production backend"
+      ],
+      "evidence_refs": [
+        "docs/omega/OMEGA_PATTERN_FOUNDRY_V1.md"
+      ],
+      "basis": "REPOSITORY_SPECIFICATION",
+      "mechanism_state": "SPECIFICATION_BACKED"
+    },
+    {
+      "canonical_name": "ARC-X Ω — Epistemic Reality Compiler / Repository Reconstruction",
+      "aliases": [
+        "ARC-X Ω",
+        "ARC-X",
+        "Epistemic Reality Compiler",
+        "Repository Reconstruction"
+      ],
+      "family": "Repository reconstruction / epistemic verification / admission",
+      "canonical_owner": "VAIXLNS",
+      "description": "Proposed assurance capability that reconciles repository state, specifications, claims, provenance, and execution evidence. It reconstructs the indexed system while distinguishing observations, inferences, claims, proofs, and authority decisions.",
+      "mechanism": [
+        "Pin the source revision and capture hashes before inspection.",
+        "Inventory repository artifacts and preserve original paths, identities, and lineage.",
+        "Reconstruct cross-file indexes and typed relationships without silently merging conflicting records.",
+        "Compare claims and specifications with implementation references, tests, and captured execution output.",
+        "Emit contradiction records, missing proof obligations, and a recovery plan; promotion remains subject to independent verification and authority."
+      ],
+      "inputs": [
+        "repository revision",
+        "canonical index",
+        "specifications",
+        "claims",
+        "evidence records",
+        "tests and runtime output"
+      ],
+      "outputs": [
+        "reconstruction map",
+        "claim/evidence graph",
+        "contradiction report",
+        "gap register",
+        "proof obligations"
+      ],
+      "gates": [
+        "source pinning",
+        "provenance integrity",
+        "reconstruction consistency",
+        "reproducible verification",
+        "explicit admission"
+      ],
+      "failure_modes": [
+        "source drift",
+        "missing evidence",
+        "incompatible canonical sources",
+        "non-reproducible execution"
+      ],
+      "evidence_refs": [
+        "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+        "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md"
+      ],
+      "basis": "REPOSITORY_SPECIFICATION",
+      "mechanism_state": "SPECIFICATION_BACKED"
+    },
+    {
+      "canonical_name": "Architecture Self-Discovery Engine (ASDE)",
+      "aliases": [
+        "ASDE",
+        "Missing System Discovery Engine",
+        "Canonical Indexing Engine",
+        "Semantic Linking / Auto-Classification"
+      ],
+      "family": "Discovery / synthesis",
+      "canonical_owner": "NEXENT",
+      "description": "Candidate capability for discovering systems, components, relationships, and capability gaps from an explicitly scoped repository corpus. Discovery output is a set of source-linked candidates, not automatic canonical authority.",
+      "mechanism": [
+        "Enumerate the authorized repository and archive scope.",
+        "Extract candidate systems, components, interfaces, capabilities, and source references.",
+        "Normalize candidate identities while preserving original names and aliases.",
+        "Build dependency and semantic-link candidates with confidence and provenance.",
+        "Report missing coverage, duplicate candidates, and unresolved ownership for human or governed admission."
+      ],
+      "inputs": [
+        "repository inventory",
+        "archive sources",
+        "index records",
+        "capability requirements"
+      ],
+      "outputs": [
+        "candidate component registry",
+        "relationship graph",
+        "capability gaps",
+        "provenance report"
+      ],
+      "gates": [
+        "scope authorization",
+        "source completeness",
+        "identity/lineage check",
+        "no silent merge"
+      ],
+      "failure_modes": [
+        "incomplete source coverage",
+        "ambiguous identity",
+        "unsupported inferred relation"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+        "docs/indexes/INNOVATION_MASTER_INDEX.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Capability Genome",
+      "aliases": [],
+      "family": "Capability / architecture synthesis",
+      "canonical_owner": "NEXENT",
+      "description": "Structured representation of a system's capabilities, contracts, assumptions, dependencies, resource needs, and verification obligations so architectures can be compared and composed against explicit requirements.",
+      "mechanism": [
+        "Represent each capability with stable identity, inputs, outputs, constraints, dependencies, and invariants.",
+        "Attach evidence, owner, version, failure modes, and required authority to each capability.",
+        "Construct a graph of capability dependencies and compatibility requirements.",
+        "Compare the graph with requested outcomes to reveal missing or conflicting capabilities.",
+        "Emit a versioned capability genome and a gap report for architecture synthesis."
+      ],
+      "inputs": [
+        "system records",
+        "capability declarations",
+        "contracts",
+        "requirements",
+        "evidence"
+      ],
+      "outputs": [
+        "capability graph",
+        "capability genome",
+        "missing-capability report",
+        "compatibility constraints"
+      ],
+      "gates": [
+        "identity uniqueness",
+        "contract completeness",
+        "dependency closure",
+        "evidence traceability"
+      ],
+      "failure_modes": [
+        "duplicate capability identity",
+        "missing interface contract",
+        "dependency cycle or unresolved dependency"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+        "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Architecture Genome + Mutation",
+      "aliases": [
+        "Architecture Genome",
+        "Architecture Mutation"
+      ],
+      "family": "Architecture search / evolution",
+      "canonical_owner": "NEXENT",
+      "description": "Representation of an architecture as a typed, versioned structure that allows constrained candidate mutations while preserving the baseline, lineage, and measurable acceptance criteria.",
+      "mechanism": [
+        "Snapshot the baseline architecture, contracts, dependencies, and evidence.",
+        "Declare allowed mutation operators, forbidden changes, resource bounds, and invariants.",
+        "Generate candidate variants without modifying the canonical baseline.",
+        "Evaluate variants against conformance, risk, complexity, and objective metrics.",
+        "Preserve rejected candidates and admit only explicitly approved, verified changes."
+      ],
+      "inputs": [
+        "baseline architecture",
+        "mutation constraints",
+        "capability genome",
+        "tests",
+        "objective function"
+      ],
+      "outputs": [
+        "candidate architecture variants",
+        "mutation lineage",
+        "comparison report",
+        "rejection reasons"
+      ],
+      "gates": [
+        "baseline preservation",
+        "mutation bounds",
+        "contract compatibility",
+        "verification",
+        "explicit admission"
+      ],
+      "failure_modes": [
+        "invariant violation",
+        "unbounded mutation",
+        "contract regression",
+        "missing lineage"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Architecture Laboratory",
+      "aliases": [],
+      "family": "Architecture search / evaluation",
+      "canonical_owner": "NEXENT",
+      "description": "Controlled environment for comparing architecture alternatives under shared requirements, constraints, test suites, risk measures, and reproducible evaluation conditions.",
+      "mechanism": [
+        "Define a common evaluation scenario, constraints, and acceptance gates.",
+        "Generate or load candidate architectures with versioned configuration.",
+        "Run static checks, contract tests, simulations, and benchmarks in isolated conditions.",
+        "Compare results against the same baseline and retain failures as evidence.",
+        "Produce a ranked decision report with assumptions, uncertainty, and reproducibility metadata."
+      ],
+      "inputs": [
+        "candidate architectures",
+        "requirements",
+        "constraints",
+        "test suites",
+        "benchmark scenarios"
+      ],
+      "outputs": [
+        "evaluation report",
+        "comparison matrix",
+        "failure evidence",
+        "recommended candidate with caveats"
+      ],
+      "gates": [
+        "scenario comparability",
+        "isolation",
+        "test validity",
+        "result reproducibility"
+      ],
+      "failure_modes": [
+        "incomparable configurations",
+        "missing baseline",
+        "nondeterministic results without tolerance policy"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Proof-Carrying Architecture",
+      "aliases": [],
+      "family": "Verification / assurance",
+      "canonical_owner": "NEXENT",
+      "description": "Architecture record that travels with explicit proof obligations, contracts, test evidence, and verification results so readiness depends on evidence rather than descriptive claims alone.",
+      "mechanism": [
+        "Translate architecture invariants and requirements into explicit proof obligations.",
+        "Map every obligation to a test, model checker, static analyzer, or documented verifier.",
+        "Run the required checks against a pinned artifact revision.",
+        "Bind outputs, tool versions, and results to a provenance record.",
+        "Block promotion when a critical obligation fails, is missing, or cannot be reproduced."
+      ],
+      "inputs": [
+        "architecture specification",
+        "invariants",
+        "contracts",
+        "artifact revision",
+        "verification tools"
+      ],
+      "outputs": [
+        "proof package",
+        "verification matrix",
+        "unresolved obligations",
+        "evidence-bound readiness state"
+      ],
+      "gates": [
+        "complete obligations",
+        "pinned source",
+        "independent verification",
+        "no self-promotion"
+      ],
+      "failure_modes": [
+        "unmapped obligation",
+        "failed verifier",
+        "stale evidence",
+        "non-reproducible result"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Causal Architecture Graph",
+      "aliases": [],
+      "family": "Causality / impact analysis",
+      "canonical_owner": "NEXENT",
+      "description": "Typed graph connecting architecture changes, execution events, dependencies, and observed outcomes, while preserving the distinction between explicit causal evidence and hypothesized links.",
+      "mechanism": [
+        "Ingest versioned change records, dependency edges, execution events, and observations.",
+        "Create typed nodes and provenance-bound edges; mark inferred relations separately from explicit ones.",
+        "Trace potential paths from a change to affected components and observed outcomes.",
+        "Compare the predicted path with measured runtime evidence.",
+        "Emit impact and uncertainty reports; never treat temporal proximity alone as causal proof."
+      ],
+      "inputs": [
+        "change records",
+        "dependency graph",
+        "event traces",
+        "observations",
+        "provenance"
+      ],
+      "outputs": [
+        "causal graph",
+        "impact paths",
+        "hypothesis/evidence separation",
+        "uncertainty report"
+      ],
+      "gates": [
+        "source lineage",
+        "edge typing",
+        "temporal consistency",
+        "causal evidence review"
+      ],
+      "failure_modes": [
+        "missing trace context",
+        "unsupported causal edge",
+        "cycles or inconsistent event order"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Deterministic Causal Execution Graph (DCEG)",
+      "aliases": [
+        "DCEG"
+      ],
+      "family": "Causality / runtime / replay",
+      "canonical_owner": "VX",
+      "description": "Candidate execution representation that records event identity, causal parentage, state transitions, and artifact versions to support trace reconstruction and deterministic replay.",
+      "mechanism": [
+        "Record an execution identity, initial state hash, contract version, and event sequence.",
+        "Attach explicit parent/event references and mark inferred edges separately.",
+        "Canonicalize event records and compute content digests.",
+        "Replay the sequence against a pinned runtime and compare state/output digests.",
+        "Emit divergence points and missing-link diagnostics without inventing causal links."
+      ],
+      "inputs": [
+        "execution request",
+        "initial state",
+        "events",
+        "contracts",
+        "runtime version"
+      ],
+      "outputs": [
+        "causal execution graph",
+        "replay trace",
+        "event hashes",
+        "divergence report"
+      ],
+      "gates": [
+        "event identity integrity",
+        "causal-link validity",
+        "runtime pinning",
+        "replay determinism"
+      ],
+      "failure_modes": [
+        "orphan event",
+        "cycle in causal parents",
+        "hash mismatch",
+        "runtime drift"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/indexes/INNOVATION_MASTER_INDEX.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Replay Determinism Verifier (RDV)",
+      "aliases": [
+        "RDV",
+        "Replay Determinism Verifier"
+      ],
+      "family": "Conformance / replay",
+      "canonical_owner": "VX",
+      "description": "Verification capability for determining whether a recorded execution can be replayed under declared conditions with equivalent state transitions and outputs.",
+      "mechanism": [
+        "Pin the event log, input hashes, dependency versions, and runtime configuration.",
+        "Replay the same trace in an isolated environment.",
+        "Compare normalized state snapshots, output hashes, and event ordering against the reference.",
+        "Classify expected nondeterminism using declared tolerances rather than silently ignoring differences.",
+        "Produce a signed or hashed verification report with first-divergence details."
+      ],
+      "inputs": [
+        "reference trace",
+        "runtime build",
+        "dependency lock",
+        "replay configuration"
+      ],
+      "outputs": [
+        "determinism report",
+        "first divergence",
+        "compared digests",
+        "replay evidence bundle"
+      ],
+      "gates": [
+        "reproducible environment",
+        "complete trace",
+        "declared tolerance policy"
+      ],
+      "failure_modes": [
+        "missing dependency lock",
+        "unrecorded external side effect",
+        "unexpected output divergence"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Canonical Semantic Engine (CSE)",
+      "aliases": [
+        "CSE"
+      ],
+      "family": "Semantics / canonicalization",
+      "canonical_owner": "VAIXLNS",
+      "description": "Semantic processing capability that normalizes supported representations into a canonical intermediate form and computes a stable semantic fingerprint under a versioned rule set.",
+      "mechanism": [
+        "Parse input artifacts into a typed intermediate representation.",
+        "Normalize supported syntax and metadata according to a versioned canonicalization contract.",
+        "Validate required fields and semantic invariants.",
+        "Serialize deterministically and calculate the semantic fingerprint.",
+        "Compare fingerprints and explain semantic differences without equating unsupported or uncertain cases."
+      ],
+      "inputs": [
+        "source artifacts",
+        "schema",
+        "canonicalization rules",
+        "versioned type definitions"
+      ],
+      "outputs": [
+        "canonical IR",
+        "sir.json",
+        "semantic fingerprint",
+        "validation/diff report"
+      ],
+      "gates": [
+        "schema validity",
+        "canonicalization version",
+        "deterministic serialization",
+        "semantic invariants"
+      ],
+      "failure_modes": [
+        "unsupported representation",
+        "ambiguous semantics",
+        "canonicalization version mismatch"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/indexes/INNOVATION_MASTER_INDEX.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Evidence DNA (eDNA)",
+      "aliases": [
+        "eDNA",
+        "Evidence DNA"
+      ],
+      "family": "Evidence / provenance",
+      "canonical_owner": "VAIXLNS",
+      "description": "Provenance structure connecting a claim or artifact to source revisions, hashes, transformations, tools, verifiers, and derived evidence, enabling integrity checks and lineage reconstruction.",
+      "mechanism": [
+        "Create a stable evidence identity for each source or result.",
+        "Record source URI/path, revision, content digest, acquisition time, and transformation history.",
+        "Link evidence to claims, tests, proofs, and derived artifacts with typed relations.",
+        "Re-check integrity and freshness when the source or toolchain changes.",
+        "Report missing, stale, or conflicting lineage and prevent unsupported promotion."
+      ],
+      "inputs": [
+        "source artifacts",
+        "claims",
+        "tool outputs",
+        "revision metadata",
+        "verification records"
+      ],
+      "outputs": [
+        "evidence bundle",
+        "provenance graph",
+        "integrity report",
+        "freshness status"
+      ],
+      "gates": [
+        "digest validation",
+        "source identity",
+        "transformation lineage",
+        "claim linkage"
+      ],
+      "failure_modes": [
+        "source unavailable",
+        "digest mismatch",
+        "broken provenance chain",
+        "stale evidence"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/canonical/MASTER_REGISTRY_SCHEMA.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Master Capability Indexer (MCI)",
+      "aliases": [
+        "MCI"
+      ],
+      "family": "Registry / capability graph",
+      "canonical_owner": "VAIXLNS",
+      "description": "Indexing capability that binds system and component records to declared capabilities, contracts, dependencies, ownership, and evidence, producing a queryable capability view of Ω.000.",
+      "mechanism": [
+        "Read validated registry records and source-linked capability declarations.",
+        "Normalize capability identities and attach canonical owners and lineage.",
+        "Build edges for dependencies, implements, composes, and conflicts-with relations.",
+        "Compute coverage and gap reports against requested system capabilities.",
+        "Emit a deterministic index projection while leaving authority decisions to the admission gate."
+      ],
+      "inputs": [
+        "Ω.000 records",
+        "system manifests",
+        "capability contracts",
+        "evidence references"
+      ],
+      "outputs": [
+        "capability graph",
+        "index projection",
+        "dependency/gap report"
+      ],
+      "gates": [
+        "unique IDs",
+        "valid references",
+        "owner resolution",
+        "lineage preservation"
+      ],
+      "failure_modes": [
+        "duplicate identity",
+        "dangling reference",
+        "unresolved owner",
+        "stale source"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/canonical/MASTER_REGISTRY_SCHEMA.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Identity Fabric",
+      "aliases": [],
+      "family": "Identity / lineage",
+      "canonical_owner": "VAIXLNS",
+      "description": "Cross-system identity and lineage layer that preserves canonical IDs, aliases, origin records, and relation types across repositories without collapsing distinct entities solely because their names look similar.",
+      "mechanism": [
+        "Collect declared IDs, aliases, repository locations, and origin evidence.",
+        "Normalize comparison keys while preserving original names verbatim.",
+        "Propose equivalence, alias, fork, successor, composition, and related-to edges.",
+        "Require provenance and policy checks before canonical identity resolution.",
+        "Record unresolved identity conflicts for review instead of silently merging records."
+      ],
+      "inputs": [
+        "registry records",
+        "aliases",
+        "repository metadata",
+        "origin and lineage evidence"
+      ],
+      "outputs": [
+        "identity map",
+        "lineage graph",
+        "identity conflict queue"
+      ],
+      "gates": [
+        "identity uniqueness",
+        "provenance",
+        "explicit relation type",
+        "no silent merge"
+      ],
+      "failure_modes": [
+        "ambiguous alias",
+        "conflicting canonical IDs",
+        "missing origin evidence"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/canonical/MASTER_REGISTRY_SCHEMA.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Contract Fabric",
+      "aliases": [],
+      "family": "Contracts / interoperability",
+      "canonical_owner": "VAIXLNS",
+      "description": "Shared contract layer for declaring interfaces, schemas, preconditions, postconditions, invariants, compatibility expectations, and versioned handoff boundaries between systems.",
+      "mechanism": [
+        "Register each interface contract with owner, schema version, inputs, outputs, and invariants.",
+        "Resolve producer/consumer relations and compare their contract versions.",
+        "Run schema and conformance checks on declared handoffs.",
+        "Record compatibility results and required migrations.",
+        "Reject or quarantine critical incompatible transitions until an explicit repair is verified."
+      ],
+      "inputs": [
+        "interface schemas",
+        "producer/consumer manifests",
+        "version rules",
+        "test results"
+      ],
+      "outputs": [
+        "contract registry",
+        "compatibility matrix",
+        "conformance findings"
+      ],
+      "gates": [
+        "schema validation",
+        "version compatibility",
+        "invariant coverage",
+        "owner authority"
+      ],
+      "failure_modes": [
+        "breaking schema change",
+        "unknown consumer",
+        "unverified migration"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "registry/repository-orchestration/VAIXLNS_REPOSITORY_CONTRACT.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Decision Fabric",
+      "aliases": [],
+      "family": "Decision / governance",
+      "canonical_owner": "VAIXLNS",
+      "description": "Traceable decision representation tying intent, admissible options, constraints, evidence, uncertainty, decision authority, and outcome into an auditable record.",
+      "mechanism": [
+        "Capture the intent, decision scope, eligible options, constraints, and decision owner.",
+        "Attach supporting and contradicting evidence to each material claim.",
+        "Evaluate options against declared rules and record uncertainty and rejected alternatives.",
+        "Apply the required authority and safety gates.",
+        "Emit a decision record linked to the resulting action and its observed outcome."
+      ],
+      "inputs": [
+        "intent",
+        "options",
+        "constraints",
+        "evidence",
+        "authority policy"
+      ],
+      "outputs": [
+        "decision record",
+        "rationale/evidence links",
+        "rejected-option reasons",
+        "follow-up obligations"
+      ],
+      "gates": [
+        "authority validation",
+        "evidence coverage",
+        "conflict handling",
+        "reversibility/risk review"
+      ],
+      "failure_modes": [
+        "missing authority",
+        "contradictory evidence",
+        "incomplete constraints"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/agents/VAIXLNS_AGENT_OPERATING_MODEL_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Operational Integrity Fabric (OIF)",
+      "aliases": [
+        "OIF",
+        "Operational Integrity Fabric"
+      ],
+      "family": "Assurance / operational readiness",
+      "canonical_owner": "VAIXLNS + VX",
+      "description": "Assurance boundary combining operational state, conformance results, security findings, recovery readiness, and evidence coverage into an explicit readiness disposition.",
+      "mechanism": [
+        "Collect versioned outputs from conformance, security, runtime, and recovery checks.",
+        "Map each required control to its evidence and current freshness.",
+        "Apply fail-closed rules for critical gaps, unresolved conflicts, and missing verification.",
+        "Produce an explainable readiness decision with blockers and remediation actions.",
+        "Re-evaluate after changes and retain prior decisions with their source revisions."
+      ],
+      "inputs": [
+        "runtime observations",
+        "conformance reports",
+        "security findings",
+        "recovery tests",
+        "evidence manifest"
+      ],
+      "outputs": [
+        "readiness status",
+        "blocker list",
+        "evidence coverage",
+        "remediation plan"
+      ],
+      "gates": [
+        "critical controls complete",
+        "fresh evidence",
+        "no unresolved blocking conflict",
+        "recovery path"
+      ],
+      "failure_modes": [
+        "stale telemetry",
+        "missing proof",
+        "critical security finding",
+        "unknown recovery behavior"
+      ],
+      "evidence_refs": [
+        "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+        "docs/recovery/IDEA_IMPLEMENTATION_CLOSURE_AUDIT_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Contradiction Engine",
+      "aliases": [],
+      "family": "Knowledge / evidence reconciliation",
+      "canonical_owner": "NEXENT",
+      "description": "Candidate reasoning capability for detecting incompatible claims, source versions, contracts, or runtime observations and preserving the conflict until evidence resolves it.",
+      "mechanism": [
+        "Normalize claims with source, time, scope, and subject identity.",
+        "Compare claims using declared logical and temporal compatibility rules.",
+        "Classify contradictions separately from missing data and harmless variation.",
+        "Attach supporting/refuting evidence and assign the next verification obligation.",
+        "Keep the result unresolved when evidence is insufficient rather than choosing a preferred claim silently."
+      ],
+      "inputs": [
+        "claims",
+        "sources",
+        "timestamps",
+        "contracts",
+        "runtime observations"
+      ],
+      "outputs": [
+        "contradiction set",
+        "evidence links",
+        "resolution obligations",
+        "unresolved conflict state"
+      ],
+      "gates": [
+        "scope alignment",
+        "source provenance",
+        "temporal consistency",
+        "explicit resolution rule"
+      ],
+      "failure_modes": [
+        "ambiguous scope",
+        "stale source",
+        "incomparable claims"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "Evolution Firewall",
+      "aliases": [],
+      "family": "Evolution / compatibility / governance",
+      "canonical_owner": "NEXENT",
+      "description": "Pre-admission control that evaluates proposed architectural or code changes against invariants, compatibility rules, security requirements, lineage, and rollback obligations before canonical evolution.",
+      "mechanism": [
+        "Capture the baseline and proposed change with source revisions.",
+        "Calculate affected components and contract/dependency blast radius.",
+        "Run required compatibility, test, security, and provenance checks.",
+        "Reject or hold the change if critical invariants or evidence requirements fail.",
+        "Admit only through explicit authority and preserve rollback and supersession lineage."
+      ],
+      "inputs": [
+        "baseline",
+        "change set",
+        "dependency graph",
+        "contracts",
+        "test/security evidence"
+      ],
+      "outputs": [
+        "admission disposition",
+        "impact report",
+        "required remediation",
+        "rollback references"
+      ],
+      "gates": [
+        "invariant preservation",
+        "compatibility",
+        "security",
+        "evidence freshness",
+        "explicit authority"
+      ],
+      "failure_modes": [
+        "breaking change",
+        "unbounded blast radius",
+        "missing rollback",
+        "unverified source"
+      ],
+      "evidence_refs": [
+        "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+        "docs/indexes/ENGINEERING_DECISION_REGISTER.md"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    },
+    {
+      "canonical_name": "VAIXLNS Innovation Operation Index Generator",
+      "aliases": [
+        "VAIXLNS.INNOVATION.OPERATION.INDEX.001",
+        "Innovation Operation Index",
+        "Automatic Innovation Index"
+      ],
+      "family": "Registry / innovation engineering automation",
+      "canonical_owner": "VAIXLNS",
+      "description": "Deterministic repository capability that consolidates innovation candidates from the canonical master innovation list, separation matrix, catalog, federation JSON, Ω.000 records, and measurement registry into a machine-readable index and a detailed Markdown view. It enriches records with curated operating profiles or clearly labelled family-rule drafts while preserving source-state observations and prohibiting automatic canonical promotion.",
+      "mechanism": [
+        "Read versioned canonical sources and curated operation profiles from the repository without altering project.genome.",
+        "Normalize identity keys and reconcile aliases while preserving native identifiers, original source references, and individual status observations.",
+        "Merge records conservatively and surface unresolved identity or status conflicts rather than silently deleting or promoting them.",
+        "Generate deterministic JSON and Markdown projections, including descriptions, mechanism steps, inputs, outputs, gates, failure modes, lineage, and evidence references.",
+        "Validate required fields, identifier stability, source availability, profile quality, and generated-file freshness in CI.",
+        "On relevant source changes or scheduled refresh, open a draft pull request containing only generated projections for review."
+      ],
+      "inputs": [
+        "canonical innovation index",
+        "innovation separation matrix",
+        "innovation catalog",
+        "federation JSON",
+        "Ω.000 registry",
+        "measurement registry",
+        "curated profile registry"
+      ],
+      "outputs": [
+        "registry/innovation-operation-index.v1.json",
+        "docs/innovation/INNOVATION_OPERATION_INDEX.md",
+        "validation report",
+        "draft refresh pull request"
+      ],
+      "gates": [
+        "source existence",
+        "stable identity",
+        "status-conflict handling",
+        "deterministic regeneration",
+        "source provenance",
+        "human review of generated projections"
+      ],
+      "failure_modes": [
+        "missing source file",
+        "duplicate generated identity",
+        "dangling source reference",
+        "stale generated output",
+        "conflicting implementation states"
+      ],
+      "evidence_refs": [
+        "tools/build_innovation_operation_index.py",
+        "tools/validate_innovation_operation_index.py",
+        "schemas/innovation-operation-index.schema.json",
+        "tests/test_innovation_operation_index.py",
+        ".github/workflows/innovation-index-sync.yml"
+      ],
+      "basis": "CURATED_ENGINEERING_DESIGN",
+      "mechanism_state": "DESIGN_DRAFT"
+    }
+  ]
+}

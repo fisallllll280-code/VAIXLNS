@@ -1,0 +1,128 @@
+{
+  "schema": "vaixlns.omega-index-delta-proposal.v1",
+  "proposal_id": "PROPOSAL-ARCX-MEMORY-ENGINEERING-FEDERATION-20261009",
+  "status": "PROPOSED",
+  "authority": {
+    "canonical_owner": "VAIXLNS",
+    "golden_source": "project.genome::v1.0.0",
+    "authority_anchor": "Ω0_GENESIS_CORE",
+    "target_index": "Ω.000"
+  },
+  "decision_boundary": {
+    "canonical_write_allowed": false,
+    "self_authorization_allowed": false,
+    "merge_state": "NOT_MERGED",
+    "rationale": "Proposal-only delta. Ω.000 and project.genome are not modified by this branch."
+  },
+  "purpose": "Register the additive ARC-X federated engineering bridge and system-memory/language fabric under existing VAIXLNS owners, preserving historical records and avoiding duplicate top-level authority.",
+  "proposed_operations": [
+    {
+      "operation": "EXTEND_EXISTING_TOOL",
+      "target_id": "ARC-X-OMEGA",
+      "target_path": "registry/tools/arc-x.yaml",
+      "state": "SPECIFIED",
+      "change": "Add memory/index continuity, typed language compilation, engineering task envelope, and signed receipt verification operations."
+    },
+    {
+      "operation": "ADD_DOCUMENT_REFERENCE",
+      "target_id": "VAIXLNS_MEMORY_INDEX_LANGUAGE_FABRIC_V1",
+      "target_path": "docs/architecture/VAIXLNS_SYSTEM_MEMORY_INDEX_AND_LANGUAGE_FABRIC_V1.md",
+      "state": "SPECIFIED",
+      "change": "Connect tiered memory, historical preservation, Ω.000 reconciliation, and VSL/VML/VDL/VPL/VQL candidate language families to existing architecture sources."
+    },
+    {
+      "operation": "ADD_RUNTIME_BRIDGE_REFERENCE",
+      "target_id": "ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1",
+      "target_path": "docs/integration/ARC_X_FEDERATED_ENGINEERING_RUNTIME_BRIDGE_V1.md",
+      "state": "SPECIFIED",
+      "change": "Define math, numerical, software, and physics job contracts across ARC-X, VX, VV and VAIXLNS governance."
+    },
+    {
+      "operation": "ADD_MEMORY_RECORD_SCHEMA",
+      "target_path": "schemas/vaixlns-system-memory-record.schema.json",
+      "state": "SPECIFIED",
+      "change": "Typed memory records with provenance, lineage, privacy class, preservation state, epistemic state and independent authority references."
+    },
+    {
+      "operation": "ADD_TASK_AND_RECEIPT_SCHEMAS",
+      "target_paths": [
+        "schemas/arcx-vx-engineering-task.schema.json",
+        "schemas/arcx-vx-engineering-receipt.schema.json"
+      ],
+      "state": "SPECIFIED",
+      "change": "Typed request and acknowledgement schemas; the task requires an explicit memory/index retrieval coverage statement and the receipt cannot establish semantic verification or canonical admission."
+    },
+    {
+      "operation": "ADD_LANGUAGE_COMPILATION_SCHEMA",
+      "target_path": "schemas/vaixlns-language-compilation-record.schema.json",
+      "state": "SPECIFIED",
+      "change": "Bind historical/current language names, grammar and compiler versions, source digest, AST/type/unit checks, EIR, proof obligations and no-authority guarantees."
+    },
+    {
+      "operation": "ADD_REFERENCE_CLIENT_AND_TESTS",
+      "target_paths": [
+        "scripts/arcx_vx_bridge.py",
+        "tests/test_arcx_vx_bridge.py"
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "verification_state": "NOT_RUN",
+      "change": "Explicit, environment-configured client with fail-closed preflight, required memory coverage context, redirect denial, HMAC request signatures and task-bound signed receipt validation.",
+      "test_case_count": 22
+    },
+    {
+      "operation": "UPDATE_INDEX_NAVIGATION",
+      "target_path": "docs/indexes/README.md",
+      "state": "PROPOSED",
+      "change": "Add discoverability references to the bridge, schemas, reference client and tests."
+    }
+  ],
+  "preserved_existing_sources": [
+    "docs/architecture/VAIXLNS_SYSTEM_CONTEXT_CLOSURE_V1.md",
+    "docs/omega/VAIXLNS_OMEGA_INFINITY_PRESERVATION_LEDGER.md",
+    "docs/omega/VAIXLNS_SOURCE_INTEGRATION_CONTRACT.md",
+    "docs/tools/ARC_X_EPISTEMIC_REALITY_COMPILER_V1.md",
+    "docs/indexes/V_COMPUTATIONAL_REALITY_ENGINE_V1.md",
+    "docs/innovation/VAIXLNS_INNOVATION_CATALOG.md",
+    "docs/innovation/INNOVATION_SEPARATION_MATRIX_V1.md",
+    "docs/innovation/INNOVATION_OPERATION_INDEX.md",
+    "registry/innovation-operation-profiles.v1.json",
+    "registry/omega/omega-000-master-index.json"
+  ],
+  "acceptance_gates": [
+    "All four JSON Schema artifacts parse and pass repository schema-validation tooling",
+    "Python unit tests execute and pass in the repository environment",
+    "Existing admission, federation-integrity, and VX Stage tests remain green",
+    "Task receipt signature, digest binding, duplicate-request and stale-policy negative tests pass",
+    "Memory retrieval coverage is explicit; COMPLETE_FOR_SCOPE requires a pinned index revision, receipt and no declared gaps",
+    "Historical fragment classifications and original IDs survive re-ingestion and index rebuild",
+    "No production endpoint, remote worker, GPU or specialist solver is treated as connected without direct evidence",
+    "Independent governance approves any canonical Ω.000 modification"
+  ],
+  "current_evidence": {
+    "feature_branch": "feat/arcx-federated-engineering-bridge-v1",
+    "known_commits": [
+      "a8f88b9ad64b7fd9416059654dda3fc215db635c",
+      "c4a5e4251234cd63f3961a4815a82559fa22a6f1",
+      "0c9bd2964162516ad7ff07e415029a0015280a2f",
+      "357c38648e67d087eb301f81da9b20b961f454c7",
+      "e4cb375cb8f0b51c8dcd90c5770e5039deb67516",
+      "dc6b608c21f88b38a3c9299713410d6e32ead5f0",
+      "96093d5cfdb1b4afd3c19da4763c930d2cd9f3bf"
+    ],
+    "remote_endpoint": "NOT_CONFIGURED",
+    "production_runtime": "NOT_PROVEN",
+    "pytest": "NOT_RUN",
+    "canonical_index_changed": false,
+    "python_unit_test_count": 22,
+    "commit_reference_note": "Use the Git branch history as the authoritative change ledger; embedded SHA lists are intentionally not claimed complete.",
+    "json_syntax_parse": "PASS_FOR_FOUR_SCHEMAS",
+    "json_schema_meta_validation": "NOT_RUN"
+  },
+  "historical_preservation": {
+    "rule": "ADDITIVE_ONLY",
+    "preserve_original_ids": true,
+    "preserve_original_source_locations": true,
+    "preserve_original_derived_reconstructed_synthesized_labels": true,
+    "silent_delete_or_merge": false
+  }
+}

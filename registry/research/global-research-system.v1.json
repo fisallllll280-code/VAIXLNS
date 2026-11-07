@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0.0",
+  "system_id": "VAIXLNS.RESEARCH.GLOBAL.V1",
+  "name": "VAIXLNS Global Research System",
+  "state": "SPECIFIED",
+  "authority": "VAIXLNS",
+  "purpose": "Provenance-first multi-source research, evidence evaluation, reproducible experimentation and controlled engineering integration",
+  "pipeline": [
+    "SOURCE_DISCOVERY",
+    "INGESTION",
+    "NORMALIZATION",
+    "ENTITY_RESOLUTION",
+    "KNOWLEDGE_GRAPH",
+    "HYPOTHESIS",
+    "EVIDENCE_REVIEW",
+    "REPLICATION_OR_SIMULATION",
+    "SYNTHESIS",
+    "HUMAN_OR_POLICY_GATE",
+    "CONTROLLED_INTEGRATION",
+    "MONITORING",
+    "EVOLUTION"
+  ],
+  "agents": [
+    {
+      "id": "DISCOVERY",
+      "outputs": [
+        "source_candidates",
+        "query_provenance"
+      ]
+    },
+    {
+      "id": "RETRIEVAL",
+      "outputs": [
+        "source_snapshot",
+        "content_hash",
+        "retrieval_event"
+      ]
+    },
+    {
+      "id": "EXTRACTION",
+      "outputs": [
+        "atomic_claims",
+        "source_locations"
+      ]
+    },
+    {
+      "id": "ONTOLOGY",
+      "outputs": [
+        "entity_links",
+        "aliases",
+        "alternatives"
+      ]
+    },
+    {
+      "id": "RELATION",
+      "outputs": [
+        "typed_edges",
+        "supporting_evidence"
+      ]
+    },
+    {
+      "id": "EVIDENCE_AUDITOR",
+      "outputs": [
+        "evidence_matrix",
+        "conflicts",
+        "limitations"
+      ]
+    },
+    {
+      "id": "NOVELTY_ANALYST",
+      "outputs": [
+        "prior_art_matrix",
+        "search_coverage",
+        "unresolved_gaps"
+      ]
+    },
+    {
+      "id": "RESEARCH_PLANNER",
+      "outputs": [
+        "falsifiable_hypothesis",
+        "experiment_plan",
+        "stop_rules"
+      ]
+    },
+    {
+      "id": "SIMULATION",
+      "outputs": [
+        "environment",
+        "inputs",
+        "outputs",
+        "reproduction_metadata"
+      ]
+    },
+    {
+      "id": "SYNTHESIS",
+      "outputs": [
+        "traceable_report",
+        "alternatives"
+      ]
+    },
+    {
+      "id": "GOVERNANCE",
+      "outputs": [
+        "allow",
+        "constrain",
+        "quarantine",
+        "deny"
+      ]
+    },
+    {
+      "id": "INTEGRATION",
+      "outputs": [
+        "patch",
+        "tests",
+        "rollback_plan",
+        "review_request"
+      ]
+    },
+    {
+      "id": "OBSERVER",
+      "outputs": [
+        "drift_events",
+        "alerts",
+        "versioned_changes"
+      ]
+    }
+  ],
+  "states": [
+    "DISCOVERED",
+    "INGESTED",
+    "EXTRACTED",
+    "CORRELATED",
+    "SUPPORTED",
+    "REPLICATED",
+    "SPECIFIED",
+    "IMPLEMENTED",
+    "VERIFIED",
+    "CONFLICT",
+    "UNRESOLVED",
+    "STALE",
+    "REJECTED"
+  ],
+  "rules": {
+    "source_lineage_required": true,
+    "confidence_is_not_proof": true,
+    "no_silent_deletion": true,
+    "no_silent_merge": true,
+    "no_automatic_verified_promotion": true,
+    "external_writes_require_authorized_gate": true,
+    "retrieved_code_is_untrusted": true,
+    "coverage_limits_must_be_reported": true
+  },
+  "phases": [
+    {
+      "id": "R0",
+      "name": "Contract",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R1",
+      "name": "Local research core",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R2",
+      "name": "Approved source adapters",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R3",
+      "name": "Evidence graph",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R4",
+      "name": "Reproducible experiment workbench",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R5",
+      "name": "Bounded multi-agent orchestration",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R6",
+      "name": "Controlled engineering loop",
+      "state": "PROPOSED"
+    },
+    {
+      "id": "R7",
+      "name": "Continuous research operations",
+      "state": "PROPOSED"
+    }
+  ],
+  "not_claimed": [
+    "live global web crawling",
+    "full scientific database coverage",
+    "autonomous production deployment",
+    "verified scientific novelty",
+    "all agents currently running"
+  ]
+}
