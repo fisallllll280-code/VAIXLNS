@@ -1,3 +1,71 @@
+Perform the actual STRICT READ-ONLY REPOSITORY REALITY AUDIT for VAIXLNS now.
+
+Repository: https://github.com/fisallllll280-code/VAIXLNS
+
+You are operating inside the local repository. Do not assume anything that you have not inspected.
+
+MANDATORY TASKS:
+
+1. Inspect README.md, CLAUDE.md, and all applicable project instructions.
+2. Inspect the entire .claude/ directory and existing hooks.
+3. Inspect .git/hooks and core.hooksPath.
+4. Inspect Git branches, working-tree status, and worktrees.
+5. Inventory all existing contracts, receipts, rules, and evals.
+6. Inspect GitHub Actions workflows and their test commands.
+7. Inspect existing recovery, verification, and provenance infrastructure.
+8. Calculate SHA-256 hashes for relevant tracked files.
+9. Identify duplicated capabilities and existing implementations that can be reused.
+
+CLASSIFY EVERY CAPABILITY AS:
+
+EXISTS_AND_TESTED
+EXISTS_NOT_TESTED
+PARTIALLY_EXISTS
+MISSING
+UNKNOWN
+
+SAFETY CONSTRAINTS:
+
+* READ-ONLY MODE ONLY.
+* Do not create, edit, delete, rename, or install files.
+* Do not modify Git configuration.
+* Do not create or delete worktrees.
+* Do not commit, reset, merge, or push.
+* Do not access or expose secrets.
+* Do not treat README documentation as proof of operational execution.
+* Preserve all historical assets and provenance.
+* Do not claim tests passed unless they were actually executed.
+
+REQUIRED OUTPUT:
+
+A. Repository identity and exact Git state.
+B. Complete infrastructure inventory with exact paths.
+C. SHA-256 evidence.
+D. Harness capability classification.
+E. Existing tests and actual execution results, if safely runnable without modifying repository state.
+F. Missing controls and security weaknesses.
+G. Non-duplicative integration plan.
+H. Exact dry-run test commands for later authorized execution.
+I. Explicit blockers and unverified claims.
+
+STOP after presenting the report.
+
+Do not implement anything. Await explicit authorization.
+
+GOVERNING INVARIANTS:
+NO DELETE.
+NO LOSS.
+EXTEND ONLY.
+NO PROOF = NO COMMIT.
+NO SELF-APPROVAL.
+UNKNOWN ≠ VERIFIED.
+OBSERVATION ≠ PROOF.
+
+
+
+
+
+
 VAIXLNS × VX — Sovereign Engineering Harness
 
 ROLE
