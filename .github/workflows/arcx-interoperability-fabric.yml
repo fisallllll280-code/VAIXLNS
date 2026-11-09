@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - feat/arc-x-interoperability-fabric-v1
+      - feat/arcx-security-evidence-core-v1
   workflow_dispatch:
 
 permissions:
@@ -18,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Compile contract and tests
-        run: python -m py_compile scripts/arcx_interoperability_fabric.py tests/test_arcx_interoperability_fabric.py
+      - name: Compile contract, secret boundary, and tests
+        run: python -m py_compile scripts/arcx_interoperability_fabric.py scripts/arcx_secret_boundary.py tests/test_arcx_interoperability_fabric.py
       - name: Run contract regression tests
         run: python -m unittest -v tests.test_arcx_interoperability_fabric
