@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schemas/windows-intent-request.schema.json",
+  "title": "VAIXLNS Windows Intent Request v1",
+  "description": "The only executable v1 request is a read-only Windows inventory operation. This schema does not authorize execution; the runner applies policy independently.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "intent",
+    "target",
+    "operation",
+    "risk",
+    "mode"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$",
+      "description": "Non-secret trace identifier. Do not use a person's name, token, or other sensitive value."
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000,
+      "description": "Human-readable purpose. It is evidence/context only and is never interpreted as shell code."
+    },
+    "target": {
+      "const": "local_windows_host"
+    },
+    "operation": {
+      "const": "windows.inventory.readonly"
+    },
+    "risk": {
+      "const": "R0"
+    },
+    "mode": {
+      "enum": [
+        "plan",
+        "execute"
+      ]
+    }
+  }
+}

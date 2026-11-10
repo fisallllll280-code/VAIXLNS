@@ -56,3 +56,6 @@ coverage/
 
 # Local tooling state
 .direnv/
+
+# ARC-X local evidence output
+.arcx/
