@@ -1,3 +1,26 @@
+Review: Required Contract and Lifecycle Corrections
+
+The Engineering Innovation Fabric is a valuable additive architectural contribution. Before approval, the following issues must be addressed:
+
+1. Actual JSON Schema validation: validate_work_order() currently reads the schema’s required fields but does not execute full JSON Schema Draft 2020-12 validation. Add a compliant validator and run structural validation before semantic validation.
+2. Lifecycle consistency: CHECKPOINTED appears in the registry lifecycle but is absent from the schema’s state enum. Establish one canonical lifecycle definition and synchronize the schema, registry, validator, and tests.
+3. Federation identity integrity: Explicitly reject duplicate target_id values before constructing the target lookup map.
+4. Reference integrity: Add uniqueness and validation checks for outcome IDs, acceptance criterion IDs, approval references, and other cross-record references.
+5. Adversarial tests: Cover invalid enum values, extra properties, malformed timestamps and URIs, schema boundaries, duplicate federation targets, and missing or invalid authorization references.
+6. CI enforcement: Ensure the workflow runs both full Draft 2020-12 schema validation and semantic/adversarial tests.
+
+Governance requirements:
+
+* NO DELETE · NO LOSS · EXTEND ONLY
+* NO PROOF = NO COMMIT
+* UNKNOWN ≠ VERIFIED
+* No agent self-approval.
+* No external side effects without a separate authorized gate.
+
+Please preserve the current implementation and address these issues additively.
+
+Review status: CHANGES REQUESTED — NOT APPROVED.
+The design is promising, but full contract enforcement and lifecycle consistency must be demonstrated before merge or canonical promotion.
 # VAIXLNS — Master Index Navigation
 
 **Snapshot:** 2026-09-25
