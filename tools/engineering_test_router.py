@@ -22,7 +22,11 @@ ALL_TEST_PATTERN = "test_*.py"
 
 # Only known source-to-test dependency boundaries are allowed to use focused routing.
 ROUTES: tuple[tuple[str, tuple[str, ...]], ...] = (
-    ("vcre/**", ("test_vcre_predictive.py", "test_vcre_runtime.py")),
+    ("vcre/predictive.py", ("test_vcre_predictive.py", "test_vcre_runtime.py")),
+    ("vcre/engine.py", ("test_vcre_predictive.py", "test_vcre_runtime.py", "test_vcre_synthesis.py", "test_agent_orchestration.py")),
+    ("vcre/__init__.py", ("test_vcre_predictive.py", "test_vcre_runtime.py", "test_vcre_synthesis.py", "test_agent_orchestration.py")),
+    ("vcre/synthesis.py", ("test_vcre_synthesis.py", "test_vcre_runtime.py")),
+    ("vcre/agent_orchestration.py", ("test_agent_orchestration.py",)),
     ("scripts/vcre_probe.py", ("test_vcre_predictive.py", "test_vcre_runtime.py")),
     ("scripts/arcx_vx_bridge.py", ("test_arcx_vx_bridge.py",)),
     ("schemas/arcx-vx-engineering-task.schema.json", ("test_arcx_vx_bridge.py",)),
@@ -43,6 +47,7 @@ ROUTES: tuple[tuple[str, tuple[str, ...]], ...] = (
 
 ROUTED_TEST_STEMS = {
     "test_vcre_predictive", "test_vcre_runtime",
+    "test_vcre_synthesis", "test_agent_orchestration",
     "test_arcx_vx_bridge", "test_vx_federation_gate", "test_vx_stage_runtime",
     "test_discovery_router", "test_server_discovery_probe",
     "test_admission_evaluator", "test_canonical_control_plane",
