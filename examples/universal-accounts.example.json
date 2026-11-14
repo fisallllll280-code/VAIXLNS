@@ -1,0 +1,38 @@
+{
+  "schema": "VAIXLNS.AccountSourceManifest.v1",
+  "notice": "EXAMPLE ONLY. Copy to ignored build/ or outside repository; never commit real accounts or credentials.",
+  "accounts": [
+    {
+      "alias": "chat_personal_01",
+      "source_class": "chatgpt_personal_export",
+      "authorization": "DECLARED",
+      "classification": "RESTRICTED",
+      "source_owner_approved": false,
+      "purpose": "Owner-requested private conversation export inventory"
+    },
+    {
+      "alias": "git_source_01",
+      "source_class": "github",
+      "authorization": "DECLARED",
+      "classification": "INTERNAL",
+      "source_owner_approved": false,
+      "purpose": "Read-only selected repositories and change history"
+    },
+    {
+      "alias": "drive_source_01",
+      "source_class": "google_drive",
+      "authorization": "DECLARED",
+      "classification": "RESTRICTED",
+      "source_owner_approved": false,
+      "purpose": "Authorized file inventory and change detection"
+    },
+    {
+      "alias": "model_source_01",
+      "source_class": "model_provider",
+      "authorization": "DECLARED",
+      "classification": "INTERNAL",
+      "source_owner_approved": false,
+      "purpose": "Restricted model capability discovery before provider smoke test"
+    }
+  ]
+}

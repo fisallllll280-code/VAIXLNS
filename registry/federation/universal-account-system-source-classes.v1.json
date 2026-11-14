@@ -1,0 +1,132 @@
+{
+  "schema": "VAIXLNS.UniversalAccountSystemSources.v1",
+  "document_status": "REFERENCE_TAXONOMY_NOT_CONNECTED_ACCOUNT_INVENTORY",
+  "authority": "VAIXLNS",
+  "canonical_parent": "Ω.000",
+  "default_policy": "DENY",
+  "identity_rule": "Each account/workspace/system has distinct pseudonymous identity; no silent same_as or cross-account content copying.",
+  "source_classes": [
+    {
+      "class": "chatgpt_personal_export",
+      "family": "CHAT",
+      "method": "individual_owner_export",
+      "sync": "manual_snapshot",
+      "minimum_grants": "authenticated source account export by owner",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "chatgpt_managed_workspace",
+      "family": "CHAT",
+      "method": "authorized_workspace_admin_export_or_compliance",
+      "sync": "workspace_policy_bound",
+      "minimum_grants": "workspace administrator authorization",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "github",
+      "family": "REPOSITORY",
+      "method": "github_app_read_only",
+      "sync": "webhook_plus_reconcile",
+      "minimum_grants": "repository metadata and contents read for selected installations",
+      "default_destination": "VAIXLNS_INDEX_PROJECTION",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "google_drive",
+      "family": "DOCUMENTS",
+      "method": "drive_changes_list_watch",
+      "sync": "cursor_plus_notifications",
+      "minimum_grants": "OAuth least privilege for selected files/drives",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "microsoft_365",
+      "family": "DOCUMENTS",
+      "method": "microsoft_graph_delta",
+      "sync": "delta_token",
+      "minimum_grants": "Graph least privilege for selected drive/workspace",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "gmail",
+      "family": "COMMUNICATION",
+      "method": "provider_scoped_api",
+      "sync": "supported_poll_or_notifications",
+      "minimum_grants": "mail metadata readonly when authorized",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "slack",
+      "family": "COMMUNICATION",
+      "method": "slack_api_authorized_scopes",
+      "sync": "events_plus_reconcile",
+      "minimum_grants": "workspace-approved scopes limited to selected channels",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "local_filesystem",
+      "family": "FILES",
+      "method": "local_readonly_folder_adapter",
+      "sync": "filesystem_snapshot",
+      "minimum_grants": "owner-selected folder paths only",
+      "default_destination": "PRIVATE_LIBRARY",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "model_provider",
+      "family": "MODEL",
+      "method": "provider_native_api",
+      "sync": "capability_discovery_and_live_smoke",
+      "minimum_grants": "per-provider model access; no tool or repo write permissions",
+      "default_destination": "VX_MODEL_REGISTRY_REVIEW",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "class": "runtime_or_database",
+      "family": "SYSTEM",
+      "method": "service_identity_and_readonly_inventory",
+      "sync": "authenticated_health_and_inventory",
+      "minimum_grants": "per-service explicit read-only role",
+      "default_destination": "VX_RUNTIME_REVIEW",
+      "state": "NOT_CONNECTED"
+    }
+  ],
+  "workflow_stages": [
+    "DECLARE_SOURCE",
+    "AUTHORIZE_ACCOUNT",
+    "INVENTORY_READ_ONLY",
+    "CAPTURE_DELTA_OR_SNAPSHOT",
+    "CONTENT_HASH_AND_LINEAGE",
+    "CLASSIFY_AND_ROUTE",
+    "RECONCILE_WITH_Ω.000_AND_ZERO_LOSS",
+    "DEPENDENCY_AND_IDENTITY_AUDIT",
+    "CONTRACT_AND_SECURITY_GATE",
+    "SANDBOX_AND_TEST",
+    "INDEPENDENT_EVIDENCE_REVIEW",
+    "AUTHORIZED_COMMIT_OR_HOLD",
+    "CONTINUOUS_MONITOR_AND_REVALIDATE"
+  ],
+  "hard_constraints": [
+    "NO_CROSS_ACCOUNT_ACCESS_WITHOUT_EXPLICIT_GRANT",
+    "NO_ACCOUNT_IDENTIFIER_OR_SECRET_IN_PUBLIC_GIT",
+    "NO_CANONICAL_PROMOTION_BY_INDEXING",
+    "NO_PUBLIC_RAW_PERSONAL_DATA",
+    "NO_CREDENTIAL_COLLECTION_IN_CHAT_OR_REPO",
+    "NO_SILENT_DELETION_RENAME_MERGE",
+    "NO_PRODUCTION_MODEL_ACTIVATION_FROM_MODEL_NAME",
+    "ALWAYS_RECORD_UNKNOWN"
+  ],
+  "reference_docs": [
+    "registry/integration-control/external-integrations-policy-v1.json",
+    "docs/integration/UNIVERSAL_EXTERNAL_INTEGRATION_GATE_V1.md",
+    "docs/architecture/MASTER_WORKFLOW_ORCHESTRATOR_V1.md",
+    "registry/indexes/zero-loss-index-taxonomy.v1.json",
+    "registry/omega/omega-000-master-index.json"
+  ]
+}
