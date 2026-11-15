@@ -41,12 +41,18 @@ def read_json(path: str | Path) -> Any:
         return json.load(stream)
 
 
+def _finite_number(value: Any) -> bool:
+    return (isinstance(value, int) and not isinstance(value, bool)) or (
+        isinstance(value, float) and math.isfinite(value)
+    )
+
+
 def _json_equal(left: Any, right: Any) -> bool:
     """Compare JSON values without Python's bool/int equality ambiguity."""
     if isinstance(left, bool) or isinstance(right, bool):
         return type(left) is type(right) and left == right
-    if isinstance(left, (int, float)) and isinstance(right, (int, float)):
-        return math.isfinite(left) and math.isfinite(right) and left == right
+    if _finite_number(left) and _finite_number(right):
+        return left == right
     if type(left) is not type(right):
         return False
     if isinstance(left, list):
@@ -69,7 +75,7 @@ def _type_matches(value: Any, expected: str) -> bool:
     if expected == "integer":
         return isinstance(value, int) and not isinstance(value, bool)
     if expected == "number":
-        return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+        return _finite_number(value)
     if expected == "boolean":
         return isinstance(value, bool)
     if expected == "null":
@@ -169,7 +175,9 @@ def validate_schema_definition(schema: Any) -> list[str]:
             except (TypeError, re.error):
                 errors.append(f"{path}.pattern: invalid regular expression")
 
-        if "format" in node and node["format"] not in SUPPORTED_FORMATS:
+        if "format" in node and (
+            not isinstance(node["format"], str) or node["format"] not in SUPPORTED_FORMATS
+        ):
             errors.append(f"{path}.format: unsupported format assertion")
 
         for key in ("minLength", "maxLength", "minItems", "maxItems"):
@@ -178,11 +186,12 @@ def validate_schema_definition(schema: Any) -> list[str]:
             ):
                 errors.append(f"{path}.{key}: must be a non-negative integer")
 
+        if "uniqueItems" in node and not isinstance(node["uniqueItems"], bool):
+            errors.append(f"{path}.uniqueItems: must be a boolean")
+
         for key in ("minimum", "maximum"):
             if key in node and (
-                not isinstance(node[key], (int, float))
-                or isinstance(node[key], bool)
-                or not math.isfinite(node[key])
+                not _finite_number(node[key])
             ):
                 errors.append(f"{path}.{key}: must be a finite number")
 
@@ -190,6 +199,9 @@ def validate_schema_definition(schema: Any) -> list[str]:
             errors.append(f"{path}.enum: must be a non-empty array")
 
     walk(schema, "$")
+    for lower, upper, label in (("minLength", "maxLength", "length"), ("minItems", "maxItems", "item count"), ("minimum", "maximum", "numeric")):
+        if lower in schema and upper in schema and isinstance(schema[lower], (int, float)) and isinstance(schema[upper], (int, float)) and schema[lower] > schema[upper]:
+            errors.append(f"$.{lower}/$.{upper}: invalid {label} range")
     return errors
 
 
@@ -262,7 +274,7 @@ def validate_json_schema(instance: Any, schema: Any, path: str = "$") -> list[st
             errors.append(f"{path}: value is not a valid RFC 3339 date-time")
 
     if isinstance(instance, (int, float)) and not isinstance(instance, bool):
-        if not math.isfinite(instance):
+        if not _finite_number(instance):
             errors.append(f"{path}: number must be finite")
         else:
             if "minimum" in schema and instance < schema["minimum"]:
@@ -330,8 +342,10 @@ def validate_work_order(work_order: Any, schema: Any | None = None) -> list[str]
     if not isinstance(schema, dict):
         return ["schema must be a JSON object"]
 
-    errors = validate_schema_definition(schema)
-    errors.extend(validate_json_schema(work_order, schema))
+    schema_errors = validate_schema_definition(schema)
+    if schema_errors:
+        return schema_errors
+    errors = validate_json_schema(work_order, schema)
     if errors:
         # Structural errors are returned before semantic code touches nested values.
         # This also prevents malformed unhashable dependencies from crashing validation.
