@@ -96,5 +96,85 @@ class EngineeringWorkOrderContractTests(unittest.TestCase):
         self.assertEqual([], self.example["federation"]["partner_refs"])
 
 
+    def test_schema_constraints_are_actually_enforced(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["resource_budget"]["max_cpu_cores"] = 0
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("max_cpu_cores" in error and "minimum" in error for error in errors))
+
+    def test_nested_additional_properties_are_rejected(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["policy"]["unrecognized_override"] = True
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("additional property is not allowed" in error for error in errors))
+
+    def test_enum_and_string_constraints_are_enforced(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["domains"][0] = "imaginary-domain"
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("$.domains[0]" in error and "enum" in error for error in errors))
+
+    def test_uri_and_rfc3339_formats_are_enforced(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["source_refs"][0]["uri"] = "not-a-uri"
+        candidate["provenance"]["created_at"] = "yesterday"
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("valid absolute URI" in error for error in errors))
+        self.assertTrue(any("RFC 3339 date-time" in error for error in errors))
+
+    def test_unsupported_schema_assertion_keywords_fail_closed(self):
+        candidate_schema = copy.deepcopy(self.schema)
+        candidate_schema["properties"]["intent"]["patternProperties"] = {}
+        errors = validate_work_order(self.example, candidate_schema)
+        self.assertTrue(any("unsupported schema keyword: patternProperties" in error for error in errors))
+
+    def test_malformed_unhashable_dependency_is_rejected_without_crash(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["tasks"][1]["depends_on"] = [["T-001"]]
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("dependencies" in error or "expected type" in error for error in errors))
+
+    def test_duplicate_federation_target_ids_are_rejected(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["federation"]["targets"].append(
+            copy.deepcopy(candidate["federation"]["targets"][0])
+        )
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("target_id values must be unique" in error for error in errors))
+
+    def test_duplicate_outcome_and_acceptance_ids_are_rejected(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["requested_outcomes"].append(copy.deepcopy(candidate["requested_outcomes"][0]))
+        candidate["acceptance_criteria"].append(copy.deepcopy(candidate["acceptance_criteria"][0]))
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("outcome_id values must be unique" in error for error in errors))
+        self.assertTrue(any("criterion_id values must be unique" in error for error in errors))
+
+    def test_non_zero_budget_requires_explicit_reference(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["resource_budget"]["max_cost_usd"] = 1
+        errors = validate_work_order(candidate, self.schema)
+        self.assertTrue(any("budget_approval_ref" in error for error in errors))
+
+    def test_example_defaults_to_zero_spend_without_approval(self):
+        self.assertEqual(0, self.example["resource_budget"]["max_cost_usd"])
+        self.assertIsNone(self.example["policy"]["budget_approval_ref"])
+
+    def test_task_order_rejects_malformed_dependency_items(self):
+        candidate = copy.deepcopy(self.example)
+        candidate["tasks"][1]["depends_on"] = [["T-001"]]
+        with self.assertRaises(ValueError):
+            deterministic_task_order(candidate)
+
+
+    def test_malformed_schema_fails_closed_without_validator_crash(self):
+        candidate_schema = copy.deepcopy(self.schema)
+        candidate_schema["properties"]["intent"]["format"] = []
+        candidate_schema["properties"]["tasks"]["minItems"] = "three"
+        errors = validate_work_order(self.example, candidate_schema)
+        self.assertTrue(any("unsupported format assertion" in error for error in errors))
+        self.assertTrue(any("minItems" in error for error in errors))
+
+
 if __name__ == "__main__":
     unittest.main()

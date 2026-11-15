@@ -110,6 +110,7 @@
     "physical_actuation": false,
     "approval_required_for_side_effects": true,
     "approval_refs": [],
+    "budget_approval_ref": null,
     "allowed_domains": []
   },
   "resource_budget": {
@@ -117,7 +118,7 @@
     "max_cpu_cores": 4,
     "max_gpu_units": 0,
     "max_parallel_tasks": 2,
-    "max_cost_usd": 10,
+    "max_cost_usd": 0,
     "budget_owner": "EXAMPLE_ONLY"
   },
   "federation": {

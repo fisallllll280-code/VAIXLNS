@@ -393,6 +393,13 @@
           },
           "maxItems": 30
         },
+        "budget_approval_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        },
         "allowed_domains": {
           "type": "array",
           "uniqueItems": true,
