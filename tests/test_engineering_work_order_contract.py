@@ -167,5 +167,14 @@ class EngineeringWorkOrderContractTests(unittest.TestCase):
             deterministic_task_order(candidate)
 
 
+    def test_malformed_schema_fails_closed_without_validator_crash(self):
+        candidate_schema = copy.deepcopy(self.schema)
+        candidate_schema["properties"]["intent"]["format"] = []
+        candidate_schema["properties"]["tasks"]["minItems"] = "three"
+        errors = validate_work_order(self.example, candidate_schema)
+        self.assertTrue(any("unsupported format assertion" in error for error in errors))
+        self.assertTrue(any("minItems" in error for error in errors))
+
+
 if __name__ == "__main__":
     unittest.main()
