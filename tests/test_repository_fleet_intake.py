@@ -61,6 +61,24 @@ class RepositoryFleetIntakeTests(unittest.TestCase):
             with self.assertRaisesRegex(IntakeError, "NETWORK_GATE_CLOSED"):
                 execute_intake(plan, Path(tmp) / "fleet", network_enabled=False)
 
+    def test_tampered_plan_is_rejected(self):
+        plan = build_plan("fisallllll280-code", ["VAIXLNS"], metadata_reader=lambda n: meta(n))
+        plan["items"][0]["clone_url"] = "https://attacker.example/repo.git"
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(IntakeError, "PLAN_DIGEST_MISMATCH"):
+                execute_intake(plan, Path(tmp) / "fleet", network_enabled=True)
+
+    def test_symlink_destination_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            real = base / "real"
+            real.mkdir()
+            link = base / "link"
+            link.symlink_to(real, target_is_directory=True)
+            plan = build_plan("fisallllll280-code", ["VAIXLNS"], metadata_reader=lambda n: meta(n))
+            with self.assertRaisesRegex(IntakeError, "DESTINATION_MUST_NOT_BE_SYMLINK"):
+                execute_intake(plan, link, network_enabled=True)
+
     def test_existing_mirror_is_never_modified(self):
         plan = build_plan("fisallllll280-code", ["VAIXLNS"], metadata_reader=lambda n: meta(n))
         with tempfile.TemporaryDirectory() as tmp:
