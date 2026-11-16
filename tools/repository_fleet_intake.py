@@ -97,6 +97,8 @@ def build_plan(
     for full_name in full_names:
         try:
             meta = metadata_reader(full_name)
+            if not isinstance(meta, dict) or meta.get("full_name", "").casefold() != full_name.casefold():
+                raise IntakeError("REPOSITORY_IDENTITY_MISMATCH:" + full_name)
             size_mb = max(0, int(meta.get("size", 0))) / 1024
             total_size_mb += size_mb
             visibility = "PRIVATE" if meta.get("private") is True else "PUBLIC"
