@@ -165,10 +165,16 @@ def execute_intake(
         raise IntakeError("INVALID_PLAN_SCHEMA")
     if plan.get("mode") != "PLAN_ONLY" or not plan.get("plan_sha256"):
         raise IntakeError("INVALID_OR_ALREADY_EXECUTED_PLAN")
+    plan_body = {key: value for key, value in plan.items() if key != "plan_sha256"}
+    if sha256_bytes(canonical_json(plan_body)) != plan.get("plan_sha256"):
+        raise IntakeError("PLAN_DIGEST_MISMATCH")
     if plan.get("safety", {}).get("remote_write") is not False:
         raise IntakeError("UNSAFE_PLAN")
-    root = Path(destination).expanduser().resolve()
-    if root.exists() and (root.is_symlink() or not root.is_dir()):
+    raw_root = Path(destination).expanduser()
+    if raw_root.exists() and raw_root.is_symlink():
+        raise IntakeError("DESTINATION_MUST_NOT_BE_SYMLINK")
+    root = raw_root.resolve()
+    if root.exists() and not root.is_dir():
         raise IntakeError("DESTINATION_MUST_BE_A_DIRECTORY")
     root.mkdir(parents=True, exist_ok=True)
     results: list[dict[str, Any]] = []
@@ -183,7 +189,7 @@ def execute_intake(
             results.append({**item, "intake_status": "EXISTS_NOT_MODIFIED", "local_path": str(target)})
             continue
         clone_url = item.get("clone_url")
-        if not isinstance(clone_url, str) or not clone_url.startswith("https://github.com/"):
+        if clone_url != f"https://github.com/{full_name}.git":
             results.append({**item, "intake_status": "BLOCKED_INVALID_CLONE_URL"})
             continue
         command = ["git", "clone", "--mirror", "--no-hardlinks", clone_url, str(target)]
