@@ -1,0 +1,66 @@
+{
+  "task_id": "RESEARCH_REALITY_CONSOLE_20261117",
+  "version": "1.0.0",
+  "objective": "Add a responsive VAIXLNS research-to-reality monitoring screen that presents the current Undermind deep-search snapshot, the full governed research lifecycle, evidence boundaries, blockers, and follow-up navigation without claiming an unconnected live feed.",
+  "base_ref": "main",
+  "isolation_branch": "feat/research-reality-console-20261117",
+  "allowed_paths": [
+    ".claude/contracts/RESEARCH_REALITY_CONSOLE_20261117.json",
+    "web/research-reality-console/index.html",
+    "web/research-reality-console/research-status.json",
+    "docs/ui/VAIXLNS_RESEARCH_REALITY_CONSOLE_V1.md",
+    "tests/test_research_reality_console.py"
+  ],
+  "forbidden_paths": [
+    "project.genome",
+    "Ω.000",
+    "docs/indexes/Ω.000*",
+    ".github/workflows/**",
+    "secrets/**",
+    ".env*"
+  ],
+  "forbidden_operations": [
+    "delete_or_rename_existing_assets",
+    "modify_protected_canonical_records",
+    "install_dependencies",
+    "spend_money",
+    "publish_or_deploy",
+    "merge_or_push_to_main",
+    "claim_live_provider_connectivity_without_verified_adapter"
+  ],
+  "constraints": {
+    "read_only_external_providers": true,
+    "no_credentials_in_browser": true,
+    "no_external_network_calls_from_dashboard": true,
+    "mock_and_snapshot_data_must_be_labeled": true,
+    "unknown_is_not_verified": true,
+    "simulation_is_not_physical_proof": true,
+    "no_self_approval": true
+  },
+  "acceptance_criteria": [
+    "Dashboard is responsive and accessible with Arabic RTL and English technical labels.",
+    "Current Undermind searches are shown with exact titles, states, and workspace deep links.",
+    "Research lifecycle covers source discovery through controlled integration, monitoring, and evolution.",
+    "Every status distinguishes live provider observation, stored snapshot, proposal, and unverified integration.",
+    "No provider credentials or secret-bearing endpoints are embedded in client code.",
+    "Status data can be updated independently of the HTML.",
+    "Tests assert required stages, search identities, safety labels, and no false live-connectivity claim."
+  ],
+  "verification_commands": [
+    "python -m unittest tests.test_research_reality_console -v"
+  ],
+  "output_artifacts": [
+    "Responsive research-to-reality dashboard",
+    "Machine-readable Undermind status snapshot",
+    "UI and data-source contract",
+    "Focused regression tests"
+  ],
+  "rollback": "Revert only the feature branch commits; preserve all source data and existing repository history. No merge is part of this task.",
+  "independent_review": "NOT_RUN — connector workflow cannot provide independent code review or local browser execution.",
+  "limits": {
+    "max_turns": 20,
+    "max_seconds": 600,
+    "cost_usd": 0
+  },
+  "state": "CONTRACTED"
+}
