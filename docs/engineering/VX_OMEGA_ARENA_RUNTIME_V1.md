@@ -14,6 +14,6 @@ This additive package supplies deterministic candidate scoring, an in-memory SHA
 - Synthetic fixtures must never be reported as live provider results.
 
 ## Local verification
-Run: `python -m unittest tests.test_vx_omega_arena_runtime -v`
+Run: `python -m unittest discover -s tests -p 'test_vx_omega_arena_runtime.py' -v`
 
 A passing local test run and a revision-bound CI receipt are required before marking this candidate VERIFIED.
