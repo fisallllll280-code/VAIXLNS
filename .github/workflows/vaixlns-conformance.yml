@@ -50,6 +50,9 @@ jobs:
             tests/test_innovation_operation_index.py \
             tests/test_agent_execution_preflight.py
 
+      - name: Run deterministic malware guard
+        run: python scripts/security_guard.py
+
       - name: Run admission gate
         run: python scripts/admission_gate.py
 
