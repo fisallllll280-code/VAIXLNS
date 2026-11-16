@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/innovation-attribution-record.schema.json",
+  "title": "VAIXLNS Innovation Attribution Record",
+  "description": "Derived evidence record for attributing the origin and subsequent contributions of an innovation without creating a parallel registry.",
+  "type": "object",
+  "required": [
+    "invention_id",
+    "invention_fingerprint",
+    "first_observation_event",
+    "originator",
+    "first_success_event",
+    "contributions",
+    "novelty_evidence",
+    "execution_evidence",
+    "verification_evidence",
+    "replay_evidence",
+    "status"
+  ],
+  "properties": {
+    "invention_id": {"type": "string", "minLength": 1},
+    "invention_fingerprint": {"type": "string", "minLength": 1},
+    "first_observation_event": {"type": "string", "minLength": 1},
+    "first_appearance": {"type": ["string", "null"]},
+    "originator": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": {"type": "string"},
+        "id": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "first_success_event": {"type": ["string", "null"]},
+    "contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["contributor_type", "contributor_id", "contribution_type"],
+        "properties": {
+          "contributor_type": {"type": "string"},
+          "contributor_id": {"type": "string"},
+          "contribution_type": {"type": "string"},
+          "derived_from": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "derived_from": {"type": "array", "items": {"type": "string"}},
+    "novelty_evidence": {"type": "array", "items": {"type": "string"}},
+    "execution_evidence": {"type": "array", "items": {"type": "string"}},
+    "verification_evidence": {"type": "array", "items": {"type": "string"}},
+    "replay_evidence": {"type": "array", "items": {"type": "string"}},
+    "success_count": {"type": "integer", "minimum": 0},
+    "revalidation_window": {"type": ["string", "null"]},
+    "champion_window": {"type": ["string", "null"]},
+    "status": {
+      "type": "string",
+      "enum": ["UNRESOLVED", "OBSERVED", "CANDIDATE", "VERIFIED_CANDIDATE", "ADOPTION_CANDIDATE", "ADOPTED", "REJECTED", "QUARANTINED"]
+    },
+    "supersedes": {"type": ["string", "null"]},
+    "superseded_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

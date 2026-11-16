@@ -1,0 +1,45 @@
+name: VAIXLNS Ω-Arena Conformance
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  omega-arena:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile Ω-Arena
+        run: |
+          python -m py_compile             intelligence_federation/router.py             intelligence_federation/arena.py             intelligence_federation/provider_adapters.py             scripts/omega_arena_runner.py
+
+      - name: Run Ω-Arena tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run provider adapter conformance
+        run: python scripts/omega_arena_runner.py --mode conformance
+
+      - name: Run deterministic tournament simulation
+        run: |
+          mkdir -p arena-evidence
+          python scripts/omega_arena_runner.py             --mode simulate             --output arena-evidence/omega-arena-simulation.json
+
+      - name: Upload Arena evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-arena-conformance-evidence
+          path: arena-evidence/omega-arena-simulation.json
+          if-no-files-found: error
