@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/engineering-idea-fusion.v1.schema.json",
+  "title": "Engineering Idea Fusion Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "snapshot_date",
+    "state",
+    "purpose",
+    "authority",
+    "official_system_crosswalk",
+    "source_repositories",
+    "canonical_integration_pipeline",
+    "recovered_engineering_pipelines",
+    "non_mergeable_or_deferred",
+    "acceptance_gates",
+    "supporting_artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "state": {
+      "enum": [
+        "PROPOSAL",
+        "IMPLEMENTED",
+        "TESTED",
+        "VERIFIED"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "role",
+        "project_genome",
+        "omega_000_master_index",
+        "canonical_mutation"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "project_genome": {
+          "const": "READ_ONLY"
+        },
+        "omega_000_master_index": {
+          "const": "READ_ONLY"
+        },
+        "canonical_mutation": {
+          "const": "DISABLED"
+        }
+      }
+    },
+    "official_system_crosswalk": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "system_id",
+          "role",
+          "identity_state",
+          "repository_candidates",
+          "note"
+        ],
+        "properties": {
+          "system_id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "identity_state": {
+            "type": "string"
+          },
+          "repository_candidates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_repository": {
+            "type": "string"
+          },
+          "evidence_path": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_repositories": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository",
+          "role",
+          "source_revision",
+          "source_path",
+          "source_blob_sha",
+          "source_url",
+          "evidence_class",
+          "integration_candidates"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "source_path": {
+            "type": "string"
+          },
+          "source_blob_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "evidence_class": {
+            "type": "string"
+          },
+          "integration_candidates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "canonical_integration_pipeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "recovered_engineering_pipelines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "stages",
+          "state"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "stages": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "const": "RECOVERED_FORMULATION"
+          }
+        }
+      }
+    },
+    "non_mergeable_or_deferred": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "acceptance_gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "supporting_artifacts": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository",
+          "source_revision",
+          "source_path",
+          "source_blob_sha",
+          "source_url",
+          "role"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "source_path": {
+            "type": "string"
+          },
+          "source_blob_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
