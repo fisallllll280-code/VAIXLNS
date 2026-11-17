@@ -44,7 +44,7 @@
 
 - ../tools/LEGACY_ARCHIVE_RESEARCH_TOOLCHAIN_V1.md — implemented archive extraction/search core, zero-loss provenance rules, exact-repeat reporting, similarity review, and JSONL export. Live adapters and full 0001–2750 recovery remain pending.
 
-- VAIXLNS_ZERO_LOSS_INDEX_V1.md — unified 28-view zero-loss index contract, atomic record rules, and build/verify commands.
+- VAIXLNS_ZERO_LOSS_INDEX_V1.md — unified 28-view zero-loss index contract, atomic record rules, and build/verify commands.\n- ../architecture/VAIXLNS_CONVERSATION_SOURCE_INGESTION_FABRIC_V1.md — local owner-supplied conversation export intake; raw sources remain in an external private vault; implementation is on a review branch until VV/CI gates close.\n- ../../scripts/ingest_conversation_sources.py and ../../schemas/conversation-source-manifest.v1.schema.json — local conversation-source adapter and manifest contract; not a live account connector.
 - ../../registry/indexes/zero-loss-index-taxonomy.v1.json — machine-readable definitions of all 28 index views and transition gates.
 - The generated five-file export is built by scripts/build_zero_loss_index.py; a read-only GitHub Actions workflow verifies and uploads the artifact without silently rewriting canonical sources.
 
