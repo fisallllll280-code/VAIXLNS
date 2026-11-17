@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "binding_id": "VX-FOUR-SYSTEM-FEDERATION-001",
+  "status": "SPECIFIED",
+  "authority": "VAIXLNS",
+  "canonical_sources": {
+    "genome": "project.genome",
+    "master_index": "registry/omega/omega-000-master-index.json"
+  },
+  "policy": {
+    "preserve_independent_repositories": true,
+    "allow_monorepo_conversion": false,
+    "modify_project_genome": false,
+    "modify_master_index": false,
+    "execute_without_authorization": false,
+    "promote_to_verified_without_runtime_evidence": false
+  },
+  "systems": [
+    {
+      "system_id": "VAIXLNS",
+      "repository": "fisallllll280-code/VAIXLNS",
+      "role": "control-plane-governance-registry-evidence-recovery",
+      "binding_status": "REPOSITORY_CONFIRMED"
+    },
+    {
+      "system_id": "VLNS",
+      "repository": "fisallllll280-code/NAXLNS",
+      "role": "knowledge-discovery-adversarial-analysis",
+      "binding_status": "IDENTITY_MAPPING_UNVERIFIED"
+    },
+    {
+      "system_id": "VX",
+      "repository": "fisallllll280-code/VX-runtime",
+      "related_repository": "fisallllll280-code/VX50_COMPLETE_BUILD",
+      "role": "governed-execution-state-replay-verification",
+      "binding_status": "REPOSITORIES_CONFIRMED_RUNTIME_CONNECTIVITY_UNVERIFIED"
+    },
+    {
+      "system_id": "NEXNET",
+      "repository": "fisallllll280-code/NEXENT",
+      "role": "research-discovery-architecture-search-synthesis",
+      "binding_status": "IDENTITY_MAPPING_UNVERIFIED"
+    }
+  ],
+  "execution_flow": [
+    "INGRESS",
+    "VAIXLNS_AUTHORIZATION",
+    "SYSTEM_ROUTER",
+    "CAPABILITY_AND_POLICY_CHECK",
+    "VX_EXECUTION",
+    "EVENT_AND_EVIDENCE_CAPTURE",
+    "VERIFICATION",
+    "LEDGER_AND_OMEGA_REGISTRY_UPDATE"
+  ],
+  "required_runtime_evidence": [
+    "repository_and_commit_identity",
+    "resolved_endpoint_or_local_process_identity",
+    "authenticated_health_check",
+    "contract_conformance_test",
+    "authorized_end_to_end_execution",
+    "event_and_evidence_hash",
+    "replay_or_reproducibility_check",
+    "failure_and_unauthorized_execution_rejection",
+    "preservation_check_for_project_genome_and_omega_000"
+  ],
+  "unavailable_values_must_remain_unset": [
+    "service_urls",
+    "credentials",
+    "runtime_status",
+    "health_status",
+    "test_results"
+  ],
+  "admission_rule": "Do not label the federation CONNECTED or VERIFIED until all required runtime evidence is captured and checked.",
+  "notes": [
+    "NAXLNS and NEXENT are repository surfaces, not proof that the VLNS and NEXNET identities are fully mapped.",
+    "This binding registry is configuration/contract only; it does not claim live network connectivity or deployed services."
+  ]
+}

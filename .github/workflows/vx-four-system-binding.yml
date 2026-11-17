@@ -1,0 +1,31 @@
+name: VX Four-System Binding
+
+on:
+  pull_request:
+    paths:
+      - "deploy/federation/vx-four-system-binding.v1.json"
+      - "tests/test_vx_four_system_binding.py"
+      - ".github/workflows/vx-four-system-binding.yml"
+  push:
+    branches:
+      - "feat/vx-four-system-federation-binding-2026-10-17"
+    paths:
+      - "deploy/federation/vx-four-system-binding.v1.json"
+      - "tests/test_vx_four_system_binding.py"
+      - ".github/workflows/vx-four-system-binding.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-binding:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate JSON
+        run: python -m json.tool deploy/federation/vx-four-system-binding.v1.json > /dev/null
+      - name: Run binding invariant tests
+        run: python -m unittest tests/test_vx_four_system_binding.py -v
