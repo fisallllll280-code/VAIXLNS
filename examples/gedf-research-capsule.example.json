@@ -1,0 +1,46 @@
+{
+  "schema": "vaixl.gedf.research-capsule.v1",
+  "mission_id": "GEDF-MATH-PHYSICS-001",
+  "research_question": "Select and validate numerical solvers for a bounded multiphysics candidate.",
+  "domains": [
+    "mathematics",
+    "computation",
+    "software",
+    "physics",
+    "security"
+  ],
+  "sources": [
+    {
+      "source_id": "SRC-EXAMPLE-001",
+      "url": "https://example.org/replace-with-real-source",
+      "source_type": "PAPER",
+      "evidence_level": "ABSTRACT_ONLY",
+      "captured_text": "Replace this placeholder with the exact captured abstract or source excerpt.",
+      "captured_text_sha256": "6c3261c8605e9293dbf6f53b10c007f325161ccbcb60c4ea24f4f512595e2230",
+      "retrieved_at_utc": "2026-10-16T00:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM-EXAMPLE-001",
+      "statement": "Replace with a source-bound claim and preserve uncertainty.",
+      "source_ids": [
+        "SRC-EXAMPLE-001"
+      ],
+      "epistemic_state": "SOURCE_ASSERTION",
+      "independent_confirmation": null
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis_id": "HYP-EXAMPLE-001",
+      "mechanism": "Describe a falsifiable mechanism, not a conclusion.",
+      "falsification_method": "State a test that could refute the hypothesis.",
+      "baseline_comparison": "Name a pinned baseline and measurable outcomes.",
+      "alternatives": [
+        "Baseline method",
+        "Alternative method"
+      ]
+    }
+  ]
+}

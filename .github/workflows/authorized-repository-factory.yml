@@ -1,0 +1,55 @@
+name: Authorized Repository Factory
+on:
+  push:
+    paths:
+      - 'scripts/create_authorized_repository.py'
+      - 'tests/test_authorized_repository_factory.py'
+      - '.github/workflows/authorized-repository-factory.yml'
+  pull_request:
+    paths:
+      - 'scripts/create_authorized_repository.py'
+      - 'tests/test_authorized_repository_factory.py'
+      - '.github/workflows/authorized-repository-factory.yml'
+  workflow_dispatch:
+    inputs:
+      repository_name:
+        description: Select one repository already declared in the factory manifest
+        required: true
+        type: choice
+        options:
+          - VAIXLNS-innovation-factory
+          - VAIXLNS-repository-orchestrator
+          - VAIXLNS-performance-fabric
+          - VAIXLNS-development-fabric
+          - VAIXLNS-integration-lab
+      confirm_create:
+        description: Must be true to create the selected repository; false performs no creation
+        required: true
+        default: false
+        type: boolean
+permissions:
+  contents: read
+jobs:
+  factory-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test authorized repository factory
+        run: python -m unittest tests.test_authorized_repository_factory -v
+  create-selected-repository:
+    if: github.event_name == 'workflow_dispatch' && inputs.confirm_create == true
+    needs: factory-tests
+    runs-on: ubuntu-latest
+    environment: repository-factory-approval
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Create exactly one manifest-authorized repository
+        env:
+          VAIXLNS_REPO_ADMIN_TOKEN: ${{ secrets.VAIXLNS_REPO_ADMIN_TOKEN }}
+        run: python scripts/create_authorized_repository.py --name "${{ inputs.repository_name }}"
