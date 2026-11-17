@@ -22,9 +22,8 @@ class ResearchRealityConsoleTests(unittest.TestCase):
 
     def test_active_undermind_searches_are_exactly_identified(self):
         titles = {item["title"] for item in self.data["active_searches"]}
-        self.assertEqual(len(titles), 2)
-        self.assertIn("Scientific Engine Ecosystem and VX Capability Acquisition 2026", titles)
-        self.assertIn("From Scientific Hypothesis to Verified Engineering Reality", titles)
+        self.assertEqual(len(titles), 1)
+        self.assertIn("Foundations of Intent-to-Reality Computing and Governed State Evolution 2026", titles)
         for item in self.data["active_searches"]:
             self.assertEqual(item["state"], "IN_PROGRESS")
             self.assertTrue(item["url"].startswith("https://app.undermind.ai/projects/"))
@@ -37,6 +36,7 @@ class ResearchRealityConsoleTests(unittest.TestCase):
 
     def test_full_lifecycle_and_assurance_invariants_are_present(self):
         self.assertEqual(len(self.data["lifecycle"]), 17)
+        self.assertEqual(len(self.data["layers"]), 9)
         self.assertTrue(self.data["assurance"]["confidence_is_not_proof"])
         self.assertTrue(self.data["assurance"]["simulation_is_not_physical_validation"])
         self.assertTrue(self.data["assurance"]["no_self_approval"])
@@ -45,7 +45,7 @@ class ResearchRealityConsoleTests(unittest.TestCase):
     def test_workspace_identity_and_links_are_present(self):
         self.assertEqual(self.data["workspace"]["workspace_id"], "0d9eabfb-e9d8-49fc-aab5-a0383a9110ce")
         self.assertEqual(self.data["workspace"]["files"], 149)
-        self.assertEqual(self.data["workspace"]["deep_searches"], 44)
+        self.assertEqual(self.data["workspace"]["deep_searches"], 47)
         self.assertIn("https://app.undermind.ai/projects/", self.data["workspace"]["web_url"])
 
     def test_client_has_no_embedded_provider_credentials(self):
