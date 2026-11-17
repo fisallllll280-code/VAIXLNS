@@ -1,0 +1,116 @@
+name: VAIXLNS Continuous Federation Sync and Innovation Review
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/continuous_federation_sync.py'
+      - 'tests/test_continuous_federation_sync.py'
+      - 'registry/federation/continuous-sync-sources.v1.json'
+      - 'registry/innovation/federation-sync-candidate.v1.json'
+      - 'docs/innovation/CONTINUOUS_FEDERATION_SYNC_V1.md'
+      - '.github/workflows/continuous-federation-sync.yml'
+      - 'scripts/publish_federation_sync_review.py'
+      - 'tests/test_publish_federation_sync_review.py'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/continuous_federation_sync.py'
+      - 'tests/test_continuous_federation_sync.py'
+      - 'registry/federation/continuous-sync-sources.v1.json'
+  schedule:
+    - cron: '31 4 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [vaixlns_sync_requested]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: federation-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Read-only checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate sync engine and private-source boundaries
+        run: python -m unittest discover -s tests -p 'test_continuous_federation_sync.py' -v
+      - name: Verify publication receipt and fail-closed innovation staging
+        run: python -m unittest discover -s tests -p 'test_publish_federation_sync_review.py' -v
+      - name: Recheck existing innovation operation index
+        run: |
+          python tools/validate_innovation_operation_index.py
+          python tools/build_innovation_operation_index.py --check
+      - name: Check existing Zero-Loss Index engine
+        run: python -m unittest discover -s tests -p 'test_zero_loss_index.py' -v
+      - name: Confirm unchanged canonical anchors
+        run: python scripts/federation_integrity_gate.py
+
+  live-public-metadata:
+    needs: offline-regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Observe only allowlisted public GitHub source metadata
+        run: |
+          python scripts/continuous_federation_sync.py \
+            --config registry/federation/continuous-sync-sources.v1.json \
+            --out "$RUNNER_TEMP/continuous-federation-sync" --strict
+      - name: Archive source/innovation review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vaixlns-federation-innovation-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/continuous-federation-sync/
+          if-no-files-found: warn
+          retention-days: 30
+
+  propose-review-on-trusted-main:
+    needs: live-public-metadata
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout ONLY trusted default branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Download this same workflow run's read-only evidence
+        uses: actions/download-artifact@v4
+        with:
+          name: vaixlns-federation-innovation-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/continuous-federation-sync
+      - name: Verify full provenance/digests and render noncanonical review
+        run: |
+          python scripts/publish_federation_sync_review.py \
+            --root . --inputs "$RUNNER_TEMP/continuous-federation-sync"
+      - name: Propose evidence and innovation files, never auto-merge
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ github.token }}
+          branch: automation/federation-sync-innovation-review
+          delete-branch: false
+          draft: true
+          add-paths: |
+            docs/evidence/federation-sync-current-review.v1.json
+            registry/innovation/review/federation-sync-current.v1.json
+          commit-message: 'chore(federation): propose reviewed sync evidence and innovation intake'
+          title: 'chore(federation): review new source changes and innovation candidates'
+          body: |
+            Automated, noncanonical public-repository evidence and innovation intake proposal.
+            Every item is UNKNOWN until independently verified. Nothing is admitted,
+            activated, deployed, merged or written into Ω.000 by this automation.
+            Review source SHAs and CI evidence before any promotion.
