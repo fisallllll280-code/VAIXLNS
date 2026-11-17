@@ -51,6 +51,11 @@ The repository mentions a historical range around 0001–2750 and 40+ families. 
 
 ## Scope limits
 
-The repository checkout is the only source surface scanned by this build. It does not automatically import conversation history, ChatGPT Library uploads, unmaterialized PDFs, remote GitHub repositories, or non-text diagram semantics. The taxonomy records each missing adapter and its status. Add a source-specific, read-only adapter and tests before changing those statuses.
+The repository checkout remains the only source surface scanned by the zero-loss repository builder. It does not automatically import ChatGPT account history, ChatGPT Library uploads, files outside the checkout, unmaterialized PDFs, remote GitHub repositories, or non-text diagram semantics. A separate owner-supplied conversation-export adapter has been added on feature branch `feat/conversation-source-intake-v1`; it is local-only, stores raw and normalized content outside Git checkouts, and remains pending PR review/CI before merge. It is not a live account connector and does not expand the repository builder's automatic scan scope. Uploaded attachments must be explicitly supplied as source paths; opaque files remain pending content extraction.
 
 A successful build proves inventory and referential integrity for that exact source revision. It does not prove that all project history was supplied, that all 2,750 historical items have been recovered, or that source claims are canonical, implemented or verified.
+
+
+## Conversation source adapter (feature branch; not yet merged)
+
+See [Conversation Source Ingestion Fabric](../architecture/VAIXLNS_CONVERSATION_SOURCE_INGESTION_FABRIC_V1.md). The adapter adds an explicit local path for owner-supplied exports and transcript files. It preserves originals and conversation branches in an external private vault; no raw conversation content is stored in the public repository. The feature remains pending PR CI and independent VV review. The existing repository scanner remains checkout-scoped.
