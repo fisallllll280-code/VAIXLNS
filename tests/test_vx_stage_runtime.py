@@ -1,9 +1,21 @@
 import unittest
 
-from scripts.vx_stage_runtime import DEFAULT_KEY, StageFederationGate, StageVX, verify
+from unittest.mock import patch
+
+from scripts.vx_stage_runtime import DEFAULT_KEY, StageFederationGate, StageVX, run_stage, verify
 
 
 class VXStageRuntimeTests(unittest.TestCase):
+    def test_default_key_source_is_reported_when_environment_is_unset(self):
+        with patch.dict("os.environ", {}, clear=True):
+            evidence = run_stage()
+        self.assertEqual(evidence["provenance"]["key_source"], "test-default")
+
+    def test_environment_key_source_is_reported_when_configured(self):
+        with patch.dict("os.environ", {"VX_STAGE_SIGNING_KEY": "isolated-test-key"}):
+            evidence = run_stage()
+        self.assertEqual(evidence["provenance"]["key_source"], "environment")
+
     def setUp(self):
         self.key = DEFAULT_KEY.encode("utf-8")
         self.gate = StageFederationGate(self.key)
