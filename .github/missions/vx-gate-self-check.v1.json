@@ -1,0 +1,41 @@
+{
+  "mission_id": "VX-GATE-SELF-CHECK-001",
+  "steps": [
+    {
+      "step_id": "compile",
+      "argv": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "scripts/vx_nonregression_gate.py",
+        "scripts/vx_mission_runner.py",
+        "tests/test_vx_nonregression_gate.py",
+        "tests/test_vx_mission_runner.py"
+      ],
+      "timeout_seconds": 30
+    },
+    {
+      "step_id": "unit-tests",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "tests.test_vx_nonregression_gate",
+        "-v"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "step_id": "mission-runner-tests",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "tests.test_vx_mission_runner",
+        "-v"
+      ],
+      "timeout_seconds": 60
+    }
+  ]
+}

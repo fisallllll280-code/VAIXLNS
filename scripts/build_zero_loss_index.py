@@ -498,8 +498,21 @@ def _resolve_markdown_target(source_path: str, raw_target: str, known_paths: set
 
 
 def _build_cross_references(sources: list[dict[str, Any]], text_by_path: dict[str, str]) -> list[dict[str, Any]]:
+    """Resolve explicit path references without scanning every known path per file.
+
+    The previous implementation compared each text source with every repository
+    path (O(text_sources * known_paths * text_length)). This version extracts
+    path-shaped candidates from each text once, then performs exact set lookups.
+    It retains Markdown-link resolution and only emits references grounded in
+    the discovered repository inventory.
+    """
     known_paths = {source["path"] for source in sources}
     source_by_path = {source["path"]: source for source in sources}
+    # Covers repository-relative paths and filenames with extensions. Candidates
+    # are verified against known_paths, so ordinary prose cannot create edges.
+    path_candidate_pattern = re.compile(
+        r"(?<![A-Za-z0-9_./-])([A-Za-z0-9_.@+-]+(?:/[A-Za-z0-9_.@+-]+)*)(?![A-Za-z0-9_./-])"
+    )
     results: list[dict[str, Any]] = []
     for source_path in sorted(text_by_path):
         content = text_by_path[source_path]
@@ -510,12 +523,12 @@ def _build_cross_references(sources: list[dict[str, Any]], text_by_path: dict[st
                 position = content.find(raw_target)
                 line = content.count("\n", 0, max(position, 0)) + 1 if position >= 0 else None
                 matches.setdefault(resolved, (line, raw_target))
-        for target_path in sorted(known_paths):
-            if target_path == source_path or target_path in matches:
+        for candidate in path_candidate_pattern.finditer(content):
+            target_path = candidate.group(1)
+            if target_path == source_path or target_path not in known_paths or target_path in matches:
                 continue
-            line = _path_reference_line(content, target_path)
-            if line is not None:
-                matches[target_path] = (line, target_path)
+            line = content.count("\n", 0, candidate.start(1)) + 1
+            matches[target_path] = (line, target_path)
         for target_path, (line, token) in sorted(matches.items()):
             results.append({
                 "from_source_id": source_by_path[source_path]["source_id"],
