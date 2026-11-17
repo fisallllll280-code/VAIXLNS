@@ -1,0 +1,22 @@
+name: VX Launch Readiness
+on:
+  pull_request:
+    paths:
+      - 'registry/vx-launch-readiness.v1.json'
+      - 'scripts/validate_vx_launch_readiness.py'
+      - 'tests/test_validate_vx_launch_readiness.py'
+      - '.github/workflows/vx-launch-readiness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.test_validate_vx_launch_readiness -v
+      - run: python scripts/validate_vx_launch_readiness.py
