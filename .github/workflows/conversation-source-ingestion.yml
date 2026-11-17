@@ -1,0 +1,42 @@
+name: Conversation Source Intake
+
+on:
+  pull_request:
+    paths:
+      - "scripts/ingest_conversation_sources.py"
+      - "tests/test_conversation_source_ingestion.py"
+      - "schemas/conversation-source-manifest.v1.schema.json"
+      - "docs/architecture/VAIXLNS_CONVERSATION_SOURCE_INGESTION_FABRIC_V1.md"
+      - ".github/workflows/conversation-source-ingestion.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/ingest_conversation_sources.py"
+      - "tests/test_conversation_source_ingestion.py"
+      - "schemas/conversation-source-manifest.v1.schema.json"
+      - "docs/architecture/VAIXLNS_CONVERSATION_SOURCE_INGESTION_FABRIC_V1.md"
+      - ".github/workflows/conversation-source-ingestion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  intake-adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: ""
+      - name: Compile adapter and tests
+        run: python -m py_compile scripts/ingest_conversation_sources.py tests/test_conversation_source_ingestion.py
+      - name: Validate source manifest schema JSON
+        run: python -m json.tool schemas/conversation-source-manifest.v1.schema.json >/dev/null
+      - name: Run synthetic intake tests
+        run: python -m unittest discover -s tests -p 'test_conversation_source_ingestion.py' -v
