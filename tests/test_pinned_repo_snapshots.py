@@ -59,6 +59,10 @@ class PinnedSnapshotTests(unittest.TestCase):
         altered["repositories"][0]["commit_sha"] = "main"
         with self.assertRaisesRegex(SnapshotError, "FULL_COMMIT_SHA_REQUIRED"):
             validate_plan(altered)
+        sha256_style = json.loads(json.dumps(plan))
+        sha256_style["repositories"][0]["commit_sha"] = "a" * 64
+        with self.assertRaisesRegex(SnapshotError, "FULL_COMMIT_SHA_REQUIRED"):
+            validate_plan(sha256_style)
 
     def test_snapshot_bundle_and_tree_restore_with_hidden_files_and_symlinks(self):
         out = self.root / "snapshots"
