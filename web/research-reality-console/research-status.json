@@ -11,7 +11,7 @@
     "title": "VAIXLNS's workspace",
     "web_url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce",
     "files": 149,
-    "deep_searches": 44
+    "deep_searches": 47
   },
   "live_connection": {
     "state": "NOT_CONNECTED",
@@ -21,39 +21,37 @@
   },
   "active_searches": [
     {
-      "id": "VX-RES-2026-001",
-      "title": "Scientific Engine Ecosystem and VX Capability Acquisition 2026",
+      "id": "VX-RES-2026-003",
+      "title": "Foundations of Intent-to-Reality Computing and Governed State Evolution 2026",
       "state": "IN_PROGRESS",
       "provider": "Undermind",
-      "path": "/global-research-continuation/Scientific Engine Ecosystem and VX Capability Acquisition 2026",
-      "url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FScientific%20Engine%20Ecosystem%20and%20VX%20Capability%20Acquisition%202026",
-      "scope": "Computational mathematics, physics, materials, HPC, robotics, engineering engines, scientific software and governed capability acquisition.",
+      "path": "/global-research-continuation/Foundations of Intent-to-Reality Computing and Governed State Evolution 2026",
+      "url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFoundations%20of%20Intent-to-Reality%20Computing%20and%20Governed%20State%20Evolution%202026",
+      "scope": "Formal foundations of intent semantics, ontology, state transitions, authority, compilers, proof-carrying transformations, control theory, distributed systems and governed evolution.",
       "expected_outputs": [
-        "Evidence-ranked engine landscape",
-        "API and integration boundaries",
-        "License and supply-chain assessment",
-        "Benchmarks and reproducible acceptance tests",
-        "Non-duplicative VX capability roadmap"
-      ]
-    },
-    {
-      "id": "VX-RES-2026-002",
-      "title": "From Scientific Hypothesis to Verified Engineering Reality",
-      "state": "IN_PROGRESS",
-      "provider": "Undermind",
-      "path": "/global-research-continuation/From Scientific Hypothesis to Verified Engineering Reality",
-      "url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFrom%20Scientific%20Hypothesis%20to%20Verified%20Engineering%20Reality",
-      "scope": "Formalization, scientific reasoning, simulation, uncertainty, design synthesis, experimentation, verification and physical realization boundaries.",
-      "expected_outputs": [
-        "Falsifiable research-to-engineering workflow",
-        "Cross-domain demonstrations",
-        "Simulation and reality boundaries",
-        "Evidence and governance gates",
-        "Phased software-to-bench roadmap"
+        "Formal reference model",
+        "Primitive semantics and invariants",
+        "Dependency and authority model",
+        "Falsification suite",
+        "Prioritized vertical-slice roadmap"
       ]
     }
   ],
   "completed_context": [
+    {
+      "title": "Scientific Engine Ecosystem and VX Capability Acquisition 2026",
+      "state": "COMPLETED",
+      "date": "2026-11-16",
+      "url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FScientific%20Engine%20Ecosystem%20and%20VX%20Capability%20Acquisition%202026",
+      "finding": "GROMACS is a strong first molecular-dynamics pilot when acceptance means a reproducible adapter and cross-engine verification; OpenMM and LAMMPS are complementary, while PETSc, MFEM, deal.II, FEniCSx, preCICE and AiiDA form parts of a federated solver/workflow ecosystem. Audit overlap, licenses and numerical baselines before adoption."
+    },
+    {
+      "title": "From Scientific Hypothesis to Verified Engineering Reality",
+      "state": "COMPLETED",
+      "date": "2026-11-16",
+      "url": "https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFrom%20Scientific%20Hypothesis%20to%20Verified%20Engineering%20Reality",
+      "finding": "A defensible route to hardware requires formal requirements, dimensional and conservation checks, code and solution verification, uncertainty quantification, manufacturability checks, independent prediction, then staged bench and physical validation."
+    },
     {
       "title": "Scientific Discovery Software First",
       "state": "COMPLETED",
@@ -108,5 +106,52 @@
     "Workspace counts and search states are snapshots observed through the authorized Undermind connector.",
     "The dashboard is a repository UI artifact. It does not establish a live provider connection.",
     "Refresh requires a new authorized status export or a separately implemented authenticated server-side adapter."
+  ],
+  "layers": [
+    {
+      "id": "L1",
+      "name": "Intent & Semantic Contract",
+      "description": "Goals, constraints, invariants, acceptance criteria and permitted effects."
+    },
+    {
+      "id": "L2",
+      "name": "Constitutional Root & Authority",
+      "description": "Immutable trust root, identity, delegation, capability boundaries and authority conservation."
+    },
+    {
+      "id": "L3",
+      "name": "Ontology, World Model & Causality",
+      "description": "Entities, state, relations, temporal context, dependencies and causal hypotheses."
+    },
+    {
+      "id": "L4",
+      "name": "Epistemic & Evidence Fabric",
+      "description": "Source lineage, claim provenance, uncertainty, contradictions, counterevidence and novelty coverage."
+    },
+    {
+      "id": "L5",
+      "name": "Mathematical & Physical Core",
+      "description": "Typed quantities, units, equations, conservation laws, numerical methods and model assumptions."
+    },
+    {
+      "id": "L6",
+      "name": "Compiler & Capability Synthesis",
+      "description": "Semantic IR, refinement, typed transformations, adapters, solver selection and design-space exploration."
+    },
+    {
+      "id": "L7",
+      "name": "Execution & Effect Boundary",
+      "description": "Sandboxing, budgets, permissions, reproducibility, simulation and controlled execution."
+    },
+    {
+      "id": "L8",
+      "name": "Observation, Reconciliation & Proof",
+      "description": "Independent telemetry, expected-versus-observed state, replay, proof obligations and verification receipts."
+    },
+    {
+      "id": "L9",
+      "name": "Causal Memory & Governed Evolution",
+      "description": "Append-only lineage, fork/merge/rollback safety, change proposals and independently authorized promotion."
+    }
   ]
 }
