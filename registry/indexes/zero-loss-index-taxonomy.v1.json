@@ -708,6 +708,11 @@
       "id": "external_repositories",
       "state": "NOT_CONNECTED_TO_THIS_BUILD",
       "scope": "Only repository references found in source are cross-referenced; remote repositories are not cloned or inferred."
+    },
+    {
+      "id": "owner_supplied_conversation_export",
+      "state": "FEATURE_BRANCH_IMPLEMENTATION_PENDING_REVIEW",
+      "scope": "Local-only adapter on feat/conversation-source-intake-v1 for explicit owner-supplied ChatGPT export ZIP/JSON, UTF-8 TXT/MD transcript and opaque attachments; stores exact raw bytes and normalized records outside Git checkouts. It is not a live ChatGPT connector, is not merged to main, and does not change the repository-only builder scope."
     }
   ],
   "invariants": [
