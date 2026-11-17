@@ -11,7 +11,7 @@
 
 The Observatory is a navigation and monitoring surface for the full VAIXLNS research-to-reality lifecycle. It is not another research engine, registry, knowledge graph, or authority plane. It projects the existing VAIXLNS Global Research System contract and a provenance-labelled Undermind workspace snapshot into one operator-facing view.
 
-The architecture is deeper than paper search. It spans:
+The architecture is deeper than paper search. Its nine architectural layers span semantic intent, constitutional authority, ontology/world models, epistemic evidence, mathematical/physical semantics, compiler and capability synthesis, bounded execution, reality reconciliation, and governed evolution. The 17-stage lifecycle spans:
 
 1. Intent and falsifiable problem framing.
 2. Source discovery and measurable coverage.
@@ -44,17 +44,19 @@ The research pipeline and lifecycle states remain defined by the existing canoni
 
 ## 3. Current source snapshot
 
-The initial JSON snapshot was collected through the explicitly selected Undermind account and workspace:
+The refreshed JSON snapshot was collected through the explicitly selected Undermind account and workspace:
 
 - Workspace: `VAIXLNS's workspace`
 - Workspace ID: `0d9eabfb-e9d8-49fc-aab5-a0383a9110ce`
 - Files: 149 at observation time
-- Deep searches: 44 at observation time
-- Active searches in this snapshot:
+- Deep searches: 47 at observation time
+- Active search in the latest snapshot:
+  - `Foundations of Intent-to-Reality Computing and Governed State Evolution 2026`
+- Two newly launched searches completed and are now listed under completed research context:
   - `Scientific Engine Ecosystem and VX Capability Acquisition 2026`
   - `From Scientific Hypothesis to Verified Engineering Reality`
 
-The snapshot also links three relevant completed research threads: Scientific Discovery Software First; Computational Mathematics, Physics and Quantum Methods for VX Metrology; and Visual Systems Engineering / MBSE Digital Thread.
+The snapshot also links five relevant completed research threads: the two new engineering searches plus Scientific Discovery Software First; Computational Mathematics, Physics and Quantum Methods for VX Metrology; and Visual Systems Engineering / MBSE Digital Thread. The workspace also contains completed prior-art reviews on sovereign-system genesis, runtime attestation, collective intelligence and agent governance.
 
 **Freshness warning:** these values are a point-in-time observation, not a live feed. The screen labels the source as a snapshot and does not imply that it can poll Undermind.
 
