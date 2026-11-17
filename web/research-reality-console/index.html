@@ -51,7 +51,7 @@ a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.shel
   <article class="metric"><div class="label">ACTIVE DEEP SEARCHES</div><div class="num" id="activeCount">—</div><div class="hint">عمليات بحث مسجلة قيد التنفيذ</div></article>
   <article class="metric"><div class="label">WORKSPACE PAPERS & FILES</div><div class="num" id="filesCount">—</div><div class="hint">عدد الملفات في مساحة العمل</div></article>
   <article class="metric"><div class="label">DEEP SEARCH HISTORY</div><div class="num" id="historyCount">—</div><div class="hint">عمليات البحث المسجلة في المساحة</div></article>
-  <article class="metric"><div class="label">REALITY GATES</div><div class="num">17</div><div class="hint">مراحل دورة البحث والهندسة والحوكمة</div></article>
+  <article class="metric"><div class="label">LIFECYCLE STAGES</div><div class="num">17</div><div class="hint">مراحل دورة البحث والهندسة والحوكمة</div></article>
 </section>
 
 <nav class="tabs" aria-label="أقسام المرصد">
@@ -64,21 +64,14 @@ a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.shel
 <section class="view active" id="overview">
   <div class="grid layout">
     <article class="panel">
-      <div class="panel-head"><div><h2>العمليات العلمية الجارية</h2><div class="muted small">آخر حالة معروفة من Undermind</div></div><span class="tag active">2 IN PROGRESS</span></div>
+      <div class="panel-head"><div><h2>العمليات العلمية الجارية</h2><div class="muted small">آخر حالة معروفة من Undermind</div></div><span class="tag active" id="activeBadge">— IN PROGRESS</span></div>
       <div class="searches" id="activeSearches"></div>
     </article>
     <aside class="grid">
       <article class="panel">
         <h2>الطبقات العميقة للمنظومة</h2>
         <p class="muted small">ليست قائمة أدوات؛ بل طبقات تحول المعرفة إلى تغيير مضبوط في الحالة.</p>
-        <div class="depth">
-          <div class="depth-item"><strong>Epistemic Layer</strong><span>مصادر، منشأ، تغطية، تعارض، ثقة وحدود المعرفة</span></div>
-          <div class="depth-item"><strong>World & Causal Model</strong><span>كيانات، علاقات، اعتماديات، سببية، زمن، حالة متوقعة ومرصودة</span></div>
-          <div class="depth-item"><strong>Mathematical / Physical Core</strong><span>معادلات، قيود، وحدات، ثبات عددي، عدم يقين، قابلية التعيين</span></div>
-          <div class="depth-item"><strong>Capability & Synthesis Fabric</strong><span>تركيب الخوارزميات والمحركات والواجهات دون إنشاء سجل موازٍ</span></div>
-          <div class="depth-item"><strong>Execution & Reality Boundary</strong><span>عزل، محاكاة، تشغيل مضبوط، رصد ومصالحة مع الواقع</span></div>
-          <div class="depth-item"><strong>Proof & Evolution</strong><span>أدلة، إعادة إنتاج، مراجعة مستقلة، اعتماد وتطور محكوم</span></div>
-        </div>
+        <div class="depth" id="depthLayers"></div>
       </article>
       <article class="panel">
         <h2>سياج الحقيقة</h2>
@@ -155,12 +148,23 @@ a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.shel
 <script>
 const fallback={
   observed_at:"2026-11-17",
-  workspace:{title:"VAIXLNS's workspace",files:149,deep_searches:44,web_url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce"},
-  active_searches:[
-    {title:"Scientific Engine Ecosystem and VX Capability Acquisition 2026",state:"IN_PROGRESS",scope:"Scientific engines, mathematics, physics, materials, HPC, robotics and governed capability acquisition.",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FScientific%20Engine%20Ecosystem%20and%20VX%20Capability%20Acquisition%202026",expected_outputs:["Engine landscape","Benchmarks","Licensing","VX integration roadmap"]},
-    {title:"From Scientific Hypothesis to Verified Engineering Reality",state:"IN_PROGRESS",scope:"Formalization, simulation, uncertainty, engineering design, verification and physical validation boundaries.",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFrom%20Scientific%20Hypothesis%20to%20Verified%20Engineering%20Reality",expected_outputs:["Falsifiable workflow","Cross-domain examples","Reality gates","Phased roadmap"]}
+  workspace:{title:"VAIXLNS workspace",files:149,deep_searches:47,web_url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce"},
+  active_searches:[{title:"Foundations of Intent-to-Reality Computing and Governed State Evolution 2026",state:"IN_PROGRESS",scope:"Formal foundations of intent semantics, ontology, state transitions, authority, compilers, proof-carrying transformations, control theory, distributed systems and governed evolution.",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFoundations%20of%20Intent-to-Reality%20Computing%20and%20Governed%20State%20Evolution%202026",expected_outputs:["Formal reference model","Primitive semantics and invariants","Dependency and authority model","Falsification suite","Prioritized vertical-slice roadmap"]}],
+  completed_context:[
+    {title:"Scientific Engine Ecosystem and VX Capability Acquisition 2026",state:"COMPLETED",date:"2026-11-16",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FScientific%20Engine%20Ecosystem%20and%20VX%20Capability%20Acquisition%202026",finding:"GROMACS is a strong first MD pilot with cross-engine verification; OpenMM and LAMMPS are complementary. A federated solver and provenance ecosystem is preferable to a monolithic engine."},
+    {title:"From Scientific Hypothesis to Verified Engineering Reality",state:"COMPLETED",date:"2026-11-16",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFrom%20Scientific%20Hypothesis%20to%20Verified%20Engineering%20Reality",finding:"The route to physical engineering requires formal requirements, dimensional checks, independent verification, uncertainty quantification, manufacturability constraints and staged physical evidence."}
   ],
-  completed_context:[]
+  layers:[
+    {name:"Intent & Semantic Contract",description:"Goals, constraints, invariants, acceptance criteria and permitted effects."},
+    {name:"Constitutional Root & Authority",description:"Immutable trust root, identity, delegation, capability boundaries and authority conservation."},
+    {name:"Ontology, World Model & Causality",description:"Entities, state, relations, temporal context, dependencies and causal hypotheses."},
+    {name:"Epistemic & Evidence Fabric",description:"Source lineage, claim provenance, uncertainty, contradictions, counterevidence and novelty coverage."},
+    {name:"Mathematical & Physical Core",description:"Typed quantities, units, equations, conservation laws, numerical methods and model assumptions."},
+    {name:"Compiler & Capability Synthesis",description:"Semantic IR, refinement, typed transformations, adapters, solver selection and design-space exploration."},
+    {name:"Execution & Effect Boundary",description:"Sandboxing, budgets, permissions, reproducibility, simulation and controlled execution."},
+    {name:"Observation, Reconciliation & Proof",description:"Independent telemetry, expected-versus-observed state, replay, proof obligations and verification receipts."},
+    {name:"Causal Memory & Governed Evolution",description:"Append-only lineage, fork/merge/rollback safety, change proposals and independently authorized promotion."}
+  ]
 };
 const labels=[
 ["INTENT_AND_PROBLEM_FRAMING","Intent & Problem Framing","تحويل الطلب إلى هدف قابل للتكذيب والقياس"],
@@ -192,6 +196,7 @@ function render(d){
  data=d;
  const active=d.active_searches||[], done=d.completed_context||[], w=d.workspace||{};
  el("activeCount").textContent=active.length;
+ el("activeBadge").textContent=active.length+" IN PROGRESS";
  el("filesCount").textContent=w.files??"—";
  el("historyCount").textContent=w.deep_searches??"—";
  el("observedAt").textContent="وقت الرصد: "+(d.observed_at||"غير محدد");
@@ -199,6 +204,7 @@ function render(d){
  el("workspaceLink").href=w.web_url||"#";
  el("activeSearches").innerHTML=active.map(s=>renderSearch(s,true)).join("")||'<p class="muted">لا توجد عمليات مسجلة في هذه اللقطة.</p>';
  el("allSearches").innerHTML=active.map(s=>renderSearch(s,true)).join("")+done.map(s=>renderSearch(s,false)).join("");
+ el("depthLayers").innerHTML=(d.layers||[]).map(x=>'<div class="depth-item"><strong>'+esc(x.name)+'</strong><span>'+esc(x.description)+'</span></div>').join("");
  el("pipelineGrid").innerHTML=labels.map((s,i)=>'<div class="stage"><span class="n">STAGE '+String(i+1).padStart(2,"0")+'</span><strong>'+esc(s[1])+'</strong><small>'+esc(s[2])+'</small></div>').join("");
 }
 async function refresh(){
