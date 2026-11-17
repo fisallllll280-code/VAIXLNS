@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.local/schemas/agentic-architecture-review-v1.json",
+  "title": "VAIXLNS Agentic Architecture Review v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "review_id",
+    "snapshot_date",
+    "repository",
+    "authority",
+    "execution_disclosure",
+    "source_baseline",
+    "findings",
+    "review_lanes",
+    "innovation_candidates",
+    "priority_actions",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "VAIXLNS.AgenticArchitectureReview.v1"
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "full_name",
+        "base_ref",
+        "base_commit",
+        "review_branch"
+      ],
+      "properties": {
+        "full_name": {
+          "type": "string"
+        },
+        "base_ref": {
+          "type": "string"
+        },
+        "base_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "review_branch": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "canonical_source",
+        "authority_anchor",
+        "master_index",
+        "record_state",
+        "canonical_promotion_allowed"
+      ],
+      "properties": {
+        "canonical_source": {
+          "type": "string"
+        },
+        "authority_anchor": {
+          "type": "string"
+        },
+        "master_index": {
+          "type": "string"
+        },
+        "record_state": {
+          "const": "REVIEW_PROJECTION_NOT_CANONICAL"
+        },
+        "canonical_promotion_allowed": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "execution_disclosure": {
+      "type": "object",
+      "required": [
+        "review_method",
+        "provider_backed_agent_runtime_invoked",
+        "agent_role_source",
+        "note"
+      ],
+      "properties": {
+        "review_method": {
+          "const": "ROLE_MAPPED_MULTI_LANE_ANALYSIS"
+        },
+        "provider_backed_agent_runtime_invoked": {
+          "const": false
+        },
+        "agent_role_source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_baseline": {
+      "type": "object"
+    },
+    "findings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "finding_id",
+          "severity",
+          "title",
+          "status",
+          "evidence_refs",
+          "observation",
+          "required_action",
+          "blocks_readiness"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "observation": {
+            "type": "string"
+          },
+          "required_action": {
+            "type": "string"
+          },
+          "blocks_readiness": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "review_lanes": {
+      "type": "array",
+      "minItems": 13,
+      "items": {
+        "type": "object",
+        "required": [
+          "stage_id",
+          "review_lens",
+          "execution_state"
+        ],
+        "properties": {
+          "stage_id": {
+            "type": "string"
+          },
+          "review_lens": {
+            "type": "string"
+          },
+          "execution_state": {
+            "const": "ROLE_MAPPED_REVIEW_NOT_RUNTIME_EXECUTION"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "innovation_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "name",
+          "kind",
+          "status",
+          "new_top_level_system",
+          "promotion_allowed"
+        ],
+        "properties": {
+          "candidate_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "const": "PROPOSED"
+          },
+          "new_top_level_system": {
+            "type": "boolean"
+          },
+          "promotion_allowed": {
+            "const": false
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "priority_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "priority_id",
+          "action",
+          "status",
+          "acceptance"
+        ],
+        "properties": {
+          "priority_id": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "acceptance": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "status",
+        "canonical_promotion_allowed",
+        "runtime_mutation_performed",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "const": "HOLD_FOR_P0_CLOSURE"
+        },
+        "canonical_promotion_allowed": {
+          "const": false
+        },
+        "runtime_mutation_performed": {
+          "const": false
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
