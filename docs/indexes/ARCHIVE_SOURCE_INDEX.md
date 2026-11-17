@@ -54,3 +54,16 @@ A fresh local inventory found **69 text files, 65 unique exact-byte SHA-256 cont
 This current snapshot exceeds the prior 36-file / 30-project-source scan recorded above. Treat the older table as a historical scan, not current exhaustive coverage. Full reconciliation should preserve every source hash and lineage, and still requires acquiring the original row-by-row 0001–2750 index.
 
 See [Deep Agent and Innovation Audit 2026-10-10](../audits/VAIXLNS_DEEP_AGENT_AND_INNOVATION_AUDIT_2026-10-10.md) for agent code/CI status and remaining live-runtime gaps.
+
+
+## 2026-11-17 local conversation-source capture (not a GitHub upload)
+
+An explicit local-only intake run preserved the source files attached to the active project workspace in an external private vault:
+- 80 source occurrences (78 text-source files and 2 opaque image artifacts).
+- 75 unique exact-byte source blobs.
+- 73 normalized records after exact-content deduplication.
+- 2 image artifacts remain opaque; no OCR or semantic interpretation was attempted.
+- No malformed source required parse quarantine.
+- The captured text files yielded 0 structured conversation-message nodes because no original ChatGPT `conversations.json` or export ZIP was supplied; these are transcript/source artifacts, not a count of distinct account conversations.
+
+The full raw and normalized vault was kept outside Git and was not committed to this public repository. The complete ChatGPT account export and any unprovided sessions remain pending. These counts are a workspace capture snapshot only, not proof of complete conversation-history recovery or of the historical 0001–2750 index.
