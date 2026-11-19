@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>VAIXLNS · Research to Reality Observatory</title>
+<style>
+:root{--bg:#090d16;--panel:#101827;--panel2:#131f31;--line:#25344b;--text:#edf3fb;--muted:#9aabc1;--cyan:#61d7e8;--blue:#7ba8ff;--green:#61d6a5;--amber:#f2c36b;--red:#ff8d8d;--violet:#c3a0ff;--shadow:0 18px 55px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 520px at 95% -10%,#15314a66,transparent 60%),radial-gradient(700px 480px at -10% 15%,#2b205044,transparent 60%),var(--bg);color:var(--text);font:15px/1.65 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.shell{max-width:1440px;margin:auto;padding:26px 22px 54px}
+.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px}.brand{display:flex;gap:13px;align-items:center}.mark{width:48px;height:48px;border:1px solid #4a91a7;border-radius:15px;display:grid;place-items:center;color:var(--cyan);font-weight:900;font-size:20px;background:linear-gradient(145deg,#15364a,#111b2c);box-shadow:0 0 30px #61d7e822}
+.eyebrow{color:var(--cyan);font:700 11px/1.4 ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase}.title{font-size:clamp(24px,4vw,38px);font-weight:850;line-height:1.2;margin:4px 0}.subtitle{color:var(--muted);max-width:850px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#152238;color:var(--text);padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700}.btn.primary{border-color:#357d91;background:#123545;color:#b9f3fb}.btn:hover{filter:brightness(1.16)}
+.statusbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:12px 15px;border:1px solid #66512b;background:#241d12;border-radius:13px;margin:18px 0 20px;color:#f6dfad}.dot{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block;box-shadow:0 0 12px currentColor}.muted{color:var(--muted)}.small{font-size:12px}
+.grid{display:grid;gap:14px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:15px}.metric,.panel{background:linear-gradient(145deg,#111c2d,#0d1523);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.metric{padding:16px}.metric .num{font-size:29px;font-weight:850;line-height:1.25;margin:5px 0}.metric .label{color:var(--muted);font-size:12px}.metric .hint{font-size:11px;color:#7f94ad}
+.layout{grid-template-columns:minmax(0,1.55fr) minmax(290px,.8fr);align-items:start}.panel{padding:18px}.panel h2{font-size:17px;margin:0 0 5px}.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:11px;white-space:nowrap}.tag.live{color:#b6f4d8;border-color:#27654c;background:#102b22}.tag.active{color:#ffe0a1;border-color:#735b2d;background:#302514}.tag.proposed{color:#d0c0ff;border-color:#594c83;background:#211b35}.tag.unknown{color:#c0cad8}
+.searches{display:grid;gap:11px}.search-card{padding:15px;border:1px solid #293b54;background:#0d1726;border-radius:13px}.search-card h3{font-size:15px;margin:7px 0 5px}.search-card p{margin:5px 0;color:var(--muted);font-size:13px}.meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.outputs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chip{font-size:11px;padding:4px 8px;border-radius:7px;background:#18263a;color:#c5d6eb;border:1px solid #2b405a}
+.pipeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stage{position:relative;padding:11px;border:1px solid #2b3c53;border-radius:11px;background:#0d1726;min-height:91px}.stage .n{font:700 10px ui-monospace,monospace;color:var(--cyan)}.stage strong{display:block;font-size:12px;line-height:1.4;margin:5px 0}.stage small{color:var(--muted);font-size:10px}
+.depth{display:grid;gap:9px}.depth-item{border-right:2px solid var(--cyan);padding:7px 12px;background:#111d2d;border-radius:8px}.depth-item strong{display:block;font-size:13px}.depth-item span{color:var(--muted);font-size:11px}
+.assurance{display:grid;gap:8px}.rule{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border-radius:9px;background:#101d2c;border:1px solid #263a50;font-size:12px}.rule i{color:var(--green);font-style:normal;font-weight:900}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:#101a29;color:var(--muted);border-radius:9px;padding:8px 12px;cursor:pointer}.tab[aria-selected=true]{color:#d5faff;border-color:#357d91;background:#123343}.view{display:none}.view.active{display:block}
+.completed{display:grid;gap:9px}.completed a{display:block;padding:11px;border:1px solid var(--line);border-radius:10px;background:#0e1827}.completed strong{display:block;color:var(--text);font-size:13px}.completed span{font-size:11px;color:var(--muted)}
+.two{grid-template-columns:repeat(2,minmax(0,1fr))}.foot{border-top:1px solid var(--line);margin-top:22px;padding-top:14px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.notice{padding:12px;border-radius:10px;border:1px solid #67532e;background:#211c14;color:#f2dba9;font-size:12px;margin-top:10px}
+[hidden]{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.shell{padding:17px 12px 36px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric{padding:12px}.metric .num{font-size:23px}.pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:13px}.top{display:block}.top-actions{margin-top:13px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top">
+  <div>
+    <div class="brand"><div class="mark">Ω</div><div><div class="eyebrow">VAIXLNS · VX · Ω RESEARCH FABRIC</div><div class="title">مرصد البحث من النية إلى الواقع</div></div></div>
+    <p class="subtitle">Research-to-Reality Observatory — شاشة متابعة تربط الاكتشاف العلمي، النمذجة الرياضية والفيزيائية، توليد القدرات، التجارب الحسابية، التحقق، والحوكمة في مسار واحد قابل للتدقيق.</p>
+  </div>
+  <div class="top-actions">
+    <a class="btn primary" href="https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce" target="_blank" rel="noopener">فتح مساحة Undermind ↗</a>
+    <button class="btn" id="refresh">إعادة تحميل لقطة الحالة</button>
+  </div>
+</header>
+
+<div class="statusbar" role="status">
+  <span class="dot"></span><strong>مصدر الحالة: Snapshot وليس اتصالاً حياً</strong>
+  <span class="small" id="observedAt">وقت الرصد: تحميل…</span>
+  <span class="small">لا توجد مزامنة API مباشرة مع Undermind في هذه النسخة.</span>
+</div>
+
+<section class="grid metrics" aria-label="Research overview">
+  <article class="metric"><div class="label">ACTIVE DEEP SEARCHES</div><div class="num" id="activeCount">—</div><div class="hint">عمليات بحث مسجلة قيد التنفيذ</div></article>
+  <article class="metric"><div class="label">WORKSPACE PAPERS & FILES</div><div class="num" id="filesCount">—</div><div class="hint">عدد الملفات في مساحة العمل</div></article>
+  <article class="metric"><div class="label">DEEP SEARCH HISTORY</div><div class="num" id="historyCount">—</div><div class="hint">عمليات البحث المسجلة في المساحة</div></article>
+  <article class="metric"><div class="label">LIFECYCLE STAGES</div><div class="num">17</div><div class="hint">مراحل دورة البحث والهندسة والحوكمة</div></article>
+</section>
+
+<nav class="tabs" aria-label="أقسام المرصد">
+  <button class="tab" data-view="overview" aria-selected="true">نظرة عامة</button>
+  <button class="tab" data-view="pipeline" aria-selected="false">دورة الحقيقة</button>
+  <button class="tab" data-view="research" aria-selected="false">عمليات البحث</button>
+  <button class="tab" data-view="assurance" aria-selected="false">الأدلة والحوكمة</button>
+</nav>
+
+<section class="view active" id="overview">
+  <div class="grid layout">
+    <article class="panel">
+      <div class="panel-head"><div><h2>العمليات العلمية الجارية</h2><div class="muted small">آخر حالة معروفة من Undermind</div></div><span class="tag active" id="activeBadge">— IN PROGRESS</span></div>
+      <div class="searches" id="activeSearches"></div>
+    </article>
+    <aside class="grid">
+      <article class="panel">
+        <h2>الطبقات العميقة للمنظومة</h2>
+        <p class="muted small">ليست قائمة أدوات؛ بل طبقات تحول المعرفة إلى تغيير مضبوط في الحالة.</p>
+        <div class="depth" id="depthLayers"></div>
+      </article>
+      <article class="panel">
+        <h2>سياج الحقيقة</h2>
+        <div class="assurance">
+          <div class="rule"><i>✓</i><span>كل ادعاء مرتبط بمصدر أو يوسم كفرضية.</span></div>
+          <div class="rule"><i>✓</i><span>الثقة الإحصائية لا تعني برهاناً.</span></div>
+          <div class="rule"><i>✓</i><span>المحاكاة لا تثبت وحدها السلوك الفيزيائي.</span></div>
+          <div class="rule"><i>✓</i><span>وجود الكود لا يعني نجاح الاختبار أو تحقق التشغيل.</span></div>
+          <div class="rule"><i>✓</i><span>لا اعتماد ذاتي ولا ترقية تلقائية إلى المرجعية.</span></div>
+        </div>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="pipeline">
+  <article class="panel">
+    <div class="panel-head"><div><h2>Intent → Reality → Governed Evolution</h2><div class="muted small">المراحل التالية هي نموذج دورة حياة، وليست مؤشراً على أن جميعها تعمل حالياً.</div></div><span class="tag proposed">LIFECYCLE MODEL</span></div>
+    <div class="pipeline" id="pipelineGrid"></div>
+    <div class="notice">بوابة التحويل: لا تنتقل النتيجة من فرضية أو محاكاة إلى قدرة معتمدة إلا مع شروط قبول محددة، ومصدر قابل للتتبع، واختبارات قابلة لإعادة التنفيذ، ومراجعة مخولة.</div>
+  </article>
+</section>
+
+<section class="view" id="research">
+  <div class="grid layout">
+    <article class="panel">
+      <div class="panel-head"><div><h2>سجل البحث</h2><div class="muted small">بحثان جاريان وثلاثة أبحاث مرجعية مكتملة ذات صلة</div></div><span class="tag">UNDermind WORKSPACE</span></div>
+      <div class="searches" id="allSearches"></div>
+    </article>
+    <aside class="panel">
+      <h2>مساحة البحث المتصلة</h2>
+      <p class="muted small" id="workspaceTitle">تحميل…</p>
+      <div class="completed">
+        <a id="workspaceLink" href="#" target="_blank" rel="noopener"><strong>فتح مساحة العمل</strong><span>الملفات، الأوراق، المجلدات ونتائج البحث</span></a>
+      </div>
+      <div class="notice">ملاحظة تشغيلية: أزرار المتابعة تفتح نتائج البحث في Undermind. تحديث هذه الشاشة يقرأ ملف JSON محلياً فقط، ولا ينفذ طلباً إلى مزود البحث.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="assurance">
+  <div class="grid two">
+    <article class="panel">
+      <h2>حدود الإثبات</h2><p class="muted small">كل مستوى له نوع دليل مختلف ولا يجوز القفز بين المستويات.</p>
+      <div class="assurance">
+        <div class="rule"><i>01</i><span><b>DISCOVERED</b> — تم العثور على المصدر أو الفكرة؛ لم يتم التحقق من صحتها.</span></div>
+        <div class="rule"><i>02</i><span><b>SUPPORTED</b> — الأدلة تحقق معياراً معلناً ضمن نطاق محدد.</span></div>
+        <div class="rule"><i>03</i><span><b>REPRODUCED</b> — أعيد تنفيذ النتيجة ببيئة ومدخلات موثقة.</span></div>
+        <div class="rule"><i>04</i><span><b>IMPLEMENTED</b> — يوجد تنفيذ في مراجعة برمجية محددة.</span></div>
+        <div class="rule"><i>05</i><span><b>VERIFIED</b> — اجتاز اختباراً أو برهاناً محدداً مع إرفاق الإيصال.</span></div>
+        <div class="rule"><i>06</i><span><b>LIVE_VERIFIED</b> — رصد تشغيل فعلي في بيئة ووقت محددين.</span></div>
+      </div>
+    </article>
+    <article class="panel">
+      <h2>حدود السلطة والتغيير</h2>
+      <div class="assurance">
+        <div class="rule"><i>✓</i><span>مصادر البحث الخارجية غير موثوقة افتراضياً حتى فحصها.</span></div>
+        <div class="rule"><i>✓</i><span>المحركات الخارجية تدخل عبر adapters وعقود محددة، لا كسلطة داخل النواة.</span></div>
+        <div class="rule"><i>✓</i><span>لا تثبيت أو إنفاق أو نشر أو تعديل محمي دون تصريح وبوابة.</span></div>
+        <div class="rule"><i>✓</i><span>النتائج المتعارضة أو الناقصة تحفظ كحالات صريحة ولا تُحذف بصمت.</span></div>
+        <div class="rule"><i>✓</i><span>الاعتماد النهائي بشري/سياساتي ومستقل عن وكيل التوليد.</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>VAIXLNS · Research-to-Reality Observatory · UI artifact v1</span>
+  <span id="sourceState">DATA SOURCE: LOCAL SNAPSHOT</span>
+  <span>لا اتصال حي · لا أسرار في المتصفح · لا اعتماد تلقائي</span>
+</footer>
+</div>
+
+<script>
+const fallback={
+  observed_at:"2026-11-17",
+  workspace:{title:"VAIXLNS workspace",files:149,deep_searches:47,web_url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce"},
+  active_searches:[{title:"Foundations of Intent-to-Reality Computing and Governed State Evolution 2026",state:"IN_PROGRESS",scope:"Formal foundations of intent semantics, ontology, state transitions, authority, compilers, proof-carrying transformations, control theory, distributed systems and governed evolution.",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFoundations%20of%20Intent-to-Reality%20Computing%20and%20Governed%20State%20Evolution%202026",expected_outputs:["Formal reference model","Primitive semantics and invariants","Dependency and authority model","Falsification suite","Prioritized vertical-slice roadmap"]}],
+  completed_context:[
+    {title:"Scientific Engine Ecosystem and VX Capability Acquisition 2026",state:"COMPLETED",date:"2026-11-16",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FScientific%20Engine%20Ecosystem%20and%20VX%20Capability%20Acquisition%202026",finding:"GROMACS is a strong first MD pilot with cross-engine verification; OpenMM and LAMMPS are complementary. A federated solver and provenance ecosystem is preferable to a monolithic engine."},
+    {title:"From Scientific Hypothesis to Verified Engineering Reality",state:"COMPLETED",date:"2026-11-16",url:"https://app.undermind.ai/projects/0d9eabfb-e9d8-49fc-aab5-a0383a9110ce?path=%2Fglobal-research-continuation%2FFrom%20Scientific%20Hypothesis%20to%20Verified%20Engineering%20Reality",finding:"The route to physical engineering requires formal requirements, dimensional checks, independent verification, uncertainty quantification, manufacturability constraints and staged physical evidence."}
+  ],
+  layers:[
+    {name:"Intent & Semantic Contract",description:"Goals, constraints, invariants, acceptance criteria and permitted effects."},
+    {name:"Constitutional Root & Authority",description:"Immutable trust root, identity, delegation, capability boundaries and authority conservation."},
+    {name:"Ontology, World Model & Causality",description:"Entities, state, relations, temporal context, dependencies and causal hypotheses."},
+    {name:"Epistemic & Evidence Fabric",description:"Source lineage, claim provenance, uncertainty, contradictions, counterevidence and novelty coverage."},
+    {name:"Mathematical & Physical Core",description:"Typed quantities, units, equations, conservation laws, numerical methods and model assumptions."},
+    {name:"Compiler & Capability Synthesis",description:"Semantic IR, refinement, typed transformations, adapters, solver selection and design-space exploration."},
+    {name:"Execution & Effect Boundary",description:"Sandboxing, budgets, permissions, reproducibility, simulation and controlled execution."},
+    {name:"Observation, Reconciliation & Proof",description:"Independent telemetry, expected-versus-observed state, replay, proof obligations and verification receipts."},
+    {name:"Causal Memory & Governed Evolution",description:"Append-only lineage, fork/merge/rollback safety, change proposals and independently authorized promotion."}
+  ]
+};
+const labels=[
+["INTENT_AND_PROBLEM_FRAMING","Intent & Problem Framing","تحويل الطلب إلى هدف قابل للتكذيب والقياس"],
+["SOURCE_DISCOVERY_AND_COVERAGE","Source Discovery","اكتشاف المصادر وقياس التغطية"],
+["INGESTION_AND_PROVENANCE","Ingestion & Provenance","حفظ المصدر والبصمة وسياق الاسترجاع"],
+["SEMANTIC_NORMALIZATION_AND_ENTITY_RESOLUTION","Semantic Resolution","توحيد المفاهيم والكيانات والنسخ"],
+["KNOWLEDGE_GRAPH_AND_CAUSAL_RELATIONS","Knowledge & Causality","العلاقات والاعتماديات والسببية"],
+["CONTRADICTION_AND_COUNTEREVIDENCE","Contradiction Analysis","التعارض والأدلة المضادة"],
+["HYPOTHESIS_AND_PRIOR_ART","Hypothesis & Prior Art","الفرضيات وفحص السوابق والحداثة"],
+["MATHEMATICAL_AND_PHYSICAL_FORMALIZATION","Formalization","الصياغة الرياضية والفيزيائية والوحدات"],
+["DESIGN_SPACE_AND_CAPABILITY_SYNTHESIS","Capability Synthesis","توليد بدائل التصميم وتركيب القدرات"],
+["SIMULATION_AND_MULTI_FIDELITY_EXPERIMENT","Simulation & Experiments","محاكاة متعددة الدقة وتجارب مضبوطة"],
+["UNCERTAINTY_AND_SENSITIVITY_ANALYSIS","Uncertainty & Sensitivity","عدم اليقين والحساسية وقابلية التعيين"],
+["REPRODUCTION_AND_INDEPENDENT_VERIFICATION","Reproduction & Verification","إعادة الإنتاج والتحقق المستقل"],
+["REALITY_RECONCILIATION","Reality Reconciliation","مطابقة المتوقع مع المرصود"],
+["GOVERNANCE_AND_HUMAN_AUTHORIZATION","Governance Gate","السياسات والتفويض البشري"],
+["CONTROLLED_INTEGRATION","Controlled Integration","تكامل محدود وقابل للتراجع"],
+["RUNTIME_OBSERVATION_AND_DRIFT","Runtime Observation","المراقبة والانحراف والتقادم"],
+["CAUSAL_MEMORY_AND_GOVERNED_EVOLUTION","Governed Evolution","ذاكرة سببية وتطور محكوم"]
+];
+let data=fallback;
+const el=id=>document.getElementById(id);
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function renderSearch(s,active=false){
+ const chips=(s.expected_outputs||[]).map(x=>'<span class="chip">'+esc(x)+'</span>').join("");
+ return '<article class="search-card"><div class="meta"><span class="tag '+(active?'active':'')+'">'+esc(s.state)+'</span><span class="tag">'+(active?'CURRENT SEARCH':'PRIOR RESEARCH')+'</span></div><h3>'+esc(s.title)+'</h3><p>'+esc(s.scope||s.finding||"")+'</p><div class="outputs">'+chips+'</div><div class="meta"><a class="btn" href="'+esc(s.url||"#")+'" target="_blank" rel="noopener">فتح سجل البحث ↗</a>'+(s.date?'<span class="muted small">'+esc(s.date)+'</span>':'')+'</div></article>';
+}
+function render(d){
+ data=d;
+ const active=d.active_searches||[], done=d.completed_context||[], w=d.workspace||{};
+ el("activeCount").textContent=active.length;
+ el("activeBadge").textContent=active.length+" IN PROGRESS";
+ el("filesCount").textContent=w.files??"—";
+ el("historyCount").textContent=w.deep_searches??"—";
+ el("observedAt").textContent="وقت الرصد: "+(d.observed_at||"غير محدد");
+ el("workspaceTitle").textContent=(w.title||"Workspace")+" · "+(w.files??"—")+" files · "+(w.deep_searches??"—")+" deep searches";
+ el("workspaceLink").href=w.web_url||"#";
+ el("activeSearches").innerHTML=active.map(s=>renderSearch(s,true)).join("")||'<p class="muted">لا توجد عمليات مسجلة في هذه اللقطة.</p>';
+ el("allSearches").innerHTML=active.map(s=>renderSearch(s,true)).join("")+done.map(s=>renderSearch(s,false)).join("");
+ el("depthLayers").innerHTML=(d.layers||[]).map(x=>'<div class="depth-item"><strong>'+esc(x.name)+'</strong><span>'+esc(x.description)+'</span></div>').join("");
+ el("pipelineGrid").innerHTML=labels.map((s,i)=>'<div class="stage"><span class="n">STAGE '+String(i+1).padStart(2,"0")+'</span><strong>'+esc(s[1])+'</strong><small>'+esc(s[2])+'</small></div>').join("");
+}
+async function refresh(){
+ try{
+  const r=await fetch("./research-status.json?ts="+Date.now(),{cache:"no-store"});
+  if(!r.ok)throw new Error("snapshot unavailable");
+  const d=await r.json();render(d);el("sourceState").textContent="DATA SOURCE: REPOSITORY SNAPSHOT · "+(d.live_connection?.state||"NOT LIVE");
+ }catch(e){
+  render(fallback);el("sourceState").textContent="DATA SOURCE: EMBEDDED FALLBACK · SNAPSHOT ONLY";
+ }
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===b)));
+ document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active",x.id===b.dataset.view));
+}));
+el("refresh").addEventListener("click",refresh);
+render(fallback);refresh();
+</script>
+</body>
+</html>
