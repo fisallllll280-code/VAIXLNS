@@ -1,0 +1,69 @@
+{
+  "contract_version": "1.0.0",
+  "task_id": "CONV-INGEST-001",
+  "title": "Conversation and session source intake adapter",
+  "objective": "Add a tested, local-export-only intake adapter so owner-supplied ChatGPT conversation exports and project transcript files can be preserved byte-for-byte in a private vault and represented by privacy-minimized source metadata in the public VAIXLNS repository.",
+  "base_commit": "5beb74a46ba2e1b17b86dafc22deff53bef09804",
+  "branch": "feat/conversation-source-intake-v1",
+  "allowed_paths": [
+    ".claude/contracts/CONV-INGEST-001.json",
+    "scripts/ingest_conversation_sources.py",
+    "tests/test_conversation_source_ingestion.py",
+    "schemas/conversation-source-manifest.v1.schema.json",
+    "docs/architecture/VAIXLNS_CONVERSATION_SOURCE_INGESTION_FABRIC_V1.md",
+    "docs/indexes/README.md",
+    "docs/indexes/ARCHIVE_SOURCE_INDEX.md",
+    "docs/indexes/VAIXLNS_ZERO_LOSS_INDEX_V1.md",
+    "registry/indexes/zero-loss-index-taxonomy.v1.json",
+    ".github/workflows/conversation-source-ingestion.yml"
+  ],
+  "forbidden_paths": [
+    "project.genome",
+    "registry/omega/omega-000-master-index.json",
+    "archive/captures/**",
+    "archive/repository_snapshots.v1.json",
+    "registry/**/canonical*",
+    ".github/workflows/** (except the exact new workflow path above)",
+    "SECURITY.md"
+  ],
+  "allowed_operations": [
+    "Create the listed adapter, schema, tests, documentation, taxonomy metadata and one isolated CI workflow on this feature branch.",
+    "Read existing source files and repository metadata.",
+    "Run deterministic local unit tests against synthetic fixtures only."
+  ],
+  "forbidden_operations": [
+    "Do not modify main or any protected branch.",
+    "Do not upload real conversation exports, user attachments, transcripts, titles, message content, credentials or personal data to this public repository.",
+    "Do not connect to or scrape ChatGPT account/session APIs.",
+    "Do not alter Git hooks, repository secrets, branch protection, permissions or Git configuration.",
+    "Do not delete, rename, overwrite or deduplicate historical source files.",
+    "Do not create canonical IDs for extracted entities or promote records to IMPLEMENTED/VERIFIED/CANONICAL.",
+    "Do not merge the pull request or deploy the website."
+  ],
+  "acceptance_criteria": [
+    "The adapter accepts owner-supplied ChatGPT conversations.json, ZIP exports containing exactly one conversations.json, UTF-8 TXT/MD transcript files and opaque binary source files.",
+    "Original source bytes are preserved unchanged in a vault that must be outside every Git checkout.",
+    "All conversation mapping nodes and parent/child branches are retained; no branch is flattened or discarded.",
+    "Default mode is dry-run; persistence requires explicit --apply.",
+    "Public manifests omit source filenames, titles, user identifiers and message content.",
+    "Unsupported or malformed content fails closed or is recorded as opaque/quarantined; no silent partial parse is claimed.",
+    "Repeated ingestion is idempotent and immutable destination collisions fail closed.",
+    "Synthetic unit tests cover parsing, branch preservation, ZIP path traversal safety, privacy minimization, dry-run, idempotency and vault boundary enforcement.",
+    "Documentation distinguishes this local export adapter from a live ChatGPT connector and explains that complete history requires an owner-supplied export.",
+    "No canonical promotion or production-readiness claim is made."
+  ],
+  "verification_commands": [
+    "python -m py_compile scripts/ingest_conversation_sources.py tests/test_conversation_source_ingestion.py",
+    "python -m unittest discover -s tests -p 'test_conversation_source_ingestion.py' -v",
+    "python -m json.tool schemas/conversation-source-manifest.v1.schema.json >/dev/null",
+    "python -m json.tool registry/indexes/zero-loss-index-taxonomy.v1.json >/dev/null"
+  ],
+  "resource_limits": {
+    "max_execution_turns": 20,
+    "max_execution_time_seconds": 600,
+    "max_cost_usd": 0.0
+  },
+  "rollback": "Close the unmerged PR or revert only this feature branch. Never delete user source files or vault contents.",
+  "required_review": "Independent VV review of the exact diff and test evidence. If unavailable, verdict remains NOT_VERIFIED.",
+  "lifecycle": "CONTRACTED"
+}

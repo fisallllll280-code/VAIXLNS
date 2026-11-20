@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaixlns.org/schemas/conversation-source-manifest.v1.schema.json",
+  "title": "VAIXLNS Conversation Source Manifest",
+  "description": "Private, source-bound metadata for user-supplied conversation exports. Raw content and normalized transcripts must remain in a private vault.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/privateManifest"
+    },
+    {
+      "$ref": "#/$defs/publicManifest"
+    }
+  ],
+  "$defs": {
+    "sourceKind": {
+      "enum": [
+        "CHATGPT_EXPORT_ZIP",
+        "CHATGPT_CONVERSATIONS_JSON",
+        "TEXT_TRANSCRIPT",
+        "OPAQUE_SOURCE_FILE"
+      ]
+    },
+    "parserState": {
+      "enum": [
+        "PARSED",
+        "PARSED_AS_SINGLE_SOURCE",
+        "PRESERVED_UNPARSED_ENCODING",
+        "PRESERVED_CONTENT_EXTRACTION_PENDING",
+        "QUARANTINED_PARSE_ERROR"
+      ]
+    },
+    "sourceEntry": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "parser_version",
+        "source_id",
+        "source_occurrence_id",
+        "source_sha256",
+        "original_name",
+        "byte_length",
+        "source_kind",
+        "parser_state",
+        "conversation_count",
+        "message_node_count",
+        "normalized_ids",
+        "parse_error_type"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "parser_version": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^SRC-[a-f0-9]{24}$"
+        },
+        "source_occurrence_id": {
+          "type": "string",
+          "pattern": "^OCC-[a-f0-9]{24}$"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_kind": {
+          "$ref": "#/$defs/sourceKind"
+        },
+        "parser_state": {
+          "$ref": "#/$defs/parserState"
+        },
+        "conversation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "message_node_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "normalized_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parse_error_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "publicSourceEntry": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_sha256",
+        "byte_length",
+        "source_kind",
+        "parser_state",
+        "conversation_count",
+        "message_node_count"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^SRC-[a-f0-9]{24}$"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_kind": {
+          "$ref": "#/$defs/sourceKind"
+        },
+        "parser_state": {
+          "$ref": "#/$defs/parserState"
+        },
+        "conversation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "message_node_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "privateManifest": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "sources"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceEntry"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "publicManifest": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "manifest_type",
+        "sources"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "manifest_type": {
+          "const": "PRIVACY_MINIMIZED_CONVERSATION_SOURCE_MANIFEST"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/publicSourceEntry"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
