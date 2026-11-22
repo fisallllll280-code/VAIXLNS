@@ -37,6 +37,13 @@ PROTECTED_OUTPUTS = {
     Path("registry/vx-agents-fabric.integration.v1.json"),
 }
 ADMITTED_STATES = {"ADMITTED", "ACTIVE"}
+# These are declarations only, never proof of live connectivity or admission.
+DECLARED_AVAILABLE_SERVICE_STATES = {"CONNECTED", "ACTIVE", "ADMITTED"}
+REQUIRED_RUNTIME_SERVICES = (
+    "model_providers", "durable_vaixlns_event_ledger",
+    "internet_search_adapter", "repository_tool_adapter", "code_sandbox_adapter",
+    "crash_resume_controller",
+)
 FAMILY_MODEL_ENV = {
     "research": "VX_RESEARCH_MODEL",
     "finance": "VX_FINANCE_MODEL",
@@ -397,14 +404,9 @@ def build_report(
         blockers.append("EXTERNAL_INTEGRATION_GATE_NOT_ADMITTED")
 
     unavailable_services = []
-    for key in ("model_providers", "durable_vaixl_event_ledger",
-                "internet_search_adapter", "repository_tool_adapter", "code_sandbox_adapter",
-                "crash_resume_controller"):
+    for key in REQUIRED_RUNTIME_SERVICES:
         value = operational.get(key, integration.get("model_binding", {}).get(key, "UNDECLARED"))
-        normalized = str(value).upper()
-        if any(marker in normalized for marker in (
-            "NOT_CONNECTED", "NOT_INCLUDED", "NOT_IMPLEMENTED", "NOT_CONFIGURED", "UNDECLARED"
-        )):
+        if not isinstance(value, str) or value.upper() not in DECLARED_AVAILABLE_SERVICE_STATES:
             unavailable_services.append(key)
     _add_check(
         checks, "required_runtime_services",
